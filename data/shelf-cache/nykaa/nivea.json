@@ -1,0 +1,169 @@
+{
+  "brand": "Nivea",
+  "brandKey": "nivea",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=Nivea",
+  "scrapedAt": "2026-07-08T16:39:10.473Z",
+  "products": [
+    {
+      "name": "NIVEA 72H Active Protection With Pearl Extract Deo Underarm Roll On - Smooth Skin, Odor Protection",
+      "priceINR": 162,
+      "mrpINR": 249,
+      "rating": 4.5,
+      "reviewCount": 73529,
+      "url": "https://www.nykaa.com/nivea-pearl-beauty-roll-on/p/2212?productId=158700&skuId=2212&pps=1"
+    },
+    {
+      "name": "NIVEA Luminous Even Glow Brightening Face Serum with Niacinamide, Thiamidol, 60X Vitamin C, Aloevera",
+      "priceINR": 448,
+      "mrpINR": 560,
+      "rating": 4.5,
+      "reviewCount": 67,
+      "url": "https://www.nykaa.com/nivea-luminous-even-glow-instant-glow-serum/p/27804741?productId=27804741&pps=2"
+    },
+    {
+      "name": "NIVEA Cell Repair 50X Vit C Sunscreen Natural Glow Body Lotion Reduces Tan, Brightens - Uva & Uvb",
+      "priceINR": 323,
+      "mrpINR": 645,
+      "rating": 4.5,
+      "reviewCount": 141531,
+      "url": "https://www.nykaa.com/nivea-body-lotion-extra-whitening-cell-repair-uv-protect-vit-c/p/10205?productId=10205&skuId=31836&pps=3"
+    },
+    {
+      "name": "NIVEA Soft Light Cream - Pack Of 2",
+      "priceINR": 680,
+      "mrpINR": 800,
+      "rating": 4.5,
+      "reviewCount": 248179,
+      "url": "https://www.nykaa.com/nivea-soft-light-cream-pack-of-2/p/12351297?productId=12351297&pps=4"
+    },
+    {
+      "name": "NIVEA Deep Moisture Serum Vit E Body Lotion 72H Intense Moisturization Almond Oil Dry Very Dry Skin",
+      "priceINR": 439,
+      "mrpINR": 799,
+      "rating": 4.5,
+      "reviewCount": 312949,
+      "url": "https://www.nykaa.com/nivea-nourishing-body-mlk/p/6000?productId=6000&skuId=523688&pps=5"
+    },
+    {
+      "name": "NIVEA Derma Control Even Tone Underarm Roll-On",
+      "priceINR": 162,
+      "mrpINR": 249,
+      "rating": 4.5,
+      "reviewCount": 1646,
+      "url": "https://www.nykaa.com/nivea-derma-control-eventone-underarm-roll-on/p/24495448?productId=24495448&pps=6"
+    },
+    {
+      "name": "NIVEA Luminous Even Glow Bubble Foam Daily Gentle and Brightening Face Wash With 6 Acid complex",
+      "priceINR": 213,
+      "mrpINR": 250,
+      "rating": 4.5,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/nivea-luminous-even-glow-bubble-foam-face-wash/p/27804743?productId=27804743&pps=7"
+    },
+    {
+      "name": "NIVEA Super 10 Glow Serum Body Lotion With Niacinamide, 120X Vitamin & SPF15",
+      "priceINR": 245,
+      "mrpINR": 350,
+      "rating": 4.5,
+      "reviewCount": 303,
+      "url": "https://www.nykaa.com/nivea-super-10-glow-serum-lotion/p/25310152?productId=25310152&pps=8"
+    },
+    {
+      "name": "NIVEA Waterlily & care oil Body wash for long-lasting freshness",
+      "priceINR": 239,
+      "mrpINR": 299,
+      "rating": 4.5,
+      "reviewCount": 29431,
+      "url": "https://www.nykaa.com/nivea-waterlily-oil-shower-gel-125ml/p/682163?productId=682163&skuId=6692&pps=9"
+    },
+    {
+      "name": "NIVEA Tinted Lip Balm With Natural Oils & 24H Melt-In Moisture Cherry Shine",
+      "priceINR": 161,
+      "mrpINR": 240,
+      "rating": 4.5,
+      "reviewCount": 290138,
+      "url": "https://www.nykaa.com/nivea-fruity-shine-lip-balm/p/13647?productId=13647&skuId=13640&pps=10"
+    },
+    {
+      "name": "NIVEA Luminous Even Glow Whip Foam Daily Gentle Face Wash With Hyaluronic",
+      "priceINR": 213,
+      "mrpINR": 250,
+      "rating": 4.5,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/nivea-luminous-even-glow-whip-foam-face-wash/p/27804742?productId=27804742&pps=11"
+    },
+    {
+      "name": "Nivea Deep Moisture Serum Vit E Body Lotion 48H Intense Moisturization Almond Oil Dry-Very Dry Skin",
+      "priceINR": 396,
+      "mrpINR": 550,
+      "rating": 4.5,
+      "reviewCount": 312949,
+      "url": "https://www.nykaa.com/nivea-nourishing-body-mlk/p/6000?productId=6000&skuId=8082&pps=12"
+    },
+    {
+      "name": "NIVEA SPF 50+ PA+++ Protect & Moisture Sunscreen-No White Cast, With Vitamin C & Hyaluron (125ml)",
+      "priceINR": 524,
+      "mrpINR": 699,
+      "rating": 4.5,
+      "reviewCount": 35427,
+      "url": "https://www.nykaa.com/nivea-moisturising-sun-lotion-spf-50/p/8078?productId=8078&skuId=11635&pps=13"
+    },
+    {
+      "name": "NIVEA Soft Moisturizing Cream Vitamin E Face Cream, Body Moisturizer 72H Hydration Dry & Normal Skin",
+      "priceINR": 471,
+      "mrpINR": 725,
+      "rating": 4.5,
+      "reviewCount": 191058,
+      "url": "https://www.nykaa.com/nivea-soft-cream-300-ml/p/10212?productId=6004&skuId=10212&pps=14"
+    },
+    {
+      "name": "NIVEA MEN Deodorant Roll On, Fresh Active, 48h Long lasting Freshness",
+      "priceINR": 149,
+      "mrpINR": 249,
+      "rating": 4.5,
+      "reviewCount": 5074,
+      "url": "https://www.nykaa.com/nivea-fresh-active-roll-on-for-men/p/2214?productId=2214&pps=15"
+    },
+    {
+      "name": "Nivea Natural Glow Even Toned Vit C & 0% Alcohol Deo Underarm Roll On 72Hr Active Protection Smooth Skin",
+      "priceINR": 159,
+      "mrpINR": 249,
+      "rating": 4.5,
+      "reviewCount": 87829,
+      "url": "https://www.nykaa.com/nivea-whitening-roll-on/p/2216?productId=158781&skuId=2216&pps=16"
+    },
+    {
+      "name": "Nivea Cocoa Nourish Oil In Lotion With Pure Hyaluron For 72H Moisturization",
+      "priceINR": 359,
+      "mrpINR": 599,
+      "rating": 4.5,
+      "reviewCount": 40659,
+      "url": "https://www.nykaa.com/nivea-body-lotion-oil-in-lotion-cocoa-nourish-for-very-dry-skin/p/662352?productId=662352&skuId=85150&pps=17"
+    },
+    {
+      "name": "NIVEA Pearl & Beauty Radiance Deo Roll On For Women, 72HR Odor Protection, 0% Alcohol",
+      "priceINR": 199,
+      "mrpINR": 249,
+      "rating": 4.5,
+      "reviewCount": 9157,
+      "url": "https://www.nykaa.com/nivea-pearl-beauty-radiance-deo-roll-on-for-women-48-hr-odor-protection-0percent-alcohol/p/5522722?productId=5522722&skuId=5522720&pps=18"
+    },
+    {
+      "name": "NIVEA 72H Active Protection With Pearl Extract Deo Underarm Roll On - Smooth Skin, Odor Protection",
+      "priceINR": 162,
+      "mrpINR": 249,
+      "rating": 4.5,
+      "reviewCount": 73529,
+      "url": "https://www.nykaa.com/nivea-pearl-beauty-deodorant-roll-on-config/p/158700?productId=158700&pps=19"
+    },
+    {
+      "name": "Nivea Nourishing Body Milk",
+      "priceINR": 439,
+      "mrpINR": 799,
+      "rating": 4.5,
+      "reviewCount": 312949,
+      "url": "https://www.nykaa.com/nivea-nourishing-body-mlk/p/6000?productId=6000&pps=20"
+    }
+  ]
+}

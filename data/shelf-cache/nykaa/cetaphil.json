@@ -1,0 +1,169 @@
+{
+  "brand": "Cetaphil",
+  "brandKey": "cetaphil",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=Cetaphil",
+  "scrapedAt": "2026-07-08T16:37:41.159Z",
+  "products": [
+    {
+      "name": "Cetaphil Advanced Defense Serum with Gallic Acid, Boosts Skin Radiance & Brightness",
+      "priceINR": 1879,
+      "mrpINR": 1999,
+      "rating": 7,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-advanced-defense-serum/p/25165278?productId=25165278&pps=1"
+    },
+    {
+      "name": "Cetaphil Optimal Hydration Restoring Water Gel",
+      "priceINR": 303,
+      "mrpINR": 399,
+      "rating": 547,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-optimal-hydration-restoring-water-gel/p/25018646?productId=25018646&pps=2"
+    },
+    {
+      "name": "Cetaphil Advanced Recovery Serum with Gallic Acid, 2X Faster Barrier Repair",
+      "priceINR": 1879,
+      "mrpINR": 1999,
+      "rating": 11,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-advanced-recovery-serum/p/25165279?productId=25165279&pps=3"
+    },
+    {
+      "name": "Cetaphil Gentle Skin Cleanser",
+      "priceINR": 413,
+      "mrpINR": 459,
+      "rating": 410393,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-cleansing-lotion/p/22032?productId=22032&pps=4"
+    },
+    {
+      "name": "Cetaphil Oily Skin Cleanser",
+      "priceINR": 674,
+      "mrpINR": 749,
+      "rating": 92125,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-oily-skin-cleanser/p/16334812?productId=16334812&pps=5"
+    },
+    {
+      "name": "Cetaphil Moisturising Lotion",
+      "priceINR": 371,
+      "mrpINR": 399,
+      "rating": 208512,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-moisturising-lotion-for-dry-to-normal-sensitive-skin/p/12999624?productId=12999624&pps=6"
+    },
+    {
+      "name": "Cetaphil Bright Healthy Radiance Serum",
+      "priceINR": 1954,
+      "mrpINR": 2299,
+      "rating": 5750,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-bright-healthy-radiance-perfecting-serum-7x-power-with-antioxidant-c-advanced-peptide/p/20153816?productId=20153816&pps=7"
+    },
+    {
+      "name": "Cetaphil Moisturising Cream",
+      "priceINR": 1839,
+      "mrpINR": 1999,
+      "rating": 161570,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-moisturising-cream/p/392484?productId=392484&pps=8"
+    },
+    {
+      "name": "Cetaphil Gentle Exfoliating SA Cleanser",
+      "priceINR": 1113,
+      "mrpINR": 1250,
+      "rating": 2541,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-gentle-exfoliating-sa-cleanser/p/22012621?productId=22012621&pps=9"
+    },
+    {
+      "name": "Cetaphil Healthy Renew Eye Serum with Purified Peptides, Reduces Dark Circles & Fine Lines",
+      "priceINR": 1957,
+      "mrpINR": 2199,
+      "rating": 49,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-optimal-healthy-renew-eye-serum/p/25018645?productId=25018645&pps=10"
+    },
+    {
+      "name": "Cetaphil Bright Healthy Radiance Night Cream, with Niacinamide, Evens Skin Tone & Dullness",
+      "priceINR": 1208,
+      "mrpINR": 1299,
+      "rating": 15270,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-bhr-brightening-night-comfort-cream/p/1171878?productId=1171878&pps=11"
+    },
+    {
+      "name": "Cetaphil DailyAdvance Ultra Hydrating Lotion",
+      "priceINR": 704,
+      "mrpINR": 765,
+      "rating": 146021,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-dailyadvance-ultra-hydrating-lotion/p/20985?productId=20985&pps=12"
+    },
+    {
+      "name": "Cetaphil Sun SPF 50+ Light Gel Very High Protection Mineral Base for All Skin Types, Sensitive Skin",
+      "priceINR": 1182,
+      "mrpINR": 1299,
+      "rating": 13769,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-sun-spf-50-gel/p/930182?productId=930182&pps=13"
+    },
+    {
+      "name": "Cetaphil Bright Healthy Radiance Creamy Cleanser, with Niacinamide, For Uneven Skin Tone",
+      "priceINR": 727,
+      "mrpINR": 799,
+      "rating": 9046,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-bhr-brightness-reveal-creamy-cleanser/p/1171879?productId=1171879&pps=14"
+    },
+    {
+      "name": "Cetaphil Bright Healthy Radiance Day Cream, with Niacinamide, with SPF, Improve Skin Tone",
+      "priceINR": 1208,
+      "mrpINR": 1299,
+      "rating": 9036,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-bhr-day-day-protection-cream/p/1171877?productId=1171877&pps=15"
+    },
+    {
+      "name": "Cetaphil Bright Healthy Radiance Toner, with Niacinamide, For Brightening, Evens Skin Tone",
+      "priceINR": 1115,
+      "mrpINR": 1199,
+      "rating": 7131,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-bhr-brightness-refresh-toner/p/1171880?productId=1171880&pps=16"
+    },
+    {
+      "name": "Cetaphil Baby Daily Lotion",
+      "priceINR": 929,
+      "mrpINR": 999,
+      "rating": 12572,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-baby-daily-lotion/p/26309124?productId=26309124&pps=17"
+    },
+    {
+      "name": "Cetaphil Hydrating Foaming Face Wash For Men, Cleanser With Niacinamide & Aloe Pollution Defense",
+      "priceINR": 1024,
+      "mrpINR": 1150,
+      "rating": 2389,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-hydrating-foaming-cream-cleanser/p/12663640?productId=12663640&pps=18"
+    },
+    {
+      "name": "Cetaphil Sun SPF 30 Light Gel Mineral Base For Normal Sensitive & Oily Skin",
+      "priceINR": 1315,
+      "mrpINR": 1399,
+      "rating": 3107,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-sun-spf-30-gel/p/930183?productId=930183&pps=19"
+    },
+    {
+      "name": "Cetaphil Baby Wash & Shampoo with Organic Calendula",
+      "priceINR": 1349,
+      "mrpINR": 1499,
+      "rating": 1439,
+      "reviewCount": 0,
+      "url": "https://www.nykaa.com/cetaphil-baby-wash-shampoo-with-organic-calendula/p/757131?productId=757131&pps=20"
+    }
+  ]
+}

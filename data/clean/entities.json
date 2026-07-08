@@ -44,6 +44,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 5
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": null,
+        "avgDiscountPct": 9.5,
+        "totalReviews": 0,
+        "topSku": {
+          "name": "Cetaphil Advanced Defense Serum with Gallic Acid, Boosts Skin Radiance & Brightness",
+          "rating": 7,
+          "reviewCount": 0,
+          "priceINR": 1879,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:37:41.159Z"
       }
     },
     {
@@ -134,6 +151,23 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 2
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": 4.5,
+        "avgDiscountPct": 30.9,
+        "totalReviews": 2166404,
+        "topSku": {
+          "name": "NIVEA Deep Moisture Serum Vit E Body Lotion 72H Intense Moisturization Almond Oil Dry Very Dry Skin",
+          "rating": 4.5,
+          "reviewCount": 312949,
+          "priceINR": 439,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:39:10.473Z"
       }
     },
     {
