@@ -27,6 +27,18 @@ export interface ProbeData {
   fetchedAt?: string;
 }
 
+export interface CompetitorData {
+  stage: string | null;
+  founders: string[];
+  investors: string[];
+  geoServed: string[];
+  hqCity: string | null;
+  fundingUSD: number | null;
+  latestRound: { name: string | null; date: string | null; amountUSD: number | null } | null;
+  acquiredBy: { acquirer: string | null; amountUSD: number | null; date: string | null } | null;
+  materialEvent: string | null;
+}
+
 export interface Entity {
   category: string;
   folder: string;
@@ -45,6 +57,7 @@ export interface Entity {
   funding: { rounds: number; acquisitions: number };
   sources: { tracxn: boolean; webResearch: boolean; pdfs: number };
   probe?: ProbeData;
+  competitor?: CompetitorData;
 }
 
 export interface Dataset {
@@ -60,4 +73,31 @@ export const SUPPLY_CATEGORIES = ["RM Vendor", "PM Vendor", "Manufacturer"] as c
 
 export function supplyEntities(): Entity[] {
   return DATA.entities.filter((e) => SUPPLY_CATEGORIES.includes(e.category as never));
+}
+
+export const COMPETITOR_CATEGORIES = ["Sunscreen", "Face Serums", "Bodywash", "Body Scrub", "Body Lotion"] as const;
+
+export interface CompetitorRow extends Entity {
+  categories: string[]; // a brand can compete across several categories
+}
+
+// Competitors are listed once per category in the raw data; collapse to one row
+// per brand/entity and collect the categories it competes in.
+export function competitorRows(): CompetitorRow[] {
+  const byKey = new Map<string, CompetitorRow>();
+  for (const e of DATA.entities) {
+    if (!e.category.startsWith("Competitor")) continue;
+    const cat = e.category.replace(/^Competitor -\s*/, "");
+    const key = e.cin || e.brand.toLowerCase();
+    const existing = byKey.get(key);
+    if (existing) {
+      if (!existing.categories.includes(cat)) existing.categories.push(cat);
+      // fill any gaps from a richer duplicate
+      if (existing.financials.revenueINR == null && e.financials.revenueINR != null) existing.financials = e.financials;
+      if (!existing.competitor?.materialEvent && e.competitor?.materialEvent) existing.competitor = e.competitor;
+    } else {
+      byKey.set(key, { ...e, categories: [cat] });
+    }
+  }
+  return [...byKey.values()];
 }

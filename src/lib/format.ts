@@ -24,6 +24,14 @@ export function fmtDays(v: number | null): string {
   return v == null ? "—" : `${Math.round(v)} d`;
 }
 
+export function fmtUSD(v: number | null): string {
+  if (v == null) return "—";
+  if (v >= 1e9) return `$${(v / 1e9).toFixed(1)}B`;
+  if (v >= 1e6) return `$${(v / 1e6).toFixed(v >= 1e8 ? 0 : 1)}M`;
+  if (v >= 1e3) return `$${(v / 1e3).toFixed(0)}k`;
+  return `$${v}`;
+}
+
 export function fmtDate(iso: string | null): string {
   if (!iso) return "—";
   const d = new Date(iso);

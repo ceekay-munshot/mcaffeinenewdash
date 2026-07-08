@@ -38,13 +38,28 @@ function findByKey(root, keyRe, accept) {
   return undefined;
 }
 
-// Pull an INR money amount out of a value that might be a number,
-// or {INR: n}, or {value: n}.
+// Parse an INR amount out of a free-text money string like
+// "214.57 Cr (Rs 2,145,683,000)" or "₹58.3 Cr". Ranges ("100-500 Cr") are
+// skipped to avoid inventing a precise-looking wrong number.
+function parseMoneyINR(s) {
+  let m = s.replace(/,/g, "").match(/(?:Rs|₹|INR)\s*(\d{6,})/i);
+  if (m) return Number(m[1]);
+  if (/\d\s*[-–]\s*\d/.test(s)) return undefined; // a range — ambiguous
+  m = s.match(/(\d+(?:\.\d+)?)\s*Cr\b/i);
+  if (m) return Math.round(Number(m[1]) * 1e7);
+  return undefined;
+}
+
+// Pull an INR money amount out of a value that might be a number, a string,
+// or {INR|amountINR|value: ...}.
 function asINR(v) {
-  if (typeof v === "number" && Number.isFinite(v) && v !== 0) return v;
+  if (typeof v === "number") return Number.isFinite(v) && v !== 0 ? v : undefined;
+  if (typeof v === "string") return parseMoneyINR(v);
   if (v && typeof v === "object") {
-    if (typeof v.INR === "number" && v.INR !== 0) return v.INR;
-    if (typeof v.value === "number" && v.value !== 0) return v.value;
+    for (const k of ["INR", "amountINR", "value"]) {
+      const n = asINR(v[k]);
+      if (n !== undefined) return n;
+    }
   }
   return undefined;
 }
@@ -57,6 +72,46 @@ function asNumber(v) {
 
 function firstString(root, keyRe) {
   return findByKey(root, keyRe, (v) => (typeof v === "string" && v.trim() ? v.trim() : undefined));
+}
+function firstNum(root, keyRe) {
+  return findByKey(root, keyRe, (v) => (typeof v === "number" && Number.isFinite(v) ? v : undefined));
+}
+function firstArray(root, keyRe) {
+  return findByKey(root, keyRe, (v) => (Array.isArray(v) && v.length ? v : undefined));
+}
+function firstObject(root, keyRe) {
+  return findByKey(root, keyRe, (v) => (v && typeof v === "object" && !Array.isArray(v) ? v : undefined));
+}
+const strv = (v) => (typeof v === "string" && v.trim() ? v.trim() : null);
+const usdM = (n) => (typeof n === "number" ? `$${(n / 1e6).toFixed(n >= 1e8 ? 0 : 1)}M` : "");
+
+// Competitor-specific enrichment (funding, M&A, cap-table signals) — P2.
+function extractCompetitor(blob) {
+  const stage = firstString(blob, /^stage$/i);
+  const strList = (arr) => (Array.isArray(arr) ? arr.filter((x) => typeof x === "string") : []);
+  const founders = strList(firstArray(blob, /keyPeople|key_people|founders/i)).filter((p) => /founder|ceo/i.test(p));
+  const investors = strList(firstArray(blob, /^investors$/i));
+  const geoServed = strList(firstArray(blob, /geoServed|geographies/i));
+  const hqCity = firstString(blob, /^hqCity$/i);
+  const fundingUSD = firstNum(blob, /totalEquityFundingUSD|totalFundingUSD/i) ?? null;
+
+  const lr = firstObject(blob, /latestFundingRound/i);
+  const latestRound = lr
+    ? { name: strv(lr.name), date: strv(lr.date || lr.roundDate), amountUSD: typeof lr.amountUSD === "number" ? lr.amountUSD : null }
+    : null;
+
+  const acq = firstObject(blob, /latestAcquiredBy|acquiredBy/i);
+  const acquiredBy = acq
+    ? { acquirer: strv(acq.acquirer || acq.name), amountUSD: typeof acq.amountUSD === "number" ? acq.amountUSD : null, date: strv(acq.date) }
+    : null;
+
+  let materialEvent = null;
+  if (acquiredBy?.acquirer)
+    materialEvent = `Acquired by ${acquiredBy.acquirer}${usdM(acquiredBy.amountUSD) ? " · " + usdM(acquiredBy.amountUSD) : ""}${acquiredBy.date ? " · " + acquiredBy.date : ""}`;
+  else if (latestRound?.name || latestRound?.amountUSD)
+    materialEvent = `${latestRound.name || "Funding"}${usdM(latestRound.amountUSD) ? " · " + usdM(latestRound.amountUSD) : ""}${latestRound.date ? " · " + latestRound.date : ""}`;
+
+  return { stage: stage ?? null, founders, investors, geoServed, hqCity: hqCity ?? null, fundingUSD, latestRound, acquiredBy, materialEvent };
 }
 
 // Search every string in the blob for a regex (CIN / PAN live in many places).
@@ -212,6 +267,7 @@ function extract(category, folder, dir) {
       employeeCount: employeeCount ?? null,
     },
     funding: { rounds: fundingRounds, acquisitions },
+    competitor: category.startsWith("Competitor") ? extractCompetitor(blob) : undefined,
     sources: {
       tracxn: !!tracxn,
       webResearch: !!web,

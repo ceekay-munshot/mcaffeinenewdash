@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T14:51:09.211Z",
+  "generatedAt": "2026-07-08T16:23:30.976Z",
   "count": 73,
   "entities": [
     {
@@ -28,6 +28,17 @@
       "funding": {
         "rounds": 0,
         "acquisitions": 0
+      },
+      "competitor": {
+        "stage": "Unfunded",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
       },
       "sources": {
         "tracxn": true,
@@ -62,6 +73,19 @@
         "rounds": 0,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Unfunded",
+        "founders": [],
+        "investors": [],
+        "geoServed": [
+          "India"
+        ],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
+      },
       "sources": {
         "tracxn": true,
         "webResearch": true,
@@ -95,6 +119,17 @@
         "rounds": 0,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Unfunded",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
+      },
       "sources": {
         "tracxn": true,
         "webResearch": false,
@@ -127,6 +162,32 @@
       "funding": {
         "rounds": 3,
         "acquisitions": 0
+      },
+      "competitor": {
+        "stage": "Series C",
+        "founders": [],
+        "investors": [
+          "Unilever Ventures",
+          "A91 Partners",
+          "Faering Capital",
+          "Rashmika Mandanna (angel)",
+          "Trifecta Capital",
+          "Shankar Prasad Sethuram (angel)",
+          "British International Investment"
+        ],
+        "geoServed": [
+          "Australia",
+          "India"
+        ],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": {
+          "name": "Series C",
+          "date": "23/03/2022",
+          "amountUSD": null
+        },
+        "acquiredBy": null,
+        "materialEvent": "Series C · 23/03/2022"
       },
       "sources": {
         "tracxn": true,
@@ -161,6 +222,17 @@
         "rounds": 0,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Unfunded",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
+      },
       "sources": {
         "tracxn": true,
         "webResearch": false,
@@ -193,6 +265,27 @@
       "funding": {
         "rounds": 1,
         "acquisitions": 0
+      },
+      "competitor": {
+        "stage": "Seed",
+        "founders": [],
+        "investors": [
+          "Unilever Ventures",
+          "Twenty Nine Capital Partners",
+          "Atul Kothari (angel)"
+        ],
+        "geoServed": [
+          "India"
+        ],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": {
+          "name": "Seed",
+          "date": "18/10/2023",
+          "amountUSD": null
+        },
+        "acquiredBy": null,
+        "materialEvent": "Seed · 18/10/2023"
       },
       "sources": {
         "tracxn": true,
@@ -227,6 +320,17 @@
         "rounds": 0,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Funding Raised",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
+      },
       "sources": {
         "tracxn": true,
         "webResearch": true,
@@ -259,6 +363,17 @@
       "funding": {
         "rounds": 0,
         "acquisitions": 0
+      },
+      "competitor": {
+        "stage": "Unfunded",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
       },
       "sources": {
         "tracxn": true,
@@ -293,6 +408,17 @@
         "rounds": 6,
         "acquisitions": 1
       },
+      "competitor": {
+        "stage": "Acquired",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
+      },
       "sources": {
         "tracxn": true,
         "webResearch": true,
@@ -325,6 +451,17 @@
       "funding": {
         "rounds": 0,
         "acquisitions": 0
+      },
+      "competitor": {
+        "stage": "Funding Raised",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
       },
       "sources": {
         "tracxn": true,
@@ -359,6 +496,17 @@
         "rounds": 0,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Unfunded",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
+      },
       "sources": {
         "tracxn": true,
         "webResearch": true,
@@ -391,6 +539,17 @@
       "funding": {
         "rounds": 0,
         "acquisitions": 0
+      },
+      "competitor": {
+        "stage": null,
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
       },
       "sources": {
         "tracxn": false,
@@ -425,6 +584,17 @@
         "rounds": 0,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": null,
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
+      },
       "sources": {
         "tracxn": false,
         "webResearch": false,
@@ -457,6 +627,17 @@
       "funding": {
         "rounds": 6,
         "acquisitions": 1
+      },
+      "competitor": {
+        "stage": "Acquired",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
       },
       "sources": {
         "tracxn": true,
@@ -491,6 +672,44 @@
         "rounds": 3,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Series A",
+        "founders": [
+          "Malini Adapureddy - Founder & CEO"
+        ],
+        "investors": [
+          "Kalaari Capital (lead in Seed)",
+          "Beenext",
+          "Binny Bansal (angel)",
+          "Pravega Ventures",
+          "Digital Sparrow Capital",
+          "Jitendra Kumar Bansal (angel)",
+          "Paavani Bishnoi (angel)",
+          "Thokalahalli Narasimha Hari (angel)",
+          "Radhakrishna Ajeeth Narayn (angel)",
+          "Abhishek Goyal (angel)",
+          "Aravali Advisors",
+          "Sparrow Capital",
+          "BOLD (L'Oreal Bold Ventures) - lead in Series A",
+          "V3 Ventures (lead in Series A)",
+          "DSG Consumer Partners (lead in Series A)",
+          "Verlinvest",
+          "Mender Kumar Bansal (angel)",
+          "Adapureddi Sreedevi (angel)"
+        ],
+        "geoServed": [
+          "India"
+        ],
+        "hqCity": "Bengaluru",
+        "fundingUSD": 10353500,
+        "latestRound": {
+          "name": "Series A",
+          "date": "24/12/2024",
+          "amountUSD": 8000000
+        },
+        "acquiredBy": null,
+        "materialEvent": "Series A · $8.0M · 24/12/2024"
+      },
       "sources": {
         "tracxn": true,
         "webResearch": false,
@@ -523,6 +742,39 @@
       "funding": {
         "rounds": 1,
         "acquisitions": 1
+      },
+      "competitor": {
+        "stage": "Acquired",
+        "founders": [
+          "Rahul Yadav - Co-Founder",
+          "Mohit Yadav - Co-Founder"
+        ],
+        "investors": [
+          "Unilever Ventures",
+          "Peak XV Partners (lead)",
+          "Twenty Nine Capital Partners",
+          "Surge (accelerator, Surge 02 batch)"
+        ],
+        "geoServed": [
+          "India",
+          "Malaysia",
+          "United Kingdom",
+          "United States",
+          "Indonesia"
+        ],
+        "hqCity": "Jaipur",
+        "fundingUSD": 15000000,
+        "latestRound": {
+          "name": "Series A",
+          "date": "23/07/2021",
+          "amountUSD": 15000000
+        },
+        "acquiredBy": {
+          "acquirer": "Hindustan Unilever",
+          "amountUSD": 350000000,
+          "date": "22/01/2025"
+        },
+        "materialEvent": "Acquired by Hindustan Unilever · $350M · 22/01/2025"
       },
       "sources": {
         "tracxn": true,
@@ -557,6 +809,28 @@
         "rounds": 8,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Series B",
+        "founders": [],
+        "investors": [
+          "NSFO",
+          "Vertex Ventures",
+          "Mirabilis Investment Trust",
+          "Vertex Growth",
+          "Anicut Capital",
+          "Sattva Ventures"
+        ],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": 50000000,
+        "latestRound": {
+          "name": "Series B",
+          "date": "13/03/2025",
+          "amountUSD": 8013056
+        },
+        "acquiredBy": null,
+        "materialEvent": "Series B · $8.0M · 13/03/2025"
+      },
       "sources": {
         "tracxn": true,
         "webResearch": true,
@@ -590,6 +864,21 @@
         "rounds": 3,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Series C",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": 51668167,
+        "latestRound": {
+          "name": "Series C",
+          "date": "23/03/2022",
+          "amountUSD": 35000000
+        },
+        "acquiredBy": null,
+        "materialEvent": "Series C · $35.0M · 23/03/2022"
+      },
       "sources": {
         "tracxn": true,
         "webResearch": true,
@@ -603,7 +892,7 @@
       "legalName": "The Derma Co",
       "cin": "L74999DL2016PLC306016",
       "pan": "AADCH9716L",
-      "coverage": "partial",
+      "coverage": "full",
       "tracxnUrl": "https://platform.tracxn.com/a/d/company/5c769f679adc10590af38f5d",
       "website": "https://thedermaco.com",
       "incorporationDate": "16 Sep 2016",
@@ -611,9 +900,9 @@
       "statusAtRegistrar": "Active",
       "parent": "Honasa Consumer (parent company); also grouped under Mamaearth capital table",
       "financials": {
-        "revenueINR": null,
-        "ebitdaINR": null,
-        "netProfitINR": null,
+        "revenueINR": 2145683000,
+        "ebitdaINR": 1472680000,
+        "netProfitINR": 726870000,
         "ebitdaMarginPct": null,
         "netMarginPct": null,
         "revenueCAGR3yrPct": null,
@@ -622,6 +911,20 @@
       "funding": {
         "rounds": 0,
         "acquisitions": 0
+      },
+      "competitor": {
+        "stage": "Unfunded (Subsidiary)",
+        "founders": [
+          "Varun Alagh — Co-Founder & CEO (Honasa Consumer)",
+          "Ghazal Alagh — Co-Founder (Honasa Consumer)"
+        ],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": "Gurugram, Haryana, India",
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
       },
       "sources": {
         "tracxn": true,
@@ -656,6 +959,44 @@
         "rounds": 3,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Series A",
+        "founders": [
+          "Malini Adapureddy - Founder & CEO"
+        ],
+        "investors": [
+          "Kalaari Capital (lead in Seed)",
+          "Beenext",
+          "Binny Bansal (angel)",
+          "Pravega Ventures",
+          "Digital Sparrow Capital",
+          "Jitendra Kumar Bansal (angel)",
+          "Paavani Bishnoi (angel)",
+          "Thokalahalli Narasimha Hari (angel)",
+          "Radhakrishna Ajeeth Narayn (angel)",
+          "Abhishek Goyal (angel)",
+          "Aravali Advisors",
+          "Sparrow Capital",
+          "BOLD (L'Oreal Bold Ventures) - lead in Series A",
+          "V3 Ventures (lead in Series A)",
+          "DSG Consumer Partners (lead in Series A)",
+          "Verlinvest",
+          "Mender Kumar Bansal (angel)",
+          "Adapureddi Sreedevi (angel)"
+        ],
+        "geoServed": [
+          "India"
+        ],
+        "hqCity": "Bengaluru",
+        "fundingUSD": 10353500,
+        "latestRound": {
+          "name": "Series A",
+          "date": "24/12/2024",
+          "amountUSD": 8000000
+        },
+        "acquiredBy": null,
+        "materialEvent": "Series A · $8.0M · 24/12/2024"
+      },
       "sources": {
         "tracxn": true,
         "webResearch": false,
@@ -669,7 +1010,7 @@
       "legalName": "Dot & Key",
       "cin": "U24110WB2020PLC236913",
       "pan": "AAHCD7076K",
-      "coverage": "partial",
+      "coverage": "full",
       "tracxnUrl": "https://platform.tracxn.com/a/d/company/5a6f4019e4b071cf2936965f",
       "website": "https://www.dotandkey.com",
       "incorporationDate": "16 Mar 2020",
@@ -677,9 +1018,9 @@
       "statusAtRegistrar": "Active",
       "parent": null,
       "financials": {
-        "revenueINR": null,
-        "ebitdaINR": null,
-        "netProfitINR": null,
+        "revenueINR": 4275850000,
+        "ebitdaINR": 762970000,
+        "netProfitINR": 560890000,
         "ebitdaMarginPct": null,
         "netMarginPct": null,
         "revenueCAGR3yrPct": null,
@@ -688,6 +1029,24 @@
       "funding": {
         "rounds": 0,
         "acquisitions": 1
+      },
+      "competitor": {
+        "stage": "Acquired",
+        "founders": [
+          "Anisha Agarwal Saraf — Co-Founder",
+          "Suyash Saraf — Co-Founder & CEO"
+        ],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": "Kolkata, West Bengal, India",
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": {
+          "acquirer": "Nykaa (FSN E-Commerce Ventures Limited)",
+          "amountUSD": null,
+          "date": "22 Sep 2021 (announced)"
+        },
+        "materialEvent": "Acquired by Nykaa (FSN E-Commerce Ventures Limited) · 22 Sep 2021 (announced)"
       },
       "sources": {
         "tracxn": true,
@@ -722,6 +1081,21 @@
         "rounds": 5,
         "acquisitions": 0
       },
+      "competitor": {
+        "stage": "Series C",
+        "founders": [],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": null,
+        "fundingUSD": 56823144,
+        "latestRound": {
+          "name": "Series C",
+          "date": "12/12/2024",
+          "amountUSD": 30000000
+        },
+        "acquiredBy": null,
+        "materialEvent": "Series C · $30.0M · 12/12/2024"
+      },
       "sources": {
         "tracxn": true,
         "webResearch": true,
@@ -755,6 +1129,39 @@
         "rounds": 1,
         "acquisitions": 1
       },
+      "competitor": {
+        "stage": "Acquired",
+        "founders": [
+          "Rahul Yadav - Co-Founder",
+          "Mohit Yadav - Co-Founder"
+        ],
+        "investors": [
+          "Unilever Ventures",
+          "Peak XV Partners (lead)",
+          "Twenty Nine Capital Partners",
+          "Surge (accelerator, Surge 02 batch)"
+        ],
+        "geoServed": [
+          "India",
+          "Malaysia",
+          "United Kingdom",
+          "United States",
+          "Indonesia"
+        ],
+        "hqCity": "Jaipur",
+        "fundingUSD": 15000000,
+        "latestRound": {
+          "name": "Series A",
+          "date": "23/07/2021",
+          "amountUSD": 15000000
+        },
+        "acquiredBy": {
+          "acquirer": "Hindustan Unilever",
+          "amountUSD": 350000000,
+          "date": "22/01/2025"
+        },
+        "materialEvent": "Acquired by Hindustan Unilever · $350M · 22/01/2025"
+      },
       "sources": {
         "tracxn": true,
         "webResearch": false,
@@ -768,7 +1175,7 @@
       "legalName": "The Derma Co",
       "cin": "L74999DL2016PLC306016",
       "pan": "AADCH9716L",
-      "coverage": "partial",
+      "coverage": "full",
       "tracxnUrl": "https://platform.tracxn.com/a/d/company/5c769f679adc10590af38f5d",
       "website": "https://thedermaco.com",
       "incorporationDate": "16 Sep 2016",
@@ -776,9 +1183,9 @@
       "statusAtRegistrar": "Active",
       "parent": "Honasa Consumer (parent company); also grouped under Mamaearth capital table",
       "financials": {
-        "revenueINR": null,
-        "ebitdaINR": null,
-        "netProfitINR": null,
+        "revenueINR": 2145683000,
+        "ebitdaINR": 1472680000,
+        "netProfitINR": 726870000,
         "ebitdaMarginPct": null,
         "netMarginPct": null,
         "revenueCAGR3yrPct": null,
@@ -787,6 +1194,20 @@
       "funding": {
         "rounds": 0,
         "acquisitions": 0
+      },
+      "competitor": {
+        "stage": "Unfunded (Subsidiary)",
+        "founders": [
+          "Varun Alagh — Co-Founder & CEO (Honasa Consumer)",
+          "Ghazal Alagh — Co-Founder (Honasa Consumer)"
+        ],
+        "investors": [],
+        "geoServed": [],
+        "hqCity": "Gurugram, Haryana, India",
+        "fundingUSD": null,
+        "latestRound": null,
+        "acquiredBy": null,
+        "materialEvent": null
       },
       "sources": {
         "tracxn": true,
@@ -2411,6 +2832,5 @@
         "pdfs": 3
       }
     }
-  ],
-  "probeEnrichedCount": 0
+  ]
 }
