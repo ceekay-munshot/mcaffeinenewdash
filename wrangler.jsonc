@@ -2,6 +2,11 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mcaffeinenewdash",
   "compatibility_date": "2025-06-01",
+  // The Cloudflare deploy command is just `npx wrangler deploy`, which does not
+  // run the build — so build dist/ here, before wrangler uploads it.
+  "build": {
+    "command": "npm run build"
+  },
   // Static SPA: serve the built dist/ as assets, fall back to index.html for
   // client-side routes. No Worker script needed.
   "assets": {
