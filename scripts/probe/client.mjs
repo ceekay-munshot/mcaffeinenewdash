@@ -11,8 +11,12 @@
 
 const BASE = process.env.PROBE42_BASE_URL || "https://api.probe42.in";
 const VERSION = process.env.PROBE42_API_VERSION || "1.3";
-const SEG = (process.env.PROBE42_ENV || "sandbox") === "prod" ? "probe_pro" : "probe_pro_sandbox";
-const REPORT_SEG = (process.env.PROBE42_ENV || "sandbox") === "prod" ? "probe_reports" : "probe_reports_sandbox";
+const isProd = (process.env.PROBE42_ENV || "sandbox") === "prod";
+// Path prefix is overridable: the 2025-doc sandbox prefix (probe_pro_sandbox) was
+// deprecated by Probe42, so the current one must come from their POC and gets set
+// via PROBE42_PATH_PREFIX — no code change needed.
+const SEG = process.env.PROBE42_PATH_PREFIX || (isProd ? "probe_pro" : "probe_pro_sandbox");
+const REPORT_SEG = process.env.PROBE42_REPORT_PREFIX || (isProd ? "probe_reports" : "probe_reports_sandbox");
 
 function headers() {
   const key = process.env.PROBE42_API_KEY;
