@@ -24,7 +24,15 @@ jobs:
           node-version: "22"
       - name: Enrich from Probe42
         env:
+          # secret — the key value
           PROBE42_API_KEY: ${{ secrets.PROBE42_API_KEY }}
+          # optional non-secret config (set as repo *Variables* once Probe42's POC
+          # confirms the current endpoint). Empty values fall back to code defaults.
+          PROBE42_BASE_URL: ${{ vars.PROBE42_BASE_URL }}
+          PROBE42_PATH_PREFIX: ${{ vars.PROBE42_PATH_PREFIX }}
+          PROBE42_REPORT_PREFIX: ${{ vars.PROBE42_REPORT_PREFIX }}
+          PROBE42_API_VERSION: ${{ vars.PROBE42_API_VERSION }}
+          PROBE42_ENV: ${{ vars.PROBE42_ENV }}
         run: node scripts/probe/enrich.mjs --live --limit "${{ github.event.inputs.limit }}"
       - name: Commit refreshed data
         run: |
