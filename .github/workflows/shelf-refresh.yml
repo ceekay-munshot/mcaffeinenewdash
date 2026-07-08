@@ -7,15 +7,20 @@ on:
   workflow_dispatch:
     inputs:
       limit:
-        description: "Max brands to scrape this run (cost control)"
+        description: "Max NEW brands to scrape this run (16 = all; cached brands are free)"
         required: true
-        default: "2"
+        default: "16"
       channel:
         description: "Marketplace"
         required: true
         default: "nykaa"
         type: choice
-        options: ["nykaa", "amazon"]
+        options: ["nykaa", "amazon", "both"]
+      refresh:
+        description: "Re-scrape brands already in cache (spends more credits)"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -32,7 +37,7 @@ jobs:
         env:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
           FIRECRAWL_BASE_URL: ${{ vars.FIRECRAWL_BASE_URL }}
-        run: node scripts/firecrawl/shelf.mjs --live --limit "${{ github.event.inputs.limit }}" --channel "${{ github.event.inputs.channel }}"
+        run: node scripts/firecrawl/shelf.mjs --live --limit "${{ github.event.inputs.limit }}" --channel "${{ github.event.inputs.channel }}" ${{ github.event.inputs.refresh == 'true' && '--refresh' || '' }}
       - name: Commit refreshed data
         run: |
           git config user.name "github-actions[bot]"

@@ -23,7 +23,12 @@ const LIVE = has("--live");
 const REFRESH = has("--refresh");
 const LIMIT = val("--limit") ? Number(val("--limit")) : Infinity;
 const ONLY = val("--only");
-const CHANNELS = (val("--channel") ? [val("--channel")] : ["nykaa"]); // nykaa = biggest BPC platform
+// --channel accepts one channel, a comma list, or "both". Default: nykaa (biggest BPC platform).
+const CHANNELS = (() => {
+  const raw = (val("--channel") || "nykaa").toLowerCase();
+  if (raw === "both" || raw === "all") return ["nykaa", "amazon"];
+  return raw.split(",").map((s) => s.trim()).filter(Boolean);
+})();
 
 const norm = (s) => (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
