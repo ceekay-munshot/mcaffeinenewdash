@@ -235,7 +235,7 @@ for (const category of readdirSync(RAW_DIR)) {
 
 entities.sort((a, b) => a.category.localeCompare(b.category) || a.brand.localeCompare(b.brand));
 
-const generatedAt = process.env.BUILD_STAMP || "unstamped";
+const generatedAt = process.env.BUILD_STAMP || new Date().toISOString();
 writeFileSync(
   OUT_FILE,
   JSON.stringify({ generatedAt, count: entities.length, entities }, null, 2)
