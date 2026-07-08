@@ -327,6 +327,30 @@ function CompetitorDetail({ row: e, onClose }: { row: CompetitorRow; onClose: ()
         <Row k="Website" v={e.website ?? "—"} /><Row k="Coverage" v={COVERAGE_META[e.coverage].label} />
       </dl>
 
+      {e.shelf ? (
+        <div className="mt-6">
+          <SectionLabel>Live shelf · {e.shelf.channels.join(", ")}</SectionLabel>
+          <div className="grid grid-cols-2 gap-3">
+            <Stat label="Products on shelf" value={String(e.shelf.skuCount)} />
+            <Stat label="Avg rating" value={e.shelf.avgRating != null ? `${e.shelf.avgRating} ★` : "—"} />
+            <Stat label="Avg discount" value={fmtPct(e.shelf.avgDiscountPct)} />
+            <Stat label="Total reviews" value={fmtInt(e.shelf.totalReviews)} />
+          </div>
+          {e.shelf.topSku?.name && (
+            <div className="mt-3 rounded-xl bg-slate-50 p-3 text-sm ring-1 ring-slate-200">
+              <div className="text-xs font-medium text-slate-500">Hero SKU (most-reviewed)</div>
+              <div className="mt-0.5 text-slate-800">{e.shelf.topSku.name}</div>
+              <div className="mt-0.5 text-xs text-slate-500">
+                {e.shelf.topSku.rating != null ? `${e.shelf.topSku.rating}★ · ` : ""}
+                {fmtInt(e.shelf.topSku.reviewCount)} reviews
+                {e.shelf.topSku.priceINR != null ? ` · ₹${e.shelf.topSku.priceINR}` : ""}
+              </div>
+            </div>
+          )}
+          {e.shelf.scrapedAt && <div className="mt-1 text-right text-[11px] text-slate-400">scraped {fmtDate(e.shelf.scrapedAt)}</div>}
+        </div>
+      ) : null}
+
       {c?.investors?.length ? (
         <div className="mt-6">
           <SectionLabel>Investors</SectionLabel>

@@ -39,6 +39,16 @@ export interface CompetitorData {
   materialEvent: string | null;
 }
 
+export interface ShelfData {
+  channels: string[];
+  skuCount: number;
+  avgRating: number | null;
+  avgDiscountPct: number | null;
+  totalReviews: number;
+  topSku: { name: string | null; rating: number | null; reviewCount: number | null; priceINR: number | null; channel: string } | null;
+  scrapedAt: string | null;
+}
+
 export interface Entity {
   category: string;
   folder: string;
@@ -58,6 +68,7 @@ export interface Entity {
   sources: { tracxn: boolean; webResearch: boolean; pdfs: number };
   probe?: ProbeData;
   competitor?: CompetitorData;
+  shelf?: ShelfData;
 }
 
 export interface Dataset {

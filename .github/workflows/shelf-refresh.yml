@@ -1,0 +1,42 @@
+name: Shelf refresh (Firecrawl)
+
+# Manual-only: each scrape spends Firecrawl credits, so this never runs on a
+# schedule automatically. Trigger from the Actions tab, choosing how many brands
+# and which marketplace.
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Max brands to scrape this run (cost control)"
+        required: true
+        default: "2"
+      channel:
+        description: "Marketplace"
+        required: true
+        default: "nykaa"
+        type: choice
+        options: ["nykaa", "amazon"]
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Scrape shelf
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          FIRECRAWL_BASE_URL: ${{ vars.FIRECRAWL_BASE_URL }}
+        run: node scripts/firecrawl/shelf.mjs --live --limit "${{ github.event.inputs.limit }}" --channel "${{ github.event.inputs.channel }}"
+      - name: Commit refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/clean/entities.json data/shelf-cache
+          git diff --cached --quiet || git commit -m "chore: refresh competitor shelf data"
+          git push

@@ -10,6 +10,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { extractProbe } from "./probe/extract.mjs";
+import { summarizeShelf } from "./firecrawl/summarize.mjs";
 
 const RAW_DIR = process.env.RAW_DIR || "data/raw";
 const OUT_FILE = process.env.OUT_FILE || "data/clean/entities.json";
@@ -302,6 +303,31 @@ if (existsSync(PROBE_CACHE)) {
     try {
       e.probe = extractProbe(JSON.parse(readFileSync(join(PROBE_CACHE, f), "utf8")));
     } catch { /* skip unreadable cache entry */ }
+  }
+}
+
+// Attach the live "digital shelf" summary from the Firecrawl cache (P2b), so it
+// survives a rebuild without re-scraping.
+const SHELF_CACHE = join("data", "shelf-cache");
+if (existsSync(SHELF_CACHE)) {
+  const byBrand = new Map();
+  for (const channel of readdirSync(SHELF_CACHE)) {
+    const cdir = join(SHELF_CACHE, channel);
+    if (!statSync(cdir).isDirectory()) continue;
+    for (const f of readdirSync(cdir)) {
+      if (!f.endsWith(".json")) continue;
+      try {
+        const snap = JSON.parse(readFileSync(join(cdir, f), "utf8"));
+        const key = norm(snap.brand || f.replace(/\.json$/, ""));
+        if (!byBrand.has(key)) byBrand.set(key, []);
+        byBrand.get(key).push(snap);
+      } catch { /* skip */ }
+    }
+  }
+  for (const e of entities) {
+    if (!e.category.startsWith("Competitor")) continue;
+    const snaps = byBrand.get(norm(e.brand));
+    if (snaps) e.shelf = summarizeShelf(snaps);
   }
 }
 
