@@ -1,0 +1,2415 @@
+{
+  "generatedAt": "2026-07-08T14:51:43+05:30",
+  "count": 73,
+  "entities": [
+    {
+      "category": "Competitor - Body Lotion",
+      "folder": "Cetaphil",
+      "brand": "Cetaphil",
+      "legalName": "Cetaphil",
+      "cin": "U24110MH1999PTC118113",
+      "pan": "AAACG8660M",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/53192206e4b0f7e165f19f40",
+      "website": "https://www.cetaphil.com/us/homepage/",
+      "incorporationDate": "02/02/1999",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 12663323000,
+        "ebitdaINR": 2944866000,
+        "netProfitINR": 2173413000,
+        "ebitdaMarginPct": 23,
+        "netMarginPct": 17,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 544
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 5
+      }
+    },
+    {
+      "category": "Competitor - Body Lotion",
+      "folder": "Venusia",
+      "brand": "Dr. Reddys Venusia",
+      "legalName": "Dr. Reddys Venusia",
+      "cin": "U74999KA2018PLC112826",
+      "pan": "AAHCC5575A",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/638fdac5a59d6477693ebe9d",
+      "website": "https://www.drreddysvenusia.com/",
+      "incorporationDate": "03/05/2018",
+      "entityType": "Public Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 1578085513,
+        "ebitdaINR": 58146303,
+        "netProfitINR": 23975662,
+        "ebitdaMarginPct": 4,
+        "netMarginPct": 2,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 86
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 5
+      }
+    },
+    {
+      "category": "Competitor - Body Lotion",
+      "folder": "Nivea",
+      "brand": "Nivea",
+      "legalName": "Nivea",
+      "cin": "U24240MH2005FTC153536",
+      "pan": "AACCN1990P",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/531a7445e4b0f7e1660f98b7",
+      "website": "https://www.nivea.com/",
+      "incorporationDate": "26/05/2005",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 422039170384.38,
+        "ebitdaINR": 73959457532.92,
+        "netProfitINR": 50360832932.82,
+        "ebitdaMarginPct": 15,
+        "netMarginPct": 12,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 1070
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Competitor - Body Lotion",
+      "folder": "Plum",
+      "brand": "Plum",
+      "legalName": "Plum",
+      "cin": "U74120MH2013PTC248969",
+      "pan": "AAHCP3973D",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/542af7c0e4b023ba10d7019f",
+      "website": "https://plumgoodness.com",
+      "incorporationDate": "08/10/2013",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 4185998000,
+        "ebitdaINR": 358441000,
+        "netProfitINR": 247174000,
+        "ebitdaMarginPct": 9,
+        "netMarginPct": 6,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 295
+      },
+      "funding": {
+        "rounds": 3,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Competitor - Body Lotion",
+      "folder": "Vaseline",
+      "brand": "Vaseline",
+      "legalName": "Vaseline",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/531b3809e4b0f7e1662368f8",
+      "website": "https://www.vaseline.us",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Body Lotion",
+      "folder": "Wishcare",
+      "brand": "WishCare",
+      "legalName": "WishCare",
+      "cin": "U24100WB2020PTC241968",
+      "pan": "AAKCR6675B",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5a92e07be4b065615d3c45b0",
+      "website": "https://www.mywishcare.com/",
+      "incorporationDate": "15/12/2020",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 2020782428,
+        "ebitdaINR": 688819169.59,
+        "netProfitINR": 514252115.59,
+        "ebitdaMarginPct": 34,
+        "netMarginPct": 25,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 67
+      },
+      "funding": {
+        "rounds": 1,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 5
+      }
+    },
+    {
+      "category": "Competitor - Body Scrub",
+      "folder": "Be bodywise",
+      "brand": "Be Bodywise",
+      "legalName": "Be Bodywise",
+      "cin": "U52609MH2019PTC328779",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/531c5af9e4b0f7e16648d488",
+      "website": "https://bebodywise.com",
+      "incorporationDate": "01/08/2019",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Body Scrub",
+      "folder": "Dove",
+      "brand": "Dove",
+      "legalName": "Dove",
+      "cin": "L15140MH1933PLC002030",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/62e036ac7c9e6906d381357c",
+      "website": "https://www.dove-india.com/",
+      "incorporationDate": "17/10/1933",
+      "entityType": "Public Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Competitor - Body Scrub",
+      "folder": "Chemist at play",
+      "brand": "Innovist (parent of Chemist at Play)",
+      "legalName": "Innovist (parent of Chemist at Play)",
+      "cin": "U74999DL2018PTC340749",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/58838f5ee4b0544c047a305c",
+      "website": "https://innovist.com",
+      "incorporationDate": "18/10/2018",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": 4,
+        "ebitdaMarginPct": null,
+        "netMarginPct": 4,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 6,
+        "acquisitions": 1
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Bodywash",
+      "folder": "Be bodywise",
+      "brand": "Be Bodywise",
+      "legalName": "Be Bodywise",
+      "cin": "U52609MH2019PTC328779",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/531c5af9e4b0f7e16648d488",
+      "website": "https://bebodywise.com",
+      "incorporationDate": "01/08/2019",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Bodywash",
+      "folder": "Dove",
+      "brand": "Dove",
+      "legalName": "Dove",
+      "cin": "L15140MH1933PLC002030",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/62e036ac7c9e6906d381357c",
+      "website": "https://www.dove-india.com/",
+      "incorporationDate": "17/10/1933",
+      "entityType": "Public Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Competitor - Bodywash",
+      "folder": "Foxtale",
+      "brand": "Foxtale",
+      "legalName": "FOXTALE CONSUMER PRIVATE LIMITED",
+      "cin": "U24110MH2021PTC359914",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/619cefed22040c74ee7efb7a",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Bodywash",
+      "folder": "Ghar Soaps",
+      "brand": "Ghar Soaps",
+      "legalName": "YMI GHAR SOAPS PRIVATE LIMITED",
+      "cin": "U20231PN2024PTC229541",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5e50ca9ff0339465c53aef40",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Competitor - Bodywash",
+      "folder": "Chemist at Play",
+      "brand": "Innovist (parent of Chemist at Play)",
+      "legalName": "Innovist (parent of Chemist at Play)",
+      "cin": "U74999DL2018PTC340749",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/58838f5ee4b0544c047a305c",
+      "website": "https://innovist.com",
+      "incorporationDate": "18/10/2018",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": 4,
+        "ebitdaMarginPct": null,
+        "netMarginPct": 4,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 6,
+        "acquisitions": 1
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Face Serums",
+      "folder": "Deconstruct",
+      "brand": "Deconstruct",
+      "legalName": "Deconstruct",
+      "cin": "U51909KA2020PTC133781",
+      "pan": "AAICB9825H",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/602a5b41655da90ced11abdf",
+      "website": "https://thedeconstruct.in",
+      "incorporationDate": "16/04/2020",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 1271442000,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 74
+      },
+      "funding": {
+        "rounds": 3,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Face Serums",
+      "folder": "Minimalist",
+      "brand": "Minimalist",
+      "legalName": "Minimalist",
+      "cin": "U36999RJ2018PTC061104",
+      "pan": "AACCU2435L",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5f6465c6c4c21115c6c919d0",
+      "website": "https://beminimalist.co",
+      "incorporationDate": "03/05/2018",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 5176411000,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 518
+      },
+      "funding": {
+        "rounds": 1,
+        "acquisitions": 1
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Face Serums",
+      "folder": "Pilgrim",
+      "brand": "Pilgrim",
+      "legalName": "Pilgrim",
+      "cin": "U52609MH2019PTC329867",
+      "pan": "AAFCH0247Q",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5d7d227edfad2e628f9b4cc4",
+      "website": "https://discoverpilgrim.com",
+      "incorporationDate": "28/08/2019",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 4177327000,
+        "ebitdaINR": -611015000,
+        "netProfitINR": -687497000,
+        "ebitdaMarginPct": -15,
+        "netMarginPct": -16,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 438
+      },
+      "funding": {
+        "rounds": 8,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 5
+      }
+    },
+    {
+      "category": "Competitor - Face Serums",
+      "folder": "Plum",
+      "brand": "Plum",
+      "legalName": "Plum",
+      "cin": "U74120MH2013PTC248969",
+      "pan": "AAHCP3973D",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/542af7c0e4b023ba10d7019f",
+      "website": "https://plumgoodness.com",
+      "incorporationDate": "08/10/2013",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": "Pureplay Skin Sciences (private holding company; also owns sister brand 'Phy')",
+      "financials": {
+        "revenueINR": 4185998000,
+        "ebitdaINR": 358441000,
+        "netProfitINR": 247174000,
+        "ebitdaMarginPct": 9,
+        "netMarginPct": 6,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 295
+      },
+      "funding": {
+        "rounds": 3,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Face Serums",
+      "folder": "The Derma Co",
+      "brand": "The Derma Co",
+      "legalName": "The Derma Co",
+      "cin": "L74999DL2016PLC306016",
+      "pan": "AADCH9716L",
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5c769f679adc10590af38f5d",
+      "website": "https://thedermaco.com",
+      "incorporationDate": "16 Sep 2016",
+      "entityType": "Public Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": "Honasa Consumer (parent company); also grouped under Mamaearth capital table",
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 969
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 5
+      }
+    },
+    {
+      "category": "Competitor - Sunscreen",
+      "folder": "Deconstruct",
+      "brand": "Deconstruct",
+      "legalName": "Deconstruct",
+      "cin": "U51909KA2020PTC133781",
+      "pan": "AAICB9825H",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/602a5b41655da90ced11abdf",
+      "website": "https://thedeconstruct.in",
+      "incorporationDate": "16/04/2020",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 1271442000,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 74
+      },
+      "funding": {
+        "rounds": 3,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Sunscreen",
+      "folder": "Dot & Key",
+      "brand": "Dot & Key",
+      "legalName": "Dot & Key",
+      "cin": "U24110WB2020PLC236913",
+      "pan": "AAHCD7076K",
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5a6f4019e4b071cf2936965f",
+      "website": "https://www.dotandkey.com",
+      "incorporationDate": "16 Mar 2020",
+      "entityType": "Public Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 188
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 1
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 4
+      }
+    },
+    {
+      "category": "Competitor - Sunscreen",
+      "folder": "Foxtale",
+      "brand": "Foxtale",
+      "legalName": "Foxtale",
+      "cin": "U24110MH2021PTC359914",
+      "pan": "AAECF5520H",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/619cefed22040c74ee7efb7a",
+      "website": "https://foxtale.in",
+      "incorporationDate": "05/05/2021",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 2062163000,
+        "ebitdaINR": -706138000,
+        "netProfitINR": -726567000,
+        "ebitdaMarginPct": -34,
+        "netMarginPct": -35,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 314
+      },
+      "funding": {
+        "rounds": 5,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 5
+      }
+    },
+    {
+      "category": "Competitor - Sunscreen",
+      "folder": "Minimalist",
+      "brand": "Minimalist",
+      "legalName": "Minimalist",
+      "cin": "U36999RJ2018PTC061104",
+      "pan": "AACCU2435L",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5f6465c6c4c21115c6c919d0",
+      "website": "https://beminimalist.co",
+      "incorporationDate": "03/05/2018",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 5176411000,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 518
+      },
+      "funding": {
+        "rounds": 1,
+        "acquisitions": 1
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Competitor - Sunscreen",
+      "folder": "Derma Co",
+      "brand": "The Derma Co",
+      "legalName": "The Derma Co",
+      "cin": "L74999DL2016PLC306016",
+      "pan": "AADCH9716L",
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5c769f679adc10590af38f5d",
+      "website": "https://thedermaco.com",
+      "incorporationDate": "16 Sep 2016",
+      "entityType": "Public Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": "Honasa Consumer (parent company); also grouped under Mamaearth capital table",
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 969
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 5
+      }
+    },
+    {
+      "category": "Delivery Partners",
+      "folder": "Delhivery",
+      "brand": "Delhivery",
+      "legalName": "DELHIVERY LIMITD",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/52c04056e4b09a1f9f132c7f/\nhttps://platform.tracxn.com/a/d/legalentity/6332e349ac54c25541afa34e/",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Delivery Partners",
+      "folder": "ElasticRun",
+      "brand": "ElasticRun",
+      "legalName": "NTEX TRANSPORTATION SERVICES PRIVATE LIMITED",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/58294d16e4b02a5f3bc04771/\nhttps://platform.tracxn.com/a/d/legalentity/64252600ea1aff2820d5cb82/",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Delivery Partners",
+      "folder": "PiknDel",
+      "brand": "PiknDel",
+      "legalName": "QUICKCOM SOLUTIONS PRIVATE LIMITED",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/56308e12e4b03f67066ed2fa/\nhttps://platform.tracxn.com/a/d/legalentity/6412fe8d06e6cf14f67e5219/",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Delivery Partners",
+      "folder": "Shadowfax",
+      "brand": "Shadowfax",
+      "legalName": "SHADOWFAX TECHNOLOGIES LIMITED",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/55648987e4b098aa6fccd194/\nhttps://platform.tracxn.com/a/d/legalentity/64a7ed9eaa25eb6979f52376/",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Delivery Partners",
+      "folder": "Xpressbees",
+      "brand": "Xpressbees",
+      "legalName": "BUSY BEES LOGISTICS SOLUTIONS PRIVATE LIMITED",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/53102a3de4b085b6b112e37a/\nhttps://platform.tracxn.com/a/d/legalentity/5bbde4998f08e8d59018d44e/",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "adf",
+      "brand": "adf",
+      "legalName": "Adf",
+      "cin": "L15400GJ1990PLC014265",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": null,
+      "website": "https://adffoods.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 0
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "aelius",
+      "brand": "Aelius Parallel Holdings",
+      "legalName": "Aelius Parallel Holdings",
+      "cin": "U65929HR2018PTC074134",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5afdd0d1e4b059f4a8f24a09",
+      "website": "https://aeliusparallel.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 199900262.7,
+        "ebitdaINR": 16528393,
+        "netProfitINR": 4022479.12,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 13
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "allmask",
+      "brand": "All Mask",
+      "legalName": "All Mask",
+      "cin": "U24200MH2011PTC217186",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5d496621b8b8c277b4de460b",
+      "website": "http://allmask.in",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 1185617000,
+        "ebitdaINR": 224981000,
+        "netProfitINR": 133277000,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 5
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "ananya",
+      "brand": "Ananya",
+      "legalName": "Ananya",
+      "cin": "U74999DL2018PTC328828",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5a88363de4b0edcaf41f256d",
+      "website": "https://ananyaherbal.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 426956019,
+        "ebitdaINR": 2325719,
+        "netProfitINR": -11472735,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 53
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 4
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "anuspa",
+      "brand": "Anuspa Heritage Products",
+      "legalName": "Anuspa Heritage Products",
+      "cin": "U24241MH1999PTC119848",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5eade4b5c524b517d7d9cef6",
+      "website": "https://anuspaheritage.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 873524000,
+        "ebitdaINR": 49412000,
+        "netProfitINR": 16835000,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 57
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "arovea",
+      "brand": "arovea",
+      "legalName": "AROVEA FORMULATIONS PRIVATE LIMITED",
+      "cin": "U24299GJ2021PTC123370",
+      "pan": "AAVCA3458L",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/6410b73b529c2547aa53da0e",
+      "website": null,
+      "incorporationDate": "17/06/2021",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 198192926,
+        "ebitdaINR": 18598843,
+        "netProfitINR": -17394822,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "cheryl",
+      "brand": "Cheryl Laboratories",
+      "legalName": "Cheryl Laboratories",
+      "cin": "U24230MH1987PTC042262",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/555764e7e4b030d2ce47722c",
+      "website": "https://cheryllaboratories.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 2065788118,
+        "ebitdaINR": 329696389,
+        "netProfitINR": 196113420,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 142
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "kain",
+      "brand": "KAIN Cosmeceuticals",
+      "legalName": "KAIN Cosmeceuticals",
+      "cin": "U74999MH2019PTC333084",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5dc19bfaf0e6f639201b04c3",
+      "website": "https://kaincosmeceuticals.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 127376244,
+        "ebitdaINR": -23389905,
+        "netProfitINR": -46945450,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 74
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "kapco",
+      "brand": "kapco",
+      "legalName": "KAPCO INTERNATIONAL LIMITED",
+      "cin": "U74899DL1980PLC010467",
+      "pan": "AAACK2660H",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/6464632fc182e031cf4fe2a3",
+      "website": "http://www.indianessentialoils.com/",
+      "incorporationDate": "26/05/1980",
+      "entityType": "Public Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 1783041000,
+        "ebitdaINR": 143595000,
+        "netProfitINR": 92549000,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 264
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "ngelectro",
+      "brand": "NG Electro",
+      "legalName": "NG Electro",
+      "cin": "U32909DL2006PTC151205",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5ba136fde4b0c823c8fbb8cc",
+      "website": "https://ngelectro.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 3137309111,
+        "ebitdaINR": 313482930,
+        "netProfitINR": 196154854,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 110
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 6
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "revepharma",
+      "brand": "revepharma",
+      "legalName": null,
+      "cin": null,
+      "pan": null,
+      "coverage": "not_found",
+      "tracxnUrl": null,
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 0
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "samrvir",
+      "brand": "Samrvir",
+      "legalName": "Samrvir",
+      "cin": "U25190HP2021PTC008346",
+      "pan": "ABCCS5315E",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5d55999bdfad2e733c4f1b4d",
+      "website": "https://samrvir.com",
+      "incorporationDate": "21/08/2019",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 534403741,
+        "ebitdaINR": 26405791,
+        "netProfitINR": 6979093,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "ultrabeautycare",
+      "brand": "Ultra Beauty Care",
+      "legalName": "Ultra Beauty Care",
+      "cin": "U24203MH2006PTC159899",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/57a599b0e4b0501e1ecde659",
+      "website": "https://ultrabeautycare.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 136237212,
+        "ebitdaINR": 22702224,
+        "netProfitINR": -5214639,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 52
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "vedicnaturals",
+      "brand": "vedicnaturals",
+      "legalName": "VEDIC NATURAL CARE PRIVATE LIMITED",
+      "cin": "U74900UP2011PTC212816",
+      "pan": "AADCV5085A",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/61236a5ba2ed150f139be361",
+      "website": "https://aaranyaa.in",
+      "incorporationDate": "07/01/2011",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 143851196.6,
+        "ebitdaINR": 2865031.14,
+        "netProfitINR": -3925098.78,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 52
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "Manufacturer",
+      "folder": "zymo",
+      "brand": "Zymo",
+      "legalName": "Zymo",
+      "cin": "U24299GJ2019PTC110423",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/54dd88ebe4b01de4879fba22",
+      "website": "https://zymocosmetics.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 656420,
+        "ebitdaINR": 280063,
+        "netProfitINR": 278996.27,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 77
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": false,
+        "pdfs": 4
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "A G Polypack",
+      "brand": "A G Polypack",
+      "legalName": "AG POLY PACKS PRIVATE LIMTED [sic, Tracxn's own listing]",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://tracxn.com (search: \"AG Polypack\" tracxn)",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 1
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "Alfa Exports",
+      "brand": "Alfa Exports India",
+      "legalName": "Alfa Exports India",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": null,
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "CONTINUITY PRINTERS PVT LTD",
+      "brand": "Continuity Printers",
+      "legalName": "Continuity Printers",
+      "cin": "U22219MH2016PTC286774",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/584ba35de4b035c1c9559bfa",
+      "website": "https://www.continuityprinters.com/",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": 414008776,
+        "ebitdaINR": 42966663,
+        "netProfitINR": 14446228,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 46
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "EPL Limited",
+      "brand": "EPL Limited",
+      "legalName": "EPL LIMITED (India)",
+      "cin": "L74950MH1982PLC028947",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/58dc0cade4b0f20e4f063196",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 1
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "M-s Khosla Printers",
+      "brand": "M-s Khosla Printers",
+      "legalName": null,
+      "cin": null,
+      "pan": null,
+      "coverage": "not_found",
+      "tracxnUrl": null,
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "Manjushree Technopack Limited",
+      "brand": "Manjushree Technopack Limited",
+      "legalName": "MANJUSHREE TECHNOPACK LIMITED",
+      "cin": "U67120HR1987PLC138149",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/531a374ae4b0f7e1660a8177",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "Pragati Glass & Industries Pvt. Ltd",
+      "brand": "Pragati Glass & Industries Pvt. Ltd",
+      "legalName": "PRAGATI GLASS & INDUSTRIES PRIVATE LIMITED",
+      "cin": "U26100MH1981PTC200311",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/6118692f5e2e871eb35d5efc",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 1
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "PRINTOTECH GLOBAL LIMITED",
+      "brand": "Printotech Global",
+      "legalName": "Printotech Global",
+      "cin": "U74899DL1993PLC051545",
+      "pan": "AAACP0016G",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/55439440e4b04f9cb9a79d6c",
+      "website": "http://www.printotech.com/",
+      "incorporationDate": "1993-01-04",
+      "entityType": "Public Limited Company",
+      "statusAtRegistrar": "Active, Compliant",
+      "parent": null,
+      "financials": {
+        "revenueINR": 1013081344.76,
+        "ebitdaINR": 218801956.64,
+        "netProfitINR": 86811212.77,
+        "ebitdaMarginPct": 22,
+        "netMarginPct": 9,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 80
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "PRISHA TUBES PRIVATE LIMITED",
+      "brand": "PRISHA TUBES PRIVATE LIMITED",
+      "legalName": "PRISHA TUBES PRIVATE LIMITED",
+      "cin": "U25190DL2001PTC112200",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/6413acb9ea4741326040b59a",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 1
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "Purity PolyTube Pvt Ltd",
+      "brand": "Purity PolyTube Pvt Ltd",
+      "legalName": "PURITY POLYTUBES PRIVATE LIMITED",
+      "cin": "U25209GJ2017PTC098851",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/640bf2618dcd32470ac291f2",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 1
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "Radcom Packaging",
+      "brand": "Radcom Packaging",
+      "legalName": "RADCOM PACKAGING PRIVATE LIMITED",
+      "cin": "U25203MH2012PTC232376",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/562a1fede4b003b788b17cf9",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+      "brand": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+      "legalName": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+      "cin": "U25209GJ2020PTC114326",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5505d34fe4b0bb9e59aecd9e",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 1
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "SICON PACKS PRIVATE LIMITED",
+      "brand": "SICON PACKS PRIVATE LIMITED",
+      "legalName": "SICON PACKS PRIVATE LIMITED",
+      "cin": "U74950MH2007PTC174373",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/6426730b064c6254103f87bd",
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": false,
+        "webResearch": false,
+        "pdfs": 1
+      }
+    },
+    {
+      "category": "PM Vendor",
+      "folder": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+      "brand": "Takemoto Yohki",
+      "legalName": "Takemoto Yohki",
+      "cin": "U25205GJ2016FTC093545",
+      "pan": null,
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/54ff5330e4b0380023e4e1eb",
+      "website": "https://www.takemotopkg.com/en/",
+      "incorporationDate": "2016-08-31",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 159024408,
+        "ebitdaINR": null,
+        "netProfitINR": -65230781,
+        "ebitdaMarginPct": null,
+        "netMarginPct": -41,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 26
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "ahmedabadagency",
+      "brand": "Ahmedabadagency",
+      "legalName": "Ahmedabadagency",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/586719a1e4b03071e2272532",
+      "website": "https://ahmedabadagency.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 6
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "arkchemicals",
+      "brand": "Ark Chemicals",
+      "legalName": "Ark Chemicals",
+      "cin": "U24100MH2007PTC175116",
+      "pan": "AAGCA6004R",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5851f872e4b09a441df7fd93",
+      "website": "https://arkchemicals.in",
+      "incorporationDate": "17/10/2007",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 2636392000,
+        "ebitdaINR": 164028000,
+        "netProfitINR": 120010000,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 27
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "beemanpharmaceuticals",
+      "brand": "beemanpharmaceuticals",
+      "legalName": null,
+      "cin": null,
+      "pan": null,
+      "coverage": "not_found",
+      "tracxnUrl": null,
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "connellbrothers",
+      "brand": "Connell Brothers (India) — now operating as Caldic Specialties India Pvt Ltd / Connell Caldic",
+      "legalName": "CALDIC SPECIALTIES INDIA PRIVATE LIMITED",
+      "cin": "U24110MH1999PTC119904",
+      "pan": "AAACC9611L",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/64148521f463b745fbe639b2",
+      "website": "https://www.connellworld.com",
+      "incorporationDate": "1999-5-18",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 6852237000,
+        "ebitdaINR": 881752000,
+        "netProfitINR": 559023000,
+        "ebitdaMarginPct": 13,
+        "netMarginPct": 8,
+        "revenueCAGR3yrPct": 11,
+        "employeeCount": 2164
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "psteaindstries",
+      "brand": "Drama Llama",
+      "legalName": "Drama Llama",
+      "cin": "U10791TZ2024PTC031742",
+      "pan": "AAKCD9204E",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/6321da301e22637d259e452f",
+      "website": "https://dramallamabev.com",
+      "incorporationDate": "11/06/2024",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 5745239.74,
+        "ebitdaINR": 22731.12,
+        "netProfitINR": 16931.12,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 3
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "givaudan",
+      "brand": "Givaudan",
+      "legalName": "Givaudan",
+      "cin": "U11200KA1985PTC007056",
+      "pan": "AAACV7454J",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5319b2a6e4b0f7e165fe79ed",
+      "website": "https://www.givaudan.com/",
+      "incorporationDate": "05/08/1985",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 30934700000,
+        "ebitdaINR": 4307800000,
+        "netProfitINR": 2258900000,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 14891
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "greenfarms",
+      "brand": "Greenfarms",
+      "legalName": "Greenfarms",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/586c4fc8e4b0dd16f1890d60",
+      "website": "http://greenfarms.co",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 1,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "kayceeenterprise",
+      "brand": "kayceeenterprise",
+      "legalName": null,
+      "cin": null,
+      "pan": null,
+      "coverage": "not_found",
+      "tracxnUrl": null,
+      "website": null,
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "nirmaancosmetic",
+      "brand": "nirmaancosmetic",
+      "legalName": "NIRMAAN COSMETIC HUB PRIVATE LIMITED",
+      "cin": "U20237MH2025PTC441944",
+      "pan": "AAKCN2389Q",
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/67fc99856dab12536b36be94",
+      "website": "https://www.nirmaancosmetichub.com",
+      "incorporationDate": "2025-3-3",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "northernaromatics",
+      "brand": "Northern Aromatics",
+      "legalName": "Northern Aromatics",
+      "cin": "U01100DL1979PTC010100",
+      "pan": "AAACN3789N",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/57a2a59de4b085804f1d6c80",
+      "website": "https://www.northernaromatics.com/",
+      "incorporationDate": "27/12/1979",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 3611084000,
+        "ebitdaINR": 1574992000,
+        "netProfitINR": 1347023000,
+        "ebitdaMarginPct": 44,
+        "netMarginPct": 37,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 39
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "sggreentech",
+      "brand": "SG Green Tech Health & Beauty",
+      "legalName": "SG Green Tech Health & Beauty",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5f1ae8524731a61672a28508",
+      "website": "http://sg-greentech.com",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "unitedenterprises",
+      "brand": "United Enterprises",
+      "legalName": "United Enterprises",
+      "cin": null,
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/company/5854b37be4b09a441df883b0",
+      "website": "https://unitedenterprises.net.in",
+      "incorporationDate": null,
+      "entityType": null,
+      "statusAtRegistrar": null,
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "valuetree",
+      "brand": "ValueTree",
+      "legalName": "VALUETREE INGREDIENTS PRIVATE LIMITED",
+      "cin": "U74110MH2000PTC126561",
+      "pan": "AAACO6577D",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/65ae2aaa3ff70c626c45eb9e",
+      "website": "https://valuetree.in",
+      "incorporationDate": "2000-5-16",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 5829700000,
+        "ebitdaINR": 511900000,
+        "netProfitINR": 343700000,
+        "ebitdaMarginPct": 9,
+        "netMarginPct": 6,
+        "revenueCAGR3yrPct": 22,
+        "employeeCount": 44
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "wellnexingredients",
+      "brand": "wellnexingredients",
+      "legalName": "WELLNEX PHARMACEUTICALS PRIVATE LIMITED",
+      "cin": "U24230MH1989PTC053893",
+      "pan": null,
+      "coverage": "partial",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/6414ce51f463b745fbeb629a",
+      "website": null,
+      "incorporationDate": "1989-10-13",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": null,
+        "ebitdaINR": null,
+        "netProfitINR": null,
+        "ebitdaMarginPct": null,
+        "netMarginPct": null,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": null
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 2
+      }
+    },
+    {
+      "category": "RM Vendor",
+      "folder": "yashamspecialityingredientspvtltd",
+      "brand": "Yasham",
+      "legalName": "YASHAM SPECIALITY INGREDIENTS PRIVATE LIMITED",
+      "cin": "U51100MH1997PTC104919",
+      "pan": "AAACY0341B",
+      "coverage": "full",
+      "tracxnUrl": "https://platform.tracxn.com/a/d/legalentity/5b84f39d4f0c7deda5ff7307",
+      "website": "https://yasham.in",
+      "incorporationDate": "07/01/1997",
+      "entityType": "Private Limited Company",
+      "statusAtRegistrar": "Active",
+      "parent": null,
+      "financials": {
+        "revenueINR": 2421002382,
+        "ebitdaINR": 498280904,
+        "netProfitINR": 363907217,
+        "ebitdaMarginPct": 21,
+        "netMarginPct": 15,
+        "revenueCAGR3yrPct": null,
+        "employeeCount": 108
+      },
+      "funding": {
+        "rounds": 0,
+        "acquisitions": 0
+      },
+      "sources": {
+        "tracxn": true,
+        "webResearch": true,
+        "pdfs": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+ "Sheet1": [
+  {
+   "col0": "Sr. No.",
+   "col1": "RMs",
+   "col2": "PMS",
+   "col3": "RM Vendors",
+   "col4": "Manufacturers",
+   "col5": "PM Vendors"
+  },
+  {
+   "col0": "1",
+   "col1": "Cosroma EAA",
+   "col2": "300ml HDPE 2337C Vacation Bottle",
+   "col3": "arkchemicals",
+   "col4": "aelius",
+   "col5": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED"
+  },
+  {
+   "col0": "2",
+   "col1": "Uvinul T150",
+   "col2": "28/410 on-off lotion pump 475C APT actuator-67mm Dip Tube",
+   "col3": "givaudan",
+   "col4": "samrvir",
+   "col5": "PRINTOTECH GLOBAL LIMITED"
+  },
+  {
+   "col0": "3",
+   "col1": "Radia 7730",
+   "col2": "18/410mm KH180 Serum Pump with Overcap 394C- 57mm dip tube",
+   "col3": "psteaindstries",
+   "col4": "kain",
+   "col5": "CONTINUITY PRINTERS PVT LTD"
+  },
+  {
+   "col0": "4",
+   "col1": "Glycerine",
+   "col2": "300ml 695C HDPE Slant Bottle",
+   "col3": "beemanpharmaceuticals",
+   "col4": "ultrabeautycare",
+   "col5": "Alfa Exports"
+  },
+  {
+   "col0": "5",
+   "col1": "Tinosorb A2B",
+   "col2": "50ml Frosted KM Lotion Glass Bottle with Printing",
+   "col3": "yashamspecialityingredientspvtltd",
+   "col4": "revepharma",
+   "col5": "M/s Khosla Printers"
+  },
+  {
+   "col0": "6",
+   "col1": "Sum of Formulation",
+   "col2": "All I Need Sunscreen SPF 50 PA+++_50ml Matt 2296C Oval Printed Tube with 2296C Screw FTC (35dia*110 mm)",
+   "col3": "greenfarms",
+   "col4": "cheryl",
+   "col5": "Radcom Packaging"
+  },
+  {
+   "col0": "7",
+   "col1": "Uvinul A Plus Granular",
+   "col2": "Moisturizing Sunscreen SPF 50_50 ml_Carton",
+   "col3": "ahmedabadagency",
+   "col4": "ngelectro",
+   "col5": "Manjushree Technopack Limited"
+  },
+  {
+   "col0": "8",
+   "col1": "Cetiol C5",
+   "col2": "Double Shot Radiance-Lift Serum Carton 50ml Carton with Insert",
+   "col3": "northernaromatics",
+   "col4": "ananya",
+   "col5": "Pragati Glass & Industries Pvt. Ltd."
+  },
+  {
+   "col0": "9",
+   "col1": "Galaxy CAPB SB",
+   "col2": "Under eye cream_15ml Zinc applicator Printed Tube with Black cap (19 Dia*90mm)",
+   "col3": "unitedenterprises",
+   "col4": "allmask",
+   "col5": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED"
+  },
+  {
+   "col0": "10",
+   "col1": "Uvinul MC 80",
+   "col2": "250ml Pet tinted blue Oval Bottle",
+   "col3": "valuetree",
+   "col4": "vedicnaturals",
+   "col5": "SICON PACKS PRIVATE LIMITED"
+  },
+  {
+   "col0": "11",
+   "col1": "Tinosorb M",
+   "col2": "30ml Serum Hyphen Inner",
+   "col3": "sggreentech",
+   "col4": "anuspa",
+   "col5": "A G Polypack"
+  },
+  {
+   "col0": "12",
+   "col1": "Niacinamide",
+   "col2": "28/410 on-off lotion pump White APT actuator-67mm Dip Tube",
+   "col3": "nirmaancosmetic",
+   "col4": "adf",
+   "col5": "EPL Limited"
+  },
+  {
+   "col0": "13",
+   "col1": "Repoly 100",
+   "col2": "225 ml Glass drink Jar",
+   "col3": "connellbrothers",
+   "col4": "kapco",
+   "col5": "PRISHA TUBES PRIVATE LIMITED"
+  },
+  {
+   "col0": "14",
+   "col1": "Alcohol Denat",
+   "col2": "300ml Blue (646C) HDPE Slant Bottle",
+   "col3": "kayceeenterprise",
+   "col4": "zymo",
+   "col5": "Purity PolyTube Pvt Ltd"
+  },
+  {
+   "col0": "15",
+   "col1": "Octyl MethoxyCinnamate (OMC)",
+   "col2": "28mm neck 2337C MSL cap (Fliptop)",
+   "col3": "wellnexingredients",
+   "col4": "arovea",
+   "col5": null
+  }
+ ]
+}

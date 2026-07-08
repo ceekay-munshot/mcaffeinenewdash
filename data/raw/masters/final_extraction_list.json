@@ -1,0 +1,588 @@
+{
+ "Sheet1": [
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "arkchemicals",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Ark Chemicals (arkchemicals.in + arkchemicalsindia.com)",
+   "Linked Legal Entity (Primary Source)": "ARK CHEMICALS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6414502506e6cf14f69a79e4"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "givaudan",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Givaudan (givaudan.com)",
+   "Linked Legal Entity (Primary Source)": "Givaudan (India) Private Limited [India] / Givaudan SA [Switzerland, global default]",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/640194b0d014cd1e05860fef/"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "psteaindstries",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/6321da301e22637d259e452f/\nhttps://platform.tracxn.com/a/d/company/5d1b6c6361f019165c027231/"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "beemanpharmaceuticals",
+   "Tracxn Status": "Not Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": null
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "yashamspecialityingredientspvtltd",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Yasham (yasham.in)",
+   "Linked Legal Entity (Primary Source)": "YASHAM SPECIALITY INGREDIENTS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/5b84f39d4f0c7deda5ff7307"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "ahmedabadagency",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/586719a1e4b03071e2272532/"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "northernaromatics",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Northern Aromatics (northernaromatics.com)",
+   "Linked Legal Entity (Primary Source)": "Northern Aromatics Private Limited",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/663bb7001ce6713d7940a197/"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "unitedenterprises",
+   "Tracxn Status": "Ambiguous",
+   "Matched Company / Brand (Tracxn)": "United Enterprises (unitedenterprises.net.in, Gurugram, lubricants distributor)",
+   "Linked Legal Entity (Primary Source)": "No legal entity linked to the Gurugram candidate. A same-named 'United Enterprises Pvt Ltd' (Kolkata, CIN U51900WB1947PTC015793) exists but is marked STRIKE OFF (defunct since) and appears unrelated.",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5854b37be4b09a441df883b0"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "valuetree",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "VALUETREE INGREDIENTS PRIVATE LIMITED",
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/65ae2aaa3ff70c626c45eb9e/"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "sggreentech",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "SG Green Tech Health & Beauty",
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5f1ae8524731a61672a28508/"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "nirmaancosmetic",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Nirmaan Cosmetic Hub",
+   "Linked Legal Entity (Primary Source)": "NIRMAAN COSMETIC HUB PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/67fc99856dab12536b36be94"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "connellbrothers",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": "CALDIC SPECIALTIES INDIA PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/64148521f463b745fbe639b2/"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "kayceeenterprise",
+   "Tracxn Status": "Not Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": null
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "wellnexingredients",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6414ce51f463b745fbeb629a/"
+  },
+  {
+   "Category": "RM Vendor",
+   "Entity Name (as in file)": "greenfarms",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Greenfarms (greenfarms.co)",
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": null
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Takemoto Yohki (takemotopkg.com)",
+   "Linked Legal Entity (Primary Source)": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/640be0ee8eed971e4e72ff5a"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "PRINTOTECH GLOBAL LIMITED",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Printotech Global (printotech.com)",
+   "Linked Legal Entity (Primary Source)": "PRINTOTECH GLOBAL LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/641424bbea474132604a494d/"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "CONTINUITY PRINTERS PVT LTD",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Continuity Printers (continuityprinters.com)",
+   "Linked Legal Entity (Primary Source)": "CONTINUITY PRINTERS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6413ffacea4741326046d0c4/"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "Alfa Exports",
+   "Tracxn Status": "Not Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": null
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "M/s Khosla Printers",
+   "Tracxn Status": "Not Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": null
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "Radcom Packaging",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Radcom Packaging (radcompackaging.com)",
+   "Linked Legal Entity (Primary Source)": "RADCOM PACKAGING PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/562a1fede4b003b788b17cf9\nhttps://platform.tracxn.com/a/d/legalentity/64159c2b75778260ba64df09/"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "Manjushree Technopack Limited",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Manjushree Technopack (manjushreeindia.com)",
+   "Linked Legal Entity (Primary Source)": "MANJUSHREE TECHNOPACK LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/5b2a03174f0ca6d57fc4f3ad/\nhttps://platform.tracxn.com/a/d/legalentity/6401973ad014cd1e0586eab7/"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "Pragati Glass & Industries Pvt. Ltd.",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Pragati Glass (pragatiglassandindustries.com)",
+   "Linked Legal Entity (Primary Source)": "PRAGATI GLASS & INDUSTRIES PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6415c481f463b745fbfa461c/"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Samkin Treasure Molders (samkin.net)",
+   "Linked Legal Entity (Primary Source)": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/640bf5078eed971e4e73f847/"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "SICON PACKS PRIVATE LIMITED",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Sicon (sicon.in)",
+   "Linked Legal Entity (Primary Source)": "SICON PACKS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6426730b064c6254103f87bd"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "A G Polypack",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "AG Poly Packs (real co. per WhatPackaging/ExportersIndia - Ghaziabad/Delhi, HDPE sacks + cosmetic packaging containers)",
+   "Linked Legal Entity (Primary Source)": "AG POLY PACKS PRIVATE LIMTED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6413bf0906e6cf14f68e64f9/"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "EPL Limited",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "EPL (eplglobal.com)",
+   "Linked Legal Entity (Primary Source)": "EPL LIMITED (India)",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/63b3bdb51b0e536cfeb9a3f5/"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "PRISHA TUBES PRIVATE LIMITED",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "PrishaTubes (prishatubes.com)",
+   "Linked Legal Entity (Primary Source)": "PRISHA TUBES PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6413acb9ea4741326040b59a"
+  },
+  {
+   "Category": "PM Vendor",
+   "Entity Name (as in file)": "Purity PolyTube Pvt Ltd",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Purity Polytubes (puritypolytubes.com)",
+   "Linked Legal Entity (Primary Source)": "PURITY POLYTUBES PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/640bf2618dcd32470ac291f2"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "aelius",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Aelius Parallel Holdings",
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/640fe0648dcd32470a1637d7/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "samrvir",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Samrvir (samrvir.com)",
+   "Linked Legal Entity (Primary Source)": "SAMRVIR BIOTECH PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/640a8f35c06faa0cfc66cb07/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "kain",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "KAIN Cosmeceuticals (kaincosmeceuticals.com)",
+   "Linked Legal Entity (Primary Source)": "KAIN COSMECEUTICALS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/64114de99d181517c3786250"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "ultrabeautycare",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Ultra Beauty Care (ultrabeautycare.com)",
+   "Linked Legal Entity (Primary Source)": "ULTRA BEAUTY CARE PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/64114de99d181517c3786250/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "revepharma",
+   "Tracxn Status": "Not Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": null
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "cheryl",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Cheryl Laboratories (cheryllaboratories.com)",
+   "Linked Legal Entity (Primary Source)": "CHERYL LABORATORIES PVT LTD",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6414cc7075778260ba582d12/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "ngelectro",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "NG Electro (ngelectro.com)",
+   "Linked Legal Entity (Primary Source)": "N.G. ELECTRO PRODUCTS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5ba136fde4b0c823c8fbb8cc\nhttps://platform.tracxn.com/a/d/legalentity/61288fe19f49460f254a83d3/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "ananya",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Ananya (ananyaherbal.com)",
+   "Linked Legal Entity (Primary Source)": "ANANYA HERBAL PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5a88363de4b0edcaf41f256d\nhttps://platform.tracxn.com/a/d/legalentity/6412a364ea4741326024be03/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "allmask",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "All Mask (allmask.in)",
+   "Linked Legal Entity (Primary Source)": "JAINAM INVAMED PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5d496621b8b8c277b4de460b\nhttps://platform.tracxn.com/a/d/legalentity/6414b60af463b745fbe9eae4/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "vedicnaturals",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Vedic Natural Care Private Limited (New Delhi, since 2011, Skincare Manufacturing & Contract Manufacturing per LinkedIn) / brand 'Vedic Naturals' (vedicnaturals.co)",
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/61236a5ba2ed150f139be361/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "anuspa",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Anuspa Heritage Products (anuspaheritage.com)",
+   "Linked Legal Entity (Primary Source)": "ANUSPA HERITAGE PRODUCTS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/641529abf463b745fbf10ac7"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "adf",
+   "Tracxn Status": "Not Found (as skincare mfr)",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": null,
+   "Tracxn URL(s)": null
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "kapco",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": null,
+   "Linked Legal Entity (Primary Source)": "KAPCO INTERNATIONAL",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6464632fc182e031cf4fe2a3/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "zymo",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Zymo (zymocosmetics.com)",
+   "Linked Legal Entity (Primary Source)": "ZYMO ENTERPRISES PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/54dd88ebe4b01de4879fba22\nhttps://platform.tracxn.com/a/d/legalentity/615c345db6532b0d56a2f25c/"
+  },
+  {
+   "Category": "Manufacturer",
+   "Entity Name (as in file)": "arovea",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Arovea Formulations (best fit among 4 similarly-named 'Arovea' entities)",
+   "Linked Legal Entity (Primary Source)": "AROVEA FORMULATIONS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/6410b73b529c2547aa53da0e"
+  },
+  {
+   "Category": "Competitor - Bodywash",
+   "Entity Name (as in file)": "Dove",
+   "Tracxn Status": "Found (inferred)",
+   "Matched Company / Brand (Tracxn)": "Dove (dove-india.com, HUL brand)",
+   "Linked Legal Entity (Primary Source)": "Hindustan Unilever Limited (by analogy with sibling brand Rexona, which Tracxn explicitly links to this entity)",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/52c7c8d9e4b093852fc325d1\nhttps://platform.tracxn.com/a/d/legalentity/619ef501ce4d684a968984dc/"
+  },
+  {
+   "Category": "Competitor - Bodywash",
+   "Entity Name (as in file)": "Be bodywise",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Be Bodywise (bebodywise.com)",
+   "Linked Legal Entity (Primary Source)": "MOSAIC WELLNESS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5dc162227ce88a1d6fcea0fd/\nhttps://platform.tracxn.com/a/d/legalentity/5ec374e18787075d28cac395/"
+  },
+  {
+   "Category": "Competitor - Bodywash",
+   "Entity Name (as in file)": "Chemist at Play",
+   "Tracxn Status": "Found (via parent)",
+   "Matched Company / Brand (Tracxn)": "Innovist (innovist.com) - parent company",
+   "Linked Legal Entity (Primary Source)": "ONESTO LABS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/58838f5ee4b0544c047a305c\nhttps://platform.tracxn.com/a/d/legalentity/5f07e88a977ce80ba4bf4fbe/"
+  },
+  {
+   "Category": "Competitor - Bodywash",
+   "Entity Name (as in file)": "Foxtale",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Foxtale (foxtale.in)",
+   "Linked Legal Entity (Primary Source)": "FOXTALE CONSUMER PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/619cefed22040c74ee7efb7a\nhttps://platform.tracxn.com/a/d/legalentity/6278cb43374d8c288f3a1f1d/"
+  },
+  {
+   "Category": "Competitor - Bodywash",
+   "Entity Name (as in file)": "Ghar Soaps",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Ghar Soaps (gharsoaps.in)",
+   "Linked Legal Entity (Primary Source)": "YMI GHAR SOAPS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5e50ca9ff0339465c53aef40\nhttps://platform.tracxn.com/a/d/legalentity/67591127021698423a6d63b4/"
+  },
+  {
+   "Category": "Competitor - Body Lotion",
+   "Entity Name (as in file)": "Nivea",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Nivea (nivea.com, global)",
+   "Linked Legal Entity (Primary Source)": "NIVEA INDIA PRIVATE LIMITED [India] / Beiersdorf Aktiengesellschaft [Germany, global default]",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/5c6bc5968f08fd249d611d39/"
+  },
+  {
+   "Category": "Competitor - Body Lotion",
+   "Entity Name (as in file)": "Vaseline",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Vaseline (vaseline.us)",
+   "Linked Legal Entity (Primary Source)": "Hindustan Unilever Limited",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/52c7c8d9e4b093852fc325d1\nhttps://platform.tracxn.com/a/d/legalentity/619ef501ce4d684a968984dc/"
+  },
+  {
+   "Category": "Competitor - Body Lotion",
+   "Entity Name (as in file)": "Plum",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Plum (plumgoodness.com)",
+   "Linked Legal Entity (Primary Source)": "PUREPLAY SKIN SCIENCES (INDIA) PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/5bab4dbe4f0cfc5b3e921d24/"
+  },
+  {
+   "Category": "Competitor - Body Lotion",
+   "Entity Name (as in file)": "Wishcare",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "WishCare (mywishcare.com)",
+   "Linked Legal Entity (Primary Source)": "RABIKO LIFESTYLE PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5a92e07be4b065615d3c45b0\nhttps://platform.tracxn.com/a/d/legalentity/61e7a3a5fff36e08cc2eb2e1/"
+  },
+  {
+   "Category": "Competitor - Body Lotion",
+   "Entity Name (as in file)": "Cetaphil",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Cetaphil (cetaphil.com, India entity)",
+   "Linked Legal Entity (Primary Source)": "GALDERMA INDIA PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/53192206e4b0f7e165f19f40\nhttps://platform.tracxn.com/a/d/legalentity/61e4f225346fa713954e965a/"
+  },
+  {
+   "Category": "Competitor - Body Lotion",
+   "Entity Name (as in file)": "Venusia",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Dr. Reddys Venusia (drreddysvenusia.com)",
+   "Linked Legal Entity (Primary Source)": "COUNFREEDISE RETAIL SERVICES LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/638fdac5a59d6477693ebe9d\nhttps://platform.tracxn.com/a/d/legalentity/5ff81360655da96e4f4b716c/"
+  },
+  {
+   "Category": "Competitor - Body Scrub",
+   "Entity Name (as in file)": "Dove",
+   "Tracxn Status": "Found (inferred)",
+   "Matched Company / Brand (Tracxn)": "(see Bodywash category)",
+   "Linked Legal Entity (Primary Source)": "Hindustan Unilever Limited",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/52c7c8d9e4b093852fc325d1\nhttps://platform.tracxn.com/a/d/legalentity/619ef501ce4d684a968984dc/"
+  },
+  {
+   "Category": "Competitor - Body Scrub",
+   "Entity Name (as in file)": "Be bodywise",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "(see Bodywash category)",
+   "Linked Legal Entity (Primary Source)": "MOSAIC WELLNESS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5dc162227ce88a1d6fcea0fd/\nhttps://platform.tracxn.com/a/d/legalentity/5ec374e18787075d28cac395/"
+  },
+  {
+   "Category": "Competitor - Body Scrub",
+   "Entity Name (as in file)": "Chemist at play",
+   "Tracxn Status": "Found (via parent)",
+   "Matched Company / Brand (Tracxn)": "(see Bodywash category)",
+   "Linked Legal Entity (Primary Source)": "ONESTO LABS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/58838f5ee4b0544c047a305c\nhttps://platform.tracxn.com/a/d/legalentity/5f07e88a977ce80ba4bf4fbe/"
+  },
+  {
+   "Category": "Competitor - Sunscreen",
+   "Entity Name (as in file)": "Derma Co",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "The Derma Co (thedermaco.com)",
+   "Linked Legal Entity (Primary Source)": "Honasa Consumer Limited",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5c769f679adc10590af38f5d\nhttps://platform.tracxn.com/a/d/legalentity/64463b13fc2e9e1979136243/"
+  },
+  {
+   "Category": "Competitor - Sunscreen",
+   "Entity Name (as in file)": "Dot & Key",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Dot & Key (dotandkey.com)",
+   "Linked Legal Entity (Primary Source)": "DOT & KEY WELLNESS LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5a6f4019e4b071cf2936965f\nhttps://platform.tracxn.com/a/d/legalentity/60a4f5df776c7509717df7b5/"
+  },
+  {
+   "Category": "Competitor - Sunscreen",
+   "Entity Name (as in file)": "Minimalist",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Minimalist (beminimalist.co)",
+   "Linked Legal Entity (Primary Source)": "UPRISING SCIENCE PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5f6465c6c4c21115c6c919d0\nhttps://platform.tracxn.com/a/d/legalentity/6029ea64655da9c825675793/"
+  },
+  {
+   "Category": "Competitor - Sunscreen",
+   "Entity Name (as in file)": "Deconstruct",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Deconstruct (thedeconstruct.in)",
+   "Linked Legal Entity (Primary Source)": "BAYPURE LIFESTYLE PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/602a5b41655da90ced11abdf\nhttps://platform.tracxn.com/a/d/legalentity/60bdd2e52d3d2a0ad122aad1/"
+  },
+  {
+   "Category": "Competitor - Sunscreen",
+   "Entity Name (as in file)": "Foxtale",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "(see Bodywash category)",
+   "Linked Legal Entity (Primary Source)": "FOXTALE CONSUMER PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/619cefed22040c74ee7efb7a\nhttps://platform.tracxn.com/a/d/legalentity/6278cb43374d8c288f3a1f1d/"
+  },
+  {
+   "Category": "Competitor - Face Serums",
+   "Entity Name (as in file)": "Minimalist",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "(see Sunscreen category)",
+   "Linked Legal Entity (Primary Source)": "UPRISING SCIENCE PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5f6465c6c4c21115c6c919d0\nhttps://platform.tracxn.com/a/d/legalentity/6029ea64655da9c825675793/"
+  },
+  {
+   "Category": "Competitor - Face Serums",
+   "Entity Name (as in file)": "The Derma Co",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "(see Sunscreen category)",
+   "Linked Legal Entity (Primary Source)": "Honasa Consumer Limited",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5c769f679adc10590af38f5d\nhttps://platform.tracxn.com/a/d/legalentity/64463b13fc2e9e1979136243/"
+  },
+  {
+   "Category": "Competitor - Face Serums",
+   "Entity Name (as in file)": "Pilgrim",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Pilgrim (discoverpilgrim.com)",
+   "Linked Legal Entity (Primary Source)": "HEAVENLY SECRETS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/5d7d227edfad2e628f9b4cc4\nhttps://platform.tracxn.com/a/d/legalentity/60a20743ed099208be5c1101/"
+  },
+  {
+   "Category": "Competitor - Face Serums",
+   "Entity Name (as in file)": "Plum",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "(see Body Lotion category)",
+   "Linked Legal Entity (Primary Source)": "PUREPLAY SKIN SCIENCES (INDIA) PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/legalentity/5bab4dbe4f0cfc5b3e921d24/"
+  },
+  {
+   "Category": "Competitor - Face Serums",
+   "Entity Name (as in file)": "Deconstruct",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "(see Sunscreen category)",
+   "Linked Legal Entity (Primary Source)": "BAYPURE LIFESTYLE PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/602a5b41655da90ced11abdf\nhttps://platform.tracxn.com/a/d/legalentity/60bdd2e52d3d2a0ad122aad1/"
+  },
+  {
+   "Category": "Delivery Partners",
+   "Entity Name (as in file)": "Delhivery",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "delhivery.com",
+   "Linked Legal Entity (Primary Source)": "DELHIVERY LIMITD",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/52c04056e4b09a1f9f132c7f/\nhttps://platform.tracxn.com/a/d/legalentity/6332e349ac54c25541afa34e/"
+  },
+  {
+   "Category": "Delivery Partners",
+   "Entity Name (as in file)": "Shadowfax",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Shadowfax",
+   "Linked Legal Entity (Primary Source)": "SHADOWFAX TECHNOLOGIES LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/55648987e4b098aa6fccd194/\nhttps://platform.tracxn.com/a/d/legalentity/64a7ed9eaa25eb6979f52376/"
+  },
+  {
+   "Category": "Delivery Partners",
+   "Entity Name (as in file)": "xpressbees",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Xpressbees",
+   "Linked Legal Entity (Primary Source)": "BUSY BEES LOGISTICS SOLUTIONS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/53102a3de4b085b6b112e37a/\nhttps://platform.tracxn.com/a/d/legalentity/5bbde4998f08e8d59018d44e/"
+  },
+  {
+   "Category": "Delivery Partners",
+   "Entity Name (as in file)": "elasticrun",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "ElasticRun",
+   "Linked Legal Entity (Primary Source)": "NTEX TRANSPORTATION SERVICES PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/58294d16e4b02a5f3bc04771/\nhttps://platform.tracxn.com/a/d/legalentity/64252600ea1aff2820d5cb82/"
+  },
+  {
+   "Category": "Delivery Partners",
+   "Entity Name (as in file)": "pikndel",
+   "Tracxn Status": "Found",
+   "Matched Company / Brand (Tracxn)": "Pikndel",
+   "Linked Legal Entity (Primary Source)": "QUICKCOM SOLUTIONS PRIVATE LIMITED",
+   "Tracxn URL(s)": "https://platform.tracxn.com/a/d/company/56308e12e4b03f67066ed2fa/\nhttps://platform.tracxn.com/a/d/legalentity/6412fe8d06e6cf14f67e5219/"
+  }
+ ]
+}

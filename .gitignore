@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# secrets — never commit real keys (see .env.example)
+.env
+.env.local
+.env.*.local
+
+# build output
+dist/
+.wrangler/
+
+# raw data dump (heavy: 190MB of Tracxn PDFs/JSON) — kept local, not in git.
+# The small master reference sheets are the exception and ARE tracked.
+/data/raw/*
+!/data/raw/masters/
+
+# os / editor
+.DS_Store
+*.log

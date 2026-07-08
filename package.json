@@ -1,0 +1,10 @@
+{
+  "name": "mcaffeine-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "mcAFFEINE intelligence dashboard — CCO command center (P0: vendor & manufacturer financial health).",
+  "scripts": {
+    "normalize": "node scripts/normalize.mjs"
+  }
+}

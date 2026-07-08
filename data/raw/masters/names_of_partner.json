@@ -1,0 +1,198 @@
+{
+ "rm_vendors": [
+  {
+   "arkchemicals": "givaudan"
+  },
+  {
+   "arkchemicals": "psteaindstries"
+  },
+  {
+   "arkchemicals": "beemanpharmaceuticals"
+  },
+  {
+   "arkchemicals": "yashamspecialityingredientspvtltd"
+  },
+  {
+   "arkchemicals": "greenfarms"
+  },
+  {
+   "arkchemicals": "ahmedabadagency"
+  },
+  {
+   "arkchemicals": "northernaromatics"
+  },
+  {
+   "arkchemicals": "unitedenterprises"
+  },
+  {
+   "arkchemicals": "valuetree"
+  },
+  {
+   "arkchemicals": "sggreentech"
+  },
+  {
+   "arkchemicals": "nirmaancosmetic"
+  },
+  {
+   "arkchemicals": "connellbrothers"
+  },
+  {
+   "arkchemicals": "kayceeenterprise"
+  },
+  {
+   "arkchemicals": "wellnexingredients"
+  }
+ ],
+ "pm_vendors": [
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "PRINTOTECH GLOBAL LIMITED"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "CONTINUITY PRINTERS PVT LTD"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "Alfa Exports"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "M/s Khosla Printers"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "Radcom Packaging"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "Manjushree Technopack Limited"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "Pragati Glass & Industries Pvt. Ltd."
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "SICON PACKS PRIVATE LIMITED"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "A G Polypack"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "EPL Limited"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "PRISHA TUBES PRIVATE LIMITED"
+  },
+  {
+   "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": "Purity PolyTube Pvt Ltd"
+  }
+ ],
+ "manufacturers": [
+  {
+   "aelius": "samrvir"
+  },
+  {
+   "aelius": "kain"
+  },
+  {
+   "aelius": "ultrabeautycare"
+  },
+  {
+   "aelius": "revepharma"
+  },
+  {
+   "aelius": "cheryl"
+  },
+  {
+   "aelius": "ngelectro"
+  },
+  {
+   "aelius": "ananya"
+  },
+  {
+   "aelius": "allmask"
+  },
+  {
+   "aelius": "vedicnaturals"
+  },
+  {
+   "aelius": "anuspa"
+  },
+  {
+   "aelius": "adf"
+  },
+  {
+   "aelius": "kapco"
+  },
+  {
+   "aelius": "zymo"
+  },
+  {
+   "aelius": "arovea"
+  }
+ ],
+ "competitors_bodywash": [
+  {
+   "Dove": "Be bodywise"
+  },
+  {
+   "Dove": "Chemist at Play"
+  },
+  {
+   "Dove": "Foxtale"
+  },
+  {
+   "Dove": "Ghar Soaps"
+  }
+ ],
+ "competitors_bodylotion": [
+  {
+   "Nivea": "Vaseline"
+  },
+  {
+   "Nivea": "Plum"
+  },
+  {
+   "Nivea": "Wishcare"
+  },
+  {
+   "Nivea": "Cetaphil"
+  },
+  {
+   "Nivea": "Venusia"
+  }
+ ],
+ "competitors_bodyscrub": [
+  {
+   "Dove": "Be bodywise"
+  },
+  {
+   "Dove": "Chemist at play"
+  }
+ ],
+ "competitors_sunscreen": [
+  {
+   "Derma Co": "Dot & Key"
+  },
+  {
+   "Derma Co": "Minimalist"
+  },
+  {
+   "Derma Co": "Deconstruct"
+  },
+  {
+   "Derma Co": "Foxtale"
+  }
+ ],
+ "competitors_faceserums": [
+  {
+   "Minimalist": "The Derma Co"
+  },
+  {
+   "Minimalist": "Pilgrim"
+  },
+  {
+   "Minimalist": "Plum"
+  },
+  {
+   "Minimalist": "Deconstruct"
+  }
+ ]
+}
