@@ -20,6 +20,10 @@ export function fmtInt(v: number | null): string {
   return v == null ? "—" : v.toLocaleString("en-IN");
 }
 
+export function fmtDays(v: number | null): string {
+  return v == null ? "—" : `${Math.round(v)} d`;
+}
+
 export function fmtDate(iso: string | null): string {
   if (!iso) return "—";
   const d = new Date(iso);

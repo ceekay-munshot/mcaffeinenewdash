@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { DATA, supplyEntities, type Entity } from "./types";
-import { fmtCrore, fmtPct, fmtInt, fmtDate, toCrore } from "./lib/format";
+import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, toCrore } from "./lib/format";
 import { negotiationRoom, ROOM_META, COVERAGE_META, type Room } from "./lib/health";
 
 const CATS = ["All", "RM Vendor", "PM Vendor", "Manufacturer"] as const;
@@ -237,9 +237,25 @@ function DetailPanel({ entity: e, onClose }: { entity: Entity; onClose: () => vo
           <Row k="Sources" v={`Tracxn ${e.sources.tracxn ? "✓" : "✗"} · web ${e.sources.webResearch ? "✓" : "✗"} · ${e.sources.pdfs} PDF`} />
         </dl>
 
-        <div className="mt-6 rounded-xl bg-amber-50 p-3 text-xs text-amber-800 ring-1 ring-amber-200">
-          Receivable/payable days, RoCE and full balance sheet come from Probe42 — wiring next. This card shows what the Tracxn snapshot already gives us.
-        </div>
+        {e.probe ? (
+          <div className="mt-6">
+            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-teal-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-teal-500" /> Probe42 · deep financials
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <Stat label="Receivable days" value={fmtDays(e.probe.receivableDays)} />
+              <Stat label="Payable days" value={fmtDays(e.probe.payableDays)} />
+              <Stat label="RoCE" value={fmtPct(e.probe.roce)} />
+              <Stat label="Cash conversion" value={fmtDays(e.probe.cashConversionCycleDays)} />
+              <Stat label="Peer median payables" value={fmtDays(e.probe.peerMedianPayableDays)} />
+              <Stat label="Credit rating" value={e.probe.creditRating ?? "—"} />
+            </div>
+          </div>
+        ) : (
+          <div className="mt-6 rounded-xl bg-amber-50 p-3 text-xs text-amber-800 ring-1 ring-amber-200">
+            Receivable/payable days, RoCE and full balance sheet come from Probe42 — not pulled for this company yet. This card shows what the Tracxn snapshot already gives us.
+          </div>
+        )}
 
         {e.tracxnUrl && (
           <a href={e.tracxnUrl} target="_blank" rel="noreferrer" className="mt-4 inline-block text-sm font-medium text-teal-600 hover:underline">

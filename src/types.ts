@@ -12,6 +12,21 @@ export interface Financials {
   employeeCount: number | null;
 }
 
+export interface ProbeData {
+  receivableDays: number | null;
+  payableDays: number | null;
+  cashConversionCycleDays: number | null;
+  roce: number | null;
+  roe: number | null;
+  ebitdaMargin: number | null;
+  netMargin: number | null;
+  peerMedianPayableDays: number | null;
+  peerMedianReceivableDays: number | null;
+  creditRating: string | null;
+  profitabilityScore: number | null;
+  fetchedAt?: string;
+}
+
 export interface Entity {
   category: string;
   folder: string;
@@ -29,6 +44,7 @@ export interface Entity {
   financials: Financials;
   funding: { rounds: number; acquisitions: number };
   sources: { tracxn: boolean; webResearch: boolean; pdfs: number };
+  probe?: ProbeData;
 }
 
 export interface Dataset {

@@ -6,6 +6,7 @@
   "description": "mcAFFEINE intelligence dashboard — CCO command center (P0: vendor & manufacturer financial health).",
   "scripts": {
     "normalize": "node scripts/normalize.mjs",
+    "probe:enrich": "node scripts/probe/enrich.mjs",
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"

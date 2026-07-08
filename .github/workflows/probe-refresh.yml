@@ -1,0 +1,35 @@
+name: Probe42 refresh
+
+# Manual-only by design: each live fetch spends Probe42 credits, so this never
+# runs on a schedule automatically. Trigger it from the Actions tab when you want
+# to pull deep financials, choosing how many companies to fetch.
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Max NEW companies to fetch this run (cost control)"
+        required: true
+        default: "2"
+
+permissions:
+  contents: write
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Enrich from Probe42
+        env:
+          PROBE42_API_KEY: ${{ secrets.PROBE42_API_KEY }}
+        run: node scripts/probe/enrich.mjs --live --limit "${{ github.event.inputs.limit }}"
+      - name: Commit refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/clean/entities.json data/probe-cache
+          git diff --cached --quiet || git commit -m "chore: refresh Probe42 financials"
+          git push

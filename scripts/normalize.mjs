@@ -9,6 +9,7 @@
 
 import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { extractProbe } from "./probe/extract.mjs";
 
 const RAW_DIR = process.env.RAW_DIR || "data/raw";
 const OUT_FILE = process.env.OUT_FILE || "data/clean/entities.json";
@@ -230,6 +231,21 @@ for (const category of readdirSync(RAW_DIR)) {
     const dir = join(catDir, folder);
     if (!statSync(dir).isDirectory()) continue;
     entities.push(extract(category, folder, dir));
+  }
+}
+
+// Attach Probe42 deep financials from the paid cache (if any), so probe data
+// survives a full rebuild without re-hitting the API.
+const PROBE_CACHE = join("data", "probe-cache");
+if (existsSync(PROBE_CACHE)) {
+  const byCin = new Map(entities.filter((e) => e.cin).map((e) => [e.cin, e]));
+  for (const f of readdirSync(PROBE_CACHE)) {
+    if (!f.endsWith(".json")) continue;
+    const e = byCin.get(f.replace(/\.json$/, ""));
+    if (!e) continue;
+    try {
+      e.probe = extractProbe(JSON.parse(readFileSync(join(PROBE_CACHE, f), "utf8")));
+    } catch { /* skip unreadable cache entry */ }
   }
 }
 
