@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T17:33:31.635Z",
+  "generatedAt": "2026-07-08T17:40:40.668Z",
   "count": 73,
   "entities": [
     {
@@ -1378,18 +1378,19 @@
       },
       "shelf": {
         "channels": [
-          "amazon"
+          "amazon",
+          "nykaa"
         ],
-        "skuCount": 21,
+        "skuCount": 41,
         "avgRating": 4.3,
-        "avgDiscountPct": 15,
-        "totalReviews": 95746,
+        "avgDiscountPct": 12.9,
+        "totalReviews": 1396803,
         "topSku": {
-          "name": "Barrier Repair Moisturizer For Normal, Dry, Combination & Sensitive Skin | 120 Hrs Moisturization, With 5 Ceramides & Hyaluronic | Repairs Damaged Skin Barrier, Non-Comedogenic | 100g",
-          "rating": 4.3,
-          "reviewCount": 14600,
-          "priceINR": 336,
-          "channel": "amazon"
+          "name": "Dot & Key CSMS Vitamin C Bestseller Combo",
+          "rating": null,
+          "reviewCount": 378148,
+          "priceINR": 1474,
+          "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T17:31:52.871Z"
       }

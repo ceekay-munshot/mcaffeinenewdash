@@ -20,7 +20,7 @@ const RETRYABLE = new Set([408, 425, 429, 500, 502, 503, 504]);
 // Scrape a URL and extract structured JSON matching `schema`.
 // Uses the v1 /scrape endpoint with the json format. Retries transient failures
 // (timeouts / rate limits / 5xx) with backoff so one slow page doesn't drop a brand.
-export async function scrapeExtract(url, schema, prompt, { retries = 3 } = {}) {
+export async function scrapeExtract(url, schema, prompt, { retries = 3, proxy = "basic", waitFor = 5000 } = {}) {
   let last = { ok: false, status: 0, json: null, raw: null };
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
@@ -32,12 +32,12 @@ export async function scrapeExtract(url, schema, prompt, { retries = 3 } = {}) {
           onlyMainContent: true,
           formats: ["json"],
           jsonOptions: { schema, prompt },
-          // bot-protected marketplaces (Amazon) need a longer render + stealth proxy.
-          // "auto" uses the cheap proxy first and only escalates to stealth on failure.
-          waitFor: Number(process.env.FIRECRAWL_WAIT || 5000),
+          waitFor: Number(process.env.FIRECRAWL_WAIT || waitFor),
           timeout: 60000,
           blockAds: true,
-          proxy: process.env.FIRECRAWL_PROXY || "auto",
+          // per-channel proxy: Amazon's block page returns 200, so "auto" never
+          // escalates — the caller forces "stealth" for it.
+          proxy: process.env.FIRECRAWL_PROXY || proxy,
         }),
       });
       const text = await res.text();

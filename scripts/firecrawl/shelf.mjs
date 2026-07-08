@@ -80,7 +80,9 @@ async function getSnapshot(channel, brand) {
 
   const url = CHANNEL_URL[channel]?.(brand);
   if (!url) return { snap: null, from: `no url builder for ${channel}` };
-  const res = await scrapeExtract(url, PRODUCT_SCHEMA, PROMPT);
+  // Amazon is heavily bot-protected (block page returns 200) → force stealth proxy.
+  const opts = channel === "amazon" ? { proxy: "stealth", waitFor: 6000 } : { proxy: "basic" };
+  const res = await scrapeExtract(url, PRODUCT_SCHEMA, PROMPT, opts);
   if (!res.ok || !res.json) return { snap: null, from: `scrape ${res.status}` };
   const products = Array.isArray(res.json.products) ? res.json.products : [];
   const snap = { brand, brandKey, channel, url, scrapedAt: new Date().toISOString(), products };
