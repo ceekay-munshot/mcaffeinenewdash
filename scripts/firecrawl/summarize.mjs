@@ -21,9 +21,23 @@ function discountPct(p) {
   return null;
 }
 
+// Repair extraction slips: a "rating" must be 0–5. Marketplaces show star rating
+// AND a (much larger) review count, and the extractor sometimes swaps them — so
+// a rating > 5 is really the review count. This fixes cached data without re-scraping.
+function repair(p) {
+  let rating = num(p.rating);
+  let reviews = num(p.reviewCount);
+  if (rating != null && rating > 5) {
+    if (reviews == null || reviews === 0) reviews = rating;
+    rating = null;
+  }
+  if (rating != null && rating < 0) rating = null;
+  return { ...p, rating, reviewCount: reviews };
+}
+
 // snapshots: [{ channel, scrapedAt, products: [{name, price/priceINR, mrp, rating, reviewCount, url}] }]
 export function summarizeShelf(snapshots) {
-  const products = snapshots.flatMap((s) => (s.products || []).map((p) => ({ ...p, channel: s.channel })));
+  const products = snapshots.flatMap((s) => (s.products || []).map((p) => ({ ...repair(p), channel: s.channel })));
   if (!products.length) return null;
 
   const ratings = products.map((p) => num(p.rating)).filter((x) => x != null && x <= 5);

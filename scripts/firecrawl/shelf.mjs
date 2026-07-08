@@ -53,8 +53,11 @@ const PRODUCT_SCHEMA = {
   },
 };
 const PROMPT =
-  "Extract every product listed on this page. For each: name, current selling price in INR (priceINR), " +
-  "original/MRP price in INR (mrpINR), star rating out of 5 (rating), number of ratings/reviews (reviewCount), and product url.";
+  "Extract every product listed on this page. For each product return: " +
+  "name; priceINR = current selling price in INR (integer); mrpINR = original/struck-through MRP in INR; " +
+  "rating = the STAR rating, a decimal from 0 to 5 (e.g. 4.3) — NEVER the number of reviews; " +
+  "reviewCount = the COUNT of ratings/reviews, an integer that is often in the hundreds or thousands (e.g. 141531); " +
+  "url = the product link. rating and reviewCount are different fields — do not put the review count in rating.";
 
 function cachePath(channel, brandKey) {
   return join(CACHE_DIR, channel, `${brandKey}.json`);

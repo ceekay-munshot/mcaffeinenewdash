@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T16:23:30.976Z",
+  "generatedAt": "2026-07-08T16:42:24.866Z",
   "count": 73,
   "entities": [
     {
@@ -52,12 +52,12 @@
         "skuCount": 20,
         "avgRating": null,
         "avgDiscountPct": 9.5,
-        "totalReviews": 0,
+        "totalReviews": 1101285,
         "topSku": {
-          "name": "Cetaphil Advanced Defense Serum with Gallic Acid, Boosts Skin Radiance & Brightness",
-          "rating": 7,
-          "reviewCount": 0,
-          "priceINR": 1879,
+          "name": "Cetaphil Gentle Skin Cleanser",
+          "rating": null,
+          "reviewCount": 410393,
+          "priceINR": 413,
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T16:37:41.159Z"
