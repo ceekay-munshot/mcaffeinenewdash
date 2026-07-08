@@ -1,0 +1,145 @@
+{
+  "brand": "Deconstruct",
+  "brandKey": "deconstruct",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=Deconstruct",
+  "scrapedAt": "2026-07-08T17:02:26.025Z",
+  "products": [
+    {
+      "name": "Deconstruct Gel Sunscreen SPF 50+ PA+++, No White Cast, Lightweight, Non-Greasy",
+      "priceINR": 332,
+      "mrpINR": 349,
+      "rating": 4.5,
+      "reviewCount": 58887,
+      "url": "https://www.nykaa.com/deconstruct-lightweight-gel-sunscreen-spf-55-pa/p/6183938?productId=20910725&skuId=6183938&pps=1"
+    },
+    {
+      "name": "Deconstruct 10% Vitamin C Serum For Brightening With Liposomal Technology, Non-Irritating",
+      "priceINR": 639,
+      "mrpINR": 799,
+      "rating": 4.5,
+      "reviewCount": 19152,
+      "url": "https://www.nykaa.com/deconstruct-vitamin-c-serum-with-vitamin-c-and-ferulic-acid/p/3538710?productId=17053874&skuId=3538710&pps=2"
+    },
+    {
+      "name": "Deconstruct Brightening Lip Balm SPF 50, Moisturizes & Brightens Lips",
+      "priceINR": 193,
+      "mrpINR": 199,
+      "rating": 4.5,
+      "reviewCount": 11091,
+      "url": "https://www.nykaa.com/deconstruct-brightening-lip-balm-1percent-vitamin-c-0-1percent-resorcinol-spf-30/p/9064066?productId=9064066&pps=3"
+    },
+    {
+      "name": "Deconstruct 5% Vitamin C Sunscreen SPF 50 PA++++ In Vivo, Brightens Skin Tone, New Gen Filters",
+      "priceINR": 413,
+      "mrpINR": 449,
+      "rating": 4,
+      "reviewCount": 281,
+      "url": "https://www.nykaa.com/deconstruct-5percent-vitamin-c-gel-sunscreen-in-vivo-tested-spf-50-pa/p/25051543?productId=25051543&pps=4"
+    },
+    {
+      "name": "Deconstruct 7% Glycolic Acid Toner With 3% Niacinamide For Even & Glowing Skin",
+      "priceINR": 427,
+      "mrpINR": 449,
+      "rating": 4,
+      "reviewCount": 105,
+      "url": "https://www.nykaa.com/deconstruct-7percent-glycolic-acid-toner-with-3percent-niacinamide-for-even-glowing-skin/p/25761990?productId=25761990&pps=5"
+    },
+    {
+      "name": "Deconstruct Oil-Free Moisturizer, Lightweight, Non-Sticky, 72H Hydration",
+      "priceINR": 332,
+      "mrpINR": 349,
+      "rating": 4.5,
+      "reviewCount": 4207,
+      "url": "https://www.nykaa.com/deconstruct-hydrating-moisturizer-3percent-nmf-complex/p/4394257?productId=4394257&pps=6"
+    },
+    {
+      "name": "Deconstruct Fluid Brightening Sunscreen SPF 50 PA++++, Sunscreen with Niacinamide, Brightens Skin",
+      "priceINR": 379,
+      "mrpINR": 399,
+      "rating": 4.5,
+      "reviewCount": 3713,
+      "url": "https://www.nykaa.com/deconstruct-sunscreen-lotion-spf-55-and-pa/p/10723863?productId=10723863&pps=7"
+    },
+    {
+      "name": "Deconstruct 5% Niacinamide Serum For Oily Skin + 2% Alpha Arbutin, Liposomal Technology, 4-In-1",
+      "priceINR": 573,
+      "mrpINR": 699,
+      "rating": 4.5,
+      "reviewCount": 10480,
+      "url": "https://www.nykaa.com/deconstruct-clearing-serum-with-alpha-arbutin-and-niacinamide/p/3538711?productId=18717453&skuId=3538711&pps=8"
+    },
+    {
+      "name": "Deconstruct Brightening Tinted Lip Balm SPF 50, Moisturizes & Brightens",
+      "priceINR": 237,
+      "mrpINR": 249,
+      "rating": 4.5,
+      "reviewCount": 1458,
+      "url": "https://www.nykaa.com/deconstruct-brightening-tinted-lip-balm-with-spf-30/p/20262505?productId=20262505&pps=9"
+    },
+    {
+      "name": "Deconstruct Salicylic Acid & Niacinamide Oil Control Face Wash, Reduces Acne, Oil",
+      "priceINR": 275,
+      "mrpINR": 299,
+      "rating": 4.5,
+      "reviewCount": 2012,
+      "url": "https://www.nykaa.com/deconstruct-salicylic-acid-oil-control-facewash-0-5percent-salicylic-acid-1percent-niacinamide/p/4394255?productId=4394255&pps=10"
+    },
+    {
+      "name": "Deconstruct Niacinamide Brightening Face Moisturizer, Brightens & Reduces Dark Spots",
+      "priceINR": 379,
+      "mrpINR": 399,
+      "rating": 4.5,
+      "reviewCount": 1956,
+      "url": "https://www.nykaa.com/deconstruct-brightening-moisturizer-5percent-niacinamide-1percent-kojic-acid-5percent-vitamin-c/p/4394258?productId=4394258&pps=14"
+    },
+    {
+      "name": "Deconstruct Niacinamide Serum, Brightens & Evens Skin Tone",
+      "priceINR": 573,
+      "mrpINR": 699,
+      "rating": 4,
+      "reviewCount": 2796,
+      "url": "https://www.nykaa.com/deconstruct-brightening-serum-with-niacinamide-and-alpha-arbutin/p/3538703?productId=3538703&pps=15"
+    },
+    {
+      "name": "Deconstruct Anti Dandruff Serum, Exfoliates & Soothes Scalp",
+      "priceINR": 479,
+      "mrpINR": 599,
+      "rating": 4,
+      "reviewCount": 2614,
+      "url": "https://www.nykaa.com/deconstruct-anti-dandruff-scalp-hair-serum/p/8955556?productId=8955556&pps=16"
+    },
+    {
+      "name": "Deconstruct Retinol & Peptide Serum, 0.2% Retinol + 1% Peptide, Anti-Aging",
+      "priceINR": 639,
+      "mrpINR": 799,
+      "rating": 4.5,
+      "reviewCount": 3682,
+      "url": "https://www.nykaa.com/deconstruct-retinol-peptide-serum-with-retinol-and-peptides/p/3538709?productId=3538709&pps=17"
+    },
+    {
+      "name": "Deconstruct Detan Sunscreen Body Lotion, SPF 50 PA++++, Brightens & Protects",
+      "priceINR": 349,
+      "mrpINR": 499,
+      "rating": 4,
+      "reviewCount": 502,
+      "url": "https://www.nykaa.com/deconstruct-detan-sunscreen-body-lotion-with-spf-50-pa/p/18585539?productId=18585539&pps=18"
+    },
+    {
+      "name": "Deconstruct Lightweight Gel Sunscreen For Oily Skin - Pack of 2",
+      "priceINR": 664,
+      "mrpINR": 698,
+      "rating": 4.5,
+      "reviewCount": 55680,
+      "url": "https://www.nykaa.com/deconstruct-lightweight-gel-sunscreen-for-oily-skin-pack-of-2/p/17390746?productId=17390746&pps=19"
+    },
+    {
+      "name": "Deconstruct 3% Niacinamide & 2% Salicylic Acid Serum, Liposomal Technology, Controls Oil & Acne",
+      "priceINR": 639,
+      "mrpINR": 799,
+      "rating": 4,
+      "reviewCount": 1314,
+      "url": "https://www.nykaa.com/deconstruct-pore-control-serum-with-salicylic-acid-and-niacinamide/p/3538704?productId=3538704&pps=20"
+    }
+  ]
+}

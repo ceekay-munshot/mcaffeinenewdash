@@ -1,0 +1,169 @@
+{
+  "brand": "Vaseline",
+  "brandKey": "vaseline",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=Vaseline",
+  "scrapedAt": "2026-07-08T16:53:56.910Z",
+  "products": [
+    {
+      "name": "Vaseline Gluta Hya AHA BHA Exfoliating Lotion",
+      "priceINR": 374,
+      "mrpINR": 499,
+      "rating": 4,
+      "reviewCount": 54,
+      "url": "https://www.nykaa.com/vaseline-gluta-hya-aha-bha-exfoliating-lotion/p/27424515?productId=27424515&pps=1"
+    },
+    {
+      "name": "Vaseline Gluta-Hya Dewy Radiance Lotion Bright",
+      "priceINR": 311,
+      "mrpINR": 415,
+      "rating": 4,
+      "reviewCount": 56858,
+      "url": "https://www.nykaa.com/vaseline-gluta-hya-dewy-radiance-lotion-bright/p/26922273?productId=26922273&pps=2"
+    },
+    {
+      "name": "Vaseline Cloud Soft SPF 50 Light Moisturiser with Ceramides ...",
+      "priceINR": 340,
+      "mrpINR": 425,
+      "rating": 4,
+      "reviewCount": 56,
+      "url": "https://www.nykaa.com/vaseline-cloud-soft-spf-50-light-moisturiser-with-ceramides-hyaluron-for-non-sticky-hydration/p/25431354?productId=25431354&pps=3"
+    },
+    {
+      "name": "Vaseline Sun Protect SPF 50 PA++++ Lotion, UVA + UVB Protect...",
+      "priceINR": 519,
+      "mrpINR": 799,
+      "rating": 4,
+      "reviewCount": 636,
+      "url": "https://www.nykaa.com/vaseline-sun-protect-spf-50-pa-lotion-uva-uvb-protection/p/25403701?productId=25403701&pps=4"
+    },
+    {
+      "name": "Vaseline Gluta-Hya Dewy Radiance Lotion Bright, Glowing Skin...",
+      "priceINR": 311,
+      "mrpINR": 415,
+      "rating": 4,
+      "reviewCount": 56858,
+      "url": "https://www.nykaa.com/vaseline-gluta-hya-dewy-radiance-lotion-bright/p/26922273?productId=26922273&skuId=10415549&pps=5"
+    },
+    {
+      "name": "Vaseline Lip Tins",
+      "priceINR": 251,
+      "mrpINR": 295,
+      "rating": 4,
+      "reviewCount": 70393,
+      "url": "https://www.nykaa.com/vaseline-lip-tins-original-care/p/2808654?productId=2808654&pps=6"
+    },
+    {
+      "name": "Vaseline Cocoa Radiant Body Oil with Pure Cocoa Butter & Shi...",
+      "priceINR": 639,
+      "mrpINR": 799,
+      "rating": 4,
+      "reviewCount": 538,
+      "url": "https://www.nykaa.com/vaseline-intensive-care-cocoa-radiant-body-oil/p/22106188?productId=22106188&pps=7"
+    },
+    {
+      "name": "Vaseline Gluta Hya Antioxidant SPF 50 PA+++ Sunscreen",
+      "priceINR": 524,
+      "mrpINR": 699,
+      "rating": 4,
+      "reviewCount": 2453,
+      "url": "https://www.nykaa.com/vaseline-gluta-hya-antioxidant-spf-50-pa-sunscreen/p/18770893?productId=18770893&pps=8"
+    },
+    {
+      "name": "Vaseline Sun Protect SPF 30 Body Lotion, Reduces Tan Lines i...",
+      "priceINR": 584,
+      "mrpINR": 899,
+      "rating": 4,
+      "reviewCount": 37741,
+      "url": "https://www.nykaa.com/vaseline-sun-protect-spf-30-body-lotion-with-uva-uvb-pa/p/15466140?productId=15466140&pps=9"
+    },
+    {
+      "name": "Vaseline Cocoa Glow Serum In Lotion, 600 ml , 100% Pure Coco...",
+      "priceINR": 619,
+      "mrpINR": 825,
+      "rating": 4,
+      "reviewCount": 130846,
+      "url": "https://www.nykaa.com/vaseline-intensive-care-cocoa-glow-body-lotion/p/535506?productId=535506&pps=10"
+    },
+    {
+      "name": "Vaseline Gluta Hya Dewy Radiance Non-Sticky Body Lotion",
+      "priceINR": 419,
+      "mrpINR": 599,
+      "rating": 4,
+      "reviewCount": 56858,
+      "url": "https://www.nykaa.com/vaseline-gluta-hya-dewy-radiance-lotion-bright/p/26922273?productId=26922273&skuId=25956857&pps=11"
+    },
+    {
+      "name": "Vaseline Intensive Care Deep Moisture Body Lotion",
+      "priceINR": 563,
+      "mrpINR": 750,
+      "rating": 4,
+      "reviewCount": 163474,
+      "url": "https://www.nykaa.com/vaseline-intensive-care-deep-restore-body-lotion/p/535502?productId=535502&pps=12"
+    },
+    {
+      "name": "Vaseline Emily In Paris Tinted Lip Balm Stick",
+      "priceINR": 319,
+      "mrpINR": 399,
+      "rating": 4,
+      "reviewCount": 952,
+      "url": "https://www.nykaa.com/vaseline-emily-in-paris-pink-tinted-lip-balm-stick/p/23489399?productId=23489399&pps=13"
+    },
+    {
+      "name": "Vaseline Coconut Restore Body Oil with Pure Coconut Oil & Sh...",
+      "priceINR": 639,
+      "mrpINR": 799,
+      "rating": 4,
+      "reviewCount": 289,
+      "url": "https://www.nykaa.com/vaseline-intensive-care-coconut-restore-body-oil/p/22106187?productId=22106187&pps=14"
+    },
+    {
+      "name": "Vaseline Lip Care Lip Balm Stick",
+      "priceINR": 172,
+      "mrpINR": 229,
+      "rating": 4,
+      "reviewCount": 1161,
+      "url": "https://www.nykaa.com/vaseline-lip-care-lip-balm-stick/p/23603284?productId=23603284&pps=15"
+    },
+    {
+      "name": "Vaseline Healthy White Lightening Body Lotion",
+      "priceINR": 424,
+      "mrpINR": 565,
+      "rating": 4,
+      "reviewCount": 102468,
+      "url": "https://www.nykaa.com/vaseline-healthy-white-lightening-body-lotion/p/234145?productId=234145&pps=16"
+    },
+    {
+      "name": "Vaseline Gluta-Hya Overnight Radiance, Serum-In-Lotion, With...",
+      "priceINR": 315,
+      "mrpINR": 420,
+      "rating": 4,
+      "reviewCount": 4081,
+      "url": "https://www.nykaa.com/vaseline-gluta-hya-overnight-radiance-serum-in-lotion-with-amino-peptide-and-glutaglow/p/14910473?productId=14910473&pps=17"
+    },
+    {
+      "name": "Vaseline Gluta-Hya Flawless Glow Lotion Bright, Even Tone Sk...",
+      "priceINR": 311,
+      "mrpINR": 415,
+      "rating": 4,
+      "reviewCount": 11518,
+      "url": "https://www.nykaa.com/vaseline-gluta-hya-flawless-glow/p/10415548?productId=10415548&pps=18"
+    },
+    {
+      "name": "Vaseline Lip Care Colour + Care Tinted Lip Balm Stick",
+      "priceINR": 254,
+      "mrpINR": 299,
+      "rating": 4,
+      "reviewCount": 722,
+      "url": "https://www.nykaa.com/vaseline-lip-care-colour-care-tinted-lip-balm-stick/p/23489398?productId=23489398&pps=19"
+    },
+    {
+      "name": "Vaseline Intensive Care Aloe Fresh Body Lotion",
+      "priceINR": 519,
+      "mrpINR": 799,
+      "rating": 4,
+      "reviewCount": 32732,
+      "url": "https://www.nykaa.com/vaseline-intensive-care-aloe-fresh-body-lotion/p/535514?productId=535514&pps=20"
+    }
+  ]
+}

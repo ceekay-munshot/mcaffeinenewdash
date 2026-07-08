@@ -1,0 +1,161 @@
+{
+  "brand": "Plum",
+  "brandKey": "plum",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=Plum",
+  "scrapedAt": "2026-07-08T16:53:30.555Z",
+  "products": [
+    {
+      "name": "Plum 2% Niacinamide & Rice Water Moisturiser - Lightweight Gel Cream For Oil-Free Hydration",
+      "priceINR": 494,
+      "mrpINR": 549,
+      "rating": 0,
+      "reviewCount": 28680,
+      "url": "https://www.nykaa.com/plum-thinkderma-2percent-niacinamide-rice-water-clear-moisture-gel-cream/p/10489448?productId=10489448&pps=1"
+    },
+    {
+      "name": "Plum 10% Niacinamide Brightening Face Serum with Rice Water, Fades Acne Marks, for Oily to Dry Skin",
+      "priceINR": 764,
+      "mrpINR": 849,
+      "rating": 0,
+      "reviewCount": 134947,
+      "url": "https://www.nykaa.com/plum-10percent-niacinamide-brightening-face-serum-with-rice-water-ferment-fades-blemishes-acne-marks/p/17423043?productId=2684737&skuId=17423043&pps=2"
+    },
+    {
+      "name": "Plum Niacinamide Bright & Clear Skin Combo",
+      "priceINR": 2074,
+      "mrpINR": 2593,
+      "rating": 0,
+      "reviewCount": 247214,
+      "url": "https://www.nykaa.com/plum-niacinamide-bright-clear-skin-combo/p/18815138?productId=18815138&pps=3"
+    },
+    {
+      "name": "Plum Niacinamide Toner & Serum Duo for Pore Care, Tightening & Brightening",
+      "priceINR": 671,
+      "mrpINR": 789,
+      "rating": 0,
+      "reviewCount": 168634,
+      "url": "https://www.nykaa.com/plum-niacinamide-toner-serum-duo-for-pore-care-tightening-brightening/p/15963110?productId=15963110&pps=4"
+    },
+    {
+      "name": "Plum Black Rice & Niacinamide-TXA 10% Night Clarity Jelly Serum",
+      "priceINR": 584,
+      "mrpINR": 649,
+      "rating": 0,
+      "reviewCount": 223,
+      "url": "https://www.nykaa.com/plum-black-rice-niacinamide-txa-10percent-night-clarity-jelly-serum/p/27905374?productId=27905374&skuId=27225100&pps=5"
+    },
+    {
+      "name": "Plum BodyLovin’ Boardroom In Bora Bora Shower Gel, Hydrating & Brightening Body Wash",
+      "priceINR": 342,
+      "mrpINR": 380,
+      "rating": 0,
+      "reviewCount": 135,
+      "url": "https://www.nykaa.com/plum-bodylovin-boardroom-in-bora-bora-shower-gel/p/25823868?productId=25823868&pps=6"
+    },
+    {
+      "name": "Plum 2% Niacinamide Sunscreen SPF 50 PA+++ (Pack Of 2)",
+      "priceINR": 714,
+      "mrpINR": 840,
+      "rating": 0,
+      "reviewCount": 58055,
+      "url": "https://www.nykaa.com/plum-2percent-niacinamide-sunscreen-spf-50-pa-pack-of-2/p/10805014?productId=10805014&pps=7"
+    },
+    {
+      "name": "Plum BodyLovin' Popcorn N' Pilates Glassic Lip Balm - Caramel Brown",
+      "priceINR": 359,
+      "mrpINR": 399,
+      "rating": 0,
+      "reviewCount": 356,
+      "url": "https://www.nykaa.com/plum-bodylovin-glassic-lip-balm-popcorn-n-pilates/p/26221472?productId=26221472&pps=8"
+    },
+    {
+      "name": "Plum 2% Niacinamide Face Wash With Rice Water For Oily Skin, Brightens & Hydrates",
+      "priceINR": 356,
+      "mrpINR": 395,
+      "rating": 0,
+      "reviewCount": 37157,
+      "url": "https://www.nykaa.com/plum-2percent-niacinamide-face-wash/p/19525102?productId=20077991&skuId=19525102&pps=9"
+    },
+    {
+      "name": "Plum Coconut Milk & Peptides Shampoo & Conditioner Combo For Strong & Shiny Hair",
+      "priceINR": 667,
+      "mrpINR": 785,
+      "rating": 0,
+      "reviewCount": 24416,
+      "url": "https://www.nykaa.com/plum-coconut-milk-peptides-shampoo-conditioner-combo-for-strong-shiny-hair/p/12425288?productId=12425288&pps=10"
+    },
+    {
+      "name": "Plum 10% Niacinamide Brightening Face Serum with Rice Water, Fades Acne Marks, for Oily to Dry Skin",
+      "priceINR": 593,
+      "mrpINR": 659,
+      "rating": 0,
+      "reviewCount": 134759,
+      "url": "https://www.nykaa.com/plum-10percent-niacinamide-face-serum-with-rice-water-for-clear-bright-skin/p/2684737?productId=2684737&pps=11"
+    },
+    {
+      "name": "Plum 3% Niacinamide Alcohol-Free Toner With Rice Water",
+      "priceINR": 400,
+      "mrpINR": 440,
+      "rating": 0,
+      "reviewCount": 106927,
+      "url": "https://www.nykaa.com/plum-3percent-niacinamide-toner-with-rice-water-for-pores-blemishes-normal-to-oily-skin-type/p/23998348?productId=23998348&pps=12"
+    },
+    {
+      "name": "Plum 2% Niacinamide & Rice Water SPF 50 PA+++ Sunscreen - Fades Tan, For Oily To Dry Skin Type",
+      "priceINR": 378,
+      "mrpINR": 420,
+      "rating": 0,
+      "reviewCount": 61303,
+      "url": "https://www.nykaa.com/plum-2percent-niacinamide-sunscreen-spf-50-pa-uva-b/p/18817150?productId=18817150&pps=13"
+    },
+    {
+      "name": "Plum 15% Vitamin C Glow Face Serum - Dermat Tested To Fight Dark Spots- Pigmentation & Dull Skin",
+      "priceINR": 600,
+      "mrpINR": 790,
+      "rating": 0,
+      "reviewCount": 140222,
+      "url": "https://www.nykaa.com/plum-15percent-vitamin-c-face-serum-with-mandarin/p/1425356?productId=1425356&pps=15"
+    },
+    {
+      "name": "Plum Peptides Shampoo with Coconut Milk for Dry & Rough Hair 22x softer hair in 1 wash",
+      "priceINR": 312,
+      "mrpINR": 390,
+      "rating": 0,
+      "reviewCount": 24057,
+      "url": "https://www.nykaa.com/plum-coconut-milk-peptides-strength-shine-shampoo-paraben-free/p/13377196?productId=13377196&pps=16"
+    },
+    {
+      "name": "Plum Green Tea Pore Cleansing Gel Face Wash With Glycolic Acid - Fights Acne &OilForClearSkin",
+      "priceINR": 149,
+      "mrpINR": 199,
+      "rating": 0,
+      "reviewCount": 114321,
+      "url": "https://www.nykaa.com/plum-green-tea-pore-cleansing-face-wash-for-combination-skin/p/12185056?productId=12185056&pps=17"
+    },
+    {
+      "name": "Plum BodyLovin Vanilla Caramello Bestselling Body Lotion",
+      "priceINR": 409,
+      "mrpINR": 475,
+      "rating": 0,
+      "reviewCount": 37130,
+      "url": "https://www.nykaa.com/plum-bodylovin-vanilla-caramello-body-lotion-with-cocoa-butter-vitamin-b5/p/13422758?productId=13422758&pps=18"
+    },
+    {
+      "name": "Plum BodyLovin Vanilla Vibes Body Mist For A Long Lasting Vanilla Fragrance",
+      "priceINR": 340,
+      "mrpINR": 395,
+      "rating": 0,
+      "reviewCount": 62528,
+      "url": "https://www.nykaa.com/plum-bodylovin-body-mist-vanilla-vibes-body-mist-for-women/p/10357950?productId=10357950&pps=19"
+    },
+    {
+      "name": "Plum BodyLovin Vanilla Caramello Bestselling Body Lotion for Dry, Normal & All Skin type",
+      "priceINR": 409,
+      "mrpINR": 475,
+      "rating": 0,
+      "reviewCount": 37130,
+      "url": "https://www.nykaa.com/plum-bodylovin-vanilla-caramello-body-lotion-with-cocoa-butter-vitamin-b5/p/13422758?productId=13422758&skuId=12578588&pps=20"
+    }
+  ]
+}

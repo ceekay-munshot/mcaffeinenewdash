@@ -1,0 +1,113 @@
+{
+  "brand": "Minimalist",
+  "brandKey": "minimalist",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=Minimalist",
+  "scrapedAt": "2026-07-08T17:02:51.864Z",
+  "products": [
+    {
+      "name": "Minimalist Daily Skincare Routine For Oily & Acne Prone Skin",
+      "priceINR": 1481,
+      "mrpINR": 1646,
+      "rating": 0,
+      "reviewCount": 490966,
+      "url": "https://www.nykaa.com/minimalist-daily-skincare-routine-for-oily-acne-prone-skin/p/7875200?productId=7875200&pps=1"
+    },
+    {
+      "name": "Minimalist SPF 50 PA++++ Sunscreen With Niacinamide",
+      "priceINR": 379,
+      "mrpINR": 399,
+      "rating": 0,
+      "reviewCount": 153349,
+      "url": "https://www.nykaa.com/minimalist-spf-50-pa-sunscreen-with-multi-vitamin-for-reducing-photoaging-no-white-cast/p/17999996?productId=17999996&skuId=2812174&pps=2"
+    },
+    {
+      "name": "Minimalist 10% Vitamin C Serum For Face For Glowing Skin",
+      "priceINR": 664,
+      "mrpINR": 699,
+      "rating": 0,
+      "reviewCount": 96333,
+      "url": "https://www.nykaa.com/minimalist-vitamin-c-10-stable-serum/p/1068002?productId=15022070&skuId=1068002&pps=3"
+    },
+    {
+      "name": "Minimalist 10% Niacinamide Face Serum With Matmarine + Zinc",
+      "priceINR": 569,
+      "mrpINR": 599,
+      "rating": 0,
+      "reviewCount": 129909,
+      "url": "https://www.nykaa.com/minimalist-niacinamide-10-serum/p/1067995?productId=15022069&skuId=1067995&pps=4"
+    },
+    {
+      "name": "Minimalist 2% Salicylic Acid Face Serum For Blackheads & Whiteheads",
+      "priceINR": 522,
+      "mrpINR": 549,
+      "rating": 0,
+      "reviewCount": 81545,
+      "url": "https://www.nykaa.com/minimalist-salicylic-acid-2-serum/p/1067998?productId=15973485&skuId=1067998&pps=5"
+    },
+    {
+      "name": "Minimalist 2% Salicylic Acid + LHA Face Cleanser With Zinc",
+      "priceINR": 284,
+      "mrpINR": 299,
+      "rating": 0,
+      "reviewCount": 135581,
+      "url": "https://www.nykaa.com/minimalist-2percent-salicylic-acid-lha-face-cleanser-with-zinc-for-reducing-sebum-acne/p/15797641?productId=15797641&skuId=1467106&pps=6"
+    },
+    {
+      "name": "Minimalist Vitamin B5 10% Moisturizer",
+      "priceINR": 332,
+      "mrpINR": 349,
+      "rating": 0,
+      "reviewCount": 91330,
+      "url": "https://www.nykaa.com/minimalist-vitamin-b5-10percent-moisturizer/p/18876941?productId=18876941&skuId=4524075&pps=7"
+    },
+    {
+      "name": "Minimalist B12 + Repair Complex 5.5% Face Moisturizer",
+      "priceINR": 379,
+      "mrpINR": 399,
+      "rating": 0,
+      "reviewCount": 8730,
+      "url": "https://www.nykaa.com/minimalist-b12-repair-complex-5-5percent-face-moisturizer/p/24846623?productId=24846623&skuId=20580868&pps=8"
+    },
+    {
+      "name": "Minimalist 8% Glycolic Acid Toner",
+      "priceINR": 474,
+      "mrpINR": 499,
+      "rating": 0,
+      "reviewCount": 14894,
+      "url": "https://www.nykaa.com/minimalist-8percent-glycolic-acid-face-toner/p/7898707?productId=7898707&pps=9"
+    },
+    {
+      "name": "Minimalist Vitamin K + Retinal 01% Under Eye Cream With Caffeine 03%",
+      "priceINR": 474,
+      "mrpINR": 499,
+      "rating": 0,
+      "reviewCount": 9018,
+      "url": "https://www.nykaa.com/minimalist-vitamin-k-retinal-01percent-eye-cream/p/12810512?productId=12810512&pps=17"
+    },
+    {
+      "name": "Minimalist Light Fluid SPF 50 Face Sunscreen",
+      "priceINR": 474,
+      "mrpINR": 499,
+      "rating": 0,
+      "reviewCount": 13234,
+      "url": "https://www.nykaa.com/minimalist-light-fluid-spf-50-face-sunscreen/p/20540004?productId=20540004&pps=18"
+    },
+    {
+      "name": "Minimalist 2% Alpha Arbutin Face Serum",
+      "priceINR": 237,
+      "mrpINR": 249,
+      "rating": 0,
+      "reviewCount": 67967,
+      "url": "https://www.nykaa.com/minimalist-2percent-alpha-arbutin-face-serum-with-butylresorcinol-ferulic-acid-for-hyperpigmentation/p/15973486?productId=15973486&pps=19"
+    },
+    {
+      "name": "Minimalist Niacinamide 05% Face Serum",
+      "priceINR": 569,
+      "mrpINR": 599,
+      "rating": 0,
+      "reviewCount": 34407,
+      "url": "https://www.nykaa.com/minimalist-niacinamide-05percent-face-serum/p/22050679?productId=22050679&pps=20"
+    }
+  ]
+}

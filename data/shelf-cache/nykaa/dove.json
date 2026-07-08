@@ -1,0 +1,169 @@
+{
+  "brand": "Dove",
+  "brandKey": "dove",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=Dove",
+  "scrapedAt": "2026-07-08T16:55:36.696Z",
+  "products": [
+    {
+      "name": "Dove Niacinamide Body Serum + Even Tone To Visibly Reduce Uneven Tone On Body",
+      "priceINR": 518,
+      "mrpINR": 647,
+      "rating": 0,
+      "reviewCount": 240,
+      "url": "https://www.nykaa.com/dove-niacinamide-body-serum-even-tone-to-visibly-reduce-uneven-tone-on-body/p/27292946?productId=27292946&pps=1"
+    },
+    {
+      "name": "Dove Hyaluronic + Hydration Body Serum For Extra Dry Flaky Skin",
+      "priceINR": 518,
+      "mrpINR": 647,
+      "rating": 0,
+      "reviewCount": 167,
+      "url": "https://www.nykaa.com/dove-hyaluronic-hydration-body-serum-for-extra-dry-flaky-skin/p/27292945?productId=27292945&pps=2"
+    },
+    {
+      "name": "Dove Pro Ceramide+ Repair, Body Serum For Rough Skin Repair",
+      "priceINR": 559,
+      "mrpINR": 699,
+      "rating": 0,
+      "reviewCount": 228,
+      "url": "https://www.nykaa.com/dove-pro-ceramide-repair-body-serum-for-rough-skin-repair/p/27292947?productId=27292947&pps=3"
+    },
+    {
+      "name": "Dove Intense Repair Treatment Shampoo + Hair Mask For Frizzy Hair",
+      "priceINR": 988,
+      "mrpINR": 1619,
+      "rating": 0,
+      "reviewCount": 142309,
+      "url": "https://www.nykaa.com/dove-daily-shine-shampoo-hair-mask-for-damaged-dry-hair/p/15003147?productId=15003147&pps=4"
+    },
+    {
+      "name": "Dove Intense Repair Shampoo For Dry & Damaged Hair",
+      "priceINR": 822,
+      "mrpINR": 1370,
+      "rating": 5,
+      "reviewCount": 114149,
+      "url": "https://www.nykaa.com/dove-intense-repair-shampoo/p/5950?productId=5950&pps=5"
+    },
+    {
+      "name": "Dove Glow Recharge Exfoliating Serum Body Wash with 3% Brightening Serum + Vitamin C",
+      "priceINR": 339,
+      "mrpINR": 399,
+      "rating": 0,
+      "reviewCount": 3151,
+      "url": "https://www.nykaa.com/dove-diva-glow-recharge-body-wash/p/16916296?productId=16916296&pps=6"
+    },
+    {
+      "name": "Dove Exfoliating Body Polish - Pomegranate Seeds And Shea Butter",
+      "priceINR": 719,
+      "mrpINR": 899,
+      "rating": 0,
+      "reviewCount": 14079,
+      "url": "https://www.nykaa.com/dove-exfoliating-pomegranate-seeds-and-shea-butter-body-polish-298gm/p/774746?productId=774746&pps=7"
+    },
+    {
+      "name": "Dove Peptide Bond Strength Shampoo + Conditioner Combo",
+      "priceINR": 979,
+      "mrpINR": 1379,
+      "rating": 0,
+      "reviewCount": 2271,
+      "url": "https://www.nykaa.com/dove-peptide-bond-strength-shampoo-conditioner-combo/p/23976958?productId=23976958&pps=8"
+    },
+    {
+      "name": "Dove Niacinamide Body Wash + Dove Vitamin C Body Wash",
+      "priceINR": 719,
+      "mrpINR": 959,
+      "rating": 0,
+      "reviewCount": 7707,
+      "url": "https://www.nykaa.com/dove-niacinamide-body-wash-dove-vitamin-c-body-wash/p/24352970?productId=24352970&pps=9"
+    },
+    {
+      "name": "Dove Body Wash - Relaxing Care Shea Butter & Vanilla Nourishing",
+      "priceINR": 569,
+      "mrpINR": 949,
+      "rating": 0,
+      "reviewCount": 8782,
+      "url": "https://www.nykaa.com/dove-relaxing-care-shea-butter-vanilla-nourishing-body-wash/p/8996062?productId=8996062&pps=10"
+    },
+    {
+      "name": "Dove Peptide Bond Strength Leave In Conditioner",
+      "priceINR": 404,
+      "mrpINR": 449,
+      "rating": 0,
+      "reviewCount": 1426,
+      "url": "https://www.nykaa.com/dove-peptide-bond-strength-leave-in-creme-serum/p/20671033?productId=20671033&pps=11"
+    },
+    {
+      "name": "Dove Intense Hair Repair Combo",
+      "priceINR": 1117,
+      "mrpINR": 1925,
+      "rating": 0,
+      "reviewCount": 142766,
+      "url": "https://www.nykaa.com/dove-intense-hair-repair-combo/p/4583845?productId=4583845&pps=12"
+    },
+    {
+      "name": "Dove Deep Moisture Body Wash",
+      "priceINR": 435,
+      "mrpINR": 580,
+      "rating": 0,
+      "reviewCount": 34626,
+      "url": "https://www.nykaa.com/dove-deep-moisture-body-wash/p/6719854?productId=6719854&pps=13"
+    },
+    {
+      "name": "Dove Beautiful Curls Shampoo & Hair Mask Combo Pack",
+      "priceINR": 1091,
+      "mrpINR": 1315,
+      "rating": 0,
+      "reviewCount": 12054,
+      "url": "https://www.nykaa.com/dove-beautiful-curls-shampoo-hair-mask-combo-pack/p/10909390?productId=10909390&pps=14"
+    },
+    {
+      "name": "Dove 10 In 1 Deep Repair Treatment Hair Mask For Dry & Frizzy Hair",
+      "priceINR": 519,
+      "mrpINR": 649,
+      "rating": 0,
+      "reviewCount": 45418,
+      "url": "https://www.nykaa.com/dove-10-in-1-deep-repair-treatment-hair-mask/p/15005782?productId=15005782&pps=15"
+    },
+    {
+      "name": "Dove Exfoliating Body Polish Scrub With Crushed Lavender And Coconut Milk",
+      "priceINR": 639,
+      "mrpINR": 799,
+      "rating": 0,
+      "reviewCount": 1802,
+      "url": "https://www.nykaa.com/dove-exfoliating-body-polish-scrub/p/13340051?productId=13340051&pps=16"
+    },
+    {
+      "name": "Limited Edition Dove Bridgerton Moonlit Masquerade Hydrating Shampoo for upto 100 hrs for dry hair",
+      "priceINR": 342,
+      "mrpINR": 456,
+      "rating": 0,
+      "reviewCount": 615,
+      "url": "https://www.nykaa.com/dove-bridgerton-moonlit-masquerade-shampoo/p/25033636?productId=25033636&pps=17"
+    },
+    {
+      "name": "Dove Glow Recharge Exfoliating & Acne Clear Serum Body Wash Combo",
+      "priceINR": 599,
+      "mrpINR": 798,
+      "rating": 0,
+      "reviewCount": 7338,
+      "url": "https://www.nykaa.com/dove-glow-recharge-exfoliating-acne-clear-serum-body-wash-combo/p/20481430?productId=20481430&pps=18"
+    },
+    {
+      "name": "Dove Body Wash - Sakura Blossom Go Fresh",
+      "priceINR": 569,
+      "mrpINR": 949,
+      "rating": 0,
+      "reviewCount": 1556,
+      "url": "https://www.nykaa.com/dove-sakura-blossom-go-fresh-body-wash/p/8996067?productId=8996067&pps=19"
+    },
+    {
+      "name": "Dove Daily Therapy Shampoo",
+      "priceINR": 822,
+      "mrpINR": 1370,
+      "rating": 0,
+      "reviewCount": 34653,
+      "url": "https://www.nykaa.com/dove-daily-shine-shampoo-conf/p/5940?productId=5940&pps=20"
+    }
+  ]
+}

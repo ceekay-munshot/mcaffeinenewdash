@@ -1,0 +1,73 @@
+{
+  "brand": "Ghar Soaps",
+  "brandKey": "ghar-soaps",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=Ghar%20Soaps",
+  "scrapedAt": "2026-07-08T17:00:53.053Z",
+  "products": [
+    {
+      "name": "Ghar Soaps Magic Soap | For reducing tan | With Saffron and Sandalwood | All skin types - Pack of 2",
+      "priceINR": 256,
+      "mrpINR": 333,
+      "rating": 4.3,
+      "reviewCount": 1049,
+      "url": "https://www.nykaa.com/ghar-soaps-sandalwood-saffron-magic-soap-pack-of-2/p/20177470?productId=20177470&pps=1"
+    },
+    {
+      "name": "Ghar Soaps Magic Face Wash | For reducing tan | With Saffron | For all skin types - Pack of 1",
+      "priceINR": 299,
+      "mrpINR": 333,
+      "rating": 4.3,
+      "reviewCount": 642,
+      "url": "https://www.nykaa.com/ghar-soaps-magic-face-wash/p/20200899?productId=20200899&pps=2"
+    },
+    {
+      "name": "Ghar Soaps Kojic Face Wash | For reducing dark spots and uneven skin tone | All skin types - Pack of 1",
+      "priceINR": 299,
+      "mrpINR": 333,
+      "rating": 4.3,
+      "reviewCount": 112,
+      "url": "https://www.nykaa.com/ghar-soaps-kojic-face-wash/p/20200897?productId=20200897&pps=3"
+    },
+    {
+      "name": "Ghar Soaps Magic Soap | For reducing tan | With Saffron and Sandalwood | All skin types - Pack of 3",
+      "priceINR": 399,
+      "mrpINR": 470,
+      "rating": 4.3,
+      "reviewCount": 182,
+      "url": "https://www.nykaa.com/ghar-soaps-sandal-wood-and-saffron-bath-soap-bar-pack-of-3/p/7828803?productId=7828803&pps=4"
+    },
+    {
+      "name": "Ghar Soaps Magic Soap | For reducing tan | With Saffron and Sandalwood | All skin types - Pack of 1",
+      "priceINR": 192,
+      "mrpINR": 199,
+      "rating": 4.3,
+      "reviewCount": 526,
+      "url": "https://www.nykaa.com/ghar-soaps-sandal-wood-and-saffron-bath-soap-bar-pack-of-1/p/7828802?productId=7828802&pps=5"
+    },
+    {
+      "name": "Ghar Soaps Magic moisturizing Cream | For reducing tan and providing moisture | For all skin types",
+      "priceINR": 299,
+      "mrpINR": 333,
+      "rating": 4.3,
+      "reviewCount": 38,
+      "url": "https://www.nykaa.com/ghar-soaps-magic-cream/p/20200895?productId=20200895&pps=6"
+    },
+    {
+      "name": "Ghar Soaps Salicylic Acid Face Wash | For reducing acne | For all skin types - Pack of 1",
+      "priceINR": 299,
+      "mrpINR": 333,
+      "rating": 4.3,
+      "reviewCount": 90,
+      "url": "https://www.nykaa.com/ghar-soaps-anti-acne-face-wash/p/20200898?productId=20200898&pps=7"
+    },
+    {
+      "name": "Ghar Soaps Kojic Acid Soaps | Reduces dark spots | For all skin types - Pack of 1",
+      "priceINR": 192,
+      "mrpINR": 199,
+      "rating": 4.3,
+      "reviewCount": 4,
+      "url": "https://www.nykaa.com/ghar-soaps-kojic-acid-soap-for-brightening-dark-spots-even-skin-tone/p/16526100?productId=16526100&pps=8"
+    }
+  ]
+}

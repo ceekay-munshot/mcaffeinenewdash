@@ -227,6 +227,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 19,
+        "avgRating": 0,
+        "avgDiscountPct": 13.9,
+        "totalReviews": 1418194,
+        "topSku": {
+          "name": "Plum Niacinamide Bright & Clear Skin Combo",
+          "rating": 0,
+          "reviewCount": 247214,
+          "priceINR": 2074,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:53:30.555Z"
       }
     },
     {
@@ -271,6 +288,23 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": 4,
+        "avgDiscountPct": 24.8,
+        "totalReviews": 730688,
+        "topSku": {
+          "name": "Vaseline Intensive Care Deep Moisture Body Lotion",
+          "rating": 4,
+          "reviewCount": 163474,
+          "priceINR": 563,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:53:56.910Z"
       }
     },
     {
@@ -325,6 +359,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 5
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": 4.5,
+        "avgDiscountPct": 18.6,
+        "totalReviews": 522426,
+        "topSku": {
+          "name": "WishCare Hair Growth Serum Concentrate with Redensyl & Rosemary-In-Vivo Tested-Controls Hairfall",
+          "rating": 4.2,
+          "reviewCount": 116220,
+          "priceINR": 1339,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:54:31.431Z"
       }
     },
     {
@@ -369,6 +420,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 19,
+        "avgRating": 0,
+        "avgDiscountPct": 11.6,
+        "totalReviews": 407732,
+        "topSku": {
+          "name": "Be Bodywise 4% AHA BHA Underarm Roll On Treats Pigmentation",
+          "rating": 0,
+          "reviewCount": 78135,
+          "priceINR": 349,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:55:09.168Z"
       }
     },
     {
@@ -413,6 +481,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": 0.3,
+        "avgDiscountPct": 26.6,
+        "totalReviews": 575337,
+        "topSku": {
+          "name": "Dove Intense Hair Repair Combo",
+          "rating": 0,
+          "reviewCount": 142766,
+          "priceINR": 1117,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:55:36.696Z"
       }
     },
     {
@@ -501,6 +586,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 19,
+        "avgRating": 0,
+        "avgDiscountPct": 11.6,
+        "totalReviews": 407732,
+        "topSku": {
+          "name": "Be Bodywise 4% AHA BHA Underarm Roll On Treats Pigmentation",
+          "rating": 0,
+          "reviewCount": 78135,
+          "priceINR": 349,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:55:09.168Z"
       }
     },
     {
@@ -545,6 +647,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": 0.3,
+        "avgDiscountPct": 26.6,
+        "totalReviews": 575337,
+        "topSku": {
+          "name": "Dove Intense Hair Repair Combo",
+          "rating": 0,
+          "reviewCount": 142766,
+          "priceINR": 1117,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:55:36.696Z"
       }
     },
     {
@@ -589,6 +708,23 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": 0,
+        "avgDiscountPct": 17.4,
+        "totalReviews": 293405,
+        "topSku": {
+          "name": "Foxtale Hydra-Glow Trio – Bright, Hydrated & Sun-Protected Skin",
+          "rating": 0,
+          "reviewCount": 77083,
+          "priceINR": 629,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:00:30.769Z"
       }
     },
     {
@@ -633,6 +769,23 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 2
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 8,
+        "avgRating": 4.3,
+        "avgDiscountPct": 10.8,
+        "totalReviews": 2643,
+        "topSku": {
+          "name": "Ghar Soaps Magic Soap | For reducing tan | With Saffron and Sandalwood | All skin types - Pack of 2",
+          "rating": 4.3,
+          "reviewCount": 1049,
+          "priceINR": 256,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:00:53.053Z"
       }
     },
     {
@@ -748,6 +901,23 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 17,
+        "avgRating": 4.3,
+        "avgDiscountPct": 11.8,
+        "totalReviews": 179930,
+        "topSku": {
+          "name": "Deconstruct Gel Sunscreen SPF 50+ PA+++, No White Cast, Lightweight, Non-Greasy",
+          "rating": 4.5,
+          "reviewCount": 58887,
+          "priceINR": 332,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:02:26.025Z"
       }
     },
     {
@@ -814,6 +984,23 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 13,
+        "avgRating": 0,
+        "avgDiscountPct": 5.4,
+        "totalReviews": 1327263,
+        "topSku": {
+          "name": "Minimalist Daily Skincare Routine For Oily & Acne Prone Skin",
+          "rating": 0,
+          "reviewCount": 490966,
+          "priceINR": 1481,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:02:51.864Z"
       }
     },
     {
@@ -869,6 +1056,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 5
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": 0,
+        "avgDiscountPct": 15.2,
+        "totalReviews": 180948,
+        "topSku": {
+          "name": "Pilgrim Vitamin C Best Seller Glow Csms Combo- Brightens Skin & Reduces Dark Spots",
+          "rating": 0,
+          "reviewCount": 42240,
+          "priceINR": 1494,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:03:26.769Z"
       }
     },
     {
@@ -917,6 +1121,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 19,
+        "avgRating": 0,
+        "avgDiscountPct": 13.9,
+        "totalReviews": 1418194,
+        "topSku": {
+          "name": "Plum Niacinamide Bright & Clear Skin Combo",
+          "rating": 0,
+          "reviewCount": 247214,
+          "priceINR": 2074,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T16:53:30.555Z"
       }
     },
     {
@@ -964,6 +1185,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 5
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 18,
+        "avgRating": 4.3,
+        "avgDiscountPct": 16.2,
+        "totalReviews": 903386,
+        "topSku": {
+          "name": "The Derma Co 1% Hyaluronic Sunscreen Spf 50 Pa+++ Aqua Gel For Normal To Oily",
+          "rating": 4.3,
+          "reviewCount": 179421,
+          "priceINR": 434,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:04:03.522Z"
       }
     },
     {
@@ -1035,6 +1273,23 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 17,
+        "avgRating": 4.3,
+        "avgDiscountPct": 11.8,
+        "totalReviews": 179930,
+        "topSku": {
+          "name": "Deconstruct Gel Sunscreen SPF 50+ PA+++, No White Cast, Lightweight, Non-Greasy",
+          "rating": 4.5,
+          "reviewCount": 58887,
+          "priceINR": 332,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:02:26.025Z"
       }
     },
     {
@@ -1086,6 +1341,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 4
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": 0,
+        "avgDiscountPct": 10.6,
+        "totalReviews": 1301057,
+        "topSku": {
+          "name": "Dot & Key CSMS Vitamin C Bestseller Combo",
+          "rating": 0,
+          "reviewCount": 378148,
+          "priceINR": 1474,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:05:35.134Z"
       }
     },
     {
@@ -1134,6 +1406,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 5
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 20,
+        "avgRating": 0,
+        "avgDiscountPct": 17.4,
+        "totalReviews": 293405,
+        "topSku": {
+          "name": "Foxtale Hydra-Glow Trio – Bright, Hydrated & Sun-Protected Skin",
+          "rating": 0,
+          "reviewCount": 77083,
+          "priceINR": 629,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:00:30.769Z"
       }
     },
     {
@@ -1200,6 +1489,23 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 13,
+        "avgRating": 0,
+        "avgDiscountPct": 5.4,
+        "totalReviews": 1327263,
+        "topSku": {
+          "name": "Minimalist Daily Skincare Routine For Oily & Acne Prone Skin",
+          "rating": 0,
+          "reviewCount": 490966,
+          "priceINR": 1481,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:02:51.864Z"
       }
     },
     {
@@ -1247,6 +1553,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 5
+      },
+      "shelf": {
+        "channels": [
+          "nykaa"
+        ],
+        "skuCount": 18,
+        "avgRating": 4.3,
+        "avgDiscountPct": 16.2,
+        "totalReviews": 903386,
+        "topSku": {
+          "name": "The Derma Co 1% Hyaluronic Sunscreen Spf 50 Pa+++ Aqua Gel For Normal To Oily",
+          "rating": 4.3,
+          "reviewCount": 179421,
+          "priceINR": 434,
+          "channel": "nykaa"
+        },
+        "scrapedAt": "2026-07-08T17:04:03.522Z"
       }
     },
     {

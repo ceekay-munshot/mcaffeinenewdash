@@ -1,0 +1,169 @@
+{
+  "brand": "Foxtale",
+  "brandKey": "foxtale",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=Foxtale",
+  "scrapedAt": "2026-07-08T17:00:30.769Z",
+  "products": [
+    {
+      "name": "Foxtale De-Tan Face Mask For Tan Removal, Instant Brightening & Glowing Skin, Hydrates For 8+ Hours",
+      "priceINR": 480,
+      "mrpINR": 545,
+      "rating": 0,
+      "reviewCount": 17740,
+      "url": "https://www.nykaa.com/foxtale-skin-radiance-mask-with-lactic-acid-brazilian-purple-clay-kaolin-clay/p/15533653?productId=15533653&pps=1"
+    },
+    {
+      "name": "Foxtale 10% Vitamin C-Glutathione Brightening Face Serum For Glowing Skin, Dark Spots & Pigmentation",
+      "priceINR": 555,
+      "mrpINR": 645,
+      "rating": 0,
+      "reviewCount": 7796,
+      "url": "https://www.nykaa.com/foxtale-10percent-glutathione-vitamin-c-brightening-face-serum/p/27671703?productId=27671703&skuId=21731493&pps=2"
+    },
+    {
+      "name": "Foxtale SPF 50 Glow Sunscreen",
+      "priceINR": 447,
+      "mrpINR": 545,
+      "rating": 0,
+      "reviewCount": 50808,
+      "url": "https://www.nykaa.com/foxtale-glow-sunscreen-spf-50-pa-with-vitamin-c-niacinamide-for-a-dewy-glow/p/19140681?productId=19140681&pps=3"
+    },
+    {
+      "name": "Foxtale Brightening Moisturiser with Vitamin C & Niacinamide, Fades Dark Spots, Dullness & Hydrates",
+      "priceINR": 293,
+      "mrpINR": 345,
+      "rating": 0,
+      "reviewCount": 125,
+      "url": "https://www.nykaa.com/foxtale-brightening-moisturiser-with-vitamin-c-niacinamide/p/26998871?productId=26998871&pps=4"
+    },
+    {
+      "name": "Foxtale Super Glow Face Wash with Papaya Enzyme & Vitamin C for Tan Removal & Glowing Skin",
+      "priceINR": 283,
+      "mrpINR": 329,
+      "rating": 0,
+      "reviewCount": 20593,
+      "url": "https://www.nykaa.com/foxtale-super-glow-face-wash-vitamin-c-papaya-enzyme/p/21066066?productId=21066066&pps=5"
+    },
+    {
+      "name": "Foxtale Hydra-Glow Trio – Bright, Hydrated & Sun-Protected Skin",
+      "priceINR": 629,
+      "mrpINR": 899,
+      "rating": 0,
+      "reviewCount": 77083,
+      "url": "https://www.nykaa.com/foxtale-hydra-glow-trio-bright-hydrated-sun-protected-skin/p/23636032?productId=23636032&pps=6"
+    },
+    {
+      "name": "Foxtale Hula Hoop De-Tan Body Wash",
+      "priceINR": 327,
+      "mrpINR": 399,
+      "rating": 0,
+      "reviewCount": 823,
+      "url": "https://www.nykaa.com/foxtale-hula-hoop-de-tan-body-wash/p/25527489?productId=25527489&pps=7"
+    },
+    {
+      "name": "Foxtale 12% Niacinamide Brightening Face Serum, Fades Dark Spots & Acne marks, For Oil Control",
+      "priceINR": 529,
+      "mrpINR": 645,
+      "rating": 0,
+      "reviewCount": 7569,
+      "url": "https://www.nykaa.com/foxtale-12percent-niacinamide-clarifying-serum-acne-blemish-control/p/21005117?productId=21005117&pps=8"
+    },
+    {
+      "name": "Foxtale Hula Hoop Exfoliating Body Wash + Exfoliating Body Scrub For Smooth Skin",
+      "priceINR": 776,
+      "mrpINR": 1048,
+      "rating": 0,
+      "reviewCount": 7585,
+      "url": "https://www.nykaa.com/foxtale-hula-hoop-exfoliating-body-wash-exfoliating-body-scrub-by-foxtale-for-smooth-skin/p/24989778?productId=24989778&pps=9"
+    },
+    {
+      "name": "Foxtale 10% Vitamin C-Glutathione Brightening Face Serum For Glowing Skin, Dark Spots & Pigmentation",
+      "priceINR": 555,
+      "mrpINR": 645,
+      "rating": 0,
+      "reviewCount": 7796,
+      "url": "https://www.nykaa.com/foxtale-10percent-glutathione-vitamin-c-brightening-face-serum/p/27671703?productId=27671703&pps=10"
+    },
+    {
+      "name": "Foxtale Niacinamide & Cica Oil Balancing Moisturizer For Oily Skin, Lightweight & Non-Greasy",
+      "priceINR": 392,
+      "mrpINR": 445,
+      "rating": 0,
+      "reviewCount": 8251,
+      "url": "https://www.nykaa.com/foxtale-oil-balancing-moisturizer/p/23464689?productId=23464689&pps=11"
+    },
+    {
+      "name": "Foxtale Nourishing Ceramide Moisturizer For Barrier Repair, Hydration & Rough Skin",
+      "priceINR": 324,
+      "mrpINR": 395,
+      "rating": 0,
+      "reviewCount": 23034,
+      "url": "https://www.nykaa.com/foxtale-nourishing-moisturiser-with-niacinamide-vit-e-for-24hr-hydration/p/18418255?productId=18418255&pps=12"
+    },
+    {
+      "name": "Foxtale Dewy Sunscreen SPF 70 PA++++ With Niacinamide + Provitamin B5 + Vitamin E",
+      "priceINR": 406,
+      "mrpINR": 495,
+      "rating": 0,
+      "reviewCount": 20390,
+      "url": "https://www.nykaa.com/foxtale-dewy-sunscreen-spf-70-pa-with-niacinamide-provitamin-b5-vitamin-e/p/19331333?productId=19331333&pps=13"
+    },
+    {
+      "name": "Foxtale Super Glow Moisturizer with Vitamin C & Niacinamide For Dull, Pigmented & Uneven Skin",
+      "priceINR": 411,
+      "mrpINR": 495,
+      "rating": 0,
+      "reviewCount": 7445,
+      "url": "https://www.nykaa.com/foxtale-super-glow-moisturizer-with-nano-vitamin-c/p/13237689?productId=13237689&pps=14"
+    },
+    {
+      "name": "Foxtale Oil & Acne Control Face Wash With 2% Salicylic Acid & Cica, For Clear, Oil Free & Calm Skin",
+      "priceINR": 283,
+      "mrpINR": 329,
+      "rating": 0,
+      "reviewCount": 3821,
+      "url": "https://www.nykaa.com/foxtale-true-clarity-oil-and-acne-control-face-wash/p/21091067?productId=21091067&pps=15"
+    },
+    {
+      "name": "Foxtale 15% Vitamin C Face Serum for Glowing Skin, Pigmentation & Collagen Production",
+      "priceINR": 535,
+      "mrpINR": 645,
+      "rating": 0,
+      "reviewCount": 14107,
+      "url": "https://www.nykaa.com/foxtale-15percent-vitamin-c-face-serum-with-l-ascorbic-acid-and-vitamin-e-for-glowing-skin/p/7828600?productId=7828600&pps=16"
+    },
+    {
+      "name": "Foxtale SPF 70 Gel-Cream Sunscreen for Oily Skin with PA++++ & Niacinamide",
+      "priceINR": 401,
+      "mrpINR": 495,
+      "rating": 0,
+      "reviewCount": 12516,
+      "url": "https://www.nykaa.com/foxtale-spf-70-pa-mattifying-sunscreen-with-niacinamide-provitamin-b5-vitamin-e/p/17848588?productId=17848588&pps=17"
+    },
+    {
+      "name": "Foxtale SPF 50 PA++++ Tinted Fluid Sunscreen",
+      "priceINR": 489,
+      "mrpINR": 575,
+      "rating": 0,
+      "reviewCount": 1488,
+      "url": "https://www.nykaa.com/foxtale-perfect-match-tinted-fluid-susncreen/p/22739550?productId=22739550&pps=18"
+    },
+    {
+      "name": "FoxTale Hula Hoop Exfoliating Body Wash by Foxtale , Exfoliates & Smoothens",
+      "priceINR": 319,
+      "mrpINR": 399,
+      "rating": 0,
+      "reviewCount": 3441,
+      "url": "https://www.nykaa.com/foxtale-mediterranean-mood-exfoliating-body-wash/p/17814247?productId=17814247&pps=19"
+    },
+    {
+      "name": "Foxtale SPF 50 Ice-Burst Gel Sunscreen for Oily Skin, In-Vivo Tested PA++++, Lightweight, Matte Skin",
+      "priceINR": 327,
+      "mrpINR": 399,
+      "rating": 0,
+      "reviewCount": 994,
+      "url": "https://www.nykaa.com/foxtale-cool-shade-oil-control-water-gel-sunscreen/p/25527490?productId=25527490&pps=20"
+    }
+  ]
+}

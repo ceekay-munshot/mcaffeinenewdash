@@ -1,0 +1,169 @@
+{
+  "brand": "WishCare",
+  "brandKey": "wishcare",
+  "channel": "nykaa",
+  "url": "https://www.nykaa.com/search/result/?q=WishCare",
+  "scrapedAt": "2026-07-08T16:54:31.431Z",
+  "products": [
+    {
+      "name": "WishCare Hair Growth Serum Concentrate with Redensyl & Rosemary-In-Vivo Tested-Controls Hairfall",
+      "priceINR": 699,
+      "mrpINR": 999,
+      "rating": 4.3,
+      "reviewCount": 77471,
+      "url": "https://www.nykaa.com/wishcare-hair-growth-serum-concentrate-redensyl-anagain-caffeine-biotin-keratin-rice-water/p/7106603?productId=7106603&pps=1"
+    },
+    {
+      "name": "WishCare Tinted Ceramide Lip Balm for Dark Pigmented Lips with SPF50 PA+++ Heals Dry & Chapped Lips",
+      "priceINR": 248,
+      "mrpINR": 299,
+      "rating": 4.5,
+      "reviewCount": 29488,
+      "url": "https://www.nykaa.com/wishcare-ceramide-lip-balm-with-spf-50-pa-watermelon/p/13784199?productId=13784199&pps=2"
+    },
+    {
+      "name": "WishCare Multi-Peptide Strengthening Hair Mask for Dry & Damaged Hair - Reduces Frizz & Hairfall",
+      "priceINR": 347,
+      "mrpINR": 399,
+      "rating": 4.5,
+      "reviewCount": 54,
+      "url": "https://www.nykaa.com/wishcare-multi-peptide-strengthening-hair-mask/p/26636054?productId=26636054&pps=3"
+    },
+    {
+      "name": "WishCare Niacinamide Oil Balance Fluid Face Sunscreen for Oily Skin with SPF50 PA++++ In-Vivo Tested",
+      "priceINR": 399,
+      "mrpINR": 499,
+      "rating": 4.6,
+      "reviewCount": 15347,
+      "url": "https://www.nykaa.com/wishcare-niacinamide-oil-balance-sunscreen-spf-50-pa-for-oily-skin/p/14459865?productId=14459865&pps=4"
+    },
+    {
+      "name": "WishCare Daily Fluid Tinted Sunscreen SPF50PA++++ Broad Spectrum Protection for All Skin Types- L101",
+      "priceINR": 497,
+      "mrpINR": 599,
+      "rating": 4.3,
+      "reviewCount": 1312,
+      "url": "https://www.nykaa.com/wishcare-daily-tinted-fluid-sunscreen-spf50pa/p/25406502?productId=25406502&pps=5"
+    },
+    {
+      "name": "WishCare Multi Peptide Anti Hairfall Shampoo with Rosemary - Controls Hairfall - Boosts Hair Growth",
+      "priceINR": 399,
+      "mrpINR": 499,
+      "rating": 4.5,
+      "reviewCount": 6667,
+      "url": "https://www.nykaa.com/wishcare-multi-peptide-rice-water-anti-hairfall-shampoo/p/14304523?productId=14304523&pps=6"
+    },
+    {
+      "name": "WishCare Sunscreen Body Lotion SPF50 PA+++-In Vivo Tested-UV Protection-No White Cast-Prevents Tan",
+      "priceINR": 399,
+      "mrpINR": 499,
+      "rating": 4.7,
+      "reviewCount": 23787,
+      "url": "https://www.nykaa.com/wishcare-spf50-sunscreen-body-lotion-with-uva-uvb-protection/p/7867857?productId=7867857&pps=7"
+    },
+    {
+      "name": "Wishcare Iconic SPF Essentials Head-to-Toe Sun Protection SPF 50+ PA++++ Exclusive Gift Box",
+      "priceINR": 999,
+      "mrpINR": 1297,
+      "rating": 4.3,
+      "reviewCount": 58837,
+      "url": "https://www.nykaa.com/wishcare-iconic-spf-essentials-head-to-toe-sun-protection-spf-50-pa-exclusive-gift-box/p/24965805?productId=24965805&pps=8"
+    },
+    {
+      "name": "WishCare Aqua Fresh Underarm Roll On Serum-Reduces Pigmentation,Brightens Skin & Prevents Body Odour",
+      "priceINR": 299,
+      "mrpINR": 399,
+      "rating": 4.6,
+      "reviewCount": 13254,
+      "url": "https://www.nykaa.com/wishcare-under-arm-roll-on-serum-aqua-fresh/p/12036263?productId=12036263&pps=9"
+    },
+    {
+      "name": "WishCare 2:1:3 NMF Oil Free Water Gel Moisturizer For Oily Skin with Niacinamide, Zinc PCA & Cica",
+      "priceINR": 347,
+      "mrpINR": 399,
+      "rating": 4.5,
+      "reviewCount": 1120,
+      "url": "https://www.nykaa.com/wishcare-2-1-3-nmf-water-gel-moisturizer-for-oily-sensitive-skin-oil-free-controls-oil-hydrates/p/23106820?productId=23106820&pps=10"
+    },
+    {
+      "name": "WishCare Hair Growth Serum Concentrate with Redensyl & Rosemary-In-Vivo Tested-Controls Hairfall",
+      "priceINR": 1997,
+      "mrpINR": 2349,
+      "rating": 4.3,
+      "reviewCount": 77471,
+      "url": "https://www.nykaa.com/wishcare-hair-growth-concentrate-serum/p/20572544?productId=20572544&pps=11"
+    },
+    {
+      "name": "WishCare AHA + BHA Exfoliating Body Lotion for Strawberry Skin-Provides Deep Hydration & Detan Skin",
+      "priceINR": 399,
+      "mrpINR": 499,
+      "rating": 4.7,
+      "reviewCount": 8673,
+      "url": "https://www.nykaa.com/wishcare-10percent-aha-1percent-bha-body-lotion-with-niacinamide-blueberry-smooths-rough-bumpy-skin/p/7867855?productId=7867855&pps=12"
+    },
+    {
+      "name": "WishCare Natural Ceramide Lip Balm for Dark Pigmented Lips with SPF50 PA+++ Heals Dry & Chapped Lips",
+      "priceINR": 248,
+      "mrpINR": 299,
+      "rating": 4.5,
+      "reviewCount": 10423,
+      "url": "https://www.nykaa.com/wishcare-ceramide-lip-balm-with-spf-50-pa-cocoa-butter/p/13784198?productId=13784198&pps=13"
+    },
+    {
+      "name": "WishCare Multi Peptide Anti Hairfall Conditioner with Rosemary - Controls Hairfall - Adds Shine",
+      "priceINR": 391,
+      "mrpINR": 449,
+      "rating": 4.5,
+      "reviewCount": 2699,
+      "url": "https://www.nykaa.com/wishcare-multi-peptide-rice-water-anti-hairfall-conditioner/p/14304524?productId=14304524&pps=14"
+    },
+    {
+      "name": "Wishcare Hair Growth Serum Concentrate In-Vivo Tested Redensyl, Anagain, Biotin,Keratin & Rice Water",
+      "priceINR": 527,
+      "mrpINR": 549,
+      "rating": 4.4,
+      "reviewCount": 39832,
+      "url": "https://www.nykaa.com/wishcare-hair-growth-serum/p/22852370?productId=22852370&pps=15"
+    },
+    {
+      "name": "WishCare Multi Peptide Anti Hairfall Shampoo & Conditioner - Controls Hairfall - Boosts Hair Growth",
+      "priceINR": 749,
+      "mrpINR": 948,
+      "rating": 4.6,
+      "reviewCount": 18690,
+      "url": "https://www.nykaa.com/wishcare-multi-peptide-anti-hairfall-shampoo-conditioner-combo/p/15707756?productId=15707756&pps=16"
+    },
+    {
+      "name": "WishCare Hair Growth Serum Concentrate with Redensyl & Rosemary-In-Vivo Tested-Controls Hairfall",
+      "priceINR": 1339,
+      "mrpINR": 1998,
+      "rating": 4.2,
+      "reviewCount": 116220,
+      "url": "https://www.nykaa.com/wishcare-hair-growth-serum-pack-of-2/p/11931374?productId=11931374&pps=17"
+    },
+    {
+      "name": "Wishcare Pure & Natural Kannauj Rose Water For Skin Face & Hair - Rose Water Spray Face Toner",
+      "priceINR": 347,
+      "mrpINR": 399,
+      "rating": 4.5,
+      "reviewCount": 18129,
+      "url": "https://www.nykaa.com/wishcare-pure-natural-kannauj-rose-water-for-skin-face-hair-rose-water-spray-face-toner/p/12035607?productId=12035607&pps=18"
+    },
+    {
+      "name": "WishCare Air Powder Dry Shampoo for Oily Hair & Scalp-No White Cast-Aerosol Free-Volume Boost",
+      "priceINR": 497,
+      "mrpINR": 599,
+      "rating": 4.3,
+      "reviewCount": 572,
+      "url": "https://www.nykaa.com/wishcare-air-powder-dry-shampoo/p/22051505?productId=22051505&pps=19"
+    },
+    {
+      "name": "WishCare Vitamin C Pure Glow Brightening Face Sunscreen for Dry Skin with SPF50 PA++++In-Vivo Tested",
+      "priceINR": 399,
+      "mrpINR": 499,
+      "rating": 4.4,
+      "reviewCount": 2380,
+      "url": "https://www.nykaa.com/wishcare-vitamin-c-pure-glow-face-sunscreen-spf-50-pa/p/14459866?productId=14459866&pps=20"
+    }
+  ]
+}
