@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T16:42:24.866Z",
+  "generatedAt": "2026-07-08T17:25:34.832Z",
   "count": 73,
   "entities": [
     {
@@ -233,12 +233,12 @@
           "nykaa"
         ],
         "skuCount": 19,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 13.9,
         "totalReviews": 1418194,
         "topSku": {
           "name": "Plum Niacinamide Bright & Clear Skin Combo",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 247214,
           "priceINR": 2074,
           "channel": "nykaa"
@@ -426,12 +426,12 @@
           "nykaa"
         ],
         "skuCount": 19,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 11.6,
         "totalReviews": 407732,
         "topSku": {
           "name": "Be Bodywise 4% AHA BHA Underarm Roll On Treats Pigmentation",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 78135,
           "priceINR": 349,
           "channel": "nykaa"
@@ -487,12 +487,12 @@
           "nykaa"
         ],
         "skuCount": 20,
-        "avgRating": 0.3,
+        "avgRating": 5,
         "avgDiscountPct": 26.6,
         "totalReviews": 575337,
         "topSku": {
           "name": "Dove Intense Hair Repair Combo",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 142766,
           "priceINR": 1117,
           "channel": "nykaa"
@@ -592,12 +592,12 @@
           "nykaa"
         ],
         "skuCount": 19,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 11.6,
         "totalReviews": 407732,
         "topSku": {
           "name": "Be Bodywise 4% AHA BHA Underarm Roll On Treats Pigmentation",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 78135,
           "priceINR": 349,
           "channel": "nykaa"
@@ -653,12 +653,12 @@
           "nykaa"
         ],
         "skuCount": 20,
-        "avgRating": 0.3,
+        "avgRating": 5,
         "avgDiscountPct": 26.6,
         "totalReviews": 575337,
         "topSku": {
           "name": "Dove Intense Hair Repair Combo",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 142766,
           "priceINR": 1117,
           "channel": "nykaa"
@@ -714,12 +714,12 @@
           "nykaa"
         ],
         "skuCount": 20,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 17.4,
         "totalReviews": 293405,
         "topSku": {
           "name": "Foxtale Hydra-Glow Trio – Bright, Hydrated & Sun-Protected Skin",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 77083,
           "priceINR": 629,
           "channel": "nykaa"
@@ -990,12 +990,12 @@
           "nykaa"
         ],
         "skuCount": 13,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 5.4,
         "totalReviews": 1327263,
         "topSku": {
           "name": "Minimalist Daily Skincare Routine For Oily & Acne Prone Skin",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 490966,
           "priceINR": 1481,
           "channel": "nykaa"
@@ -1062,12 +1062,12 @@
           "nykaa"
         ],
         "skuCount": 20,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 15.2,
         "totalReviews": 180948,
         "topSku": {
           "name": "Pilgrim Vitamin C Best Seller Glow Csms Combo- Brightens Skin & Reduces Dark Spots",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 42240,
           "priceINR": 1494,
           "channel": "nykaa"
@@ -1127,12 +1127,12 @@
           "nykaa"
         ],
         "skuCount": 19,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 13.9,
         "totalReviews": 1418194,
         "topSku": {
           "name": "Plum Niacinamide Bright & Clear Skin Combo",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 247214,
           "priceINR": 2074,
           "channel": "nykaa"
@@ -1347,12 +1347,12 @@
           "nykaa"
         ],
         "skuCount": 20,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 10.6,
         "totalReviews": 1301057,
         "topSku": {
           "name": "Dot & Key CSMS Vitamin C Bestseller Combo",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 378148,
           "priceINR": 1474,
           "channel": "nykaa"
@@ -1412,12 +1412,12 @@
           "nykaa"
         ],
         "skuCount": 20,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 17.4,
         "totalReviews": 293405,
         "topSku": {
           "name": "Foxtale Hydra-Glow Trio – Bright, Hydrated & Sun-Protected Skin",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 77083,
           "priceINR": 629,
           "channel": "nykaa"
@@ -1495,12 +1495,12 @@
           "nykaa"
         ],
         "skuCount": 13,
-        "avgRating": 0,
+        "avgRating": null,
         "avgDiscountPct": 5.4,
         "totalReviews": 1327263,
         "topSku": {
           "name": "Minimalist Daily Skincare Routine For Oily & Acne Prone Skin",
-          "rating": 0,
+          "rating": null,
           "reviewCount": 490966,
           "priceINR": 1481,
           "channel": "nykaa"

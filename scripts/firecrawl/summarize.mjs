@@ -31,7 +31,8 @@ function repair(p) {
     if (reviews == null || reviews === 0) reviews = rating;
     rating = null;
   }
-  if (rating != null && rating < 0) rating = null;
+  // 0 (or negative) means the rating wasn't captured, not a real 0-star product.
+  if (rating != null && rating <= 0) rating = null;
   return { ...p, rating, reviewCount: reviews };
 }
 

@@ -32,10 +32,14 @@ const CHANNELS = (() => {
 
 const norm = (s) => (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
+// clean a display name into a search query: drop parentheticals like
+// "Innovist (parent of Chemist at Play)" -> "Innovist".
+const q = (brand) => brand.replace(/\(.*?\)/g, "").replace(/\s+/g, " ").trim();
+
 // marketplace search URLs (brand-level; category refinement comes later)
 const CHANNEL_URL = {
-  nykaa: (brand) => `https://www.nykaa.com/search/result/?q=${encodeURIComponent(brand)}`,
-  amazon: (brand) => `https://www.amazon.in/s?k=${encodeURIComponent(brand + " skincare")}`,
+  nykaa: (brand) => `https://www.nykaa.com/search/result/?q=${encodeURIComponent(q(brand))}`,
+  amazon: (brand) => `https://www.amazon.in/s?k=${encodeURIComponent(q(brand) + " skincare")}`,
 };
 
 const PRODUCT_SCHEMA = {
