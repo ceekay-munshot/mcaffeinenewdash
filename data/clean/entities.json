@@ -542,6 +542,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "amazon"
+        ],
+        "skuCount": 5,
+        "avgRating": 4.1,
+        "avgDiscountPct": 21.4,
+        "totalReviews": 106900,
+        "topSku": {
+          "name": "Ultra Sheer Sunscreen SPF 50+ | Broad Spectrum UVA/UVB | Blue light protect | No White Cast | Water resistant, Ultra light & Non sticky | Oily, Dry & Sensitive Skin | 30 g (Pack of 1)",
+          "rating": 4.1,
+          "reviewCount": 63300,
+          "priceINR": 299,
+          "channel": "amazon"
+        },
+        "scrapedAt": "2026-07-08T17:30:33.646Z"
       }
     },
     {
@@ -830,6 +847,23 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "shelf": {
+        "channels": [
+          "amazon"
+        ],
+        "skuCount": 5,
+        "avgRating": 4.1,
+        "avgDiscountPct": 21.4,
+        "totalReviews": 106900,
+        "topSku": {
+          "name": "Ultra Sheer Sunscreen SPF 50+ | Broad Spectrum UVA/UVB | Blue light protect | No White Cast | Water resistant, Ultra light & Non sticky | Oily, Dry & Sensitive Skin | 30 g (Pack of 1)",
+          "rating": 4.1,
+          "reviewCount": 63300,
+          "priceINR": 299,
+          "channel": "amazon"
+        },
+        "scrapedAt": "2026-07-08T17:30:33.646Z"
       }
     },
     {
@@ -1344,20 +1378,20 @@
       },
       "shelf": {
         "channels": [
-          "nykaa"
+          "amazon"
         ],
-        "skuCount": 20,
-        "avgRating": null,
-        "avgDiscountPct": 10.6,
-        "totalReviews": 1301057,
+        "skuCount": 21,
+        "avgRating": 4.3,
+        "avgDiscountPct": 15,
+        "totalReviews": 95746,
         "topSku": {
-          "name": "Dot & Key CSMS Vitamin C Bestseller Combo",
-          "rating": null,
-          "reviewCount": 378148,
-          "priceINR": 1474,
-          "channel": "nykaa"
+          "name": "Barrier Repair Moisturizer For Normal, Dry, Combination & Sensitive Skin | 120 Hrs Moisturization, With 5 Ceramides & Hyaluronic | Repairs Damaged Skin Barrier, Non-Comedogenic | 100g",
+          "rating": 4.3,
+          "reviewCount": 14600,
+          "priceINR": 336,
+          "channel": "amazon"
         },
-        "scrapedAt": "2026-07-08T17:05:35.134Z"
+        "scrapedAt": "2026-07-08T17:31:52.871Z"
       }
     },
     {

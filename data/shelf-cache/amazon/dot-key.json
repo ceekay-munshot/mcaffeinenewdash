@@ -1,0 +1,177 @@
+{
+  "brand": "Dot & Key",
+  "brandKey": "dot-key",
+  "channel": "amazon",
+  "url": "https://www.amazon.in/s?k=Dot%20%26%20Key%20skincare",
+  "scrapedAt": "2026-07-08T17:31:52.871Z",
+  "products": [
+    {
+      "name": "Barrier Repair Moisturizer For Normal, Dry, Combination & Sensitive Skin | 120 Hrs Moisturization, With 5 Ceramides & Hyaluronic | Repairs Damaged Skin Barrier, Non-Comedogenic | 100g",
+      "priceINR": 336,
+      "mrpINR": 395,
+      "rating": 4.3,
+      "reviewCount": 14600,
+      "url": "https://www.amazon.in/Moisturizer-Combination-Moisturization-Hyaluronic-Non-Comedogenic/dp/B0BDVG99J5/"
+    },
+    {
+      "name": "Vitamin C + E Super Bright Gel Face Wash For Glowing And Brightening Skin | All Skin Types | With Triple Vitamin C | Face Wash For Women & Men | 100 Ml",
+      "priceINR": 214,
+      "mrpINR": 249,
+      "rating": 4.2,
+      "reviewCount": 5800,
+      "url": "https://www.amazon.in/DOT-KEY-Vitamin-Brightening-Pigmentation/dp/B0CF28HXPY/"
+    },
+    {
+      "name": "Strawberry Dew Tinted Sunscreen In-Vivo Tested SPF 50+ PA++++ With New-Age UV Filters, Brightens & Protects Skin, Ultra-light, Blends Easily, With Niacinamide, Natural Finish, Non-Sticky | 50ml",
+      "priceINR": 480,
+      "mrpINR": 549,
+      "rating": 4.4,
+      "reviewCount": 4300,
+      "url": "https://www.amazon.in/Dot-Key-Strawberry-Tinted-Sunscreen/dp/B0CX1YQ764/"
+    },
+    {
+      "name": "Vitamin C Daily Glow Boosting Skincare Combo (Moisturizer 60ml & Face Wash) | For Glowing Skin | All Skin Types | For Women & Men",
+      "priceINR": 558,
+      "mrpINR": 744,
+      "rating": 4.2,
+      "reviewCount": 629,
+      "url": "https://www.amazon.in/Vitamin-Boosting-Skincare-Moisturizer-Glowing/dp/B0CTPZ5BPW/"
+    },
+    {
+      "name": "Vitamin C + E Super Bright Sunscreen In-Vivo Tested SPF 50+ PA++++ With New-Age UV Filters, Water-Light Fluid, Boosts Glow, Reduces Dullness & Dark Spots, Checks Tanning, No White Cast | 50G, Pack Of 1",
+      "priceINR": 387,
+      "mrpINR": 445,
+      "rating": 4.2,
+      "reviewCount": 14100,
+      "url": "https://www.amazon.in/Vitamin-Sunscreen-Water-Light-Protection-Absorption/dp/B0BLK4YRSN/"
+    },
+    {
+      "name": "Vitamin C + E Sorbet Super Bright Moisturizer for Face | Vitamin C Face Cream For Glowing Skin | Reduces Skin Dullness | Oil Free & Lightweight | For All Skin Types | 25ml",
+      "priceINR": 304,
+      "mrpINR": 350,
+      "rating": 4.2,
+      "reviewCount": 8300,
+      "url": "https://www.amazon.in/Vitamin-Moisturizer-Ascorbic-Ascorbyl-Phosphate/dp/B09FXLGW94/"
+    },
+    {
+      "name": "CICA Face Wash for Acne Prone Skin, 2% Salicylic Acid with Green Tea | For Oily & Sensitive Skin | Sulphate Free for Men & Women | Oil Control Face Wash with Zinc | 100ml",
+      "priceINR": 214,
+      "mrpINR": 249,
+      "rating": 4.2,
+      "reviewCount": 6900,
+      "url": "https://www.amazon.in/Salicylic-Sensitive-Sulphate-Blemish-Clearing/dp/B0BCJZ289Q/"
+    },
+    {
+      "name": "Barrier Repair + Hydrating Gentle Face Wash With Probiotic | Ceremide Face Wash | For Dry Skin, Normal Skin & Sensitive Skin | Gently Cleanses Skin From Dirt & Oil For Unisex, 100Ml",
+      "priceINR": 214,
+      "mrpINR": 249,
+      "rating": 4.3,
+      "reviewCount": 8100,
+      "url": "https://www.amazon.in/Hydrating-Probiotic-Essential-Ceremides-Sensitive/dp/B0BDVCTTB6/"
+    },
+    {
+      "name": "Strawberry Brightening Moisturizer | Niacinamide, Peptides & Hyaluronic Acid, Non-sticky, Brightens Skin, Intense Moisturization | Non-Comedogenic & Fragrance Free, Lightweight | 80g",
+      "priceINR": 347,
+      "mrpINR": 399,
+      "rating": 4.3,
+      "reviewCount": 1000,
+      "url": "https://www.amazon.in/Brightening-Moisturizer-Niacinamide-Moisturization-Non-Comedogenic/dp/B0DGGVK28R/"
+    },
+    {
+      "name": "10% Vitamin C + E Serum with 5% Niacinamide, for Glowing Skin, Fades Dark Spots & Hyperpigmentation, Infused with Blood Orange & Pumpkin, Targets Dull & Uneven Skin, For All Skin Types, 20ml",
+      "priceINR": 429,
+      "mrpINR": 499,
+      "rating": 4.1,
+      "reviewCount": 3700,
+      "url": "https://www.amazon.in/Vitamin-Niacinamide-Glowing-Fights-Pigmentation/dp/B0BCQ5RJH1/"
+    },
+    {
+      "name": "Watermelon Cooling Sunscreen, In-Vivo Tested SPF 50+ PA++++, With New-Age UV Filters, Instantly Cools skin, Controls Excess Oil, Broad Spectrum Protection, No White Cast, 50g",
+      "priceINR": 387,
+      "mrpINR": 445,
+      "rating": 4.3,
+      "reviewCount": 10700,
+      "url": "https://www.amazon.in/Watermelon-Hyaluronic-Moisturized-Protection-Lightweight/dp/B0BQN2YWN5/"
+    },
+    {
+      "name": "2% Salicylic Acid + Cica (Centella) Anti Acne Serum with Zinc | Salicylic Acid for Acne and Dark Spots | Serum for Oily Acne Prone Skin & Sensitive Skin | Oil-Free & Non-Comedogenic | 20 ml",
+      "priceINR": 339,
+      "mrpINR": 399,
+      "rating": 4.2,
+      "reviewCount": 1200,
+      "url": "https://www.amazon.in/Salicylic-Cantella-Sensitive-Oil-Free-Comedogenic/dp/B0BCQG4RHD/"
+    },
+    {
+      "name": "CICA Calming Mattifying Sunscreen SPF 50 PA++++ In-Vivo Tested | For Oily Acne Prone & Sensitive Skin | UVA/UVB Protection | No White Cast, Ultra Light | 50g",
+      "priceINR": 387,
+      "mrpINR": 445,
+      "rating": 4.3,
+      "reviewCount": 2600,
+      "url": "https://www.amazon.in/Sunscreen-Niacinamide-Protection-Prone-Women/dp/B0B2PCZSJN/"
+    },
+    {
+      "name": "Watermelon Cooling Gel Face Wash With Vitamin C & Cucumber | Face Wash For Glowing Skin|Oil Free |Removes Excess Oil & Dirt | For Combination & Oily Skin| For Women & Men|100Ml",
+      "priceINR": 214,
+      "mrpINR": 249,
+      "rating": 4.3,
+      "reviewCount": 2700,
+      "url": "https://www.amazon.in/Key-Watermelon-Vitamin-Pigmentation-Reduction-Combination/dp/B0B71Y3MYG/"
+    },
+    {
+      "name": "Mango Detan Gel Face Wash | Gently Cleanses Skin From Dirt & Oil | Fades Stubborn Tan | For All Skin Types | 100ml",
+      "priceINR": 214,
+      "mrpINR": 249,
+      "rating": 4.2,
+      "reviewCount": 828,
+      "url": "https://www.amazon.in/Mango-Detan-Gently-Cleanses-Stubborn/dp/B0D7ZSNRXZ/"
+    },
+    {
+      "name": "Night Reset Retinol + Ceramide Night Cream | Anti Aging Cream For Women & Men | Reduces Fine Lines & Wrinkles | For Glowing Youthful Skin | For All Skin Types | 60ml",
+      "priceINR": 497,
+      "mrpINR": 599,
+      "rating": 4.3,
+      "reviewCount": 3700,
+      "url": "https://www.amazon.in/Dot-Key-Ceramide-Treatment-wrinkles/dp/B085R9NNHQ/"
+    },
+    {
+      "name": "Pomegranate + Multi-Peptide Anti Aging Cream With SPF 30 For Sun Protection|Reduces Fine Lines&Wrinkles|48Hr Intense Moisturization|Boosts Collagen|For Mature&Normal To Dry Skin|60Ml",
+      "priceINR": 426,
+      "mrpINR": 495,
+      "rating": 4.2,
+      "reviewCount": 1200,
+      "url": "https://www.amazon.in/Pomegranate-Multi-Peptide-Moisturizer-Wrinkles-Collagen/dp/B0BRKXPBHG/"
+    },
+    {
+      "name": "Skin Care Pollution + Acne Defense Green Clay Mask | Clay Mask for Face with Salicylic & Matcha Tea | Reduces Active Acne | For Dark Spots & Oily Skin | 85g",
+      "priceINR": 467,
+      "mrpINR": 550,
+      "rating": 4.2,
+      "reviewCount": 1600,
+      "url": "https://www.amazon.in/Dot-Key-Pollution-Defense-Green/dp/B07XQHRGL7/"
+    },
+    {
+      "name": "Ceramides & Hyaluronic Skin Barrier Repair + Face Cream For Dry Skin-100G & Vitamin C+E Super Bright Sunscreen SPF 50 PAV - 50G | For Men & Women",
+      "priceINR": 630,
+      "mrpINR": 840,
+      "rating": 4.4,
+      "reviewCount": 289,
+      "url": "https://www.amazon.in/DOT-KEY-Ceramides-Hyaluronic-Skin-100G/dp/B0CZXSC4VW/"
+    },
+    {
+      "name": "Watermelon SuperGlow Glycolic Face Pore Tightening Toner | for Glowing Skin | Alcohol Free Toner for Uneven Skin Tone | For All Skin Types | 150 ml",
+      "priceINR": 320,
+      "mrpINR": 395,
+      "rating": 4.1,
+      "reviewCount": 1600,
+      "url": "https://www.amazon.in/Watermelon-Tightening-Glycolic-Lactic-Alcohol/dp/B0B1V514SP/"
+    },
+    {
+      "name": "Meltie Lip Balm SPF 50+ In-Vivo Tested With 2% Kojic & Vitamin C | Hydrates Dry, Chapped Lips, Lightens Pigmentation | 4g",
+      "priceINR": 229,
+      "mrpINR": 249,
+      "rating": 4.4,
+      "reviewCount": 1900,
+      "url": "https://www.amazon.in/Vitamin-Hydrates-Lightens-Pigmentation-Brightens/dp/B0FNN8WXTM/"
+    }
+  ]
+}

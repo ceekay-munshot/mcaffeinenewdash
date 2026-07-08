@@ -1,0 +1,49 @@
+{
+  "brand": "Innovist (parent of Chemist at Play)",
+  "brandKey": "innovist-parent-of-chemist-at-play",
+  "channel": "amazon",
+  "url": "https://www.amazon.in/s?k=Innovist%20skincare",
+  "scrapedAt": "2026-07-08T17:30:33.646Z",
+  "products": [
+    {
+      "name": "10% Vitamin C Serum for Glowing Skin | Pigmentation & Dark Spots | Skin Brightening Face Serum | With Ethyl Ascorbic Acid, Lactic Acid & Glucosamine | For Men & Women | 10 ml",
+      "priceINR": 259,
+      "mrpINR": 299,
+      "rating": 4,
+      "reviewCount": 2200,
+      "url": "https://www.amazon.in/Chemist-Play-Hyperpigmentation-Glucosamine-Combination/dp/B0DRVVTBRP/ref=sr_1_1?dib=eyJ2IjoiMSJ9.g3pEjxwWQik9pYIWbkcGfnVvXBhOER7SQNu5GT9xoOJABA8mqfqcmmGI2GAl7mNU_ymaX1r_9SEiuF6HHUellzgjuJGNniDQAFqLkmJBktWu__J2_bagUYPtgAKA2anbtbNXSdBjSHpxGG9RieJV3SXqWvv-EXV49LSxPQJVZGKQs8ErGsWUFrKMm4izj0Tlyfl5YDOlsmfzfoK9W4_sHnydF4F2JTXxhAPSyNnuNaq6d7G-muG5gMhmipfZclKPZopf3SqdXuaySkqkQcJbpcd8YK3y13pzCrowGyMfTNM.UjclJCJ9ouM1kWj_vr9E_RNhT9oqt7H6nVI1UIPgwYE&dib_tag=se&keywords=Innovist+skincare&qid=1783531735&sr=8-1"
+    },
+    {
+      "name": "10% Niacinamide Serum with 2% Zinc, Powered by Deep Penetration Formula™ | Fades Acne Marks, Controls Oil & Reduces Dark Spots | 10 ml",
+      "priceINR": 196,
+      "mrpINR": 249,
+      "rating": 4.1,
+      "reviewCount": 15900,
+      "url": "https://www.amazon.in/Derma-Co-Niacinamide-Serum-Marks/dp/B0957VWFBG/ref=sr_1_2_in_f3_0o_fs_mod_primary_alm?dib=eyJ2IjoiMSJ9.g3pEjxwWQik9pYIWbkcGfnVvXBhOER7SQNu5GT9xoOJABA8mqfqcmmGI2GAl7mNU_ymaX1r_9SEiuF6HHUellzgjuJGNniDQAFqLkmJBktWu__J2_bagUYPtgAKA2anbtbNXSdBjSHpxGG9RieJV3SXqWvv-EXV49LSxPQJVZGKQs8ErGsWUFrKMm4izj0Tlyfl5YDOlsmfzfoK9W4_sHnydF4F2JTXxhAPSyNnuNaq6d7G-muG5gMhmipfZclKPZopf3SqdXuaySkqkQcJbpcd8YK3y13pzCrowGyMfTNM.UjclJCJ9ouM1kWj_vr9E_RNhT9oqt7H6nVI1UIPgwYE&dib_tag=se&keywords=Innovist+skincare&qid=1783531735&sbo=m6DjfpMzMLDmL8pSMKX8hw%3D%3D&sr=8-2"
+    },
+    {
+      "name": "Gentle Exfoliating Face Scrub | Tan Removal & Gentle Exfoliation | With Mandelic Acid & Walnut | Removes Dead Skin & Blackheads | Smooth Skin & Instant Glow | 100 ml",
+      "priceINR": 299,
+      "mrpINR": 349,
+      "rating": 4.2,
+      "reviewCount": 3000,
+      "url": "https://www.amazon.in/Chemist-Play-Exfoliating-Mandelic-Blackheads/dp/B0D9B92YDL/ref=sr_1_3?dib=eyJ2IjoiMSJ9.g3pEjxwWQik9pYIWbkcGfnVvXBhOER7SQNu5GT9xoOJABA8mqfqcmmGI2GAl7mNU_ymaX1r_9SEiuF6HHUellzgjuJGNniDQAFqLkmJBktWu__J2_bagUYPtgAKA2anbtbNXSdBjSHpxGG9RieJV3SXqWvv-EXV49LSxPQJVZGKQs8ErGsWUFrKMm4izj0Tlyfl5YDOlsmfzfoK9W4_sHnydF4F2JTXxhAPSyNnuNaq6d7G-muG5gMhmipfZclKPZopf3SqdXuaySkqkQcJbpcd8YK3y13pzCrowGyMfTNM.UjclJCJ9ouM1kWj_vr9E_RNhT9oqt7H6nVI1UIPgwYE&dib_tag=se&keywords=Innovist+skincare&qid=1783531735&sr=8-3"
+    },
+    {
+      "name": "Revitalift Serum, Hydrating and Plumping, Fast Efficacy Formula, Replumps Skin in 1H, Reduces Fine Lines, With 1.5% Micro-Epidermic Hyaluronic Acid, Validated by Dermatologists, 15ml",
+      "priceINR": 442,
+      "mrpINR": 529,
+      "rating": 4.2,
+      "reviewCount": 22500,
+      "url": "https://www.amazon.in/LOr%C3%A9al-Paris-Revitalift-HYALURONIC-SERUM/dp/B08QSTTSNH/ref=sr_1_4_in_f3_0o_fs_mod_primary_alm?dib=eyJ2IjoiMSJ9.g3pEjxwWQik9pYIWbkcGfnVvXBhOER7SQNu5GT9xoOJABA8mqfqcmmGI2GAl7mNU_ymaX1r_9SEiuF6HHUellzgjuJGNniDQAFqLkmJBktWu__J2_bagUYPtgAKA2anbtbNXSdBjSHpxGG9RieJV3SXqWvv-EXV49LSxPQJVZGKQs8ErGsWUFrKMm4izj0Tlyfl5YDOlsmfzfoK9W4_sHnydF4F2JTXxhAPSyNnuNaq6d7G-muG5gMhmipfZclKPZopf3SqdXuaySkqkQcJbpcd8YK3y13pzCrowGyMfTNM.UjclJCJ9ouM1kWj_vr9E_RNhT9oqt7H6nVI1UIPgwYE&dib_tag=se&keywords=Innovist+skincare&qid=1783531735&sbo=m6DjfpMzMLDmL8pSMKX8hw%3D%3D&sr=8-4"
+    },
+    {
+      "name": "Ultra Sheer Sunscreen SPF 50+ | Broad Spectrum UVA/UVB | Blue light protect | No White Cast | Water resistant, Ultra light & Non sticky | Oily, Dry & Sensitive Skin | 30 g (Pack of 1)",
+      "priceINR": 299,
+      "mrpINR": 529,
+      "rating": 4.1,
+      "reviewCount": 63300,
+      "url": "https://www.amazon.in/Neutrogena-Sunscreen-Spectrum-resistant-Sensitive/dp/B00G7RTYT8/ref=sr_1_10_in_f3_0o_fs_mod_primary_alm?dib=eyJ2IjoiMSJ9.g3pEjxwWQik9pYIWbkcGfnVvXBhOER7SQNu5GT9xoOJABA8mqfqcmmGI2GAl7mNU_ymaX1r_9SEiuF6HHUellzgjuJGNniDQAFqLkmJBktWu__J2_bagUYPtgAKA2anbtbNXSdBjSHpxGG9RieJV3SXqWvv-EXV49LSxPQJVZGKQs8ErGsWUFrKMm4izj0Tlyfl5YDOlsmfzfoK9W4_sHnydF4F2JTXxhAPSyNnuNaq6d7G-muG5gMhmipfZclKPZopf3SqdXuaySkqkQcJbpcd8YK3y13pzCrowGyMfTNM.UjclJCJ9ouM1kWj_vr9E_RNhT9oqt7H6nVI1UIPgwYE&dib_tag=se&keywords=Innovist+skincare&qid=1783531735&sr=8-10"
+    }
+  ]
+}
