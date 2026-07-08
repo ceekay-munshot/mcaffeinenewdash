@@ -27,7 +27,18 @@ export async function scrapeExtract(url, schema, prompt, { retries = 3 } = {}) {
       const res = await fetch(`${BASE}/v1/scrape`, {
         method: "POST",
         headers: authHeader(),
-        body: JSON.stringify({ url, onlyMainContent: true, formats: ["json"], jsonOptions: { schema, prompt }, waitFor: 2500 }),
+        body: JSON.stringify({
+          url,
+          onlyMainContent: true,
+          formats: ["json"],
+          jsonOptions: { schema, prompt },
+          // bot-protected marketplaces (Amazon) need a longer render + stealth proxy.
+          // "auto" uses the cheap proxy first and only escalates to stealth on failure.
+          waitFor: Number(process.env.FIRECRAWL_WAIT || 5000),
+          timeout: 60000,
+          blockAds: true,
+          proxy: process.env.FIRECRAWL_PROXY || "auto",
+        }),
       });
       const text = await res.text();
       let body;
