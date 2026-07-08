@@ -17,14 +17,14 @@ export function negotiationRoom(e: Entity): Room {
 }
 
 export const ROOM_META: Record<Room, { label: string; cls: string; dot: string }> = {
-  High: { label: "High", cls: "text-emerald-300 bg-emerald-500/10 ring-emerald-500/30", dot: "bg-emerald-400" },
-  Medium: { label: "Medium", cls: "text-amber-300 bg-amber-500/10 ring-amber-500/30", dot: "bg-amber-400" },
-  Low: { label: "Low", cls: "text-sky-300 bg-sky-500/10 ring-sky-500/30", dot: "bg-sky-400" },
-  Unknown: { label: "—", cls: "text-slate-400 bg-slate-500/10 ring-slate-500/20", dot: "bg-slate-500" },
+  High: { label: "High", cls: "text-emerald-700 bg-emerald-50 ring-emerald-200", dot: "bg-emerald-500" },
+  Medium: { label: "Medium", cls: "text-amber-700 bg-amber-50 ring-amber-200", dot: "bg-amber-500" },
+  Low: { label: "Low", cls: "text-sky-700 bg-sky-50 ring-sky-200", dot: "bg-sky-500" },
+  Unknown: { label: "—", cls: "text-slate-500 bg-slate-50 ring-slate-200", dot: "bg-slate-300" },
 };
 
 export const COVERAGE_META: Record<Entity["coverage"], { label: string; cls: string }> = {
-  full: { label: "Full", cls: "text-emerald-300 bg-emerald-500/10 ring-emerald-500/30" },
-  partial: { label: "Partial", cls: "text-amber-300 bg-amber-500/10 ring-amber-500/30" },
-  not_found: { label: "Not found", cls: "text-rose-300 bg-rose-500/10 ring-rose-500/30" },
+  full: { label: "Full", cls: "text-emerald-700 bg-emerald-50 ring-emerald-200" },
+  partial: { label: "Partial", cls: "text-amber-700 bg-amber-50 ring-amber-200" },
+  not_found: { label: "Not found", cls: "text-rose-700 bg-rose-50 ring-rose-200" },
 };

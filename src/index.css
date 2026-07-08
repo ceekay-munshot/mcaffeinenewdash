@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html,
@@ -14,21 +14,21 @@ body,
 
 body {
   margin: 0;
-  background: #070b14;
-  color: #e5e9f0;
+  background: #f3f7f7;
+  color: #0f172a;
   -webkit-font-smoothing: antialiased;
 }
 
 /* thin, unobtrusive scrollbars for the data table */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #24324a transparent;
+  scrollbar-color: #cbd5e1 transparent;
 }
 *::-webkit-scrollbar {
   height: 8px;
   width: 8px;
 }
 *::-webkit-scrollbar-thumb {
-  background: #24324a;
+  background: #cbd5e1;
   border-radius: 8px;
 }
