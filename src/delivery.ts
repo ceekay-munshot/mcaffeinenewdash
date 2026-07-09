@@ -16,6 +16,7 @@ export interface DelhiveryFin {
   ebitdaMarginPct: number | null;
   roce: number | null;
   trend: { fy: string; revenueINR: number | null; netProfitINR: number | null }[];
+  ratioTrend: { fy: string; dso: number | null; ebitdaMarginPct: number | null }[];
 }
 
 export interface DeliveryDataset {

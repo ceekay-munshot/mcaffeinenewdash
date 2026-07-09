@@ -528,8 +528,11 @@ function DeliveryView() {
   const { partners, delhivery: d } = DELIVERY;
   const cr = (inr: number | null) => (inr == null ? 0 : Math.round(inr / 1e7));
 
-  const revTrend: Slice[] = d.trend.map((t) => ({ label: t.fy.replace("20", "'"), value: cr(t.revenueINR), color: "#0d9488" }));
-  const profitTrend: Slice[] = d.trend.map((t) => ({ label: t.fy.replace("20", "'"), value: cr(t.netProfitINR), color: (t.netProfitINR ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
+  const fyShort = (fy: string) => "'" + fy.split("-")[1];
+  const revTrend: Slice[] = d.trend.map((t) => ({ label: fyShort(t.fy), value: cr(t.revenueINR), color: "#0d9488" }));
+  const profitTrend: Slice[] = d.trend.map((t) => ({ label: fyShort(t.fy), value: cr(t.netProfitINR), color: (t.netProfitINR ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
+  const dsoTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.dso ?? 0, color: "#0ea5e9" }));
+  const marginTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.ebitdaMarginPct ?? 0, color: (t.ebitdaMarginPct ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
@@ -541,7 +544,7 @@ function DeliveryView() {
       </section>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <Card title="Delhivery — revenue trend" sub="₹ crore · consolidated, last 5 fiscal years" className="lg:col-span-2">
+        <Card title="Delhivery — revenue trend" sub="₹ crore · consolidated · FY14–FY25 (12 years)" className="lg:col-span-2">
           <Columns data={revTrend} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k` : `₹${v}`)} />
         </Card>
 
@@ -577,6 +580,14 @@ function DeliveryView() {
               </li>
             ))}
           </ul>
+        </Card>
+
+        <Card title="Delhivery — receivables (DSO) trend" sub="days sales outstanding by fiscal year — the credit lever over time" className="lg:col-span-3">
+          <Columns data={dsoTrend} valueLabel={(v) => `${Math.round(v)}d`} height={130} />
+        </Card>
+
+        <Card title="Delhivery — EBITDA margin trend" sub="% by fiscal year — the path from deep losses to profit" className="lg:col-span-3">
+          <Columns data={marginTrend} valueLabel={(v) => `${v}%`} height={150} />
         </Card>
       </div>
 

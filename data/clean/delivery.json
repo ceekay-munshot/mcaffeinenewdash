@@ -40,10 +40,44 @@
     "latestFY": "2024-25",
     "revenueINR": 93720090000.0,
     "netProfitINR": 1621100000.0,
-    "dso": 54.99557832264139,
+    "dso": 55.0,
     "ebitdaMarginPct": 8.7,
-    "roce": 2.9,
     "trend": [
+      {
+        "fy": "2013-14",
+        "revenueINR": 618677921.0,
+        "netProfitINR": -194959731.0
+      },
+      {
+        "fy": "2014-15",
+        "revenueINR": 2284896056.0,
+        "netProfitINR": -710753873.0
+      },
+      {
+        "fy": "2015-16",
+        "revenueINR": 5244007756.0,
+        "netProfitINR": -3184520988.0
+      },
+      {
+        "fy": "2016-17",
+        "revenueINR": 7560138000.0,
+        "netProfitINR": -6378300000.0
+      },
+      {
+        "fy": "2017-18",
+        "revenueINR": 10736400000.0,
+        "netProfitINR": -6922200000.0
+      },
+      {
+        "fy": "2018-19",
+        "revenueINR": 16941500000.0,
+        "netProfitINR": -17727700000.0
+      },
+      {
+        "fy": "2019-20",
+        "revenueINR": 29886400000.0,
+        "netProfitINR": -2689100000.0
+      },
       {
         "fy": "2020-21",
         "revenueINR": 38382910000.0,
@@ -68,6 +102,63 @@
         "fy": "2024-25",
         "revenueINR": 93720090000.0,
         "netProfitINR": 1621100000.0
+      }
+    ],
+    "ratioTrend": [
+      {
+        "fy": "2014-15",
+        "dso": 82.5,
+        "ebitdaMarginPct": -28.5
+      },
+      {
+        "fy": "2015-16",
+        "dso": 78.9,
+        "ebitdaMarginPct": -52.2
+      },
+      {
+        "fy": "2016-17",
+        "dso": 46.9,
+        "ebitdaMarginPct": -75.5
+      },
+      {
+        "fy": "2017-18",
+        "dso": 56.5,
+        "ebitdaMarginPct": -58.9
+      },
+      {
+        "fy": "2018-19",
+        "dso": 46.2,
+        "ebitdaMarginPct": -98.0
+      },
+      {
+        "fy": "2019-20",
+        "dso": 73.4,
+        "ebitdaMarginPct": 1.2
+      },
+      {
+        "fy": "2020-21",
+        "dso": 56.5,
+        "ebitdaMarginPct": 0.7
+      },
+      {
+        "fy": "2021-22",
+        "dso": 51.4,
+        "ebitdaMarginPct": -4.5
+      },
+      {
+        "fy": "2022-23",
+        "dso": 73.9,
+        "ebitdaMarginPct": -1.9
+      },
+      {
+        "fy": "2023-24",
+        "dso": 60.7,
+        "ebitdaMarginPct": 6.5
+      },
+      {
+        "fy": "2024-25",
+        "dso": 55.0,
+        "ebitdaMarginPct": 8.7
       }
     ]
   }
