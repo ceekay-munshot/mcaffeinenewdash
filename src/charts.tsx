@@ -97,6 +97,51 @@ export function HBars({
   );
 }
 
+// ---- Vertical columns for a time series (supports negatives w/ zero baseline) --
+
+export function Columns({
+  data,
+  valueLabel,
+  height = 150,
+}: {
+  data: Slice[];
+  valueLabel: (v: number) => string;
+  height?: number;
+}) {
+  const vals = data.map((d) => d.value);
+  const top = Math.max(0, ...vals);
+  const bottom = Math.min(0, ...vals);
+  const range = top - bottom || 1;
+  const zeroPct = (top / range) * 100; // distance from top to the 0 line
+  return (
+    <div>
+      <div className="relative" style={{ height }}>
+        {bottom < 0 && <div className="absolute inset-x-0 border-t border-dashed border-slate-300" style={{ top: `${zeroPct}%` }} />}
+        <div className="flex h-full items-stretch gap-2">
+          {data.map((d) => {
+            const hPct = (Math.abs(d.value) / range) * 100;
+            const topPct = d.value >= 0 ? zeroPct - hPct : zeroPct;
+            return (
+              <div key={d.label} className="relative flex-1" title={`${d.label}: ${valueLabel(d.value)}`}>
+                <div className="absolute inset-x-0 rounded-md" style={{ top: `${topPct}%`, height: `${Math.max(hPct, 1)}%`, background: d.color }} />
+                <div className={`absolute inset-x-0 text-center text-[10px] font-medium ${d.value >= 0 ? "text-slate-500" : "text-white"}`}
+                  style={d.value >= 0 ? { top: `calc(${topPct}% - 14px)` } : { top: `calc(${topPct}% + 3px)` }}>
+                  {valueLabel(d.value)}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="mt-1 flex gap-2">
+        {data.map((d) => (
+          <div key={d.label} className="flex-1 text-center text-xs text-slate-400">{d.label}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Legend({ items }: { items: { label: string; color: string }[] }) {
   return (
     <div className="flex flex-wrap gap-x-4 gap-y-1.5">

@@ -10,24 +10,40 @@ import {
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom, ROOM_META, COVERAGE_META, type Room } from "./lib/health";
 import { CATEGORY_COLOR, COVERAGE_COLOR, ROOM_COLOR } from "./lib/palette";
-import { Donut, HBars, Legend, Card, type Slice } from "./charts";
+import { Donut, HBars, Columns, Legend, Card, type Slice } from "./charts";
+import { DELIVERY } from "./delivery";
+import KIM from "@data/raw/masters/key_ingredients_manufacturers.json";
 
-type Module = "suppliers" | "competitors";
+// Bill-of-materials rosters the client shared (raw materials + packaging specs).
+const BOM = (KIM as { Sheet1: Record<string, string>[] }).Sheet1
+  .filter((r) => r.col0 && r.col0 !== "Sr. No.");
+const RAW_MATERIALS = [...new Set(BOM.map((r) => r.col1).filter((v) => v && !/sum of formulation/i.test(v)))];
+const PACKAGING = [...new Set(BOM.map((r) => r.col2).filter(Boolean))];
+
+type Module = "suppliers" | "competitors" | "delivery";
 
 export default function App() {
   const [module, setModule] = useState<Module>("suppliers");
   return (
     <div className="min-h-full">
       <Header module={module} setModule={setModule} generatedAt={DATA.generatedAt} />
-      {module === "suppliers" ? <SupplierView /> : <CompetitorView />}
+      {module === "suppliers" && <SupplierView />}
+      {module === "competitors" && <CompetitorView />}
+      {module === "delivery" && <DeliveryView />}
     </div>
   );
 }
 
 /* ------------------------------------------------------------------ header */
 
+const MODULE_META: Record<Module, { label: string; subtitle: string }> = {
+  suppliers: { label: "Suppliers", subtitle: "P0 — Vendor & Manufacturer Financial Health" },
+  competitors: { label: "Competitors", subtitle: "P2 — Category Competitor Benchmarking" },
+  delivery: { label: "Delivery", subtitle: "P3 — Last-Mile Delivery Partner Insights" },
+};
+
 function Header({ module, setModule, generatedAt }: { module: Module; setModule: (m: Module) => void; generatedAt: string }) {
-  const subtitle = module === "suppliers" ? "P0 — Vendor & Manufacturer Financial Health" : "P2 — Category Competitor Benchmarking";
+  const subtitle = MODULE_META[module].subtitle;
   return (
     <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3 sm:px-6">
@@ -42,7 +58,7 @@ function Header({ module, setModule, generatedAt }: { module: Module; setModule:
         </div>
         <div className="flex items-center gap-4">
           <nav className="flex gap-1 rounded-xl bg-slate-100 p-1">
-            {(["suppliers", "competitors"] as Module[]).map((m) => (
+            {(["suppliers", "competitors", "delivery"] as Module[]).map((m) => (
               <button
                 key={m}
                 onClick={() => setModule(m)}
@@ -50,7 +66,7 @@ function Header({ module, setModule, generatedAt }: { module: Module; setModule:
                   module === m ? "bg-white text-teal-700 shadow-sm" : "text-slate-500 hover:text-slate-800"
                 }`}
               >
-                {m === "suppliers" ? "Suppliers" : "Competitors"}
+                {MODULE_META[m].label}
               </button>
             ))}
           </nav>
@@ -259,6 +275,31 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
           </ul>
         )}
       </Card>
+
+      <Card title="What we source" sub={`${RAW_MATERIALS.length} raw materials · ${PACKAGING.length} packaging components (client BOM)`} className="lg:col-span-3">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div>
+            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-teal-700">
+              <span className="h-2 w-2 rounded-sm bg-teal-500" /> Raw materials
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {RAW_MATERIALS.map((m) => (
+                <span key={m} className="rounded-md bg-teal-50 px-2 py-0.5 text-xs text-teal-800 ring-1 ring-teal-100">{m}</span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-indigo-700">
+              <span className="h-2 w-2 rounded-sm bg-indigo-500" /> Packaging components
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {PACKAGING.map((m) => (
+                <span key={m} className="rounded-md bg-indigo-50 px-2 py-0.5 text-xs text-indigo-800 ring-1 ring-indigo-100">{m}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 }
@@ -414,6 +455,12 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
     [all]
   );
 
+  const ratings: Slice[] = useMemo(
+    () => [...all].filter((e) => e.shelf?.avgRating != null).sort((a, b) => (b.shelf!.avgRating ?? 0) - (a.shelf!.avgRating ?? 0)).slice(0, 8)
+      .map((e) => ({ label: e.brand, value: e.shelf!.avgRating ?? 0, color: "#059669" })),
+    [all]
+  );
+
   const cats: Slice[] = useMemo(
     () => COMPETITOR_CATEGORIES.map((c) => ({ label: c, value: all.filter((e) => e.categories.includes(c)).length, color: CAT5_COLOR[c] ?? "#94a3b8" }))
       .sort((a, b) => b.value - a.value),
@@ -440,11 +487,19 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
         <HBars data={traction} valueLabel={(v) => `${v}m`} onBar={pick} />
       </Card>
 
+      <Card title="Customer ratings" sub="avg rating on Nykaa (out of 5)">
+        {ratings.length === 0 ? (
+          <div className="text-sm text-slate-400">No ratings captured yet.</div>
+        ) : (
+          <HBars data={ratings} valueLabel={(v) => `${v.toFixed(1)}★`} onBar={pick} />
+        )}
+      </Card>
+
       <Card title="Category presence" sub="competitors active per category">
         <HBars data={cats} valueLabel={(v) => String(v)} />
       </Card>
 
-      <Card title="Recent deals & events" sub="fundraises & acquisitions" className="lg:col-span-3">
+      <Card title="Recent deals & events" sub="fundraises & acquisitions" className="lg:col-span-2">
         {events.length === 0 ? (
           <div className="text-sm text-slate-400">No material events tracked.</div>
         ) : (
@@ -459,6 +514,73 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
         )}
       </Card>
     </div>
+  );
+}
+
+/* ------------------------------------------------- P3 Delivery partners view */
+
+function DeliveryView() {
+  const { partners, delhivery: d } = DELIVERY;
+  const cr = (inr: number | null) => (inr == null ? 0 : Math.round(inr / 1e7));
+
+  const revTrend: Slice[] = d.trend.map((t) => ({ label: t.fy.replace("20", "'"), value: cr(t.revenueINR), color: "#0d9488" }));
+  const profitTrend: Slice[] = d.trend.map((t) => ({ label: t.fy.replace("20", "'"), value: cr(t.netProfitINR), color: (t.netProfitINR ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
+
+  return (
+    <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
+      <section className="grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
+        <Kpi label="Partners tracked" value={String(partners.length)} sub="last-mile & logistics" />
+        <Kpi label="Publicly listed" value={String(partners.filter((p) => p.listed).length)} sub="rich financials available" tone="teal" />
+        <Kpi label="Delhivery revenue" value={crStr(cr(d.revenueINR))} sub={`FY ${d.latestFY} · consolidated`} />
+        <Kpi label="Delhivery DSO" value={`${Math.round(d.dso ?? 0)} d`} sub="days sales outstanding — the credit lever" tone="amber" />
+      </section>
+
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <Card title="Delhivery — revenue trend" sub="₹ crore · consolidated, last 5 fiscal years" className="lg:col-span-2">
+          <Columns data={revTrend} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k` : `₹${v}`)} />
+        </Card>
+
+        <Card title="Latest financials" sub={`FY ${d.latestFY}`}>
+          <div className="grid grid-cols-2 gap-3">
+            <Stat label="Revenue" value={crStr(cr(d.revenueINR))} />
+            <Stat label="Net profit" value={crStr(cr(d.netProfitINR))} />
+            <Stat label="EBITDA margin" value={d.ebitdaMarginPct != null ? `${d.ebitdaMarginPct}%` : "—"} />
+            <Stat label="DSO" value={`${Math.round(d.dso ?? 0)} d`} />
+          </div>
+          <div className="mt-3 rounded-xl bg-emerald-50 p-3 text-xs text-emerald-800 ring-1 ring-emerald-200">
+            Turned profitable in FY {d.latestFY} (+{crStr(cr(d.netProfitINR))}) after years of losses.
+          </div>
+        </Card>
+
+        <Card title="Delhivery — profit turnaround" sub="net profit / (loss), ₹ crore" className="lg:col-span-2">
+          <Columns data={profitTrend} valueLabel={(v) => (v >= 0 ? `₹${v}` : `-₹${Math.abs(v)}`)} />
+        </Card>
+
+        <Card title="Partner roster" sub="identified legal entities">
+          <ul className="space-y-2">
+            {partners.map((p) => (
+              <li key={p.brand} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 ring-1 ring-slate-200">
+                <div className="min-w-0">
+                  <div className="text-sm font-medium text-slate-800">{p.brand}</div>
+                  <div className="truncate text-xs text-slate-400">{p.legalName ?? "—"}</div>
+                </div>
+                {p.listed ? (
+                  <Pill cls="text-emerald-700 bg-emerald-50 ring-emerald-200">Listed</Pill>
+                ) : (
+                  <Pill cls="text-slate-600 bg-slate-100 ring-slate-200">Private</Pill>
+                )}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
+
+      <p className="mt-5 max-w-3xl text-xs leading-relaxed text-slate-500">
+        Delhivery financials from its Tracxn export (FY13–FY25). The other partners are identified legal entities — their
+        financials come next from public filings / Probe42. <span className="font-medium text-slate-700">DSO 55 days</span> is
+        the receivables lever flagged in the calls.
+      </p>
+    </main>
   );
 }
 

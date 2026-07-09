@@ -1,0 +1,74 @@
+{
+  "partners": [
+    {
+      "brand": "Delhivery",
+      "legalName": "DELHIVERY LIMITD",
+      "cin": null,
+      "coverage": "partial",
+      "listed": true
+    },
+    {
+      "brand": "ElasticRun",
+      "legalName": "NTEX TRANSPORTATION SERVICES PRIVATE LIMITED",
+      "cin": null,
+      "coverage": "partial",
+      "listed": false
+    },
+    {
+      "brand": "PiknDel",
+      "legalName": "QUICKCOM SOLUTIONS PRIVATE LIMITED",
+      "cin": null,
+      "coverage": "partial",
+      "listed": false
+    },
+    {
+      "brand": "Shadowfax",
+      "legalName": "SHADOWFAX TECHNOLOGIES LIMITED",
+      "cin": null,
+      "coverage": "partial",
+      "listed": false
+    },
+    {
+      "brand": "Xpressbees",
+      "legalName": "BUSY BEES LOGISTICS SOLUTIONS PRIVATE LIMITED",
+      "cin": null,
+      "coverage": "partial",
+      "listed": false
+    }
+  ],
+  "delhivery": {
+    "latestFY": "2024-25",
+    "revenueINR": 93720090000.0,
+    "netProfitINR": 1621100000.0,
+    "dso": 54.99557832264139,
+    "ebitdaMarginPct": 8.7,
+    "roce": 2.9,
+    "trend": [
+      {
+        "fy": "2020-21",
+        "revenueINR": 38382910000.0,
+        "netProfitINR": -4157430000.0
+      },
+      {
+        "fy": "2021-22",
+        "revenueINR": 70384270000.0,
+        "netProfitINR": -10110000000.0
+      },
+      {
+        "fy": "2022-23",
+        "revenueINR": 75302490000.0,
+        "netProfitINR": -10077790000.0
+      },
+      {
+        "fy": "2023-24",
+        "revenueINR": 85942340000.0,
+        "netProfitINR": -2491860000.0
+      },
+      {
+        "fy": "2024-25",
+        "revenueINR": 93720090000.0,
+        "netProfitINR": 1621100000.0
+      }
+    ]
+  }
+}
