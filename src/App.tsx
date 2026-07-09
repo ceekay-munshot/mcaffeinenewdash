@@ -46,34 +46,38 @@ const MODULE_META: Record<Module, { label: string; subtitle: string }> = {
 function Header({ module, setModule, generatedAt }: { module: Module; setModule: (m: Module) => void; generatedAt: string }) {
   const subtitle = MODULE_META[module].subtitle;
   return (
-    <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3 sm:px-6">
-        <div className="flex items-center gap-3">
-          <div className="grid h-9 w-9 place-items-center rounded-xl bg-teal-500 font-bold text-white shadow-sm">m</div>
-          <div>
-            <div className="text-sm font-semibold tracking-tight text-slate-900">
-              mCaffeine <span className="font-normal text-slate-400">· CCO Command Center</span>
-            </div>
-            <div className="text-xs text-slate-500">{subtitle}</div>
+    <header className="sticky top-0 z-20 bg-[#0b1a2c] shadow-lg shadow-slate-900/5">
+      {/* thin brand accent */}
+      <div className="h-0.5 w-full bg-gradient-to-r from-teal-400 via-teal-300 to-cyan-400" />
+      <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-y-2 px-4 py-3 sm:px-6">
+        <div>
+          <div className="flex items-baseline">
+            <span className="text-2xl font-extrabold lowercase tracking-tight text-white">mc</span>
+            <span className="text-2xl font-extrabold uppercase tracking-tight text-white">AFFEINE</span>
+            <span className="ml-1 self-start text-[10px] font-bold text-teal-300">®</span>
+            <span className="ml-3 hidden border-l border-white/15 pl-3 text-[10px] font-semibold uppercase tracking-[0.35em] text-teal-300 sm:inline">
+              CCO Command Center
+            </span>
           </div>
+          <div className="mt-1 text-xs text-slate-400">{subtitle}</div>
         </div>
         <div className="flex items-center gap-4">
-          <nav className="flex gap-1 rounded-xl bg-slate-100 p-1">
+          <nav className="flex gap-1 rounded-xl bg-white/10 p-1 ring-1 ring-white/10">
             {(["suppliers", "competitors", "delivery"] as Module[]).map((m) => (
               <button
                 key={m}
                 onClick={() => setModule(m)}
                 className={`rounded-lg px-3 py-1.5 text-sm font-medium transition ${
-                  module === m ? "bg-white text-teal-700 shadow-sm" : "text-slate-500 hover:text-slate-800"
+                  module === m ? "bg-white text-[#0b1a2c] shadow-sm" : "text-slate-300 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 {MODULE_META[m].label}
               </button>
             ))}
           </nav>
-          <div className="hidden text-right text-xs text-slate-400 sm:block">
-            <div>Data snapshot</div>
-            <div className="font-mono text-slate-600">{fmtDate(generatedAt)}</div>
+          <div className="hidden text-right text-[11px] leading-tight text-slate-400 sm:block">
+            <div className="uppercase tracking-wide">Data snapshot</div>
+            <div className="font-mono text-slate-200">{fmtDate(generatedAt)}</div>
           </div>
         </div>
       </div>
