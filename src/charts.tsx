@@ -1,5 +1,6 @@
 // Lightweight, dependency-free charts (simple + colorful, mcAFFEINE theme).
-// Only forms that are easy to read: horizontal bars and donuts. No scatter/bubble.
+// A deliberate mix of easy-to-read forms — bars, donut, area, line, columns,
+// stacked meter — so no two cards look the same. No scatter/bubble.
 import { INK } from "./lib/palette";
 
 export interface Slice {
@@ -9,7 +10,9 @@ export interface Slice {
   sub?: string;
 }
 
-// ---- Donut (part-to-whole) --------------------------------------------------
+const lighten = (hex: string, a = "cc") => `${hex}${a}`; // hex8 alpha suffix
+
+/* ------------------------------------------------------------------ Donut */
 
 export function Donut({
   data,
@@ -23,8 +26,8 @@ export function Donut({
   unit?: string;
 }) {
   const total = data.reduce((s, d) => s + d.value, 0) || 1;
-  const R = 52, r = 34, C = 60; // viewBox 120
-  const gap = 0.012; // 2px-ish gap between segments
+  const R = 52, r = 33, C = 60;
+  const gap = 0.014;
   let a = -Math.PI / 2;
   const arcs = data.map((d) => {
     const frac = d.value / total;
@@ -41,20 +44,18 @@ export function Donut({
     <div className="flex items-center gap-5">
       <svg viewBox="0 0 120 120" className="h-36 w-36 shrink-0">
         {arcs.map((s, i) => (
-          <path key={i} d={s.path} fill={s.d.color}>
-            <title>{`${s.d.label}: ${s.d.value}`}</title>
-          </path>
+          <path key={i} d={s.path} fill={s.d.color}><title>{`${s.d.label}: ${s.d.value}`}</title></path>
         ))}
-        <text x="60" y="56" textAnchor="middle" fontSize="20" fontWeight="700" fill={INK.primary}>{centerValue}</text>
-        <text x="60" y="72" textAnchor="middle" fontSize="8" fill={INK.muted} style={{ textTransform: "uppercase", letterSpacing: 0.4 }}>{centerLabel}</text>
+        <text x="60" y="57" textAnchor="middle" fontSize="21" fontWeight="800" fill={INK.primary}>{centerValue}</text>
+        <text x="60" y="72" textAnchor="middle" fontSize="7.5" fill={INK.muted} style={{ textTransform: "uppercase", letterSpacing: 0.5 }}>{centerLabel}</text>
       </svg>
-      <ul className="min-w-0 flex-1 space-y-1.5">
+      <ul className="min-w-0 flex-1 space-y-2">
         {data.map((d) => (
           <li key={d.label} className="flex items-center gap-2 text-sm">
             <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: d.color }} />
             <span className="min-w-0 flex-1 truncate text-slate-600">{d.label}</span>
-            <span className="font-mono font-medium text-slate-900">{d.value}{unit}</span>
-            <span className="w-10 text-right font-mono text-xs text-slate-400">{Math.round((d.value / total) * 100)}%</span>
+            <span className="font-mono font-semibold text-slate-900">{d.value}{unit}</span>
+            <span className="w-9 text-right font-mono text-xs text-slate-400">{Math.round((d.value / total) * 100)}%</span>
           </li>
         ))}
       </ul>
@@ -62,7 +63,7 @@ export function Donut({
   );
 }
 
-// ---- Horizontal bars (magnitude, colored by identity) -----------------------
+/* ----------------------------------------------------- Horizontal bars */
 
 export function HBars({
   data,
@@ -75,29 +76,29 @@ export function HBars({
 }) {
   const max = Math.max(1, ...data.map((d) => d.value));
   return (
-    <div className="space-y-2.5">
+    <div className="space-y-3">
       {data.map((d) => (
         <div
           key={d.label}
           onClick={onBar ? () => onBar(d.label) : undefined}
-          className={`grid grid-cols-[minmax(0,9rem)_1fr_auto] items-center gap-3 text-sm ${onBar ? "cursor-pointer rounded-md hover:bg-slate-50" : ""}`}
+          className={`grid grid-cols-[minmax(0,9rem)_1fr_auto] items-center gap-3 text-sm ${onBar ? "cursor-pointer" : ""} group`}
         >
-          <div className="truncate text-slate-600" title={d.label}>{d.label}</div>
-          <div className="h-5 rounded-md bg-slate-100">
+          <div className="truncate text-slate-600 group-hover:text-slate-900" title={d.label}>{d.label}</div>
+          <div className="h-3.5 rounded-full bg-slate-100">
             <div
-              className="h-5 rounded-md transition-all"
-              style={{ width: `${Math.max(2, (d.value / max) * 100)}%`, background: d.color }}
+              className="h-3.5 rounded-full transition-all duration-500"
+              style={{ width: `${Math.max(3, (d.value / max) * 100)}%`, background: `linear-gradient(90deg, ${d.color}, ${lighten(d.color)})`, boxShadow: `0 1px 4px ${d.color}33` }}
               title={`${d.label}: ${valueLabel(d.value)}`}
             />
           </div>
-          <div className="w-20 text-right font-mono font-medium text-slate-900">{valueLabel(d.value)}</div>
+          <div className="w-20 text-right font-mono font-semibold text-slate-900">{valueLabel(d.value)}</div>
         </div>
       ))}
     </div>
   );
 }
 
-// ---- Vertical columns for a time series (supports negatives w/ zero baseline) --
+/* --------------------------------------------- Columns (time series, ± ) */
 
 export function Columns({
   data,
@@ -112,20 +113,25 @@ export function Columns({
   const top = Math.max(0, ...vals);
   const bottom = Math.min(0, ...vals);
   const range = top - bottom || 1;
-  const zeroPct = (top / range) * 100; // distance from top to the 0 line
+  const zeroPct = (top / range) * 100;
   return (
     <div>
       <div className="relative" style={{ height }}>
         {bottom < 0 && <div className="absolute inset-x-0 border-t border-dashed border-slate-300" style={{ top: `${zeroPct}%` }} />}
-        <div className="flex h-full items-stretch gap-2">
+        <div className="flex h-full items-stretch gap-1.5">
           {data.map((d) => {
             const hPct = (Math.abs(d.value) / range) * 100;
             const topPct = d.value >= 0 ? zeroPct - hPct : zeroPct;
             return (
-              <div key={d.label} className="relative flex-1" title={`${d.label}: ${valueLabel(d.value)}`}>
-                <div className="absolute inset-x-0 rounded-md" style={{ top: `${topPct}%`, height: `${Math.max(hPct, 1)}%`, background: d.color }} />
-                <div className={`absolute inset-x-0 text-center text-[10px] font-medium ${d.value >= 0 ? "text-slate-500" : "text-white"}`}
-                  style={d.value >= 0 ? { top: `calc(${topPct}% - 14px)` } : { top: `calc(${topPct}% + 3px)` }}>
+              <div key={d.label} className="group relative flex-1" title={`${d.label}: ${valueLabel(d.value)}`}>
+                <div
+                  className="absolute inset-x-0 rounded-md transition-all duration-500 group-hover:brightness-95"
+                  style={{ top: `${topPct}%`, height: `${Math.max(hPct, 1.5)}%`, background: `linear-gradient(180deg, ${lighten(d.color, "e6")}, ${d.color})` }}
+                />
+                <div
+                  className={`absolute inset-x-0 text-center text-[10px] font-semibold ${d.value >= 0 ? "text-slate-600" : "text-white"}`}
+                  style={d.value >= 0 ? { top: `calc(${topPct}% - 14px)` } : { top: `calc(${topPct}% + 3px)` }}
+                >
                   {valueLabel(d.value)}
                 </div>
               </div>
@@ -133,14 +139,99 @@ export function Columns({
           })}
         </div>
       </div>
-      <div className="mt-1 flex gap-2">
-        {data.map((d) => (
-          <div key={d.label} className="flex-1 text-center text-xs text-slate-400">{d.label}</div>
-        ))}
+      <div className="mt-1.5 flex gap-1.5">
+        {data.map((d) => (<div key={d.label} className="flex-1 text-center text-[11px] text-slate-400">{d.label}</div>))}
       </div>
     </div>
   );
 }
+
+/* ------------------------------------------------ Area / line (trends) */
+
+export function AreaLine({
+  data,
+  color,
+  valueLabel,
+  height = 175,
+  area = true,
+}: {
+  data: Slice[];
+  color: string;
+  valueLabel: (v: number) => string;
+  height?: number;
+  area?: boolean;
+}) {
+  const n = data.length;
+  const vals = data.map((d) => d.value);
+  const min = Math.min(...vals), max = Math.max(...vals);
+  const range = max - min || 1;
+  const PAD_T = 16, PAD_B = 8;
+  const x = (i: number) => (n === 1 ? 50 : (i / (n - 1)) * 100);
+  const y = (v: number) => PAD_T + (1 - (v - min) / range) * (100 - PAD_T - PAD_B);
+  const line = data.map((d, i) => `${i ? "L" : "M"}${x(i).toFixed(2)} ${y(d.value).toFixed(2)}`).join(" ");
+  const areaPath = `${line} L100 100 L0 100 Z`;
+  const gid = "grad" + color.replace("#", "");
+  const emphasize = new Set([0, n - 1, vals.indexOf(max)]);
+  return (
+    <div>
+      <div className="relative" style={{ height }}>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
+          <defs>
+            <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={color} stopOpacity="0.30" />
+              <stop offset="100%" stopColor={color} stopOpacity="0.02" />
+            </linearGradient>
+          </defs>
+          {area && <path d={areaPath} fill={`url(#${gid})`} />}
+          <path d={line} fill="none" stroke={color} strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" />
+        </svg>
+        {data.map((d, i) => (
+          <div key={i} className="group absolute z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x(i)}%`, top: `${y(d.value)}%` }}>
+            <div className="h-2 w-2 rounded-full border-2 border-white shadow-sm" style={{ background: color }} />
+            {emphasize.has(i) && (
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-white px-1 text-[10px] font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200">
+                {valueLabel(d.value)}
+              </div>
+            )}
+            <div className="pointer-events-none absolute bottom-5 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded bg-slate-900 px-1.5 py-0.5 text-[10px] text-white opacity-0 shadow transition group-hover:opacity-100">
+              {d.label}: {valueLabel(d.value)}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-1.5 flex justify-between">
+        {data.map((d, i) => (<span key={i} className="text-[11px] text-slate-400">{d.label}</span>))}
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------- Stacked meter */
+
+export function StackedMeter({ data }: { data: Slice[] }) {
+  const total = data.reduce((s, d) => s + d.value, 0) || 1;
+  return (
+    <div>
+      <div className="flex h-5 w-full gap-0.5 overflow-hidden rounded-full">
+        {data.filter((d) => d.value > 0).map((d) => (
+          <div key={d.label} title={`${d.label}: ${d.value}`} style={{ width: `${(d.value / total) * 100}%`, background: `linear-gradient(90deg, ${d.color}, ${lighten(d.color)})` }} />
+        ))}
+      </div>
+      <ul className="mt-4 space-y-2.5">
+        {data.map((d) => (
+          <li key={d.label} className="flex items-center gap-2 text-sm">
+            <span className="h-2.5 w-2.5 rounded-sm" style={{ background: d.color }} />
+            <span className="flex-1 text-slate-600">{d.label}</span>
+            <span className="font-mono font-semibold text-slate-900">{d.value}</span>
+            <span className="w-10 text-right font-mono text-xs text-slate-400">{Math.round((d.value / total) * 100)}%</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/* --------------------------------------------------------- primitives */
 
 export function Legend({ items }: { items: { label: string; color: string }[] }) {
   return (
@@ -155,12 +246,15 @@ export function Legend({ items }: { items: { label: string; color: string }[] })
   );
 }
 
-export function Card({ title, sub, children, className = "" }: { title: string; sub?: string; children: React.ReactNode; className?: string }) {
+export function Card({ title, sub, children, className = "", accent }: { title: string; sub?: string; children: React.ReactNode; className?: string; accent?: string }) {
   return (
-    <div className={`rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 ${className}`}>
-      <div className="mb-4">
-        <div className="text-sm font-semibold text-slate-900">{title}</div>
-        {sub && <div className="text-xs text-slate-500">{sub}</div>}
+    <div className={`rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200/70 transition hover:shadow-md ${className}`}>
+      <div className="mb-4 flex items-start gap-2">
+        {accent && <span className="mt-1 h-3.5 w-1 shrink-0 rounded-full" style={{ background: accent }} />}
+        <div>
+          <div className="text-sm font-semibold text-slate-900">{title}</div>
+          {sub && <div className="text-xs text-slate-500">{sub}</div>}
+        </div>
       </div>
       {children}
     </div>

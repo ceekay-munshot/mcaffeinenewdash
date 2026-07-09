@@ -11,7 +11,7 @@ import {
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom, ROOM_META, COVERAGE_META, type Room } from "./lib/health";
 import { CATEGORY_COLOR, COVERAGE_COLOR, ROOM_COLOR } from "./lib/palette";
-import { Donut, HBars, Columns, Legend, Card, type Slice } from "./charts";
+import { Donut, HBars, Columns, AreaLine, StackedMeter, Legend, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import KIM from "@data/raw/masters/key_ingredients_manufacturers.json";
 
@@ -240,27 +240,27 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-      <Card title="Top suppliers by revenue" sub="latest disclosed · ₹ crore · colour = category" className="lg:col-span-2">
+      <Card title="Top suppliers by revenue" sub="latest disclosed · ₹ crore · colour = category" className="lg:col-span-2" accent="#0d9488">
         <HBars data={topRev} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} onBar={(l) => byName.get(l) && onSelect(byName.get(l)!)} />
         <div className="mt-4">
           <Legend items={Object.entries(CATEGORY_COLOR).map(([label, color]) => ({ label, color }))} />
         </div>
       </Card>
 
-      <Card title="Revenue by category" sub="share of disclosed revenue">
+      <Card title="Revenue by category" sub="share of disclosed revenue" accent="#6366f1">
         <Donut data={revByCat} centerValue={totalCr >= 1000 ? `₹${(totalCr / 1000).toFixed(0)}k` : `₹${totalCr}`} centerLabel="Cr total" unit=" Cr" />
       </Card>
 
-      <Card title="Data coverage" sub="how complete each supplier is">
-        <Donut data={coverage} centerValue={String(all.length)} centerLabel="suppliers" />
+      <Card title="Data coverage" sub="how complete each supplier is" accent="#059669">
+        <StackedMeter data={coverage} />
       </Card>
 
-      <Card title="Negotiation room" sub="based on EBITDA margin — where to push">
+      <Card title="Negotiation room" sub="based on EBITDA margin — where to push" accent="#f59e0b">
         <HBars data={room} valueLabel={(v) => String(v)} />
         <div className="mt-3 text-xs text-slate-400">High ≥20% · Medium 10–20% · Low &lt;10% EBITDA margin</div>
       </Card>
 
-      <Card title="Top negotiation targets" sub="fat-margin, high-revenue suppliers">
+      <Card title="Top negotiation targets" sub="fat-margin, high-revenue suppliers" accent="#0ea5e9">
         {targets.length === 0 ? (
           <div className="text-sm text-slate-400">No high-room suppliers with revenue yet.</div>
         ) : (
@@ -281,7 +281,7 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
         )}
       </Card>
 
-      <Card title="What we source" sub={`${RAW_MATERIALS.length} raw materials · ${PACKAGING.length} packaging components (client BOM)`} className="lg:col-span-3">
+      <Card title="What we source" sub={`${RAW_MATERIALS.length} raw materials · ${PACKAGING.length} packaging components (client BOM)`} className="lg:col-span-3" accent="#14b8a6">
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-teal-700">
@@ -476,23 +476,23 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-      <Card title="Top competitors by revenue" sub="latest disclosed · ₹ crore" className="lg:col-span-2">
+      <Card title="Top competitors by revenue" sub="latest disclosed · ₹ crore" className="lg:col-span-2" accent="#0d9488">
         <HBars data={topRev} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`)} onBar={pick} />
       </Card>
 
-      <Card title="Funding status" sub="where the field stands">
+      <Card title="Funding status" sub="where the field stands" accent="#6366f1">
         <Donut data={funding} centerValue={String(all.length)} centerLabel="brands" />
       </Card>
 
-      <Card title="Heaviest discounting" sub="avg discount % on Nykaa — a marketing-vs-liquidation signal">
+      <Card title="Heaviest discounting" sub="avg discount % on Nykaa — a marketing-vs-liquidation signal" accent="#f59e0b">
         <HBars data={discount} valueLabel={(v) => `${v}%`} onBar={pick} />
       </Card>
 
-      <Card title="Market traction" sub="total reviews (millions) — a sales-velocity proxy">
+      <Card title="Market traction" sub="total reviews (millions) — a sales-velocity proxy" accent="#0ea5e9">
         <HBars data={traction} valueLabel={(v) => `${v}m`} onBar={pick} />
       </Card>
 
-      <Card title="Customer ratings" sub="avg rating on Nykaa (out of 5)">
+      <Card title="Customer ratings" sub="avg rating on Nykaa (out of 5)" accent="#059669">
         {ratings.length === 0 ? (
           <div className="text-sm text-slate-400">No ratings captured yet.</div>
         ) : (
@@ -500,11 +500,11 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
         )}
       </Card>
 
-      <Card title="Category presence" sub="competitors active per category">
+      <Card title="Category presence" sub="competitors active per category" accent="#f43f5e">
         <HBars data={cats} valueLabel={(v) => String(v)} />
       </Card>
 
-      <Card title="Recent deals & events" sub="fundraises & acquisitions" className="lg:col-span-2">
+      <Card title="Recent deals & events" sub="fundraises & acquisitions" className="lg:col-span-2" accent="#8b5cf6">
         {events.length === 0 ? (
           <div className="text-sm text-slate-400">No material events tracked.</div>
         ) : (
@@ -544,11 +544,11 @@ function DeliveryView() {
       </section>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <Card title="Delhivery — revenue trend" sub="₹ crore · consolidated · FY14–FY25 (12 years)" className="lg:col-span-2">
-          <Columns data={revTrend} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k` : `₹${v}`)} />
+        <Card title="Delhivery — revenue trend" sub="₹ crore · consolidated · FY14–FY25 (12 years)" className="lg:col-span-2" accent="#0d9488">
+          <AreaLine data={revTrend} color="#0d9488" valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k` : `₹${v}`)} />
         </Card>
 
-        <Card title="Latest financials" sub={`FY ${d.latestFY}`}>
+        <Card title="Latest financials" sub={`FY ${d.latestFY}`} accent="#0d9488">
           <div className="grid grid-cols-2 gap-3">
             <Stat label="Revenue" value={crStr(cr(d.revenueINR))} />
             <Stat label="Net profit" value={crStr(cr(d.netProfitINR))} />
@@ -560,11 +560,11 @@ function DeliveryView() {
           </div>
         </Card>
 
-        <Card title="Delhivery — profit turnaround" sub="net profit / (loss), ₹ crore" className="lg:col-span-2">
+        <Card title="Delhivery — profit turnaround" sub="net profit / (loss), ₹ crore" className="lg:col-span-2" accent="#f43f5e">
           <Columns data={profitTrend} valueLabel={(v) => (v >= 0 ? `₹${v}` : `-₹${Math.abs(v)}`)} />
         </Card>
 
-        <Card title="Partner roster" sub="identified legal entities">
+        <Card title="Partner roster" sub="identified legal entities" accent="#6366f1">
           <ul className="space-y-2">
             {partners.map((p) => (
               <li key={p.brand} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 ring-1 ring-slate-200">
@@ -582,12 +582,12 @@ function DeliveryView() {
           </ul>
         </Card>
 
-        <Card title="Delhivery — receivables (DSO) trend" sub="days sales outstanding by fiscal year — the credit lever over time" className="lg:col-span-3">
-          <Columns data={dsoTrend} valueLabel={(v) => `${Math.round(v)}d`} height={130} />
+        <Card title="Delhivery — receivables (DSO) trend" sub="days sales outstanding by fiscal year — the credit lever over time" className="lg:col-span-3" accent="#0ea5e9">
+          <AreaLine data={dsoTrend} color="#0ea5e9" valueLabel={(v) => `${Math.round(v)}d`} height={140} />
         </Card>
 
-        <Card title="Delhivery — EBITDA margin trend" sub="% by fiscal year — the path from deep losses to profit" className="lg:col-span-3">
-          <Columns data={marginTrend} valueLabel={(v) => `${v}%`} height={150} />
+        <Card title="Delhivery — EBITDA margin trend" sub="% by fiscal year — the path from deep losses to profit" className="lg:col-span-3" accent="#059669">
+          <Columns data={marginTrend} valueLabel={(v) => `${v}%`} height={155} />
         </Card>
       </div>
 
