@@ -125,7 +125,7 @@ function SupplierView() {
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
-      <section className="grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
+      <section className="stagger grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
         <Kpi label="Suppliers tracked" value={String(kpis.tracked)} sub="RM · PM · Manufacturers" />
         <Kpi label="Data coverage" value={`${kpis.full} full`} sub={`${kpis.partial} partial · numbers pending`} tone="emerald" />
         <Kpi label="Revenue in view" value={crStr(kpis.revCr)} sub="sum of disclosed supplier revenue" tone="teal" />
@@ -239,7 +239,7 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
   const totalCr = Math.round(revByCat.reduce((s, d) => s + d.value, 0));
 
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+    <div className="stagger grid grid-cols-1 gap-4 lg:grid-cols-3">
       <Card title="Top suppliers by revenue" sub="latest disclosed · ₹ crore · colour = category" className="lg:col-span-2" accent="#0d9488">
         <HBars data={topRev} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} onBar={(l) => byName.get(l) && onSelect(byName.get(l)!)} />
         <div className="mt-4">
@@ -345,7 +345,7 @@ function CompetitorView() {
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
-      <section className="grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
+      <section className="stagger grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
         <Kpi label="Competitors tracked" value={String(kpis.tracked)} sub="across 5 BPC categories" />
         <Kpi label="Categories" value={String(kpis.cats)} sub="sunscreen · serums · wash · scrub · lotion" tone="teal" />
         <Kpi label="Revenue in view" value={crStr(kpis.revCr)} sub="sum of disclosed competitor revenue" />
@@ -475,7 +475,7 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
   const events = useMemo(() => all.filter((e) => e.competitor?.materialEvent).slice(0, 6), [all]);
 
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+    <div className="stagger grid grid-cols-1 gap-4 lg:grid-cols-3">
       <Card title="Top competitors by revenue" sub="latest disclosed · ₹ crore" className="lg:col-span-2" accent="#0d9488">
         <HBars data={topRev} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`)} onBar={pick} />
       </Card>
@@ -536,14 +536,14 @@ function DeliveryView() {
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
-      <section className="grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
+      <section className="stagger grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
         <Kpi label="Partners tracked" value={String(partners.length)} sub="last-mile & logistics" />
         <Kpi label="Publicly listed" value={String(partners.filter((p) => p.listed).length)} sub="rich financials available" tone="teal" />
         <Kpi label="Delhivery revenue" value={crStr(cr(d.revenueINR))} sub={`FY ${d.latestFY} · consolidated`} />
         <Kpi label="Delhivery DSO" value={`${Math.round(d.dso ?? 0)} d`} sub="days sales outstanding — the credit lever" tone="amber" />
       </section>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="stagger grid grid-cols-1 gap-4 lg:grid-cols-3">
         <Card title="Delhivery — revenue trend" sub="₹ crore · consolidated · FY14–FY25 (12 years)" className="lg:col-span-2" accent="#0d9488">
           <AreaLine data={revTrend} color="#0d9488" valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k` : `₹${v}`)} />
         </Card>
