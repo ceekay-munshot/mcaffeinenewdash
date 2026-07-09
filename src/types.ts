@@ -49,6 +49,15 @@ export interface ShelfData {
   scrapedAt: string | null;
 }
 
+export interface ResearchData {
+  overview: string | null;
+  products: string[];
+  leadership: string[];
+  ownership: string | null;
+  clients: string[];
+  news: string[];
+}
+
 export interface Entity {
   category: string;
   folder: string;
@@ -69,6 +78,7 @@ export interface Entity {
   probe?: ProbeData;
   competitor?: CompetitorData;
   shelf?: ShelfData;
+  research?: ResearchData;
 }
 
 export interface Dataset {

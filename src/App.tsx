@@ -6,6 +6,7 @@ import {
   COMPETITOR_CATEGORIES,
   type Entity,
   type CompetitorRow,
+  type ResearchData,
 } from "./types";
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom, ROOM_META, COVERAGE_META, type Room } from "./lib/health";
@@ -620,6 +621,8 @@ function SupplierDetail({ entity: e, onClose }: { entity: Entity; onClose: () =>
           Receivable/payable days, RoCE &amp; balance sheet come from Probe42 — not pulled for this company yet.
         </div>
       )}
+      {e.research && <ResearchSection r={e.research} />}
+
       {e.tracxnUrl && <TracxnLink url={e.tracxnUrl} />}
     </Drawer>
   );
@@ -691,12 +694,40 @@ function CompetitorDetail({ row: e, onClose }: { row: CompetitorRow; onClose: ()
         </div>
       ) : null}
 
+      {e.research && <ResearchSection r={e.research} />}
+
       {e.tracxnUrl && <TracxnLink url={e.tracxnUrl} />}
     </Drawer>
   );
 }
 
 /* -------------------------------------------------------- shared UI pieces */
+
+function ResearchSection({ r }: { r: ResearchData }) {
+  const List = ({ items }: { items: string[] }) => (
+    <ul className="space-y-1.5 text-sm text-slate-700">
+      {items.map((s, i) => (
+        <li key={i} className="flex gap-2"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-teal-400" />{s}</li>
+      ))}
+    </ul>
+  );
+  return (
+    <div className="mt-6 space-y-4">
+      <SectionLabel>Research</SectionLabel>
+      {r.overview && <p className="text-sm leading-relaxed text-slate-600">{r.overview}</p>}
+      {r.products.length > 0 && (<div><div className="mb-1 text-xs font-medium text-slate-500">Products &amp; capabilities</div><List items={r.products.slice(0, 6)} /></div>)}
+      {r.leadership.length > 0 && (<div><div className="mb-1 text-xs font-medium text-slate-500">Leadership</div><List items={r.leadership.slice(0, 5)} /></div>)}
+      {r.ownership && (<div><div className="mb-1 text-xs font-medium text-slate-500">Ownership &amp; financials</div><p className="text-sm leading-relaxed text-slate-600">{r.ownership}</p></div>)}
+      {r.clients.length > 0 && (
+        <div>
+          <div className="mb-1 text-xs font-medium text-slate-500">Notable clients</div>
+          <div className="flex flex-wrap gap-1.5">{r.clients.slice(0, 10).map((c, i) => (<span key={i} className="rounded-md bg-slate-100 px-2 py-0.5 text-xs text-slate-600">{c}</span>))}</div>
+        </div>
+      )}
+      {r.news.length > 0 && (<div><div className="mb-1 text-xs font-medium text-slate-500">Recent news</div><List items={r.news.slice(0, 5)} /></div>)}
+    </div>
+  );
+}
 
 function Toolbar({ cats, cat, setCat, count, query, setQuery, sortValue, setSort, sortOptions }: {
   cats: string[]; cat: string; setCat: (c: string) => void; count: (c: string) => number;

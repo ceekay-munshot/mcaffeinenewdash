@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T17:40:40.668Z",
+  "generatedAt": "2026-07-09T03:59:42.902Z",
   "count": 73,
   "entities": [
     {
@@ -61,6 +61,29 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T16:37:41.159Z"
+      },
+      "research": {
+        "overview": "Cetaphil is a dermatologist-recommended skincare brand originally developed in 1947 in Fort Worth, Texas, USA. It began as a pharmacist-formulated gentle cleanser and has since expanded into a full range of cleansers, m…",
+        "products": [
+          "Cetaphil Moisturising Lotion (the flagship body/face lotion for dry to normal, sensitive skin) - available in India in 100ml/118ml, 200ml, 236ml, and 473ml pack sizes; enriched with niacinamide and, per newer SKUs, avoc…",
+          "Cetaphil PRO (Dry, Itch-Prone Skin) Moisturising Body Lotion / Body Moisturiser - 295ml pack, positioned for eczema-prone/very dry, itchy skin, part of the PRO/RestoraDerm dermatology-adjacent range",
+          "Cetaphil PRO RestoraDerm Eczema Moisturizer - specialized eczema-focused body moisturizer",
+          "Cetaphil Baby Daily Lotion (with Organic Calendula) - baby body lotion line, sold in 200ml/400ml sizes",
+          "Cetaphil Optimal Hydration Replenishing Night Cream and Skin Activator Hydrating & Firming line (newer face/body-adjacent moisturizer additions, launched 2025) - while primarily facial, these extend the moisturizer fran…",
+          "Core product architecture on cetaphil.in groups all moisturizers (cream, gel cream, lotion, serums, SPF) under 'Moisturizers' with sub-lines including Core Moisturisers, Restoraderm, Healthy Radiance, Dryness Control, a…",
+          "Key formulation ingredients across the body lotion range: niacinamide, glycerin, panthenol, avocado oil, ceramides/lipid-replenishing complex (PRO line); free from soap, parabens (post-2021 reformulation) and fragrance…"
+        ],
+        "leadership": [],
+        "ownership": "Cetaphil is owned by Galderma S.A., a Swiss dermatology company headquartered in Zug, Switzerland. Galderma was founded in 1981 as a joint venture between L'Oreal and Nestle; Nestle became sole owner in 2014 (buying out…",
+        "clients": [],
+        "news": [
+          "September 18, 2025: Galderma launched a new 'Skin Activator Hydrating & Firming' line under Cetaphil, described as a transformative expansion of the brand into new skincare segments, done in partnership with a celebrity…",
+          "August 25, 2025: Galderma introduced 'Cetaphil Nourishing Oil to Foam Cleanser', a new hydrating cleansing format for sensitive skin (global launch, covered by PR Newswire and Galderma's own newsroom)",
+          "March 9, 2026: Galderma introduced Cetaphil AM/PM Antioxidant Serums, co-developed with dermatologists and clinically tested for tolerability on sensitive skin (per Business Wire India)",
+          "Cetaphil India ran a 'Dermacon 2026' dermatologist-engagement campaign/partnership (per Cetaphil India's Instagram), reinforcing its 'dermatologist recommended' positioning at India's dermatology conference circuit",
+          "Galderma India leadership (per an April 2025 Executive Forecast interview) reaffirmed Cetaphil's status as India's top dermatologist-prescribed brand and highlighted Galderma's 25-year presence and 41+ years of global d…",
+          "Late 2025: Galderma H2 India Business Meet featured a large-scale launch event for Cetaphil Baby and Skin Activator (SA) product lines, per Instagram coverage (boh.india)"
+        ]
       }
     },
     {
@@ -107,6 +130,31 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 5
+      },
+      "research": {
+        "overview": "Venusia is a dermatology-derived skincare brand owned by Dr. Reddy's Laboratories, one of India's largest pharmaceutical companies (headquartered in Hyderabad, Telangana; NSE: DRREDDY, BSE: 500124, NYSE: RDY). Per Dr. R…",
+        "products": [
+          "Venusia Max Intensive Moisturizing Lotion - the flagship body lotion, marketed as dermatologist-recommended for Normal to Dry Skin, sold in multiple sizes including 300g and 500g; contains shea butter, mango butter, alo…",
+          "Venusia Max Intensive Moisturizing Cream - companion cream to the Max lotion, for dry to very dry skin, clinically claimed to provide up to 24 hours of moisturization; sold in 150g and other sizes",
+          "Venusia Moisturizing Cream/Lotion with Aloe Vera, Vitamin E & Squalene - the original/core Venusia line (non-Max), sold in 100g/100ml and 200ml sizes",
+          "Venusia Derm Moisturizing Cream - enriched with 4 natural butters, marketed as clinically proven to hydrate/soften dry-skin conditions, for face & body, 75g",
+          "Venusia Baby Intensive Moisturizing Lotion / Cream - baby-specific line with cocoa, aloe, mango and shea butters, 300g (lotion) and 75g (cream)",
+          "Venusia Acne Lotion - 75g, targeted at acne-prone skin",
+          "Venusia Ceraplus Cream and Lotion - newer ceramide-based line (5 essential ceramides) with oat oil, oat extract and hyaluronic acid, fragrance-free, for barrier repair on dry skin; cream 100g, lotion 100ml",
+          "Venusia Tinted Sunscreen SPF 115 and Venusia Water Based / Mineral Sunscreen SPF 65 - newer extensions into sun care, 50g packs",
+          "Venusia Moisturizing Bathing Bar (75g) - soap/syndet bar bundled with lotions in combo packs",
+          "Key ingredients across the range: shea butter, mango butter, cocoa butter, aloe vera, vitamin E, squalene, ceramides, hyaluronic acid, oat extract; formulas emphasize paraben-free, non-irritant, hypoallergenic, non-come…"
+        ],
+        "leadership": [],
+        "ownership": "Venusia is owned and marketed by Dr. Reddy's Laboratories Ltd., a major Indian multinational pharmaceutical company founded in 1984 by Kallam Anji Reddy, headquartered in Hyderabad, Telangana, with U.S. headquarters in…",
+        "clients": [],
+        "news": [
+          "Dr. Reddy's continues to expand the Venusia range into adjacent categories beyond core moisturizers, including sunscreens (Venusia Tinted Sunscreen SPF 115, Venusia Water Based/Mineral Sunscreen SPF 65) and a ceramide-b…",
+          "Dr. Reddy's Laboratories has publicly referenced Venusia (via Instagram/Facebook posts, most recently reported activity within the last month at the time of this research) as a case study in 'building big brands in Indi…",
+          "Social media and influencer/dermatologist endorsement activity continues actively on Instagram (e.g., actor Aindrita Ray promoting Venusia Max as the 'number one dermatologist recommended moisturizer' in sponsored conte…",
+          "Reddit and consumer discussion (r/IndianSkincareAddicts) shows continued strong dermatologist-prescription-driven demand for Venusia Max, including newer format extensions like a syndet soap bar",
+          "No major funding, M&A, or restructuring events specific to Venusia were found in 2024-2026; it remains a wholly owned, organically developed brand within Dr. Reddy's Consumer Health division"
+        ]
       }
     },
     {
@@ -244,6 +292,34 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T16:53:30.555Z"
+      },
+      "research": {
+        "overview": "Plum (Plum Goodness) is an Indian D2C vegan beauty and personal care brand founded in 2013 by Shankar Prasad, an IIT Bombay chemical engineering graduate who spent 8 years at Hindustan Unilever Limited (HUL) before star…",
+        "products": [
+          "BodyLovin' by Plum -- Plum's dedicated body lotion sub-brand/range, with 28+ SKUs spanning lotions, body washes, mists and gift sets, sold mostly in 400ml (some 200ml) bottles.",
+          "Vanilla Caramello Body Lotion (400ml/200ml) -- best-seller, vanilla/almond/heliotrope + salted caramel/pistachio/jasmine + sandalwood fragrance layers; contains Cocoa Butter for deep moisturization; MRP ~INR 475 (400ml)…",
+          "Marshmallow Melt Body Lotion (400ml) -- Shea Butter + Vitamin B5, 'marshmallow-cocoa' fragrance, non-greasy; MRP ~INR 495.",
+          "Oh So Pistachio Body Lotion (400ml) -- pistachio/vanilla/hazelnut gel-cream with Aloe Vera, Vitamin E and B5; MRP ~INR 495.",
+          "Hawaiian Rumba Body Lotion (400ml) -- new launch; MRP ~INR 525.",
+          "Boardroom In Bora Bora Body Lotion (400ml) -- new launch; MRP ~INR 495.",
+          "Lily Miss Sunshine Sunscreen Body Lotion SPF 35 PA+++ (200ml) -- sunscreen + moisturizer hybrid; MRP ~INR 425.",
+          "Vanilla Vibes Body Lotion (400ml) -- new launch; MRP ~INR 545.",
+          "Petals On The Rocks Body Lotion (400ml) -- new launch; MRP ~INR 495.",
+          "Matcha, But Disco Milky Body Lotion (400ml) -- new launch; MRP ~INR 495.",
+          "Hazelnut Eclair Body Lotion (400ml) -- MRP ~INR 495.",
+          "Tropic Of Discussion / Tropic Of Tropics Body Lotion (400ml) -- new launch; MRP ~INR 495."
+        ],
+        "leadership": [],
+        "ownership": "Plum is owned and operated by Pureplay Skin Sciences (India) Pvt Ltd (also referred to as Pureplay Skin Sciences Ltd in some financial filings), founded in 2013 by Shankar Prasad (Founder & CEO). The company also owns t…",
+        "clients": [],
+        "news": [
+          "April 2026: Plum partnered with actor Kalyani Priyadarshan as a new face to highlight its Niacinamide and Rice Water product range (ET BrandEquity, Campaign India, 23 Apr 2026).",
+          "2026: Plum marked its 12th anniversary since founding (2013) with a campaign titled 'Dozen it feel great!' (Mediabrief).",
+          "April 2026: Fortune India profiled Plum as pointing to a 'glowing future' amid what it called Indian skincare's 'golden era' (Fortune India, 22 Apr 2026).",
+          "2026: Plum was the official skincare partner for the Mumbai Indians IPL franchise in the 2026 season, with an in-house case study on the Finnet-led IPL campaign shared via Plum's Instagram.",
+          "June 2026: Plum BodyLovin' and Myntra Beauty rolled out a 'Summer On' collaborative activation/campaign for the body lotion range (Adgully, 1 Jun 2026).",
+          "September 2025: Entrackr reported Plum (Pureplay Skin Sciences) achieved a turnaround to profitability in FY25 with revenue growth of ~23% to ~INR 402 crore."
+        ]
       }
     },
     {
@@ -376,6 +452,28 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T16:54:31.431Z"
+      },
+      "research": {
+        "overview": "WishCare (mywishcare.com) is a Kolkata-based Indian D2C skincare and haircare brand, legally operated by Rabiko Lifestyle Private Limited. It was co-founded by siblings Stuti Kothari, Ankit Kothari, and Ayush Kothari. F…",
+        "products": [
+          "WishCare Body Care range includes several targeted body lotions (200ml format), consistently priced at MRP Rs 495-499 with a common discounted price of Rs 396 (using code WISH25):",
+          "AHA + BHA Body Lotion -- 10% AHA (glycolic + lactic acid) + 1% BHA; targets body tanning, acne, keratosis pilaris and rough/bumpy skin ('chicken skin'); marketed as pregnancy-safe, suitable for all skin types, light-wei…",
+          "Multi Vitamin Brightening Body Lotion -- 5% Vitamin C + 5% Niacinamide; brightens skin tone and treats body pigmentation on knees, elbows, arms, legs; light-weight serum-infused, non-sticky; ~4.6/5 rating (94+ reviews);…",
+          "Collagen 1% Retinol Body Lotion -- 1% collagen-boosting retinol with ceramides; targeted at delaying signs of aging and lifting 'saggy' body skin; light-weight serum-infused; ~4.6/5 rating (58+ reviews); MRP Rs 495 (Rs…",
+          "SPF 50 Sunscreen Body Lotion PA+++ -- broad-spectrum body sunscreen with ceramides; prevents tanning and fades body pigmentation; light-weight, non-sticky; ~4.8/5 rating (1,000+ reviews, WishCare's most-reviewed body pr…",
+          "Bodycare Pigmentation Duo -- combo of SPF50 Sunscreen Body Lotion + Underarm Roll-On deodorant; targets pigmentation and odour; priced Rs 629 (regular Rs 898).",
+          "Common ingredient/formulation themes across the body lotion range: active-driven 'serum-infused moisturiser' format (positioning body lotions closer to treatment serums than basic moisturizers), use of AHA/BHA exfoliant…"
+        ],
+        "leadership": [],
+        "ownership": "WishCare's legal entity is Rabiko Lifestyle Private Limited, headquartered in Kolkata, West Bengal. Founders/Co-Founders: Stuti Kothari, Ankit Kothari, and Ayush Kothari (siblings). Key institutional backer: Unilever Ve…",
+        "clients": [],
+        "news": [
+          "June 2025: WishCare announced it crossed Rs 200 crore in revenue for FY 2024-25, marking 10X growth in two years, and stated ambitions to target global beauty markets (Mediabrief, Global Indian Alpha, Indian Startup New…",
+          "November 2023: WishCare raised its first institutional funding round -- $2.4 million (~Rs 20 crore) Series A led by Unilever Ventures (YourStory, 8 Nov 2023).",
+          "WishCare continues to expand its 'Body Care' line with active-ingredient body lotions (AHA+BHA, Vitamin C/Niacinamide brightening, Retinol/Collagen anti-aging, SPF50 sunscreen lotion) as part of a broader 'Science Forwa…",
+          "WishCare has expanded distribution across Nykaa, Myntra, Amazon.in and Blinkit with dedicated brand storefronts, indicating an actively growing omni-channel/quick-commerce push beyond its D2C website.",
+          "No major celebrity endorsement or large-scale ad campaign specific to WishCare was identified in this research window (2024-2026); the brand's growth narrative in press has centered on the founder story (Stuti Kothari's…"
+        ]
       }
     },
     {
@@ -437,6 +535,26 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T16:55:09.168Z"
+      },
+      "research": {
+        "overview": "Be Bodywise (bebodywise.com) is a women's health & wellness D2C brand founded in 2021, positioned as a 'telehealth platform for women's health & wellness'. It is one of three consumer brands (alongside Man Matters and L…",
+        "products": [
+          "1% Salicylic Acid Body Wash (250ml) -- Rs 329, for body acne & bumps",
+          "1% Salicylic Ceramide Body Wash (250ml) -- Rs 549, exfoliation & skin-barrier care",
+          "Triple Milk Deep Hydrating Body Wash (250ml) -- Rs 549, for dry/dehydrated skin (contains urea)",
+          "20% Urea Lotion (300ml) -- Rs 549 and 20%/30% Urea Foot Roll-Ons -- Rs 399-549, for very dry/cracked skin",
+          "De-Tan SPF 50+ Body Sunscreen Lotion (175ml) -- Rs 549",
+          "4% AHA BHA Underarm Roll-On -- Rs 329, for underarm odour/pigmentation",
+          "Anti-Stretch Mark Serum Roll-On (50ml) -- Rs 599",
+          "No dedicated granular 'body scrub' SKU identified in the current product catalogue -- exfoliation need is met via salicylic-acid/ceramide body washes rather than a physical scrub."
+        ],
+        "leadership": [],
+        "ownership": "Wholly built and operated by Mosaic Wellness Private Limited (CIN U52609MH2019PTC328779), a Mumbai/Thane-based VC-backed D2C wellness startup founded by Revant Bhate (CEO) and Dhyanesh Shah. Mosaic Wellness also owns Ma…",
+        "clients": [],
+        "news": [
+          "Be Bodywise continues to scale its 'BeWise Kits' bundled regimen model and mobile app (3M+ downloads, 4.9 rating) as of 2025-2026 data pulls.",
+          "Mosaic Wellness has been reported in Indian startup media (Entrackr/Inc42/YourStory) as one of the more durable multi-brand D2C wellness houses, though this specific research pass did not independently verify a fresh 20…"
+        ]
       }
     },
     {
@@ -498,6 +616,28 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T16:55:36.696Z"
+      },
+      "research": {
+        "overview": "Dove is a global personal care brand owned by Unilever, launched in the US in 1957 (originally the 'Dove Beauty Bar', a synthetic-detergent cleansing bar designed to avoid bathtub-ring residue and marketed on mildness/n…",
+        "products": [
+          "Dove Glow Recharge Body Wash with 3% Brightening Serum + Vitamin C -- Rs 399",
+          "Dove Acne Clear Body Wash with 1% Salicylic Acid -- Rs 399",
+          "Dove Exfoliate Away Body Wash with 4% Refining Serum with AHA -- Rs 399 (closest to a 'body scrub' proposition in the current India range -- an exfoliating AHA body wash rather than a granular scrub)",
+          "Dove Exfoliating Body Wash with Triple Hydration Serum -- Rs 235 (300ml) / larger 825ml pack available",
+          "Dove Nourishing Body Wash with Triple Hydration Serum -- Rs 195 (300ml)",
+          "Dove Refreshing Body Wash with Cucumber & Green Tea Scent -- Rs 235",
+          "Body Love range (body lotions, body butters, cooling gel creme) -- Rs 230-965 depending on size/combo",
+          "No dedicated standalone 'body scrub' (granular) SKU identified on dove-india.com at time of research -- exfoliation is delivered via AHA/salicylic-acid body washes rather than a scrub format."
+        ],
+        "leadership": [],
+        "ownership": "Owned globally by Unilever plc/NV (London-headquartered FMCG major). In India, Unilever's local operating entity is Hindustan Unilever Limited (HUL, NSE: HINDUNILVR), one of India's largest listed FMCG companies. This i…",
+        "clients": [],
+        "news": [
+          "2025: Unilever donated $1 million in Dove products to Boys & Girls Clubs of Dane County, Wisconsin (Dec 2025), part of ongoing CSR/self-esteem programming.",
+          "2023-2025: Greenpeace's 'Real beauty, real harm' campaign has criticized Dove/Unilever's plastic packaging footprint in India, Indonesia and the Philippines.",
+          "Aug 2023: Kantar's Brand Inclusion Index (UK) rated Dove among the most inclusive personal-care brands.",
+          "Ongoing: Dove continues expanding its 'Body Love' body-care sub-range and AHA/salicylic-acid exfoliating body washes in India, indicating continued investment in the body wash/exfoliation segment relevant to mCaffeine's…"
+        ]
       }
     },
     {
@@ -559,6 +699,21 @@
           "channel": "amazon"
         },
         "scrapedAt": "2026-07-08T17:30:33.646Z"
+      },
+      "research": {
+        "overview": "Chemist at Play is a science-led, dermatologist/'chemist'-positioned Indian D2C skincare and body-care brand built by Innovist (legal entity: Onesto Labs Private Limited), founded 2018 by Rohit Chawla and Sifat Khurana.…",
+        "products": [
+          "Per Innovist's Tracxn company description, the group's skincare/body-care range includes cleansers, moisturizers, serums, and body washes formulated for acne, pigmentation, and exfoliation concerns.",
+          "Live product-catalogue verification for chemistatplay.com/body-wash could not be completed in this session (site returned connection/frame errors on repeated attempts); pricing and specific SKU names for Chemist at Play…"
+        ],
+        "leadership": [],
+        "ownership": "Chemist at Play is owned and operated by Innovist, a Gurugram-headquartered D2C personal-care house; the registered legal entity is Onesto Labs Private Limited (CIN U74999DL2018PTC340749). As of June 2026, L'Oreal annou…",
+        "clients": [],
+        "news": [
+          "18 June 2026: L'Oreal announced acquisition of a majority stake in Innovist, explicitly citing the goal of adding 'high-growth, science-led local personal care brands tailored to Indian consumers' -- this is the single…",
+          "April 2025: Innovist raised a USD 5.7M (~Rs 136 crore) Series B round led by ICICI Venture, per Tracxn and Fashion Network coverage.",
+          "2023-2024: Innovist/Onesto Labs continued scaling its Series A (2023, led by ASVF, ~USD 7M) to expand its portfolio of science-led personal care brands, of which Chemist at Play is one."
+        ]
       }
     },
     {
@@ -620,6 +775,26 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T16:55:09.168Z"
+      },
+      "research": {
+        "overview": "Be Bodywise (bebodywise.com) is a women's health & wellness D2C brand founded in 2021, positioned as a 'telehealth platform for women's health & wellness'. It is one of three consumer brands (alongside Man Matters and L…",
+        "products": [
+          "1% Salicylic Acid Body Wash (250ml) -- Rs 329, for body acne & bumps",
+          "1% Salicylic Ceramide Body Wash (250ml) -- Rs 549, exfoliation & skin-barrier care",
+          "Triple Milk Deep Hydrating Body Wash (250ml) -- Rs 549, for dry/dehydrated skin (contains urea)",
+          "20% Urea Lotion (300ml) -- Rs 549 and 20%/30% Urea Foot Roll-Ons -- Rs 399-549, for very dry/cracked skin",
+          "De-Tan SPF 50+ Body Sunscreen Lotion (175ml) -- Rs 549",
+          "4% AHA BHA Underarm Roll-On -- Rs 329, for underarm odour/pigmentation",
+          "Anti-Stretch Mark Serum Roll-On (50ml) -- Rs 599",
+          "No dedicated granular 'body scrub' SKU identified in the current product catalogue -- exfoliation need is met via salicylic-acid/ceramide body washes rather than a physical scrub."
+        ],
+        "leadership": [],
+        "ownership": "Wholly built and operated by Mosaic Wellness Private Limited (CIN U52609MH2019PTC328779), a Mumbai/Thane-based VC-backed D2C wellness startup founded by Revant Bhate (CEO) and Dhyanesh Shah. Mosaic Wellness also owns Ma…",
+        "clients": [],
+        "news": [
+          "Be Bodywise continues to scale its 'BeWise Kits' bundled regimen model and mobile app (3M+ downloads, 4.9 rating) as of 2025-2026 data pulls.",
+          "Mosaic Wellness has been reported in Indian startup media (Entrackr/Inc42/YourStory) as one of the more durable multi-brand D2C wellness houses, though this specific research pass did not independently verify a fresh 20…"
+        ]
       }
     },
     {
@@ -681,6 +856,28 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T16:55:36.696Z"
+      },
+      "research": {
+        "overview": "Dove is a global personal care brand owned by Unilever, launched in the US in 1957 (originally the 'Dove Beauty Bar', a synthetic-detergent cleansing bar designed to avoid bathtub-ring residue and marketed on mildness/n…",
+        "products": [
+          "Dove Glow Recharge Body Wash with 3% Brightening Serum + Vitamin C -- Rs 399",
+          "Dove Acne Clear Body Wash with 1% Salicylic Acid -- Rs 399",
+          "Dove Exfoliate Away Body Wash with 4% Refining Serum with AHA -- Rs 399 (closest to a 'body scrub' proposition in the current India range -- an exfoliating AHA body wash rather than a granular scrub)",
+          "Dove Exfoliating Body Wash with Triple Hydration Serum -- Rs 235 (300ml) / larger 825ml pack available",
+          "Dove Nourishing Body Wash with Triple Hydration Serum -- Rs 195 (300ml)",
+          "Dove Refreshing Body Wash with Cucumber & Green Tea Scent -- Rs 235",
+          "Body Love range (body lotions, body butters, cooling gel creme) -- Rs 230-965 depending on size/combo",
+          "No dedicated standalone 'body scrub' (granular) SKU identified on dove-india.com at time of research -- exfoliation is delivered via AHA/salicylic-acid body washes rather than a scrub format."
+        ],
+        "leadership": [],
+        "ownership": "Owned globally by Unilever plc/NV (London-headquartered FMCG major). In India, Unilever's local operating entity is Hindustan Unilever Limited (HUL, NSE: HINDUNILVR), one of India's largest listed FMCG companies. This i…",
+        "clients": [],
+        "news": [
+          "2025: Unilever donated $1 million in Dove products to Boys & Girls Clubs of Dane County, Wisconsin (Dec 2025), part of ongoing CSR/self-esteem programming.",
+          "2023-2025: Greenpeace's 'Real beauty, real harm' campaign has criticized Dove/Unilever's plastic packaging footprint in India, Indonesia and the Philippines.",
+          "Aug 2023: Kantar's Brand Inclusion Index (UK) rated Dove among the most inclusive personal-care brands.",
+          "Ongoing: Dove continues expanding its 'Body Love' body-care sub-range and AHA/salicylic-acid exfoliating body washes in India, indicating continued investment in the body wash/exfoliation segment relevant to mCaffeine's…"
+        ]
       }
     },
     {
@@ -864,6 +1061,21 @@
           "channel": "amazon"
         },
         "scrapedAt": "2026-07-08T17:30:33.646Z"
+      },
+      "research": {
+        "overview": "Chemist at Play is a science-led, dermatologist/'chemist'-positioned Indian D2C skincare and body-care brand built by Innovist (legal entity: Onesto Labs Private Limited), founded 2018 by Rohit Chawla and Sifat Khurana.…",
+        "products": [
+          "Per Innovist's Tracxn company description, the group's skincare/body-care range includes cleansers, moisturizers, serums, and body washes formulated for acne, pigmentation, and exfoliation concerns.",
+          "Live product-catalogue verification for chemistatplay.com/body-wash could not be completed in this session (site returned connection/frame errors on repeated attempts); pricing and specific SKU names for Chemist at Play…"
+        ],
+        "leadership": [],
+        "ownership": "Chemist at Play is owned and operated by Innovist, a Gurugram-headquartered D2C personal-care house; the registered legal entity is Onesto Labs Private Limited (CIN U74999DL2018PTC340749). As of June 2026, L'Oreal annou…",
+        "clients": [],
+        "news": [
+          "18 June 2026: L'Oreal announced acquisition of a majority stake in Innovist, explicitly citing the goal of adding 'high-growth, science-led local personal care brands tailored to Indian consumers' -- this is the single…",
+          "April 2025: Innovist raised a USD 5.7M (~Rs 136 crore) Series B round led by ICICI Venture, per Tracxn and Fashion Network coverage.",
+          "2023-2024: Innovist/Onesto Labs continued scaling its Series A (2023, led by ASVF, ~USD 7M) to expand its portfolio of science-led personal care brands, of which Chemist at Play is one."
+        ]
       }
     },
     {
@@ -1107,6 +1319,26 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T17:03:26.769Z"
+      },
+      "research": {
+        "overview": "Pilgrim is a Mumbai-based D2C beauty and personal care brand founded in 2019 by Anurag Kedia (Co-Founder & CEO, IIT/IIM alum) and Gagan Deep Makker (Co-Founder). The brand's positioning is 'global beauty secrets, clean-…",
+        "products": [
+          "10% Vitamin C Face Serum (30ml, ~INR 645, rated 4.6/5.4k reviews) — '#1 in Skincare' bestseller; glowing, brighter skin claim in 5 days",
+          "10% Niacinamide Face Serum (30ml, ~INR 649, rated 4.6/5k reviews) — '#2 in Skincare'; fades acne marks & spots",
+          "10% Vitamin C Face Serum Roll-On (25ml, ~INR 695, rated 4.7) — roll-on format variant",
+          "5% Vitamin C Brightening Serum Sunscreen SPF 50+ (50ml, ~INR 495) — hybrid serum-sunscreen new launch, protects from sun damage & tanning",
+          "5% Niacinamide Hydra Glow Gel Sunscreen SPF 50+ (50ml, ~INR 495) — hybrid serum-sunscreen new launch, hydrated glow",
+          "Vitamin C Glow Power Duo (2-unit combo, ~INR 895) and Vitamin C Brightening Trio (3-unit, ~INR 1,390) combo sets"
+        ],
+        "leadership": [],
+        "ownership": "Pilgrim's India operations run under Heavenly Secrets Private Limited (CIN U52609MH2019PTC329867), incorporated 28 Aug 2019, led by Co-Founder & CEO Anurag Kedia and Co-Founder Gagan Deep Makker. Tracxn also links a UK…",
+        "clients": [],
+        "news": [
+          "Mar 2025 (Entrackr, MarcaMoney, Dealroom): Pilgrim raised ~INR 200 Cr (mix of primary + secondary) from Narotam Sekhsaria Family Office and existing investors at ~INR 3,000 Cr pre-money valuation; funds for offline expa…",
+          "Aug 2024 (Entrackr 'Exclusive'): Pilgrim raised $9M with a 3x valuation surge, led by Fireside Ventures and Vertex Ventures.",
+          "Jan 2026 (Inc42/Startup Pedia coverage): Pilgrim's FY25 operating revenue reported up 105% YoY to INR 408.3 Cr from INR 198.7 Cr in FY24.",
+          "Founder profile: Anurag Kedia featured on The Founder Thesis Podcast (Apr 2025) discussing building a 'borderless D2C beauty brand' bringing global beauty secrets to India."
+        ]
       }
     },
     {
@@ -1172,6 +1404,29 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T16:53:30.555Z"
+      },
+      "research": {
+        "overview": "Plum (plumgoodness.com) is one of India's pioneer Internet-first vegan beauty brands, founded in 2013 by Shankar Prasad Sethuram (Co-Founder & CEO) and Prasanya Chennapatnam (Co-Founder), operating under parent holding…",
+        "products": [
+          "10% Niacinamide & Rice Water Brightening Face Serum (30/50ml, ~INR 599–849, rated 4.4–4.5, 'Best Seller') — clear & bright skin",
+          "15% Vitamin C & Mandarin Glow Boost Serum (20/30ml, ~INR 790, rated 4.5/5,968 reviews, 'Best Seller') — glow boosting",
+          "10% Vitamin C & Calendula Barrier Boosting + Glow Serum (30ml, ~INR 649) — barrier-focused Vitamin C variant",
+          "Black Rice & 10% Niacinamide-TXA Night Clarity Jelly Serum (25ml, ~INR 649, 'New Launch') — night-time clarity jelly format",
+          "2% Alpha Arbutin & Hyaluronic Acid Tan Fading Face Serum (30ml, ~INR 599) — tan fading + hydration",
+          "2% Encapsulated Salicylic Acid Face Serum for Acne-Prone Skin (30ml, ~INR 599)",
+          "1% Retinol & Bakuchiol Face Serum for Ageing Skin (20/30ml, ~INR 790)",
+          "Bright Years Cell Renewal Serum for Mature Skin (30ml, ~INR 1,575) — premium mature-skin line",
+          "Cica & Hya-Betaine Vegan Mucin Face Essence (100ml, ~INR 799)",
+          "Bulgarian Rose & 2% Hyaluronic Acid Serum for Dry Skin (30ml, ~INR 599)"
+        ],
+        "leadership": [],
+        "ownership": "Plum operates under Pureplay Skin Sciences (India) Private Limited (CIN U74120MH2013PTC248969), incorporated 8 Oct 2013, based in Thane, Maharashtra. The same legal entity also owns sister brand Phy (thephylife.com), a…",
+        "clients": [],
+        "news": [
+          "Apr 2026 (Indian Retailer, Startup Pedia): Plum reported FY25 revenue of INR 419 Cr (+22.5% YoY from INR 341.7 Cr in FY24) and achieved profitability in FY25.",
+          "2026 (VCCircle): Reports that Plum (via Pureplay Skin Sciences) is planning a fresh fundraise to fuel offline retail expansion.",
+          "Historical: Plum's Series C ($35M, Mar 2022, led by A91 Partners) brought in Rashmika Mandanna as an angel/brand-aligned investor alongside existing backers Unilever Ventures and Faering Capital."
+        ]
       }
     },
     {
@@ -1236,6 +1491,32 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T17:04:03.522Z"
+      },
+      "research": {
+        "overview": "The Derma Co is an Indian dermatology-focused D2C skincare brand launched in 2020 by Honasa Consumer (the parent company of Mamaearth), founded by Varun Alagh and Ghazal Alagh. The brand positions itself as a 'derma-fir…",
+        "products": [
+          "10% Vitamin C Face Serum with 5% Niacinamide & Hyaluronic Acid — 30ml — Rs 558",
+          "10% Niacinamide Face Serum with 2% Zinc PCA — 30ml — Rs 515",
+          "2% Salicylic Acid Face Serum for Active Acne — 30ml — Rs 449",
+          "5% Niacinamide Daily Face Serum with Alpha Arbutin & Multivitamin — 30ml — Rs 449",
+          "Sali-Cinamide Anti-Acne Serum (2% Salicylic Acid + 5% Niacinamide) — 30ml — Rs 449",
+          "Pore Minimizing Face Serum (4% Niacinamide, 5% PHA, p-REFINYL) — 30ml — Rs 515",
+          "15% Vitamin C Face Serum (New Launch) — 30ml — Rs 687",
+          "0.3% Retinol Serum — 30ml — Rs 687",
+          "30% AHA + 2% BHA Peeling Solution — 30ml — Rs 515",
+          "2% Kojic Acid Face Serum with 1% Alpha Arbutin & Niacinamide — 30ml — Rs 449 (also sold as pack of 2)",
+          "1% Kojic + Arbutin Night Repair Face Serum-Gel — 50g — Rs 515",
+          "Total catalog: 77 SKUs listed under 'Face Serums' collection on thedermaco.com (as of July 2026), spanning pigmentation, acne, anti-aging and pore-care actives"
+        ],
+        "leadership": [],
+        "ownership": "The Derma Co is owned and operated by Honasa Consumer Limited (CIN L74999DL2016PLC306016), a publicly listed Indian FMCG/beauty company (NSE: HONASA) that completed its IPO in November 2023. Honasa's brand portfolio inc…",
+        "clients": [],
+        "news": [
+          "Sept 2025 (Financial Express): 'Honasa banks on Derma Co, Dr Sheth's to hit Rs 5,000 crore' — Derma Co crossed Rs 500 Cr revenue in FY25; Dr Sheth's reached Rs 150 Cr.",
+          "May 2026 (Economic Times/Moneycontrol): Honasa Consumer Q4 FY26 results — profit fell/rose amid mixed brand performance; Derma Co revenue reported to have doubled YoY in Q4 FY26 and continued expanding offline distribut…",
+          "FY25 (Moneycontrol): The Derma Co crossed Rs 100 crore in annualized revenue run rate (ARR) from offline channels as Honasa scales omni-channel presence.",
+          "Ongoing: Honasa continues to launch new product lines/collaborations under The Derma Co (e.g., dermatologist collaboration ranges, new actives-based launches noted in Q1 FY25 update)."
+        ]
       }
     },
     {
@@ -1393,6 +1674,33 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T17:31:52.871Z"
+      },
+      "research": {
+        "overview": "Dot & Key is an Indian D2C skincare brand founded in 2018 (Kolkata-based) by Anisha Agarwal Saraf and Suyash Saraf, focused on colorful, ingredient-led skincare (sunscreens, serums, moisturizers, cleansers) targeted pri…",
+        "products": [
+          "Vitamin C + E Sunscreen SPF 50+ PA++++ (New-Age UV Filters) — Bestseller — 50g/80g — Rs 505",
+          "Watermelon Cooling Sunscreen SPF 50+ PA++++ — Bestseller (oily/combination skin) — 50g/80g — Rs 505",
+          "Dragon Fruit Bounce Gel Sunscreen SPF 50+ PA++++ — Just In (oily/combination skin) — 50g — Rs 378",
+          "Strawberry Dew Tinted Sunscreen SPF 50+ PA++++ — Bestseller, tinted — Rs 466",
+          "Barrier Repair Sunscreen SPF 50+ PA++++ — In-Vivo Tested — Top Pick — 50g/80g — Rs 505",
+          "Vitamin C + E 100% Mineral Sunscreen SPF 50+ PA++++ — In-Vivo Tested — Just In — 50g — Rs 551",
+          "Cica + Niacinamide Sunscreen SPF 50+ PA++++ — In-Vivo Tested, Trending (oily/acne-prone) — 50g/80g — Rs 378",
+          "Mango Detan Gel Sunscreen SPF 50+ PA++++ — In-Vivo Tested (oily/combination/normal) — 50g/80g — Rs 505",
+          "Strawberry Sunscreen Face Mist SPF 50+ PA+++ — In-Vivo Tested — 80ml — Rs 509",
+          "Strawberry Sunscreen Stick SPF 50+ PA++++ — In-Vivo Tested — 20g — Rs 505",
+          "Catalog uses fruit-themed naming (Watermelon, Dragon Fruit, Strawberry, Mango) as a differentiated brand identity"
+        ],
+        "leadership": [],
+        "ownership": "Dot & Key is majority owned by FSN E-Commerce Ventures Limited (Nykaa), which held approximately 90.04% of Dot & Key Wellness Limited as of 31 March 2025 (per MCA filings referenced in Tracxn). Nykaa initially acquired…",
+        "clients": [],
+        "news": [
+          "Oct 2021: Nykaa acquires majority (51%) stake in Dot & Key for an initial consideration; deal valued the brand at ~USD 25.7M (Times of India, Business Standard, LiveMint).",
+          "2022-2024: Nykaa incrementally raised its stake in Dot & Key to 90% (~Rs 265.3 Cr cumulative, per Upstox/Inc42), completing majority buyout by 2024.",
+          "Aug 2025: Nykaa's Integrated Annual Report 2024-25 highlights Dot & Key as its #1 owned skincare brand, alongside Earth Rhythm (clean beauty) as new investment focus.",
+          "Q1 FY26 (2025): Nykaa reports House of Nykaa brands GMV run-rate of Rs 2,700 Cr; Dot & Key crossed Rs 1,500 Cr GMV with high-teens EBITDA margin.",
+          "May 2026: Nykaa Q4 FY26 investor presentation states Dot & Key grew '13x+' FY23-FY26 and remains 'India's largest direct-to-consumer skincare brand'; overall Nykaa profit rose 4x YoY to Rs 79 Cr in Q4 FY26.",
+          "Nykaa also acquired Earth Rhythm around the same period (per thearcweb.com/storyboard18 reporting), continuing its skincare brand roll-up strategy alongside Dot & Key."
+        ]
       }
     },
     {
@@ -1458,6 +1766,24 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T17:00:30.769Z"
+      },
+      "research": {
+        "overview": "Foxtale is an Indian D2C skincare brand founded in 2021 by Romita Mazumdar (an alum of University of California, Los Angeles). It positions itself as a science-backed, dermatologist-recommended skincare brand for Indian…",
+        "products": [
+          "Glow Sunscreen SPF 50, In-Vivo Tested with PA++++ (50ml/80ml, ~INR 375) — celebrity-approved, prevents tan & boosts glow; uses Niacinamide + Vitamin C blend",
+          "Ice-Burst Cooling SPF 50 Matte Gel Sunscreen for Oily Skin, In-Vivo Tested (50g/80g, ~INR 399, rated 4.9) — no-menthol cooling, 8-hour photostable UV filter protection",
+          "SPF 70 Matte Finish Sunscreen for Oily Skin (~INR 495, rated 4.8) — Niacinamide, Provitamin B5 & Peptides, water-resistant, 8-hour oil-free protection",
+          "SPF 50 Tinted Fluid Sunscreen with Niacinamide (~INR 575, rated 4.8) — 'Most Recommended' tag; 6 shades, blurs pores, brightens skin, hybrid UV filter",
+          "SPF 70 Dewy Finish Sunscreen for Dry Skin (~INR 495, rated 4.8) — peptides + niacinamide, dewy finish, long-lasting protection"
+        ],
+        "leadership": [],
+        "ownership": "Foxtale operates under Foxtale Consumer Private Limited (CIN U24110MH2021PTC359914), founded and led by Romita Mazumdar as Founder & CEO. It is an independent VC-backed startup, not owned by a larger legacy FMCG parent.…",
+        "clients": [],
+        "news": [
+          "Jan 2025 (Forbes India, ET Now, Entrackr, Inc42-type coverage): Foxtale announced $30M Series C led by KOSÉ Corporation (Japan), with participation from existing investor Panthera Growth Partners; funds earmarked for R&…",
+          "Jun 2024: Foxtale raised $18M Series B (reported as ~INR 150 Cr) led by Panthera Growth Partners, per Entrackr coverage — used to fuel omni-channel and category expansion.",
+          "Coverage (Instagram/Yi Hyderabad, 2026): Company profiled as scaling from 0 to a claimed INR 200 Cr+ revenue brand in ~3 years without a legacy parent company backing it."
+        ]
       }
     },
     {
@@ -1605,6 +1931,30 @@
           "channel": "nykaa"
         },
         "scrapedAt": "2026-07-08T17:04:03.522Z"
+      },
+      "research": {
+        "overview": "The Derma Co is an Indian dermatology-focused D2C skincare brand launched in 2020 by Honasa Consumer (the parent company of Mamaearth), founded by Varun Alagh and Ghazal Alagh. The brand positions itself as a 'derma-fir…",
+        "products": [
+          "1% Hyaluronic Sunscreen Aqua Gel (SPF 50, PA++++) — In-Vivo Tested (ISO 24444:2019 certified) — 50g / 80g — Rs 424-487 (sale)",
+          "1% Hyaluronic Sunscreen Oil-Free Matte Gel (SPF 50, PA++++) — for oily/acne-prone skin — 50g — Rs 399",
+          "Pore Minimizing Sunscreen Gel (SPF 50, PA+++) — for open pores — 50g/80g — Rs 359-449",
+          "1% Hyaluronic Long Lasting Sunscreen (SPF 50, PA++++, up to 6-hr protection) — with Vitamin E — 50g — Rs 487",
+          "C-Cinamide Radiance Sunscreen Aqua Gel (SPF 50, PA++++) — with Vitamin C & Niacinamide — 50g — Rs 399",
+          "Ultra Matte Sunscreen Gel (SPF 60) — 50g — Rs 524",
+          "1% Hyaluronic Tinted Sunscreen Gel (SPF 60) — 50g — Rs 524",
+          "Hyaluronic Invisible Sunscreen Gel (SPF 50, PA+++) — no white cast — 50g — Rs 449",
+          "Multi-packs (Pack of 2) available across several SKUs at 20-32% discounts",
+          "Total catalog: 49 SKUs listed under 'Sunscreen for Men and Women' collection on thedermaco.com (as of July 2026)"
+        ],
+        "leadership": [],
+        "ownership": "The Derma Co is owned and operated by Honasa Consumer Limited (CIN L74999DL2016PLC306016), a publicly listed Indian FMCG/beauty company (NSE: HONASA) that completed its IPO in November 2023. Honasa's brand portfolio inc…",
+        "clients": [],
+        "news": [
+          "Sept 2025 (Financial Express): 'Honasa banks on Derma Co, Dr Sheth's to hit Rs 5,000 crore' — Derma Co crossed Rs 500 Cr revenue in FY25; Dr Sheth's reached Rs 150 Cr.",
+          "May 2026 (Economic Times/Moneycontrol): Honasa Consumer Q4 FY26 results — profit fell/rose amid mixed brand performance; Derma Co revenue reported to have doubled YoY in Q4 FY26 and continued expanding offline distribut…",
+          "FY25 (Moneycontrol): The Derma Co crossed Rs 100 crore in annualized revenue run rate (ARR) from offline channels as Honasa scales omni-channel presence.",
+          "Ongoing: Honasa continues to launch new product lines/collaborations under The Derma Co (e.g., dermatologist collaboration ranges, new actives-based launches noted in Q1 FY25 update)."
+        ]
       }
     },
     {
@@ -1836,6 +2186,27 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Aelius Parallel Holdings Pvt. Ltd. (APHL), operating under the brand 'Aelius Parallel', is a Gurgaon (Gurugram)-based end-to-end cosmetics manufacturer offering private label, white label, custom formulation, and cosmet…",
+        "products": [
+          "Categories: Skincare, Haircare, Bodycare",
+          "Services: Private Label, White Label, Custom Formulation Services, Cosmetics Packaging",
+          "Claims an FDA-approved manufacturing facility in Gurgaon with in-house R&D capabilities",
+          "States 1000+ unique commercialised formulations across 7+ years",
+          "Process pipeline described as: Consultation & Brief -> Formulation & R&D -> Testing & Compliance -> Packaging & Branding -> Manufacturing -> Delivery & Support"
+        ],
+        "leadership": [
+          "Sankalp (Saankalp) Chopra — Founder",
+          "Manisha Chopra — Co-founder/leadership (named on company website team page)"
+        ],
+        "ownership": "Unfunded/bootstrapped private company (per Tracxn). Legal entity: AELIUSPARALLEL HOLDINGS PRIVATE LIMITED (CIN U65929HR2018PTC074134). FY25 revenue ~INR 20 crore (INR 199,900,262.7 / USD ~2.36M), 29% one-year CAGR, net…",
+        "clients": [
+          "CONFIRMED mCaffeine relationship: mCaffeine's official 'Manufacturer Details' disclosure page (mcaffeine.com/pages/manufacturer-details) lists 'Aelius Parallel Holdings Pvt. Ltd., GP-55, Sector 18, Gurugram, 122015' as…"
+        ],
+        "news": [
+          "Not publicly available — no specific recent news articles or press coverage identified in this research pass."
+        ]
       }
     },
     {
@@ -1869,6 +2240,29 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 5
+      },
+      "research": {
+        "overview": "ALLMASK (legal entity Jainam Invamed Pvt Ltd) is a Mumbai-based private-label and contract manufacturer specializing in facial sheet masks, body masks, cosmetic pads, cosmetic wipes, and related skincare accessories. Th…",
+        "products": [
+          "Facial sheet masks (dry & wet), body masks, hair sheet masks, hair steam masks",
+          "Cosmetic pads and puffs (makeup/nail paint removal), cosmetic wipes, super mini wipes",
+          "Nose strips (incl. 3-in-1), wax strips, hydrogel masks (incl. hydrogel lip mask), bubble sheet masks, acne/pimple patches",
+          "Collagen under-eye foam pads, collagen film, jelly masks, modeling masks, oil-absorbing films, liquid eyeliner pens, makeup blenders",
+          "Services: OEM, private labeling, ODM, product formulation, filling, design, and packaging",
+          "CERTIFICATIONS CONFIRMED: GMP & WHO certified; ISO 9001:2015 and ISO 13485:2016 certified (per company blog content and third-party directory confirmation)"
+        ],
+        "leadership": [
+          "Not publicly disclosed by name on the company website (no named founders/directors found in public sources). Contact: sales@allmask.in."
+        ],
+        "ownership": "Unfunded (no external equity funding found on Tracxn or in press). Per Tracxn: 11-50 employees (as of 01/07/2024); Revenue INR ~118.6 crore / USD ~14.0M (FY ending 31/03/2025, very high 1-year CAGR of 90%); Net Profit I…",
+        "clients": [
+          "STRONG, VERIFIED mCaffeine LINK: allmask.co explicitly displays an 'ALLMASK x Mcaffeine – Official Brand Partner Logo,' and industry press (Contract Manufacturing & Private Label Expo / CMPL Expo materials) describes AL…"
+        ],
+        "news": [
+          "ALLMASK has been a recurring Platinum Partner/exhibitor at the Contract Manufacturing & Private Label (CMPL) Expo in Mumbai (multiple years including a recent CMPL Expo Mumbai 2026 mention), where it is featured alongsi…",
+          "mCaffeine co-founder/Chief Supply Officer Saurabh Singhal (mCaffeine and Hyphen/Pep Brands) has appeared at CMPL Expo events, reinforcing the mCaffeine-contract manufacturing ecosystem connection, though this specific a…",
+          "No other recent (2025-2026) financial or corporate news specific to Jainam Invamed / ALLMASK was found."
+        ]
       }
     },
     {
@@ -1902,6 +2296,26 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 4
+      },
+      "research": {
+        "overview": "Ananya (Ananya Herbal Pvt Ltd) is a manufacturer of natural and Ayurvedic personal-care products, founded in 2018, combining tradition with technology and in-house R&D. The company emphasizes proven efficacy, stability-…",
+        "products": [
+          "Product categories: Body Wash, Face Wash, Hair Oil, Shampoo, Hand Sanitizer, Body Lotion",
+          "In-house R&D department focused on new product development, process technology upgrades, cost reduction, and quality improvement",
+          "Positions itself as able to tailor products to current market trends and client requirements",
+          "No specific certifications (e.g., GMP, ISO) disclosed publicly on the company website — Not publicly available"
+        ],
+        "leadership": [
+          "Vipul Dutta — Co-Founder / Director (confirmed via Zauba Corp corporate records, listed as director since 22/01/2018)",
+          "Pardeep Gupta — Co-Founder; also listed as CTO in a government (hrocmms.nic.in) regulatory filing"
+        ],
+        "ownership": "Unfunded (no external equity funding found on Tracxn or in press search). Per Tracxn: ~53 employees (as of 31/05/2026); Revenue INR ~42.7 crore / USD ~5.05M (FY ending 31/03/2025, 1-year CAGR 35%); Net Profit was negati…",
+        "clients": [
+          "Not publicly available. No named brand clients (mCaffeine, Mamaearth, Nykaa, or others) were found in company materials or press coverage for Ananya Herbal specifically."
+        ],
+        "news": [
+          "No specific recent (2025-2026) news coverage of Ananya Herbal Pvt Ltd was found beyond its Tracxn company profile listing."
+        ]
       }
     },
     {
@@ -2001,6 +2415,28 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Cheryl Laboratories Pvt Ltd is a Cosmeceutical Research, Development and Manufacturing company founded in 1987, originally established by Glenmark Pharmaceuticals. It was acquired by Gopaldas Visram Co. Ltd in 2004 and…",
+        "products": [
+          "Over 500 commercial products across Skin Care, Hair Care, Body Care, Sexual Wellness, Baby Care, Men's Care, and Intimate Care",
+          "Develops and manufactures sunscreens, face serums, hair serums, shampoos, conditioners, moisturisers, lotions, creams, ointments, gels, and antiseptic solutions",
+          "Services: Ready-to-Market Products, Exclusivity & Customization, Packaging Design, Private Labeling, Project Management, Product Development, Contract Manufacturing, Category Management, and Value Addition to existing p…",
+          "Manufacturing facility: A-329/330, Mahape, Navi Mumbai — described on the company site as a GMP Certified Plant; other sources describe facilities as WHO-GMP and GMP certified"
+        ],
+        "leadership": [
+          "Savita — CEO (per Tracxn)",
+          "Dinesh Thakkar — CEO (per Tracxn)",
+          "Company is a sister concern of Gopaldas Visram Co. Ltd (life sciences group, operating since 1945)"
+        ],
+        "ownership": "Acquired by Gopaldas Visram (gopaldasvisram.com, Life Sciences) on 01/06/2004 (business acquisition). Per Tracxn financials: ~142 employees (as of 31/05/2026); Revenue INR ~206.6 crore / USD ~24.4M (FY ending 31/03/2025…",
+        "clients": [
+          "No specific brand-client names (e.g., mCaffeine, Mamaearth, Nykaa) were found publicly disclosed by Cheryl Laboratories on its website or in press coverage. The site references 'Our Clients' generally without naming the…"
+        ],
+        "news": [
+          "June 2026: L'Oreal announced acquisition of a majority stake in Innovist, its first acquisition in India in ~13 years since acquiring Cheryl's Cosmeceuticals (Mumbai) in September 2013 — extensively covered by Reuters,…",
+          "No other recent (2025-2026) news specific to Cheryl Laboratories Pvt Ltd (the Tracxn/Gopaldas Visram entity) was found."
+        ]
       }
     },
     {
@@ -2034,6 +2470,27 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Kain Cosmeceuticals Private Limited is a Navi Mumbai (Vashi)-headquartered, innovation-led contract manufacturer of personal care and cosmetics products, founded in 2021 (per Tracxn) / positioned as 'powering the fastes…",
+        "products": [
+          "Categories: Skin Care, Personal Care, Colour Cosmetics, Ayurvedic, Pharmaceuticals (medicated creams/ointments/soaps), Sun Care, Hair Care, Baby Care, Oral Care, Soaps",
+          "Manufacturing facility: 140,000 sq.ft., 17+ production lines, 4,500 sq.ft. R&D labs; GMP and eco-certified manufacturing",
+          "Capacity: 5,300 MT/year semi-solid three-phase manufacturing; 9,800 MT/year automatic bar soap; 1,900 MT/year handmade soap; 1,575 MT/year powder manufacturing; 6 colour-cosmetic production lines",
+          "Manufacturing unit location: Survey No. 63, Village Horale, Off Khopoli-Pen Road, Taluka Khalapur, Raigad District, Maharashtra 410203 (Mumbai Metropolitan Region)",
+          "Supports both small-batch runs for emerging brands and large-volume production for established brands"
+        ],
+        "leadership": [
+          "Nishit Dedhia — Managing Director",
+          "Testimonial from Robin Gupta, Founder & CEO of Conscious Chemist, praising 'Nishit and his team' for product development partnership"
+        ],
+        "ownership": "Unfunded/private company (per Tracxn). Legal entity: KAIN COSMECEUTICALS PRIVATE LIMITED (CIN U74999MH2019PTC333084). FY25 revenue ~INR 12.7 crore (USD ~1.51M) with an extreme reported one-year revenue CAGR of 8874% (li…",
+        "clients": [
+          "CONFIRMED and STRONG mCaffeine relationship: mCaffeine's own official 'Manufacturer Details' page (mcaffeine.com/pages/manufacturer-details) lists 'Kain Cosmeceuticals Private Limited, Unit 2A, Survey No. 63, Village Ho…"
+        ],
+        "news": [
+          "KAIN Cosmeceuticals Private Limited was announced as a Platinum Partner at the Contract Manufacturing & Private Label (CMPL) Expo Mumbai — 2025, per Instagram posts from the CMPL Expo account."
+        ]
       }
     },
     {
@@ -2100,6 +2557,30 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 6
+      },
+      "research": {
+        "overview": "NG Electro, operating under the consumer-facing brand 'NG Group,' is a manufacturer providing ODM and OEM solutions for Beauty, Wellness, Home & Air Care. Founded in 2006 (legal entity N.G. Electro Products Private Limi…",
+        "products": [
+          "Beauty & Personal Care: skincare, hair care, sun care, baby care",
+          "Health & Wellness: supplements, effervescent tablets, capsule-in-capsule formats",
+          "Home Care & Air Fresheners: detergents, surface cleaners, plant-based formulations, air fresheners",
+          "Scale: 800+ unique products, 75+ brand partners, 120+ technical staff, 6 manufacturing sites",
+          "Maintains 'global certifications' for compliance (specific certification names not disclosed on site)",
+          "Manufacturing unit confirmed in Himachal Pradesh (Baddi/Solan region) — e.g. 'Unit II, Plot No.-36, HIMUDA Industrial Area'"
+        ],
+        "leadership": [
+          "Piyush Mittal — Founder (per Tracxn)",
+          "Raghav Mittal — Director, described as an MBA graduate (per Forbes India coverage of India's contract manufacturing sector)"
+        ],
+        "ownership": "Series A funded. Per Tracxn: ~110 employees (as of 31/05/2026); Revenue INR ~313.7 crore / USD ~37.1M (FY ending 31/03/2025, 1-year CAGR 18%); Net Profit INR ~19.6 crore; EBITDA INR ~31.3 crore; Latest valuation ~INR 58…",
+        "clients": [
+          "STRONG, VERIFIED mCaffeine LINK: A Tira Beauty product listing for 'mCaffeine Brightening SPF 50 PA+++ Body Sunscreen' explicitly states 'Manufactured By: N.G. Electro Products Pvt. Ltd., Unit II, Plot No.-36, HIMUDA...…"
+        ],
+        "news": [
+          "13 March 2026: Closed a Series A round of ~USD 9.1M / ~INR 150 crore led by JM Financial Private Equity (JM Financial India Growth Fund III), with angel investor Amit Suri and family offices participating; Trilegal advi…",
+          "Widely covered as part of a broader trend of PE interest in Indian beauty/personal-care contract manufacturers (CDMOs), alongside peers like Naturis Cosmetics exploring similar raises (per LinkedIn post by Subhankar Mis…",
+          "NG Electro Products has been a Platinum Partner at the Contract Manufacturing & Private Label (CMPL) Expo (Mumbai)."
+        ]
       }
     },
     {
@@ -2166,6 +2647,26 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Samrvir Biotech Pvt. Ltd. (brand: 'Samrvir') is a Gurugram-headquartered contract manufacturing organization (CMO) describing itself as a 'global expert in contract manufacturing' across Skincare, Nutra (nutraceuticals/…",
+        "products": [
+          "Divisions: Skincare (serums, creams, treatments), Nutra (functional nutrition/supplements/wellness), Pharma (Rx/OTC medicines)",
+          "Per Tracxn: manufactures creams, lotions, gels, ointments, solutions, serums, and shampoos; GMP-standard facility with automated lines for tablets, capsules, oral powders, syrups, and topical applications",
+          "Also does pharmaceutical formulations, ayurvedic formulations, food supplements, and home/hospital care products",
+          "Manufacturing entity Samrvir Biotech Pvt Ltd is ISO 9001:2015 certified (per Nykaa/Mamaearth product listings)"
+        ],
+        "leadership": [
+          "Sumant — contact listed as sumant@samrvir.com on company website (role/title not specified on site)",
+          "No named CEO/MD publicly disclosed on the website homepage in this research pass"
+        ],
+        "ownership": "Unfunded/private company (per Tracxn). Two associated legal entities: SAMRVIR COSMIC SOLUTION PRIVATE LIMITED (CIN U25190HP2021PTC008346) and SAMRVIR BIOTECH PRIVATE LIMITED (CIN U24303HR2019PTC082136, incorporated 21/0…",
+        "clients": [
+          "CONFIRMED mCaffeine relationship: Samrvir Biotech's own website (samrvir.com) lists mCaffeine by name in its 'Trusted by Innovators' client roster, alongside Sun Pharma, Glenmark, The Derma Co, BBlunt, Dr. Sheth's, Mama…"
+        ],
+        "news": [
+          "Samrvir Biotech was announced as a participant/exhibitor at the Contract Manufacturing & Private Label (CMPL) Expo 2025 in Mumbai, per posts from the CMPL Expo's Facebook and Instagram accounts (dated approximately 1 ye…"
+        ]
       }
     },
     {
@@ -2199,6 +2700,25 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "research": {
+        "overview": "Ultra Beauty Care Pvt. Ltd. (UBCPL) is an Aurangabad (Chhatrapati Sambhajinagar), Maharashtra-based contract manufacturer of Ayurvedic and cosmetics personal care products, incorporated in 2010 (per Tracxn and the compa…",
+        "products": [
+          "Categories: skin care and hair care under the 'Ultra Beauty Care' brand, plus contract manufacturing / private labeling for Ayurvedic & Cosmetics Personal Care, Baby Care, and Oral Care products",
+          "Product range includes: Baby Shampoo, Baby Cream, Baby Bath, Body Wash/Shower Gel, Body Lotions, Face Creams, Face Wash, Lip Balm, Liquid Soaps, Hair Food, Hair Cream, Hair Gel, Hair Oils, Lotions, Massage Oils, Shampoo…",
+          "Facility located in the Shendra five-star industrial corridor of Aurangabad (part of the Delhi-Mumbai Industrial Corridor / DMIC project), chosen for proximity to Mumbai-area raw material and packaging suppliers and to…",
+          "Company site references in-house R&D and Quality Assurance functions (rd.html, quality.html)"
+        ],
+        "leadership": [
+          "Company website includes a 'MD Message' section addressed 'On behalf of the Board of Directors and Employees of UBCPL' but does not name the Managing Director on the pages retrieved in this research pass. Not publicly a…"
+        ],
+        "ownership": "Part of the Machhar Group (parent: Machhar Industries, per Tracxn, practice area 'Chemicals and Materials', website machharind.com). Unfunded/private company. Legal entity: ULTRA BEAUTY CARE PRIVATE LIMITED (CIN U24203M…",
+        "clients": [
+          "CONFIRMED mCaffeine relationship: mCaffeine's official 'Manufacturer Details' page (mcaffeine.com/pages/manufacturer-details) lists 'Ultra Beauty Care Pvt Ltd, Plot No. C-15, M.I.D.C., Five Star Industrial Area, Shendra…"
+        ],
+        "news": [
+          "Not publicly available — no recent news or press coverage identified; company website appears outdated (footer copyright 2013-2014)."
+        ]
       }
     },
     {
@@ -2331,6 +2851,22 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "research": {
+        "overview": "Not publicly available with confidence - Alfa Exports is a highly generic business name shared by multiple unrelated Indian companies across different industries. Web search surfaced several distinct entities under this…",
+        "products": [
+          "Not publicly available with confidence - depends on which Alfa Exports entity is the actual mCaffeine vendor. If the New Delhi packaging/lamination entity, products would include cosmetic bags, cases, and lamination mat…"
+        ],
+        "leadership": [
+          "Not publicly available."
+        ],
+        "ownership": "Not publicly available.",
+        "clients": [
+          "Not publicly available with confidence. The New Delhi Alfa Exports India candidate is listed under packaging/lamination materials including cosmetic bags and cases, which would align with cosmetics/personal care as a se…"
+        ],
+        "news": [
+          "Not publicly available - no entity-specific recent news identified."
+        ]
       }
     },
     {
@@ -2364,6 +2900,27 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Continuity Printers Pvt Ltd (tagline: 'Your Vision, Our Drive') is a Mumbai-based printing and packaging solutions company, founded in 1986 per LinkedIn. Provides end-to-end concept-to-creation packaging and branding so…",
+        "products": [
+          "Printing & packaging materials",
+          "Labels (hang tags and printed labels)",
+          "Cartons and Mono-Cartons (for retail, FMCG, pharmaceutical, and cosmetic packaging per company website)",
+          "Headers & inlay cards, stickers, catalogs, rigid boxes",
+          "Paper bags, heat transfers",
+          "Water Fall Carton and custom flat-pack cardboard/kraft paper mono cartons (per Justdial listing)"
+        ],
+        "leadership": [
+          "Not publicly available - no named leadership/management team identified in the sources reviewed."
+        ],
+        "ownership": "Privately held company (per LinkedIn), founded 1986. Per Tracxn/MCA-sourced data: FY2025 revenue approx INR 41.4 crore (USD ~4.9M), 29% one-year revenue CAGR, net profit approx INR 1.44 crore. Per Tofler, authorized sha…",
+        "clients": [
+          "Company website's 'Our Products' page explicitly states its Monocartons serve 'retail, FMCG, pharmaceutical, cosmetic, and others' - confirming cosmetics/personal care as a served industry, in addition to its historical…"
+        ],
+        "news": [
+          "No specific recent news articles identified in the searches conducted."
+        ]
       }
     },
     {
@@ -2430,6 +2987,29 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "research": {
+        "overview": "Khosla Printers is a Ghaziabad, Uttar Pradesh based packaging box manufacturer, established circa 1997-1998. Operates as a manufacturer, exporter, supplier, wholesaler, retailer and dealer of packaging boxes, with over…",
+        "products": [
+          "Mobile Box",
+          "Rigid Box",
+          "Gift Boxes (Hardboard Gift Box, Cardboard Gift Box)",
+          "Mobile accessories packaging box",
+          "Fancy Cosmetic Box",
+          "Printed Mono Carton Box",
+          "Printed Shaving Kit Box",
+          "UV Printing Box"
+        ],
+        "leadership": [
+          "Not publicly available."
+        ],
+        "ownership": "Not publicly available. Business appears to operate under an M/s (proprietorship/partnership-style) trading name rather than a Companies Act-registered entity, consistent with it not appearing in Tracxn's database. No r…",
+        "clients": [
+          "Cosmetics/personal care explicitly indicated via listed product Fancy Cosmetic Box, in addition to general gift packaging, mobile accessory packaging, and shaving kit boxes."
+        ],
+        "news": [
+          "Not publicly available - presence limited to B2B marketplace listings (Tradeindia)."
+        ]
       }
     },
     {
@@ -2529,6 +3109,27 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Printotech Global Limited (brand name 'PGL Seamless' for its tube division) is a Noida, Uttar Pradesh based manufacturer of seamless co-extruded and laminated tube packaging. Website: printotech.com. Serves FMCG brands,…",
+        "products": [
+          "Seamless co-extruded tubes",
+          "Laminated tubes",
+          "Plastic barrier tubes",
+          "Aluminium barrier tube solutions",
+          "Product categories served: Beauty & Personal Care, Pharma & Health, Oral Care, Food & Nutrition",
+          "Manufacturing uses German extrusion lines and ISIMAT precision decoration technology; 50,000 sq. ft. integrated manufacturing facility"
+        ],
+        "leadership": [
+          "Not publicly available - no specific named leadership/management team found on the website's public pages reviewed."
+        ],
+        "ownership": "Printotech Global Limited is a Public Limited Company (per MCA/Tracxn), incorporated 1993, unfunded (no VC/PE funding per Tracxn). FY2025 revenue approx INR 101.3 crore with 9% net profit margin at the legal entity leve…",
+        "clients": [
+          "Cosmetics and personal care explicitly confirmed as a served industry - testimonials name Lakme (Face Wash Oval Tube), POND'S (men's face wash tubes), Nat Habit (Masoor Rub Bath Ubtan, Kali Mitti Conditioner tubes), Neu…"
+        ],
+        "news": [
+          "No specific recent news articles identified; company website features client testimonials (2025-2026 timeframe implied) from packaging/supply chain leads at Nat Habit, Lakme, Neude, POND'S, and Suroskie praising tube pa…"
+        ]
       }
     },
     {
@@ -2727,6 +3328,25 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Takemoto Yohki Co., Ltd. is a Japan-based packaging manufacturer (Tokyo HQ) founded in 1953. It provides an integrated service including planning, development, manufacture, processing, and sales of plastic and glass pac…",
+        "products": [
+          "Plastic and glass packaging - bottles, jars, tubes",
+          "Standout packaging solutions for Cosmetics, Skincare, Body, Hair, Foodstuffs, Sports/beverage categories (per LinkedIn company description)",
+          "New product line noted on official site (2026): tube-style bottle designed for squeezability",
+          "Justdial lists Indian unit under 'Bottle Manufacturers' category in Ahmedabad"
+        ],
+        "leadership": [
+          "Emiko Takemoto (per Tracxn)"
+        ],
+        "ownership": "Takemoto Yohki Co., Ltd. (Japan) is listed as a Public company per Tracxn. Indian subsidiary Takemoto Yohki India Pvt Ltd - FY2022 revenue approx INR 15.9 crore (USD ~2.13M) per Tracxn/MCA data, net loss of approx INR 6…",
+        "clients": [
+          "Cosmetics, skincare, personal care, and food industries explicitly mentioned by Takemoto Packaging Group's LinkedIn/Instagram descriptions (packaging for cosmetics, skincare, personal care, food and more)."
+        ],
+        "news": [
+          "Official site (takemotopkg.com) posted a 2026 new product announcement for a tube-style bottle. No other recent India-specific news found in search results reviewed."
+        ]
       }
     },
     {
@@ -2760,6 +3380,24 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Ahmedabad Agency is a distributor of raw materials and ingredients for the personal and home care industry, based in Ahmedabad, Gujarat, India. Its LinkedIn page states the business 'stands as a cornerstone in the perso…",
+        "products": [
+          "Raw materials and ingredients for personal care and home care product formulations",
+          "Distributes products from Galaxy Surfactants (a major listed Indian specialty chemicals/surfactants manufacturer) per ZoomInfo listing",
+          "Cosmetics raw materials including allantoin and other specialty ingredients (per Tradeindia listing)",
+          "Preservatives (dedicated product page on their website)",
+          "Positions itself as a formulation-support partner: 'Troubleshooting formulation challenges and delivering cost-effective solutions'"
+        ],
+        "leadership": [
+          "Not publicly available — no named founder, director, or CEO could be confirmed from the website or search results within available access."
+        ],
+        "ownership": "Appears to be a privately held, family-run distribution business. No financial figures, ownership structure, or funding information were found publicly. LinkedIn shows ~690+ followers. No CIN/registration number located…",
+        "clients": [],
+        "news": [
+          "No specific recent news items found; website reflects ongoing standard business operations (product/contact pages) with no news/press section identified."
+        ]
       }
     },
     {
@@ -2793,6 +3431,26 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "ARK Chemicals Private Limited (also branded 'ARK Specialty Chemicals India Private Limited' / 'ARK Specialty Chem India Private Limited') is a Mumbai-based specialty chemicals trading and distribution company describing…",
+        "products": [
+          "Specialty chemicals distribution: phosphonates, chelates, leather chemicals, coil coatings, auxiliaries",
+          "Personal care specialty ingredients and actives (per ChemExpo India listing: 'Specialty Ingredients and Actives for Personal Care Products')",
+          "Industrial chemicals: Aluminium Sulphate, Ferric Chloride, Calcium Carbonate Powder",
+          "Acts as Indian distributor for global suppliers including Wacker Metroark Chemicals/Wacker Chemie AG (silicones, e.g. Silicone Fluids, Geniosil Vinyl silanes)",
+          "Serves industries: personal care, construction, manufacturing, leather, coatings"
+        ],
+        "leadership": [
+          "Dr. Anmol Wadhwa - Director (per arkchemicals.in team page snippet: 'Under the visionary leadership of our director, Dr. Anmol Wadhwa, Ark Chemicals Pvt Ltd has established itself as a pioneering force in the chemical i…",
+          "Piyush Wadhwa - Marketing Manager (per an exhibitor catalogue listing a Pune address)",
+          "Contact email: anmol@arkchemicals.in; phone +91 918850250142 / 022 46576000"
+        ],
+        "ownership": "Privately held (Private Limited company, per MCA registration). No public funding or investment rounds found. Founded/operating for '50+ years' per company website claim (though MCA incorporation date is 2007, suggestin…",
+        "clients": [],
+        "news": [
+          "Not publicly available — no significant recent news coverage found via search. Company appears primarily in B2B chemical sourcing directories (Kompass, ChemExpo India, Zauba Corp, Justdial) rather than news media."
+        ]
       }
     },
     {
@@ -2826,6 +3484,27 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "research": {
+        "overview": "Beeman Pharmaceuticals is a Mumbai-based pharmaceutical raw material and ingredients company (own website: beemanpharma.com). It positions itself around 'Bridging Wellness and Ease for a Healthier Life' and appears to b…",
+        "products": [
+          "API (Active Pharmaceutical Ingredient) & Vitamin Distribution — supplies APIs and vitamins to clients via a growing supplier base",
+          "Imports and Exports — sources from established supplier base in China and India to fulfill chemical/pharma industry requirements worldwide",
+          "Manufacturing of Essential Vitamins",
+          "Nutraceutical Ingredients Distribution — range of nutraceutical ingredients for diverse health needs",
+          "Premix Manufacturing — accurate-dosage premix formulations",
+          "Contract Manufacturing of Minerals — mineral supplement formulations",
+          "Specific raw materials sold per IndiaMART listings: Doxycycline HCL Powder, Povidone PVP K90/K30, Meglumine Powder (CAS 6284-40-8)",
+          "Referenced as a raw material gift-sample provider (pharmaceutical-grade Metformin HCl) in a peer-reviewed pharma research article (Journal of Rare Cardiovascular Diseases), indicating credibility as an API supplier with…"
+        ],
+        "leadership": [
+          "Manan Shah - Proprietor of Beeman Pharmaceuticals (per LinkedIn, in role since July 2021; prior experience at DPB Pharmaceuticals Ltd)"
+        ],
+        "ownership": "Appears to be a small, privately-held proprietorship (not a registered private limited company based on available evidence — no CIN/MCA registration found, consistent with the Tracxn 'Not Found' status). No public fundi…",
+        "clients": [],
+        "news": [
+          "Not publicly available — no news coverage found. Company presence is limited to B2B directories (IndiaMART, Justdial, Pharma API Insight marketplace) and a single academic journal citation as a raw material sample provi…"
+        ]
       }
     },
     {
@@ -2859,6 +3538,25 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Connell Brothers (India) — now operating as Caldic Specialties India Pvt Ltd / Connell Caldic",
+        "products": [
+          "Distribution of specialty chemicals and ingredients for multiple end markets (per Bloomberg/EMIS/Kompass listings: chemicals for different market segments)",
+          "Ingredients Network profile describes Caldic (parent) as active in life sciences and material sciences distribution",
+          "Beauty & Personal Care segment specifically covered — LinkedIn profile of a Caldic 'Business Head – Beauty & Personal Care' (Kalpesh Shah) based in India confirms an active BPC-focused ingredient distribution business",
+          "Recent partnership: appointed as official distribution solutions partner for Stratachem's specialty chemicals in the Indian market (per Caldic insights page)"
+        ],
+        "leadership": [
+          "Alexander Wessels - CEO, Caldic (global, per Tracxn)",
+          "Kalpesh Shah - Business Head, Beauty & Personal Care at Caldic (India), per LinkedIn (25+ years chemical industry experience)"
+        ],
+        "ownership": "Private company. Caldic (global parent) is owned by Advent International (private equity), which acquired Caldic from Goldman Sachs Asset Management in November 2021. The India entity (Caldic Specialties India Pvt Ltd,…",
+        "clients": [],
+        "news": [
+          "8 April 2025: Connell Caldic (APAC) rebranded to Caldic APAC, effective 1 April 2025, per official Caldic press release.",
+          "Caldic appointed Stratachem's official distribution solutions partner for specialty chemicals in the Indian market (per Caldic Insights page, undated recent article)."
+        ]
       }
     },
     {
@@ -2892,6 +3590,27 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "P.S.Tea Industries (website: sidhgiriindia.com) is described on its own website as 'a global beverage company, having presence in the field since 1969' — a family-based business that has 'catered to the tea market for o…",
+        "products": [
+          "P.S.Tea Industries core divisions (per website): (1) Milk Powder & Dairy Whitener Supply — supplier of milk powder/dairy whitener to the Indian premix and beverage industry, working with major dairy producers; (2) Tea M…",
+          "Product lines: Coffee, Milk Powder, Premix, Tea",
+          "As an RM vendor, P.S.Tea Industries supplies raw materials (tea, coffee, dairy whitener/milk powder ingredients) to the premix, beverage, and food industries",
+          "Drama Llama (D2C brand) product range: instant coffee (freeze-dried caramel, hazelnut, pure instant), premium tea, green tea, Kashmiri Kahwa, masala tea, instant chicory powder — positioned as vegan, gluten-free, keto-f…"
+        ],
+        "leadership": [
+          "Pramod Chand Kochar - CEO (per Tracxn company record)",
+          "Vinodchand Kochar - CEO (per Tracxn company record)",
+          "Sangeeta Nahata - Co-Founder & CMO of Drama Llama (per Tracxn)",
+          "Gaurav Kochar - Co-Founder of Drama Llama (per Tracxn)",
+          "Note: Kochar family name appears across both the original P.S.Tea Industries leadership and the newer Drama Llama brand, consistent with a family business rebrand/brand extension rather than a change of ownership"
+        ],
+        "ownership": "Privately held, family-owned business since 1969 (per company website). No public funding or investment rounds found — both Tracxn company records are tagged 'Unfunded.' The new legal entity DramaLlama Beverages Private…",
+        "clients": [],
+        "news": [
+          "Not publicly available — no significant news coverage found via search beyond the companies' own websites and Tracxn/MCA filing records. The Drama Llama brand shows active online D2C retail presence (own e-commerce site…"
+        ]
       }
     },
     {
@@ -2925,6 +3644,29 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Givaudan is a Swiss multinational and the world's largest company in the flavour and fragrance industry, headquartered in Vernier, Geneva, Switzerland. Founded in 1895, it describes itself as 'a global leader in Fragran…",
+        "products": [
+          "Fragrance ingredients: signature fragrances, fine fragrances, fragrances for fabric/home and personal care products, active/functional beauty ingredients derived from vegetable sources, microorganisms, and microalgae",
+          "Taste & Wellbeing (flavours): flavour and taste solutions for confectionery, baked goods, chocolates, chewing gums, beverages, and other food/beverage categories",
+          "Givaudan Flavour Ingredients (GFI) division supports flavour companies in product formulation",
+          "In India specifically: Givaudan India Pvt Ltd supplies flavour/seasoning raw materials (per an internal seasoning materials sourcing document referencing 'Givaudan India Pvt Ltd (Flavours)')",
+          "Joint venture 'Prigiv' with Privi (announced Oct 2024) — a facility for production of complex fragrance ingredients via advanced chemical synthesis, indicating continued investment in ingredient manufacturing"
+        ],
+        "leadership": [
+          "Gilles Andrier - served as CEO for ~20 years (30+ years with company); retired from CEO role effective 1 March 2026 and transitioned to Chairman of the Board (elected March 2026 AGM)",
+          "Christian Stammkoetter - identified in search results as incoming/new CEO following the August 2025 succession announcement (Givaudan announced CEO and Chairman succession plans in Aug 2025)",
+          "Stewart Harris - CFO, co-presented FY2025 financial results at March 2026 AGM"
+        ],
+        "ownership": "Publicly listed company (SIX Swiss Exchange, ticker GIVN.SW), first IPO tracked 2015 per Tracxn (Givaudan has been independently listed since its 2000 spin-off from Roche). FY2025 results: 'strong financial performance'…",
+        "clients": [],
+        "news": [
+          "27 Aug 2025: Givaudan announced CEO and Chairman succession plans; Gilles Andrier to retire as CEO effective 1 March 2026 and unveiled a 2030 strategy (Reuters, Givaudan media release)",
+          "29 Jan 2026: Givaudan reported full-year 2025 results, described as 'strong financial performance' completing its 2021-2025 strategy cycle; CNBC interview noted Givaudan management stating the company is 'immune from po…",
+          "19-20 Mar 2026: 2026 Annual General Meeting — Gilles Andrier elected as new Chairman of the Board; outgoing CEO and CFO presented FY2025 results",
+          "Oct 2024: Announced 'Prigiv' joint venture with Privi for a new complex fragrance ingredients manufacturing facility using advanced chemical synthesis"
+        ]
       }
     },
     {
@@ -2958,6 +3700,20 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "research": {
+        "overview": "Extensive web research was conducted to corroborate the Tracxn record for 'Greenfarms' (website greenfarms.co). Multiple search queries were run: (1) general 'Greenfarms India raw material/ingredients/agriculture', (2)…",
+        "products": [
+          "Per PR Newswire and Yahoo Finance coverage, Green Farms Co (greenfarms.co) is an organic cannabis and hemp producer/agricultural operator in the United States — NOT an identified supplier of cosmetic, skincare, or perso…"
+        ],
+        "leadership": [
+          "Dr. Eric MacLeod, MD — announced as CEO and managing partner in April 2019; later listed as Chairman of Green Farms Co, LLC (Jan 2020 – May 2021) per his LinkedIn/RocketReach profiles. He also runs 'Monteagle Ventures'…"
+        ],
+        "ownership": "No funding, revenue, or ownership-structure details specific to Green Farms Co beyond the Tracxn-reported USD 485,000 Seed round (17-Jul-2020) were found in public web sources. The company/its principals have been named…",
+        "clients": [],
+        "news": [
+          "No news after 2021 was found specifically about Green Farms Co's ongoing operations; the most recent identifiable coverage is litigation-related (2024, referencing past conduct of 'Green Farms Company, LLC' and its prin…"
+        ]
       }
     },
     {
@@ -2991,6 +3747,20 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "research": {
+        "overview": "No single, clearly-identified corporate website or public profile was found for a company named 'Kaycee Enterprise' operating as a raw-material/ingredients supplier to the cosmetics or personal-care industry in India. M…",
+        "products": [
+          "Not publicly available. No website, product catalogue, or business description could be located for the specific 'Kaycee Enterprise' entity presumed to be mCaffeine's RM vendor."
+        ],
+        "leadership": [
+          "Per the same GST taxpayer list, the registered proprietor/contact name associated with GSTIN 26AGEPP4614K1Z9 ('Kaycee Enterprise') is listed as Kamlaben Chandrasinh Parmar. This is public GST registry data; it has not b…"
+        ],
+        "ownership": "Structure appears to be a sole proprietorship (based on GST registration type) rather than a private limited company. No revenue, funding, or other financial information is publicly available.",
+        "clients": [],
+        "news": [
+          "Not publicly available — no news articles, press releases, or industry coverage of a 'Kaycee Enterprise' RM/ingredients supplier were found."
+        ]
       }
     },
     {
@@ -3024,6 +3794,31 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "research": {
+        "overview": "Nirmaan Cosmetic Hub Private Limited",
+        "products": [
+          "Gel Polymers",
+          "Emulsifiers",
+          "Surfactants",
+          "Preservatives",
+          "Solubilizers",
+          "Silicones",
+          "Emollients",
+          "Actives",
+          "Botanical Extracts",
+          "Solvents",
+          "Fragrances",
+          "Pigments and Colors"
+        ],
+        "leadership": [
+          "Not publicly available — no named founders, directors, or executives disclosed on the company website, Justdial, or LinkedIn company page."
+        ],
+        "ownership": "Private Limited Company (per MCA/Tracxn registration, incorporated March 2025). · Not publicly available; company is newly incorporated with minimal capital (Authorized Capital INR 5 lakh, Paid-up Capital INR 1.5 lakh p…",
+        "clients": [],
+        "news": [
+          "No specific recent news articles found; company has a Justdial listing (4.2/17 reviews) as a Cosmetic Raw Material Dealer / Perfume Dealer in Mulund West, Mumbai, and an Instagram presence (170+ followers) and LinkedIn…"
+        ]
       }
     },
     {
@@ -3057,6 +3852,26 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Northern Aromatics Private Limited ('Soothe Your Senses') is an Indian manufacturer of fragrances, flavours and essential oils, founded in 1979. It describes itself as one of the largest manufacturing companies in India…",
+        "products": [
+          "Fragrances: Fine Fragrances, Personal Care fragrances, Home Care fragrances",
+          "Flavours: Beverages, Confectioneries, Seasonings",
+          "Essential Oils: Aromatherapy, Air Care, Pharmaceutical applications",
+          "In-house R&D for taste and smell molecule development; automated manufacturing; quality control systems",
+          "Ghaziabad (UP); Baddi, Solan district (Himachal Pradesh); Tezpur, Sonitpur district (Assam) -- the Tezpur unit collaborates with Dabur India on CSR/sustainability initiatives per Dabur's own announcements"
+        ],
+        "leadership": [
+          "Aditya Chand Burman -- Co-Founder / Director (member of the Burman family, Dabur India promoter group)",
+          "Divakar Nagpal -- held Whole-time Director role at Northern Aromatics Ltd, Jun 2003 to Aug 2023 (per LinkedIn), managing overall company operations from the Sahibabad Industrial Area, Ghaziabad office"
+        ],
+        "ownership": "Privately held; closely linked to the Burman family / Dabur India ecosystem (multiple Dabur annual reports and AGM notices list Northern Aromatics Ltd among group/related companies, and a Dabur promoter, Aditya Burman,…",
+        "clients": [],
+        "news": [
+          "CSR/sustainability initiative jointly covered with Dabur India at the Tezpur unit (Assam), per Dabur's Facebook page, involving the Unit Head of Northern Aromatics Ltd - Tezpur Unit",
+          "No major recent (2025-2026) funding, M&A, or leadership-change news found"
+        ]
       }
     },
     {
@@ -3090,6 +3905,30 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "SG Green Tech Private Limited (trades as SG Green Tech Health & Beauty)",
+        "products": [
+          "Skincare and hair care Actives",
+          "Speciality ingredients",
+          "Natural & exotic butters (Natural/Purified Butters)",
+          "Essential Oils",
+          "Activated Charcoal",
+          "Solubilizers",
+          "Cosmeceuticals Actives",
+          "Preservatives",
+          "Extract Powder and Liquid",
+          "Organic and natural cosmetics raw materials for personal care industry"
+        ],
+        "leadership": [
+          "Not publicly available on company website (no named leadership/founder listed). Tracxn lists Gajanan Gayakwad as Managing Director. LinkedIn shows a former Business Development officer (Ganesh Gosavi, Aug 2022-Jun 2023)…"
+        ],
+        "ownership": "Private company (Private Limited, per self-description 'SG Green Tech Private Limited'). No public funding or financial figures found. · Not publicly available; Tracxn lists stage as Unfunded.",
+        "clients": [],
+        "news": [
+          "Exhibitor at Cosmetics Ingredients Expo Chennai (per expo catalogue PDF dated 31 Aug 2024), Booth No. A-37, showcasing derma care, personal care, home care, dental care, and Ayurvedic product ingredients.",
+          "Listed on Justdial and magicpin as a cosmetic manufacturer in Ghaziabad (Shahpur Bamheta / Masuri area) with positive customer ratings (5.0 on Cybo directory)."
+        ]
       }
     },
     {
@@ -3123,6 +3962,24 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "United Enterprises, headquartered in Gurugram, Haryana, was founded in 1999 by Anil Verma. Per its Facebook page and LinkedIn profile, it operates as an Industrial Distributor of Lubricants, Fuel Additives and related p…",
+        "products": [
+          "Industrial lubricants and speciality lubricants",
+          "Fuel additives (solid and liquid, per Hotfrog listing)",
+          "Energy and lubrication solutions including for gas engines and marine engines (per ZoomInfo listing)",
+          "Engine oil additives (listed on IndiaMART/ExportersIndia/Tradeindia marketplaces)",
+          "PTFE lubricants and compressor oils (per Tradeindia listing)"
+        ],
+        "leadership": [
+          "Anil Verma — Founder / Business Owner (University of Delhi South Campus alumnus, per LinkedIn)"
+        ],
+        "ownership": "Appears to be a small, privately held distribution business (ZoomInfo/LinkedIn list company size as 2-10 employees). No public funding, financial statements, or ownership structure details found. The company's own websi…",
+        "clients": [],
+        "news": [
+          "No recent news items found."
+        ]
       }
     },
     {
@@ -3156,6 +4013,27 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "ValueTree Ingredients Pvt Ltd (VT / Valuetree)",
+        "products": [
+          "Distribution of specialty ingredients/chemicals for cosmetics, beauty & personal care, food, and industrial chemical sectors",
+          "Sourcing and supplier network management (proprietary tech platform 'ProcIQ')",
+          "Formulation support and R&D collaboration for beauty/personal care brands, D2C brands, and third-party manufacturers",
+          "Vendor Managed Inventory (VMI) solutions",
+          "Market access/representation for global ingredient suppliers entering the Indian market",
+          "Certifications noted on site: EcoVadis, CDP, ISO 9001, ISO 14001, ISO 45001"
+        ],
+        "leadership": [
+          "Shailesh Karwa - Co-Founder (email on record: shailesh@valuetree.in)",
+          "Sharad Dalmia - Co-Founder",
+          "Sudeep (contact person listed on Cosmetics & Toiletries directory, email sudeep@valuetree.in) - role not confirmed"
+        ],
+        "ownership": "Private company. Acquired by IMCD Group (Netherlands-listed specialty chemical distributor) — announced 10 January 2024, IMCD acquired a 70% stake. Legal entity ValueTree Ingredients Pvt Ltd is now 70% held by IMCD Indi…",
+        "clients": [],
+        "news": [
+          "10 Jan 2024 - Business Wire India / Business Standard: 'IMCD Enhances Its Market Presence in India' — announcement of IMCD's acquisition of a majority (70%) stake in Valuetree, described as founded in 2005 and a promine…"
+        ]
       }
     },
     {
@@ -3189,6 +4067,20 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 2
+      },
+      "research": {
+        "overview": "No public website, LinkedIn page, or corporate profile could be found for a company specifically named 'Wellnex Ingredients'. A Google search for the exact phrase \"Wellnex Ingredients\" returned zero results. Separately,…",
+        "products": [
+          "Not publicly available for any company operating today under the name 'Wellnex Ingredients'. The historical 'Wellnex Pharmaceuticals Pvt Ltd' entity's NIC industrial classification was 'Manufacture of pharmaceuticals, m…"
+        ],
+        "leadership": [
+          "Not publicly available. ZaubaCorp's filing-based director listing for Wellnex Pharmaceuticals Pvt Ltd shows 'No current directors found' and 'No past directors found', consistent with a long-dormant or amalgamated shell…"
+        ],
+        "ownership": "Per corporate-database sources, Wellnex Pharmaceuticals Private Limited (CIN U24230MH1989PTC053893, incorporated 13-Oct-1989) was a wholly-owned subsidiary of Fulford (India) Limited, a listed pharmaceutical company (wi…",
+        "clients": [],
+        "news": [
+          "No recent news coverage found for any company named 'Wellnex Ingredients'. The only news-adjacent findings relate to the historical 2005 amalgamation of Wellnex Pharmaceuticals into Fulford (India) Limited, reported in…"
+        ]
       }
     },
     {
@@ -3222,6 +4114,29 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "research": {
+        "overview": "Yasham (YASHAM Speciality Ingredients Pvt Ltd) is a Mumbai-headquartered distributor and 'indenting' agent of specialty chemicals, ingredients and raw materials. Founded in 1997, starting with indenting of pharmaceutica…",
+        "products": [
+          "Personal Care & Cosmetic Ingredients: active ingredients, emulsifiers, surfactants, preservatives, natural extracts for skincare, haircare, oral care, color cosmetics, sun care, baby care",
+          "Pharmaceutical ingredients: APIs, excipients, pharma raw materials (exhibited at CPHI & PMEC India 2025)",
+          "Food & Nutraceuticals: functional food ingredients, dietary supplements, food additives (e.g., 'bone pep' functional protein)",
+          "Veterinary: feed supplements, amino acids, oil adjuvants",
+          "Construction chemicals, functional resin products, inks and coatings",
+          "In-house Formulation Application Lab for product development/testing support",
+          "Runs an in-house R&D/testing lab and provides formulation & technical support to brand customers"
+        ],
+        "leadership": [
+          "Vivek Samant — Founder & Managing Director (per Tracxn and corroborated by Google search results)"
+        ],
+        "ownership": "Privately held (Private Limited Company, MCA CIN U51100MH1997PTC104919). FY25 revenue reported (via Tracxn/MCA filings) at approximately INR 242 crore (~USD 28.6M), net profit ~INR 36.4 crore. Recognized as a 'funded' c…",
+        "clients": [],
+        "news": [
+          "Nov 2025: Exhibited premium APIs, excipients and pharma ingredients at CPHI & PMEC India 2025",
+          "2025-2026: Participating in Cosmetic Ingredient Expo 2025, Vitafoods India 2026, WOC (World of Coatings) 2026, CosmohomeTech-2026, PAINTINDIA 2026",
+          "2024: Received 'Distributor Award 2024' from Stéarinerie Dubois (a French oleochemicals/personal-care ingredients manufacturer) recognizing distribution partnership",
+          "Won 'Best Formulation Awards' for two innovative products (Exfoliating Clay Cake & Juicy Shower Jellies) at an industry event"
+        ]
       }
     }
   ]

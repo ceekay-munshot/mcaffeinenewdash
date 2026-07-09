@@ -11,6 +11,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from "
 import { join } from "node:path";
 import { extractProbe } from "./probe/extract.mjs";
 import { summarizeShelf } from "./firecrawl/summarize.mjs";
+import { extractResearch } from "./research/extract.mjs";
 
 const RAW_DIR = process.env.RAW_DIR || "data/raw";
 const OUT_FILE = process.env.OUT_FILE || "data/clean/entities.json";
@@ -329,6 +330,14 @@ if (existsSync(SHELF_CACHE)) {
     const snaps = byBrand.get(norm(e.brand));
     if (snaps) e.shelf = summarizeShelf(snaps);
   }
+}
+
+// Attach qualitative research (products, leadership, ownership, news) from
+// each company's web_research.json — schema-tolerant.
+for (const e of entities) {
+  const web = readJSON(join(RAW_DIR, e.category, e.folder, "web_research.json"));
+  const r = web && extractResearch(web);
+  if (r) e.research = r;
 }
 
 entities.sort((a, b) => a.category.localeCompare(b.category) || a.brand.localeCompare(b.brand));
