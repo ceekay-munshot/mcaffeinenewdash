@@ -274,6 +274,7 @@ function CompetitorView() {
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<CompSort>("revenue");
   const [selected, setSelected] = useState<CompetitorRow | null>(null);
+  const [view, setView] = useState<"overview" | "table">("overview");
 
   const rows = useMemo(() => {
     let r = all;
@@ -305,6 +306,16 @@ function CompetitorView() {
         <Kpi label="Material events" value={String(kpis.deals)} sub="fundraises & acquisitions tracked" tone="amber" />
       </section>
 
+      <div className="mb-4 flex w-fit rounded-lg bg-slate-100 p-0.5 text-sm">
+        {(["overview", "table"] as const).map((v) => (
+          <button key={v} onClick={() => setView(v)}
+            className={`rounded-md px-3 py-1 font-medium capitalize transition ${view === v ? "bg-white text-teal-700 shadow-sm" : "text-slate-500 hover:text-slate-700"}`}>{v}</button>
+        ))}
+      </div>
+
+      {view === "overview" && <CompetitorOverview all={all} onSelect={setSelected} />}
+
+      {view === "table" && (<>
       <Toolbar
         cats={["All", ...COMPETITOR_CATEGORIES]} cat={cat} setCat={(c) => setCat(c as CompCat)}
         count={(c) => (c === "All" ? all.length : all.filter((e) => e.categories.includes(c)).length)}
@@ -350,12 +361,104 @@ function CompetitorView() {
 
       <p className="mt-5 max-w-3xl text-xs leading-relaxed text-slate-500">
         Financials, funding rounds, cap-table &amp; M&amp;A from the Tracxn snapshot. Brands compete across several categories —
-        rows are collapsed per brand with category chips. <span className="font-medium text-slate-700">Coming next:</span> live
-        ratings, review-to-sales trend &amp; social listening via Firecrawl.
+        rows are collapsed per brand with category chips. Digital-shelf metrics (discount, reviews, ratings) are live from Nykaa via Firecrawl.
       </p>
+      </>)}
 
       {selected && <CompetitorDetail row={selected} onClose={() => setSelected(null)} />}
     </main>
+  );
+}
+
+/* ------------------------------------------ P2 Competitor overview (charts) */
+
+const CAT5_COLOR: Record<string, string> = {
+  Sunscreen: "#f59e0b", "Face Serums": "#6366f1", Bodywash: "#0ea5e9", "Body Scrub": "#f43f5e", "Body Lotion": "#0d9488",
+};
+
+function fundingBucket(stage: string | null | undefined): "Acquired" | "VC-funded" | "Unfunded" | "Unknown" {
+  const s = (stage ?? "").toLowerCase();
+  if (s.includes("acquired")) return "Acquired";
+  if (s.includes("unfunded") || s.includes("subsidiary")) return "Unfunded";
+  if (/series|seed|funding raised|funded/.test(s)) return "VC-funded";
+  return "Unknown";
+}
+const BUCKET_COLOR = { Acquired: "#059669", "VC-funded": "#0d9488", Unfunded: "#f59e0b", Unknown: "#cbd5e1" } as const;
+
+function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect: (e: CompetitorRow) => void }) {
+  const byName = useMemo(() => new Map(all.map((e) => [e.brand, e])), [all]);
+  const pick = (l: string) => byName.get(l) && onSelect(byName.get(l)!);
+
+  const topRev: Slice[] = useMemo(
+    () => [...all].filter((e) => e.financials.revenueINR).sort((a, b) => (b.financials.revenueINR ?? 0) - (a.financials.revenueINR ?? 0)).slice(0, 8)
+      .map((e) => ({ label: e.brand, value: Math.round(toCrore(e.financials.revenueINR) ?? 0), color: "#0d9488" })),
+    [all]
+  );
+
+  const funding: Slice[] = useMemo(() => {
+    const order = ["Acquired", "VC-funded", "Unfunded", "Unknown"] as const;
+    const c: Record<string, number> = {};
+    for (const e of all) c[fundingBucket(e.competitor?.stage)] = (c[fundingBucket(e.competitor?.stage)] ?? 0) + 1;
+    return order.filter((k) => c[k]).map((k) => ({ label: k, value: c[k], color: BUCKET_COLOR[k] }));
+  }, [all]);
+
+  const discount: Slice[] = useMemo(
+    () => [...all].filter((e) => e.shelf?.avgDiscountPct != null).sort((a, b) => (b.shelf!.avgDiscountPct ?? 0) - (a.shelf!.avgDiscountPct ?? 0)).slice(0, 8)
+      .map((e) => ({ label: e.brand, value: Math.round(e.shelf!.avgDiscountPct ?? 0), color: "#f59e0b" })),
+    [all]
+  );
+
+  const traction: Slice[] = useMemo(
+    () => [...all].filter((e) => e.shelf?.totalReviews).sort((a, b) => (b.shelf!.totalReviews ?? 0) - (a.shelf!.totalReviews ?? 0)).slice(0, 8)
+      .map((e) => ({ label: e.brand, value: Math.round((e.shelf!.totalReviews ?? 0) / 1e5) / 10, color: "#0ea5e9" })),
+    [all]
+  );
+
+  const cats: Slice[] = useMemo(
+    () => COMPETITOR_CATEGORIES.map((c) => ({ label: c, value: all.filter((e) => e.categories.includes(c)).length, color: CAT5_COLOR[c] ?? "#94a3b8" }))
+      .sort((a, b) => b.value - a.value),
+    [all]
+  );
+
+  const events = useMemo(() => all.filter((e) => e.competitor?.materialEvent).slice(0, 6), [all]);
+
+  return (
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <Card title="Top competitors by revenue" sub="latest disclosed · ₹ crore" className="lg:col-span-2">
+        <HBars data={topRev} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`)} onBar={pick} />
+      </Card>
+
+      <Card title="Funding status" sub="where the field stands">
+        <Donut data={funding} centerValue={String(all.length)} centerLabel="brands" />
+      </Card>
+
+      <Card title="Heaviest discounting" sub="avg discount % on Nykaa — a marketing-vs-liquidation signal">
+        <HBars data={discount} valueLabel={(v) => `${v}%`} onBar={pick} />
+      </Card>
+
+      <Card title="Market traction" sub="total reviews (millions) — a sales-velocity proxy">
+        <HBars data={traction} valueLabel={(v) => `${v}m`} onBar={pick} />
+      </Card>
+
+      <Card title="Category presence" sub="competitors active per category">
+        <HBars data={cats} valueLabel={(v) => String(v)} />
+      </Card>
+
+      <Card title="Recent deals & events" sub="fundraises & acquisitions" className="lg:col-span-3">
+        {events.length === 0 ? (
+          <div className="text-sm text-slate-400">No material events tracked.</div>
+        ) : (
+          <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {events.map((e) => (
+              <li key={e.cin || e.brand} onClick={() => onSelect(e)} className="cursor-pointer rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200 hover:bg-slate-100">
+                <div className="text-sm font-medium text-slate-800">{e.brand}</div>
+                <div className="mt-0.5 line-clamp-2 text-xs text-slate-500">{e.competitor?.materialEvent}</div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Card>
+    </div>
   );
 }
 
