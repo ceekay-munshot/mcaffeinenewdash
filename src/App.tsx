@@ -9,6 +9,8 @@ import {
 } from "./types";
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom, ROOM_META, COVERAGE_META, type Room } from "./lib/health";
+import { CATEGORY_COLOR, COVERAGE_COLOR, ROOM_COLOR } from "./lib/palette";
+import { Donut, HBars, Legend, Card, type Slice } from "./charts";
 
 type Module = "suppliers" | "competitors";
 
@@ -74,6 +76,7 @@ function SupplierView() {
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SupSort>("revenue");
   const [selected, setSelected] = useState<Entity | null>(null);
+  const [view, setView] = useState<"overview" | "table">("overview");
 
   const rows = useMemo(() => {
     let r = all;
@@ -108,6 +111,16 @@ function SupplierView() {
         <Kpi label="High negotiation room" value={String(kpis.highRoom)} sub="fat-margin suppliers to push on" tone="amber" />
       </section>
 
+      <div className="mb-4 flex w-fit rounded-lg bg-slate-100 p-0.5 text-sm">
+        {(["overview", "table"] as const).map((v) => (
+          <button key={v} onClick={() => setView(v)}
+            className={`rounded-md px-3 py-1 font-medium capitalize transition ${view === v ? "bg-white text-teal-700 shadow-sm" : "text-slate-500 hover:text-slate-700"}`}>{v}</button>
+        ))}
+      </div>
+
+      {view === "overview" && <SupplierOverview all={all} onSelect={setSelected} />}
+
+      {view === "table" && (<>
       <Toolbar
         cats={SUP_CATS as unknown as string[]} cat={cat} setCat={(c) => setCat(c as SupCat)}
         count={(c) => (c === "All" ? all.length : all.filter((e) => e.category === c).length)}
@@ -153,9 +166,100 @@ function SupplierView() {
         margin (≥20% High · 10–20% Medium · &lt;10% Low) — fatter supplier margins mean more room to push on price/terms.
         It sharpens once Probe42 adds receivable days &amp; RoCE.
       </p>
+      </>)}
 
       {selected && <SupplierDetail entity={selected} onClose={() => setSelected(null)} />}
     </main>
+  );
+}
+
+/* --------------------------------------------- P0 Supplier overview (charts) */
+
+function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const byName = useMemo(() => new Map(all.map((e) => [e.brand, e])), [all]);
+
+  const revByCat: Slice[] = useMemo(() => {
+    const m: Record<string, number> = {};
+    for (const e of all) m[e.category] = (m[e.category] ?? 0) + (toCrore(e.financials.revenueINR) ?? 0);
+    return Object.entries(m)
+      .map(([label, value]) => ({ label, value: Math.round(value), color: CATEGORY_COLOR[label] ?? "#94a3b8" }))
+      .sort((a, b) => b.value - a.value);
+  }, [all]);
+
+  const topRev: Slice[] = useMemo(
+    () =>
+      [...all]
+        .filter((e) => e.financials.revenueINR)
+        .sort((a, b) => (b.financials.revenueINR ?? 0) - (a.financials.revenueINR ?? 0))
+        .slice(0, 8)
+        .map((e) => ({ label: e.brand, value: Math.round(toCrore(e.financials.revenueINR) ?? 0), color: CATEGORY_COLOR[e.category] ?? "#94a3b8" })),
+    [all]
+  );
+
+  const coverage: Slice[] = useMemo(() => {
+    const order = ["full", "partial", "not_found"] as const;
+    return order.map((k) => ({ label: COVERAGE_META[k].label, value: all.filter((e) => e.coverage === k).length, color: COVERAGE_COLOR[k] }));
+  }, [all]);
+
+  const room: Slice[] = useMemo(() => {
+    const order: Room[] = ["High", "Medium", "Low", "Unknown"];
+    return order.map((k) => ({ label: k === "Unknown" ? "No data" : k, value: all.filter((e) => negotiationRoom(e) === k).length, color: ROOM_COLOR[k] }));
+  }, [all]);
+
+  const targets = useMemo(
+    () =>
+      [...all]
+        .filter((e) => negotiationRoom(e) === "High" && e.financials.revenueINR)
+        .sort((a, b) => (b.financials.revenueINR ?? 0) - (a.financials.revenueINR ?? 0))
+        .slice(0, 5),
+    [all]
+  );
+
+  const totalCr = Math.round(revByCat.reduce((s, d) => s + d.value, 0));
+
+  return (
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <Card title="Top suppliers by revenue" sub="latest disclosed · ₹ crore · colour = category" className="lg:col-span-2">
+        <HBars data={topRev} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} onBar={(l) => byName.get(l) && onSelect(byName.get(l)!)} />
+        <div className="mt-4">
+          <Legend items={Object.entries(CATEGORY_COLOR).map(([label, color]) => ({ label, color }))} />
+        </div>
+      </Card>
+
+      <Card title="Revenue by category" sub="share of disclosed revenue">
+        <Donut data={revByCat} centerValue={totalCr >= 1000 ? `₹${(totalCr / 1000).toFixed(0)}k` : `₹${totalCr}`} centerLabel="Cr total" unit=" Cr" />
+      </Card>
+
+      <Card title="Data coverage" sub="how complete each supplier is">
+        <Donut data={coverage} centerValue={String(all.length)} centerLabel="suppliers" />
+      </Card>
+
+      <Card title="Negotiation room" sub="based on EBITDA margin — where to push">
+        <HBars data={room} valueLabel={(v) => String(v)} />
+        <div className="mt-3 text-xs text-slate-400">High ≥20% · Medium 10–20% · Low &lt;10% EBITDA margin</div>
+      </Card>
+
+      <Card title="Top negotiation targets" sub="fat-margin, high-revenue suppliers">
+        {targets.length === 0 ? (
+          <div className="text-sm text-slate-400">No high-room suppliers with revenue yet.</div>
+        ) : (
+          <ul className="space-y-2">
+            {targets.map((e) => (
+              <li key={e.folder} onClick={() => onSelect(e)} className="flex cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 hover:bg-slate-50">
+                <div className="min-w-0">
+                  <div className="truncate text-sm font-medium text-slate-800">{e.brand}</div>
+                  <div className="text-xs text-slate-400">{e.category}</div>
+                </div>
+                <div className="text-right">
+                  <div className="font-mono text-sm text-slate-900">{fmtPct(e.financials.ebitdaMarginPct)}</div>
+                  <div className="text-xs text-slate-400">EBITDA</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Card>
+    </div>
   );
 }
 
