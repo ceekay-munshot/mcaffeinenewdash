@@ -202,8 +202,21 @@ function extract(category, folder, dir) {
   const netProfitINR = findByKey(blob, /(net[_\s]?profit|netprofit|pat\b)/i, asINR);
   const ebitdaMarginPct = findByKey(blob, /ebitda.?margin/i, asNumber);
   const netMarginPct = findByKey(blob, /(net.?profit.?margin|net.?margin)/i, asNumber);
+  const revenueCAGR1yr = findByKey(blob, /cagr.?1/i, asNumber);
   const revenueCAGR3yr = findByKey(blob, /cagr.?3/i, asNumber);
+  const revenueCAGR5yr = findByKey(blob, /cagr.?5/i, asNumber);
   const employeeCount = findByKey(blob, /employee.?count/i, asNumber);
+
+  // richer company-profile fields already sitting in the Tracxn JSON (P0 density)
+  const strOrName = (v) =>
+    typeof v === "string" ? v : Array.isArray(v) && typeof v[0] === "string" ? v[0] : v?.name;
+  const paidUpCapitalINR = findByKey(blob, /paid.?up/i, asINR);
+  const authorizedCapitalINR = findByKey(blob, /authori[sz]ed.?capital/i, asINR);
+  const auditor = findByKey(blob, /^(auditor|latestAuditor)$/i, strOrName) || firstString(blob, /auditor.?name/i);
+  const lei = firstString(blob, /legalEntityIdentifier|^lei$|lei.?code/i);
+  const industry = findByKey(blob, /industryClassifications?|primaryTaxonomy|^industry$/i, strOrName);
+  const state = firstString(blob, /^(state|hqState|registeredState)$/i);
+  const city = firstString(blob, /^(city|hqCity|registeredCity)$/i);
 
   // legal name: prefer an explicit legal-entity name, else the brand/company name
   const legalName =
@@ -259,13 +272,22 @@ function extract(category, folder, dir) {
     entityType: entityType || null,
     statusAtRegistrar: statusAtRegistrar || null,
     parent: parent || null,
+    auditor: auditor || null,
+    lei: lei || null,
+    industry: industry || null,
+    state: state || null,
+    city: city || null,
     financials: {
       revenueINR: revenueINR ?? null,
       ebitdaINR: ebitdaINR ?? null,
       netProfitINR: netProfitINR ?? null,
       ebitdaMarginPct: ebitdaMarginPct ?? null,
       netMarginPct: netMarginPct ?? null,
+      revenueCAGR1yrPct: revenueCAGR1yr ?? null,
       revenueCAGR3yrPct: revenueCAGR3yr ?? null,
+      revenueCAGR5yrPct: revenueCAGR5yr ?? null,
+      paidUpCapitalINR: paidUpCapitalINR ?? null,
+      authorizedCapitalINR: authorizedCapitalINR ?? null,
       employeeCount: employeeCount ?? null,
     },
     funding: { rounds: fundingRounds, acquisitions },

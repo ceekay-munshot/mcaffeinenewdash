@@ -8,7 +8,11 @@ export interface Financials {
   netProfitINR: number | null;
   ebitdaMarginPct: number | null;
   netMarginPct: number | null;
+  revenueCAGR1yrPct: number | null;
   revenueCAGR3yrPct: number | null;
+  revenueCAGR5yrPct: number | null;
+  paidUpCapitalINR: number | null;
+  authorizedCapitalINR: number | null;
   employeeCount: number | null;
 }
 
@@ -72,6 +76,11 @@ export interface Entity {
   entityType: string | null;
   statusAtRegistrar: string | null;
   parent: string | null;
+  auditor: string | null;
+  lei: string | null;
+  industry: string | null;
+  state: string | null;
+  city: string | null;
   financials: Financials;
   funding: { rounds: number; acquisitions: number };
   sources: { tracxn: boolean; webResearch: boolean; pdfs: number };

@@ -610,13 +610,23 @@ function SupplierDetail({ entity: e, onClose }: { entity: Entity; onClose: () =>
         <Stat label="EBITDA" value={fmtCrore(e.financials.ebitdaINR)} />
         <Stat label="EBITDA margin" value={fmtPct(e.financials.ebitdaMarginPct)} />
         <Stat label="Net margin" value={fmtPct(e.financials.netMarginPct)} />
-        <Stat label="3-yr revenue CAGR" value={fmtPct(e.financials.revenueCAGR3yrPct)} />
+        <Stat
+          label="Rev CAGR 1y/3y/5y"
+          value={[e.financials.revenueCAGR1yrPct, e.financials.revenueCAGR3yrPct, e.financials.revenueCAGR5yrPct]
+            .map((v) => fmtPct(v))
+            .join(" / ")}
+        />
         <Stat label="Employees" value={fmtInt(e.financials.employeeCount)} />
+        <Stat label="Paid-up capital" value={fmtCrore(e.financials.paidUpCapitalINR)} />
+        <Stat label="Authorized capital" value={fmtCrore(e.financials.authorizedCapitalINR)} />
       </div>
       <dl className="mt-6 space-y-2 text-sm">
         <Row k="Category" v={e.category} /><Row k="CIN" v={e.cin ?? "—"} mono /><Row k="PAN" v={e.pan ?? "—"} mono />
         <Row k="Entity type" v={e.entityType ?? "—"} /><Row k="Incorporated" v={fmtDate(e.incorporationDate)} />
-        <Row k="Registrar status" v={e.statusAtRegistrar ?? "—"} /><Row k="Parent" v={e.parent ?? "—"} />
+        <Row k="Registrar status" v={e.statusAtRegistrar ?? "—"} />
+        <Row k="Location" v={[(e.state ?? "").replace(/\s*\(implied\)\s*/i, "").trim() || null, e.city].filter(Boolean).join(" · ") || "—"} />
+        <Row k="Industry" v={e.industry ?? "—"} /><Row k="Auditor" v={e.auditor ?? "—"} />
+        <Row k="LEI" v={e.lei ?? "—"} mono /><Row k="Parent" v={e.parent ?? "—"} />
         <Row k="Website" v={e.website ?? "—"} /><Row k="Coverage" v={COVERAGE_META[e.coverage].label} />
       </dl>
       {e.probe ? (
