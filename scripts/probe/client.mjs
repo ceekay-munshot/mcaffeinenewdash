@@ -25,7 +25,9 @@ function headers() {
   // the account uses a different scheme (confirmed against the portal's Try console).
   return {
     [process.env.PROBE42_KEY_HEADER || "x-api-key"]: key,
-    [process.env.PROBE42_VERSION_HEADER || "api-version"]: VERSION,
+    // Probe42 uses `x-api-version` (NOT `api-version` — that name returns a
+    // misleading 404 "Endpoint is deprecated"). Confirmed against the portal's curl.
+    [process.env.PROBE42_VERSION_HEADER || "x-api-version"]: VERSION,
     accept: "application/json",
   };
 }
