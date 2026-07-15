@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T07:59:51.106Z",
+  "generatedAt": "2026-07-15T08:24:47.624Z",
   "count": 73,
   "entities": [
     {
@@ -4465,6 +4465,19 @@
         "webResearch": true,
         "pdfs": 3
       },
+      "probe": {
+        "receivableDays": 56.9,
+        "payableDays": 11.05,
+        "cashConversionCycleDays": 96.34,
+        "roce": 16.66,
+        "roe": 14.52,
+        "ebitdaMargin": 33.77,
+        "netMargin": 43.81,
+        "peerMedianPayableDays": 28.634999999999998,
+        "peerMedianReceivableDays": 52.79,
+        "creditRating": null,
+        "profitabilityScore": 4
+      },
       "research": {
         "overview": "Northern Aromatics Private Limited ('Soothe Your Senses') is an Indian manufacturer of fragrances, flavours and essential oils, founded in 1979. It describes itself as one of the largest manufacturing companies in India…",
         "products": [
@@ -4653,6 +4666,19 @@
         "webResearch": true,
         "pdfs": 3
       },
+      "probe": {
+        "receivableDays": 46.37,
+        "payableDays": 36.67,
+        "cashConversionCycleDays": 64.13,
+        "roce": 38.23,
+        "roe": 30.09,
+        "ebitdaMargin": 8.44,
+        "netMargin": 5.92,
+        "peerMedianPayableDays": 42.285,
+        "peerMedianReceivableDays": 54.075,
+        "creditRating": null,
+        "profitabilityScore": 5
+      },
       "research": {
         "overview": "ValueTree Ingredients Pvt Ltd (VT / Valuetree)",
         "products": [
@@ -4771,6 +4797,19 @@
         "tracxn": true,
         "webResearch": true,
         "pdfs": 3
+      },
+      "probe": {
+        "receivableDays": 68.77,
+        "payableDays": 56.2,
+        "cashConversionCycleDays": 85.52,
+        "roce": 46.03,
+        "roe": 34.04,
+        "ebitdaMargin": 19.03,
+        "netMargin": 15.39,
+        "peerMedianPayableDays": 31.695,
+        "peerMedianReceivableDays": 59.875,
+        "creditRating": "Withdrawn (A4+/Issuer Not Cooperating)",
+        "profitabilityScore": 5
       },
       "research": {
         "overview": "Yasham (YASHAM Speciality Ingredients Pvt Ltd) is a Mumbai-headquartered distributor and 'indenting' agent of specialty chemicals, ingredients and raw materials. Founded in 1997, starting with indenting of pharmaceutica…",
