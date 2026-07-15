@@ -14,6 +14,7 @@ import { CATEGORY_COLOR, COVERAGE_COLOR, ROOM_COLOR } from "./lib/palette";
 import { Donut, HBars, Columns, AreaLine, StackedMeter, Legend, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import KIM from "@data/raw/masters/key_ingredients_manufacturers.json";
+import DeepDive from "./DeepDive";
 
 // Bill-of-materials rosters the client shared (raw materials + packaging specs).
 const BOM = (KIM as { Sheet1: Record<string, string>[] }).Sheet1
@@ -92,12 +93,17 @@ type SupCat = (typeof SUP_CATS)[number];
 type SupSort = "revenue" | "ebitda" | "name" | "room";
 
 function SupplierView() {
-  const all = useMemo(() => supplyEntities(), []);
+  const everySupplier = useMemo(() => supplyEntities(), []);
+  const enriched = useMemo(() => everySupplier.filter((e) => e.probe), [everySupplier]);
+  const [showcaseOnly, setShowcaseOnly] = useState(true);
+  const all = useMemo(() => (showcaseOnly && enriched.length ? enriched : everySupplier), [showcaseOnly, enriched, everySupplier]);
   const [cat, setCat] = useState<SupCat>("All");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SupSort>("revenue");
   const [selected, setSelected] = useState<Entity | null>(null);
+  const [deep, setDeep] = useState<Entity | null>(null);
   const [view, setView] = useState<"overview" | "table">("overview");
+  const openSupplier = (e: Entity) => (e.probe ? setDeep(e) : setSelected(e));
 
   const rows = useMemo(() => {
     let r = all;
@@ -125,6 +131,17 @@ function SupplierView() {
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
+      {enriched.length > 0 && (
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-teal-200 bg-teal-50 px-4 py-3">
+          <div className="text-sm text-teal-900">
+            <span className="font-semibold">Live Probe42 deep-dive enabled for {enriched.length} suppliers.</span>{" "}
+            <span className="text-teal-700">{everySupplier.length - enriched.length} more unlock on the paid plan. Click a supplier to open its full 11-year profile.</span>
+          </div>
+          <button onClick={() => setShowcaseOnly((s) => !s)} className="shrink-0 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-teal-700 ring-1 ring-teal-300 hover:bg-teal-100">
+            {showcaseOnly ? `Preview all ${everySupplier.length} (locked)` : "Show enabled only"}
+          </button>
+        </div>
+      )}
       <section className="stagger grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
         <Kpi label="Suppliers tracked" value={String(kpis.tracked)} sub="RM · PM · Manufacturers" />
         <Kpi label="Data coverage" value={`${kpis.full} full`} sub={`${kpis.partial} partial · numbers pending`} tone="emerald" />
@@ -139,7 +156,7 @@ function SupplierView() {
         ))}
       </div>
 
-      {view === "overview" && <SupplierOverview all={all} onSelect={setSelected} />}
+      {view === "overview" && <SupplierOverview all={all} onSelect={openSupplier} />}
 
       {view === "table" && (<>
       <Toolbar
@@ -162,7 +179,7 @@ function SupplierView() {
             {rows.map((e) => {
               const room = negotiationRoom(e);
               return (
-                <tr key={e.category + e.folder} onClick={() => setSelected(e)}
+                <tr key={e.category + e.folder} onClick={() => openSupplier(e)}
                   className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
                   <td className="px-4 py-3"><div className="font-medium text-slate-900">{e.brand}</div>
                     <div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div></td>
@@ -190,6 +207,7 @@ function SupplierView() {
       </>)}
 
       {selected && <SupplierDetail entity={selected} onClose={() => setSelected(null)} />}
+      {deep && <DeepDive entity={deep} onClose={() => setDeep(null)} />}
     </main>
   );
 }

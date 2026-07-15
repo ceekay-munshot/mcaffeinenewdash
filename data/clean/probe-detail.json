@@ -1,0 +1,709 @@
+{
+  "U01100DL1979PTC010100": {
+    "cin": "U01100DL1979PTC010100",
+    "legalName": "NORTHERN AROMATICS PRIVATE LIMITED.",
+    "website": "https://www.northernaromatics.com/",
+    "city": "NEW DELHI",
+    "state": "Delhi",
+    "incorporation": "1979-12-27",
+    "paidUpCr": 1.4,
+    "lastUpdated": "2026-07-12",
+    "bands": {
+      "revenue": "Between 250 and 1000 cr.",
+      "profit": "More than 5 cr.",
+      "employees": "Upto 100"
+    },
+    "flags": {
+      "gstDelay": false,
+      "epfDelay": false,
+      "bureauDefaults": false,
+      "pendingCases": true,
+      "severeCases": false
+    },
+    "creditRating": null,
+    "score": {
+      "overall": 4,
+      "growth": 3,
+      "profitability": 4,
+      "liquidity": 5,
+      "solvency": 5,
+      "efficiency": 4
+    },
+    "latest": {
+      "year": "FY25",
+      "revenueCr": 307.4,
+      "ebitdaCr": 103.8,
+      "patCr": 134.7,
+      "ebitdaMargin": 33.8,
+      "netMargin": 43.8,
+      "roce": 16.7,
+      "roe": 14.5,
+      "currentRatio": 19.8,
+      "debtToEquity": 0,
+      "receivableDays": 57,
+      "payableDays": 11,
+      "inventoryDays": 50,
+      "cashConversionCycle": 96,
+      "receivablesCr": 47.9,
+      "payablesCr": 9.3,
+      "inventoryCr": 42.5,
+      "cashCr": 4
+    },
+    "series": [
+      {
+        "year": "FY18",
+        "revenueCr": 167.9,
+        "ebitdaCr": 42.1,
+        "patCr": 39,
+        "ebitdaMargin": 25.1,
+        "netMargin": 23.2,
+        "roce": 25.1,
+        "receivableDays": 67,
+        "payableDays": 41,
+        "cashConversionCycle": 83,
+        "revenueGrowth": 24.1
+      },
+      {
+        "year": "FY19",
+        "revenueCr": 208.2,
+        "ebitdaCr": 46.8,
+        "patCr": 47.3,
+        "ebitdaMargin": 22.5,
+        "netMargin": 22.7,
+        "roce": 22.1,
+        "receivableDays": 61,
+        "payableDays": 18,
+        "cashConversionCycle": 82,
+        "revenueGrowth": 24
+      },
+      {
+        "year": "FY20",
+        "revenueCr": 214.1,
+        "ebitdaCr": 67.5,
+        "patCr": 70.6,
+        "ebitdaMargin": 31.5,
+        "netMargin": 33,
+        "roce": 23.1,
+        "receivableDays": 45,
+        "payableDays": 30,
+        "cashConversionCycle": 69,
+        "revenueGrowth": 2.9
+      },
+      {
+        "year": "FY21",
+        "revenueCr": 214.9,
+        "ebitdaCr": 76.6,
+        "patCr": 95.7,
+        "ebitdaMargin": 35.6,
+        "netMargin": 44.5,
+        "roce": 21.6,
+        "receivableDays": 60,
+        "payableDays": 29,
+        "cashConversionCycle": 85,
+        "revenueGrowth": 0.4
+      },
+      {
+        "year": "FY22",
+        "revenueCr": 219,
+        "ebitdaCr": 71.3,
+        "patCr": 85.2,
+        "ebitdaMargin": 32.6,
+        "netMargin": 38.9,
+        "roce": 15.9,
+        "receivableDays": 59,
+        "payableDays": 26,
+        "cashConversionCycle": 90,
+        "revenueGrowth": 1.9
+      },
+      {
+        "year": "FY23",
+        "revenueCr": 237.3,
+        "ebitdaCr": 73.3,
+        "patCr": 88.2,
+        "ebitdaMargin": 30.9,
+        "netMargin": 37.2,
+        "roce": 14.6,
+        "receivableDays": 48,
+        "payableDays": 30,
+        "cashConversionCycle": 82,
+        "revenueGrowth": 8.4
+      },
+      {
+        "year": "FY24",
+        "revenueCr": 278.2,
+        "ebitdaCr": 99.7,
+        "patCr": 121.8,
+        "ebitdaMargin": 35.8,
+        "netMargin": 43.8,
+        "roce": 17.6,
+        "receivableDays": 52,
+        "payableDays": 17,
+        "cashConversionCycle": 72,
+        "revenueGrowth": 17.2
+      },
+      {
+        "year": "FY25",
+        "revenueCr": 307.4,
+        "ebitdaCr": 103.8,
+        "patCr": 134.7,
+        "ebitdaMargin": 33.8,
+        "netMargin": 43.8,
+        "roce": 16.7,
+        "receivableDays": 57,
+        "payableDays": 11,
+        "cashConversionCycle": 96,
+        "revenueGrowth": 10.5
+      }
+    ],
+    "vsMedian": {
+      "receivableDays": {
+        "self": 57,
+        "median": 53
+      },
+      "payableDays": {
+        "self": 11,
+        "median": 29
+      },
+      "cashConversionCycle": {
+        "self": 96,
+        "median": 72
+      },
+      "ebitdaMargin": {
+        "self": 33.8,
+        "median": 8
+      },
+      "roce": {
+        "self": 16.7,
+        "median": 14
+      },
+      "netMargin": {
+        "self": 43.8,
+        "median": 3
+      }
+    },
+    "peers": [
+      {
+        "name": "KEVA FLAVOURS PRIVATE LIMITED",
+        "revenueCr": 412.7,
+        "city": "MUMBAI",
+        "isSelf": false
+      },
+      {
+        "name": "VIDHI SPECIALTY FOOD INGREDIENTS LIMITED",
+        "revenueCr": 382.3,
+        "city": "MUMBAI",
+        "isSelf": false
+      },
+      {
+        "name": "NORTHERN AROMATICS PRIVATE LIMITED.",
+        "revenueCr": 307.4,
+        "city": "NEW DELHI",
+        "isSelf": true
+      },
+      {
+        "name": "DP COCOA PRIVATE LIMITED",
+        "revenueCr": 306.6,
+        "city": "HYDERABAD",
+        "isSelf": false
+      },
+      {
+        "name": "TERA PANTH FOODS LIMITED",
+        "revenueCr": 284.8,
+        "city": "KUTCH",
+        "isSelf": false
+      }
+    ],
+    "shareholders": [
+      {
+        "name": "ABHAY AGARWAL (DEVI ASSOCIATES'S NOMINEE)",
+        "pct": 96.7,
+        "type": "Other"
+      }
+    ],
+    "charges": {
+      "count": 2,
+      "sumCr": 5.2,
+      "topHolder": "HONGKONG AND SHANGHAI BANKING CORPORATION LIMITED",
+      "topAmountCr": 5,
+      "topDate": "2019-02-21"
+    }
+  },
+  "U51100MH1997PTC104919": {
+    "cin": "U51100MH1997PTC104919",
+    "legalName": "YASHAM SPECIALITY INGREDIENTS PRIVATE LIMITED",
+    "website": "https://yasham.in/",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "incorporation": "1997-01-07",
+    "paidUpCr": 0.7,
+    "lastUpdated": "2026-02-06",
+    "bands": {
+      "revenue": "Between 50 and 250 cr.",
+      "profit": "More than 5 cr.",
+      "employees": "Between 101 and 500"
+    },
+    "flags": {
+      "gstDelay": false,
+      "epfDelay": false,
+      "bureauDefaults": false,
+      "pendingCases": false,
+      "severeCases": false
+    },
+    "creditRating": null,
+    "score": {
+      "overall": 5,
+      "growth": 3,
+      "profitability": 5,
+      "liquidity": 4,
+      "solvency": 5,
+      "efficiency": 4
+    },
+    "latest": {
+      "year": "FY25",
+      "revenueCr": 233.4,
+      "ebitdaCr": 44.4,
+      "patCr": 35.9,
+      "ebitdaMargin": 19,
+      "netMargin": 15.4,
+      "roce": 46,
+      "roe": 34,
+      "currentRatio": 3.09,
+      "debtToEquity": 0,
+      "receivableDays": 69,
+      "payableDays": 56,
+      "inventoryDays": 73,
+      "cashConversionCycle": 86,
+      "receivablesCr": 44,
+      "payablesCr": 35.9,
+      "inventoryCr": 46.7,
+      "cashCr": 14.7
+    },
+    "series": [
+      {
+        "year": "FY18",
+        "revenueCr": 62.7,
+        "ebitdaCr": 5.3,
+        "patCr": 4,
+        "ebitdaMargin": 8.5,
+        "netMargin": 6.5,
+        "roce": 29.4,
+        "receivableDays": 82,
+        "payableDays": 42,
+        "cashConversionCycle": 93,
+        "revenueGrowth": 0.3
+      },
+      {
+        "year": "FY19",
+        "revenueCr": 79.5,
+        "ebitdaCr": 10.5,
+        "patCr": 7.1,
+        "ebitdaMargin": 13.2,
+        "netMargin": 8.9,
+        "roce": 37.5,
+        "receivableDays": 77,
+        "payableDays": 27,
+        "cashConversionCycle": 86,
+        "revenueGrowth": 26.8
+      },
+      {
+        "year": "FY20",
+        "revenueCr": 103.6,
+        "ebitdaCr": 15,
+        "patCr": 10.9,
+        "ebitdaMargin": 14.5,
+        "netMargin": 10.5,
+        "roce": 41.4,
+        "receivableDays": 77,
+        "payableDays": 43,
+        "cashConversionCycle": 81,
+        "revenueGrowth": 30.4
+      },
+      {
+        "year": "FY21",
+        "revenueCr": 92.5,
+        "ebitdaCr": 17.2,
+        "patCr": 12.7,
+        "ebitdaMargin": 18.5,
+        "netMargin": 13.8,
+        "roce": 35.5,
+        "receivableDays": 78,
+        "payableDays": 65,
+        "cashConversionCycle": 70,
+        "revenueGrowth": -10.7
+      },
+      {
+        "year": "FY22",
+        "revenueCr": 146.5,
+        "ebitdaCr": 26,
+        "patCr": 20.7,
+        "ebitdaMargin": 17.7,
+        "netMargin": 14.2,
+        "roce": 40.1,
+        "receivableDays": 80,
+        "payableDays": 72,
+        "cashConversionCycle": 63,
+        "revenueGrowth": 58.4
+      },
+      {
+        "year": "FY23",
+        "revenueCr": 195.9,
+        "ebitdaCr": 40.2,
+        "patCr": 32,
+        "ebitdaMargin": 20.5,
+        "netMargin": 16.4,
+        "roce": 44.3,
+        "receivableDays": 52,
+        "payableDays": 35,
+        "cashConversionCycle": 50,
+        "revenueGrowth": 33.7
+      },
+      {
+        "year": "FY24",
+        "revenueCr": 201.8,
+        "ebitdaCr": 40.7,
+        "patCr": 33.2,
+        "ebitdaMargin": 20.2,
+        "netMargin": 16.5,
+        "roce": 44.7,
+        "receivableDays": 63,
+        "payableDays": 59,
+        "cashConversionCycle": 61,
+        "revenueGrowth": 3
+      },
+      {
+        "year": "FY25",
+        "revenueCr": 233.4,
+        "ebitdaCr": 44.4,
+        "patCr": 35.9,
+        "ebitdaMargin": 19,
+        "netMargin": 15.4,
+        "roce": 46,
+        "receivableDays": 69,
+        "payableDays": 56,
+        "cashConversionCycle": 86,
+        "revenueGrowth": 15.7
+      }
+    ],
+    "vsMedian": {
+      "receivableDays": {
+        "self": 69,
+        "median": 60
+      },
+      "payableDays": {
+        "self": 56,
+        "median": 32
+      },
+      "cashConversionCycle": {
+        "self": 86,
+        "median": 41
+      },
+      "ebitdaMargin": {
+        "self": 19,
+        "median": 2
+      },
+      "roce": {
+        "self": 46,
+        "median": 14
+      },
+      "netMargin": {
+        "self": 15.4,
+        "median": 1
+      }
+    },
+    "peers": [
+      {
+        "name": "BHAGWATI PETRO CHEM PRIVATE LIMITED",
+        "revenueCr": 237.3,
+        "city": "AHMEDABAD",
+        "isSelf": false
+      },
+      {
+        "name": "DHARIWALCORP LIMITED",
+        "revenueCr": 233.5,
+        "city": "JODHPUR",
+        "isSelf": false
+      },
+      {
+        "name": "YASHAM SPECIALITY INGREDIENTS PRIVATE LIMITED",
+        "revenueCr": 233.4,
+        "city": "Mumbai",
+        "isSelf": true
+      },
+      {
+        "name": "KEEPSAFE TRADERS PVT LTD",
+        "revenueCr": 233.2,
+        "city": "KOLKATA",
+        "isSelf": false
+      },
+      {
+        "name": "KKP PETCHEM PRIVATE LIMITED",
+        "revenueCr": 232.9,
+        "city": "MUMBAI",
+        "isSelf": false
+      }
+    ],
+    "shareholders": [
+      {
+        "name": "VIVEK DATTATRAY SAMANT",
+        "pct": 67,
+        "type": "Individual"
+      },
+      {
+        "name": "NAMITA VIVEK SAMANT",
+        "pct": 18.6,
+        "type": "Individual"
+      },
+      {
+        "name": "VIVEK D SAMANT-HUF",
+        "pct": 14.4,
+        "type": "Other"
+      }
+    ],
+    "charges": {
+      "count": 1,
+      "sumCr": 5.5,
+      "topHolder": "HONGKONG AND SHANGHAI BANKING CORPORATION LIMITED",
+      "topAmountCr": 5.5,
+      "topDate": "2022-03-11"
+    }
+  },
+  "U74110MH2000PTC126561": {
+    "cin": "U74110MH2000PTC126561",
+    "legalName": "VALUETREE INGREDIENTS PRIVATE LIMITED",
+    "website": "https://www.valuetree.in/",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "incorporation": "2000-05-16",
+    "paidUpCr": 1.5,
+    "lastUpdated": "2026-06-05",
+    "bands": {
+      "revenue": "Between 250 and 1000 cr.",
+      "profit": "More than 5 cr.",
+      "employees": "Upto 100"
+    },
+    "flags": {
+      "gstDelay": true,
+      "epfDelay": true,
+      "bureauDefaults": false,
+      "pendingCases": false,
+      "severeCases": false
+    },
+    "creditRating": null,
+    "score": {
+      "overall": 5,
+      "growth": 3,
+      "profitability": 5,
+      "liquidity": 4,
+      "solvency": 5,
+      "efficiency": 4
+    },
+    "latest": {
+      "year": "FY25",
+      "revenueCr": 580.8,
+      "ebitdaCr": 49,
+      "patCr": 34.4,
+      "ebitdaMargin": 8.4,
+      "netMargin": 5.9,
+      "roce": 38.2,
+      "roe": 30.1,
+      "currentRatio": 2.47,
+      "debtToEquity": 0.13,
+      "receivableDays": 46,
+      "payableDays": 37,
+      "inventoryDays": 54,
+      "cashConversionCycle": 64,
+      "receivablesCr": 73.8,
+      "payablesCr": 58.4,
+      "inventoryCr": 86.6,
+      "cashCr": 0
+    },
+    "series": [
+      {
+        "year": "FY18",
+        "revenueCr": 153.2,
+        "ebitdaCr": 4.6,
+        "patCr": 3.4,
+        "ebitdaMargin": 3,
+        "netMargin": 2.2,
+        "roce": 34.3,
+        "receivableDays": 40,
+        "payableDays": 78,
+        "cashConversionCycle": 9,
+        "revenueGrowth": 8.4
+      },
+      {
+        "year": "FY19",
+        "revenueCr": 180.7,
+        "ebitdaCr": 5.2,
+        "patCr": 3.5,
+        "ebitdaMargin": 2.9,
+        "netMargin": 2,
+        "roce": 30.6,
+        "receivableDays": 30,
+        "payableDays": 45,
+        "cashConversionCycle": 23,
+        "revenueGrowth": 17.9
+      },
+      {
+        "year": "FY20",
+        "revenueCr": 164.4,
+        "ebitdaCr": 5,
+        "patCr": 4,
+        "ebitdaMargin": 3,
+        "netMargin": 2.5,
+        "roce": 25.5,
+        "receivableDays": 36,
+        "payableDays": 55,
+        "cashConversionCycle": 13,
+        "revenueGrowth": -9
+      },
+      {
+        "year": "FY21",
+        "revenueCr": 240.3,
+        "ebitdaCr": 9.9,
+        "patCr": 6.6,
+        "ebitdaMargin": 4.1,
+        "netMargin": 2.8,
+        "roce": 24.4,
+        "receivableDays": 38,
+        "payableDays": 48,
+        "cashConversionCycle": 39,
+        "revenueGrowth": 46.1
+      },
+      {
+        "year": "FY22",
+        "revenueCr": 320.7,
+        "ebitdaCr": 11.5,
+        "patCr": 7.5,
+        "ebitdaMargin": 3.6,
+        "netMargin": 2.3,
+        "roce": 16.4,
+        "receivableDays": 42,
+        "payableDays": 50,
+        "cashConversionCycle": 69,
+        "revenueGrowth": 33.5
+      },
+      {
+        "year": "FY23",
+        "revenueCr": 439.7,
+        "ebitdaCr": 29.4,
+        "patCr": 18.2,
+        "ebitdaMargin": 6.7,
+        "netMargin": 4.1,
+        "roce": 27.5,
+        "receivableDays": 42,
+        "payableDays": 33,
+        "cashConversionCycle": 72,
+        "revenueGrowth": 37.1
+      },
+      {
+        "year": "FY24",
+        "revenueCr": 530.2,
+        "ebitdaCr": 26.1,
+        "patCr": 14.5,
+        "ebitdaMargin": 4.9,
+        "netMargin": 2.7,
+        "roce": 21.2,
+        "receivableDays": 38,
+        "payableDays": 46,
+        "cashConversionCycle": 67,
+        "revenueGrowth": 20.6
+      },
+      {
+        "year": "FY25",
+        "revenueCr": 580.8,
+        "ebitdaCr": 49,
+        "patCr": 34.4,
+        "ebitdaMargin": 8.4,
+        "netMargin": 5.9,
+        "roce": 38.2,
+        "receivableDays": 46,
+        "payableDays": 37,
+        "cashConversionCycle": 64,
+        "revenueGrowth": 9.6
+      }
+    ],
+    "vsMedian": {
+      "receivableDays": {
+        "self": 46,
+        "median": 54
+      },
+      "payableDays": {
+        "self": 37,
+        "median": 42
+      },
+      "cashConversionCycle": {
+        "self": 64,
+        "median": 23
+      },
+      "ebitdaMargin": {
+        "self": 8.4,
+        "median": 2
+      },
+      "roce": {
+        "self": 38.2,
+        "median": 18
+      },
+      "netMargin": {
+        "self": 5.9,
+        "median": 2
+      }
+    },
+    "peers": [
+      {
+        "name": "INABATA INDIA PRIVATE LIMITED",
+        "revenueCr": 604.1,
+        "city": "GURGAON",
+        "isSelf": false
+      },
+      {
+        "name": "COASTAL CHEMICAL COMPANY PRIVATE LIMITED",
+        "revenueCr": 583.9,
+        "city": "SECUNDERABAD",
+        "isSelf": false
+      },
+      {
+        "name": "VALUETREE INGREDIENTS PRIVATE LIMITED",
+        "revenueCr": 580.8,
+        "city": "Mumbai",
+        "isSelf": true
+      },
+      {
+        "name": "AKSHIT PETROCHEM PRIVATE LIMITED",
+        "revenueCr": 579.4,
+        "city": "NEW DELHI",
+        "isSelf": false
+      },
+      {
+        "name": "ASSOCIATE ALLIED CHEMICALS (INDIA) PRIVATE LIMITED",
+        "revenueCr": 575.2,
+        "city": "MUMBAI",
+        "isSelf": false
+      }
+    ],
+    "shareholders": [
+      {
+        "name": "IMCD INDIA PRIVATE LIMITED",
+        "pct": 70,
+        "type": "Corporate"
+      },
+      {
+        "name": "SHAILESH VALLABH KARWA",
+        "pct": 15,
+        "type": "Individual"
+      },
+      {
+        "name": "SHARAD RAVI DALMIA",
+        "pct": 15,
+        "type": "Individual"
+      }
+    ],
+    "charges": {
+      "count": 1,
+      "sumCr": 80,
+      "topHolder": "CITIBANK N.A",
+      "topAmountCr": 80,
+      "topDate": "2024-01-12"
+    }
+  }
+}

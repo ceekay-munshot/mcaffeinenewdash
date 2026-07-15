@@ -7,6 +7,7 @@
   "scripts": {
     "normalize": "node scripts/normalize.mjs",
     "probe:enrich": "node scripts/probe/enrich.mjs",
+    "probe:detail": "node scripts/probe/detail.mjs",
     "shelf:scrape": "node scripts/firecrawl/shelf.mjs",
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
