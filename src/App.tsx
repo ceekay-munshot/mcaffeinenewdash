@@ -34,9 +34,22 @@ function latestYear(e: Entity) {
 // Some brands (e.g. Dove, Vaseline) have no standalone legal entity, so the PDF
 // attached to their folder is actually their PARENT GROUP's consolidated filing
 // (HUL — 17-18 subsidiaries, ₹64k Cr). Using that as the brand's own figure would
-// let a parent's revenue dominate the competitor rankings. A big subsidiary roster
-// is the structural tell of a group holding company vs. a single-brand entity.
-const isParentBackedProfile = (e: Entity) => (e.profile?.subsidiaries?.length ?? 0) >= 5;
+// let a parent's revenue dominate the rankings.
+//
+// A big subsidiary roster is the structural tell of a group holding company — but
+// that alone misfires on a real company that simply has subsidiaries (e.g.
+// ValueTree lists 5 yet the profile IS its own ₹583 Cr filing). So the clinching
+// identity check is the numbers themselves: if the brand's own base revenue is
+// present and matches the profile's, it is the same entity, not a parent.
+const isParentBackedProfile = (e: Entity) => {
+  if ((e.profile?.subsidiaries?.length ?? 0) < 5) return false;
+  const base = e.financials.revenueINR;
+  const prof = latestYear(e)?.revenueINR;
+  if (base != null && base > 0 && prof != null && Math.max(base, prof) / Math.min(base, prof) <= 1.25) {
+    return false; // base ≈ profile → the filing is the brand's own
+  }
+  return true;
+};
 
 // Effective headline numbers. The brand's own base financials come first — they are
 // the entity-level figure — and the multi-year Tracxn PDF profile only fills a
