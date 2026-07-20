@@ -449,6 +449,40 @@ function fundingBucket(stage: string | null | undefined): "Acquired" | "VC-funde
 }
 const BUCKET_COLOR = { Acquired: "#059669", "VC-funded": "#0d9488", Unfunded: "#f59e0b", Unknown: "#cbd5e1" } as const;
 
+// Named funding breakdown — answers "which one is funded / not funded" directly,
+// instead of a donut that only shows proportions.
+function FundingBreakdown({ all, onSelect }: { all: CompetitorRow[]; onSelect: (e: CompetitorRow) => void }) {
+  const order = ["Acquired", "VC-funded", "Unfunded", "Unknown"] as const;
+  const groups = order
+    .map((k) => ({ bucket: k, brands: all.filter((e) => fundingBucket(e.competitor?.stage) === k) }))
+    .filter((g) => g.brands.length);
+  return (
+    <div className="space-y-3">
+      {groups.map(({ bucket, brands }) => (
+        <div key={bucket}>
+          <div className="mb-1.5 flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: BUCKET_COLOR[bucket] }} />
+            <span className="text-sm font-semibold text-slate-700">{bucket}</span>
+            <span className="text-xs text-slate-400">{brands.length}</span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {brands.map((e) => (
+              <button
+                key={e.cin || e.brand}
+                onClick={() => onSelect(e)}
+                className="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-100 hover:text-slate-900"
+                title={e.competitor?.materialEvent ?? undefined}
+              >
+                {e.brand}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect: (e: CompetitorRow) => void }) {
   const byName = useMemo(() => new Map(all.map((e) => [e.brand, e])), [all]);
   const pick = (l: string) => byName.get(l) && onSelect(byName.get(l)!);
@@ -459,16 +493,14 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
     [all]
   );
 
-  const funding: Slice[] = useMemo(() => {
-    const order = ["Acquired", "VC-funded", "Unfunded", "Unknown"] as const;
-    const c: Record<string, number> = {};
-    for (const e of all) c[fundingBucket(e.competitor?.stage)] = (c[fundingBucket(e.competitor?.stage)] ?? 0) + 1;
-    return order.filter((k) => c[k]).map((k) => ({ label: k, value: c[k], color: BUCKET_COLOR[k] }));
-  }, [all]);
-
   const discount: Slice[] = useMemo(
     () => [...all].filter((e) => e.shelf?.avgDiscountPct != null).sort((a, b) => (b.shelf!.avgDiscountPct ?? 0) - (a.shelf!.avgDiscountPct ?? 0)).slice(0, 8)
-      .map((e) => ({ label: e.brand, value: Math.round(e.shelf!.avgDiscountPct ?? 0), color: "#f59e0b" })),
+      .map((e) => ({
+        label: e.brand,
+        sub: e.shelf!.skuCount ? `across ${e.shelf!.skuCount} Nykaa product${e.shelf!.skuCount === 1 ? "" : "s"}` : undefined,
+        value: Math.round(e.shelf!.avgDiscountPct ?? 0),
+        color: "#f59e0b",
+      })),
     [all]
   );
 
@@ -498,11 +530,11 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
         <HBars data={topRev} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`)} onBar={pick} />
       </Card>
 
-      <Card title="Funding status" sub="where the field stands" accent="#6366f1">
-        <Donut data={funding} centerValue={String(all.length)} centerLabel="brands" />
+      <Card title="Funding status" sub="which rivals are funded, acquired, or bootstrapped" accent="#6366f1">
+        <FundingBreakdown all={all} onSelect={onSelect} />
       </Card>
 
-      <Card title="Heaviest discounting" sub="avg discount % on Nykaa — a marketing-vs-liquidation signal" accent="#f59e0b">
+      <Card title="Heaviest discounting" sub="avg % off MRP across each brand's live Nykaa catalogue — high = liquidation or heavy marketing · click a bar for its products" accent="#f59e0b">
         <HBars data={discount} valueLabel={(v) => `${v}%`} onBar={pick} />
       </Card>
 

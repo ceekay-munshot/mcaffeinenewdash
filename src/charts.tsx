@@ -113,7 +113,10 @@ export function HBars({
           onClick={onBar ? () => onBar(d.label) : undefined}
           className={`group relative grid grid-cols-[minmax(0,9rem)_1fr_auto] items-center gap-3 text-sm ${onBar ? "cursor-pointer" : ""}`}
         >
-          <div className="truncate text-slate-600 group-hover:text-slate-900" title={d.label}>{d.label}</div>
+          <div className="min-w-0 group-hover:text-slate-900">
+            <div className="truncate text-slate-600" title={d.label}>{d.label}</div>
+            {d.sub && <div className="truncate text-[11px] text-slate-400">{d.sub}</div>}
+          </div>
           <div className="h-3.5 rounded-full bg-slate-100">
             <div
               className="anim-grow-x h-3.5 rounded-full"
