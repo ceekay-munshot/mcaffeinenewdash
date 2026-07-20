@@ -96,7 +96,7 @@ type SupSort = "revenue" | "ebitda" | "name" | "room";
 function SupplierView() {
   const everySupplier = useMemo(() => supplyEntities(), []);
   const enriched = useMemo(() => everySupplier.filter((e) => e.probe), [everySupplier]);
-  const [showcaseOnly, setShowcaseOnly] = useState(true);
+  const [showcaseOnly, setShowcaseOnly] = useState(false);
   const all = useMemo(() => (showcaseOnly && enriched.length ? enriched : everySupplier), [showcaseOnly, enriched, everySupplier]);
   const [cat, setCat] = useState<SupCat>("All");
   const [query, setQuery] = useState("");
@@ -135,11 +135,11 @@ function SupplierView() {
       {enriched.length > 0 && (
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-teal-200 bg-teal-50 px-4 py-3">
           <div className="text-sm text-teal-900">
-            <span className="font-semibold">Live Probe42 deep-dive enabled for {enriched.length} suppliers.</span>{" "}
-            <span className="text-teal-700">{everySupplier.length - enriched.length} more unlock on the paid plan. Click a supplier to open its full 11-year profile.</span>
+            <span className="font-semibold">Financial health &amp; risk parsed from Tracxn filings for every supplier.</span>{" "}
+            <span className="text-teal-700">{enriched.length} also carry a live Probe42 deep-dive. Click any supplier for its full profile.</span>
           </div>
           <button onClick={() => setShowcaseOnly((s) => !s)} className="shrink-0 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-teal-700 ring-1 ring-teal-300 hover:bg-teal-100">
-            {showcaseOnly ? `Preview all ${everySupplier.length} (locked)` : "Show enabled only"}
+            {showcaseOnly ? `Show all ${everySupplier.length}` : `Probe42 suppliers only (${enriched.length})`}
           </button>
         </div>
       )}
@@ -173,7 +173,7 @@ function SupplierView() {
           <thead>
             <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
               <Th>Company</Th><Th>Category</Th><Th right>Revenue</Th><Th right>EBITDA %</Th>
-              <Th right>Net %</Th><Th right>3-yr growth</Th><Th right>Staff</Th><Th>Negotiation room</Th><Th>Coverage</Th>
+              <Th right>Net %</Th><Th right>3-yr growth</Th><Th right>Staff</Th><Th>Negotiation room</Th><Th>Risk</Th><Th>Coverage</Th>
             </tr>
           </thead>
           <tbody>
@@ -191,11 +191,12 @@ function SupplierView() {
                   <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(e.financials.revenueCAGR3yrPct)}</td>
                   <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtInt(e.financials.employeeCount)}</td>
                   <td className="px-4 py-3"><Pill cls={ROOM_META[room].cls} dot={ROOM_META[room].dot}>{ROOM_META[room].label}</Pill></td>
+                  <td className="px-4 py-3"><RiskCell e={e} /></td>
                   <td className="px-4 py-3"><Pill cls={COVERAGE_META[e.coverage].cls}>{COVERAGE_META[e.coverage].label}</Pill></td>
                 </tr>
               );
             })}
-            {rows.length === 0 && <EmptyRow cols={9} />}
+            {rows.length === 0 && <EmptyRow cols={10} />}
           </tbody>
         </table>
       </div>
@@ -255,6 +256,11 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
     [all]
   );
 
+  const flagged = useMemo(
+    () => [...all].filter((e) => e.pdf?.riskFlags?.length).sort((a, b) => (b.pdf!.riskFlags.length) - (a.pdf!.riskFlags.length)),
+    [all]
+  );
+
   const totalCr = Math.round(revByCat.reduce((s, d) => s + d.value, 0));
 
   return (
@@ -297,6 +303,28 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
               </li>
             ))}
           </ul>
+        )}
+      </Card>
+
+      <Card title="Supplier risk watchlist" sub="flagged in the latest Tracxn filing — click to investigate" className="lg:col-span-3" accent="#e11d48">
+        {flagged.length === 0 ? (
+          <div className="text-sm text-slate-400">No suppliers flagged.</div>
+        ) : (
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {flagged.map((e) => (
+              <button key={e.folder} onClick={() => onSelect(e)} className="rounded-xl bg-rose-50/50 p-3 text-left ring-1 ring-rose-200 transition hover:bg-rose-50">
+                <div className="flex items-center justify-between">
+                  <div className="truncate text-sm font-medium text-slate-900">{e.brand}</div>
+                  <span className="ml-2 shrink-0 rounded-full bg-rose-100 px-1.5 text-xs font-semibold text-rose-700">{e.pdf!.riskFlags.length}</span>
+                </div>
+                <div className="mt-1 space-y-0.5">
+                  {e.pdf!.riskFlags.slice(0, 2).map((f, i) => (
+                    <div key={i} className="truncate text-xs text-rose-700">• {f}</div>
+                  ))}
+                </div>
+              </button>
+            ))}
+          </div>
         )}
       </Card>
 
@@ -703,6 +731,23 @@ function SupplierDetail({ entity: e, onClose }: { entity: Entity; onClose: () =>
 
       {e.tracxnUrl && <TracxnLink url={e.tracxnUrl} />}
     </Drawer>
+  );
+}
+
+// At-a-glance risk indicator for the supplier table.
+function RiskCell({ e }: { e: Entity }) {
+  const flags = e.pdf?.riskFlags ?? [];
+  if (!e.pdf) return <span className="text-slate-300">—</span>;
+  if (!flags.length)
+    return <span className="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">Clear</span>;
+  return (
+    <span
+      title={flags.join(" · ")}
+      className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200"
+    >
+      <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+      {flags.length} flag{flags.length > 1 ? "s" : ""}
+    </span>
   );
 }
 
