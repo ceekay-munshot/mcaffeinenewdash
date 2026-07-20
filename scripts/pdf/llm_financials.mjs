@@ -18,8 +18,22 @@ const args = process.argv.slice(2);
 const only = args.includes("--only") ? args[args.indexOf("--only") + 1] : null;
 const limit = args.includes("--limit") ? Number(args[args.indexOf("--limit") + 1]) : Infinity;
 
-const SCHEMA_HINT = `Return STRICT JSON: {"years":[{"fy":"YYYY-YY","revenueINR":number|null,"ebitdaINR":number|null,"netProfitINR":number|null,"receivableDays":number|null,"payableDays":number|null,"rocePct":number|null,"currentRatio":number|null}]}.
-Rules: values are ABSOLUTE rupees (e.g. 5.83 Cr -> 583000000). "receivableDays"=Days Sales Outstanding, "payableDays"=Days Payable Outstanding. Include only fiscal years that have at least a revenue figure. Sort oldest first. Use null when a figure is absent — never guess.`;
+const SCHEMA_HINT = `Extract the company's per-fiscal-year financials from the flattened Tracxn report text. A metric's label and its yearly values may be separated — align them by fiscal-year columns ("FY 2024-25", "FY 2023-24", …).
+
+Return STRICT JSON: {"years":[{"fy":"YYYY-YY","revenueINR":number|null,"ebitdaINR":number|null,"netProfitINR":number|null,"receivableDays":number|null,"payableDays":number|null,"rocePct":number|null,"currentRatio":number|null}]}
+
+UNITS — money fields are ABSOLUTE RUPEES. 1 Cr = 10,000,000 rupees, so 242 Cr -> 2420000000 and 5.83 Cr -> 58300000. Do NOT add an extra zero.
+
+WHERE each field lives:
+- revenueINR: "Revenue - INR (Cr)" chart, or "Total revenue" / "Total Sales" per year.
+- netProfitINR: "Net Profit/Loss - INR (Cr)" chart, or "Total profit (loss) for period" — EACH year differs; never repeat one year's value across years.
+- ebitdaINR: EBITDA per year if present, else null.
+- receivableDays: "Days Sales Outstanding" per year.
+- payableDays: "Days Payable Outstanding" (may appear only for the latest year).
+- rocePct: "Return on Capital Employed" (%).
+- currentRatio: "Current Ratio".
+
+Include only fiscal years with a revenue figure. Sort oldest first. Use null for anything absent — never guess or copy another year's value.`;
 
 async function extractOne(folder, text) {
   const body = {

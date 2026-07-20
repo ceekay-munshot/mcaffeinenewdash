@@ -12,6 +12,7 @@ let n = 0;
 for (const e of data.entities) {
   const f = fin[e.folder];
   if (f?.years?.length) { e.statements = f.years; n++; }
+  else if (e.statements) delete e.statements; // authoritative: drop stale data
 }
 writeFileSync(ENTITIES, JSON.stringify(data, null, 2));
 console.log(`Attached multi-year statements to ${n} suppliers → ${ENTITIES}`);
