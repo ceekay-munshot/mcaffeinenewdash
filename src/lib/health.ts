@@ -9,11 +9,13 @@ import type { Entity } from "../types";
 export type Room = "High" | "Medium" | "Low" | "Unknown";
 
 export function negotiationRoom(e: Entity): Room {
-  // Prefer the authoritative Tracxn PDF profile's latest-year margin, falling back
-  // to the thin base margin only when there's no profile.
+  // Use the brand's own base margin first; fall back to the latest year of the
+  // Tracxn PDF profile only when the base is missing (so brands with only PDF
+  // statements still get scored, without a linked parent's numbers overriding
+  // the brand's own).
   const ys = e.profile?.years;
   const py = ys && ys.length ? ys[ys.length - 1] : null;
-  const m = py?.ebitdaMarginPct ?? e.financials.ebitdaMarginPct ?? null;
+  const m = e.financials.ebitdaMarginPct ?? py?.ebitdaMarginPct ?? null;
   if (m == null) return "Unknown";
   if (m >= 20) return "High";
   if (m >= 10) return "Medium";

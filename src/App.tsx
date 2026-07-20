@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   DATA,
   supplyEntities,
@@ -31,14 +31,18 @@ function latestYear(e: Entity) {
   return ys && ys.length ? ys[ys.length - 1] : null;
 }
 
-// Effective headline numbers. The multi-year Tracxn PDF profile is the authoritative
-// source (cleaner than the thin base financials, which occasionally carry a bad /
-// order-of-magnitude value), so read the latest profile year first and fall back to
-// the base only when there's no profile. Keeps the table, KPIs, sorting and overview
-// charts all consistent with the per-company detail charts.
-const revOf = (e: Entity) => latestYear(e)?.revenueINR ?? e.financials.revenueINR ?? null;
-const ebitdaMarginOf = (e: Entity) => latestYear(e)?.ebitdaMarginPct ?? e.financials.ebitdaMarginPct ?? null;
-const netMarginOf = (e: Entity) => latestYear(e)?.netMarginPct ?? e.financials.netMarginPct ?? null;
+// Effective headline numbers. The brand's own base financials come first — they are
+// the entity-level figure — and the multi-year Tracxn PDF profile only fills a
+// genuine gap (missing / zero base). This avoids attributing a linked PARENT's
+// consolidated revenue to the brand: e.g. The Derma Co's own ₹214 Cr must not be
+// overwritten by its parent Honasa's ₹2,146 Cr profile. (Base revenue of 0 is
+// treated as missing so brands like Zymo still fall back to the profile.)
+const revOf = (e: Entity) => {
+  const b = e.financials.revenueINR;
+  return b != null && b > 0 ? b : latestYear(e)?.revenueINR ?? null;
+};
+const ebitdaMarginOf = (e: Entity) => e.financials.ebitdaMarginPct ?? latestYear(e)?.ebitdaMarginPct ?? null;
+const netMarginOf = (e: Entity) => e.financials.netMarginPct ?? latestYear(e)?.netMarginPct ?? null;
 
 type Module = "suppliers" | "competitors" | "delivery";
 
@@ -752,6 +756,9 @@ type CardDesc = { key: string; title: string; sub?: string; node: React.ReactNod
 // (headline KPIs, multi-year trends, balance sheet, cost structure, cash flow,
 // M&A, ownership, board, loans, competitors, live shelf, research) into a masonry.
 function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () => void; kind: CompanyKind }) {
+  // The page replaces the list in-place, so jump to the top — otherwise a row
+  // clicked below the fold opens already scrolled past the hero and KPIs.
+  useEffect(() => { window.scrollTo(0, 0); }, [e.folder, e.category]);
   const cards = useMemo(() => companyCards(e, kind), [e, kind]);
   const py = latestYear(e);
   const room = negotiationRoom(e);
@@ -858,10 +865,25 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
         <Row k="Entity type" v={e.entityType ?? "—"} /><Row k="Incorporated" v={fmtDate(e.incorporationDate)} />
         <Row k="Registrar status" v={e.statusAtRegistrar ?? "—"} />
         <Row k="Location" v={[(e.state ?? "").replace(/\s*\(implied\)\s*/i, "").trim() || null, e.city].filter(Boolean).join(" · ") || "—"} />
-        <Row k="Industry" v={e.industry ?? "—"} /><Row k="Auditor" v={e.auditor ?? "—"} /><Row k="Parent" v={e.parent ?? "—"} />
+        <Row k="Industry" v={e.industry ?? "—"} /><Row k="Auditor" v={e.auditor ?? "—"} />
+        <Row k="LEI" v={e.lei ?? "—"} mono /><Row k="Parent" v={e.parent ?? "—"} />
       </dl>
     );
   cards.push({ key: "details", title: "Company details", node: details });
+
+  // Registry-level financials that live on the base record (distinct from, and
+  // sometimes present even without, the multi-year PDF profile).
+  const f = e.financials;
+  const cagr = [f.revenueCAGR1yrPct, f.revenueCAGR3yrPct, f.revenueCAGR5yrPct];
+  const reported: React.ReactNode[] = [];
+  if (f.ebitdaINR != null) reported.push(<Stat key="ebitda" label="EBITDA" value={fmtCrore(f.ebitdaINR)} />);
+  if (cagr.some((v) => v != null)) reported.push(<Stat key="cagr" label="Rev CAGR 1y / 3y / 5y" value={cagr.map((v) => fmtPct(v)).join(" / ")} />);
+  if (f.employeeCount != null) reported.push(<Stat key="emp" label="Employees" value={fmtInt(f.employeeCount)} />);
+  if (f.paidUpCapitalINR != null) reported.push(<Stat key="paid" label="Paid-up capital" value={fmtCrore(f.paidUpCapitalINR)} />);
+  if (f.authorizedCapitalINR != null) reported.push(<Stat key="auth" label="Authorized capital" value={fmtCrore(f.authorizedCapitalINR)} />);
+  if (reported.length) {
+    cards.push({ key: "reported", title: "Reported financials", node: <div className="grid grid-cols-2 gap-3">{reported}</div> });
+  }
 
   if (kind === "competitor" && (e as CompetitorRow).categories?.length) {
     cards.push({
