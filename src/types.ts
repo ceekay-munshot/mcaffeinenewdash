@@ -76,6 +76,18 @@ export interface SupplierPdf {
   riskFlags: string[];
 }
 
+// One fiscal year of statements (LLM-extracted from the Tracxn PDF).
+export interface StatementYear {
+  fy: string;
+  revenueINR: number | null;
+  ebitdaINR: number | null;
+  netProfitINR: number | null;
+  receivableDays: number | null;
+  payableDays: number | null;
+  rocePct: number | null;
+  currentRatio: number | null;
+}
+
 export interface Entity {
   category: string;
   folder: string;
@@ -103,6 +115,7 @@ export interface Entity {
   shelf?: ShelfData;
   research?: ResearchData;
   pdf?: SupplierPdf;
+  statements?: StatementYear[];
 }
 
 export interface Dataset {

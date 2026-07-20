@@ -8,6 +8,7 @@ import {
   type CompetitorRow,
   type ResearchData,
   type SupplierPdf,
+  type StatementYear,
 } from "./types";
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom, ROOM_META, COVERAGE_META, type Room } from "./lib/health";
@@ -721,6 +722,7 @@ function SupplierDetail({ entity: e, onClose }: { entity: Entity; onClose: () =>
           </div>
         </div>
       )}
+      {e.statements && e.statements.length > 1 && <StatementsTrend years={e.statements} />}
       {e.pdf && <HealthRisk pdf={e.pdf} />}
       {!e.probe && !e.pdf && (
         <div className="mt-6 rounded-xl bg-amber-50 p-3 text-xs text-amber-800 ring-1 ring-amber-200">
@@ -748,6 +750,31 @@ function RiskCell({ e }: { e: Entity }) {
       <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
       {flags.length} flag{flags.length > 1 ? "s" : ""}
     </span>
+  );
+}
+
+// Multi-year statement trend (LLM-extracted from the Tracxn PDF).
+function StatementsTrend({ years }: { years: StatementYear[] }) {
+  const fyShort = (s: string) => "'" + (s.split("-")[1] ?? s);
+  const cr = (v: number | null) => Math.round((v ?? 0) / 1e7);
+  const rev = years.map((y) => ({ label: fyShort(y.fy), value: cr(y.revenueINR), color: "#0d9488" }));
+  const profit = years.map((y) => ({ label: fyShort(y.fy), value: cr(y.netProfitINR), color: (y.netProfitINR ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
+  const last = years[years.length - 1];
+  const hasDays = years.some((y) => y.receivableDays != null || y.payableDays != null);
+  return (
+    <div className="mt-6">
+      <SectionLabel>Multi-year financials · {years.length}-yr, from Tracxn report</SectionLabel>
+      <div className="mb-1 text-xs text-slate-500">Revenue (₹ Cr)</div>
+      <AreaLine data={rev} color="#0d9488" valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} />
+      <div className="mb-1 mt-4 text-xs text-slate-500">Net profit / (loss) (₹ Cr)</div>
+      <Columns data={profit} valueLabel={(v) => `₹${v.toLocaleString("en-IN")}`} />
+      {hasDays && (
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          <Stat label="Receivable days (latest)" value={fmtDays(last.receivableDays)} />
+          <Stat label="Payable days (latest)" value={fmtDays(last.payableDays)} />
+        </div>
+      )}
+    </div>
   );
 }
 

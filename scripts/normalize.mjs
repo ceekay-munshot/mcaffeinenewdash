@@ -369,6 +369,12 @@ for (const e of entities) {
   const p = supplierPdf[e.folder];
   if (p) e.pdf = p;
 }
+// LLM-extracted multi-year statements (populated by the supplier-financials Action).
+const supplierFin = readJSON(join(RAW_DIR, "masters/supplier_financials.json")) || {};
+for (const e of entities) {
+  const f = supplierFin[e.folder];
+  if (f?.years?.length) e.statements = f.years;
+}
 
 entities.sort((a, b) => a.category.localeCompare(b.category) || a.brand.localeCompare(b.brand));
 

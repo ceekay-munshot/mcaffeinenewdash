@@ -1,0 +1,38 @@
+name: Supplier financials (LLM)
+
+# Extracts multi-year financial statements from the committed supplier PDF text
+# using the OpenAI key (stored in repo Secrets). Manual trigger — run it once to
+# populate data/raw/masters/supplier_financials.json, then the trend charts light up.
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Max suppliers to extract this run (blank = all)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Extract financials
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        run: |
+          node scripts/pdf/llm_financials.mjs ${{ github.event.inputs.limit && format('--limit {0}', github.event.inputs.limit) || '' }}
+      - name: Merge into clean dataset & commit
+        run: |
+          node scripts/pdf/merge_financials.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/raw/masters/supplier_financials.json data/clean/entities.json
+          git diff --cached --quiet || git commit -m "chore: supplier multi-year financials (LLM)"
+          git push
