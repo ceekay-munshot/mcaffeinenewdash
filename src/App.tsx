@@ -16,7 +16,6 @@ import { CATEGORY_COLOR, COVERAGE_COLOR, ROOM_COLOR } from "./lib/palette";
 import { Donut, HBars, Columns, AreaLine, StackedMeter, Legend, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import KIM from "@data/raw/masters/key_ingredients_manufacturers.json";
-import DeepDive from "./DeepDive";
 
 // Bill-of-materials rosters the client shared (raw materials + packaging specs).
 const BOM = (KIM as { Sheet1: Record<string, string>[] }).Sheet1
@@ -32,12 +31,14 @@ function latestYear(e: Entity) {
   return ys && ys.length ? ys[ys.length - 1] : null;
 }
 
-// Effective headline numbers: thin base financials first, then the latest year of
-// the rich Tracxn PDF profile. Keeps the table, KPIs, sorting and overview charts
-// all reading the same "best available" value instead of the mostly-blank base.
-const revOf = (e: Entity) => e.financials.revenueINR ?? latestYear(e)?.revenueINR ?? null;
-const ebitdaMarginOf = (e: Entity) => e.financials.ebitdaMarginPct ?? latestYear(e)?.ebitdaMarginPct ?? null;
-const netMarginOf = (e: Entity) => e.financials.netMarginPct ?? latestYear(e)?.netMarginPct ?? null;
+// Effective headline numbers. The multi-year Tracxn PDF profile is the authoritative
+// source (cleaner than the thin base financials, which occasionally carry a bad /
+// order-of-magnitude value), so read the latest profile year first and fall back to
+// the base only when there's no profile. Keeps the table, KPIs, sorting and overview
+// charts all consistent with the per-company detail charts.
+const revOf = (e: Entity) => latestYear(e)?.revenueINR ?? e.financials.revenueINR ?? null;
+const ebitdaMarginOf = (e: Entity) => latestYear(e)?.ebitdaMarginPct ?? e.financials.ebitdaMarginPct ?? null;
+const netMarginOf = (e: Entity) => latestYear(e)?.netMarginPct ?? e.financials.netMarginPct ?? null;
 
 type Module = "suppliers" | "competitors" | "delivery";
 
@@ -118,9 +119,8 @@ function SupplierView() {
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SupSort>("revenue");
   const [selected, setSelected] = useState<Entity | null>(null);
-  const [deep, setDeep] = useState<Entity | null>(null);
   const [view, setView] = useState<"overview" | "table">("overview");
-  const openSupplier = (e: Entity) => setSelected(e); // unified detail (full PDF profile for all)
+  const openSupplier = (e: Entity) => setSelected(e); // unified full-page profile for all
 
   const rows = useMemo(() => {
     let r = all;
@@ -140,11 +140,18 @@ function SupplierView() {
 
   const kpis = useMemo(() => ({
     tracked: all.length,
-    full: all.filter((e) => e.coverage === "full").length,
-    partial: all.filter((e) => e.coverage === "partial").length,
+    withFin: all.filter((e) => revOf(e) != null).length,
     revCr: all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0),
     highRoom: all.filter((e) => negotiationRoom(e) === "High").length,
   }), [all]);
+
+  // Split the filtered rows: companies with parsed financials vs. the tiny
+  // vendors Tracxn holds no filing for (shown in their own section, not as
+  // a wall of dashes mixed into the main table).
+  const withData = useMemo(() => rows.filter((e) => revOf(e) != null), [rows]);
+  const noData = useMemo(() => rows.filter((e) => revOf(e) == null), [rows]);
+
+  if (selected) return <CompanyPage entity={selected} onBack={() => setSelected(null)} kind="supplier" />;
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
@@ -161,7 +168,7 @@ function SupplierView() {
       )}
       <section className="stagger grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
         <Kpi label="Suppliers tracked" value={String(kpis.tracked)} sub="RM · PM · Manufacturers" />
-        <Kpi label="Data coverage" value={`${kpis.full} full`} sub={`${kpis.partial} partial · numbers pending`} tone="emerald" />
+        <Kpi label="Financials on file" value={`${kpis.withFin} of ${kpis.tracked}`} sub="parsed from Tracxn filings" tone="emerald" />
         <Kpi label="Revenue in view" value={crStr(kpis.revCr)} sub="sum of disclosed supplier revenue" tone="teal" />
         <Kpi label="High negotiation room" value={String(kpis.highRoom)} sub="fat-margin suppliers to push on" tone="amber" />
       </section>
@@ -193,7 +200,7 @@ function SupplierView() {
             </tr>
           </thead>
           <tbody>
-            {rows.map((e) => {
+            {withData.map((e) => {
               const room = negotiationRoom(e);
               const py = latestYear(e);
               const revenue = revOf(e);
@@ -219,20 +226,43 @@ function SupplierView() {
                 </tr>
               );
             })}
-            {rows.length === 0 && <EmptyRow cols={10} />}
+            {withData.length === 0 && <EmptyRow cols={10} />}
           </tbody>
         </table>
       </div>
 
+      {noData.length > 0 && (
+        <div className="mt-6">
+          <div className="mb-2 flex items-baseline gap-2">
+            <h3 className="text-sm font-semibold text-slate-700">Limited public data</h3>
+            <span className="text-xs text-slate-400">{noData.length} vendor{noData.length > 1 ? "s" : ""} · no financial filing in Tracxn</span>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {noData.map((e) => (
+              <button key={e.category + e.folder} onClick={() => openSupplier(e)}
+                className="rounded-xl bg-white p-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:ring-teal-300">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="min-w-0">
+                    <div className="truncate text-sm font-medium text-slate-800">{e.brand}</div>
+                    <div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div>
+                  </div>
+                  <span className="shrink-0 rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-500">{e.category}</span>
+                </div>
+                <div className="mt-1.5 text-xs text-slate-400">
+                  {e.city ? `${e.city} · ` : ""}Registry basics only — click to view
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <p className="mt-5 max-w-3xl text-xs leading-relaxed text-slate-500">
         <span className="font-medium text-slate-700">Negotiation room</span> is a transparent first-cut signal from EBITDA
         margin (≥20% High · 10–20% Medium · &lt;10% Low) — fatter supplier margins mean more room to push on price/terms.
-        It sharpens once Probe42 adds receivable days &amp; RoCE.
+        Vendors under <span className="font-medium text-slate-700">Limited public data</span> are small private firms Tracxn holds no financial filing for.
       </p>
       </>)}
-
-      {selected && <SupplierDetail entity={selected} onClose={() => setSelected(null)} />}
-      {deep && <DeepDive entity={deep} onClose={() => setDeep(null)} />}
     </main>
   );
 }
@@ -401,7 +431,7 @@ function CompetitorView() {
       switch (sort) {
         case "name": return a.brand.localeCompare(b.brand);
         case "funding": return (b.competitor?.fundingUSD ?? -1) - (a.competitor?.fundingUSD ?? -1);
-        default: return (b.financials.revenueINR ?? -1) - (a.financials.revenueINR ?? -1);
+        default: return (revOf(b) ?? -1) - (revOf(a) ?? -1);
       }
     });
   }, [all, cat, query, sort]);
@@ -412,6 +442,8 @@ function CompetitorView() {
     revCr: all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0),
     deals: all.filter((e) => e.competitor?.materialEvent).length,
   }), [all]);
+
+  if (selected) return <CompanyPage entity={selected} onBack={() => setSelected(null)} kind="competitor" />;
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
@@ -461,7 +493,7 @@ function CompetitorView() {
                     ))}
                   </div>
                 </td>
-                <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(e.financials.revenueINR)}</td>
+                <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
                 <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtUSD(e.competitor?.fundingUSD ?? null)}</td>
                 <td className="px-4 py-3 text-slate-600">{e.competitor?.stage ?? "—"}</td>
                 <td className="max-w-[260px] px-4 py-3 text-slate-600">
@@ -481,7 +513,6 @@ function CompetitorView() {
       </p>
       </>)}
 
-      {selected && <CompetitorDetail row={selected} onClose={() => setSelected(null)} />}
     </main>
   );
 }
@@ -540,8 +571,8 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
   const pick = (l: string) => byName.get(l) && onSelect(byName.get(l)!);
 
   const topRev: Slice[] = useMemo(
-    () => [...all].filter((e) => e.financials.revenueINR).sort((a, b) => (b.financials.revenueINR ?? 0) - (a.financials.revenueINR ?? 0)).slice(0, 8)
-      .map((e) => ({ label: e.brand, value: Math.round(toCrore(e.financials.revenueINR) ?? 0), color: "#0d9488" })),
+    () => [...all].filter((e) => revOf(e)).sort((a, b) => (revOf(b) ?? 0) - (revOf(a) ?? 0)).slice(0, 8)
+      .map((e) => ({ label: e.brand, value: Math.round(toCrore(revOf(e)) ?? 0), color: "#0d9488" })),
     [all]
   );
 
@@ -639,6 +670,8 @@ function DeliveryView() {
   const dsoTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.dso ?? 0, color: "#0ea5e9" }));
   const marginTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.ebitdaMarginPct ?? 0, color: (t.ebitdaMarginPct ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
 
+  if (selected) return <CompanyPage entity={selected} onBack={() => setSelected(null)} kind="delivery" />;
+
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
       <section className="stagger grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
@@ -705,65 +738,216 @@ function DeliveryView() {
         financials come next from public filings / Probe42. <span className="font-medium text-slate-700">DSO 55 days</span> is
         the receivables lever flagged in the calls.
       </p>
-      {selected && <SupplierDetail entity={selected} onClose={() => setSelected(null)} />}
     </main>
   );
 }
 
-/* ----------------------------------------------------------- detail panels */
+/* ----------------------------------------------------------- company page */
 
-function SupplierDetail({ entity: e, onClose }: { entity: Entity; onClose: () => void }) {
+type CompanyKind = "supplier" | "competitor" | "delivery";
+type CardDesc = { key: string; title: string; sub?: string; node: React.ReactNode };
+
+// Full-page company profile — an entire dashboard for one company, opened when a
+// row/bar is clicked. Replaces the old side drawer. Composes every section we have
+// (headline KPIs, multi-year trends, balance sheet, cost structure, cash flow,
+// M&A, ownership, board, loans, competitors, live shelf, research) into a masonry.
+function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () => void; kind: CompanyKind }) {
+  const cards = useMemo(() => companyCards(e, kind), [e, kind]);
+  const py = latestYear(e);
+  const room = negotiationRoom(e);
+  const flags = e.pdf?.riskFlags ?? [];
+  const roce = py?.rocePct ?? e.probe?.roce ?? null;
+  const backLabel = kind === "competitor" ? "competitors" : kind === "delivery" ? "delivery" : "suppliers";
+
+  const kpis: { label: string; value: string }[] =
+    kind === "competitor"
+      ? [
+          { label: "Revenue", value: fmtCrore(revOf(e)) },
+          { label: "Funding raised", value: fmtUSD(e.competitor?.fundingUSD ?? null) },
+          { label: "Stage", value: e.competitor?.stage ?? "—" },
+          { label: "Avg rating", value: e.shelf?.avgRating != null ? `${e.shelf.avgRating}★` : "—" },
+          { label: "Avg discount", value: fmtPct(e.shelf?.avgDiscountPct ?? null) },
+          { label: "Reviews", value: fmtInt(e.shelf?.totalReviews ?? null) },
+        ]
+      : [
+          { label: "Revenue", value: fmtCrore(revOf(e)) },
+          { label: "EBITDA margin", value: fmtPct(ebitdaMarginOf(e)) },
+          { label: "Net margin", value: fmtPct(netMarginOf(e)) },
+          { label: "RoCE", value: fmtPct(roce) },
+          { label: "Receivable days", value: fmtDays(py?.receivableDays ?? e.probe?.receivableDays ?? null) },
+          { label: "Payable days", value: fmtDays(py?.payableDays ?? e.probe?.payableDays ?? null) },
+        ];
+
   return (
-    <Drawer onClose={onClose} title={e.brand} subtitle={e.legalName ?? e.folder}>
-      <div className="mt-5 grid grid-cols-2 gap-3">
-        <Stat label="Revenue" value={fmtCrore(e.financials.revenueINR)} />
-        <Stat label="EBITDA" value={fmtCrore(e.financials.ebitdaINR)} />
-        <Stat label="EBITDA margin" value={fmtPct(e.financials.ebitdaMarginPct)} />
-        <Stat label="Net margin" value={fmtPct(e.financials.netMarginPct)} />
-        <Stat
-          label="Rev CAGR 1y/3y/5y"
-          value={[e.financials.revenueCAGR1yrPct, e.financials.revenueCAGR3yrPct, e.financials.revenueCAGR5yrPct]
-            .map((v) => fmtPct(v))
-            .join(" / ")}
-        />
-        <Stat label="Employees" value={fmtInt(e.financials.employeeCount)} />
-        <Stat label="Paid-up capital" value={fmtCrore(e.financials.paidUpCapitalINR)} />
-        <Stat label="Authorized capital" value={fmtCrore(e.financials.authorizedCapitalINR)} />
+    <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
+      <button onClick={onBack} className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700">
+        <span className="text-base leading-none">←</span> Back to {backLabel}
+      </button>
+
+      {/* hero */}
+      <div className="mt-3 rounded-2xl bg-[#0b1a2c] p-6 shadow-lg">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="min-w-0">
+            <div className="text-2xl font-bold tracking-tight text-white">{e.brand}</div>
+            <div className="mt-0.5 text-sm text-slate-400">{e.legalName ?? e.folder}</div>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              <span className="rounded-md bg-white/10 px-2 py-0.5 text-xs font-medium text-teal-200 ring-1 ring-white/10">{e.category}</span>
+              {kind !== "competitor" && room !== "Unknown" && (
+                <span className="rounded-md bg-white/10 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/10">Negotiation room: {room}</span>
+              )}
+              {e.pdf && (
+                flags.length ? (
+                  <span className="rounded-md bg-rose-500/20 px-2 py-0.5 text-xs font-medium text-rose-200 ring-1 ring-rose-400/30">{flags.length} risk flag{flags.length > 1 ? "s" : ""}</span>
+                ) : (
+                  <span className="rounded-md bg-emerald-500/20 px-2 py-0.5 text-xs font-medium text-emerald-200 ring-1 ring-emerald-400/30">No risk flags</span>
+                )
+              )}
+              <span className="rounded-md bg-white/10 px-2 py-0.5 text-xs font-medium text-slate-300 ring-1 ring-white/10">{COVERAGE_META[e.coverage].label} record</span>
+            </div>
+          </div>
+          <div className="flex flex-col items-end gap-1.5 text-xs">
+            {e.website && <a href={/^https?:/.test(e.website) ? e.website : `https://${e.website}`} target="_blank" rel="noreferrer" className="text-teal-300 hover:underline">{e.website.replace(/^https?:\/\//, "")} ↗</a>}
+            {e.tracxnUrl && <a href={e.tracxnUrl} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-teal-300 hover:underline">Tracxn record ↗</a>}
+          </div>
+        </div>
       </div>
-      <dl className="mt-6 space-y-2 text-sm">
+
+      {/* headline KPI strip */}
+      <section className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        {kpis.map((k) => (
+          <div key={k.label} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+            <div className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{k.label}</div>
+            <div className="mt-1.5 text-xl font-semibold tabular-nums text-slate-900">{k.value}</div>
+          </div>
+        ))}
+      </section>
+
+      {/* everything we know, as a masonry of cards */}
+      {cards.length > 0 ? (
+        <div className="mt-4 gap-4 [column-fill:balance] lg:columns-2 xl:columns-3 [&>*]:mb-4 [&>*]:break-inside-avoid">
+          {cards.map((c) => (
+            <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm text-amber-800 ring-1 ring-amber-200">
+          No detailed financial filing is available for this company in Tracxn yet — only the registry basics above.
+        </div>
+      )}
+    </main>
+  );
+}
+
+// Assemble every card we can render for a company from the data we have.
+function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
+  const c = e.competitor;
+  const cards: CardDesc[] = [];
+
+  const details =
+    kind === "competitor" ? (
+      <dl className="space-y-2 text-sm">
+        <Row k="Legal entity" v={e.legalName ?? "—"} /><Row k="CIN" v={e.cin ?? "—"} mono />
+        <Row k="HQ" v={c?.hqCity ?? "—"} /><Row k="Founders" v={c?.founders?.length ? c.founders.join(", ") : "—"} />
+        <Row k="Latest round" v={c?.latestRound?.name ? `${c.latestRound.name}${c.latestRound.date ? " · " + c.latestRound.date : ""}` : "—"} />
+        <Row k="Sells in" v={c?.geoServed?.length ? c.geoServed.slice(0, 6).join(", ") : "—"} />
+        <Row k="Website" v={e.website ?? "—"} />
+      </dl>
+    ) : (
+      <dl className="space-y-2 text-sm">
         <Row k="Category" v={e.category} /><Row k="CIN" v={e.cin ?? "—"} mono /><Row k="PAN" v={e.pan ?? "—"} mono />
         <Row k="Entity type" v={e.entityType ?? "—"} /><Row k="Incorporated" v={fmtDate(e.incorporationDate)} />
         <Row k="Registrar status" v={e.statusAtRegistrar ?? "—"} />
         <Row k="Location" v={[(e.state ?? "").replace(/\s*\(implied\)\s*/i, "").trim() || null, e.city].filter(Boolean).join(" · ") || "—"} />
-        <Row k="Industry" v={e.industry ?? "—"} /><Row k="Auditor" v={e.auditor ?? "—"} />
-        <Row k="LEI" v={e.lei ?? "—"} mono /><Row k="Parent" v={e.parent ?? "—"} />
-        <Row k="Website" v={e.website ?? "—"} /><Row k="Coverage" v={COVERAGE_META[e.coverage].label} />
+        <Row k="Industry" v={e.industry ?? "—"} /><Row k="Auditor" v={e.auditor ?? "—"} /><Row k="Parent" v={e.parent ?? "—"} />
       </dl>
-      {e.probe && (
-        <div className="mt-6">
-          <SectionLabel>Probe42 · deep financials</SectionLabel>
-          <div className="grid grid-cols-2 gap-3">
-            <Stat label="Receivable days" value={fmtDays(e.probe.receivableDays)} />
-            <Stat label="Payable days" value={fmtDays(e.probe.payableDays)} />
-            <Stat label="RoCE" value={fmtPct(e.probe.roce)} />
-            <Stat label="Cash conversion" value={fmtDays(e.probe.cashConversionCycleDays)} />
-            <Stat label="Peer median payables" value={fmtDays(e.probe.peerMedianPayableDays)} />
-            <Stat label="Credit rating" value={e.probe.creditRating ?? "—"} />
-          </div>
-        </div>
-      )}
-      {e.pdf && <HealthRisk pdf={e.pdf} />}
-      {e.profile && <SupplierProfileView profile={e.profile} />}
-      {!e.probe && !e.pdf && (
-        <div className="mt-6 rounded-xl bg-amber-50 p-3 text-xs text-amber-800 ring-1 ring-amber-200">
-          Deep financials for this supplier aren't parsed yet.
-        </div>
-      )}
-      {e.research && <ResearchSection r={e.research} />}
+    );
+  cards.push({ key: "details", title: "Company details", node: details });
 
-      {e.tracxnUrl && <TracxnLink url={e.tracxnUrl} />}
-    </Drawer>
-  );
+  if (kind === "competitor" && (e as CompetitorRow).categories?.length) {
+    cards.push({
+      key: "cats",
+      title: "Competes in",
+      node: (
+        <div className="flex flex-wrap gap-1.5">
+          {(e as CompetitorRow).categories.map((cat) => (
+            <span key={cat} className="rounded-md bg-teal-50 px-2 py-1 text-xs font-medium text-teal-700 ring-1 ring-teal-200">{cat}</span>
+          ))}
+        </div>
+      ),
+    });
+  }
+
+  if (c?.materialEvent) {
+    cards.push({ key: "event", title: "Latest material event", node: <p className="text-sm leading-relaxed text-slate-700">{c.materialEvent}</p> });
+  }
+
+  if (e.shelf) {
+    cards.push({
+      key: "shelf",
+      title: `Live shelf · ${e.shelf.channels.join(", ")}`,
+      sub: e.shelf.scrapedAt ? `scraped ${fmtDate(e.shelf.scrapedAt)}` : undefined,
+      node: (
+        <>
+          <div className="grid grid-cols-2 gap-3">
+            <Stat label="Products on shelf" value={String(e.shelf.skuCount)} />
+            <Stat label="Avg rating" value={e.shelf.avgRating != null ? `${e.shelf.avgRating} ★` : "—"} />
+            <Stat label="Avg discount" value={fmtPct(e.shelf.avgDiscountPct)} />
+            <Stat label="Total reviews" value={fmtInt(e.shelf.totalReviews)} />
+          </div>
+          {e.shelf.topSku?.name && (
+            <div className="mt-3 rounded-xl bg-slate-50 p-3 text-sm ring-1 ring-slate-200">
+              <div className="text-xs font-medium text-slate-500">Hero SKU (most-reviewed)</div>
+              <div className="mt-0.5 text-slate-800">{e.shelf.topSku.name}</div>
+              <div className="mt-0.5 text-xs text-slate-500">
+                {e.shelf.topSku.rating != null ? `${e.shelf.topSku.rating}★ · ` : ""}
+                {fmtInt(e.shelf.topSku.reviewCount)} reviews
+                {e.shelf.topSku.priceINR != null ? ` · ₹${e.shelf.topSku.priceINR}` : ""}
+              </div>
+            </div>
+          )}
+        </>
+      ),
+    });
+  }
+
+  if (e.probe) {
+    cards.push({
+      key: "probe",
+      title: "Probe42 · deep financials",
+      node: (
+        <div className="grid grid-cols-2 gap-3">
+          <Stat label="Receivable days" value={fmtDays(e.probe.receivableDays)} />
+          <Stat label="Payable days" value={fmtDays(e.probe.payableDays)} />
+          <Stat label="RoCE" value={fmtPct(e.probe.roce)} />
+          <Stat label="Cash conversion" value={fmtDays(e.probe.cashConversionCycleDays)} />
+          <Stat label="Peer median payables" value={fmtDays(e.probe.peerMedianPayableDays)} />
+          <Stat label="Credit rating" value={e.probe.creditRating ?? "—"} />
+        </div>
+      ),
+    });
+  }
+
+  if (e.pdf) {
+    cards.push({ key: "health", title: "Financial health & risk · Tracxn", node: <HealthRiskBody pdf={e.pdf} /> });
+  }
+
+  if (e.profile) cards.push(...profileSections(e.profile));
+
+  if (c?.investors?.length) {
+    cards.push({
+      key: "investors",
+      title: "Investors",
+      node: (
+        <div className="flex flex-wrap gap-1.5">
+          {c.investors.map((inv) => <span key={inv} className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700">{inv}</span>)}
+        </div>
+      ),
+    });
+  }
+
+  if (e.research) cards.push({ key: "research", title: "Research", node: <ResearchBody r={e.research} /> });
+
+  return cards;
 }
 
 // At-a-glance risk indicator for the supplier table.
@@ -783,19 +967,20 @@ function RiskCell({ e }: { e: Entity }) {
   );
 }
 
-// Full supplier deep-dive from the Tracxn detailed-report PDF: multi-year trends,
-// ratio trends, latest balance sheet, ownership, board, loans, competitors.
-function SupplierProfileView({ profile: p }: { profile: SupplierProfile }) {
+// Break the Tracxn detailed-report profile into standalone dashboard cards:
+// multi-year trends, ratio trends, balance sheet, cost structure, cash flow,
+// M&A, ownership, board, loans, competitors.
+function profileSections(p: SupplierProfile): CardDesc[] {
   const years = [...p.years].sort((a, b) => a.fy.localeCompare(b.fy)); // oldest → newest
   const latest = years[years.length - 1];
   const fyShort = (s: string) => "'" + (s.split("-")[1] ?? s);
   const cr = (v: number | null) => Math.round((v ?? 0) / 1e7);
+  const num2 = (v: number | null) => (v != null ? v.toFixed(2) : "—");
   const rev = years.map((y) => ({ label: fyShort(y.fy), value: cr(y.revenueINR), color: "#0d9488" }));
   const profit = years.map((y) => ({ label: fyShort(y.fy), value: cr(y.netProfitINR), color: (y.netProfitINR ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
   const roce = years.map((y) => ({ label: fyShort(y.fy), value: Math.round(y.rocePct ?? 0), color: "#6366f1" }));
   const dso = years.map((y) => ({ label: fyShort(y.fy), value: Math.round(y.receivableDays ?? 0), color: "#0ea5e9" }));
   const hasReturns = years.some((y) => y.rocePct != null || y.receivableDays != null);
-  const num2 = (v: number | null) => (v != null ? v.toFixed(2) : "—");
   const cs = p.costStructure;
   const costBars = [
     { label: "Materials", value: cr(cs.materialsINR), color: "#0d9488" },
@@ -806,80 +991,106 @@ function SupplierProfileView({ profile: p }: { profile: SupplierProfile }) {
     { label: "Depreciation", value: cr(cs.depreciationINR), color: "#8b5cf6" },
   ].filter((d) => d.value > 0);
 
-  return (
-    <div className="mt-6 space-y-6">
-      {years.length > 1 && (
-        <div>
-          <SectionLabel>Revenue &amp; profit · {years.length}-yr</SectionLabel>
+  const out: CardDesc[] = [];
+
+  if (years.length > 1) {
+    out.push({
+      key: "revprofit",
+      title: `Revenue & profit · ${years.length}-yr`,
+      sub: `FY${years[0].fy} → FY${latest.fy}`,
+      node: (
+        <>
           <div className="mb-1 text-xs text-slate-500">Revenue (₹ Cr)</div>
           <AreaLine data={rev} color="#0d9488" valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} />
           <div className="mb-1 mt-3 text-xs text-slate-500">Net profit / (loss) (₹ Cr)</div>
           <Columns data={profit} valueLabel={(v) => `₹${v.toLocaleString("en-IN")}`} />
-        </div>
-      )}
+        </>
+      ),
+    });
+  }
 
-      {years.length > 1 && hasReturns && (
-        <div>
-          <SectionLabel>Returns &amp; working capital</SectionLabel>
+  if (years.length > 1 && hasReturns) {
+    out.push({
+      key: "returns",
+      title: "Returns & working capital",
+      node: (
+        <>
           <div className="mb-1 text-xs text-slate-500">RoCE (%)</div>
           <AreaLine data={roce} color="#6366f1" valueLabel={(v) => `${v}%`} />
           <div className="mb-1 mt-3 text-xs text-slate-500">Receivable days (DSO)</div>
           <AreaLine data={dso} color="#0ea5e9" valueLabel={(v) => `${v}d`} />
-        </div>
-      )}
+        </>
+      ),
+    });
+  }
 
-      {latest && (
-        <div>
-          <SectionLabel>Balance sheet &amp; ratios · FY{latest.fy}</SectionLabel>
-          <div className="grid grid-cols-2 gap-3">
-            <Stat label="Total debt" value={fmtCrore(latest.totalDebtINR)} />
-            <Stat label="Total equity" value={fmtCrore(latest.totalEquityINR)} />
-            <Stat label="Receivables" value={fmtCrore(latest.tradeReceivablesINR)} />
-            <Stat label="Payables" value={fmtCrore(latest.tradePayablesINR)} />
-            <Stat label="Inventory" value={fmtCrore(latest.inventoryINR)} />
-            <Stat label="Cash" value={fmtCrore(latest.cashINR)} />
-            <Stat label="Current ratio" value={num2(latest.currentRatio)} />
-            <Stat label="Debt / equity" value={num2(latest.debtToEquity)} />
-            <Stat label="Interest coverage" value={latest.interestCoverage != null ? `${latest.interestCoverage.toFixed(1)}x` : "—"} />
-            <Stat label="RoE" value={fmtPct(latest.roePct)} />
-          </div>
+  if (latest) {
+    out.push({
+      key: "balance",
+      title: `Balance sheet & ratios · FY${latest.fy}`,
+      node: (
+        <div className="grid grid-cols-2 gap-3">
+          <Stat label="Total debt" value={fmtCrore(latest.totalDebtINR)} />
+          <Stat label="Total equity" value={fmtCrore(latest.totalEquityINR)} />
+          <Stat label="Receivables" value={fmtCrore(latest.tradeReceivablesINR)} />
+          <Stat label="Payables" value={fmtCrore(latest.tradePayablesINR)} />
+          <Stat label="Inventory" value={fmtCrore(latest.inventoryINR)} />
+          <Stat label="Cash" value={fmtCrore(latest.cashINR)} />
+          <Stat label="Current ratio" value={num2(latest.currentRatio)} />
+          <Stat label="Debt / equity" value={num2(latest.debtToEquity)} />
+          <Stat label="Interest coverage" value={latest.interestCoverage != null ? `${latest.interestCoverage.toFixed(1)}x` : "—"} />
+          <Stat label="RoE" value={fmtPct(latest.roePct)} />
         </div>
-      )}
+      ),
+    });
+  }
 
-      {costBars.length > 0 && (
-        <div>
-          <SectionLabel>Cost structure{cs.fy ? ` · FY${cs.fy}` : ""}</SectionLabel>
-          <HBars data={costBars} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} />
+  if (costBars.length > 0) {
+    out.push({
+      key: "cost",
+      title: `Cost structure${cs.fy ? ` · FY${cs.fy}` : ""}`,
+      node: <HBars data={costBars} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} />,
+    });
+  }
+
+  if (latest && (latest.cashFromOpsINR != null || latest.cashFromInvestingINR != null || latest.cashFromFinancingINR != null)) {
+    out.push({
+      key: "cashflow",
+      title: `Cash flow · FY${latest.fy}`,
+      node: (
+        <div className="grid grid-cols-3 gap-3">
+          <Stat label="Operating" value={fmtCrore(latest.cashFromOpsINR)} />
+          <Stat label="Investing" value={fmtCrore(latest.cashFromInvestingINR)} />
+          <Stat label="Financing" value={fmtCrore(latest.cashFromFinancingINR)} />
         </div>
-      )}
+      ),
+    });
+  }
 
-      {latest && (latest.cashFromOpsINR != null || latest.cashFromInvestingINR != null || latest.cashFromFinancingINR != null) && (
-        <div>
-          <SectionLabel>Cash flow · FY{latest.fy}</SectionLabel>
-          <div className="grid grid-cols-3 gap-3">
-            <Stat label="Operating" value={fmtCrore(latest.cashFromOpsINR)} />
-            <Stat label="Investing" value={fmtCrore(latest.cashFromInvestingINR)} />
-            <Stat label="Financing" value={fmtCrore(latest.cashFromFinancingINR)} />
-          </div>
-        </div>
-      )}
-
-      {p.acquisitions.length > 0 && (
-        <div>
-          <SectionLabel>M&amp;A</SectionLabel>
+  if (p.acquisitions.length > 0) {
+    out.push({
+      key: "ma",
+      title: "M&A",
+      node: (
+        <div className="space-y-1">
           {p.acquisitions.map((a, i) => (
-            <div key={i} className="mt-1 rounded-lg bg-violet-50 p-2.5 text-sm ring-1 ring-violet-200">
+            <div key={i} className="rounded-lg bg-violet-50 p-2.5 text-sm ring-1 ring-violet-200">
               <span className="font-medium text-violet-900">{a.role === "acquired" ? "Acquired by" : "Acquired"} {a.counterparty ?? "—"}</span>
               <span className="text-violet-700"> {[a.stake, a.amountINR ? fmtCrore(a.amountINR) : null, a.date].filter(Boolean).join(" · ")}</span>
             </div>
           ))}
         </div>
-      )}
+      ),
+    });
+  }
 
-      {(p.parent || p.subsidiaries.length > 0 || p.capTable.founders.length > 0 || p.capTable.promoterPct != null) && (
-        <div>
-          <SectionLabel>Ownership &amp; structure</SectionLabel>
-          <dl className="text-sm">
+  if (p.parent || p.subsidiaries.length > 0 || p.capTable.founders.length > 0 || p.capTable.promoterPct != null) {
+    out.push({
+      key: "ownership",
+      title: "Ownership & structure",
+      node: (
+        <>
+          <dl className="space-y-2 text-sm">
             {p.parent && <Row k="Parent / group" v={p.parent} />}
             {p.capTable.promoterPct != null && <Row k="Promoter / public" v={`${p.capTable.promoterPct}% / ${p.capTable.publicPct ?? "—"}%`} />}
             {p.capTable.founders.length > 0 && <Row k="Founders" v={p.capTable.founders.join(", ")} />}
@@ -892,55 +1103,65 @@ function SupplierProfileView({ profile: p }: { profile: SupplierProfile }) {
               </div>
             </div>
           )}
-        </div>
-      )}
+        </>
+      ),
+    });
+  }
 
-      {p.directors.length > 0 && (
-        <div>
-          <SectionLabel>Board</SectionLabel>
-          <div className="space-y-1">
-            {p.directors.map((d, i) => (
-              <div key={i} className="flex justify-between gap-4 text-sm">
-                <span className="text-slate-800">{d.name}</span>
-                <span className="text-right text-slate-400">{d.designation ?? ""}</span>
-              </div>
-            ))}
-          </div>
+  if (p.directors.length > 0) {
+    out.push({
+      key: "board",
+      title: "Board",
+      node: (
+        <div className="space-y-1">
+          {p.directors.map((d, i) => (
+            <div key={i} className="flex justify-between gap-4 text-sm">
+              <span className="text-slate-800">{d.name}</span>
+              <span className="text-right text-slate-400">{d.designation ?? ""}</span>
+            </div>
+          ))}
         </div>
-      )}
+      ),
+    });
+  }
 
-      {p.loans.length > 0 && (
-        <div>
-          <SectionLabel>Loans &amp; charges</SectionLabel>
-          <div className="space-y-1">
-            {p.loans.map((l, i) => (
-              <div key={i} className="flex justify-between gap-4 text-sm">
-                <span className="truncate text-slate-800">{l.lender}</span>
-                <span className="shrink-0 font-mono text-slate-500">{l.amountINR ? fmtCrore(l.amountINR) : "—"}{l.status ? ` · ${l.status}` : ""}</span>
-              </div>
-            ))}
-          </div>
+  if (p.loans.length > 0) {
+    out.push({
+      key: "loans",
+      title: "Loans & charges",
+      node: (
+        <div className="space-y-1">
+          {p.loans.map((l, i) => (
+            <div key={i} className="flex justify-between gap-4 text-sm">
+              <span className="truncate text-slate-800">{l.lender}</span>
+              <span className="shrink-0 font-mono text-slate-500">{l.amountINR ? fmtCrore(l.amountINR) : "—"}{l.status ? ` · ${l.status}` : ""}</span>
+            </div>
+          ))}
         </div>
-      )}
+      ),
+    });
+  }
 
-      {p.competitors.length > 0 && (
-        <div>
-          <SectionLabel>Competitors / comparables</SectionLabel>
-          <div className="flex flex-wrap gap-1.5">
-            {p.competitors.map((c) => <span key={c} className="rounded-md bg-teal-50 px-2 py-1 text-xs text-teal-800 ring-1 ring-teal-100">{c}</span>)}
-          </div>
+  if (p.competitors.length > 0) {
+    out.push({
+      key: "peers",
+      title: "Competitors / comparables",
+      node: (
+        <div className="flex flex-wrap gap-1.5">
+          {p.competitors.map((cName) => <span key={cName} className="rounded-md bg-teal-50 px-2 py-1 text-xs text-teal-800 ring-1 ring-teal-100">{cName}</span>)}
         </div>
-      )}
-    </div>
-  );
+      ),
+    });
+  }
+
+  return out;
 }
 
 // Financial-health & risk block from the parsed Tracxn detailed-report PDF.
-function HealthRisk({ pdf }: { pdf: SupplierPdf }) {
+function HealthRiskBody({ pdf }: { pdf: SupplierPdf }) {
   const signed = (v: number | null, suffix = "%") => (v == null ? "—" : `${v > 0 ? "+" : ""}${v}${suffix}`);
   return (
-    <div className="mt-6">
-      <SectionLabel>Financial health &amp; risk · from Tracxn detailed report</SectionLabel>
+    <>
       <div className="grid grid-cols-2 gap-3">
         <Stat label="Current ratio" value={pdf.currentRatio != null ? pdf.currentRatio.toFixed(2) : "—"} />
         <Stat label="Interest coverage" value={pdf.interestCoverage != null ? `${pdf.interestCoverage.toFixed(1)}x` : "—"} />
@@ -963,88 +1184,13 @@ function HealthRisk({ pdf }: { pdf: SupplierPdf }) {
           No risk indicators flagged in the latest filing.
         </div>
       )}
-    </div>
-  );
-}
-
-function CompetitorDetail({ row: e, onClose }: { row: CompetitorRow; onClose: () => void }) {
-  const c = e.competitor;
-  return (
-    <Drawer onClose={onClose} title={e.brand} subtitle={e.parent ?? e.legalName ?? ""}>
-      <div className="mt-3 flex flex-wrap gap-1">
-        {e.categories.map((cat) => (
-          <span key={cat} className="rounded-md bg-teal-50 px-2 py-0.5 text-xs font-medium text-teal-700 ring-1 ring-teal-200">{cat}</span>
-        ))}
-      </div>
-      <div className="mt-5 grid grid-cols-2 gap-3">
-        <Stat label="Revenue" value={fmtCrore(e.financials.revenueINR)} />
-        <Stat label="Stage" value={c?.stage ?? "—"} />
-        <Stat label="Funding raised" value={fmtUSD(c?.fundingUSD ?? null)} />
-        <Stat label="Employees" value={fmtInt(e.financials.employeeCount)} />
-      </div>
-
-      {c?.materialEvent && (
-        <div className="mt-4 rounded-xl bg-teal-50 p-3 text-sm text-teal-800 ring-1 ring-teal-200">
-          <div className="text-xs font-semibold uppercase tracking-wide text-teal-600">Latest material event</div>
-          {c.materialEvent}
-        </div>
-      )}
-
-      <dl className="mt-6 space-y-2 text-sm">
-        <Row k="Legal entity" v={e.legalName ?? "—"} /><Row k="CIN" v={e.cin ?? "—"} mono />
-        <Row k="HQ" v={c?.hqCity ?? "—"} /><Row k="Founders" v={c?.founders?.length ? c.founders.join(", ") : "—"} />
-        <Row k="Latest round" v={c?.latestRound?.name ? `${c.latestRound.name}${c.latestRound.date ? " · " + c.latestRound.date : ""}` : "—"} />
-        <Row k="Sells in" v={c?.geoServed?.length ? c.geoServed.slice(0, 6).join(", ") : "—"} />
-        <Row k="Website" v={e.website ?? "—"} /><Row k="Coverage" v={COVERAGE_META[e.coverage].label} />
-      </dl>
-
-      {e.shelf ? (
-        <div className="mt-6">
-          <SectionLabel>Live shelf · {e.shelf.channels.join(", ")}</SectionLabel>
-          <div className="grid grid-cols-2 gap-3">
-            <Stat label="Products on shelf" value={String(e.shelf.skuCount)} />
-            <Stat label="Avg rating" value={e.shelf.avgRating != null ? `${e.shelf.avgRating} ★` : "—"} />
-            <Stat label="Avg discount" value={fmtPct(e.shelf.avgDiscountPct)} />
-            <Stat label="Total reviews" value={fmtInt(e.shelf.totalReviews)} />
-          </div>
-          {e.shelf.topSku?.name && (
-            <div className="mt-3 rounded-xl bg-slate-50 p-3 text-sm ring-1 ring-slate-200">
-              <div className="text-xs font-medium text-slate-500">Hero SKU (most-reviewed)</div>
-              <div className="mt-0.5 text-slate-800">{e.shelf.topSku.name}</div>
-              <div className="mt-0.5 text-xs text-slate-500">
-                {e.shelf.topSku.rating != null ? `${e.shelf.topSku.rating}★ · ` : ""}
-                {fmtInt(e.shelf.topSku.reviewCount)} reviews
-                {e.shelf.topSku.priceINR != null ? ` · ₹${e.shelf.topSku.priceINR}` : ""}
-              </div>
-            </div>
-          )}
-          {e.shelf.scrapedAt && <div className="mt-1 text-right text-[11px] text-slate-400">scraped {fmtDate(e.shelf.scrapedAt)}</div>}
-        </div>
-      ) : null}
-
-      {c?.investors?.length ? (
-        <div className="mt-6">
-          <SectionLabel>Investors</SectionLabel>
-          <div className="flex flex-wrap gap-1.5">
-            {c.investors.map((inv) => (
-              <span key={inv} className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700">{inv}</span>
-            ))}
-          </div>
-        </div>
-      ) : null}
-
-      {e.profile && <SupplierProfileView profile={e.profile} />}
-
-      {e.research && <ResearchSection r={e.research} />}
-
-      {e.tracxnUrl && <TracxnLink url={e.tracxnUrl} />}
-    </Drawer>
+    </>
   );
 }
 
 /* -------------------------------------------------------- shared UI pieces */
 
-function ResearchSection({ r }: { r: ResearchData }) {
+function ResearchBody({ r }: { r: ResearchData }) {
   const List = ({ items }: { items: string[] }) => (
     <ul className="space-y-1.5 text-sm text-slate-700">
       {items.map((s, i) => (
@@ -1053,8 +1199,7 @@ function ResearchSection({ r }: { r: ResearchData }) {
     </ul>
   );
   return (
-    <div className="mt-6 space-y-4">
-      <SectionLabel>Research</SectionLabel>
+    <div className="space-y-4">
       {r.overview && <p className="text-sm leading-relaxed text-slate-600">{r.overview}</p>}
       {r.products.length > 0 && (<div><div className="mb-1 text-xs font-medium text-slate-500">Products &amp; capabilities</div><List items={r.products.slice(0, 6)} /></div>)}
       {r.leadership.length > 0 && (<div><div className="mb-1 text-xs font-medium text-slate-500">Leadership</div><List items={r.leadership.slice(0, 5)} /></div>)}
@@ -1136,31 +1281,6 @@ function Row({ k, v, mono }: { k: string; v: string; mono?: boolean }) {
     <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
       <dt className="shrink-0 text-slate-500">{k}</dt>
       <dd className={`text-right text-slate-800 ${mono ? "font-mono text-xs" : ""}`}>{v}</dd>
-    </div>
-  );
-}
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-teal-700">
-      <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />{children}
-    </div>
-  );
-}
-function TracxnLink({ url }: { url: string }) {
-  return <a href={url} target="_blank" rel="noreferrer" className="mt-4 inline-block text-sm font-medium text-teal-600 hover:underline">Open Tracxn record ↗</a>;
-}
-function Drawer({ title, subtitle, children, onClose }: { title: string; subtitle: string; children: React.ReactNode; onClose: () => void }) {
-  return (
-    <div className="fixed inset-0 z-20 flex justify-end">
-      <div className="absolute inset-0 bg-slate-900/30" onClick={onClose} />
-      <aside className="relative h-full w-full max-w-md overflow-y-auto border-l border-slate-200 bg-white p-6 shadow-2xl">
-        <div className="flex items-start justify-between">
-          <div><div className="text-lg font-semibold text-slate-900">{title}</div>
-            <div className="text-sm text-slate-500">{subtitle}</div></div>
-          <button onClick={onClose} className="rounded-lg px-2 py-1 text-slate-400 ring-1 ring-slate-200 hover:text-slate-700">✕</button>
-        </div>
-        {children}
-      </aside>
     </div>
   );
 }
