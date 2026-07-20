@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   DATA,
   supplyEntities,
@@ -31,18 +31,41 @@ function latestYear(e: Entity) {
   return ys && ys.length ? ys[ys.length - 1] : null;
 }
 
+// Some brands (e.g. Dove, Vaseline) have no standalone legal entity, so the PDF
+// attached to their folder is actually their PARENT GROUP's consolidated filing
+// (HUL — 17-18 subsidiaries, ₹64k Cr). Using that as the brand's own figure would
+// let a parent's revenue dominate the competitor rankings. A big subsidiary roster
+// is the structural tell of a group holding company vs. a single-brand entity.
+const isParentBackedProfile = (e: Entity) => (e.profile?.subsidiaries?.length ?? 0) >= 5;
+
 // Effective headline numbers. The brand's own base financials come first — they are
 // the entity-level figure — and the multi-year Tracxn PDF profile only fills a
-// genuine gap (missing / zero base). This avoids attributing a linked PARENT's
-// consolidated revenue to the brand: e.g. The Derma Co's own ₹214 Cr must not be
-// overwritten by its parent Honasa's ₹2,146 Cr profile. (Base revenue of 0 is
-// treated as missing so brands like Zymo still fall back to the profile.)
+// genuine gap (missing / zero base), and only when that profile is the brand's own
+// (not a parent group's). This keeps both The Derma Co (its ₹214 Cr, not parent
+// Honasa's ₹2,146 Cr) and Dove/Vaseline (no brand-level figure rather than HUL's
+// ₹64k Cr) honest, while still filling small single-entity D2C brands from the PDF.
+const profRevOf = (e: Entity) => (isParentBackedProfile(e) ? null : latestYear(e)?.revenueINR ?? null);
 const revOf = (e: Entity) => {
   const b = e.financials.revenueINR;
-  return b != null && b > 0 ? b : latestYear(e)?.revenueINR ?? null;
+  return b != null && b > 0 ? b : profRevOf(e);
 };
-const ebitdaMarginOf = (e: Entity) => e.financials.ebitdaMarginPct ?? latestYear(e)?.ebitdaMarginPct ?? null;
-const netMarginOf = (e: Entity) => e.financials.netMarginPct ?? latestYear(e)?.netMarginPct ?? null;
+const ebitdaMarginOf = (e: Entity) =>
+  e.financials.ebitdaMarginPct ?? (isParentBackedProfile(e) ? null : latestYear(e)?.ebitdaMarginPct) ?? null;
+const netMarginOf = (e: Entity) =>
+  e.financials.netMarginPct ?? (isParentBackedProfile(e) ? null : latestYear(e)?.netMarginPct) ?? null;
+
+// Open a full-page profile while remembering where we were in the list, so the
+// Back button returns the user to the exact row/bar they clicked (the old drawer
+// preserved list scroll; a state-swap page otherwise loses it).
+function useProfileNav<T>(selected: T | null, setSelected: (v: T | null) => void) {
+  const listScroll = useRef(0);
+  useEffect(() => {
+    if (selected == null) window.scrollTo(0, listScroll.current);
+  }, [selected]);
+  const open = (v: T) => { listScroll.current = window.scrollY; setSelected(v); };
+  const back = () => setSelected(null);
+  return { open, back };
+}
 
 type Module = "suppliers" | "competitors" | "delivery";
 
@@ -124,7 +147,7 @@ function SupplierView() {
   const [sort, setSort] = useState<SupSort>("revenue");
   const [selected, setSelected] = useState<Entity | null>(null);
   const [view, setView] = useState<"overview" | "table">("overview");
-  const openSupplier = (e: Entity) => setSelected(e); // unified full-page profile for all
+  const { open: openSupplier, back } = useProfileNav(selected, setSelected); // unified full-page profile for all
 
   const rows = useMemo(() => {
     let r = all;
@@ -155,7 +178,7 @@ function SupplierView() {
   const withData = useMemo(() => rows.filter((e) => revOf(e) != null), [rows]);
   const noData = useMemo(() => rows.filter((e) => revOf(e) == null), [rows]);
 
-  if (selected) return <CompanyPage entity={selected} onBack={() => setSelected(null)} kind="supplier" />;
+  if (selected) return <CompanyPage entity={selected} onBack={back} kind="supplier" />;
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
@@ -425,6 +448,7 @@ function CompetitorView() {
   const [sort, setSort] = useState<CompSort>("revenue");
   const [selected, setSelected] = useState<CompetitorRow | null>(null);
   const [view, setView] = useState<"overview" | "table">("overview");
+  const { open: openCompetitor, back } = useProfileNav(selected, setSelected);
 
   const rows = useMemo(() => {
     let r = all;
@@ -447,7 +471,7 @@ function CompetitorView() {
     deals: all.filter((e) => e.competitor?.materialEvent).length,
   }), [all]);
 
-  if (selected) return <CompanyPage entity={selected} onBack={() => setSelected(null)} kind="competitor" />;
+  if (selected) return <CompanyPage entity={selected} onBack={back} kind="competitor" />;
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
@@ -465,7 +489,7 @@ function CompetitorView() {
         ))}
       </div>
 
-      {view === "overview" && <CompetitorOverview all={all} onSelect={setSelected} />}
+      {view === "overview" && <CompetitorOverview all={all} onSelect={openCompetitor} />}
 
       {view === "table" && (<>
       <Toolbar
@@ -486,7 +510,7 @@ function CompetitorView() {
           </thead>
           <tbody>
             {rows.map((e) => (
-              <tr key={e.cin || e.brand} onClick={() => setSelected(e)}
+              <tr key={e.cin || e.brand} onClick={() => openCompetitor(e)}
                 className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
                 <td className="px-4 py-3"><div className="font-medium text-slate-900">{e.brand}</div>
                   <div className="truncate text-xs text-slate-400">{e.parent ?? e.legalName ?? ""}</div></td>
@@ -667,6 +691,7 @@ function DeliveryView() {
   const nm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
   const partnerEnts = useMemo(() => new Map(DATA.entities.filter((e) => e.category === "Delivery Partners").map((e) => [nm(e.brand), e])), []);
   const [selected, setSelected] = useState<Entity | null>(null);
+  const { open: openPartner, back } = useProfileNav(selected, setSelected);
 
   const fyShort = (fy: string) => "'" + fy.split("-")[1];
   const revTrend: Slice[] = d.trend.map((t) => ({ label: fyShort(t.fy), value: cr(t.revenueINR), color: "#0d9488" }));
@@ -674,7 +699,7 @@ function DeliveryView() {
   const dsoTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.dso ?? 0, color: "#0ea5e9" }));
   const marginTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.ebitdaMarginPct ?? 0, color: (t.ebitdaMarginPct ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
 
-  if (selected) return <CompanyPage entity={selected} onBack={() => setSelected(null)} kind="delivery" />;
+  if (selected) return <CompanyPage entity={selected} onBack={back} kind="delivery" />;
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
@@ -711,7 +736,7 @@ function DeliveryView() {
             {partners.map((p) => (
               <li
                 key={p.brand}
-                onClick={() => { const e = partnerEnts.get(nm(p.brand)); if (e) setSelected(e); }}
+                onClick={() => { const e = partnerEnts.get(nm(p.brand)); if (e) openPartner(e); }}
                 className={`flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 ring-1 ring-slate-200 ${partnerEnts.get(nm(p.brand))?.profile ? "cursor-pointer hover:bg-teal-50/60" : ""}`}
               >
                 <div className="min-w-0">
@@ -765,6 +790,10 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
   const flags = e.pdf?.riskFlags ?? [];
   const roce = py?.rocePct ?? e.probe?.roce ?? null;
   const backLabel = kind === "competitor" ? "competitors" : kind === "delivery" ? "delivery" : "suppliers";
+  const hasFiling = !!(e.profile?.years?.length || e.pdf || e.probe);
+  // When the attached filing is the parent group's (Dove/Vaseline → HUL), the
+  // trend/balance-sheet cards below are the group's, not the brand's — say so.
+  const parentGroup = isParentBackedProfile(e) ? e.profile?.parent ?? "its parent group" : null;
 
   const kpis: { label: string; value: string }[] =
     kind === "competitor"
@@ -829,18 +858,24 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
         ))}
       </section>
 
-      {/* everything we know, as a masonry of cards */}
-      {cards.length > 0 ? (
-        <div className="mt-4 gap-4 [column-fill:balance] lg:columns-2 xl:columns-3 [&>*]:mb-4 [&>*]:break-inside-avoid">
-          {cards.map((c) => (
-            <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>
-          ))}
-        </div>
-      ) : (
+      {/* context banners */}
+      {!hasFiling && (
         <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm text-amber-800 ring-1 ring-amber-200">
-          No detailed financial filing is available for this company in Tracxn yet — only the registry basics above.
+          No detailed financial filing is available for this company in Tracxn — only the registry basics below.
         </div>
       )}
+      {parentGroup && (
+        <div className="mt-4 rounded-2xl bg-sky-50 p-4 text-sm text-sky-800 ring-1 ring-sky-200">
+          {e.brand} has no standalone financials — the trends and balance sheet below are <span className="font-medium">{parentGroup}</span>'s consolidated group filing, not {e.brand} alone.
+        </div>
+      )}
+
+      {/* everything we know, as a masonry of cards */}
+      <div className="mt-4 gap-4 [column-fill:balance] lg:columns-2 xl:columns-3 [&>*]:mb-4 [&>*]:break-inside-avoid">
+        {cards.map((c) => (
+          <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>
+        ))}
+      </div>
     </main>
   );
 }
