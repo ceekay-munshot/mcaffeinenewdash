@@ -7,6 +7,7 @@ import {
   type Entity,
   type CompetitorRow,
   type ResearchData,
+  type SupplierPdf,
 } from "./types";
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom, ROOM_META, COVERAGE_META, type Room } from "./lib/health";
@@ -679,7 +680,7 @@ function SupplierDetail({ entity: e, onClose }: { entity: Entity; onClose: () =>
         <Row k="LEI" v={e.lei ?? "—"} mono /><Row k="Parent" v={e.parent ?? "—"} />
         <Row k="Website" v={e.website ?? "—"} /><Row k="Coverage" v={COVERAGE_META[e.coverage].label} />
       </dl>
-      {e.probe ? (
+      {e.probe && (
         <div className="mt-6">
           <SectionLabel>Probe42 · deep financials</SectionLabel>
           <div className="grid grid-cols-2 gap-3">
@@ -691,15 +692,49 @@ function SupplierDetail({ entity: e, onClose }: { entity: Entity; onClose: () =>
             <Stat label="Credit rating" value={e.probe.creditRating ?? "—"} />
           </div>
         </div>
-      ) : (
+      )}
+      {e.pdf && <HealthRisk pdf={e.pdf} />}
+      {!e.probe && !e.pdf && (
         <div className="mt-6 rounded-xl bg-amber-50 p-3 text-xs text-amber-800 ring-1 ring-amber-200">
-          Receivable/payable days, RoCE &amp; balance sheet come from Probe42 — not pulled for this company yet.
+          Deep financials for this supplier aren't parsed yet.
         </div>
       )}
       {e.research && <ResearchSection r={e.research} />}
 
       {e.tracxnUrl && <TracxnLink url={e.tracxnUrl} />}
     </Drawer>
+  );
+}
+
+// Financial-health & risk block from the parsed Tracxn detailed-report PDF.
+function HealthRisk({ pdf }: { pdf: SupplierPdf }) {
+  const signed = (v: number | null, suffix = "%") => (v == null ? "—" : `${v > 0 ? "+" : ""}${v}${suffix}`);
+  return (
+    <div className="mt-6">
+      <SectionLabel>Financial health &amp; risk · from Tracxn detailed report</SectionLabel>
+      <div className="grid grid-cols-2 gap-3">
+        <Stat label="Current ratio" value={pdf.currentRatio != null ? pdf.currentRatio.toFixed(2) : "—"} />
+        <Stat label="Interest coverage" value={pdf.interestCoverage != null ? `${pdf.interestCoverage.toFixed(1)}x` : "—"} />
+        <Stat label="Debt / equity" value={pdf.debtToEquity != null ? pdf.debtToEquity.toFixed(2) : "—"} />
+        <Stat label="Revenue YoY" value={signed(pdf.revenueChangePct)} />
+        <Stat label="PAT 3-yr CAGR" value={signed(pdf.patCagr3yrPct)} />
+        <Stat label="MSME delays" value={pdf.msme ? `${pdf.msme.count} · ₹${pdf.msme.amount}` : "None"} />
+      </div>
+      {pdf.riskFlags.length > 0 ? (
+        <div className="mt-3">
+          <div className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-rose-600">Risk flags</div>
+          <div className="flex flex-wrap gap-1.5">
+            {pdf.riskFlags.map((f, i) => (
+              <span key={i} className="rounded-md bg-rose-50 px-2 py-1 text-xs text-rose-700 ring-1 ring-rose-200">{f}</span>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="mt-3 rounded-lg bg-emerald-50 px-3 py-2 text-xs text-emerald-700 ring-1 ring-emerald-200">
+          No risk indicators flagged in the latest filing.
+        </div>
+      )}
+    </div>
   );
 }
 

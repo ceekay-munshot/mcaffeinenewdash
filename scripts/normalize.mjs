@@ -362,6 +362,14 @@ for (const e of entities) {
   if (r) e.research = r;
 }
 
+// Attach supplier financial-health & risk signals parsed from the heavy Tracxn
+// DetailedReport PDFs (keyed by folder).
+const supplierPdf = readJSON(join(RAW_DIR, "masters/supplier_pdf.json")) || {};
+for (const e of entities) {
+  const p = supplierPdf[e.folder];
+  if (p) e.pdf = p;
+}
+
 entities.sort((a, b) => a.category.localeCompare(b.category) || a.brand.localeCompare(b.brand));
 
 const generatedAt = process.env.BUILD_STAMP || new Date().toISOString();

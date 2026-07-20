@@ -62,6 +62,20 @@ export interface ResearchData {
   news: string[];
 }
 
+// Deep financial-health & risk signals parsed from the heavy Tracxn "DetailedReport"
+// PDFs the client already paid for (no Probe42 needed).
+export interface SupplierPdf {
+  currentRatio: number | null;
+  interestCoverage: number | null;
+  debtToEquity: number | null;
+  revenueChangePct: number | null;
+  patCagr3yrPct: number | null;
+  msme: { count: number; amount: string } | null;
+  dpo: { flagged: boolean; note: string } | null;
+  founders: string[];
+  riskFlags: string[];
+}
+
 export interface Entity {
   category: string;
   folder: string;
@@ -88,6 +102,7 @@ export interface Entity {
   competitor?: CompetitorData;
   shelf?: ShelfData;
   research?: ResearchData;
+  pdf?: SupplierPdf;
 }
 
 export interface Dataset {

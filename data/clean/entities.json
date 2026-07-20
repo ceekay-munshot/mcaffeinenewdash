@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T08:24:47.624Z",
+  "generatedAt": "2026-07-20T19:30:32.072Z",
   "count": 73,
   "entities": [
     {
@@ -2486,6 +2486,24 @@
         "news": [
           "Not publicly available — no specific recent news articles or press coverage identified in this research pass."
         ]
+      },
+      "pdf": {
+        "currentRatio": 0.95,
+        "interestCoverage": 1.97,
+        "debtToEquity": 5.51,
+        "revenueChangePct": 29,
+        "patCagr3yrPct": 90,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Liquidity strain (current ratio < 1)",
+          "Low interest coverage (< 2x)",
+          "High leverage (D/E > 3)"
+        ]
       }
     },
     {
@@ -2551,6 +2569,20 @@
           "mCaffeine co-founder/Chief Supply Officer Saurabh Singhal (mCaffeine and Hyphen/Pep Brands) has appeared at CMPL Expo events, reinforcing the mCaffeine-contract manufacturing ecosystem connection, though this specific a…",
           "No other recent (2025-2026) financial or corporate news specific to Jainam Invamed / ALLMASK was found."
         ]
+      },
+      "pdf": {
+        "currentRatio": 1.78,
+        "interestCoverage": 10.15,
+        "debtToEquity": 1.33,
+        "revenueChangePct": 90,
+        "patCagr3yrPct": 99,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -2613,6 +2645,25 @@
         "news": [
           "No specific recent (2025-2026) news coverage of Ananya Herbal Pvt Ltd was found beyond its Tracxn company profile listing."
         ]
+      },
+      "pdf": {
+        "currentRatio": 1.32,
+        "interestCoverage": null,
+        "debtToEquity": null,
+        "revenueChangePct": 35,
+        "patCagr3yrPct": 25,
+        "msme": {
+          "count": 50,
+          "amount": "3.4Cr"
+        },
+        "dpo": {
+          "flagged": false,
+          "note": "No Data Available"
+        },
+        "founders": [],
+        "riskFlags": [
+          "MSME payment delays (50 · ₹3.4Cr)"
+        ]
       }
     },
     {
@@ -2655,6 +2706,23 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 2
+      },
+      "pdf": {
+        "currentRatio": 0.83,
+        "interestCoverage": 3.13,
+        "debtToEquity": 0.68,
+        "revenueChangePct": -9,
+        "patCagr3yrPct": 75,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Liquidity strain (current ratio < 1)",
+          "Revenue down 9% YoY"
+        ]
       }
     },
     {
@@ -2697,6 +2765,22 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 2
+      },
+      "pdf": {
+        "currentRatio": 0.55,
+        "interestCoverage": null,
+        "debtToEquity": null,
+        "revenueChangePct": 19,
+        "patCagr3yrPct": null,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No Data Available"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Liquidity strain (current ratio < 1)"
+        ]
       }
     },
     {
@@ -2761,6 +2845,20 @@
           "June 2026: L'Oreal announced acquisition of a majority stake in Innovist, its first acquisition in India in ~13 years since acquiring Cheryl's Cosmeceuticals (Mumbai) in September 2013 — extensively covered by Reuters,…",
           "No other recent (2025-2026) news specific to Cheryl Laboratories Pvt Ltd (the Tracxn/Gopaldas Visram entity) was found."
         ]
+      },
+      "pdf": {
+        "currentRatio": 1.57,
+        "interestCoverage": 18.55,
+        "debtToEquity": 0.08,
+        "revenueChangePct": 14,
+        "patCagr3yrPct": 26,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -2824,6 +2922,20 @@
         "news": [
           "KAIN Cosmeceuticals Private Limited was announced as a Platinum Partner at the Contract Manufacturing & Private Label (CMPL) Expo Mumbai — 2025, per Instagram posts from the CMPL Expo account."
         ]
+      },
+      "pdf": {
+        "currentRatio": 7.59,
+        "interestCoverage": null,
+        "debtToEquity": null,
+        "revenueChangePct": 8874,
+        "patCagr3yrPct": null,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No Data Available"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -2866,6 +2978,25 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 2
+      },
+      "pdf": {
+        "currentRatio": 1.32,
+        "interestCoverage": 16.5,
+        "debtToEquity": null,
+        "revenueChangePct": 29,
+        "patCagr3yrPct": null,
+        "msme": {
+          "count": 92,
+          "amount": "5.94Cr"
+        },
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "MSME payment delays (92 · ₹5.94Cr)"
+        ]
       }
     },
     {
@@ -2931,6 +3062,25 @@
           "13 March 2026: Closed a Series A round of ~USD 9.1M / ~INR 150 crore led by JM Financial Private Equity (JM Financial India Growth Fund III), with angel investor Amit Suri and family offices participating; Trilegal advi…",
           "Widely covered as part of a broader trend of PE interest in Indian beauty/personal-care contract manufacturers (CDMOs), alongside peers like Naturis Cosmetics exploring similar raises (per LinkedIn post by Subhankar Mis…",
           "NG Electro Products has been a Platinum Partner at the Contract Manufacturing & Private Label (CMPL) Expo (Mumbai)."
+        ]
+      },
+      "pdf": {
+        "currentRatio": 1.71,
+        "interestCoverage": 18.69,
+        "debtToEquity": 0.16,
+        "revenueChangePct": 18,
+        "patCagr3yrPct": 53,
+        "msme": {
+          "count": 11,
+          "amount": "69.4L"
+        },
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "MSME payment delays (11 · ₹69.4L)"
         ]
       }
     },
@@ -3036,6 +3186,20 @@
         "news": [
           "Samrvir Biotech was announced as a participant/exhibitor at the Contract Manufacturing & Private Label (CMPL) Expo 2025 in Mumbai, per posts from the CMPL Expo's Facebook and Instagram accounts (dated approximately 1 ye…"
         ]
+      },
+      "pdf": {
+        "currentRatio": null,
+        "interestCoverage": null,
+        "debtToEquity": null,
+        "revenueChangePct": null,
+        "patCagr3yrPct": null,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -3139,6 +3303,22 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 2
+      },
+      "pdf": {
+        "currentRatio": 2.61,
+        "interestCoverage": null,
+        "debtToEquity": 0.12,
+        "revenueChangePct": -19,
+        "patCagr3yrPct": null,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Revenue down 19% YoY"
+        ]
       }
     },
     {
@@ -3181,6 +3361,20 @@
         "tracxn": true,
         "webResearch": false,
         "pdfs": 4
+      },
+      "pdf": {
+        "currentRatio": 4.92,
+        "interestCoverage": null,
+        "debtToEquity": null,
+        "revenueChangePct": 10,
+        "patCagr3yrPct": 75,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No Data Available"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -3223,6 +3417,20 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 1
+      },
+      "pdf": {
+        "currentRatio": 1.31,
+        "interestCoverage": 6.4,
+        "debtToEquity": 0.63,
+        "revenueChangePct": 48,
+        "patCagr3yrPct": 36,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -3344,6 +3552,27 @@
         "news": [
           "No specific recent news articles identified in the searches conducted."
         ]
+      },
+      "pdf": {
+        "currentRatio": 0.71,
+        "interestCoverage": 3.92,
+        "debtToEquity": 5.28,
+        "revenueChangePct": 29,
+        "patCagr3yrPct": 1,
+        "msme": {
+          "count": 9,
+          "amount": "26.6L"
+        },
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Liquidity strain (current ratio < 1)",
+          "High leverage (D/E > 3)",
+          "MSME payment delays (9 · ₹26.6L)"
+        ]
       }
     },
     {
@@ -3386,6 +3615,26 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 1
+      },
+      "pdf": {
+        "currentRatio": 1.51,
+        "interestCoverage": 4.7,
+        "debtToEquity": 0.29,
+        "revenueChangePct": 7,
+        "patCagr3yrPct": 18,
+        "msme": {
+          "count": 7,
+          "amount": "8.73L"
+        },
+        "dpo": {
+          "flagged": true,
+          "note": "exceeds 120 days"
+        },
+        "founders": [],
+        "riskFlags": [
+          "MSME payment delays (7 · ₹8.73L)",
+          "High DPO — pays suppliers slowly (exceeds 120 days)"
+        ]
       }
     },
     {
@@ -3493,6 +3742,26 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 2
+      },
+      "pdf": {
+        "currentRatio": 0.98,
+        "interestCoverage": 3.18,
+        "debtToEquity": 0.7,
+        "revenueChangePct": 21,
+        "patCagr3yrPct": 52,
+        "msme": {
+          "count": 162,
+          "amount": "3.36Cr"
+        },
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Liquidity strain (current ratio < 1)",
+          "MSME payment delays (162 · ₹3.36Cr)"
+        ]
       }
     },
     {
@@ -3535,6 +3804,22 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 1
+      },
+      "pdf": {
+        "currentRatio": 1.58,
+        "interestCoverage": 5.72,
+        "debtToEquity": 0.56,
+        "revenueChangePct": 6,
+        "patCagr3yrPct": 54,
+        "msme": null,
+        "dpo": {
+          "flagged": true,
+          "note": "exceeds 120 days"
+        },
+        "founders": [],
+        "riskFlags": [
+          "High DPO — pays suppliers slowly (exceeds 120 days)"
+        ]
       }
     },
     {
@@ -3598,6 +3883,22 @@
         "news": [
           "No specific recent news articles identified; company website features client testimonials (2025-2026 timeframe implied) from packaging/supply chain leads at Nat Habit, Lakme, Neude, POND'S, and Suroskie praising tube pa…"
         ]
+      },
+      "pdf": {
+        "currentRatio": 1.09,
+        "interestCoverage": 18.01,
+        "debtToEquity": 0.22,
+        "revenueChangePct": -2,
+        "patCagr3yrPct": 66,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Revenue down 2% YoY"
+        ]
       }
     },
     {
@@ -3640,6 +3941,22 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 1
+      },
+      "pdf": {
+        "currentRatio": 1.63,
+        "interestCoverage": 1.63,
+        "debtToEquity": 1.19,
+        "revenueChangePct": 18,
+        "patCagr3yrPct": 31,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Low interest coverage (< 2x)"
+        ]
       }
     },
     {
@@ -3682,6 +3999,25 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 1
+      },
+      "pdf": {
+        "currentRatio": 0.75,
+        "interestCoverage": 1.12,
+        "debtToEquity": 3.31,
+        "revenueChangePct": -24,
+        "patCagr3yrPct": null,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Liquidity strain (current ratio < 1)",
+          "Low interest coverage (< 2x)",
+          "High leverage (D/E > 3)",
+          "Revenue down 24% YoY"
+        ]
       }
     },
     {
@@ -3724,6 +4060,20 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 2
+      },
+      "pdf": {
+        "currentRatio": 1.47,
+        "interestCoverage": 8.29,
+        "debtToEquity": 1.12,
+        "revenueChangePct": 12,
+        "patCagr3yrPct": 42,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No Data Available"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -3766,6 +4116,20 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 1
+      },
+      "pdf": {
+        "currentRatio": 1.3,
+        "interestCoverage": 2.64,
+        "debtToEquity": 1.82,
+        "revenueChangePct": 16,
+        "patCagr3yrPct": 1287,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -3808,6 +4172,22 @@
         "tracxn": false,
         "webResearch": false,
         "pdfs": 1
+      },
+      "pdf": {
+        "currentRatio": 0.52,
+        "interestCoverage": 6.83,
+        "debtToEquity": 1.32,
+        "revenueChangePct": 20,
+        "patCagr3yrPct": 33,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": [
+          "Liquidity strain (current ratio < 1)"
+        ]
       }
     },
     {
@@ -3868,6 +4248,25 @@
         ],
         "news": [
           "Official site (takemotopkg.com) posted a 2026 new product announcement for a tube-style bottle. No other recent India-specific news found in search results reviewed."
+        ]
+      },
+      "pdf": {
+        "currentRatio": null,
+        "interestCoverage": null,
+        "debtToEquity": null,
+        "revenueChangePct": null,
+        "patCagr3yrPct": null,
+        "msme": {
+          "count": 7,
+          "amount": "7.2L"
+        },
+        "dpo": {
+          "flagged": false,
+          "note": "No Data Available"
+        },
+        "founders": [],
+        "riskFlags": [
+          "MSME payment delays (7 · ₹7.2L)"
         ]
       }
     },
@@ -3991,6 +4390,20 @@
         "news": [
           "Not publicly available — no significant recent news coverage found via search. Company appears primarily in B2B chemical sourcing directories (Kompass, ChemExpo India, Zauba Corp, Justdial) rather than news media."
         ]
+      },
+      "pdf": {
+        "currentRatio": 1.63,
+        "interestCoverage": 175.38,
+        "debtToEquity": 0,
+        "revenueChangePct": 68,
+        "patCagr3yrPct": null,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -4115,6 +4528,20 @@
           "8 April 2025: Connell Caldic (APAC) rebranded to Caldic APAC, effective 1 April 2025, per official Caldic press release.",
           "Caldic appointed Stratachem's official distribution solutions partner for specialty chemicals in the Indian market (per Caldic Insights page, undated recent article)."
         ]
+      },
+      "pdf": {
+        "currentRatio": 2.77,
+        "interestCoverage": 182.18,
+        "debtToEquity": null,
+        "revenueChangePct": 13,
+        "patCagr3yrPct": null,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No Data Available"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -4242,6 +4669,22 @@
           "29 Jan 2026: Givaudan reported full-year 2025 results, described as 'strong financial performance' completing its 2021-2025 strategy cycle; CNBC interview noted Givaudan management stating the company is 'immune from po…",
           "19-20 Mar 2026: 2026 Annual General Meeting — Gilles Andrier elected as new Chairman of the Board; outgoing CEO and CFO presented FY2025 results",
           "Oct 2024: Announced 'Prigiv' joint venture with Privi for a new complex fragrance ingredients manufacturing facility using advanced chemical synthesis"
+        ]
+      },
+      "pdf": {
+        "currentRatio": 1.76,
+        "interestCoverage": 13.98,
+        "debtToEquity": 0.1,
+        "revenueChangePct": 21,
+        "patCagr3yrPct": 17,
+        "msme": null,
+        "dpo": {
+          "flagged": true,
+          "note": "exceeds 120 days"
+        },
+        "founders": [],
+        "riskFlags": [
+          "High DPO — pays suppliers slowly (exceeds 120 days)"
         ]
       }
     },
@@ -4497,6 +4940,20 @@
           "CSR/sustainability initiative jointly covered with Dabur India at the Tezpur unit (Assam), per Dabur's Facebook page, involving the Unit Head of Northern Aromatics Ltd - Tezpur Unit",
           "No major recent (2025-2026) funding, M&A, or leadership-change news found"
         ]
+      },
+      "pdf": {
+        "currentRatio": 19.8,
+        "interestCoverage": 2321.13,
+        "debtToEquity": null,
+        "revenueChangePct": 11,
+        "patCagr3yrPct": null,
+        "msme": null,
+        "dpo": {
+          "flagged": false,
+          "note": "No"
+        },
+        "founders": [],
+        "riskFlags": []
       }
     },
     {
@@ -4699,6 +5156,25 @@
         "news": [
           "10 Jan 2024 - Business Wire India / Business Standard: 'IMCD Enhances Its Market Presence in India' — announcement of IMCD's acquisition of a majority (70%) stake in Valuetree, described as founded in 2005 and a promine…"
         ]
+      },
+      "pdf": {
+        "currentRatio": 2.47,
+        "interestCoverage": 10.91,
+        "debtToEquity": 0.13,
+        "revenueChangePct": 10,
+        "patCagr3yrPct": 66,
+        "msme": {
+          "count": 1,
+          "amount": "5.79K"
+        },
+        "dpo": {
+          "flagged": false,
+          "note": "No Data Available"
+        },
+        "founders": [],
+        "riskFlags": [
+          "MSME payment delays (1 · ₹5.79K)"
+        ]
       }
     },
     {
@@ -4832,6 +5308,25 @@
           "2025-2026: Participating in Cosmetic Ingredient Expo 2025, Vitafoods India 2026, WOC (World of Coatings) 2026, CosmohomeTech-2026, PAINTINDIA 2026",
           "2024: Received 'Distributor Award 2024' from Stéarinerie Dubois (a French oleochemicals/personal-care ingredients manufacturer) recognizing distribution partnership",
           "Won 'Best Formulation Awards' for two innovative products (Exfoliating Clay Cake & Juicy Shower Jellies) at an industry event"
+        ]
+      },
+      "pdf": {
+        "currentRatio": 3.14,
+        "interestCoverage": 252.85,
+        "debtToEquity": null,
+        "revenueChangePct": 16,
+        "patCagr3yrPct": 21,
+        "msme": {
+          "count": 4,
+          "amount": "13.8L"
+        },
+        "dpo": {
+          "flagged": false,
+          "note": "No Data Available"
+        },
+        "founders": [],
+        "riskFlags": [
+          "MSME payment delays (4 · ₹13.8L)"
         ]
       }
     }

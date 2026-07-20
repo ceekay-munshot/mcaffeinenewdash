@@ -1,0 +1,497 @@
+{
+ "yashamspecialityingredientspvtltd": {
+  "currentRatio": 3.14,
+  "interestCoverage": 252.85,
+  "debtToEquity": null,
+  "revenueChangePct": 16.0,
+  "patCagr3yrPct": 21.0,
+  "msme": {
+   "count": 4,
+   "amount": "13.8L"
+  },
+  "dpo": {
+   "flagged": false,
+   "note": "No Data Available"
+  },
+  "founders": [],
+  "riskFlags": [
+   "MSME payment delays (4 · ₹13.8L)"
+  ]
+ },
+ "connellbrothers": {
+  "currentRatio": 2.77,
+  "interestCoverage": 182.18,
+  "debtToEquity": null,
+  "revenueChangePct": 13.0,
+  "patCagr3yrPct": null,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No Data Available"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "givaudan": {
+  "currentRatio": 1.76,
+  "interestCoverage": 13.98,
+  "debtToEquity": 0.1,
+  "revenueChangePct": 21.0,
+  "patCagr3yrPct": 17.0,
+  "msme": null,
+  "dpo": {
+   "flagged": true,
+   "note": "exceeds 120 days"
+  },
+  "founders": [],
+  "riskFlags": [
+   "High DPO — pays suppliers slowly (exceeds 120 days)"
+  ]
+ },
+ "northernaromatics": {
+  "currentRatio": 19.8,
+  "interestCoverage": 2321.13,
+  "debtToEquity": null,
+  "revenueChangePct": 11.0,
+  "patCagr3yrPct": null,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "valuetree": {
+  "currentRatio": 2.47,
+  "interestCoverage": 10.91,
+  "debtToEquity": 0.13,
+  "revenueChangePct": 10.0,
+  "patCagr3yrPct": 66.0,
+  "msme": {
+   "count": 1,
+   "amount": "5.79K"
+  },
+  "dpo": {
+   "flagged": false,
+   "note": "No Data Available"
+  },
+  "founders": [],
+  "riskFlags": [
+   "MSME payment delays (1 · ₹5.79K)"
+  ]
+ },
+ "arkchemicals": {
+  "currentRatio": 1.63,
+  "interestCoverage": 175.38,
+  "debtToEquity": 0.0,
+  "revenueChangePct": 68.0,
+  "patCagr3yrPct": null,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "Radcom Packaging": {
+  "currentRatio": 1.47,
+  "interestCoverage": 8.29,
+  "debtToEquity": 1.12,
+  "revenueChangePct": 12.0,
+  "patCagr3yrPct": 42.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No Data Available"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "EPL Limited": {
+  "currentRatio": 1.51,
+  "interestCoverage": 4.7,
+  "debtToEquity": 0.29,
+  "revenueChangePct": 7.0,
+  "patCagr3yrPct": 18.0,
+  "msme": {
+   "count": 7,
+   "amount": "8.73L"
+  },
+  "dpo": {
+   "flagged": true,
+   "note": "exceeds 120 days"
+  },
+  "founders": [],
+  "riskFlags": [
+   "MSME payment delays (7 · ₹8.73L)",
+   "High DPO — pays suppliers slowly (exceeds 120 days)"
+  ]
+ },
+ "Purity PolyTube Pvt Ltd": {
+  "currentRatio": 0.75,
+  "interestCoverage": 1.12,
+  "debtToEquity": 3.31,
+  "revenueChangePct": -24.0,
+  "patCagr3yrPct": null,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Liquidity strain (current ratio < 1)",
+   "Low interest coverage (< 2x)",
+   "High leverage (D/E > 3)",
+   "Revenue down 24% YoY"
+  ]
+ },
+ "PRISHA TUBES PRIVATE LIMITED": {
+  "currentRatio": 1.63,
+  "interestCoverage": 1.63,
+  "debtToEquity": 1.19,
+  "revenueChangePct": 18.0,
+  "patCagr3yrPct": 31.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Low interest coverage (< 2x)"
+  ]
+ },
+ "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": {
+  "currentRatio": null,
+  "interestCoverage": null,
+  "debtToEquity": null,
+  "revenueChangePct": null,
+  "patCagr3yrPct": null,
+  "msme": {
+   "count": 7,
+   "amount": "7.2L"
+  },
+  "dpo": {
+   "flagged": false,
+   "note": "No Data Available"
+  },
+  "founders": [],
+  "riskFlags": [
+   "MSME payment delays (7 · ₹7.2L)"
+  ]
+ },
+ "SAMKIN TREASURE MOLDERS PRIVATE LIMITED": {
+  "currentRatio": 1.3,
+  "interestCoverage": 2.64,
+  "debtToEquity": 1.82,
+  "revenueChangePct": 16.0,
+  "patCagr3yrPct": 1287.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "Pragati Glass & Industries Pvt. Ltd": {
+  "currentRatio": 1.58,
+  "interestCoverage": 5.72,
+  "debtToEquity": 0.56,
+  "revenueChangePct": 6.0,
+  "patCagr3yrPct": 54.0,
+  "msme": null,
+  "dpo": {
+   "flagged": true,
+   "note": "exceeds 120 days"
+  },
+  "founders": [],
+  "riskFlags": [
+   "High DPO — pays suppliers slowly (exceeds 120 days)"
+  ]
+ },
+ "Manjushree Technopack Limited": {
+  "currentRatio": 0.98,
+  "interestCoverage": 3.18,
+  "debtToEquity": 0.7,
+  "revenueChangePct": 21.0,
+  "patCagr3yrPct": 52.0,
+  "msme": {
+   "count": 162,
+   "amount": "3.36Cr"
+  },
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Liquidity strain (current ratio < 1)",
+   "MSME payment delays (162 · ₹3.36Cr)"
+  ]
+ },
+ "CONTINUITY PRINTERS PVT LTD": {
+  "currentRatio": 0.71,
+  "interestCoverage": 3.92,
+  "debtToEquity": 5.28,
+  "revenueChangePct": 29.0,
+  "patCagr3yrPct": 1.0,
+  "msme": {
+   "count": 9,
+   "amount": "26.6L"
+  },
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Liquidity strain (current ratio < 1)",
+   "High leverage (D/E > 3)",
+   "MSME payment delays (9 · ₹26.6L)"
+  ]
+ },
+ "PRINTOTECH GLOBAL LIMITED": {
+  "currentRatio": 1.09,
+  "interestCoverage": 18.01,
+  "debtToEquity": 0.22,
+  "revenueChangePct": -2.0,
+  "patCagr3yrPct": 66.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Revenue down 2% YoY"
+  ]
+ },
+ "SICON PACKS PRIVATE LIMITED": {
+  "currentRatio": 0.52,
+  "interestCoverage": 6.83,
+  "debtToEquity": 1.32,
+  "revenueChangePct": 20.0,
+  "patCagr3yrPct": 33.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Liquidity strain (current ratio < 1)"
+  ]
+ },
+ "A G Polypack": {
+  "currentRatio": 1.31,
+  "interestCoverage": 6.4,
+  "debtToEquity": 0.63,
+  "revenueChangePct": 48.0,
+  "patCagr3yrPct": 36.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "ananya": {
+  "currentRatio": 1.32,
+  "interestCoverage": null,
+  "debtToEquity": null,
+  "revenueChangePct": 35.0,
+  "patCagr3yrPct": 25.0,
+  "msme": {
+   "count": 50,
+   "amount": "3.4Cr"
+  },
+  "dpo": {
+   "flagged": false,
+   "note": "No Data Available"
+  },
+  "founders": [],
+  "riskFlags": [
+   "MSME payment delays (50 · ₹3.4Cr)"
+  ]
+ },
+ "samrvir": {
+  "currentRatio": null,
+  "interestCoverage": null,
+  "debtToEquity": null,
+  "revenueChangePct": null,
+  "patCagr3yrPct": null,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "cheryl": {
+  "currentRatio": 1.57,
+  "interestCoverage": 18.55,
+  "debtToEquity": 0.08,
+  "revenueChangePct": 14.0,
+  "patCagr3yrPct": 26.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "aelius": {
+  "currentRatio": 0.95,
+  "interestCoverage": 1.97,
+  "debtToEquity": 5.51,
+  "revenueChangePct": 29.0,
+  "patCagr3yrPct": 90.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Liquidity strain (current ratio < 1)",
+   "Low interest coverage (< 2x)",
+   "High leverage (D/E > 3)"
+  ]
+ },
+ "kain": {
+  "currentRatio": 7.59,
+  "interestCoverage": null,
+  "debtToEquity": null,
+  "revenueChangePct": 8874.0,
+  "patCagr3yrPct": null,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No Data Available"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "vedicnaturals": {
+  "currentRatio": 2.61,
+  "interestCoverage": null,
+  "debtToEquity": 0.12,
+  "revenueChangePct": -19.0,
+  "patCagr3yrPct": null,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Revenue down 19% YoY"
+  ]
+ },
+ "arovea": {
+  "currentRatio": 0.55,
+  "interestCoverage": null,
+  "debtToEquity": null,
+  "revenueChangePct": 19.0,
+  "patCagr3yrPct": null,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No Data Available"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Liquidity strain (current ratio < 1)"
+  ]
+ },
+ "zymo": {
+  "currentRatio": 4.92,
+  "interestCoverage": null,
+  "debtToEquity": null,
+  "revenueChangePct": 10.0,
+  "patCagr3yrPct": 75.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No Data Available"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "allmask": {
+  "currentRatio": 1.78,
+  "interestCoverage": 10.15,
+  "debtToEquity": 1.33,
+  "revenueChangePct": 90.0,
+  "patCagr3yrPct": 99.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": []
+ },
+ "ngelectro": {
+  "currentRatio": 1.71,
+  "interestCoverage": 18.69,
+  "debtToEquity": 0.16,
+  "revenueChangePct": 18.0,
+  "patCagr3yrPct": 53.0,
+  "msme": {
+   "count": 11,
+   "amount": "69.4L"
+  },
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "MSME payment delays (11 · ₹69.4L)"
+  ]
+ },
+ "anuspa": {
+  "currentRatio": 0.83,
+  "interestCoverage": 3.13,
+  "debtToEquity": 0.68,
+  "revenueChangePct": -9.0,
+  "patCagr3yrPct": 75.0,
+  "msme": null,
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "Liquidity strain (current ratio < 1)",
+   "Revenue down 9% YoY"
+  ]
+ },
+ "kapco": {
+  "currentRatio": 1.32,
+  "interestCoverage": 16.5,
+  "debtToEquity": null,
+  "revenueChangePct": 29.0,
+  "patCagr3yrPct": null,
+  "msme": {
+   "count": 92,
+   "amount": "5.94Cr"
+  },
+  "dpo": {
+   "flagged": false,
+   "note": "No"
+  },
+  "founders": [],
+  "riskFlags": [
+   "MSME payment delays (92 · ₹5.94Cr)"
+  ]
+ }
+}
