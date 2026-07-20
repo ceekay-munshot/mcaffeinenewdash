@@ -4,10 +4,9 @@
 # heavy PDFs) can read it. We keep only the financial-statements portion to trim
 # size + tokens.
 
-import os, re, json, glob
+import os, re, json, glob, sys
 from pdfminer.high_level import extract_text
 
-SUPPLY_DIRS = ["RM Vendor", "PM Vendor", "Manufacturer"]
 OUT = "data/raw/masters/supplier_pdf_text.json"
 
 
@@ -23,18 +22,23 @@ def slim(text):
 
 
 def main():
-    out = {}
-    for cat in SUPPLY_DIRS:
-        for pdf in glob.glob(f"data/raw/{cat}/*/TracxnExport*DetailedReport*.pdf"):
-            folder = pdf.split("/")[3]
-            try:
-                out[folder] = slim(extract_text(pdf))
-            except Exception as e:
-                print("FAIL", folder, str(e)[:40])
+    refresh = "--refresh" in sys.argv
+    out = json.load(open(OUT)) if os.path.exists(OUT) else {}
+    added = 0
+    for pdf in glob.glob("data/raw/*/*/TracxnExport*DetailedReport*.pdf"):
+        folder = pdf.split("/")[3]
+        if folder in out and not refresh:
+            continue
+        try:
+            out[folder] = slim(extract_text(pdf))
+            added += 1
+            print("  +", folder)
+        except Exception as e:
+            print("FAIL", folder, str(e)[:40])
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(out, open(OUT, "w"), ensure_ascii=False)
     kb = os.path.getsize(OUT) // 1024
-    print(f"Wrote {len(out)} supplier texts -> {OUT} ({kb} KB)")
+    print(f"Wrote {len(out)} company texts (+{added} new) -> {OUT} ({kb} KB)")
 
 
 if __name__ == "__main__":

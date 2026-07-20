@@ -607,6 +607,9 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
 function DeliveryView() {
   const { partners, delhivery: d } = DELIVERY;
   const cr = (inr: number | null) => (inr == null ? 0 : Math.round(inr / 1e7));
+  const nm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const partnerEnts = useMemo(() => new Map(DATA.entities.filter((e) => e.category === "Delivery Partners").map((e) => [nm(e.brand), e])), []);
+  const [selected, setSelected] = useState<Entity | null>(null);
 
   const fyShort = (fy: string) => "'" + fy.split("-")[1];
   const revTrend: Slice[] = d.trend.map((t) => ({ label: fyShort(t.fy), value: cr(t.revenueINR), color: "#0d9488" }));
@@ -647,7 +650,11 @@ function DeliveryView() {
         <Card title="Partner roster" sub="identified legal entities" accent="#6366f1">
           <ul className="space-y-2">
             {partners.map((p) => (
-              <li key={p.brand} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 ring-1 ring-slate-200">
+              <li
+                key={p.brand}
+                onClick={() => { const e = partnerEnts.get(nm(p.brand)); if (e) setSelected(e); }}
+                className={`flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 ring-1 ring-slate-200 ${partnerEnts.get(nm(p.brand))?.profile ? "cursor-pointer hover:bg-teal-50/60" : ""}`}
+              >
                 <div className="min-w-0">
                   <div className="text-sm font-medium text-slate-800">{p.brand}</div>
                   <div className="truncate text-xs text-slate-400">{p.legalName ?? "—"}</div>
@@ -676,6 +683,7 @@ function DeliveryView() {
         financials come next from public filings / Probe42. <span className="font-medium text-slate-700">DSO 55 days</span> is
         the receivables lever flagged in the calls.
       </p>
+      {selected && <SupplierDetail entity={selected} onClose={() => setSelected(null)} />}
     </main>
   );
 }
@@ -766,6 +774,15 @@ function SupplierProfileView({ profile: p }: { profile: SupplierProfile }) {
   const dso = years.map((y) => ({ label: fyShort(y.fy), value: Math.round(y.receivableDays ?? 0), color: "#0ea5e9" }));
   const hasReturns = years.some((y) => y.rocePct != null || y.receivableDays != null);
   const num2 = (v: number | null) => (v != null ? v.toFixed(2) : "—");
+  const cs = p.costStructure;
+  const costBars = [
+    { label: "Materials", value: cr(cs.materialsINR), color: "#0d9488" },
+    { label: "Employee", value: cr(cs.employeeINR), color: "#6366f1" },
+    { label: "Marketing", value: cr(cs.marketingINR), color: "#f59e0b" },
+    { label: "Freight", value: cr(cs.freightINR), color: "#0ea5e9" },
+    { label: "Finance", value: cr(cs.financeINR), color: "#f43f5e" },
+    { label: "Depreciation", value: cr(cs.depreciationINR), color: "#8b5cf6" },
+  ].filter((d) => d.value > 0);
 
   return (
     <div className="mt-6 space-y-6">
@@ -804,6 +821,36 @@ function SupplierProfileView({ profile: p }: { profile: SupplierProfile }) {
             <Stat label="Interest coverage" value={latest.interestCoverage != null ? `${latest.interestCoverage.toFixed(1)}x` : "—"} />
             <Stat label="RoE" value={fmtPct(latest.roePct)} />
           </div>
+        </div>
+      )}
+
+      {costBars.length > 0 && (
+        <div>
+          <SectionLabel>Cost structure{cs.fy ? ` · FY${cs.fy}` : ""}</SectionLabel>
+          <HBars data={costBars} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} />
+        </div>
+      )}
+
+      {latest && (latest.cashFromOpsINR != null || latest.cashFromInvestingINR != null || latest.cashFromFinancingINR != null) && (
+        <div>
+          <SectionLabel>Cash flow · FY{latest.fy}</SectionLabel>
+          <div className="grid grid-cols-3 gap-3">
+            <Stat label="Operating" value={fmtCrore(latest.cashFromOpsINR)} />
+            <Stat label="Investing" value={fmtCrore(latest.cashFromInvestingINR)} />
+            <Stat label="Financing" value={fmtCrore(latest.cashFromFinancingINR)} />
+          </div>
+        </div>
+      )}
+
+      {p.acquisitions.length > 0 && (
+        <div>
+          <SectionLabel>M&amp;A</SectionLabel>
+          {p.acquisitions.map((a, i) => (
+            <div key={i} className="mt-1 rounded-lg bg-violet-50 p-2.5 text-sm ring-1 ring-violet-200">
+              <span className="font-medium text-violet-900">{a.role === "acquired" ? "Acquired by" : "Acquired"} {a.counterparty ?? "—"}</span>
+              <span className="text-violet-700"> {[a.stake, a.amountINR ? fmtCrore(a.amountINR) : null, a.date].filter(Boolean).join(" · ")}</span>
+            </div>
+          ))}
         </div>
       )}
 
@@ -963,6 +1010,8 @@ function CompetitorDetail({ row: e, onClose }: { row: CompetitorRow; onClose: ()
           </div>
         </div>
       ) : null}
+
+      {e.profile && <SupplierProfileView profile={e.profile} />}
 
       {e.research && <ResearchSection r={e.research} />}
 

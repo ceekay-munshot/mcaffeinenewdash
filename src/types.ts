@@ -98,11 +98,26 @@ export interface StatementYear {
   inventoryINR: number | null;
   cashINR: number | null;
   totalEquityINR: number | null;
+  cashFromOpsINR: number | null;
+  cashFromInvestingINR: number | null;
+  cashFromFinancingINR: number | null;
 }
 
-// Full supplier profile pulled from the Tracxn detailed-report PDF.
+// Full company profile pulled from the Tracxn detailed-report PDF (suppliers,
+// competitors and delivery partners all use this shape).
 export interface SupplierProfile {
   years: StatementYear[];
+  costStructure: {
+    fy: string | null;
+    materialsINR: number | null;
+    employeeINR: number | null;
+    marketingINR: number | null;
+    freightINR: number | null;
+    financeINR: number | null;
+    depreciationINR: number | null;
+    otherINR: number | null;
+  };
+  acquisitions: { role: string | null; counterparty: string | null; date: string | null; amountINR: number | null; stake: string | null }[];
   parent: string | null;
   subsidiaries: string[];
   associatedCompanies: string[];

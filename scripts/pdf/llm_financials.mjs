@@ -23,13 +23,15 @@ const PROMPT = `Extract a COMPREHENSIVE structured profile of this Indian compan
 
 Return STRICT JSON with exactly this shape:
 {
- "years":[{"fy":"YYYY-YY","revenueCr":n,"ebitdaCr":n,"netProfitCr":n,"ebitdaMarginPct":n,"netMarginPct":n,"rocePct":n,"roePct":n,"receivableDays":n,"payableDays":n,"cashConversionDays":n,"currentRatio":n,"debtToEquity":n,"interestCoverage":n,"totalDebtCr":n,"tradePayablesCr":n,"tradeReceivablesCr":n,"inventoryCr":n,"cashCr":n,"totalEquityCr":n}],
+ "years":[{"fy":"YYYY-YY","revenueCr":n,"ebitdaCr":n,"netProfitCr":n,"ebitdaMarginPct":n,"netMarginPct":n,"rocePct":n,"roePct":n,"receivableDays":n,"payableDays":n,"cashConversionDays":n,"currentRatio":n,"debtToEquity":n,"interestCoverage":n,"totalDebtCr":n,"tradePayablesCr":n,"tradeReceivablesCr":n,"inventoryCr":n,"cashCr":n,"totalEquityCr":n,"cashFromOpsCr":n,"cashFromInvestingCr":n,"cashFromFinancingCr":n}],
+ "costStructure":{"fy":string|null,"materialsCr":n,"employeeCr":n,"marketingCr":n,"freightCr":n,"financeCr":n,"depreciationCr":n,"otherCr":n},
  "parent":string|null,
  "subsidiaries":[string],
  "associatedCompanies":[string],
  "directors":[{"name":string,"designation":string|null}],
  "loans":[{"lender":string,"amountCr":n|null,"status":string|null}],
  "capTable":{"promoterPct":n|null,"publicPct":n|null,"founders":[string]},
+ "acquisitions":[{"role":"acquired"|"acquirer","counterparty":string|null,"date":string|null,"amountCr":n|null,"stake":string|null}],
  "competitors":[string]
 }
 
@@ -37,9 +39,12 @@ RULES:
 - All *Cr fields are the number IN CRORE exactly as printed — do NO unit conversion, add NO zeros (report shows "242 Cr" -> 242; "5.83 Cr" -> 5.83).
 - Margins / rocePct / roePct are PERCENTAGES (e.g. 46.5). Days are numbers. Ratios (currentRatio, debtToEquity, interestCoverage) are plain numbers.
 - Every fiscal year's values differ — NEVER repeat one year's number across years.
+- cashFromOps/Investing/FinancingCr from the Cash Flow Statement per year (can be negative).
+- costStructure = the LATEST year's expense breakdown (cost of materials consumed, employee benefit, advertising/marketing, freight/transport, finance costs, depreciation, other), in Cr.
 - parent = holding/parent company (Corporate Structure / "part of"). subsidiaries & associatedCompanies from Corporate Structure.
 - directors from "Board Members & Signatories". loans from "Loans & Charges" (lender + amount in Cr + open/closed).
 - capTable: promoter % vs public % and founder names from the shareholding / cap-table section.
+- acquisitions from "M&A and IPO": role "acquired" if THIS company was acquired, "acquirer" if it bought someone; counterparty, date, amount in Cr, stake %.
 - competitors from the "Competitors" section.
 - Use null or [] for anything genuinely absent. NEVER guess.`;
 
@@ -99,10 +104,31 @@ function shape(p) {
       inventoryINR: crToINR(y.inventoryCr),
       cashINR: crToINR(y.cashCr),
       totalEquityINR: crToINR(y.totalEquityCr),
+      cashFromOpsINR: crToINR(y.cashFromOpsCr),
+      cashFromInvestingINR: crToINR(y.cashFromInvestingCr),
+      cashFromFinancingINR: crToINR(y.cashFromFinancingCr),
     }));
   years.sort((a, b) => a.fy.localeCompare(b.fy)); // oldest → newest
+  const cs = p.costStructure || {};
   return {
     years,
+    costStructure: {
+      fy: str(cs.fy),
+      materialsINR: crToINR(cs.materialsCr),
+      employeeINR: crToINR(cs.employeeCr),
+      marketingINR: crToINR(cs.marketingCr),
+      freightINR: crToINR(cs.freightCr),
+      financeINR: crToINR(cs.financeCr),
+      depreciationINR: crToINR(cs.depreciationCr),
+      otherINR: crToINR(cs.otherCr),
+    },
+    acquisitions: arr(p.acquisitions).map((a) => ({
+      role: str(a?.role),
+      counterparty: str(a?.counterparty),
+      date: str(a?.date),
+      amountINR: crToINR(a?.amountCr),
+      stake: str(a?.stake),
+    })).filter((a) => a.counterparty || a.amountINR),
     parent: str(p.parent),
     subsidiaries: arr(p.subsidiaries).map(str).filter(Boolean),
     associatedCompanies: arr(p.associatedCompanies).map(str).filter(Boolean),
