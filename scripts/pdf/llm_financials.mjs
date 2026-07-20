@@ -20,20 +20,22 @@ const limit = args.includes("--limit") ? Number(args[args.indexOf("--limit") + 1
 
 const SCHEMA_HINT = `Extract the company's per-fiscal-year financials from the flattened Tracxn report text. A metric's label and its yearly values may be separated — align them by fiscal-year columns ("FY 2024-25", "FY 2023-24", …).
 
-Return STRICT JSON: {"years":[{"fy":"YYYY-YY","revenueINR":number|null,"ebitdaINR":number|null,"netProfitINR":number|null,"receivableDays":number|null,"payableDays":number|null,"rocePct":number|null,"currentRatio":number|null}]}
+Return STRICT JSON: {"years":[{"fy":"YYYY-YY","revenueCr":number|null,"ebitdaCr":number|null,"netProfitCr":number|null,"receivableDays":number|null,"payableDays":number|null,"rocePct":number|null,"currentRatio":number|null}]}
 
-UNITS — money fields are ABSOLUTE RUPEES. 1 Cr = 10,000,000 rupees, so 242 Cr -> 2420000000 and 5.83 Cr -> 58300000. Do NOT add an extra zero.
+CRITICAL: revenueCr / ebitdaCr / netProfitCr are the number IN CRORE, copied EXACTLY as the report shows it — do NO unit conversion. If the report shows "242 Cr", return 242. If it shows "5.83 Cr", return 5.83. Never add zeros.
 
 WHERE each field lives:
-- revenueINR: "Revenue - INR (Cr)" chart, or "Total revenue" / "Total Sales" per year.
-- netProfitINR: "Net Profit/Loss - INR (Cr)" chart, or "Total profit (loss) for period" — EACH year differs; never repeat one year's value across years.
-- ebitdaINR: EBITDA per year if present, else null.
-- receivableDays: "Days Sales Outstanding" per year.
-- payableDays: "Days Payable Outstanding" (may appear only for the latest year).
+- revenueCr: the "Revenue - INR (Cr)" chart (values already in Cr), or "Total Sales".
+- netProfitCr: the "Net Profit/Loss - INR (Cr)" chart — EACH year differs; never repeat one year's value.
+- ebitdaCr: EBITDA in Cr if shown, else null.
+- receivableDays: "Days Sales Outstanding".
+- payableDays: "Days Payable Outstanding" (often latest year only).
 - rocePct: "Return on Capital Employed" (%).
 - currentRatio: "Current Ratio".
 
 Include only fiscal years with a revenue figure. Sort oldest first. Use null for anything absent — never guess or copy another year's value.`;
+
+const crToINR = (v) => (typeof v === "number" && Number.isFinite(v) ? Math.round(v * 1e7) : null);
 
 async function extractOne(folder, text) {
   const body = {
@@ -55,7 +57,19 @@ async function extractOne(folder, text) {
       if (!res.ok) throw new Error(`${res.status} ${(await res.text()).slice(0, 120)}`);
       const json = await res.json();
       const parsed = JSON.parse(json.choices[0].message.content);
-      const years = Array.isArray(parsed.years) ? parsed.years.filter((y) => y && y.fy && y.revenueINR != null) : [];
+      const n = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
+      const years = (Array.isArray(parsed.years) ? parsed.years : [])
+        .filter((y) => y && y.fy && y.revenueCr != null)
+        .map((y) => ({
+          fy: y.fy,
+          revenueINR: crToINR(y.revenueCr),
+          ebitdaINR: crToINR(y.ebitdaCr),
+          netProfitINR: crToINR(y.netProfitCr),
+          receivableDays: n(y.receivableDays),
+          payableDays: n(y.payableDays),
+          rocePct: n(y.rocePct),
+          currentRatio: n(y.currentRatio),
+        }));
       return { years };
     } catch (e) {
       if (attempt === 2) { console.log(`  ! ${folder}: ${String(e).slice(0, 100)}`); return null; }
