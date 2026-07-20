@@ -373,7 +373,7 @@ for (const e of entities) {
 const supplierFin = readJSON(join(RAW_DIR, "masters/supplier_financials.json")) || {};
 for (const e of entities) {
   const f = supplierFin[e.folder];
-  if (f?.years?.length) e.statements = f.years;
+  if (f?.years?.length) e.profile = f;
 }
 
 entities.sort((a, b) => a.category.localeCompare(b.category) || a.brand.localeCompare(b.brand));

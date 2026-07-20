@@ -8,7 +8,7 @@ import {
   type CompetitorRow,
   type ResearchData,
   type SupplierPdf,
-  type StatementYear,
+  type SupplierProfile,
 } from "./types";
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom, ROOM_META, COVERAGE_META, type Room } from "./lib/health";
@@ -105,7 +105,7 @@ function SupplierView() {
   const [selected, setSelected] = useState<Entity | null>(null);
   const [deep, setDeep] = useState<Entity | null>(null);
   const [view, setView] = useState<"overview" | "table">("overview");
-  const openSupplier = (e: Entity) => (e.probe ? setDeep(e) : setSelected(e));
+  const openSupplier = (e: Entity) => setSelected(e); // unified detail (full PDF profile for all)
 
   const rows = useMemo(() => {
     let r = all;
@@ -722,8 +722,8 @@ function SupplierDetail({ entity: e, onClose }: { entity: Entity; onClose: () =>
           </div>
         </div>
       )}
-      {e.statements && e.statements.length > 1 && <StatementsTrend years={e.statements} />}
       {e.pdf && <HealthRisk pdf={e.pdf} />}
+      {e.profile && <SupplierProfileView profile={e.profile} />}
       {!e.probe && !e.pdf && (
         <div className="mt-6 rounded-xl bg-amber-50 p-3 text-xs text-amber-800 ring-1 ring-amber-200">
           Deep financials for this supplier aren't parsed yet.
@@ -753,25 +753,113 @@ function RiskCell({ e }: { e: Entity }) {
   );
 }
 
-// Multi-year statement trend (LLM-extracted from the Tracxn PDF).
-function StatementsTrend({ years }: { years: StatementYear[] }) {
+// Full supplier deep-dive from the Tracxn detailed-report PDF: multi-year trends,
+// ratio trends, latest balance sheet, ownership, board, loans, competitors.
+function SupplierProfileView({ profile: p }: { profile: SupplierProfile }) {
+  const years = [...p.years].sort((a, b) => a.fy.localeCompare(b.fy)); // oldest → newest
+  const latest = years[years.length - 1];
   const fyShort = (s: string) => "'" + (s.split("-")[1] ?? s);
   const cr = (v: number | null) => Math.round((v ?? 0) / 1e7);
   const rev = years.map((y) => ({ label: fyShort(y.fy), value: cr(y.revenueINR), color: "#0d9488" }));
   const profit = years.map((y) => ({ label: fyShort(y.fy), value: cr(y.netProfitINR), color: (y.netProfitINR ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
-  const last = years[years.length - 1];
-  const hasDays = years.some((y) => y.receivableDays != null || y.payableDays != null);
+  const roce = years.map((y) => ({ label: fyShort(y.fy), value: Math.round(y.rocePct ?? 0), color: "#6366f1" }));
+  const dso = years.map((y) => ({ label: fyShort(y.fy), value: Math.round(y.receivableDays ?? 0), color: "#0ea5e9" }));
+  const hasReturns = years.some((y) => y.rocePct != null || y.receivableDays != null);
+  const num2 = (v: number | null) => (v != null ? v.toFixed(2) : "—");
+
   return (
-    <div className="mt-6">
-      <SectionLabel>Multi-year financials · {years.length}-yr, from Tracxn report</SectionLabel>
-      <div className="mb-1 text-xs text-slate-500">Revenue (₹ Cr)</div>
-      <AreaLine data={rev} color="#0d9488" valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} />
-      <div className="mb-1 mt-4 text-xs text-slate-500">Net profit / (loss) (₹ Cr)</div>
-      <Columns data={profit} valueLabel={(v) => `₹${v.toLocaleString("en-IN")}`} />
-      {hasDays && (
-        <div className="mt-4 grid grid-cols-2 gap-3">
-          <Stat label="Receivable days (latest)" value={fmtDays(last.receivableDays)} />
-          <Stat label="Payable days (latest)" value={fmtDays(last.payableDays)} />
+    <div className="mt-6 space-y-6">
+      {years.length > 1 && (
+        <div>
+          <SectionLabel>Revenue &amp; profit · {years.length}-yr</SectionLabel>
+          <div className="mb-1 text-xs text-slate-500">Revenue (₹ Cr)</div>
+          <AreaLine data={rev} color="#0d9488" valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} />
+          <div className="mb-1 mt-3 text-xs text-slate-500">Net profit / (loss) (₹ Cr)</div>
+          <Columns data={profit} valueLabel={(v) => `₹${v.toLocaleString("en-IN")}`} />
+        </div>
+      )}
+
+      {years.length > 1 && hasReturns && (
+        <div>
+          <SectionLabel>Returns &amp; working capital</SectionLabel>
+          <div className="mb-1 text-xs text-slate-500">RoCE (%)</div>
+          <AreaLine data={roce} color="#6366f1" valueLabel={(v) => `${v}%`} />
+          <div className="mb-1 mt-3 text-xs text-slate-500">Receivable days (DSO)</div>
+          <AreaLine data={dso} color="#0ea5e9" valueLabel={(v) => `${v}d`} />
+        </div>
+      )}
+
+      {latest && (
+        <div>
+          <SectionLabel>Balance sheet &amp; ratios · FY{latest.fy}</SectionLabel>
+          <div className="grid grid-cols-2 gap-3">
+            <Stat label="Total debt" value={fmtCrore(latest.totalDebtINR)} />
+            <Stat label="Total equity" value={fmtCrore(latest.totalEquityINR)} />
+            <Stat label="Receivables" value={fmtCrore(latest.tradeReceivablesINR)} />
+            <Stat label="Payables" value={fmtCrore(latest.tradePayablesINR)} />
+            <Stat label="Inventory" value={fmtCrore(latest.inventoryINR)} />
+            <Stat label="Cash" value={fmtCrore(latest.cashINR)} />
+            <Stat label="Current ratio" value={num2(latest.currentRatio)} />
+            <Stat label="Debt / equity" value={num2(latest.debtToEquity)} />
+            <Stat label="Interest coverage" value={latest.interestCoverage != null ? `${latest.interestCoverage.toFixed(1)}x` : "—"} />
+            <Stat label="RoE" value={fmtPct(latest.roePct)} />
+          </div>
+        </div>
+      )}
+
+      {(p.parent || p.subsidiaries.length > 0 || p.capTable.founders.length > 0 || p.capTable.promoterPct != null) && (
+        <div>
+          <SectionLabel>Ownership &amp; structure</SectionLabel>
+          <dl className="text-sm">
+            {p.parent && <Row k="Parent / group" v={p.parent} />}
+            {p.capTable.promoterPct != null && <Row k="Promoter / public" v={`${p.capTable.promoterPct}% / ${p.capTable.publicPct ?? "—"}%`} />}
+            {p.capTable.founders.length > 0 && <Row k="Founders" v={p.capTable.founders.join(", ")} />}
+          </dl>
+          {p.subsidiaries.length > 0 && (
+            <div className="mt-2">
+              <div className="mb-1 text-xs text-slate-500">Subsidiaries</div>
+              <div className="flex flex-wrap gap-1.5">
+                {p.subsidiaries.map((s) => <span key={s} className="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-700 ring-1 ring-slate-200">{s}</span>)}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {p.directors.length > 0 && (
+        <div>
+          <SectionLabel>Board</SectionLabel>
+          <div className="space-y-1">
+            {p.directors.map((d, i) => (
+              <div key={i} className="flex justify-between gap-4 text-sm">
+                <span className="text-slate-800">{d.name}</span>
+                <span className="text-right text-slate-400">{d.designation ?? ""}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {p.loans.length > 0 && (
+        <div>
+          <SectionLabel>Loans &amp; charges</SectionLabel>
+          <div className="space-y-1">
+            {p.loans.map((l, i) => (
+              <div key={i} className="flex justify-between gap-4 text-sm">
+                <span className="truncate text-slate-800">{l.lender}</span>
+                <span className="shrink-0 font-mono text-slate-500">{l.amountINR ? fmtCrore(l.amountINR) : "—"}{l.status ? ` · ${l.status}` : ""}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {p.competitors.length > 0 && (
+        <div>
+          <SectionLabel>Competitors / comparables</SectionLabel>
+          <div className="flex flex-wrap gap-1.5">
+            {p.competitors.map((c) => <span key={c} className="rounded-md bg-teal-50 px-2 py-1 text-xs text-teal-800 ring-1 ring-teal-100">{c}</span>)}
+          </div>
         </div>
       )}
     </div>

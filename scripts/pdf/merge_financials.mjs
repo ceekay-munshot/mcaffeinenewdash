@@ -11,8 +11,8 @@ const fin = existsSync(FIN) ? JSON.parse(readFileSync(FIN, "utf8")) : {};
 let n = 0;
 for (const e of data.entities) {
   const f = fin[e.folder];
-  if (f?.years?.length) { e.statements = f.years; n++; }
-  else if (e.statements) delete e.statements; // authoritative: drop stale data
+  if (f?.years?.length) { e.profile = f; n++; }
+  else if (e.profile) delete e.profile; // authoritative: drop stale data
 }
 writeFileSync(ENTITIES, JSON.stringify(data, null, 2));
 console.log(`Attached multi-year statements to ${n} suppliers → ${ENTITIES}`);

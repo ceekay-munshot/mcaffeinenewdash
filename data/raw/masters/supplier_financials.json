@@ -1,1 +1,5052 @@
-{}
+{
+ "valuetree": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 5830000000,
+    "ebitdaINR": 512000000,
+    "netProfitINR": 344000000,
+    "ebitdaMarginPct": 8.78,
+    "netMarginPct": 5.9,
+    "rocePct": 38.23,
+    "roePct": 30.09,
+    "receivableDays": 46.19,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.47,
+    "debtToEquity": 0.13,
+    "interestCoverage": 10.91,
+    "totalDebtINR": 153000000,
+    "tradePayablesINR": 584000000,
+    "tradeReceivablesINR": 738000000,
+    "inventoryINR": 866000000,
+    "cashINR": 0,
+    "totalEquityINR": 1142000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 5317000000,
+    "ebitdaINR": 277000000,
+    "netProfitINR": 145000000,
+    "ebitdaMarginPct": 5.21,
+    "netMarginPct": 2.73,
+    "rocePct": 21.18,
+    "roePct": 18.19,
+    "receivableDays": 37.92,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.67,
+    "debtToEquity": 0.22,
+    "interestCoverage": 4.96,
+    "totalDebtINR": 437000000,
+    "tradePayablesINR": 671000000,
+    "tradeReceivablesINR": 552000000,
+    "inventoryINR": 1089000000,
+    "cashINR": 40000000,
+    "totalEquityINR": 798000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 4402000000,
+    "ebitdaINR": 299000000,
+    "netProfitINR": 183000000,
+    "ebitdaMarginPct": 6.79,
+    "netMarginPct": 4.15,
+    "rocePct": 27.53,
+    "roePct": 27.95,
+    "receivableDays": 41.92,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.67,
+    "debtToEquity": 0.53,
+    "interestCoverage": 6.27,
+    "totalDebtINR": 394000000,
+    "tradePayablesINR": 396000000,
+    "tradeReceivablesINR": 505000000,
+    "inventoryINR": 760000000,
+    "cashINR": 11000000,
+    "totalEquityINR": 653000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 3210000000,
+    "ebitdaINR": 118000000,
+    "netProfitINR": 75000000,
+    "ebitdaMarginPct": 3.68,
+    "netMarginPct": 2.32,
+    "rocePct": 16.36,
+    "roePct": 15.98,
+    "receivableDays": 41.47,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.34,
+    "debtToEquity": 0.08,
+    "interestCoverage": 6.98,
+    "totalDebtINR": 239000000,
+    "tradePayablesINR": 441000000,
+    "tradeReceivablesINR": 365000000,
+    "inventoryINR": 686000000,
+    "cashINR": 120000000,
+    "totalEquityINR": 467000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 2407000000,
+    "ebitdaINR": 104000000,
+    "netProfitINR": 66000000,
+    "ebitdaMarginPct": 4.32,
+    "netMarginPct": 2.74,
+    "rocePct": 24.44,
+    "roePct": 17.09,
+    "receivableDays": 37.97,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.99,
+    "debtToEquity": 0.04,
+    "interestCoverage": 7.66,
+    "totalDebtINR": -89000000,
+    "tradePayablesINR": 313000000,
+    "tradeReceivablesINR": 250000000,
+    "inventoryINR": 317000000,
+    "cashINR": 120000000,
+    "totalEquityINR": 386000000
+   }
+  ],
+  "parent": "IMCD Group",
+  "subsidiaries": [
+   "SIGNET EXCIPIENTS PRIVATE LIMITED",
+   "MONACHEM ADDITIVES PRIVATE LIMITED",
+   "AROMA CHEMICAL AGENCIES (INDIA) PRIVATE LIMITED",
+   "PARKASH DYECHEM PRIVATE LIMITED",
+   "ALCHEMIE AGENCIES PRIVATE LIMITED"
+  ],
+  "associatedCompanies": [
+   "IMCD INDIA PRIVATE LIMITED"
+  ],
+  "directors": [
+   {
+    "name": "Ramanuj Chandrashekhar Kankani",
+    "designation": "Director"
+   },
+   {
+    "name": "Narendra Sujit Varde",
+    "designation": "Managing Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "CITI BANK N.A.",
+    "amountINR": 800000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Syndicate Bank",
+    "amountINR": 15000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "Syndicate Bank",
+    "amountINR": 20500000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 30,
+   "publicPct": 70,
+   "founders": [
+    "Shailesh Karwa",
+    "Sharad Dalmia"
+   ]
+  },
+  "competitors": [
+   "Innovist",
+   "Pilgrim",
+   "Mamaearth"
+  ]
+ },
+ "yashamspecialityingredientspvtltd": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 2421000000,
+    "ebitdaINR": 498000000,
+    "netProfitINR": 364000000,
+    "ebitdaMarginPct": 20.58,
+    "netMarginPct": 15.03,
+    "rocePct": 46.55,
+    "roePct": 34.25,
+    "receivableDays": 67.72,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 3.14,
+    "debtToEquity": null,
+    "interestCoverage": 252.85,
+    "totalDebtINR": null,
+    "tradePayablesINR": 373000000,
+    "tradeReceivablesINR": 449000000,
+    "inventoryINR": 476000000,
+    "cashINR": 253000000,
+    "totalEquityINR": 1063000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 2091000000,
+    "ebitdaINR": 460000000,
+    "netProfitINR": 344000000,
+    "ebitdaMarginPct": 21.99,
+    "netMarginPct": 16.45,
+    "rocePct": 45.3,
+    "roePct": 34.16,
+    "receivableDays": 61.37,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 3.29,
+    "debtToEquity": null,
+    "interestCoverage": 173.45,
+    "totalDebtINR": null,
+    "tradePayablesINR": 332000000,
+    "tradeReceivablesINR": 352000000,
+    "inventoryINR": 318000000,
+    "cashINR": 222000000,
+    "totalEquityINR": 1007000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 2019000000,
+    "ebitdaINR": 409000000,
+    "netProfitINR": 295000000,
+    "ebitdaMarginPct": 20.24,
+    "netMarginPct": 14.61,
+    "rocePct": 43.5,
+    "roePct": 32.09,
+    "receivableDays": 52.9,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 3.91,
+    "debtToEquity": null,
+    "interestCoverage": 92.7,
+    "totalDebtINR": null,
+    "tradePayablesINR": 197000000,
+    "tradeReceivablesINR": 293000000,
+    "inventoryINR": 410000000,
+    "cashINR": 128000000,
+    "totalEquityINR": 919000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 1512000000,
+    "ebitdaINR": 283000000,
+    "netProfitINR": 204000000,
+    "ebitdaMarginPct": 18.7,
+    "netMarginPct": 13.48,
+    "rocePct": 39.55,
+    "roePct": 28.94,
+    "receivableDays": 79.35,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.29,
+    "debtToEquity": null,
+    "interestCoverage": 158.34,
+    "totalDebtINR": null,
+    "tradePayablesINR": 293000000,
+    "tradeReceivablesINR": 223000000,
+    "inventoryINR": 179000000,
+    "cashINR": 172000000,
+    "totalEquityINR": 704000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 950000000,
+    "ebitdaINR": 183000000,
+    "netProfitINR": 126000000,
+    "ebitdaMarginPct": 19.29,
+    "netMarginPct": 13.25,
+    "rocePct": 34.59,
+    "roePct": 25.25,
+    "receivableDays": 76.36,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.79,
+    "debtToEquity": null,
+    "interestCoverage": 75.74,
+    "totalDebtINR": null,
+    "tradePayablesINR": 169000000,
+    "tradeReceivablesINR": 148000000,
+    "inventoryINR": 138000000,
+    "cashINR": 82000000,
+    "totalEquityINR": 499000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [
+   "YASHAM-MITSUYA CONSTRUCTION ADDITIVES PRIVATE LIMITED"
+  ],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Namita Vivek Samant",
+    "designation": "Whole-time Director"
+   },
+   {
+    "name": "Vivek Dattatray Samant",
+    "designation": "Managing Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "The Hongkong and Shanghai Banking Corporation Limited",
+    "amountINR": 55000000,
+    "status": "Active"
+   },
+   {
+    "lender": "The Hongkong and Shanghai Banking Corporation Limited",
+    "amountINR": 80000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "The Hongkong and Shanghai Banking Corporation Limited",
+    "amountINR": 50000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "ICICI HFC Ltd",
+    "amountINR": 5000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "THE SARASWAT CO.OP. BANK LTD.",
+    "amountINR": 25000000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": null,
+   "publicPct": null,
+   "founders": []
+  },
+  "competitors": [
+   "AmerisourceBergen",
+   "Entero Healthcare",
+   "Keimed"
+  ]
+ },
+ "connellbrothers": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 6852000000,
+    "ebitdaINR": 882000000,
+    "netProfitINR": 559000000,
+    "ebitdaMarginPct": 12.87,
+    "netMarginPct": 8.16,
+    "rocePct": 22.69,
+    "roePct": 16.43,
+    "receivableDays": 72.57,
+    "payableDays": 182.18,
+    "cashConversionDays": -109.61,
+    "currentRatio": 2.77,
+    "debtToEquity": 0.98,
+    "interestCoverage": 182.18,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 882000000,
+    "tradeReceivablesINR": 1362000000,
+    "inventoryINR": 1344000000,
+    "cashINR": 866000000,
+    "totalEquityINR": 3402000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 6054000000,
+    "ebitdaINR": 795000000,
+    "netProfitINR": 495000000,
+    "ebitdaMarginPct": 13.13,
+    "netMarginPct": 8.17,
+    "rocePct": 19.45,
+    "roePct": 14.21,
+    "receivableDays": 73.83,
+    "payableDays": 182.18,
+    "cashConversionDays": -108.35,
+    "currentRatio": 3.17,
+    "debtToEquity": 0.99,
+    "interestCoverage": 106.99,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 950000000,
+    "tradeReceivablesINR": 1225000000,
+    "inventoryINR": 1251000000,
+    "cashINR": 788000000,
+    "totalEquityINR": 3481000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 5981000000,
+    "ebitdaINR": 904000000,
+    "netProfitINR": 609000000,
+    "ebitdaMarginPct": 15.11,
+    "netMarginPct": 10.19,
+    "rocePct": 24.07,
+    "roePct": 17.33,
+    "receivableDays": 76.06,
+    "payableDays": 82.33,
+    "cashConversionDays": -6.27,
+    "currentRatio": 3.66,
+    "debtToEquity": 1.68,
+    "interestCoverage": 82.33,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 974000000,
+    "tradeReceivablesINR": 1246000000,
+    "inventoryINR": 1158000000,
+    "cashINR": 1514000000,
+    "totalEquityINR": 3516000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 5074000000,
+    "ebitdaINR": 921000000,
+    "netProfitINR": 682000000,
+    "ebitdaMarginPct": 18.16,
+    "netMarginPct": 13.45,
+    "rocePct": 29.64,
+    "roePct": 23.26,
+    "receivableDays": 79.23,
+    "payableDays": 62.59,
+    "cashConversionDays": 16.64,
+    "currentRatio": 3.16,
+    "debtToEquity": 0.96,
+    "interestCoverage": 62.59,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 999000000,
+    "tradeReceivablesINR": 1101000000,
+    "inventoryINR": 1142000000,
+    "cashINR": 886000000,
+    "totalEquityINR": 2933000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 3857000000,
+    "ebitdaINR": 475000000,
+    "netProfitINR": 322000000,
+    "ebitdaMarginPct": 14.54,
+    "netMarginPct": 8.36,
+    "rocePct": 21.07,
+    "roePct": 14.31,
+    "receivableDays": 94.54,
+    "payableDays": 226.94,
+    "cashConversionDays": -132.4,
+    "currentRatio": 3.27,
+    "debtToEquity": 0.89,
+    "interestCoverage": 226.94,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 710000000,
+    "tradeReceivablesINR": 999000000,
+    "inventoryINR": 1127000000,
+    "cashINR": 499000000,
+    "totalEquityINR": 2253000000
+   }
+  ],
+  "parent": "CONNELL BROS. HOLDING (SINGAPORE) PTE. LTD.",
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Vishal Anand Jawale",
+    "designation": "Managing Director"
+   },
+   {
+    "name": "Knud Mohr",
+    "designation": "Director"
+   },
+   {
+    "name": "Pierre Francois Chanteclair",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "CITI BANK N.A.",
+    "amountINR": 50000000,
+    "status": "Active"
+   },
+   {
+    "lender": "CITI BANK N.A.",
+    "amountINR": 700000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "The Royal Bank of Scotland N. V.",
+    "amountINR": 420000000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": []
+  },
+  "competitors": [
+   "Dyno Nobel",
+   "Performance Chemiserve",
+   "SBL Energy"
+  ]
+ },
+ "givaudan": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 30935000000,
+    "ebitdaINR": 4308000000,
+    "netProfitINR": 2259000000,
+    "ebitdaMarginPct": 13.93,
+    "netMarginPct": 7.3,
+    "rocePct": 11.91,
+    "roePct": 7.74,
+    "receivableDays": 77.14,
+    "payableDays": 148,
+    "cashConversionDays": -70.86,
+    "currentRatio": 1.76,
+    "debtToEquity": 0.1,
+    "interestCoverage": 13.98,
+    "totalDebtINR": 2517000000,
+    "tradePayablesINR": 7215000000,
+    "tradeReceivablesINR": 6538000000,
+    "inventoryINR": 5727000000,
+    "cashINR": 411000000,
+    "totalEquityINR": 29191000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 25469000000,
+    "ebitdaINR": 4502000000,
+    "netProfitINR": 2711000000,
+    "ebitdaMarginPct": 17.68,
+    "netMarginPct": 10.64,
+    "rocePct": 13.51,
+    "roePct": 10.05,
+    "receivableDays": 82.41,
+    "payableDays": 82.41,
+    "cashConversionDays": 0,
+    "currentRatio": 1.93,
+    "debtToEquity": 0.08,
+    "interestCoverage": 17.97,
+    "totalDebtINR": 1467000000,
+    "tradePayablesINR": 5774000000,
+    "tradeReceivablesINR": 5750000000,
+    "inventoryINR": 4563000000,
+    "cashINR": 1389000000,
+    "totalEquityINR": 26969000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 22993000000,
+    "ebitdaINR": 2242000000,
+    "netProfitINR": 1088000000,
+    "ebitdaMarginPct": 9.75,
+    "netMarginPct": 4.73,
+    "rocePct": 6.51,
+    "roePct": 4.49,
+    "receivableDays": 84.3,
+    "payableDays": 84.3,
+    "cashConversionDays": 0,
+    "currentRatio": 1.38,
+    "debtToEquity": 0.11,
+    "interestCoverage": 3.85,
+    "totalDebtINR": 2738000000,
+    "tradePayablesINR": 5204000000,
+    "tradeReceivablesINR": 5638000000,
+    "inventoryINR": 4280000000,
+    "cashINR": 179000000,
+    "totalEquityINR": 24264000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 20779000000,
+    "ebitdaINR": 2829000000,
+    "netProfitINR": 1422000000,
+    "ebitdaMarginPct": 13.62,
+    "netMarginPct": 6.84,
+    "rocePct": 10.29,
+    "roePct": 9.56,
+    "receivableDays": 76.41,
+    "payableDays": 76.41,
+    "cashConversionDays": 0,
+    "currentRatio": 0.98,
+    "debtToEquity": 0.08,
+    "interestCoverage": 4.34,
+    "totalDebtINR": 7370000000,
+    "tradePayablesINR": 5252000000,
+    "tradeReceivablesINR": 5310000000,
+    "inventoryINR": 4646000000,
+    "cashINR": 581000000,
+    "totalEquityINR": 14877000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 19989000000,
+    "ebitdaINR": 2291000000,
+    "netProfitINR": 1283000000,
+    "ebitdaMarginPct": 11.46,
+    "netMarginPct": 6.42,
+    "rocePct": 16.09,
+    "roePct": 14.49,
+    "receivableDays": 80.07,
+    "payableDays": 80.07,
+    "cashConversionDays": 0,
+    "currentRatio": 2.24,
+    "debtToEquity": 0.12,
+    "interestCoverage": 17.14,
+    "totalDebtINR": 576000000,
+    "tradePayablesINR": 4832000000,
+    "tradeReceivablesINR": 4385000000,
+    "inventoryINR": 3805000000,
+    "cashINR": 1911000000,
+    "totalEquityINR": 8852000000
+   }
+  ],
+  "parent": "Givaudan SA",
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Karthikeyan Shanmugam",
+    "designation": "Whole-time Director"
+   },
+   {
+    "name": "Francis Adhav",
+    "designation": "Whole-time Director"
+   },
+   {
+    "name": "Divya Chhabra",
+    "designation": "Company Secretary"
+   },
+   {
+    "name": "Devapriyo Chakravarty",
+    "designation": "Whole-time Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Punjab National Bank",
+    "amountINR": 50000000,
+    "status": "Active"
+   },
+   {
+    "lender": "KARNATAKA STATE FINANCIAL CORPORATION",
+    "amountINR": 2700000,
+    "status": "Closed"
+   },
+   {
+    "lender": "STATE BANK OF INDIA",
+    "amountINR": 8500000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": null,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "northernaromatics": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 3611000000,
+    "ebitdaINR": 1575000000,
+    "netProfitINR": 1347000000,
+    "ebitdaMarginPct": 43.62,
+    "netMarginPct": 37.3,
+    "rocePct": 16.66,
+    "roePct": 14.3,
+    "receivableDays": 48.44,
+    "payableDays": 19,
+    "cashConversionDays": null,
+    "currentRatio": 19.8,
+    "debtToEquity": null,
+    "interestCoverage": 2321.13,
+    "totalDebtINR": 40000000,
+    "tradePayablesINR": 98000000,
+    "tradeReceivablesINR": 479000000,
+    "inventoryINR": 425000000,
+    "cashINR": 40000000,
+    "totalEquityINR": 9280000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 3239000000,
+    "ebitdaINR": 1454000000,
+    "netProfitINR": 1218000000,
+    "ebitdaMarginPct": 44.89,
+    "netMarginPct": 37.59,
+    "rocePct": 17.59,
+    "roePct": 15.07,
+    "receivableDays": 44.98,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 18.25,
+    "debtToEquity": null,
+    "interestCoverage": 4021.24,
+    "totalDebtINR": 23000000,
+    "tradePayablesINR": 132000000,
+    "tradeReceivablesINR": 399000000,
+    "inventoryINR": 280000000,
+    "cashINR": 23000000,
+    "totalEquityINR": 7908000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 2660000000,
+    "ebitdaINR": 953000000,
+    "netProfitINR": 882000000,
+    "ebitdaMarginPct": 35.81,
+    "netMarginPct": 37.03,
+    "rocePct": 41.56,
+    "roePct": 37.03,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": null,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": null,
+    "tradeReceivablesINR": null,
+    "inventoryINR": 345000000,
+    "cashINR": null,
+    "totalEquityINR": 6522000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 2442000000,
+    "ebitdaINR": 904000000,
+    "netProfitINR": 852000000,
+    "ebitdaMarginPct": 35.81,
+    "netMarginPct": 37.03,
+    "rocePct": 41.56,
+    "roePct": 37.03,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": null,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": null,
+    "tradeReceivablesINR": null,
+    "inventoryINR": 244000000,
+    "cashINR": null,
+    "totalEquityINR": 5669000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 2445000000,
+    "ebitdaINR": 1016000000,
+    "netProfitINR": 957000000,
+    "ebitdaMarginPct": 35.81,
+    "netMarginPct": 37.03,
+    "rocePct": 41.56,
+    "roePct": 37.03,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": null,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": null,
+    "tradeReceivablesINR": null,
+    "inventoryINR": 151000000,
+    "cashINR": null,
+    "totalEquityINR": 4701000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Virendra Prasad Joshi",
+    "designation": "Additional Director"
+   },
+   {
+    "name": "Naresh Chander Arora",
+    "designation": "Director"
+   },
+   {
+    "name": "Vikas Aggarwal",
+    "designation": "CFO"
+   },
+   {
+    "name": "Abhinav Dhall",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "DIRECTOR OF INDUSTRIES",
+    "amountINR": 50000000,
+    "status": "Active"
+   },
+   {
+    "lender": "PUNJAB NATIONAL BANK",
+    "amountINR": 151000000,
+    "status": "Active"
+   },
+   {
+    "lender": "HONGKONG AND SHANGHAI BANKING CORPORATION LTD",
+    "amountINR": 45000000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 99.13,
+   "publicPct": 0.87,
+   "founders": [
+    "Abhay Kumar Agarwal",
+    "Sanjay Agarwal"
+   ]
+  },
+  "competitors": []
+ },
+ "arkchemicals": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 2636000000,
+    "ebitdaINR": 164000000,
+    "netProfitINR": 120000000,
+    "ebitdaMarginPct": 6.22,
+    "netMarginPct": 4.55,
+    "rocePct": 24.8,
+    "roePct": 18.59,
+    "receivableDays": 144.93,
+    "payableDays": 95,
+    "cashConversionDays": 49.93,
+    "currentRatio": 1.63,
+    "debtToEquity": 0,
+    "interestCoverage": 175.38,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 610000000,
+    "tradeReceivablesINR": 1047000000,
+    "inventoryINR": 161000000,
+    "cashINR": 333000000,
+    "totalEquityINR": 646000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 1573000000,
+    "ebitdaINR": 116000000,
+    "netProfitINR": 86000000,
+    "ebitdaMarginPct": 7.68,
+    "netMarginPct": 5.47,
+    "rocePct": 22.04,
+    "roePct": 16.38,
+    "receivableDays": 68.69,
+    "payableDays": 92.45,
+    "cashConversionDays": -23.76,
+    "currentRatio": 1.95,
+    "debtToEquity": 0,
+    "interestCoverage": 480.54,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 279000000,
+    "tradeReceivablesINR": 1047000000,
+    "inventoryINR": 162000000,
+    "cashINR": 461000000,
+    "totalEquityINR": 526000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 3756000000,
+    "ebitdaINR": 247000000,
+    "netProfitINR": 184000000,
+    "ebitdaMarginPct": 6.81,
+    "netMarginPct": 4.91,
+    "rocePct": 26.69,
+    "roePct": 19.83,
+    "receivableDays": 69.55,
+    "payableDays": 82.28,
+    "cashConversionDays": -12.73,
+    "currentRatio": 2.35,
+    "debtToEquity": 0,
+    "interestCoverage": 367.07,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 523000000,
+    "tradeReceivablesINR": 716000000,
+    "inventoryINR": 346000000,
+    "cashINR": 333000000,
+    "totalEquityINR": 930000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 3150000000,
+    "ebitdaINR": 307000000,
+    "netProfitINR": 227000000,
+    "ebitdaMarginPct": 9.95,
+    "netMarginPct": 7.2,
+    "rocePct": 41.08,
+    "roePct": 30.42,
+    "receivableDays": 82.28,
+    "payableDays": 92.45,
+    "cashConversionDays": -10.17,
+    "currentRatio": 1.67,
+    "debtToEquity": 0,
+    "interestCoverage": 228.23,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 599000000,
+    "tradeReceivablesINR": 710000000,
+    "inventoryINR": 394000000,
+    "cashINR": 105000000,
+    "totalEquityINR": 745000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 2091000000,
+    "ebitdaINR": 166000000,
+    "netProfitINR": 130000000,
+    "ebitdaMarginPct": 8.48,
+    "netMarginPct": 6.2,
+    "rocePct": 31.7,
+    "roePct": 25.02,
+    "receivableDays": 92.45,
+    "payableDays": 92.45,
+    "cashConversionDays": 0,
+    "currentRatio": 1.98,
+    "debtToEquity": 0,
+    "interestCoverage": 32.16,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 393000000,
+    "tradeReceivablesINR": 530000000,
+    "inventoryINR": 298000000,
+    "cashINR": 73000000,
+    "totalEquityINR": 519000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Anilkumar Jugalkishore Wadhwa",
+    "designation": "Director"
+   },
+   {
+    "name": "Renuka Anilkumar Wadhwa",
+    "designation": "Director"
+   },
+   {
+    "name": "Kunal Anilkumar Wadhwa",
+    "designation": "Director"
+   },
+   {
+    "name": "Anmol Anilkumar Wadhwa",
+    "designation": "Managing Director"
+   },
+   {
+    "name": "Priya Dubey Wadhwa",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Citi Bank N.A.",
+    "amountINR": 160000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Citi Bank N.A.",
+    "amountINR": 11500000,
+    "status": "Active"
+   },
+   {
+    "lender": "Citi Bank N.A.",
+    "amountINR": 160000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Citi Bank N.A.",
+    "amountINR": 100000000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": [
+    "Anilkumar Jugalkishore Wadhwa",
+    "Renuka Anilkumar Wadhwa",
+    "Kunal Anilkumar Wadhwa",
+    "Anmol Anilkumar Wadhwa",
+    "Priya Dubey Wadhwa"
+   ]
+  },
+  "competitors": [
+   "Eastman Kodak Company",
+   "Arkema",
+   "Clariant"
+  ]
+ },
+ "Radcom Packaging": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 1657000000,
+    "ebitdaINR": 205000000,
+    "netProfitINR": 98000000,
+    "ebitdaMarginPct": 12.38,
+    "netMarginPct": 9.59,
+    "rocePct": 27.61,
+    "roePct": 9.25,
+    "receivableDays": 82.13,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.47,
+    "debtToEquity": 1.12,
+    "interestCoverage": 8.29,
+    "totalDebtINR": 365000000,
+    "tradePayablesINR": 248000000,
+    "tradeReceivablesINR": 373000000,
+    "inventoryINR": 147000000,
+    "cashINR": 32000000,
+    "totalEquityINR": 355000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 1477000000,
+    "ebitdaINR": 164000000,
+    "netProfitINR": 69000000,
+    "ebitdaMarginPct": 11.07,
+    "netMarginPct": 4.64,
+    "rocePct": 26.72,
+    "roePct": 7.17,
+    "receivableDays": 71.47,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.52,
+    "debtToEquity": 0.77,
+    "interestCoverage": 6.86,
+    "totalDebtINR": 190000000,
+    "tradePayablesINR": 194000000,
+    "tradeReceivablesINR": 289000000,
+    "inventoryINR": 115000000,
+    "cashINR": 699000000,
+    "totalEquityINR": 257000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 1487000000,
+    "ebitdaINR": 135000000,
+    "netProfitINR": 58000000,
+    "ebitdaMarginPct": 9.1,
+    "netMarginPct": 3.9,
+    "rocePct": 30.82,
+    "roePct": 8.8,
+    "receivableDays": 76.15,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.42,
+    "debtToEquity": 1.07,
+    "interestCoverage": 6.97,
+    "totalDebtINR": 156000000,
+    "tradePayablesINR": 237000000,
+    "tradeReceivablesINR": 310000000,
+    "inventoryINR": 101000000,
+    "cashINR": 45000000,
+    "totalEquityINR": 188000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 1083000000,
+    "ebitdaINR": 96000000,
+    "netProfitINR": 34000000,
+    "ebitdaMarginPct": 8.63,
+    "netMarginPct": 3.15,
+    "rocePct": 26.24,
+    "roePct": 7.08,
+    "receivableDays": 76.29,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.24,
+    "debtToEquity": 0.79,
+    "interestCoverage": 6.7,
+    "totalDebtINR": 93000000,
+    "tradePayablesINR": 203000000,
+    "tradeReceivablesINR": 226000000,
+    "inventoryINR": 59000000,
+    "cashINR": 869000000,
+    "totalEquityINR": 130000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 773000000,
+    "ebitdaINR": 68000000,
+    "netProfitINR": 37000000,
+    "ebitdaMarginPct": 8.83,
+    "netMarginPct": 4.72,
+    "rocePct": 38.23,
+    "roePct": 9.79,
+    "receivableDays": 80.96,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.18,
+    "debtToEquity": 0.28,
+    "interestCoverage": 18.9,
+    "totalDebtINR": 27000000,
+    "tradePayablesINR": 188000000,
+    "tradeReceivablesINR": 171000000,
+    "inventoryINR": 46000000,
+    "cashINR": 33000000,
+    "totalEquityINR": 96000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Anurag Sher singh Sharma",
+    "designation": "Director"
+   },
+   {
+    "name": "Poonam Biharilal Jangid",
+    "designation": "Director"
+   },
+   {
+    "name": "Kailash Sohanlal Jangid",
+    "designation": "Director"
+   },
+   {
+    "name": "Priyanka Biharilal Jangid",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "SIDBI",
+    "amountINR": 20000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 37800000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 83100000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 7800000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 18800000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 28200000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 30900000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 3070000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 60000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 67500000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 67500000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 13000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 11700000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 5460000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 20000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 22200000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 70000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 9770000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 8850000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 22700000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 75,
+   "publicPct": 25,
+   "founders": [
+    "Anurag Sharma"
+   ]
+  },
+  "competitors": []
+ },
+ "EPL Limited": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 42569000000,
+    "ebitdaINR": 8781000000,
+    "netProfitINR": 3630000000,
+    "ebitdaMarginPct": 20.63,
+    "netMarginPct": 8.53,
+    "rocePct": 17.66,
+    "roePct": 15.39,
+    "receivableDays": 59.96,
+    "payableDays": 123,
+    "cashConversionDays": -63.04,
+    "currentRatio": 1.51,
+    "debtToEquity": 0.29,
+    "interestCoverage": 4.7,
+    "totalDebtINR": 6727000000,
+    "tradePayablesINR": 5943000000,
+    "tradeReceivablesINR": 6993000000,
+    "inventoryINR": 7200000000,
+    "cashINR": 2014000000,
+    "totalEquityINR": 23587000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 39755000000,
+    "ebitdaINR": 7132000000,
+    "netProfitINR": 2101000000,
+    "ebitdaMarginPct": 17.94,
+    "netMarginPct": 5.28,
+    "rocePct": 13.14,
+    "roePct": 10.05,
+    "receivableDays": 63.84,
+    "payableDays": 52.01,
+    "cashConversionDays": 11.83,
+    "currentRatio": 1.52,
+    "debtToEquity": 0.38,
+    "interestCoverage": 5.02,
+    "totalDebtINR": 8040000000,
+    "tradePayablesINR": 5659000000,
+    "tradeReceivablesINR": 6953000000,
+    "inventoryINR": 6558000000,
+    "cashINR": 2388000000,
+    "totalEquityINR": 20906000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 37362000000,
+    "ebitdaINR": 6188000000,
+    "netProfitINR": 2307000000,
+    "ebitdaMarginPct": 16.56,
+    "netMarginPct": 6.17,
+    "rocePct": 11.13,
+    "roePct": 12.25,
+    "receivableDays": 62.82,
+    "payableDays": 52.01,
+    "cashConversionDays": 10.81,
+    "currentRatio": 1.69,
+    "debtToEquity": 0.35,
+    "interestCoverage": 5.72,
+    "totalDebtINR": 7686000000,
+    "tradePayablesINR": 4993000000,
+    "tradeReceivablesINR": 6430000000,
+    "inventoryINR": 6079000000,
+    "cashINR": 1868000000,
+    "totalEquityINR": 19928000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 34448000000,
+    "ebitdaINR": 5881000000,
+    "netProfitINR": 2213000000,
+    "ebitdaMarginPct": 17.07,
+    "netMarginPct": 6.35,
+    "rocePct": 13.38,
+    "roePct": 11.91,
+    "receivableDays": 67.46,
+    "payableDays": 52.01,
+    "cashConversionDays": 15.45,
+    "currentRatio": 1.71,
+    "debtToEquity": 0.32,
+    "interestCoverage": 5.81,
+    "totalDebtINR": 6589000000,
+    "tradePayablesINR": 4532000000,
+    "tradeReceivablesINR": 6367000000,
+    "inventoryINR": 5941000000,
+    "cashINR": 2365000000,
+    "totalEquityINR": 18581000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 31061000000,
+    "ebitdaINR": 6095000000,
+    "netProfitINR": 2443000000,
+    "ebitdaMarginPct": 19.62,
+    "netMarginPct": 7.87,
+    "rocePct": 16.4,
+    "roePct": 14.11,
+    "receivableDays": 69.23,
+    "payableDays": 52.01,
+    "cashConversionDays": 17.22,
+    "currentRatio": 1.74,
+    "debtToEquity": 0.31,
+    "interestCoverage": 5.27,
+    "totalDebtINR": 5541000000,
+    "tradePayablesINR": 4222000000,
+    "tradeReceivablesINR": 5891000000,
+    "inventoryINR": 4149000000,
+    "cashINR": 2365000000,
+    "totalEquityINR": 17314000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Davinder Singh Brar",
+    "designation": "Director"
+   },
+   {
+    "name": "Sharmila Abhay Karve",
+    "designation": "Director"
+   },
+   {
+    "name": "Animesh Agrawal",
+    "designation": "Director"
+   },
+   {
+    "name": "Amit Dixit",
+    "designation": "Director"
+   },
+   {
+    "name": "Dhaval Jitendra Buch",
+    "designation": "Director"
+   },
+   {
+    "name": "Anand Kripalu",
+    "designation": "Director"
+   },
+   {
+    "name": "Deepak Goyal",
+    "designation": "CFO"
+   },
+   {
+    "name": "Onkar Deepak Ghangurde",
+    "designation": "Company Secretary"
+   },
+   {
+    "name": "Shashank Sinha",
+    "designation": "Managing Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "JP Morgan Chase Bank, N.A.",
+    "amountINR": 852000000,
+    "status": "Active"
+   },
+   {
+    "lender": "CITI BANK N.A.",
+    "amountINR": 500000000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": null,
+   "publicPct": null,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "Purity PolyTube Pvt Ltd": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 124000000,
+    "ebitdaINR": 26300000,
+    "netProfitINR": 480000,
+    "ebitdaMarginPct": 21.26,
+    "netMarginPct": 0.39,
+    "rocePct": 3.16,
+    "roePct": 0.79,
+    "receivableDays": 72.85,
+    "payableDays": 57,
+    "cashConversionDays": 15.85,
+    "currentRatio": 0.75,
+    "debtToEquity": 3.31,
+    "interestCoverage": 1.12,
+    "totalDebtINR": 199000000,
+    "tradePayablesINR": 13000000,
+    "tradeReceivablesINR": 25000000,
+    "inventoryINR": 13000000,
+    "cashINR": 1300000,
+    "totalEquityINR": 60000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 162000000,
+    "ebitdaINR": 52000000,
+    "netProfitINR": 10000000,
+    "ebitdaMarginPct": 32.1,
+    "netMarginPct": 6.21,
+    "rocePct": 18.94,
+    "roePct": 16.79,
+    "receivableDays": 71.7,
+    "payableDays": 83.8,
+    "cashConversionDays": -12.1,
+    "currentRatio": 1.42,
+    "debtToEquity": 2.03,
+    "interestCoverage": 2.67,
+    "totalDebtINR": 139000000,
+    "tradePayablesINR": 12000000,
+    "tradeReceivablesINR": 32000000,
+    "inventoryINR": 12000000,
+    "cashINR": 3400000,
+    "totalEquityINR": 60000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 133000000,
+    "ebitdaINR": 39000000,
+    "netProfitINR": 6030000,
+    "ebitdaMarginPct": 29.32,
+    "netMarginPct": 4.55,
+    "rocePct": 11.48,
+    "roePct": 12.12,
+    "receivableDays": 72.57,
+    "payableDays": 1,
+    "cashConversionDays": 71.57,
+    "currentRatio": 1.29,
+    "debtToEquity": 2.76,
+    "interestCoverage": 2.32,
+    "totalDebtINR": 149000000,
+    "tradePayablesINR": 10000000,
+    "tradeReceivablesINR": 34000000,
+    "inventoryINR": 10000000,
+    "cashINR": 3600000,
+    "totalEquityINR": 50000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 110000000,
+    "ebitdaINR": 32000000,
+    "netProfitINR": 5740000,
+    "ebitdaMarginPct": 28.94,
+    "netMarginPct": 5.24,
+    "rocePct": 10.27,
+    "roePct": 13.12,
+    "receivableDays": 59.57,
+    "payableDays": 1.1,
+    "cashConversionDays": 58.47,
+    "currentRatio": 1.12,
+    "debtToEquity": 3.11,
+    "interestCoverage": 2.07,
+    "totalDebtINR": 150000000,
+    "tradePayablesINR": 11000000,
+    "tradeReceivablesINR": 38000000,
+    "inventoryINR": 11000000,
+    "cashINR": 1100000,
+    "totalEquityINR": 44000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 44000000,
+    "ebitdaINR": 14000000,
+    "netProfitINR": 3500000,
+    "ebitdaMarginPct": 31.07,
+    "netMarginPct": 7.88,
+    "rocePct": 3.77,
+    "roePct": 9.21,
+    "receivableDays": 88.62,
+    "payableDays": 1.2,
+    "cashConversionDays": 87.42,
+    "currentRatio": 1.1,
+    "debtToEquity": 2.9,
+    "interestCoverage": 1.89,
+    "totalDebtINR": 154000000,
+    "tradePayablesINR": 11000000,
+    "tradeReceivablesINR": 11000000,
+    "inventoryINR": 11000000,
+    "cashINR": 900000,
+    "totalEquityINR": 38000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Nileshbhai Natverbhai Patel",
+    "designation": "Director"
+   },
+   {
+    "name": "Devendra Ramniklal Majeethia",
+    "designation": "Director"
+   },
+   {
+    "name": "Tusharkumar Vinodchandra Patel",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "The Kalupur Commercial Co-Operative Bank Limited",
+    "amountINR": 65000000,
+    "status": "Active"
+   },
+   {
+    "lender": "The Kalupur Commercial Co-Operative Bank Limited",
+    "amountINR": 15000000,
+    "status": "Active"
+   },
+   {
+    "lender": "The Kalupur Commercial Co-Operative Bank Limited",
+    "amountINR": 78700000,
+    "status": "Active"
+   },
+   {
+    "lender": "The Kalupur Commercial Co-Operative Bank Limited",
+    "amountINR": 25000000,
+    "status": "Active"
+   },
+   {
+    "lender": "The Kalupur Commercial Co-Operative Bank Limited",
+    "amountINR": 185000000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": [
+    "Devendra Ramniklal Majeethia",
+    "Nilesh Natvarbhai Patel",
+    "Tushar Vinodchandra Patel",
+    "Mukund Ambalal Patel",
+    "Ankur Satishbhai Patel",
+    "Rajendrakumar Shambhubhai Patel",
+    "Deepak Ramniklal Majethia",
+    "Neepa Majeethia",
+    "Anupama Devendra Majeethia"
+   ]
+  },
+  "competitors": []
+ },
+ "PRISHA TUBES PRIVATE LIMITED": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 218000000,
+    "ebitdaINR": 21200000,
+    "netProfitINR": 3350000,
+    "ebitdaMarginPct": 9.71,
+    "netMarginPct": 1.53,
+    "rocePct": 7.24,
+    "roePct": 4.91,
+    "receivableDays": 87.99,
+    "payableDays": 70,
+    "cashConversionDays": 17.99,
+    "currentRatio": 1.63,
+    "debtToEquity": 1.19,
+    "interestCoverage": 1.63,
+    "totalDebtINR": 81000000,
+    "tradePayablesINR": 24000000,
+    "tradeReceivablesINR": 53000000,
+    "inventoryINR": 24000000,
+    "cashINR": 5430000,
+    "totalEquityINR": 68000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 184000000,
+    "ebitdaINR": 19000000,
+    "netProfitINR": 2150000,
+    "ebitdaMarginPct": 10.28,
+    "netMarginPct": 1.17,
+    "rocePct": 7.61,
+    "roePct": 3.32,
+    "receivableDays": 103.15,
+    "payableDays": 72.5,
+    "cashConversionDays": 30.65,
+    "currentRatio": 1.72,
+    "debtToEquity": 1.03,
+    "interestCoverage": 1.47,
+    "totalDebtINR": 67000000,
+    "tradePayablesINR": 41000000,
+    "tradeReceivablesINR": 52000000,
+    "inventoryINR": 18000000,
+    "cashINR": 11000000,
+    "totalEquityINR": 65000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 155000000,
+    "ebitdaINR": 14300000,
+    "netProfitINR": 2100000,
+    "ebitdaMarginPct": 9.35,
+    "netMarginPct": 1.35,
+    "rocePct": 5.76,
+    "roePct": 3.35,
+    "receivableDays": 103.46,
+    "payableDays": 74.1,
+    "cashConversionDays": 29.36,
+    "currentRatio": 2.28,
+    "debtToEquity": 0.91,
+    "interestCoverage": 1.71,
+    "totalDebtINR": 57000000,
+    "tradePayablesINR": 39000000,
+    "tradeReceivablesINR": 48000000,
+    "inventoryINR": 18000000,
+    "cashINR": 14000000,
+    "totalEquityINR": 63000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 106000000,
+    "ebitdaINR": 14600000,
+    "netProfitINR": 1480000,
+    "ebitdaMarginPct": 13.79,
+    "netMarginPct": 0.92,
+    "rocePct": 5.63,
+    "roePct": 2.45,
+    "receivableDays": 108.38,
+    "payableDays": 70.5,
+    "cashConversionDays": 37.88,
+    "currentRatio": 2.56,
+    "debtToEquity": 1.02,
+    "interestCoverage": 1.42,
+    "totalDebtINR": 62000000,
+    "tradePayablesINR": 33000000,
+    "tradeReceivablesINR": 44000000,
+    "inventoryINR": 19000000,
+    "cashINR": 19000000,
+    "totalEquityINR": 60000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 96000000,
+    "ebitdaINR": 6900000,
+    "netProfitINR": 1510000,
+    "ebitdaMarginPct": 7.21,
+    "netMarginPct": 0.95,
+    "rocePct": 5.05,
+    "roePct": 2.55,
+    "receivableDays": 115.69,
+    "payableDays": 62,
+    "cashConversionDays": 53.69,
+    "currentRatio": 2.82,
+    "debtToEquity": 1.1,
+    "interestCoverage": 1.45,
+    "totalDebtINR": 65000000,
+    "tradePayablesINR": 31000000,
+    "tradeReceivablesINR": 30000000,
+    "inventoryINR": 17000000,
+    "cashINR": 17000000,
+    "totalEquityINR": 59000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Shashi Arora",
+    "designation": "Director"
+   },
+   {
+    "name": "Narendra Kumar Arora",
+    "designation": "Director"
+   },
+   {
+    "name": "Gaurav Arora",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Vijaya Bank",
+    "amountINR": 6000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Punjab National Bank",
+    "amountINR": 1500000,
+    "status": "Active"
+   },
+   {
+    "lender": "Punjab National Bank",
+    "amountINR": 1840000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 84.46,
+   "publicPct": 15.54,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "TAKEMOTO YOHKI INDIA PRIVATE LIMITED": {
+  "years": [
+   {
+    "fy": "2021-22",
+    "revenueINR": 159000000,
+    "ebitdaINR": null,
+    "netProfitINR": -65000000,
+    "ebitdaMarginPct": null,
+    "netMarginPct": -41.02,
+    "rocePct": null,
+    "roePct": null,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": null,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": null,
+    "tradeReceivablesINR": null,
+    "inventoryINR": null,
+    "cashINR": null,
+    "totalEquityINR": null
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 89000000,
+    "ebitdaINR": null,
+    "netProfitINR": -87000000,
+    "ebitdaMarginPct": null,
+    "netMarginPct": -97.67,
+    "rocePct": null,
+    "roePct": null,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": null,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": null,
+    "tradeReceivablesINR": null,
+    "inventoryINR": null,
+    "cashINR": null,
+    "totalEquityINR": null
+   },
+   {
+    "fy": "2019-20",
+    "revenueINR": 50000000,
+    "ebitdaINR": null,
+    "netProfitINR": -102000000,
+    "ebitdaMarginPct": null,
+    "netMarginPct": -201.57,
+    "rocePct": null,
+    "roePct": null,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": null,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": null,
+    "tradeReceivablesINR": null,
+    "inventoryINR": null,
+    "cashINR": null,
+    "totalEquityINR": null
+   },
+   {
+    "fy": "2018-19",
+    "revenueINR": 16000000,
+    "ebitdaINR": null,
+    "netProfitINR": -101000000,
+    "ebitdaMarginPct": null,
+    "netMarginPct": -637.01,
+    "rocePct": null,
+    "roePct": null,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": null,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": null,
+    "tradeReceivablesINR": null,
+    "inventoryINR": null,
+    "cashINR": null,
+    "totalEquityINR": null
+   }
+  ],
+  "parent": "Takemoto Yohki",
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Mitalee Kaushal",
+    "designation": "Director"
+   },
+   {
+    "name": "Emiko Takemoto",
+    "designation": "Director"
+   },
+   {
+    "name": "Surbhi Jain",
+    "designation": "Company Secretary"
+   },
+   {
+    "name": "Takahiro Fukazawa",
+    "designation": "Director"
+   },
+   {
+    "name": "Takaaki Kato",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Foreign collaborator / Foreign equity holder",
+    "amountINR": 62000000,
+    "status": null
+   },
+   {
+    "lender": "Foreign collaborator / Foreign equity holder",
+    "amountINR": 11000000,
+    "status": null
+   },
+   {
+    "lender": "Foreign collaborator / Foreign equity holder",
+    "amountINR": 6600000,
+    "status": null
+   },
+   {
+    "lender": "Foreign collaborator / Foreign equity holder",
+    "amountINR": 31300000,
+    "status": null
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "SAMKIN TREASURE MOLDERS PRIVATE LIMITED": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 620000000,
+    "ebitdaINR": 35900000,
+    "netProfitINR": 16700000,
+    "ebitdaMarginPct": 5.79,
+    "netMarginPct": 2.69,
+    "rocePct": 16.66,
+    "roePct": 21.82,
+    "receivableDays": 45.25,
+    "payableDays": 40,
+    "cashConversionDays": 5.25,
+    "currentRatio": 1.3,
+    "debtToEquity": 1.82,
+    "interestCoverage": 2.64,
+    "totalDebtINR": 139000000,
+    "tradePayablesINR": 56000000,
+    "tradeReceivablesINR": 35000000,
+    "inventoryINR": 24000000,
+    "cashINR": 77000000,
+    "totalEquityINR": 76000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 532000000,
+    "ebitdaINR": 28000000,
+    "netProfitINR": 12000000,
+    "ebitdaMarginPct": 5.28,
+    "netMarginPct": 2.23,
+    "rocePct": 14.91,
+    "roePct": 19.85,
+    "receivableDays": 39.32,
+    "payableDays": 51.71,
+    "cashConversionDays": -12.39,
+    "currentRatio": 1.08,
+    "debtToEquity": 2.15,
+    "interestCoverage": 2.53,
+    "totalDebtINR": 129000000,
+    "tradePayablesINR": 66000000,
+    "tradeReceivablesINR": 34000000,
+    "inventoryINR": 21000000,
+    "cashINR": 57000000,
+    "totalEquityINR": 60000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 502000000,
+    "ebitdaINR": 21000000,
+    "netProfitINR": 14000000,
+    "ebitdaMarginPct": 5.91,
+    "netMarginPct": 2.86,
+    "rocePct": 18.67,
+    "roePct": 32.14,
+    "receivableDays": 51.71,
+    "payableDays": 54.79,
+    "cashConversionDays": -3.08,
+    "currentRatio": 1.35,
+    "debtToEquity": 2.56,
+    "interestCoverage": 2.82,
+    "totalDebtINR": 114000000,
+    "tradePayablesINR": 29000000,
+    "tradeReceivablesINR": 39000000,
+    "inventoryINR": 17000000,
+    "cashINR": 71000000,
+    "totalEquityINR": 45000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 0,
+    "ebitdaINR": 0,
+    "netProfitINR": 0,
+    "ebitdaMarginPct": null,
+    "netMarginPct": null,
+    "rocePct": null,
+    "roePct": null,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": null,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": null,
+    "tradeReceivablesINR": null,
+    "inventoryINR": null,
+    "cashINR": null,
+    "totalEquityINR": null
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 0,
+    "ebitdaINR": 0,
+    "netProfitINR": 0,
+    "ebitdaMarginPct": null,
+    "netMarginPct": null,
+    "rocePct": null,
+    "roePct": null,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": null,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": null,
+    "tradeReceivablesINR": null,
+    "inventoryINR": null,
+    "cashINR": null,
+    "totalEquityINR": null
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [
+   "SAMKIN SUSTAINABLE SOLUTIONS PRIVATE LIMITED"
+  ],
+  "directors": [
+   {
+    "name": "Samir Yogesh Treasurer",
+    "designation": "Director"
+   },
+   {
+    "name": "Sneha Treasurer",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "SIDBI",
+    "amountINR": 10000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 20300000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 10000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 56200000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 15000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 16800000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 14000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 24000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 22500000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 45300000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 122000000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "Pragati Glass & Industries Pvt. Ltd": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 4468000000,
+    "ebitdaINR": 542000000,
+    "netProfitINR": 250000000,
+    "ebitdaMarginPct": 12.14,
+    "netMarginPct": 5.59,
+    "rocePct": 15.72,
+    "roePct": 6.62,
+    "receivableDays": 151.21,
+    "payableDays": 220,
+    "cashConversionDays": -68.79,
+    "currentRatio": 1.58,
+    "debtToEquity": 0.56,
+    "interestCoverage": 5.72,
+    "totalDebtINR": 824000000,
+    "tradePayablesINR": 901000000,
+    "tradeReceivablesINR": 1851000000,
+    "inventoryINR": 517000000,
+    "cashINR": 70000000,
+    "totalEquityINR": 1589000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 4208000000,
+    "ebitdaINR": 500000000,
+    "netProfitINR": 234000000,
+    "ebitdaMarginPct": 11.88,
+    "netMarginPct": 5.56,
+    "rocePct": 17.49,
+    "roePct": 6.82,
+    "receivableDays": 136.67,
+    "payableDays": 123.5,
+    "cashConversionDays": 13.17,
+    "currentRatio": 1.49,
+    "debtToEquity": 0.58,
+    "interestCoverage": 5.91,
+    "totalDebtINR": 719000000,
+    "tradePayablesINR": 945000000,
+    "tradeReceivablesINR": 1576000000,
+    "inventoryINR": 438000000,
+    "cashINR": 61000000,
+    "totalEquityINR": 1339000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 3159000000,
+    "ebitdaINR": 251000000,
+    "netProfitINR": 93000000,
+    "ebitdaMarginPct": 7.93,
+    "netMarginPct": 2.94,
+    "rocePct": 8.41,
+    "roePct": 3.21,
+    "receivableDays": 126.51,
+    "payableDays": 102.5,
+    "cashConversionDays": 24.01,
+    "currentRatio": 1.4,
+    "debtToEquity": 0.72,
+    "interestCoverage": 3.48,
+    "totalDebtINR": 746000000,
+    "tradePayablesINR": 730000000,
+    "tradeReceivablesINR": 1095000000,
+    "inventoryINR": 373000000,
+    "cashINR": 51000000,
+    "totalEquityINR": 1105000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 2519000000,
+    "ebitdaINR": 177000000,
+    "netProfitINR": 69000000,
+    "ebitdaMarginPct": 8.36,
+    "netMarginPct": 2.73,
+    "rocePct": 6.81,
+    "roePct": 2.96,
+    "receivableDays": 156.98,
+    "payableDays": 57.2,
+    "cashConversionDays": 99.78,
+    "currentRatio": 1.66,
+    "debtToEquity": 0.51,
+    "interestCoverage": 3.37,
+    "totalDebtINR": 503000000,
+    "tradePayablesINR": 572000000,
+    "tradeReceivablesINR": 1083000000,
+    "inventoryINR": 365000000,
+    "cashINR": 17000000,
+    "totalEquityINR": 1012000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 2096000000,
+    "ebitdaINR": 143000000,
+    "netProfitINR": 51000000,
+    "ebitdaMarginPct": 8.45,
+    "netMarginPct": 2.43,
+    "rocePct": 5.41,
+    "roePct": 2.39,
+    "receivableDays": 157.05,
+    "payableDays": 51.8,
+    "cashConversionDays": 105.25,
+    "currentRatio": 1.53,
+    "debtToEquity": 0.51,
+    "interestCoverage": 2.62,
+    "totalDebtINR": 447000000,
+    "tradePayablesINR": 518000000,
+    "tradeReceivablesINR": 902000000,
+    "inventoryINR": 312000000,
+    "cashINR": 30000000,
+    "totalEquityINR": 943000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [
+   "Pragati Glass",
+   "PG GLASS PRIVATE LIMITED"
+  ],
+  "directors": [
+   {
+    "name": "Dinesh kumar Gupta",
+    "designation": "Managing Director"
+   },
+   {
+    "name": "Rajeshbhai Ishvarlal Shah",
+    "designation": "Whole-time Director"
+   },
+   {
+    "name": "Shraddha Diya",
+    "designation": "Company Secretary"
+   },
+   {
+    "name": "Aditi Dinesh Gupta",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "SIDBI",
+    "amountINR": 2000000,
+    "status": "Active"
+   },
+   {
+    "lender": "State Bank of India",
+    "amountINR": 636000000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 97.87,
+   "publicPct": 2.13,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "Manjushree Technopack Limited": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 25840000000,
+    "ebitdaINR": 5883000000,
+    "netProfitINR": 2476000000,
+    "ebitdaMarginPct": 22.77,
+    "netMarginPct": 9.58,
+    "rocePct": 16.19,
+    "roePct": 17.55,
+    "receivableDays": 59.86,
+    "payableDays": 95,
+    "cashConversionDays": -35.14,
+    "currentRatio": 0.98,
+    "debtToEquity": 0.7,
+    "interestCoverage": 3.18,
+    "totalDebtINR": 17943000000,
+    "tradePayablesINR": 4077000000,
+    "tradeReceivablesINR": 4237000000,
+    "inventoryINR": 5335000000,
+    "cashINR": 1133000000,
+    "totalEquityINR": 14111000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 21303000000,
+    "ebitdaINR": 4072000000,
+    "netProfitINR": 1408000000,
+    "ebitdaMarginPct": 19.11,
+    "netMarginPct": 6.61,
+    "rocePct": 14.32,
+    "roePct": 13.97,
+    "receivableDays": 51.58,
+    "payableDays": 95,
+    "cashConversionDays": -43.42,
+    "currentRatio": 1.06,
+    "debtToEquity": 0.75,
+    "interestCoverage": 2.76,
+    "totalDebtINR": 12762000000,
+    "tradePayablesINR": 2762000000,
+    "tradeReceivablesINR": 3011000000,
+    "inventoryINR": 3536000000,
+    "cashINR": 244000000,
+    "totalEquityINR": 10081000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 21091000000,
+    "ebitdaINR": 3025000000,
+    "netProfitINR": 592000000,
+    "ebitdaMarginPct": 14.34,
+    "netMarginPct": 2.81,
+    "rocePct": 9.66,
+    "roePct": 6.23,
+    "receivableDays": 53.6,
+    "payableDays": 95,
+    "cashConversionDays": -41.4,
+    "currentRatio": 1.11,
+    "debtToEquity": 0.85,
+    "interestCoverage": 2.16,
+    "totalDebtINR": 13467000000,
+    "tradePayablesINR": 2678000000,
+    "tradeReceivablesINR": 3097000000,
+    "inventoryINR": 3523000000,
+    "cashINR": 16000000,
+    "totalEquityINR": 9510000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 14738000000,
+    "ebitdaINR": 2369000000,
+    "netProfitINR": 708000000,
+    "ebitdaMarginPct": 16.08,
+    "netMarginPct": 4.8,
+    "rocePct": 9.57,
+    "roePct": 7.86,
+    "receivableDays": 61.88,
+    "payableDays": 95,
+    "cashConversionDays": -33.12,
+    "currentRatio": 1.12,
+    "debtToEquity": 0.88,
+    "interestCoverage": 2.66,
+    "totalDebtINR": 10950000000,
+    "tradePayablesINR": 2351000000,
+    "tradeReceivablesINR": 2499000000,
+    "inventoryINR": 3509000000,
+    "cashINR": 11000000,
+    "totalEquityINR": 9007000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 10540000000,
+    "ebitdaINR": 2343000000,
+    "netProfitINR": 912000000,
+    "ebitdaMarginPct": 22.23,
+    "netMarginPct": 8.65,
+    "rocePct": 15.11,
+    "roePct": 16.56,
+    "receivableDays": 69.19,
+    "payableDays": 95,
+    "cashConversionDays": -25.81,
+    "currentRatio": 1,
+    "debtToEquity": 0.88,
+    "interestCoverage": 3.06,
+    "totalDebtINR": 7268000000,
+    "tradePayablesINR": 1189000000,
+    "tradeReceivablesINR": 1998000000,
+    "inventoryINR": 2467000000,
+    "cashINR": 326000000,
+    "totalEquityINR": 5505000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [
+   "MTL NEW INITIATIVES PRIVATE LIMITED"
+  ],
+  "associatedCompanies": [
+   "Manjushree Packtek",
+   "Manjushree Technopack"
+  ],
+  "directors": [
+   {
+    "name": "Thimmaiah Napanda P",
+    "designation": "Managing Director"
+   },
+   {
+    "name": "Rajesh Kumar Ram",
+    "designation": "CFO"
+   },
+   {
+    "name": "Himanshu Navinchandra Parmar",
+    "designation": "Company Secretary"
+   },
+   {
+    "name": "Sameer Ambarish Kaji",
+    "designation": "Director"
+   },
+   {
+    "name": "Sumit Mohan Nadgir",
+    "designation": "Director"
+   },
+   {
+    "name": "Aswin Vikram",
+    "designation": "Director"
+   },
+   {
+    "name": "Kamlesh Shivji Vikamsey",
+    "designation": "Director"
+   },
+   {
+    "name": "Nikhil Kumar Srivastava",
+    "designation": "Director"
+   },
+   {
+    "name": "Anisha Motwani",
+    "designation": "Director"
+   },
+   {
+    "name": "Peeyush Gupta",
+    "designation": "CFO"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Open Charges",
+    "amountINR": 11000000000,
+    "status": "open"
+   },
+   {
+    "lender": "Closed Charges",
+    "amountINR": 11600000000,
+    "status": "closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": null,
+   "publicPct": 66.4,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "CONTINUITY PRINTERS PVT LTD": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 414000000,
+    "ebitdaINR": 43000000,
+    "netProfitINR": 14400000,
+    "ebitdaMarginPct": 10.38,
+    "netMarginPct": 3.49,
+    "rocePct": 6.76,
+    "roePct": 29.82,
+    "receivableDays": 79.02,
+    "payableDays": 76,
+    "cashConversionDays": 3.02,
+    "currentRatio": 0.71,
+    "debtToEquity": 5.28,
+    "interestCoverage": 3.92,
+    "totalDebtINR": 365000000,
+    "tradePayablesINR": 155000000,
+    "tradeReceivablesINR": 33000000,
+    "inventoryINR": 104000000,
+    "cashINR": 90000000,
+    "totalEquityINR": 48000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 321000000,
+    "ebitdaINR": 39000000,
+    "netProfitINR": 14000000,
+    "ebitdaMarginPct": 12.17,
+    "netMarginPct": 4.28,
+    "rocePct": 6.13,
+    "roePct": 51.91,
+    "receivableDays": 80.84,
+    "payableDays": 131.07,
+    "cashConversionDays": -50.23,
+    "currentRatio": 0.72,
+    "debtToEquity": 5.36,
+    "interestCoverage": 3.36,
+    "totalDebtINR": 207000000,
+    "tradePayablesINR": 129000000,
+    "tradeReceivablesINR": 98000000,
+    "inventoryINR": 31000000,
+    "cashINR": 14000000,
+    "totalEquityINR": 26000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 227000000,
+    "ebitdaINR": 20000000,
+    "netProfitINR": -12000000,
+    "ebitdaMarginPct": 8.53,
+    "netMarginPct": -5.31,
+    "rocePct": 1.13,
+    "roePct": -94.71,
+    "receivableDays": 83.17,
+    "payableDays": 85.48,
+    "cashConversionDays": -2.31,
+    "currentRatio": 0.62,
+    "debtToEquity": 11.84,
+    "interestCoverage": -0.93,
+    "totalDebtINR": 197000000,
+    "tradePayablesINR": 128000000,
+    "tradeReceivablesINR": 102000000,
+    "inventoryINR": 26000000,
+    "cashINR": 11000000,
+    "totalEquityINR": 13000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 233000000,
+    "ebitdaINR": 38000000,
+    "netProfitINR": 0,
+    "ebitdaMarginPct": 16.12,
+    "netMarginPct": 0,
+    "rocePct": 6.01,
+    "roePct": 0,
+    "receivableDays": 80.84,
+    "payableDays": 131.07,
+    "cashConversionDays": -50.23,
+    "currentRatio": 0.72,
+    "debtToEquity": 5.36,
+    "interestCoverage": 3.36,
+    "totalDebtINR": 209000000,
+    "tradePayablesINR": 128000000,
+    "tradeReceivablesINR": 103000000,
+    "inventoryINR": 25000000,
+    "cashINR": 11000000,
+    "totalEquityINR": 25000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 148000000,
+    "ebitdaINR": 13000000,
+    "netProfitINR": 5000000,
+    "ebitdaMarginPct": 8.78,
+    "netMarginPct": 3.38,
+    "rocePct": 6.01,
+    "roePct": 0,
+    "receivableDays": 80.84,
+    "payableDays": 131.07,
+    "cashConversionDays": -50.23,
+    "currentRatio": 0.72,
+    "debtToEquity": 5.36,
+    "interestCoverage": 3.36,
+    "totalDebtINR": 140000000,
+    "tradePayablesINR": 116000000,
+    "tradeReceivablesINR": 95000000,
+    "inventoryINR": 21000000,
+    "cashINR": 1500000,
+    "totalEquityINR": 11000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Mahesh Gaggar",
+    "designation": "Director"
+   },
+   {
+    "name": "Animesh Mahesh Gaggar",
+    "designation": "Director"
+   },
+   {
+    "name": "Alka Mahesh Gaggar",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "BANK OF MAHARASHTRA",
+    "amountINR": 6140000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 4270000,
+    "status": "Active"
+   },
+   {
+    "lender": "Indian Overseas Bank",
+    "amountINR": 121000000,
+    "status": "Active"
+   },
+   {
+    "lender": "BANK OF MAHARASHTRA",
+    "amountINR": 5600000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 45000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 62500000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 75,
+   "publicPct": 25,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "PRINTOTECH GLOBAL LIMITED": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 1013000000,
+    "ebitdaINR": 219000000,
+    "netProfitINR": 86800000,
+    "ebitdaMarginPct": 21.6,
+    "netMarginPct": 8.57,
+    "rocePct": 15.88,
+    "roePct": 12.59,
+    "receivableDays": 67.06,
+    "payableDays": 48,
+    "cashConversionDays": 19.06,
+    "currentRatio": 1.09,
+    "debtToEquity": 0.22,
+    "interestCoverage": 18.01,
+    "totalDebtINR": 88000000,
+    "tradePayablesINR": 148000000,
+    "tradeReceivablesINR": 186000000,
+    "inventoryINR": 36000000,
+    "cashINR": 64000000,
+    "totalEquityINR": 690000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 1029000000,
+    "ebitdaINR": 248000000,
+    "netProfitINR": 133000000,
+    "ebitdaMarginPct": 24.13,
+    "netMarginPct": 12.97,
+    "rocePct": 22,
+    "roePct": 22.13,
+    "receivableDays": 61.66,
+    "payableDays": 48,
+    "cashConversionDays": 13.66,
+    "currentRatio": 1.21,
+    "debtToEquity": 0.21,
+    "interestCoverage": 9.31,
+    "totalDebtINR": 125000000,
+    "tradePayablesINR": 145000000,
+    "tradeReceivablesINR": 174000000,
+    "inventoryINR": 40000000,
+    "cashINR": 115000000,
+    "totalEquityINR": 603000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 931000000,
+    "ebitdaINR": 157000000,
+    "netProfitINR": 91000000,
+    "ebitdaMarginPct": 23.68,
+    "netMarginPct": 9.73,
+    "rocePct": 17.75,
+    "roePct": 18.82,
+    "receivableDays": 99.14,
+    "payableDays": 48,
+    "cashConversionDays": 51.14,
+    "currentRatio": 1.15,
+    "debtToEquity": 0.62,
+    "interestCoverage": 8.93,
+    "totalDebtINR": 262000000,
+    "tradePayablesINR": 258000000,
+    "tradeReceivablesINR": 253000000,
+    "inventoryINR": 52000000,
+    "cashINR": 41000000,
+    "totalEquityINR": 481000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 732000000,
+    "ebitdaINR": 158000000,
+    "netProfitINR": 27000000,
+    "ebitdaMarginPct": 16.97,
+    "netMarginPct": 5.71,
+    "rocePct": 4.86,
+    "roePct": 2.25,
+    "receivableDays": 90.98,
+    "payableDays": 48,
+    "cashConversionDays": 42.98,
+    "currentRatio": 1.05,
+    "debtToEquity": 0.46,
+    "interestCoverage": 9.98,
+    "totalDebtINR": 239000000,
+    "tradePayablesINR": 162000000,
+    "tradeReceivablesINR": 182000000,
+    "inventoryINR": 45000000,
+    "cashINR": 506000000,
+    "totalEquityINR": 391000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 532000000,
+    "ebitdaINR": 64000000,
+    "netProfitINR": 27000000,
+    "ebitdaMarginPct": 6.77,
+    "netMarginPct": 3.55,
+    "rocePct": 5.92,
+    "roePct": 7.03,
+    "receivableDays": 77.15,
+    "payableDays": 48,
+    "cashConversionDays": 29.15,
+    "currentRatio": 0.86,
+    "debtToEquity": 0.26,
+    "interestCoverage": 10.1,
+    "totalDebtINR": 136000000,
+    "tradePayablesINR": 80000000,
+    "tradeReceivablesINR": 112000000,
+    "inventoryINR": 30000000,
+    "cashINR": 52000000,
+    "totalEquityINR": 372000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Amit Kumar",
+    "designation": "Director"
+   },
+   {
+    "name": "Pragati Kumar",
+    "designation": "Director"
+   },
+   {
+    "name": "Pushpa Kumar",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "MECHATRONICA S.C.",
+    "amountINR": 95400000,
+    "status": "Active"
+   },
+   {
+    "lender": "PUNJAB & SIND BANK",
+    "amountINR": 230000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "STATE BANK OF BIKANER AND JAIPUR",
+    "amountINR": null,
+    "status": null
+   }
+  ],
+  "capTable": {
+   "promoterPct": 52.32,
+   "publicPct": 47.68,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "SICON PACKS PRIVATE LIMITED": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 368000000,
+    "ebitdaINR": 53700000,
+    "netProfitINR": 16300000,
+    "ebitdaMarginPct": 14.6,
+    "netMarginPct": 8.3,
+    "rocePct": 26.83,
+    "roePct": 19.71,
+    "receivableDays": 77.88,
+    "payableDays": 102,
+    "cashConversionDays": -24.12,
+    "currentRatio": 0.52,
+    "debtToEquity": 1.32,
+    "interestCoverage": 6.83,
+    "totalDebtINR": 109000000,
+    "tradePayablesINR": 63000000,
+    "tradeReceivablesINR": 33000000,
+    "inventoryINR": 803000000,
+    "cashINR": 415000000,
+    "totalEquityINR": 82000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 307000000,
+    "ebitdaINR": 44000000,
+    "netProfitINR": 11000000,
+    "ebitdaMarginPct": 14.29,
+    "netMarginPct": 3.65,
+    "rocePct": 17.76,
+    "roePct": 7.46,
+    "receivableDays": 129.19,
+    "payableDays": 60.15,
+    "cashConversionDays": 69.04,
+    "currentRatio": 0.53,
+    "debtToEquity": 1.25,
+    "interestCoverage": 7.38,
+    "totalDebtINR": 84000000,
+    "tradePayablesINR": 66000000,
+    "tradeReceivablesINR": 50000000,
+    "inventoryINR": 18000000,
+    "cashINR": 14000000,
+    "totalEquityINR": 66000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 222000000,
+    "ebitdaINR": 39000000,
+    "netProfitINR": 6000000,
+    "ebitdaMarginPct": 17.08,
+    "netMarginPct": 2.7,
+    "rocePct": 13.37,
+    "roePct": 4.9,
+    "receivableDays": 60.15,
+    "payableDays": 129.19,
+    "cashConversionDays": -69.04,
+    "currentRatio": 0.78,
+    "debtToEquity": 1.23,
+    "interestCoverage": 4.33,
+    "totalDebtINR": 81000000,
+    "tradePayablesINR": 78000000,
+    "tradeReceivablesINR": 78000000,
+    "inventoryINR": 12000000,
+    "cashINR": 14000000,
+    "totalEquityINR": 55000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 213000000,
+    "ebitdaINR": 39000000,
+    "netProfitINR": 7000000,
+    "ebitdaMarginPct": 18.31,
+    "netMarginPct": 3.29,
+    "rocePct": 13.37,
+    "roePct": 4.9,
+    "receivableDays": 60.15,
+    "payableDays": 129.19,
+    "cashConversionDays": -69.04,
+    "currentRatio": 0.78,
+    "debtToEquity": 1.23,
+    "interestCoverage": 4.33,
+    "totalDebtINR": 81000000,
+    "tradePayablesINR": 78000000,
+    "tradeReceivablesINR": 78000000,
+    "inventoryINR": 12000000,
+    "cashINR": 14000000,
+    "totalEquityINR": 32000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 187000000,
+    "ebitdaINR": 26000000,
+    "netProfitINR": 7000000,
+    "ebitdaMarginPct": 13.9,
+    "netMarginPct": 3.74,
+    "rocePct": 13.37,
+    "roePct": 4.9,
+    "receivableDays": 60.15,
+    "payableDays": 129.19,
+    "cashConversionDays": -69.04,
+    "currentRatio": 0.78,
+    "debtToEquity": 1.23,
+    "interestCoverage": 4.33,
+    "totalDebtINR": 81000000,
+    "tradePayablesINR": 78000000,
+    "tradeReceivablesINR": 78000000,
+    "inventoryINR": 12000000,
+    "cashINR": 14000000,
+    "totalEquityINR": 25000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [
+   "KJUMBO EXIMP PRIVATE LIMITED"
+  ],
+  "associatedCompanies": [
+   "MANI PAINTS PRIVATE LIMITED"
+  ],
+  "directors": [
+   {
+    "name": "Yudhviram Solanki",
+    "designation": "Director"
+   },
+   {
+    "name": "Manjiri Yudhviram Solanki",
+    "designation": "Director"
+   },
+   {
+    "name": "Kashish Yudhviram Solanki",
+    "designation": "Director"
+   },
+   {
+    "name": "Devendra Yudhviram Solanki",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "APNA SAHAKARI BANK LTD.",
+    "amountINR": 52400000,
+    "status": "Active"
+   },
+   {
+    "lender": "APNA SAHAKARI BANK LTD.",
+    "amountINR": 25000000,
+    "status": "Active"
+   },
+   {
+    "lender": "APNA SAHAKARI BANK LTD.",
+    "amountINR": 15000000,
+    "status": "Active"
+   },
+   {
+    "lender": "APNA SAHAKARI BANK LTD.",
+    "amountINR": 14000000,
+    "status": "Active"
+   },
+   {
+    "lender": "APNA SAHAKARI BANK LTD.",
+    "amountINR": 2170000,
+    "status": "Active"
+   },
+   {
+    "lender": "STATE BANK OF TRANVANCORE",
+    "amountINR": 9940000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": [
+    "Yudhviram Solanki",
+    "Manjiri Yudhviram Solanki"
+   ]
+  },
+  "competitors": []
+ },
+ "A G Polypack": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 2117000000,
+    "ebitdaINR": 314000000,
+    "netProfitINR": 137000000,
+    "ebitdaMarginPct": 14.85,
+    "netMarginPct": 6.46,
+    "rocePct": 16.16,
+    "roePct": 14.7,
+    "receivableDays": 75.03,
+    "payableDays": 42,
+    "cashConversionDays": 33.03,
+    "currentRatio": 1.31,
+    "debtToEquity": 0.63,
+    "interestCoverage": 6.4,
+    "totalDebtINR": 568000000,
+    "tradePayablesINR": 440000000,
+    "tradeReceivablesINR": 435000000,
+    "inventoryINR": 261000000,
+    "cashINR": 17000000,
+    "totalEquityINR": 930000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 1430000000,
+    "ebitdaINR": 131000000,
+    "netProfitINR": 67000000,
+    "ebitdaMarginPct": 9.13,
+    "netMarginPct": 4.68,
+    "rocePct": 12.45,
+    "roePct": 10.09,
+    "receivableDays": 66.85,
+    "payableDays": 42,
+    "cashConversionDays": 24.85,
+    "currentRatio": 2.81,
+    "debtToEquity": 0.71,
+    "interestCoverage": 20.4,
+    "totalDebtINR": 67000000,
+    "tradePayablesINR": 89000000,
+    "tradeReceivablesINR": 262000000,
+    "inventoryINR": 155000000,
+    "cashINR": 15000000,
+    "totalEquityINR": 663000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 1520000000,
+    "ebitdaINR": 109000000,
+    "netProfitINR": 58000000,
+    "ebitdaMarginPct": 7.18,
+    "netMarginPct": 3.83,
+    "rocePct": 12.3,
+    "roePct": 9.76,
+    "receivableDays": 62.02,
+    "payableDays": 42,
+    "cashConversionDays": 20.02,
+    "currentRatio": 3.58,
+    "debtToEquity": 0.02,
+    "interestCoverage": 93.74,
+    "totalDebtINR": 24000000,
+    "tradePayablesINR": 68000000,
+    "tradeReceivablesINR": 258000000,
+    "inventoryINR": 134000000,
+    "cashINR": 15000000,
+    "totalEquityINR": 596000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 1195000000,
+    "ebitdaINR": 76000000,
+    "netProfitINR": 55000000,
+    "ebitdaMarginPct": 5.64,
+    "netMarginPct": 4.58,
+    "rocePct": 13.22,
+    "roePct": 13.07,
+    "receivableDays": 69.42,
+    "payableDays": 42,
+    "cashConversionDays": 27.42,
+    "currentRatio": 3.68,
+    "debtToEquity": 0.04,
+    "interestCoverage": 606.82,
+    "totalDebtINR": 13000000,
+    "tradePayablesINR": 50000000,
+    "tradeReceivablesINR": 227000000,
+    "inventoryINR": 84000000,
+    "cashINR": 15000000,
+    "totalEquityINR": 419000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 1431000000,
+    "ebitdaINR": 208000000,
+    "netProfitINR": 163000000,
+    "ebitdaMarginPct": 14.9,
+    "netMarginPct": 11.41,
+    "rocePct": 54.76,
+    "roePct": 44.76,
+    "receivableDays": 55,
+    "payableDays": 42,
+    "cashConversionDays": 13,
+    "currentRatio": 3.62,
+    "debtToEquity": 0.03,
+    "interestCoverage": 426.6,
+    "totalDebtINR": 3000000,
+    "tradePayablesINR": 44000000,
+    "tradeReceivablesINR": 216000000,
+    "inventoryINR": 93000000,
+    "cashINR": 15000000,
+    "totalEquityINR": 365000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [
+   "A.G. SYNERGY PRIVATE LIMITED",
+   "AG PETUELA PRIVATE LIMITED"
+  ],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Shashi Daga",
+    "designation": "Director"
+   },
+   {
+    "name": "Neeraj Maheshwari",
+    "designation": "Director"
+   },
+   {
+    "name": "Gaurav Daga",
+    "designation": "Director"
+   },
+   {
+    "name": "Kanika Maheshwari",
+    "designation": "Director"
+   },
+   {
+    "name": "Priya Daga",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "SIDBI",
+    "amountINR": 225000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 39100000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 39100000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 35000000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 30100000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 16800000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 6200000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 1100000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 9200000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 800000,
+    "status": "Active"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 40000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 20000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 400000,
+    "status": "Closed"
+   },
+   {
+    "lender": "SIDBI",
+    "amountINR": 600000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": null,
+   "publicPct": null,
+   "founders": [
+    "Shashi Daga",
+    "Neeraj Maheshwari",
+    "Kanika Maheshwari",
+    "Anjula Maheshwari",
+    "Pradeep Maheshwari"
+   ]
+  },
+  "competitors": []
+ },
+ "ananya": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 427000000,
+    "ebitdaINR": 2330000,
+    "netProfitINR": -11500000,
+    "ebitdaMarginPct": 0.54,
+    "netMarginPct": -2.69,
+    "rocePct": -7.84,
+    "roePct": 14.26,
+    "receivableDays": 88.96,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.32,
+    "debtToEquity": -3.06,
+    "interestCoverage": -17.67,
+    "totalDebtINR": 236000000,
+    "tradePayablesINR": 115000000,
+    "tradeReceivablesINR": 104000000,
+    "inventoryINR": 134000000,
+    "cashINR": 9710000,
+    "totalEquityINR": -80000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 316000000,
+    "ebitdaINR": -3830000,
+    "netProfitINR": -34000000,
+    "ebitdaMarginPct": -3.04,
+    "netMarginPct": -11.76,
+    "rocePct": -6.49,
+    "roePct": 50.08,
+    "receivableDays": 51.08,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.64,
+    "debtToEquity": -3.59,
+    "interestCoverage": -38.84,
+    "totalDebtINR": 244000000,
+    "tradePayablesINR": 57000000,
+    "tradeReceivablesINR": 44000000,
+    "inventoryINR": 140000000,
+    "cashINR": 2120000,
+    "totalEquityINR": -68000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 362000000,
+    "ebitdaINR": 1370000,
+    "netProfitINR": 770000,
+    "ebitdaMarginPct": 0.21,
+    "netMarginPct": 0.29,
+    "rocePct": -20.92,
+    "roePct": -2.25,
+    "receivableDays": 35.07,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.38,
+    "debtToEquity": -7.22,
+    "interestCoverage": 1.5,
+    "totalDebtINR": 236000000,
+    "tradePayablesINR": 28000000,
+    "tradeReceivablesINR": 35000000,
+    "inventoryINR": 130000000,
+    "cashINR": 10000000,
+    "totalEquityINR": -34000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 98000000,
+    "ebitdaINR": -480000,
+    "netProfitINR": -27000000,
+    "ebitdaMarginPct": -5.77,
+    "netMarginPct": -27.26,
+    "rocePct": -18.76,
+    "roePct": 75.45,
+    "receivableDays": 27.64,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 0.67,
+    "debtToEquity": -3.1,
+    "interestCoverage": -29.77,
+    "totalDebtINR": 108000000,
+    "tradePayablesINR": 96000000,
+    "tradeReceivablesINR": 10000000,
+    "inventoryINR": 33000000,
+    "cashINR": 7430000,
+    "totalEquityINR": -35000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 115000000,
+    "ebitdaINR": -410000,
+    "netProfitINR": -41000000,
+    "ebitdaMarginPct": -3.06,
+    "netMarginPct": -35.96,
+    "rocePct": -47.32,
+    "roePct": 444.21,
+    "receivableDays": 38.68,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 0.8,
+    "debtToEquity": -11.83,
+    "interestCoverage": -21.97,
+    "totalDebtINR": 110000000,
+    "tradePayablesINR": 98000000,
+    "tradeReceivablesINR": 12000000,
+    "inventoryINR": 35000000,
+    "cashINR": 7430000,
+    "totalEquityINR": -9310000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Vipul Dutta",
+    "designation": "Director"
+   },
+   {
+    "name": "Pardeep Gupta",
+    "designation": "Director"
+   }
+  ],
+  "loans": [],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": []
+  },
+  "competitors": [
+   "Nat Habit",
+   "Inde Wild",
+   "Transformative"
+  ]
+ },
+ "samrvir": {
+  "years": [
+   {
+    "fy": "2023-24",
+    "revenueINR": 534000000,
+    "ebitdaINR": 26400000,
+    "netProfitINR": 6980000,
+    "ebitdaMarginPct": 4.94,
+    "netMarginPct": 1.31,
+    "rocePct": 12.2,
+    "roePct": 10.37,
+    "receivableDays": 109.8,
+    "payableDays": 120.96,
+    "cashConversionDays": -11.16,
+    "currentRatio": 1.12,
+    "debtToEquity": 0.52,
+    "interestCoverage": 5.06,
+    "totalDebtINR": 35000000,
+    "tradePayablesINR": 136000000,
+    "tradeReceivablesINR": 161000000,
+    "inventoryINR": 13000000,
+    "cashINR": 2580000,
+    "totalEquityINR": 67000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 335000000,
+    "ebitdaINR": 18600000,
+    "netProfitINR": 5200000,
+    "ebitdaMarginPct": 5.54,
+    "netMarginPct": 1.56,
+    "rocePct": 10.56,
+    "roePct": 10,
+    "receivableDays": 120.96,
+    "payableDays": 120.43,
+    "cashConversionDays": 0.53,
+    "currentRatio": 1.33,
+    "debtToEquity": 0.98,
+    "interestCoverage": 3.61,
+    "totalDebtINR": 44000000,
+    "tradePayablesINR": 125000000,
+    "tradeReceivablesINR": 143000000,
+    "inventoryINR": 13000000,
+    "cashINR": 2370000,
+    "totalEquityINR": 52000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 268000000,
+    "ebitdaINR": 16100000,
+    "netProfitINR": 5240000,
+    "ebitdaMarginPct": 6.12,
+    "netMarginPct": 1.96,
+    "rocePct": 8.36,
+    "roePct": 11.19,
+    "receivableDays": 120.43,
+    "payableDays": 138,
+    "cashConversionDays": -17.57,
+    "currentRatio": 1.1,
+    "debtToEquity": 0.92,
+    "interestCoverage": 3.29,
+    "totalDebtINR": 43000000,
+    "tradePayablesINR": 98000000,
+    "tradeReceivablesINR": 120000000,
+    "inventoryINR": 15000000,
+    "cashINR": 4040000,
+    "totalEquityINR": 47000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 201000000,
+    "ebitdaINR": 15900000,
+    "netProfitINR": 6630000,
+    "ebitdaMarginPct": 7.91,
+    "netMarginPct": 3.29,
+    "rocePct": 10.02,
+    "roePct": 15.27,
+    "receivableDays": 138,
+    "payableDays": 176.04,
+    "cashConversionDays": -38.04,
+    "currentRatio": 1.06,
+    "debtToEquity": 0.91,
+    "interestCoverage": 3.96,
+    "totalDebtINR": 39000000,
+    "tradePayablesINR": 77000000,
+    "tradeReceivablesINR": 88000000,
+    "inventoryINR": 15000000,
+    "cashINR": 1800000,
+    "totalEquityINR": 43000000
+   },
+   {
+    "fy": "2019-20",
+    "revenueINR": 141000000,
+    "ebitdaINR": 11100000,
+    "netProfitINR": 1820000,
+    "ebitdaMarginPct": 6.28,
+    "netMarginPct": 1.29,
+    "rocePct": 6.79,
+    "roePct": 4.96,
+    "receivableDays": 176.04,
+    "payableDays": 0,
+    "cashConversionDays": 176.04,
+    "currentRatio": 1.22,
+    "debtToEquity": 0.8,
+    "interestCoverage": 2.51,
+    "totalDebtINR": 29000000,
+    "tradePayablesINR": 66000000,
+    "tradeReceivablesINR": 68000000,
+    "inventoryINR": 19000000,
+    "cashINR": 580000,
+    "totalEquityINR": 37000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [
+   "EFFIKASIA LIFESCIENCES PRIVATE LIMITED"
+  ],
+  "directors": [
+   {
+    "name": "Preeti Kapoor",
+    "designation": "Director"
+   },
+   {
+    "name": "Sumant Vir Kapoor",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Unknown",
+    "amountINR": 3500000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 39800000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 1480000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 1300000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 23800000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "cheryl": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 2066000000,
+    "ebitdaINR": 330000000,
+    "netProfitINR": 196000000,
+    "ebitdaMarginPct": 15.96,
+    "netMarginPct": 9.49,
+    "rocePct": 28.1,
+    "roePct": 21.35,
+    "receivableDays": 42.56,
+    "payableDays": 59,
+    "cashConversionDays": -16.44,
+    "currentRatio": 1.57,
+    "debtToEquity": 0.08,
+    "interestCoverage": 18.55,
+    "totalDebtINR": 46000000,
+    "tradePayablesINR": 244000000,
+    "tradeReceivablesINR": 241000000,
+    "inventoryINR": 238000000,
+    "cashINR": 102000000,
+    "totalEquityINR": 919000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 1814000000,
+    "ebitdaINR": 311000000,
+    "netProfitINR": 189000000,
+    "ebitdaMarginPct": 17.16,
+    "netMarginPct": 10.42,
+    "rocePct": 28.7,
+    "roePct": 23.92,
+    "receivableDays": 48.25,
+    "payableDays": 52.6,
+    "cashConversionDays": -4.35,
+    "currentRatio": 1.42,
+    "debtToEquity": 0.18,
+    "interestCoverage": 13.55,
+    "totalDebtINR": 112000000,
+    "tradePayablesINR": 252000000,
+    "tradeReceivablesINR": 240000000,
+    "inventoryINR": 220000000,
+    "cashINR": 87000000,
+    "totalEquityINR": 790000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 1595000000,
+    "ebitdaINR": 238000000,
+    "netProfitINR": 119000000,
+    "ebitdaMarginPct": 14.91,
+    "netMarginPct": 7.46,
+    "rocePct": 24.83,
+    "roePct": 19.79,
+    "receivableDays": 58.94,
+    "payableDays": 52.9,
+    "cashConversionDays": 6.04,
+    "currentRatio": 1.18,
+    "debtToEquity": 0.32,
+    "interestCoverage": 7.66,
+    "totalDebtINR": 96000000,
+    "tradePayablesINR": 288000000,
+    "tradeReceivablesINR": 258000000,
+    "inventoryINR": 189000000,
+    "cashINR": 33000000,
+    "totalEquityINR": 601000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 1372000000,
+    "ebitdaINR": 202000000,
+    "netProfitINR": 99000000,
+    "ebitdaMarginPct": 16.38,
+    "netMarginPct": 7.23,
+    "rocePct": 25.48,
+    "roePct": 20.57,
+    "receivableDays": 36.5,
+    "payableDays": 38.2,
+    "cashConversionDays": -1.7,
+    "currentRatio": 1.13,
+    "debtToEquity": 0.76,
+    "interestCoverage": 6.38,
+    "totalDebtINR": 162000000,
+    "tradePayablesINR": 205000000,
+    "tradeReceivablesINR": 137000000,
+    "inventoryINR": 192000000,
+    "cashINR": 11000000,
+    "totalEquityINR": 482000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 1000000000,
+    "ebitdaINR": 124000000,
+    "netProfitINR": 72000000,
+    "ebitdaMarginPct": 15.15,
+    "netMarginPct": 7.22,
+    "rocePct": 15.7,
+    "roePct": 18.84,
+    "receivableDays": 40.61,
+    "payableDays": 40.8,
+    "cashConversionDays": -0.19,
+    "currentRatio": 0.99,
+    "debtToEquity": 0.88,
+    "interestCoverage": 3.32,
+    "totalDebtINR": 239000000,
+    "tradePayablesINR": 217000000,
+    "tradeReceivablesINR": 111000000,
+    "inventoryINR": 130000000,
+    "cashINR": 10000000,
+    "totalEquityINR": 383000000
+   }
+  ],
+  "parent": "Gopaldas Visram & Co Ltd",
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Chandresh Vallabhdas Thakker",
+    "designation": "Director"
+   },
+   {
+    "name": "Mukund Vallabhdas Thakker",
+    "designation": "Director"
+   },
+   {
+    "name": "Dinesh Vallabhdas Thakker",
+    "designation": "Managing Director"
+   },
+   {
+    "name": "Jay Mukund Thakker",
+    "designation": "Director"
+   },
+   {
+    "name": "Kanav Chandresh Thakker",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "CITI BANK N.A.",
+    "amountINR": 75000000,
+    "status": "Active"
+   },
+   {
+    "lender": "FULLERTON INDIA CREDIT COMPANY LIMITED",
+    "amountINR": 132000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "UTI BANK LTD.",
+    "amountINR": 42500000,
+    "status": "Closed"
+   },
+   {
+    "lender": "UTI BANK LTD.",
+    "amountINR": 209000000,
+    "status": "Active"
+   },
+   {
+    "lender": "UTI BANK LTD.",
+    "amountINR": 20000000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 55.54,
+   "publicPct": 44.46,
+   "founders": [
+    "Chandresh Vallabhdas Thakker",
+    "Mukund Vallabhdas Thakker",
+    "Dinesh Vallabhdas Thakker",
+    "Jay Mukund Thakker",
+    "Kanav Chandresh Thakker"
+   ]
+  },
+  "competitors": [
+   "Clarion",
+   "Sprivil Healthcare",
+   "NG Electro"
+  ]
+ },
+ "aelius": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 200000000,
+    "ebitdaINR": 16500000,
+    "netProfitINR": 4020000,
+    "ebitdaMarginPct": 8.27,
+    "netMarginPct": 2.01,
+    "rocePct": 20.82,
+    "roePct": 49.31,
+    "receivableDays": 86.91,
+    "payableDays": 89,
+    "cashConversionDays": -2.09,
+    "currentRatio": 0.95,
+    "debtToEquity": 5.51,
+    "interestCoverage": 1.97,
+    "totalDebtINR": 104000000,
+    "tradePayablesINR": 48000000,
+    "tradeReceivablesINR": 48000000,
+    "inventoryINR": 20000000,
+    "cashINR": 5620000,
+    "totalEquityINR": 8160000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 155000000,
+    "ebitdaINR": 8900000,
+    "netProfitINR": 4040000,
+    "ebitdaMarginPct": 5.79,
+    "netMarginPct": 2.61,
+    "rocePct": 22.23,
+    "roePct": 97.59,
+    "receivableDays": 10.49,
+    "payableDays": 91.1,
+    "cashConversionDays": -80.61,
+    "currentRatio": 0.99,
+    "debtToEquity": 6.66,
+    "interestCoverage": 4.43,
+    "totalDebtINR": 43000000,
+    "tradePayablesINR": 21000000,
+    "tradeReceivablesINR": 21000000,
+    "inventoryINR": 18000000,
+    "cashINR": 4460000,
+    "totalEquityINR": 4140000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 107000000,
+    "ebitdaINR": 4500000,
+    "netProfitINR": 1220000,
+    "ebitdaMarginPct": 7.43,
+    "netMarginPct": 1.12,
+    "rocePct": 11.47,
+    "roePct": 21.21,
+    "receivableDays": 133.24,
+    "payableDays": 91.3,
+    "cashConversionDays": 41.94,
+    "currentRatio": 1.14,
+    "debtToEquity": 8.3,
+    "interestCoverage": 1.56,
+    "totalDebtINR": 62000000,
+    "tradePayablesINR": 18000000,
+    "tradeReceivablesINR": 18000000,
+    "inventoryINR": 15000000,
+    "cashINR": 3350000,
+    "totalEquityINR": 5650000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 69000000,
+    "ebitdaINR": 2500000,
+    "netProfitINR": 680000,
+    "ebitdaMarginPct": 5.91,
+    "netMarginPct": 0.85,
+    "rocePct": 6.32,
+    "roePct": 10.55,
+    "receivableDays": 258.59,
+    "payableDays": 71.6,
+    "cashConversionDays": 186.99,
+    "currentRatio": 1.12,
+    "debtToEquity": 5.75,
+    "interestCoverage": 1.43,
+    "totalDebtINR": 56000000,
+    "tradePayablesINR": 19000000,
+    "tradeReceivablesINR": 19000000,
+    "inventoryINR": 14000000,
+    "cashINR": 2670000,
+    "totalEquityINR": 4520000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 42000000,
+    "ebitdaINR": 2200000,
+    "netProfitINR": 320000,
+    "ebitdaMarginPct": 5.75,
+    "netMarginPct": 0.76,
+    "rocePct": 14.15,
+    "roePct": 13,
+    "receivableDays": 96.48,
+    "payableDays": 57.9,
+    "cashConversionDays": 38.58,
+    "currentRatio": 1.5,
+    "debtToEquity": 8.28,
+    "interestCoverage": 1.34,
+    "totalDebtINR": 50000000,
+    "tradePayablesINR": 21000000,
+    "tradeReceivablesINR": 21000000,
+    "inventoryINR": 12000000,
+    "cashINR": 1910000,
+    "totalEquityINR": 4540000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [
+   "KERASOUL PRIVATE LIMITED"
+  ],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Manisha Chopra",
+    "designation": "Director"
+   },
+   {
+    "name": "Sankalp Chopra",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Unknown",
+    "amountINR": 6840000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 43000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 15000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 4000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 999000,
+    "status": "Closed"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 1730000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": [
+    "Manisha Chopra",
+    "Sankalp Chopra"
+   ]
+  },
+  "competitors": [
+   "Innovist",
+   "Pilgrim",
+   "Mamaearth"
+  ]
+ },
+ "kain": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 127000000,
+    "ebitdaINR": -23400000,
+    "netProfitINR": -46900000,
+    "ebitdaMarginPct": -18.36,
+    "netMarginPct": -34.94,
+    "rocePct": -36.86,
+    "roePct": -1657.34,
+    "receivableDays": 93.22,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 7.59,
+    "debtToEquity": -10.31,
+    "interestCoverage": -18.21,
+    "totalDebtINR": 736000000,
+    "tradePayablesINR": 30000000,
+    "tradeReceivablesINR": 95000000,
+    "inventoryINR": 33000000,
+    "cashINR": 111000,
+    "totalEquityINR": -71000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 10500,
+    "ebitdaINR": -24000,
+    "netProfitINR": -24000,
+    "ebitdaMarginPct": -7535.33,
+    "netMarginPct": -7535.33,
+    "rocePct": -609.02,
+    "roePct": -7535.33,
+    "receivableDays": 227.61,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 33.14,
+    "debtToEquity": 30.52,
+    "interestCoverage": -2.19,
+    "totalDebtINR": 521000000,
+    "tradePayablesINR": 0,
+    "tradeReceivablesINR": 89000000,
+    "inventoryINR": 597000,
+    "cashINR": 38000,
+    "totalEquityINR": -24000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 0,
+    "ebitdaINR": -78000,
+    "netProfitINR": -81000,
+    "ebitdaMarginPct": null,
+    "netMarginPct": null,
+    "rocePct": null,
+    "roePct": null,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.99,
+    "debtToEquity": 2.99,
+    "interestCoverage": -107.28,
+    "totalDebtINR": 308000000,
+    "tradePayablesINR": 23000000,
+    "tradeReceivablesINR": 89000,
+    "inventoryINR": 127000,
+    "cashINR": 38000,
+    "totalEquityINR": -9200
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 13000,
+    "ebitdaINR": -98000,
+    "netProfitINR": -98000,
+    "ebitdaMarginPct": null,
+    "netMarginPct": null,
+    "rocePct": null,
+    "roePct": null,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 9.25,
+    "debtToEquity": 9.25,
+    "interestCoverage": null,
+    "totalDebtINR": 112000000,
+    "tradePayablesINR": 33000000,
+    "tradeReceivablesINR": 59000,
+    "inventoryINR": 68000,
+    "cashINR": 45000,
+    "totalEquityINR": -1100
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 30000,
+    "ebitdaINR": -18000,
+    "netProfitINR": -18000,
+    "ebitdaMarginPct": null,
+    "netMarginPct": null,
+    "rocePct": null,
+    "roePct": null,
+    "receivableDays": null,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 50.05,
+    "debtToEquity": 0.98,
+    "interestCoverage": -21.33,
+    "totalDebtINR": 33000000,
+    "tradePayablesINR": 0,
+    "tradeReceivablesINR": 21000,
+    "inventoryINR": 64000,
+    "cashINR": 45000,
+    "totalEquityINR": 6700
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Nishit Girish Dedhia",
+    "designation": "Director"
+   },
+   {
+    "name": "Jinit Girish Dedhia",
+    "designation": "Director"
+   },
+   {
+    "name": "Rajesh Chandrabhan Kingrani",
+    "designation": "Director"
+   },
+   {
+    "name": "Kartik Kingrani",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Unknown",
+    "amountINR": 240000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 20000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 150000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 150000000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": []
+  },
+  "competitors": [
+   "Innovist",
+   "Pilgrim",
+   "Mamaearth"
+  ]
+ },
+ "vedicnaturals": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 144000000,
+    "ebitdaINR": 2870000,
+    "netProfitINR": -3930000,
+    "ebitdaMarginPct": 1.99,
+    "netMarginPct": -2.73,
+    "rocePct": -2.3,
+    "roePct": -4.5,
+    "receivableDays": 68.09,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.61,
+    "debtToEquity": 0.12,
+    "interestCoverage": -3.35,
+    "totalDebtINR": 8180000,
+    "tradePayablesINR": 10000000,
+    "tradeReceivablesINR": 27000000,
+    "inventoryINR": 14000000,
+    "cashINR": 2850000,
+    "totalEquityINR": 68000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 178000000,
+    "ebitdaINR": 8180000,
+    "netProfitINR": 15000000,
+    "ebitdaMarginPct": 13.95,
+    "netMarginPct": 8.59,
+    "rocePct": 24.99,
+    "roePct": 18.84,
+    "receivableDays": 53.57,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.78,
+    "debtToEquity": 0.13,
+    "interestCoverage": 49.12,
+    "totalDebtINR": 9770000,
+    "tradePayablesINR": 12000000,
+    "tradeReceivablesINR": 26000000,
+    "inventoryINR": 18000000,
+    "cashINR": 6370000,
+    "totalEquityINR": 73000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 165000000,
+    "ebitdaINR": 16770000,
+    "netProfitINR": 17000000,
+    "ebitdaMarginPct": 16.68,
+    "netMarginPct": 10.45,
+    "rocePct": 34.08,
+    "roePct": 25.81,
+    "receivableDays": 44.36,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.28,
+    "debtToEquity": 0.16,
+    "interestCoverage": 27.14,
+    "totalDebtINR": 9810000,
+    "tradePayablesINR": 11000000,
+    "tradeReceivablesINR": 24000000,
+    "inventoryINR": 18000000,
+    "cashINR": 6260000,
+    "totalEquityINR": 60000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 148000000,
+    "ebitdaINR": 28000000,
+    "netProfitINR": 22000000,
+    "ebitdaMarginPct": 18.92,
+    "netMarginPct": 11.29,
+    "rocePct": 38.69,
+    "roePct": 29.63,
+    "receivableDays": 22.34,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.74,
+    "debtToEquity": 0.39,
+    "interestCoverage": 13.37,
+    "totalDebtINR": 17000000,
+    "tradePayablesINR": 12000000,
+    "tradeReceivablesINR": 29000000,
+    "inventoryINR": 13000000,
+    "cashINR": 4830000,
+    "totalEquityINR": 45000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 109000000,
+    "ebitdaINR": 22000000,
+    "netProfitINR": 11000000,
+    "ebitdaMarginPct": 20.55,
+    "netMarginPct": 10.01,
+    "rocePct": 26.97,
+    "roePct": 20.74,
+    "receivableDays": 110.3,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.75,
+    "debtToEquity": 1.25,
+    "interestCoverage": 5.89,
+    "totalDebtINR": 37000000,
+    "tradePayablesINR": 14000000,
+    "tradeReceivablesINR": 37000000,
+    "inventoryINR": 9620000,
+    "cashINR": 9040000,
+    "totalEquityINR": 30000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Nagendra Pal Singh",
+    "designation": "Director"
+   },
+   {
+    "name": "Mahendrapal Singh",
+    "designation": "Director"
+   },
+   {
+    "name": "Virendra Pal Singh",
+    "designation": "Director"
+   },
+   {
+    "name": "Vivek Bhattacharjee",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "State Bank of India",
+    "amountINR": 35000000,
+    "status": "Closed"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 10000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 140000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 140000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 730000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 75,
+   "publicPct": 25,
+   "founders": [
+    "Nagendra Pal Singh",
+    "Mahendrapal Singh",
+    "Parashuram Singh"
+   ]
+  },
+  "competitors": [
+   "Innovist",
+   "Pilgrim",
+   "Mamaearth"
+  ]
+ },
+ "arovea": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 198000000,
+    "ebitdaINR": 18600000,
+    "netProfitINR": -17400000,
+    "ebitdaMarginPct": 9.38,
+    "netMarginPct": -8.78,
+    "rocePct": -2.48,
+    "roePct": 60.65,
+    "receivableDays": 92.07,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 0.55,
+    "debtToEquity": -8.38,
+    "interestCoverage": -0.4,
+    "totalDebtINR": 240000000,
+    "tradePayablesINR": 151000000,
+    "tradeReceivablesINR": 33000000,
+    "inventoryINR": 53000000,
+    "cashINR": 2900000,
+    "totalEquityINR": -29000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 167000000,
+    "ebitdaINR": 26000000,
+    "netProfitINR": -11000000,
+    "ebitdaMarginPct": 15.57,
+    "netMarginPct": -6.38,
+    "rocePct": 1.32,
+    "roePct": 94.2,
+    "receivableDays": 52.61,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 0.56,
+    "debtToEquity": -19.89,
+    "interestCoverage": 0.21,
+    "totalDebtINR": 224000000,
+    "tradePayablesINR": 117000000,
+    "tradeReceivablesINR": 50000000,
+    "inventoryINR": 54000000,
+    "cashINR": 4600000,
+    "totalEquityINR": -11000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 22000000,
+    "ebitdaINR": 1200000,
+    "netProfitINR": -513000,
+    "ebitdaMarginPct": 2.02,
+    "netMarginPct": -0.23,
+    "rocePct": 0.05,
+    "roePct": 7.84,
+    "receivableDays": 385.2,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 0.65,
+    "debtToEquity": -284.64,
+    "interestCoverage": 0.59,
+    "totalDebtINR": 186000000,
+    "tradePayablesINR": 70000000,
+    "tradeReceivablesINR": 24000000,
+    "inventoryINR": 27000000,
+    "cashINR": 2300000,
+    "totalEquityINR": -650000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 4450000,
+    "ebitdaINR": 88000,
+    "netProfitINR": -700000,
+    "ebitdaMarginPct": 2.02,
+    "netMarginPct": -0.23,
+    "rocePct": 0.05,
+    "roePct": 7.84,
+    "receivableDays": 385.2,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 0.65,
+    "debtToEquity": -284.64,
+    "interestCoverage": 0.59,
+    "totalDebtINR": 37000000,
+    "tradePayablesINR": 30000000,
+    "tradeReceivablesINR": 11000000,
+    "inventoryINR": 12000000,
+    "cashINR": 1100000,
+    "totalEquityINR": -700000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Pravinbhai Harjivandas Patel",
+    "designation": "Director"
+   },
+   {
+    "name": "Ronakkumar Pravinbhai Patel",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "SOL DERMA PHARMACEUTICALS PRIVATE LIMITED",
+    "amountINR": 60000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 160000000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": []
+  },
+  "competitors": []
+ },
+ "zymo": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 660000,
+    "ebitdaINR": 280000,
+    "netProfitINR": 280000,
+    "ebitdaMarginPct": 42.67,
+    "netMarginPct": 42.5,
+    "rocePct": 27.88,
+    "roePct": 22.31,
+    "receivableDays": 66.25,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 4.92,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": 1500000,
+    "tradeReceivablesINR": 1250000,
+    "inventoryINR": 120000,
+    "cashINR": 520000,
+    "totalEquityINR": 1000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 600000,
+    "ebitdaINR": 818000,
+    "netProfitINR": 809000,
+    "ebitdaMarginPct": 13.73,
+    "netMarginPct": 13.59,
+    "rocePct": 11.21,
+    "roePct": 9.92,
+    "receivableDays": 13.14,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 8.43,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": 637000,
+    "tradeReceivablesINR": 942000,
+    "inventoryINR": 218000,
+    "cashINR": 190000,
+    "totalEquityINR": 720000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 410000,
+    "ebitdaINR": 888000,
+    "netProfitINR": 879000,
+    "ebitdaMarginPct": 21.72,
+    "netMarginPct": 21.5,
+    "rocePct": -8.36,
+    "roePct": 11.11,
+    "receivableDays": 41.57,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 5.11,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": 571000,
+    "tradeReceivablesINR": 637000,
+    "inventoryINR": 226000,
+    "cashINR": 543000,
+    "totalEquityINR": 640000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 990000,
+    "ebitdaINR": -826000,
+    "netProfitINR": -835000,
+    "ebitdaMarginPct": -44.57,
+    "netMarginPct": -44.68,
+    "rocePct": -47.28,
+    "roePct": -11.2,
+    "receivableDays": 123.65,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.95,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": 1400000,
+    "tradeReceivablesINR": 771000,
+    "inventoryINR": 244000,
+    "cashINR": 0,
+    "totalEquityINR": 550000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 750000,
+    "ebitdaINR": -3400000,
+    "netProfitINR": -3400000,
+    "ebitdaMarginPct": -53.01,
+    "netMarginPct": -53.01,
+    "rocePct": -52.87,
+    "roePct": -15.1,
+    "receivableDays": 114.77,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.89,
+    "debtToEquity": null,
+    "interestCoverage": null,
+    "totalDebtINR": null,
+    "tradePayablesINR": 311000,
+    "tradeReceivablesINR": 771000,
+    "inventoryINR": 244000,
+    "cashINR": 610000,
+    "totalEquityINR": 640000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [
+   "Zymo",
+   "ZymoMart",
+   "Zymo Cosmetics"
+  ],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Chaitanya Vikrambhai Patel",
+    "designation": "Director"
+   },
+   {
+    "name": "Tarakkumar Patel",
+    "designation": "Director"
+   }
+  ],
+  "loans": [],
+  "capTable": {
+   "promoterPct": 30,
+   "publicPct": 70,
+   "founders": [
+    "Bharat Patel",
+    "Chaitanya Patel",
+    "Ankit Patel",
+    "Tarak Patel"
+   ]
+  },
+  "competitors": [
+   "Albéa Group",
+   "kdc/one",
+   "Bioweg",
+   "Pilgrim",
+   "Mamaearth",
+   "Clensta",
+   "Innovist",
+   "MyGlamm"
+  ]
+ },
+ "allmask": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 1186000000,
+    "ebitdaINR": 225000000,
+    "netProfitINR": 133000000,
+    "ebitdaMarginPct": 18.98,
+    "netMarginPct": 11.24,
+    "rocePct": 31.63,
+    "roePct": 49.43,
+    "receivableDays": 61.75,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.78,
+    "debtToEquity": 1.33,
+    "interestCoverage": 10.15,
+    "totalDebtINR": 341000000,
+    "tradePayablesINR": 172000000,
+    "tradeReceivablesINR": 201000000,
+    "inventoryINR": 153000000,
+    "cashINR": 17000000,
+    "totalEquityINR": 270000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 624000000,
+    "ebitdaINR": 83000000,
+    "netProfitINR": 50000000,
+    "ebitdaMarginPct": 15.18,
+    "netMarginPct": 7.94,
+    "rocePct": 28.16,
+    "roePct": 36.31,
+    "receivableDays": 68.42,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.84,
+    "debtToEquity": 1.15,
+    "interestCoverage": 14.2,
+    "totalDebtINR": 142000000,
+    "tradePayablesINR": 57000000,
+    "tradeReceivablesINR": 117000000,
+    "inventoryINR": 63000000,
+    "cashINR": 15000000,
+    "totalEquityINR": 136000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 469000000,
+    "ebitdaINR": 55000000,
+    "netProfitINR": 17000000,
+    "ebitdaMarginPct": 9.81,
+    "netMarginPct": 3.63,
+    "rocePct": 17.01,
+    "roePct": 19.6,
+    "receivableDays": 81.26,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.93,
+    "debtToEquity": 2.86,
+    "interestCoverage": 3.1,
+    "totalDebtINR": 121000000,
+    "tradePayablesINR": 67000000,
+    "tradeReceivablesINR": 117000000,
+    "inventoryINR": 41000000,
+    "cashINR": 15000000,
+    "totalEquityINR": 87000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 399000000,
+    "ebitdaINR": 33000000,
+    "netProfitINR": 17000000,
+    "ebitdaMarginPct": 8.87,
+    "netMarginPct": 4.24,
+    "rocePct": 18.55,
+    "roePct": 24.25,
+    "receivableDays": 59.88,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 2.07,
+    "debtToEquity": 1.64,
+    "interestCoverage": 0.47,
+    "totalDebtINR": 97000000,
+    "tradePayablesINR": 56000000,
+    "tradeReceivablesINR": 104000000,
+    "inventoryINR": 41000000,
+    "cashINR": 9800000,
+    "totalEquityINR": 70000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 515000000,
+    "ebitdaINR": 58000000,
+    "netProfitINR": 42000000,
+    "ebitdaMarginPct": 12.79,
+    "netMarginPct": 8.18,
+    "rocePct": 61.94,
+    "roePct": 79.71,
+    "receivableDays": 35.74,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 0.92,
+    "debtToEquity": 0.93,
+    "interestCoverage": 0.29,
+    "totalDebtINR": 49000000,
+    "tradePayablesINR": 50000000,
+    "tradeReceivablesINR": 50000000,
+    "inventoryINR": 20000000,
+    "cashINR": 4100000,
+    "totalEquityINR": 53000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Minal Goti",
+    "designation": "Director"
+   },
+   {
+    "name": "Pareshkumar Goti",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Unknown",
+    "amountINR": 315000000,
+    "status": "Active"
+   },
+   {
+    "lender": "Unknown",
+    "amountINR": 21800000,
+    "status": "Active"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 100,
+   "publicPct": 0,
+   "founders": [
+    "Paresh Goti",
+    "Minal Goti"
+   ]
+  },
+  "competitors": [
+   "Clarion",
+   "Sprivil Healthcare",
+   "NG Electro"
+  ]
+ },
+ "ngelectro": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 3137000000,
+    "ebitdaINR": 313000000,
+    "netProfitINR": 196000000,
+    "ebitdaMarginPct": 9.99,
+    "netMarginPct": 6.25,
+    "rocePct": 27.68,
+    "roePct": 22.65,
+    "receivableDays": 55.3,
+    "payableDays": 83,
+    "cashConversionDays": null,
+    "currentRatio": 1.71,
+    "debtToEquity": 0.16,
+    "interestCoverage": 18.69,
+    "totalDebtINR": 135000000,
+    "tradePayablesINR": 483000000,
+    "tradeReceivablesINR": 475000000,
+    "inventoryINR": 442000000,
+    "cashINR": 577000000,
+    "totalEquityINR": 866000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 2664000000,
+    "ebitdaINR": 267000000,
+    "netProfitINR": 172000000,
+    "ebitdaMarginPct": 10.03,
+    "netMarginPct": 6.44,
+    "rocePct": 30.32,
+    "roePct": 25.62,
+    "receivableDays": 60.75,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.65,
+    "debtToEquity": 0.15,
+    "interestCoverage": 12.35,
+    "totalDebtINR": 74000000,
+    "tradePayablesINR": 324000000,
+    "tradeReceivablesINR": 443000000,
+    "inventoryINR": 250000000,
+    "cashINR": 318000000,
+    "totalEquityINR": 670000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 2012000000,
+    "ebitdaINR": 191000000,
+    "netProfitINR": 79000000,
+    "ebitdaMarginPct": 7.01,
+    "netMarginPct": 3.92,
+    "rocePct": 19.74,
+    "roePct": 15.84,
+    "receivableDays": 60.07,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.36,
+    "debtToEquity": 0.19,
+    "interestCoverage": 22.46,
+    "totalDebtINR": 76000000,
+    "tradePayablesINR": 331000000,
+    "tradeReceivablesINR": 331000000,
+    "inventoryINR": 240000000,
+    "cashINR": 318000000,
+    "totalEquityINR": 498000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 1323000000,
+    "ebitdaINR": 141000000,
+    "netProfitINR": 54000000,
+    "ebitdaMarginPct": 8.02,
+    "netMarginPct": 4.11,
+    "rocePct": 16.44,
+    "roePct": 12.96,
+    "receivableDays": 65.64,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.51,
+    "debtToEquity": 0.12,
+    "interestCoverage": 90.64,
+    "totalDebtINR": 30000000,
+    "tradePayablesINR": 184000000,
+    "tradeReceivablesINR": 238000000,
+    "inventoryINR": 168000000,
+    "cashINR": 279000000,
+    "totalEquityINR": 419000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 1571000000,
+    "ebitdaINR": 191000000,
+    "netProfitINR": 101000000,
+    "ebitdaMarginPct": 9.69,
+    "netMarginPct": 6.41,
+    "rocePct": 33.36,
+    "roePct": 27.58,
+    "receivableDays": 43.7,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.48,
+    "debtToEquity": 0.1,
+    "interestCoverage": 26.4,
+    "totalDebtINR": 115000000,
+    "tradePayablesINR": 184000000,
+    "tradeReceivablesINR": 188000000,
+    "inventoryINR": 161000000,
+    "cashINR": 14000000,
+    "totalEquityINR": 365000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Piyush Mittal",
+    "designation": "Director"
+   },
+   {
+    "name": "Leena Mittal",
+    "designation": "Director"
+   },
+   {
+    "name": "Raghav Piyush Mittal",
+    "designation": "Director"
+   },
+   {
+    "name": "Sanjeev Singh",
+    "designation": "Director"
+   },
+   {
+    "name": "Vinit Janardan Rai",
+    "designation": "Nominee Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "STATE BANK PF PATIALA",
+    "amountINR": 150000000,
+    "status": "Active"
+   },
+   {
+    "lender": "STATE BANK PF PATIALA",
+    "amountINR": 330000000,
+    "status": "Active"
+   },
+   {
+    "lender": "STATE BANK PF PATIALA",
+    "amountINR": 359000000,
+    "status": "Active"
+   },
+   {
+    "lender": "STATE BANK PF PATIALA",
+    "amountINR": 8700000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 84.55,
+   "publicPct": null,
+   "founders": [
+    "Piyush Mittal"
+   ]
+  },
+  "competitors": [
+   "Clarion",
+   "Sprivil Healthcare",
+   "Wonder Products Group"
+  ]
+ },
+ "anuspa": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 874000000,
+    "ebitdaINR": 49400000,
+    "netProfitINR": 16800000,
+    "ebitdaMarginPct": 5.66,
+    "netMarginPct": 1.93,
+    "rocePct": 16.48,
+    "roePct": 13.61,
+    "receivableDays": 39.26,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 0.83,
+    "debtToEquity": 0.68,
+    "interestCoverage": 3.13,
+    "totalDebtINR": 149000000,
+    "tradePayablesINR": 108000000,
+    "tradeReceivablesINR": 94000000,
+    "inventoryINR": 72000000,
+    "cashINR": -64000000,
+    "totalEquityINR": 124000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 958000000,
+    "ebitdaINR": 80000000,
+    "netProfitINR": 6600000,
+    "ebitdaMarginPct": 8.35,
+    "netMarginPct": 0.69,
+    "rocePct": 8.51,
+    "roePct": 6.27,
+    "receivableDays": 31.49,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 0.91,
+    "debtToEquity": 0.41,
+    "interestCoverage": 5.94,
+    "totalDebtINR": 199000000,
+    "tradePayablesINR": 99000000,
+    "tradeReceivablesINR": 83000000,
+    "inventoryINR": 92000000,
+    "cashINR": -79000000,
+    "totalEquityINR": 106000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 1062000000,
+    "ebitdaINR": 80000000,
+    "netProfitINR": 1500000,
+    "ebitdaMarginPct": 6.48,
+    "netMarginPct": 0.14,
+    "rocePct": 6.48,
+    "roePct": 1.55,
+    "receivableDays": 43.72,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.38,
+    "debtToEquity": 0.12,
+    "interestCoverage": 5.43,
+    "totalDebtINR": 162000000,
+    "tradePayablesINR": 157000000,
+    "tradeReceivablesINR": 127000000,
+    "inventoryINR": 90000000,
+    "cashINR": -46000000,
+    "totalEquityINR": 98000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 718000000,
+    "ebitdaINR": 26000000,
+    "netProfitINR": 3100000,
+    "ebitdaMarginPct": 3.62,
+    "netMarginPct": 0.43,
+    "rocePct": 6.33,
+    "roePct": 3.22,
+    "receivableDays": 64.12,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.38,
+    "debtToEquity": 0.11,
+    "interestCoverage": 7.33,
+    "totalDebtINR": 191000000,
+    "tradePayablesINR": 164000000,
+    "tradeReceivablesINR": 126000000,
+    "inventoryINR": 113000000,
+    "cashINR": -63000000,
+    "totalEquityINR": 97000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 604000000,
+    "ebitdaINR": 23000000,
+    "netProfitINR": 3500000,
+    "ebitdaMarginPct": 3.8,
+    "netMarginPct": 0.59,
+    "rocePct": 6.23,
+    "roePct": 3.77,
+    "receivableDays": 80.27,
+    "payableDays": null,
+    "cashConversionDays": null,
+    "currentRatio": 1.37,
+    "debtToEquity": 0.12,
+    "interestCoverage": 7.33,
+    "totalDebtINR": 105000000,
+    "tradePayablesINR": 153000000,
+    "tradeReceivablesINR": 133000000,
+    "inventoryINR": 94000000,
+    "cashINR": -64000000,
+    "totalEquityINR": 94000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Raakesh Bishan Bansal",
+    "designation": "Managing Director"
+   },
+   {
+    "name": "Rajiv Jain",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "Member Secretary Single Window Clearance Agency(SWCA)",
+    "amountINR": 173000000,
+    "status": "Active"
+   },
+   {
+    "lender": "CANARA BANK",
+    "amountINR": 28800000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 55,
+   "publicPct": 45,
+   "founders": [
+    "Raakesh Bansal",
+    "Anuradha Bansal",
+    "Rajiv Jain",
+    "Sangya Jain",
+    "Sidhartha Jain"
+   ]
+  },
+  "competitors": [
+   "Sivaroma",
+   "Bryan & Candy",
+   "Vedic Saga",
+   "HCP Wellness",
+   "Jbff",
+   "Purenaturals.co.in"
+  ]
+ },
+ "kapco": {
+  "years": [
+   {
+    "fy": "2024-25",
+    "revenueINR": 1783000000,
+    "ebitdaINR": 144000000,
+    "netProfitINR": 93000000,
+    "ebitdaMarginPct": 10.34,
+    "netMarginPct": 5.22,
+    "rocePct": 10.04,
+    "roePct": 8.94,
+    "receivableDays": 60.17,
+    "payableDays": 117,
+    "cashConversionDays": -56.83,
+    "currentRatio": 1.32,
+    "debtToEquity": 0.01,
+    "interestCoverage": 16.5,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 432000000,
+    "tradeReceivablesINR": 371000000,
+    "inventoryINR": 339000000,
+    "cashINR": 57000000,
+    "totalEquityINR": 1116000000
+   },
+   {
+    "fy": "2023-24",
+    "revenueINR": 1378000000,
+    "ebitdaINR": 142000000,
+    "netProfitINR": 92000000,
+    "ebitdaMarginPct": 10.95,
+    "netMarginPct": 6.64,
+    "rocePct": 10.98,
+    "roePct": 8.29,
+    "receivableDays": 61.78,
+    "payableDays": 105.48,
+    "cashConversionDays": -43.7,
+    "currentRatio": 1.34,
+    "debtToEquity": 0,
+    "interestCoverage": 0,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 263000000,
+    "tradeReceivablesINR": 310000000,
+    "inventoryINR": 196000000,
+    "cashINR": 62000000,
+    "totalEquityINR": 1024000000
+   },
+   {
+    "fy": "2022-23",
+    "revenueINR": 1499000000,
+    "ebitdaINR": 135000000,
+    "netProfitINR": 107000000,
+    "ebitdaMarginPct": 8.05,
+    "netMarginPct": 8.16,
+    "rocePct": 8.9,
+    "roePct": 6.37,
+    "receivableDays": 59.04,
+    "payableDays": 2632.79,
+    "cashConversionDays": -2573.75,
+    "currentRatio": 1.76,
+    "debtToEquity": 0,
+    "interestCoverage": 0,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 207000000,
+    "tradeReceivablesINR": 247000000,
+    "inventoryINR": 120000000,
+    "cashINR": 111000000,
+    "totalEquityINR": 932000000
+   },
+   {
+    "fy": "2021-22",
+    "revenueINR": 1796000000,
+    "ebitdaINR": 217000000,
+    "netProfitINR": 217000000,
+    "ebitdaMarginPct": 6.28,
+    "netMarginPct": 12.06,
+    "rocePct": 11.47,
+    "roePct": 6.64,
+    "receivableDays": 44.58,
+    "payableDays": 225.16,
+    "cashConversionDays": -180.58,
+    "currentRatio": 1.07,
+    "debtToEquity": 0,
+    "interestCoverage": 0,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 198000000,
+    "tradeReceivablesINR": 304000000,
+    "inventoryINR": 77000000,
+    "cashINR": 208000000,
+    "totalEquityINR": 825000000
+   },
+   {
+    "fy": "2020-21",
+    "revenueINR": 2126000000,
+    "ebitdaINR": 271000000,
+    "netProfitINR": 271000000,
+    "ebitdaMarginPct": 5.19,
+    "netMarginPct": 12.76,
+    "rocePct": 14.44,
+    "roePct": 5.19,
+    "receivableDays": 26.28,
+    "payableDays": 820.71,
+    "cashConversionDays": -794.43,
+    "currentRatio": 2.07,
+    "debtToEquity": 0,
+    "interestCoverage": 0,
+    "totalDebtINR": 0,
+    "tradePayablesINR": 385000000,
+    "tradeReceivablesINR": 344000000,
+    "inventoryINR": 54000000,
+    "cashINR": 49000000,
+    "totalEquityINR": 609000000
+   }
+  ],
+  "parent": null,
+  "subsidiaries": [],
+  "associatedCompanies": [],
+  "directors": [
+   {
+    "name": "Sunil Kapoor",
+    "designation": "Managing Director"
+   },
+   {
+    "name": "Varun Kapoor",
+    "designation": "Whole-time Director"
+   },
+   {
+    "name": "Rajan Jain",
+    "designation": "Director"
+   },
+   {
+    "name": "Rahul Kapoor",
+    "designation": "Director"
+   }
+  ],
+  "loans": [
+   {
+    "lender": "STATE BANK OF INDIA",
+    "amountINR": 6990000,
+    "status": "Active"
+   },
+   {
+    "lender": "STATE BANK OF INDIA",
+    "amountINR": 5290000,
+    "status": "Closed"
+   }
+  ],
+  "capTable": {
+   "promoterPct": 91.09,
+   "publicPct": 8.91,
+   "founders": [
+    "Sunil Kapoor",
+    "Pinky Kapoor",
+    "Varun Kapoor",
+    "Binita Kapoor"
+   ]
+  },
+  "competitors": []
+ }
+}

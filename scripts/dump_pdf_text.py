@@ -12,20 +12,14 @@ OUT = "data/raw/masters/supplier_pdf_text.json"
 
 
 def slim(text):
-    # Grab the REAL financial block — from the revenue chart / detailed statements
-    # down to (but excluding) the huge MSME-payments annexure. Avoids the tiny
-    # table-of-contents slice and the token-heavy supplier PAN lists.
+    # Keep the WHOLE report (entity details, corporate structure, board,
+    # financials, ratios, cap table, competitors, news) but strip the huge
+    # MSME-payments PAN-list annexures, which are noise and eat tokens.
     t = text.replace("\xa0", " ")
-    s = t.find("Revenue - INR (Cr)")
-    if s < 0:
-        s = t.find("Detailed Income Statement")
-    if s < 0:
-        s = 0
-    e = t.find("MSME Payments", s + 100)
-    if e < 0 or e - s < 3000:
-        e = min(len(t), s + 45000)
-    chunk = re.sub(r"\n{2,}", "\n", t[s:e])
-    return chunk[:50000]
+    t = re.sub(r"Annexure - MSME Payments.*?(?=Annexure - Cap Tables|Latest Shareholding|$)", "\n[MSME annexure omitted]\n", t, flags=re.S)
+    t = re.sub(r"\bMSME Payments\b\s*\nName of MSME.*?(?=Loans & Charges|Latest Shareholding Summary|$)", "\n[MSME list omitted]\n", t, flags=re.S)
+    t = re.sub(r"\n{2,}", "\n", t)
+    return t[:85000]
 
 
 def main():

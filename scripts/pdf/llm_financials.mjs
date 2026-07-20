@@ -1,82 +1,120 @@
-// #2 — extract multi-year financial statements from the (flattened) Tracxn PDF
-// text using an LLM, which can reassemble the label→value→year tables that a
-// regex can't. Reads the committed supplier text, writes a clean per-year series.
+// Comprehensive supplier profile extraction from the (flattened) Tracxn PDF text
+// via gpt-4o. Pulls multi-year statements + full ratio suite + balance sheet +
+// corporate structure + board + loans + cap table + competitors.
 //
-//   OPENAI_API_KEY=... node scripts/pdf/llm_financials.mjs            # all suppliers
-//   OPENAI_API_KEY=... node scripts/pdf/llm_financials.mjs --only valuetree --limit 1
+//   OPENAI_API_KEY=... node scripts/pdf/llm_financials.mjs            # all (cached)
+//   OPENAI_API_KEY=... node scripts/pdf/llm_financials.mjs --only valuetree --refresh
 //
-// Output: data/raw/masters/supplier_financials.json  {folder: {years:[...]}}
+// Output: data/raw/masters/supplier_financials.json  {folder: {...profile}}
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 
 const TEXT = "data/raw/masters/supplier_pdf_text.json";
 const OUT = "data/raw/masters/supplier_financials.json";
-const MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+const MODEL = process.env.OPENAI_MODEL || "gpt-4o";
 const KEY = process.env.OPENAI_API_KEY;
 
 const args = process.argv.slice(2);
 const only = args.includes("--only") ? args[args.indexOf("--only") + 1] : null;
 const limit = args.includes("--limit") ? Number(args[args.indexOf("--limit") + 1]) : Infinity;
+const refresh = args.includes("--refresh");
 
-const SCHEMA_HINT = `Extract the company's per-fiscal-year financials from the flattened Tracxn report text. A metric's label and its yearly values may be separated — align them by fiscal-year columns ("FY 2024-25", "FY 2023-24", …).
+const PROMPT = `Extract a COMPREHENSIVE structured profile of this Indian company from the flattened Tracxn report text below. Labels and their per-year values may be separated — align them by the fiscal-year columns ("FY 2024-25", "FY 2023-24", …).
 
-Return STRICT JSON: {"years":[{"fy":"YYYY-YY","revenueCr":number|null,"ebitdaCr":number|null,"netProfitCr":number|null,"receivableDays":number|null,"payableDays":number|null,"rocePct":number|null,"currentRatio":number|null}]}
+Return STRICT JSON with exactly this shape:
+{
+ "years":[{"fy":"YYYY-YY","revenueCr":n,"ebitdaCr":n,"netProfitCr":n,"ebitdaMarginPct":n,"netMarginPct":n,"rocePct":n,"roePct":n,"receivableDays":n,"payableDays":n,"cashConversionDays":n,"currentRatio":n,"debtToEquity":n,"interestCoverage":n,"totalDebtCr":n,"tradePayablesCr":n,"tradeReceivablesCr":n,"inventoryCr":n,"cashCr":n,"totalEquityCr":n}],
+ "parent":string|null,
+ "subsidiaries":[string],
+ "associatedCompanies":[string],
+ "directors":[{"name":string,"designation":string|null}],
+ "loans":[{"lender":string,"amountCr":n|null,"status":string|null}],
+ "capTable":{"promoterPct":n|null,"publicPct":n|null,"founders":[string]},
+ "competitors":[string]
+}
 
-CRITICAL: revenueCr / ebitdaCr / netProfitCr are the number IN CRORE, copied EXACTLY as the report shows it — do NO unit conversion. If the report shows "242 Cr", return 242. If it shows "5.83 Cr", return 5.83. Never add zeros.
-
-WHERE each field lives:
-- revenueCr: the "Revenue - INR (Cr)" chart (values already in Cr), or "Total Sales".
-- netProfitCr: the "Net Profit/Loss - INR (Cr)" chart — EACH year differs; never repeat one year's value.
-- ebitdaCr: EBITDA in Cr if shown, else null.
-- receivableDays: "Days Sales Outstanding".
-- payableDays: "Days Payable Outstanding" (often latest year only).
-- rocePct: "Return on Capital Employed" (%).
-- currentRatio: "Current Ratio".
-
-Include only fiscal years with a revenue figure. Sort oldest first. Use null for anything absent — never guess or copy another year's value.`;
+RULES:
+- All *Cr fields are the number IN CRORE exactly as printed — do NO unit conversion, add NO zeros (report shows "242 Cr" -> 242; "5.83 Cr" -> 5.83).
+- Margins / rocePct / roePct are PERCENTAGES (e.g. 46.5). Days are numbers. Ratios (currentRatio, debtToEquity, interestCoverage) are plain numbers.
+- Every fiscal year's values differ — NEVER repeat one year's number across years.
+- parent = holding/parent company (Corporate Structure / "part of"). subsidiaries & associatedCompanies from Corporate Structure.
+- directors from "Board Members & Signatories". loans from "Loans & Charges" (lender + amount in Cr + open/closed).
+- capTable: promoter % vs public % and founder names from the shareholding / cap-table section.
+- competitors from the "Competitors" section.
+- Use null or [] for anything genuinely absent. NEVER guess.`;
 
 const crToINR = (v) => (typeof v === "number" && Number.isFinite(v) ? Math.round(v * 1e7) : null);
+const num = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
+const str = (v) => (typeof v === "string" && v.trim() ? v.trim() : null);
+const arr = (v) => (Array.isArray(v) ? v : []);
 
-async function extractOne(folder, text) {
+async function callLLM(folder, text) {
   const body = {
     model: MODEL,
     temperature: 0,
     response_format: { type: "json_object" },
     messages: [
-      { role: "system", content: "You extract structured financials from messy Tracxn report text. Output only valid JSON." },
-      { role: "user", content: `${SCHEMA_HINT}\n\nCompany folder: ${folder}\n\nREPORT TEXT:\n${text.slice(0, 55000)}` },
+      { role: "system", content: "You extract accurate structured data from messy Tracxn report text. Output only valid JSON. Never invent numbers." },
+      { role: "user", content: `${PROMPT}\n\nCompany folder: ${folder}\n\nREPORT TEXT:\n${text.slice(0, 84000)}` },
     ],
   };
-  for (let attempt = 0; attempt < 3; attempt++) {
+  for (let a = 0; a < 3; a++) {
     try {
       const res = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: { authorization: `Bearer ${KEY}`, "content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      if (!res.ok) throw new Error(`${res.status} ${(await res.text()).slice(0, 120)}`);
-      const json = await res.json();
-      const parsed = JSON.parse(json.choices[0].message.content);
-      const n = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
-      const years = (Array.isArray(parsed.years) ? parsed.years : [])
-        .filter((y) => y && y.fy && y.revenueCr != null)
-        .map((y) => ({
-          fy: y.fy,
-          revenueINR: crToINR(y.revenueCr),
-          ebitdaINR: crToINR(y.ebitdaCr),
-          netProfitINR: crToINR(y.netProfitCr),
-          receivableDays: n(y.receivableDays),
-          payableDays: n(y.payableDays),
-          rocePct: n(y.rocePct),
-          currentRatio: n(y.currentRatio),
-        }));
-      return { years };
+      if (!res.ok) throw new Error(`${res.status} ${(await res.text()).slice(0, 140)}`);
+      const j = await res.json();
+      return JSON.parse(j.choices[0].message.content);
     } catch (e) {
-      if (attempt === 2) { console.log(`  ! ${folder}: ${String(e).slice(0, 100)}`); return null; }
-      await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)));
+      if (a === 2) { console.log(`  ! ${folder}: ${String(e).slice(0, 110)}`); return null; }
+      await new Promise((r) => setTimeout(r, 1500 * (a + 1)));
     }
   }
-  return null;
+}
+
+function shape(p) {
+  const years = arr(p.years)
+    .filter((y) => y && y.fy && y.revenueCr != null)
+    .map((y) => ({
+      fy: String(y.fy).replace(/^FY\s*/i, "").trim(),
+      revenueINR: crToINR(y.revenueCr),
+      ebitdaINR: crToINR(y.ebitdaCr),
+      netProfitINR: crToINR(y.netProfitCr),
+      ebitdaMarginPct: num(y.ebitdaMarginPct),
+      netMarginPct: num(y.netMarginPct),
+      rocePct: num(y.rocePct),
+      roePct: num(y.roePct),
+      receivableDays: num(y.receivableDays),
+      payableDays: num(y.payableDays),
+      cashConversionDays: num(y.cashConversionDays),
+      currentRatio: num(y.currentRatio),
+      debtToEquity: num(y.debtToEquity),
+      interestCoverage: num(y.interestCoverage),
+      totalDebtINR: crToINR(y.totalDebtCr),
+      tradePayablesINR: crToINR(y.tradePayablesCr),
+      tradeReceivablesINR: crToINR(y.tradeReceivablesCr),
+      inventoryINR: crToINR(y.inventoryCr),
+      cashINR: crToINR(y.cashCr),
+      totalEquityINR: crToINR(y.totalEquityCr),
+    }));
+  years.sort((a, b) => a.fy.localeCompare(b.fy)); // oldest → newest
+  return {
+    years,
+    parent: str(p.parent),
+    subsidiaries: arr(p.subsidiaries).map(str).filter(Boolean),
+    associatedCompanies: arr(p.associatedCompanies).map(str).filter(Boolean),
+    directors: arr(p.directors).map((d) => ({ name: str(d?.name), designation: str(d?.designation) })).filter((d) => d.name),
+    loans: arr(p.loans).map((l) => ({ lender: str(l?.lender), amountINR: crToINR(l?.amountCr), status: str(l?.status) })).filter((l) => l.lender),
+    capTable: {
+      promoterPct: num(p.capTable?.promoterPct),
+      publicPct: num(p.capTable?.publicPct),
+      founders: arr(p.capTable?.founders).map(str).filter(Boolean),
+    },
+    competitors: arr(p.competitors).map(str).filter(Boolean),
+  };
 }
 
 async function main() {
@@ -88,16 +126,18 @@ async function main() {
   let done = 0;
   for (const [folder, text] of entries) {
     if (done >= limit) break;
-    if (out[folder]?.years?.length && !args.includes("--refresh")) { continue; } // cached
-    const rec = await extractOne(folder, text);
-    if (rec && rec.years.length) {
-      out[folder] = rec;
-      done++;
-      console.log(`  ✓ ${folder}: ${rec.years.length} years (${rec.years[0].fy}–${rec.years[rec.years.length - 1].fy})`);
-      writeFileSync(OUT, JSON.stringify(out, null, 1)); // checkpoint after each
-    }
+    if (out[folder]?.years?.length && !refresh) continue;
+    const raw = await callLLM(folder, text);
+    if (!raw) continue;
+    const rec = shape(raw);
+    if (!rec.years.length) { console.log(`  · ${folder}: no years parsed`); continue; }
+    out[folder] = rec;
+    done++;
+    const y = rec.years;
+    console.log(`  ✓ ${folder}: ${y.length}y ${y[0].fy}–${y[y.length - 1].fy} · ${rec.directors.length} dir · ${rec.subsidiaries.length} subs · ${rec.competitors.length} peers`);
+    writeFileSync(OUT, JSON.stringify(out, null, 1));
   }
-  console.log(`\nDone. ${done} suppliers extracted this run · ${Object.keys(out).length} total → ${OUT}`);
+  console.log(`\nDone. ${done} extracted this run · ${Object.keys(out).length} total → ${OUT}`);
 }
 
 main();

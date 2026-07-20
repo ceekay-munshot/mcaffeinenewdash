@@ -82,10 +82,34 @@ export interface StatementYear {
   revenueINR: number | null;
   ebitdaINR: number | null;
   netProfitINR: number | null;
+  ebitdaMarginPct: number | null;
+  netMarginPct: number | null;
+  rocePct: number | null;
+  roePct: number | null;
   receivableDays: number | null;
   payableDays: number | null;
-  rocePct: number | null;
+  cashConversionDays: number | null;
   currentRatio: number | null;
+  debtToEquity: number | null;
+  interestCoverage: number | null;
+  totalDebtINR: number | null;
+  tradePayablesINR: number | null;
+  tradeReceivablesINR: number | null;
+  inventoryINR: number | null;
+  cashINR: number | null;
+  totalEquityINR: number | null;
+}
+
+// Full supplier profile pulled from the Tracxn detailed-report PDF.
+export interface SupplierProfile {
+  years: StatementYear[];
+  parent: string | null;
+  subsidiaries: string[];
+  associatedCompanies: string[];
+  directors: { name: string | null; designation: string | null }[];
+  loans: { lender: string | null; amountINR: number | null; status: string | null }[];
+  capTable: { promoterPct: number | null; publicPct: number | null; founders: string[] };
+  competitors: string[];
 }
 
 export interface Entity {
@@ -115,7 +139,7 @@ export interface Entity {
   shelf?: ShelfData;
   research?: ResearchData;
   pdf?: SupplierPdf;
-  statements?: StatementYear[];
+  profile?: SupplierProfile;
 }
 
 export interface Dataset {
