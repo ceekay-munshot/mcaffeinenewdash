@@ -24,6 +24,21 @@ const BOM = (KIM as { Sheet1: Record<string, string>[] }).Sheet1
 const RAW_MATERIALS = [...new Set(BOM.map((r) => r.col1).filter((v) => v && !/sum of formulation/i.test(v)))];
 const PACKAGING = [...new Set(BOM.map((r) => r.col2).filter(Boolean))];
 
+// Latest fiscal year of the PDF-extracted profile (years stored oldest → newest),
+// so the main table/overview can fall back to the rich Tracxn statements when the
+// thin base financials are blank.
+function latestYear(e: Entity) {
+  const ys = e.profile?.years;
+  return ys && ys.length ? ys[ys.length - 1] : null;
+}
+
+// Effective headline numbers: thin base financials first, then the latest year of
+// the rich Tracxn PDF profile. Keeps the table, KPIs, sorting and overview charts
+// all reading the same "best available" value instead of the mostly-blank base.
+const revOf = (e: Entity) => e.financials.revenueINR ?? latestYear(e)?.revenueINR ?? null;
+const ebitdaMarginOf = (e: Entity) => e.financials.ebitdaMarginPct ?? latestYear(e)?.ebitdaMarginPct ?? null;
+const netMarginOf = (e: Entity) => e.financials.netMarginPct ?? latestYear(e)?.netMarginPct ?? null;
+
 type Module = "suppliers" | "competitors" | "delivery";
 
 export default function App() {
@@ -116,9 +131,9 @@ function SupplierView() {
     return [...r].sort((a, b) => {
       switch (sort) {
         case "name": return a.brand.localeCompare(b.brand);
-        case "ebitda": return (b.financials.ebitdaMarginPct ?? -1) - (a.financials.ebitdaMarginPct ?? -1);
+        case "ebitda": return (ebitdaMarginOf(b) ?? -1) - (ebitdaMarginOf(a) ?? -1);
         case "room": return roomRank[negotiationRoom(b)] - roomRank[negotiationRoom(a)];
-        default: return (b.financials.revenueINR ?? -1) - (a.financials.revenueINR ?? -1);
+        default: return (revOf(b) ?? -1) - (revOf(a) ?? -1);
       }
     });
   }, [all, cat, query, sort]);
@@ -127,7 +142,7 @@ function SupplierView() {
     tracked: all.length,
     full: all.filter((e) => e.coverage === "full").length,
     partial: all.filter((e) => e.coverage === "partial").length,
-    revCr: all.reduce((s, e) => s + (toCrore(e.financials.revenueINR) ?? 0), 0),
+    revCr: all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0),
     highRoom: all.filter((e) => negotiationRoom(e) === "High").length,
   }), [all]);
 
@@ -174,26 +189,33 @@ function SupplierView() {
           <thead>
             <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
               <Th>Company</Th><Th>Category</Th><Th right>Revenue</Th><Th right>EBITDA %</Th>
-              <Th right>Net %</Th><Th right>3-yr growth</Th><Th right>Staff</Th><Th>Negotiation room</Th><Th>Risk</Th><Th>Coverage</Th>
+              <Th right>Net %</Th><Th right>RoCE</Th><Th right>Recv days</Th><Th right>Pay days</Th><Th>Negotiation room</Th><Th>Risk</Th>
             </tr>
           </thead>
           <tbody>
             {rows.map((e) => {
               const room = negotiationRoom(e);
+              const py = latestYear(e);
+              const revenue = revOf(e);
+              const ebitda = ebitdaMarginOf(e);
+              const net = netMarginOf(e);
+              const roce = py?.rocePct ?? e.probe?.roce ?? null;
+              const recv = py?.receivableDays ?? e.probe?.receivableDays ?? null;
+              const pay = py?.payableDays ?? e.probe?.payableDays ?? null;
               return (
                 <tr key={e.category + e.folder} onClick={() => openSupplier(e)}
                   className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
                   <td className="px-4 py-3"><div className="font-medium text-slate-900">{e.brand}</div>
                     <div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div></td>
                   <td className="px-4 py-3 text-slate-500">{e.category}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(e.financials.revenueINR)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(e.financials.ebitdaMarginPct)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(e.financials.netMarginPct)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(e.financials.revenueCAGR3yrPct)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtInt(e.financials.employeeCount)}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revenue)}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitda)}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(net)}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(roce)}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(recv)}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(pay)}</td>
                   <td className="px-4 py-3"><Pill cls={ROOM_META[room].cls} dot={ROOM_META[room].dot}>{ROOM_META[room].label}</Pill></td>
                   <td className="px-4 py-3"><RiskCell e={e} /></td>
-                  <td className="px-4 py-3"><Pill cls={COVERAGE_META[e.coverage].cls}>{COVERAGE_META[e.coverage].label}</Pill></td>
                 </tr>
               );
             })}
@@ -222,7 +244,7 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
 
   const revByCat: Slice[] = useMemo(() => {
     const m: Record<string, number> = {};
-    for (const e of all) m[e.category] = (m[e.category] ?? 0) + (toCrore(e.financials.revenueINR) ?? 0);
+    for (const e of all) m[e.category] = (m[e.category] ?? 0) + (toCrore(revOf(e)) ?? 0);
     return Object.entries(m)
       .map(([label, value]) => ({ label, value: Math.round(value), color: CATEGORY_COLOR[label] ?? "#94a3b8" }))
       .sort((a, b) => b.value - a.value);
@@ -231,10 +253,10 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
   const topRev: Slice[] = useMemo(
     () =>
       [...all]
-        .filter((e) => e.financials.revenueINR)
-        .sort((a, b) => (b.financials.revenueINR ?? 0) - (a.financials.revenueINR ?? 0))
+        .filter((e) => revOf(e))
+        .sort((a, b) => (revOf(b) ?? 0) - (revOf(a) ?? 0))
         .slice(0, 8)
-        .map((e) => ({ label: e.brand, value: Math.round(toCrore(e.financials.revenueINR) ?? 0), color: CATEGORY_COLOR[e.category] ?? "#94a3b8" })),
+        .map((e) => ({ label: e.brand, value: Math.round(toCrore(revOf(e)) ?? 0), color: CATEGORY_COLOR[e.category] ?? "#94a3b8" })),
     [all]
   );
 
@@ -251,8 +273,8 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
   const targets = useMemo(
     () =>
       [...all]
-        .filter((e) => negotiationRoom(e) === "High" && e.financials.revenueINR)
-        .sort((a, b) => (b.financials.revenueINR ?? 0) - (a.financials.revenueINR ?? 0))
+        .filter((e) => negotiationRoom(e) === "High" && revOf(e))
+        .sort((a, b) => (revOf(b) ?? 0) - (revOf(a) ?? 0))
         .slice(0, 5),
     [all]
   );
@@ -298,7 +320,7 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
                   <div className="text-xs text-slate-400">{e.category}</div>
                 </div>
                 <div className="text-right">
-                  <div className="font-mono text-sm text-slate-900">{fmtPct(e.financials.ebitdaMarginPct)}</div>
+                  <div className="font-mono text-sm text-slate-900">{fmtPct(ebitdaMarginOf(e))}</div>
                   <div className="text-xs text-slate-400">EBITDA</div>
                 </div>
               </li>
@@ -387,7 +409,7 @@ function CompetitorView() {
   const kpis = useMemo(() => ({
     tracked: all.length,
     cats: COMPETITOR_CATEGORIES.length,
-    revCr: all.reduce((s, e) => s + (toCrore(e.financials.revenueINR) ?? 0), 0),
+    revCr: all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0),
     deals: all.filter((e) => e.competitor?.materialEvent).length,
   }), [all]);
 
