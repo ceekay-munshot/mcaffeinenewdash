@@ -9,7 +9,11 @@ import type { Entity } from "../types";
 export type Room = "High" | "Medium" | "Low" | "Unknown";
 
 export function negotiationRoom(e: Entity): Room {
-  const m = e.financials.ebitdaMarginPct;
+  // Prefer the thin base margin, but fall back to the latest year of the rich
+  // Tracxn PDF profile so suppliers with only PDF statements still get scored.
+  const ys = e.profile?.years;
+  const py = ys && ys.length ? ys[ys.length - 1] : null;
+  const m = e.financials.ebitdaMarginPct ?? py?.ebitdaMarginPct ?? null;
   if (m == null) return "Unknown";
   if (m >= 20) return "High";
   if (m >= 10) return "Medium";
