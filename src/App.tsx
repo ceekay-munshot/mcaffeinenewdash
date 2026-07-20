@@ -31,24 +31,24 @@ function latestYear(e: Entity) {
   return ys && ys.length ? ys[ys.length - 1] : null;
 }
 
-// Some brands (e.g. Dove, Vaseline) have no standalone legal entity, so the PDF
-// attached to their folder is actually their PARENT GROUP's consolidated filing
-// (HUL — 17-18 subsidiaries, ₹64k Cr). Using that as the brand's own figure would
-// let a parent's revenue dominate the rankings.
+// Some brands' attached Tracxn PDF is actually their PARENT GROUP's consolidated
+// filing, not the brand's own — e.g. Dove/Vaseline → HUL (₹64k Cr), The Derma Co →
+// Honasa (₹2,146 Cr vs the brand's own ₹214 Cr). Using that as the brand's figure
+// would let a parent's revenue dominate the rankings and mislabel its trends.
 //
-// A big subsidiary roster is the structural tell of a group holding company — but
-// that alone misfires on a real company that simply has subsidiaries (e.g.
-// ValueTree lists 5 yet the profile IS its own ₹583 Cr filing). So the clinching
-// identity check is the numbers themselves: if the brand's own base revenue is
-// present and matches the profile's, it is the same entity, not a parent.
+// The clinching signal is identity by the numbers: when the brand has its own base
+// revenue, a profile that SUBSTANTIALLY EXCEEDS it is a bigger (parent/consolidated)
+// entity — while a profile that matches it is the brand's own (ValueTree: base ≈
+// profile ₹583 Cr, despite 5 subsidiaries). A base that is *larger* than the profile
+// is just a stale/bad base figure (Nivea), not a parent, so the profile stays. When
+// there's no base to compare, fall back to a big subsidiary roster (a group holding
+// company). Threshold 1.5× tolerates ordinary year-over-year growth.
 const isParentBackedProfile = (e: Entity) => {
-  if ((e.profile?.subsidiaries?.length ?? 0) < 5) return false;
-  const base = e.financials.revenueINR;
   const prof = latestYear(e)?.revenueINR;
-  if (base != null && base > 0 && prof != null && Math.max(base, prof) / Math.min(base, prof) <= 1.25) {
-    return false; // base ≈ profile → the filing is the brand's own
-  }
-  return true;
+  if (prof == null) return false;
+  const base = e.financials.revenueINR;
+  if (base != null && base > 0) return prof > base * 1.5;
+  return (e.profile?.subsidiaries?.length ?? 0) >= 5;
 };
 
 // Effective headline numbers. The brand's own base financials come first — they are
@@ -266,7 +266,13 @@ function SupplierView() {
                 </tr>
               );
             })}
-            {withData.length === 0 && <EmptyRow cols={10} />}
+            {withData.length === 0 && (
+              <tr>
+                <td colSpan={10} className="px-4 py-10 text-center text-slate-400">
+                  {noData.length > 0 ? "No suppliers with parsed financials match — see limited public data below." : "Nothing matches this filter."}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -803,9 +809,18 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
   const flags = e.pdf?.riskFlags ?? [];
   const roce = py?.rocePct ?? e.probe?.roce ?? null;
   const backLabel = kind === "competitor" ? "competitors" : kind === "delivery" ? "delivery" : "suppliers";
+  // "No financial data at all" — no detailed filing (profile / PDF / Probe) AND no
+  // base registry financials either. A company with reported base numbers (e.g.
+  // Ultra Beauty Care: revenue, EBITDA, 52 employees) must not get the notice.
+  const f = e.financials;
+  const hasReported =
+    revOf(e) != null || f.ebitdaINR != null || f.netProfitINR != null || f.employeeCount != null ||
+    f.paidUpCapitalINR != null || f.authorizedCapitalINR != null ||
+    f.revenueCAGR1yrPct != null || f.revenueCAGR3yrPct != null || f.revenueCAGR5yrPct != null;
   const hasFiling = !!(e.profile?.years?.length || e.pdf || e.probe);
-  // When the attached filing is the parent group's (Dove/Vaseline → HUL), the
-  // trend/balance-sheet cards below are the group's, not the brand's — say so.
+  const noFinancials = !hasFiling && !hasReported;
+  // When the attached filing is the parent group's (Dove/Vaseline → HUL, Derma Co →
+  // Honasa), the trend/balance-sheet cards below are the group's, not the brand's.
   const parentGroup = isParentBackedProfile(e) ? e.profile?.parent ?? "its parent group" : null;
 
   const kpis: { label: string; value: string }[] =
@@ -872,9 +887,9 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
       </section>
 
       {/* context banners */}
-      {!hasFiling && (
+      {noFinancials && (
         <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm text-amber-800 ring-1 ring-amber-200">
-          No detailed financial filing is available for this company in Tracxn — only the registry basics below.
+          No financial data is available for this company in Tracxn — only the registry basics below.
         </div>
       )}
       {parentGroup && (
