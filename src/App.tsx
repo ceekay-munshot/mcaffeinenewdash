@@ -11,7 +11,7 @@ import {
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom } from "./lib/health";
 import { CATEGORY_COLOR } from "./lib/palette";
-import { HBars, Columns, AreaLine, ScoreBars, Radar, Card, type Slice } from "./charts";
+import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
@@ -469,8 +469,46 @@ const RENEG_WEIGHT: Record<string, number> = {
   "Fat margins — push on price": 3, "Margins are widening": 2, "Room to extend our payment terms": 2,
   "Collects faster than its peers": 1.5, "They already stretch their suppliers": 1.5, "Offer early payment for a discount": 1.5,
 };
-const FIT_ORDER = ["EBITDA margin", "Net margin", "RoCE", "Liquidity", "Low leverage", "Interest cover", "Fast collection"];
-const FIT_SHORT: Record<string, string> = { "EBITDA margin": "EBITDA", "Net margin": "Net", RoCE: "RoCE", Liquidity: "Liquidity", "Low leverage": "Low debt", "Interest cover": "Int cover", "Fast collection": "Collects" };
+// A fiscal-year row from a supplier profile — source of every trend metric.
+type PYear = NonNullable<Entity["profile"]>["years"][number];
+const sFy = (fy: string) => { const p = fy.split(/[-\s/]/).filter(Boolean); return "'" + (p[p.length - 1] ?? fy).slice(-2); };
+const CMP_TREND: { key: string; label: string; emoji: string; unit: (v: number) => string; get: (y: PYear) => number | null }[] = [
+  { key: "revenue", label: "Revenue", emoji: "💵", unit: (v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${Math.round(v)} Cr`), get: (y) => (y.revenueINR != null ? Math.round(y.revenueINR / 1e7) : null) },
+  { key: "netprofit", label: "Net profit", emoji: "📈", unit: (v) => (v >= 0 ? `₹${Math.round(v)} Cr` : `−₹${Math.round(Math.abs(v))} Cr`), get: (y) => (y.netProfitINR != null ? Math.round(y.netProfitINR / 1e7) : null) },
+  { key: "ebitda", label: "EBITDA margin", emoji: "💰", unit: (v) => `${Math.round(v)}%`, get: (y) => y.ebitdaMarginPct ?? null },
+  { key: "netmargin", label: "Net margin", emoji: "📊", unit: (v) => `${Math.round(v)}%`, get: (y) => y.netMarginPct ?? null },
+  { key: "roce", label: "RoCE", emoji: "⚙️", unit: (v) => `${Math.round(v)}%`, get: (y) => y.rocePct ?? null },
+  { key: "roe", label: "RoE", emoji: "🏦", unit: (v) => `${Math.round(v)}%`, get: (y) => y.roePct ?? null },
+  { key: "dso", label: "Collection days", emoji: "⏱️", unit: (v) => `${Math.round(v)} d`, get: (y) => y.receivableDays ?? null },
+  { key: "dpo", label: "Payment days", emoji: "📤", unit: (v) => `${Math.round(v)} d`, get: (y) => y.payableDays ?? null },
+  { key: "current", label: "Current ratio", emoji: "💧", unit: (v) => v.toFixed(2), get: (y) => y.currentRatio ?? null },
+  { key: "de", label: "Debt / equity", emoji: "⚖️", unit: (v) => v.toFixed(2), get: (y) => y.debtToEquity ?? null },
+  { key: "icov", label: "Interest cover", emoji: "🛡️", unit: (v) => `${v.toFixed(1)}x`, get: (y) => y.interestCoverage ?? null },
+];
+
+// The comparison chart: one metric (from a dropdown) plotted as a multi-year
+// line per selected supplier, all on the same axes — trend-first, not one year.
+function TrendCompare({ selected }: { selected: Entity[] }) {
+  const [mk, setMk] = useState(CMP_TREND[0].key);
+  const m = CMP_TREND.find((x) => x.key === mk) ?? CMP_TREND[0];
+  const fyShort = new Map<string, string>();
+  selected.forEach((e) => (e.profile?.years ?? []).forEach((y) => fyShort.set(y.fy, sFy(y.fy))));
+  const rawFys = [...fyShort.keys()].sort((a, b) => a.localeCompare(b));
+  const xLabels = rawFys.map((f) => fyShort.get(f)!);
+  const series = selected.map((e, i) => {
+    const byFy = new Map((e.profile?.years ?? []).map((y) => [y.fy, m.get(y)]));
+    return { name: e.brand, color: CMP_COLORS[i % CMP_COLORS.length], points: rawFys.map((f) => (byFy.has(f) ? byFy.get(f) ?? null : null)) };
+  });
+  const anyData = series.some((s) => s.points.some((v) => v != null));
+  return (
+    <div>
+      <div className="mb-3"><Dropdown label="Metric" value={mk} onChange={setMk} options={CMP_TREND.map((x) => ({ key: x.key, label: x.label, emoji: x.emoji }))} /></div>
+      {anyData
+        ? <MultiLine xLabels={xLabels} series={series} valueLabel={m.unit} height={300} />
+        : <div className="py-10 text-center text-sm text-slate-400">None of the selected suppliers have multi-year data for this metric.</div>}
+    </div>
+  );
+}
 
 // Pick any suppliers (optionally narrowed by product / type) then Analyse them
 // head-to-head — a visual scorecard for "who do I renegotiate with / go with".
@@ -562,27 +600,6 @@ function VerdictCard({ emoji, title, e, color, note, onSelect }: { emoji: string
 
 function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; onBack: () => void; onSelect: (e: Entity) => void }) {
   const colorOf = (e: Entity) => CMP_COLORS[selected.indexOf(e) % CMP_COLORS.length];
-  const byName = new Map(selected.map((e) => [e.brand, e]));
-
-  const fitMaps = selected.map((e) => new Map(fitnessAxes(e).map((a) => [a.label, a.score])));
-  const commonLabels = FIT_ORDER.filter((l) => fitMaps.every((m) => m.has(l)));
-  const radarAxes = commonLabels.map((l) => FIT_SHORT[l] ?? l);
-  const radarSeries = selected.map((e, i) => ({ name: e.brand, color: CMP_COLORS[i % CMP_COLORS.length], values: commonLabels.map((l) => fitMaps[i].get(l) ?? 0) }));
-
-  const round = (v: number) => Math.round(v * 10) / 10;
-  const mk = (key: string, label: string, emoji: string, get: (e: Entity) => number | null, unit: (v: number) => string, note: string, higherBetter = true): RankMetric => ({
-    key, label, emoji, unit, note,
-    rows: selected.map((e) => ({ e, v: get(e) })).filter((x): x is { e: Entity; v: number } => x.v != null)
-      .sort((a, b) => (higherBetter ? b.v - a.v : a.v - b.v)).map(({ e, v }) => ({ label: e.brand, value: round(v), color: colorOf(e) })),
-  });
-  const metrics = [
-    mk("revenue", "Revenue", "💵", (e) => toCrore(revOf(e)), (v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`), "Scale — the size of the relationship."),
-    mk("ebitda", "EBITDA margin", "💰", ebitdaMarginOf, (v) => `${v}%`, "Profit cushion to negotiate a better price against."),
-    mk("net", "Net margin", "📊", netMarginOf, (v) => `${v}%`, "Bottom-line health."),
-    mk("roce", "RoCE", "⚙️", supRoce, (v) => `${v}%`, "How efficiently they turn capital into profit."),
-    mk("dso", "Collection days", "⏱️", supDSO, (v) => `${Math.round(v)} d`, "Lower = healthier cash, less dependent on us paying fast.", false),
-    mk("dpo", "Payment days", "📤", supDPO, (v) => `${Math.round(v)} d`, "Higher = they already stretch suppliers, so long terms are credible."),
-  ].filter((m) => m.rows.length > 0);
 
   const reneg = selected.map((e) => ({ e, s: supplierInsights(e).filter((i) => i.tone === "opportunity").reduce((a, i) => a + (RENEG_WEIGHT[i.title] ?? 1), 0) })).sort((a, b) => b.s - a.s);
   const fit = selected.map((e) => { const ax = fitnessAxes(e); return { e, s: ax.length ? ax.reduce((a, x) => a + x.score, 0) / ax.length : 0 }; }).sort((a, b) => b.s - a.s);
@@ -601,17 +618,9 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
         <VerdictCard emoji="🛡️" title="Most reliable to commit to" e={bestFit.e} color={colorOf(bestFit.e)} note={`Financial fitness ${Math.round(bestFit.s)}/100`} onSelect={onSelect} />
       </div>
 
-      {commonLabels.length >= 3 && (
-        <Card title="🕸️ Financial fitness compared" sub="each axis scored 0–100 · a bigger shape is a healthier vendor" accent="#0d9488">
-          <Radar axes={radarAxes} series={radarSeries} size={340} />
-        </Card>
-      )}
-
-      {metrics.length > 0 && (
-        <Card title="📊 Head-to-head metrics" sub="switch the metric to compare the selected suppliers" accent="#2a78d6">
-          <MetricRank metrics={metrics} onBar={(l) => { const e = byName.get(l); if (e) onSelect(e); }} />
-        </Card>
-      )}
+      <Card title="📈 Trend comparison" sub="pick a metric — every selected supplier's multi-year trend on one chart" accent="#0d9488">
+        <TrendCompare selected={selected} />
+      </Card>
 
       <Card title="🎯 Negotiation angles per supplier" sub="the levers each one hands you" accent="#eda100">
         <div className="space-y-2.5">
