@@ -11,38 +11,25 @@ import {
   type SupplierProfile,
 } from "./types";
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
-import { negotiationRoom, ROOM_META, COVERAGE_META, type Room } from "./lib/health";
-import { CATEGORY_COLOR, COVERAGE_COLOR, ROOM_COLOR } from "./lib/palette";
-import { Donut, HBars, Columns, AreaLine, StackedMeter, Legend, Card, type Slice } from "./charts";
+import { negotiationRoom, ROOM_META, type Room } from "./lib/health";
+import { CATEGORY_COLOR } from "./lib/palette";
+import { HBars, Columns, AreaLine, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
-import KIM from "@data/raw/masters/key_ingredients_manufacturers.json";
+import {
+  supplierInsights, TONE_META, type Insight, type InsightTone,
+  supDSO, supDPO, supCCC, supRoce,
+} from "./lib/insights";
 
-// Bill-of-materials rosters the client shared (raw materials + packaging specs).
-const BOM = (KIM as { Sheet1: Record<string, string>[] }).Sheet1
-  .filter((r) => r.col0 && r.col0 !== "Sr. No.");
-const RAW_MATERIALS = [...new Set(BOM.map((r) => r.col1).filter((v) => v && !/sum of formulation/i.test(v)))];
-const PACKAGING = [...new Set(BOM.map((r) => r.col2).filter(Boolean))];
+/* -------------------------------------------------- data accessors / helpers */
 
-// Latest fiscal year of the PDF-extracted profile (years stored oldest → newest),
-// so the main table/overview can fall back to the rich Tracxn statements when the
-// thin base financials are blank.
 function latestYear(e: Entity) {
   const ys = e.profile?.years;
   return ys && ys.length ? ys[ys.length - 1] : null;
 }
 
 // Some brands' attached Tracxn PDF is actually their PARENT GROUP's consolidated
-// filing, not the brand's own — e.g. Dove/Vaseline → HUL (₹64k Cr), The Derma Co →
-// Honasa (₹2,146 Cr vs the brand's own ₹214 Cr). Using that as the brand's figure
-// would let a parent's revenue dominate the rankings and mislabel its trends.
-//
-// The clinching signal is identity by the numbers: when the brand has its own base
-// revenue, a profile that SUBSTANTIALLY EXCEEDS it is a bigger (parent/consolidated)
-// entity — while a profile that matches it is the brand's own (ValueTree: base ≈
-// profile ₹583 Cr, despite 5 subsidiaries). A base that is *larger* than the profile
-// is just a stale/bad base figure (Nivea), not a parent, so the profile stays. When
-// there's no base to compare, fall back to a big subsidiary roster (a group holding
-// company). Threshold 1.5× tolerates ordinary year-over-year growth.
+// filing, not the brand's own (Dove/Vaseline → HUL, The Derma Co → Honasa). A
+// profile that substantially exceeds the brand's own base revenue is a parent.
 const isParentBackedProfile = (e: Entity) => {
   const prof = latestYear(e)?.revenueINR;
   if (prof == null) return false;
@@ -51,12 +38,6 @@ const isParentBackedProfile = (e: Entity) => {
   return (e.profile?.subsidiaries?.length ?? 0) >= 5;
 };
 
-// Effective headline numbers. The brand's own base financials come first — they are
-// the entity-level figure — and the multi-year Tracxn PDF profile only fills a
-// genuine gap (missing / zero base), and only when that profile is the brand's own
-// (not a parent group's). This keeps both The Derma Co (its ₹214 Cr, not parent
-// Honasa's ₹2,146 Cr) and Dove/Vaseline (no brand-level figure rather than HUL's
-// ₹64k Cr) honest, while still filling small single-entity D2C brands from the PDF.
 const profRevOf = (e: Entity) => (isParentBackedProfile(e) ? null : latestYear(e)?.revenueINR ?? null);
 const revOf = (e: Entity) => {
   const b = e.financials.revenueINR;
@@ -67,9 +48,8 @@ const ebitdaMarginOf = (e: Entity) =>
 const netMarginOf = (e: Entity) =>
   e.financials.netMarginPct ?? (isParentBackedProfile(e) ? null : latestYear(e)?.netMarginPct) ?? null;
 
-// Open a full-page profile while remembering where we were in the list, so the
-// Back button returns the user to the exact row/bar they clicked (the old drawer
-// preserved list scroll; a state-swap page otherwise loses it).
+// Open a full-page profile while remembering the list scroll offset, so Back
+// returns the user to the exact row they clicked.
 function useProfileNav<T>(selected: T | null, setSelected: (v: T | null) => void) {
   const listScroll = useRef(0);
   useEffect(() => {
@@ -80,12 +60,31 @@ function useProfileNav<T>(selected: T | null, setSelected: (v: T | null) => void
   return { open, back };
 }
 
+const crStr = (cr: number) => `₹${cr >= 1000 ? (cr / 1000).toFixed(1) + "k" : cr.toFixed(0)} Cr`;
+
+// category identity — emoji + colour, used everywhere a supplier category shows up.
+const CAT_META: Record<string, { emoji: string; color: string }> = {
+  "RM Vendor": { emoji: "🧪", color: CATEGORY_COLOR["RM Vendor"] },
+  "PM Vendor": { emoji: "📦", color: CATEGORY_COLOR["PM Vendor"] },
+  Manufacturer: { emoji: "🏭", color: CATEGORY_COLOR.Manufacturer },
+};
+const catEmoji = (cat: string) => CAT_META[cat]?.emoji ?? "🏢";
+const catColor = (cat: string) => CAT_META[cat]?.color ?? "#94a3b8";
+
+/* --------------------------------------------------------------------- shell */
+
 type Module = "suppliers" | "competitors" | "delivery";
+
+const MODULES: { key: Module; label: string; emoji: string }[] = [
+  { key: "suppliers", label: "Suppliers", emoji: "🏭" },
+  { key: "competitors", label: "Competitors", emoji: "🥊" },
+  { key: "delivery", label: "Delivery", emoji: "🚚" },
+];
 
 export default function App() {
   const [module, setModule] = useState<Module>("suppliers");
   return (
-    <div className="min-h-full">
+    <div className="min-h-screen bg-[#f6f4ef] text-slate-800">
       <Header module={module} setModule={setModule} generatedAt={DATA.generatedAt} />
       {module === "suppliers" && <SupplierView />}
       {module === "competitors" && <CompetitorView />}
@@ -94,49 +93,39 @@ export default function App() {
   );
 }
 
-/* ------------------------------------------------------------------ header */
-
-const MODULE_META: Record<Module, { label: string; subtitle: string }> = {
-  suppliers: { label: "Suppliers", subtitle: "P0 — Vendor & Manufacturer Financial Health" },
-  competitors: { label: "Competitors", subtitle: "P2 — Category Competitor Benchmarking" },
-  delivery: { label: "Delivery", subtitle: "P3 — Last-Mile Delivery Partner Insights" },
-};
-
 function Header({ module, setModule, generatedAt }: { module: Module; setModule: (m: Module) => void; generatedAt: string }) {
-  const subtitle = MODULE_META[module].subtitle;
   return (
-    <header className="sticky top-0 z-20 bg-[#0b1a2c] shadow-lg shadow-slate-900/5">
-      {/* thin brand accent */}
-      <div className="h-0.5 w-full bg-gradient-to-r from-teal-400 via-teal-300 to-cyan-400" />
-      <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-y-2 px-4 py-3 sm:px-6">
-        <div>
-          <div className="flex items-baseline">
-            <span className="text-2xl font-extrabold lowercase tracking-tight text-white">mc</span>
-            <span className="text-2xl font-extrabold uppercase tracking-tight text-white">AFFEINE</span>
-            <span className="ml-1 self-start text-[10px] font-bold text-teal-300">®</span>
-            <span className="ml-3 hidden border-l border-white/15 pl-3 text-[10px] font-semibold uppercase tracking-[0.35em] text-teal-300 sm:inline">
-              CCO Command Center
-            </span>
+    <header className="sticky top-0 z-30 bg-gradient-to-r from-[#0b3b39] via-[#0d9488] to-[#0891b2] shadow-md">
+      <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-y-3 px-4 py-3.5 sm:px-6">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/15 text-xl ring-1 ring-white/25">☕</div>
+          <div>
+            <div className="flex items-baseline">
+              <span className="text-xl font-extrabold lowercase tracking-tight text-white">mc</span>
+              <span className="text-xl font-extrabold uppercase tracking-tight text-white">AFFEINE</span>
+              <span className="ml-1 self-start text-[10px] font-bold text-teal-100">®</span>
+            </div>
+            <div className="text-[11px] font-medium uppercase tracking-[0.25em] text-teal-100/90">Supplier Intelligence</div>
           </div>
-          <div className="mt-1 text-xs text-slate-400">{subtitle}</div>
         </div>
         <div className="flex items-center gap-4">
-          <nav className="flex gap-1 rounded-xl bg-white/10 p-1 ring-1 ring-white/10">
-            {(["suppliers", "competitors", "delivery"] as Module[]).map((m) => (
+          <nav className="flex gap-1 rounded-2xl bg-black/15 p-1 ring-1 ring-white/15">
+            {MODULES.map((m) => (
               <button
-                key={m}
-                onClick={() => setModule(m)}
-                className={`rounded-lg px-3 py-1.5 text-sm font-medium transition ${
-                  module === m ? "bg-white text-[#0b1a2c] shadow-sm" : "text-slate-300 hover:bg-white/5 hover:text-white"
+                key={m.key}
+                onClick={() => setModule(m.key)}
+                className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-sm font-semibold transition ${
+                  module === m.key ? "bg-white text-[#0b3b39] shadow-sm" : "text-white/80 hover:bg-white/10 hover:text-white"
                 }`}
               >
-                {MODULE_META[m].label}
+                <span>{m.emoji}</span>
+                {m.label}
               </button>
             ))}
           </nav>
-          <div className="hidden text-right text-[11px] leading-tight text-slate-400 sm:block">
+          <div className="hidden text-right text-[11px] leading-tight text-teal-100/80 sm:block">
             <div className="uppercase tracking-wide">Data snapshot</div>
-            <div className="font-mono text-slate-200">{fmtDate(generatedAt)}</div>
+            <div className="font-mono text-white/90">{fmtDate(generatedAt)}</div>
           </div>
         </div>
       </div>
@@ -144,23 +133,333 @@ function Header({ module, setModule, generatedAt }: { module: Module; setModule:
   );
 }
 
+/* ------------------------------------------------------ reusable UI pieces */
+
+function ModuleHero({ emoji, title, subtitle, stats, tint }: {
+  emoji: string; title: string; subtitle: string; tint: string;
+  stats: { label: string; value: string }[];
+}) {
+  return (
+    <section className={`mt-6 overflow-hidden rounded-3xl bg-gradient-to-r ${tint} p-5 text-white shadow-sm`}>
+      <div className="flex flex-wrap items-center justify-between gap-5">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 text-lg font-bold"><span className="text-2xl">{emoji}</span>{title}</div>
+          <div className="mt-0.5 text-sm text-white/75">{subtitle}</div>
+        </div>
+        <div className="flex flex-wrap gap-2.5">
+          {stats.map((s) => (
+            <div key={s.label} className="rounded-2xl bg-white/12 px-4 py-2 ring-1 ring-white/20">
+              <div className="text-[10px] font-medium uppercase tracking-wide text-white/70">{s.label}</div>
+              <div className="text-lg font-bold tabular-nums">{s.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SubTabs<T extends string>({ tabs, value, onChange }: {
+  tabs: { key: T; label: string; emoji: string }[]; value: T; onChange: (t: T) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-1.5 rounded-2xl bg-white/70 p-1 ring-1 ring-slate-200">
+      {tabs.map((t) => (
+        <button
+          key={t.key}
+          onClick={() => onChange(t.key)}
+          className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-semibold transition ${
+            value === t.key ? "bg-white text-teal-700 shadow-sm ring-1 ring-teal-200" : "text-slate-500 hover:text-slate-800"
+          }`}
+        >
+          <span>{t.emoji}</span>
+          {t.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function CatChip({ cat }: { cat: string }) {
+  const c = catColor(cat);
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ring-1"
+      style={{ background: `${c}14`, color: c, borderColor: `${c}33`, boxShadow: `inset 0 0 0 1px ${c}22` }}>
+      <span>{catEmoji(cat)}</span>{cat}
+    </span>
+  );
+}
+
+function InsightCard({ ins, supplier, onOpen }: { ins: Insight; supplier?: string; onOpen?: () => void }) {
+  const m = TONE_META[ins.tone];
+  const Tag = onOpen ? "button" : "div";
+  return (
+    <Tag onClick={onOpen} className={`w-full text-left rounded-2xl ${m.bg} p-4 ring-1 ${m.ring} transition ${onOpen ? "hover:shadow-md" : ""}`}>
+      <div className="flex items-start gap-3">
+        <span className="text-xl leading-none">{ins.icon}</span>
+        <div className="min-w-0">
+          {supplier && <div className="truncate text-[11px] font-bold uppercase tracking-wide text-slate-500">{supplier}</div>}
+          <div className={`text-sm font-semibold ${m.text}`}>{ins.title}</div>
+          <div className="mt-1 text-[13px] leading-relaxed text-slate-600">{ins.detail}</div>
+        </div>
+      </div>
+    </Tag>
+  );
+}
+
 /* --------------------------------------------------------- P0 Supplier view */
 
-const SUP_CATS = ["All", "RM Vendor", "PM Vendor", "Manufacturer"] as const;
-type SupCat = (typeof SUP_CATS)[number];
-type SupSort = "revenue" | "ebitda" | "name" | "room";
+type SupTab = "insights" | "benchmark" | "directory";
+const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
+  { key: "insights", label: "Insights", emoji: "💡" },
+  { key: "benchmark", label: "Benchmark", emoji: "📊" },
+  { key: "directory", label: "Directory", emoji: "📇" },
+];
 
 function SupplierView() {
-  const everySupplier = useMemo(() => supplyEntities(), []);
-  const enriched = useMemo(() => everySupplier.filter((e) => e.probe), [everySupplier]);
-  const [showcaseOnly, setShowcaseOnly] = useState(false);
-  const all = useMemo(() => (showcaseOnly && enriched.length ? enriched : everySupplier), [showcaseOnly, enriched, everySupplier]);
-  const [cat, setCat] = useState<SupCat>("All");
-  const [query, setQuery] = useState("");
-  const [sort, setSort] = useState<SupSort>("revenue");
+  const all = useMemo(() => supplyEntities(), []);
+  const [tab, setTab] = useState<SupTab>("insights");
   const [selected, setSelected] = useState<Entity | null>(null);
-  const [view, setView] = useState<"overview" | "table">("overview");
-  const { open: openSupplier, back } = useProfileNav(selected, setSelected); // unified full-page profile for all
+  const { open: openSupplier, back } = useProfileNav(selected, setSelected);
+
+  const stats = useMemo(() => {
+    const withFin = all.filter((e) => revOf(e) != null).length;
+    const revCr = all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0);
+    const opps = all.reduce((s, e) => s + supplierInsights(e).filter((i) => i.tone === "opportunity").length, 0);
+    return { tracked: all.length, withFin, revCr, opps };
+  }, [all]);
+
+  if (selected) return <CompanyPage entity={selected} onBack={back} kind="supplier" />;
+
+  return (
+    <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
+      <ModuleHero
+        emoji="🏭"
+        title="Supplier Intelligence"
+        subtitle="Financial health, negotiation levers & risk across every RM · PM · Manufacturer vendor"
+        tint="from-[#0f766e] to-[#0891b2]"
+        stats={[
+          { label: "Suppliers", value: String(stats.tracked) },
+          { label: "With financials", value: `${stats.withFin}` },
+          { label: "Spend in view", value: crStr(stats.revCr) },
+          { label: "Levers found", value: String(stats.opps) },
+        ]}
+      />
+
+      <div className="mt-5 mb-4"><SubTabs tabs={SUP_TABS} value={tab} onChange={setTab} /></div>
+
+      {tab === "insights" && <SupplierInsightsView all={all} onSelect={openSupplier} />}
+      {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
+      {tab === "directory" && <DirectoryView all={all} onSelect={openSupplier} />}
+    </main>
+  );
+}
+
+/* -------- Suppliers · Insights tab (the negotiation / analysis hub) -------- */
+
+function SupplierInsightsView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const rows = useMemo(
+    () => all.map((e) => ({ e, ins: supplierInsights(e) })).filter((x) => x.ins.length),
+    [all]
+  );
+  const byTone = (tone: InsightTone) =>
+    rows
+      .flatMap(({ e, ins }) => ins.filter((i) => i.tone === tone).map((i) => ({ e, i })))
+      .sort((a, b) => (revOf(b.e) ?? 0) - (revOf(a.e) ?? 0));
+
+  const opp = byTone("opportunity");
+  const risk = byTone("risk");
+  const watch = byTone("watch");
+
+  const columns: { tone: InsightTone; title: string; emoji: string; items: { e: Entity; i: Insight }[] }[] = [
+    { tone: "opportunity", title: "Where you can push", emoji: "💸", items: opp },
+    { tone: "risk", title: "Risk watchlist", emoji: "🚩", items: risk },
+    { tone: "watch", title: "Keep an eye on", emoji: "👀", items: watch },
+  ];
+
+  return (
+    <div className="space-y-4">
+      {/* explainer callout — the core idea, in plain english */}
+      <div className="rounded-2xl border border-teal-200 bg-gradient-to-r from-teal-50 to-cyan-50 p-4">
+        <div className="flex items-start gap-3">
+          <span className="text-2xl">🧠</span>
+          <div className="text-sm leading-relaxed text-teal-900">
+            <span className="font-semibold">How to read this:</span> each card is a ready-to-use negotiation angle or risk, built from a supplier's own numbers.
+            For example — if a supplier <span className="font-semibold">collects cash from its customers in ~20 days</span> but we pay it in 10, we're paying faster than it needs, so there's room to push our terms out.
+            Fat margins mean room on price; a tight cash cycle means they'll take an early-payment discount. Click any card to open the full profile.
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        {columns.map((col) => {
+          const m = TONE_META[col.tone];
+          return (
+            <div key={col.tone} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200/70">
+              <div className="mb-3 flex items-center gap-2">
+                <span className="text-lg">{col.emoji}</span>
+                <h3 className="text-sm font-bold text-slate-800">{col.title}</h3>
+                <span className={`ml-auto rounded-full px-2 py-0.5 text-xs font-bold ${m.bg} ${m.text}`}>{col.items.length}</span>
+              </div>
+              <div className="space-y-2.5">
+                {col.items.length === 0 ? (
+                  <div className="rounded-xl bg-slate-50 p-4 text-center text-sm text-slate-400">Nothing here — a good sign.</div>
+                ) : (
+                  col.items.map(({ e, i }, idx) => (
+                    <InsightCard key={e.folder + idx} ins={i} supplier={`${catEmoji(e.category)} ${e.brand}`} onOpen={() => onSelect(e)} />
+                  ))
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* -------- Suppliers · Benchmark tab (compare across the portfolio) -------- */
+
+type MetricKey = "revenue" | "ebitda" | "roce" | "dso" | "dpo" | "ccc";
+const SUP_METRICS: { key: MetricKey; label: string; emoji: string; get: (e: Entity) => number | null; unit: (v: number) => string; note: string }[] = [
+  { key: "revenue", label: "Revenue", emoji: "💵", get: (e) => toCrore(revOf(e)), unit: (v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${Math.round(v)} Cr`), note: "Bigger vendors — where most of the spend sits." },
+  { key: "ebitda", label: "EBITDA margin", emoji: "💰", get: (e) => ebitdaMarginOf(e), unit: (v) => `${Math.round(v)}%`, note: "Fatter margin = more cushion in their pricing to negotiate on." },
+  { key: "roce", label: "Return on capital", emoji: "⚙️", get: (e) => supRoce(e), unit: (v) => `${Math.round(v)}%`, note: "How efficiently they turn capital into profit — high = a strong, healthy vendor." },
+  { key: "dso", label: "Collects in (DSO)", emoji: "📥", get: (e) => supDSO(e), unit: (v) => `${Math.round(v)} d`, note: "How fast they collect from their own customers. Low = healthy cash, so we can push our payment terms out." },
+  { key: "dpo", label: "Pays suppliers in (DPO)", emoji: "📤", get: (e) => supDPO(e), unit: (v) => `${Math.round(v)} d`, note: "How long they take to pay their own suppliers. High = they already stretch terms, so asking the same of them is credible." },
+  { key: "ccc", label: "Cash cycle", emoji: "🔄", get: (e) => supCCC(e), unit: (v) => `${Math.round(v)} d`, note: "Days cash is tied up. Long = they're cash-hungry and will value an early-payment discount." },
+];
+const SUP_CATS = ["All", "RM Vendor", "PM Vendor", "Manufacturer"] as const;
+
+function BenchmarkView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const [metric, setMetric] = useState<MetricKey>("revenue");
+  const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
+  const m = SUP_METRICS.find((x) => x.key === metric)!;
+
+  const pool = useMemo(() => (cat === "All" ? all : all.filter((e) => e.category === cat)), [all, cat]);
+
+  const bars: Slice[] = useMemo(
+    () =>
+      pool
+        .map((e) => ({ e, v: m.get(e) }))
+        .filter((x): x is { e: Entity; v: number } => x.v != null)
+        .sort((a, b) => b.v - a.v)
+        .slice(0, 14)
+        .map(({ e, v }) => ({ label: e.brand, value: Math.round(v * 10) / 10, color: catColor(e.category), sub: e.category })),
+    [pool, m]
+  );
+  const byName = useMemo(() => new Map(all.map((e) => [e.brand, e])), [all]);
+
+  // Payment-terms map — the headline lever: collects (DSO) vs pays (DPO).
+  const payTerms = useMemo(
+    () =>
+      pool
+        .map((e) => ({ e, dso: supDSO(e), dpo: supDPO(e) }))
+        .filter((x): x is { e: Entity; dso: number; dpo: number } => x.dso != null && x.dpo != null)
+        .sort((a, b) => a.dso - b.dso)
+        .slice(0, 12),
+    [pool]
+  );
+  const payMax = Math.max(1, ...payTerms.flatMap((p) => [p.dso, p.dpo]));
+
+  return (
+    <div className="space-y-4">
+      {/* controls */}
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-wrap gap-1.5">
+          {SUP_METRICS.map((x) => (
+            <button
+              key={x.key}
+              onClick={() => setMetric(x.key)}
+              className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-sm font-medium ring-1 transition ${
+                metric === x.key ? "bg-teal-600 text-white ring-teal-600 shadow-sm" : "bg-white text-slate-600 ring-slate-200 hover:ring-slate-300"
+              }`}
+            >
+              <span>{x.emoji}</span>
+              {x.label}
+            </button>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {SUP_CATS.map((c) => (
+            <button
+              key={c}
+              onClick={() => setCat(c)}
+              className={`rounded-lg px-2.5 py-1.5 text-xs font-semibold ring-1 transition ${
+                cat === c ? "bg-slate-800 text-white ring-slate-800" : "bg-white text-slate-500 ring-slate-200 hover:ring-slate-300"
+              }`}
+            >
+              {c === "All" ? "All" : `${catEmoji(c)} ${c}`}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <Card title={`${m.emoji} ${m.label} — ranked`} sub={m.note} accent={catColor(cat === "All" ? "RM Vendor" : cat)}>
+        {bars.length === 0 ? (
+          <div className="py-8 text-center text-sm text-slate-400">No suppliers with this metric yet.</div>
+        ) : (
+          <HBars data={bars} valueLabel={m.unit} onBar={(l) => byName.get(l) && onSelect(byName.get(l)!)} />
+        )}
+        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5">
+          {Object.keys(CAT_META).map((c) => (
+            <span key={c} className="flex items-center gap-1.5 text-xs text-slate-500">
+              <span className="h-2.5 w-2.5 rounded-sm" style={{ background: catColor(c) }} />{catEmoji(c)} {c}
+            </span>
+          ))}
+        </div>
+      </Card>
+
+      {/* signature payment-terms map */}
+      <Card
+        title="💸 Payment-terms map — who we can push"
+        sub="Teal = days they take to COLLECT from customers · Amber = days they take to PAY their suppliers. Short collection + long payment = they run on other people's cash, so extending our terms is realistic."
+        accent="#0d9488"
+      >
+        {payTerms.length === 0 ? (
+          <div className="py-8 text-center text-sm text-slate-400">No suppliers with both collection & payment days yet.</div>
+        ) : (
+          <div className="space-y-3">
+            {payTerms.map(({ e, dso, dpo }) => (
+              <button key={e.folder} onClick={() => onSelect(e)} className="group grid w-full grid-cols-[minmax(0,9rem)_1fr] items-center gap-3 text-left">
+                <div className="min-w-0">
+                  <div className="truncate text-sm font-medium text-slate-700 group-hover:text-slate-900">{e.brand}</div>
+                  <div className="text-[11px] text-slate-400">{catEmoji(e.category)} {e.category}</div>
+                </div>
+                <div className="space-y-1">
+                  <TermBar value={dso} max={payMax} color="#0d9488" label={`collects in ${Math.round(dso)}d`} />
+                  <TermBar value={dpo} max={payMax} color="#f59e0b" label={`pays in ${Math.round(dpo)}d`} />
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
+        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-slate-500">
+          <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-teal-600" /> Collects from customers (DSO)</span>
+          <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-amber-500" /> Pays its suppliers (DPO)</span>
+        </div>
+      </Card>
+    </div>
+  );
+}
+
+function TermBar({ value, max, color, label }: { value: number; max: number; color: string; label: string }) {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="h-3 flex-1 rounded-full bg-slate-100">
+        <div className="h-3 rounded-full" style={{ width: `${Math.max(4, (value / max) * 100)}%`, background: `linear-gradient(90deg, ${color}, ${color}cc)` }} />
+      </div>
+      <span className="w-28 shrink-0 text-[11px] text-slate-500">{label}</span>
+    </div>
+  );
+}
+
+/* -------- Suppliers · Directory tab (the table) -------- */
+
+function DirectoryView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
+  const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<"revenue" | "ebitda" | "room" | "name">("revenue");
 
   const rows = useMemo(() => {
     let r = all;
@@ -178,279 +477,93 @@ function SupplierView() {
     });
   }, [all, cat, query, sort]);
 
-  const kpis = useMemo(() => ({
-    tracked: all.length,
-    withFin: all.filter((e) => revOf(e) != null).length,
-    revCr: all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0),
-    highRoom: all.filter((e) => negotiationRoom(e) === "High").length,
-  }), [all]);
-
-  // Split the filtered rows: companies with parsed financials vs. the tiny
-  // vendors Tracxn holds no filing for (shown in their own section, not as
-  // a wall of dashes mixed into the main table).
   const withData = useMemo(() => rows.filter((e) => revOf(e) != null), [rows]);
   const noData = useMemo(() => rows.filter((e) => revOf(e) == null), [rows]);
 
-  if (selected) return <CompanyPage entity={selected} onBack={back} kind="supplier" />;
-
   return (
-    <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
-      {enriched.length > 0 && (
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-teal-200 bg-teal-50 px-4 py-3">
-          <div className="text-sm text-teal-900">
-            <span className="font-semibold">Financial health &amp; risk parsed from Tracxn filings for every supplier.</span>{" "}
-            <span className="text-teal-700">{enriched.length} also carry a live Probe42 deep-dive. Click any supplier for its full profile.</span>
-          </div>
-          <button onClick={() => setShowcaseOnly((s) => !s)} className="shrink-0 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-teal-700 ring-1 ring-teal-300 hover:bg-teal-100">
-            {showcaseOnly ? `Show all ${everySupplier.length}` : `Probe42 suppliers only (${enriched.length})`}
-          </button>
+    <div className="space-y-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-1.5">
+          {SUP_CATS.map((c) => (
+            <button key={c} onClick={() => setCat(c)}
+              className={`rounded-lg px-3 py-1.5 text-sm font-medium ring-1 transition ${
+                cat === c ? "bg-teal-50 text-teal-700 ring-teal-300" : "bg-white text-slate-500 ring-slate-200 hover:ring-slate-300"
+              }`}>
+              {c === "All" ? "All" : `${catEmoji(c)} ${c}`}
+              <span className="ml-1.5 text-xs text-slate-400">{c === "All" ? all.length : all.filter((e) => e.category === c).length}</span>
+            </button>
+          ))}
         </div>
-      )}
-      <section className="stagger grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
-        <Kpi label="Suppliers tracked" value={String(kpis.tracked)} sub="RM · PM · Manufacturers" />
-        <Kpi label="Financials on file" value={`${kpis.withFin} of ${kpis.tracked}`} sub="parsed from Tracxn filings" tone="emerald" />
-        <Kpi label="Revenue in view" value={crStr(kpis.revCr)} sub="sum of disclosed supplier revenue" tone="teal" />
-        <Kpi label="High negotiation room" value={String(kpis.highRoom)} sub="fat-margin suppliers to push on" tone="amber" />
-      </section>
-
-      <div className="mb-4 flex w-fit rounded-lg bg-slate-100 p-0.5 text-sm">
-        {(["overview", "table"] as const).map((v) => (
-          <button key={v} onClick={() => setView(v)}
-            className={`rounded-md px-3 py-1 font-medium capitalize transition ${view === v ? "bg-white text-teal-700 shadow-sm" : "text-slate-500 hover:text-slate-700"}`}>{v}</button>
-        ))}
+        <div className="flex gap-2">
+          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search…"
+            className="w-52 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-teal-400" />
+          <select value={sort} onChange={(e) => setSort(e.target.value as typeof sort)}
+            className="rounded-lg bg-white px-3 py-1.5 text-sm text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400">
+            {[["revenue", "Revenue"], ["ebitda", "EBITDA margin"], ["room", "Negotiation room"], ["name", "Name"]].map(([v, l]) => (
+              <option key={v} value={v}>Sort: {l}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      {view === "overview" && <SupplierOverview all={all} onSelect={openSupplier} />}
-
-      {view === "table" && (<>
-      <Toolbar
-        cats={SUP_CATS as unknown as string[]} cat={cat} setCat={(c) => setCat(c as SupCat)}
-        count={(c) => (c === "All" ? all.length : all.filter((e) => e.category === c).length)}
-        query={query} setQuery={setQuery}
-        sortValue={sort} setSort={(s) => setSort(s as SupSort)}
-        sortOptions={[["revenue", "Revenue"], ["ebitda", "EBITDA margin"], ["room", "Negotiation room"], ["name", "Name"]]}
-      />
-
-      <div className="mt-4 overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+      <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
         <table className="w-full min-w-[880px] border-collapse text-sm">
           <thead>
             <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
               <Th>Company</Th><Th>Category</Th><Th right>Revenue</Th><Th right>EBITDA %</Th>
-              <Th right>Net %</Th><Th right>RoCE</Th><Th right>Recv days</Th><Th right>Pay days</Th><Th>Negotiation room</Th><Th>Risk</Th>
+              <Th right>Net %</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th>Negotiation room</Th><Th>Risk</Th>
             </tr>
           </thead>
           <tbody>
             {withData.map((e) => {
               const room = negotiationRoom(e);
-              const py = latestYear(e);
-              const revenue = revOf(e);
-              const ebitda = ebitdaMarginOf(e);
-              const net = netMarginOf(e);
-              const roce = py?.rocePct ?? e.probe?.roce ?? null;
-              const recv = py?.receivableDays ?? e.probe?.receivableDays ?? null;
-              const pay = py?.payableDays ?? e.probe?.payableDays ?? null;
               return (
-                <tr key={e.category + e.folder} onClick={() => openSupplier(e)}
-                  className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
+                <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
                   <td className="px-4 py-3"><div className="font-medium text-slate-900">{e.brand}</div>
                     <div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div></td>
-                  <td className="px-4 py-3 text-slate-500">{e.category}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revenue)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitda)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(net)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(roce)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(recv)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(pay)}</td>
+                  <td className="px-4 py-3"><CatChip cat={e.category} /></td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(netMarginOf(e))}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(supRoce(e))}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDSO(e))}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDPO(e))}</td>
                   <td className="px-4 py-3"><Pill cls={ROOM_META[room].cls} dot={ROOM_META[room].dot}>{ROOM_META[room].label}</Pill></td>
                   <td className="px-4 py-3"><RiskCell e={e} /></td>
                 </tr>
               );
             })}
             {withData.length === 0 && (
-              <tr>
-                <td colSpan={10} className="px-4 py-10 text-center text-slate-400">
-                  {noData.length > 0 ? "No suppliers with parsed financials match — see limited public data below." : "Nothing matches this filter."}
-                </td>
-              </tr>
+              <tr><td colSpan={10} className="px-4 py-10 text-center text-slate-400">
+                {noData.length > 0 ? "No suppliers with parsed financials match — see limited public data below." : "Nothing matches this filter."}
+              </td></tr>
             )}
           </tbody>
         </table>
       </div>
 
       {noData.length > 0 && (
-        <div className="mt-6">
+        <div>
           <div className="mb-2 flex items-baseline gap-2">
             <h3 className="text-sm font-semibold text-slate-700">Limited public data</h3>
             <span className="text-xs text-slate-400">{noData.length} vendor{noData.length > 1 ? "s" : ""} · no financial filing in Tracxn</span>
           </div>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {noData.map((e) => (
-              <button key={e.category + e.folder} onClick={() => openSupplier(e)}
-                className="rounded-xl bg-white p-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:ring-teal-300">
+              <button key={e.category + e.folder} onClick={() => onSelect(e)} className="rounded-xl bg-white p-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:ring-teal-300">
                 <div className="flex items-center justify-between gap-2">
                   <div className="min-w-0">
                     <div className="truncate text-sm font-medium text-slate-800">{e.brand}</div>
                     <div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div>
                   </div>
-                  <span className="shrink-0 rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-500">{e.category}</span>
+                  <CatChip cat={e.category} />
                 </div>
-                <div className="mt-1.5 text-xs text-slate-400">
-                  {e.city ? `${e.city} · ` : ""}Registry basics only — click to view
-                </div>
+                <div className="mt-1.5 text-xs text-slate-400">{e.city ? `${e.city} · ` : ""}Registry basics only — click to view</div>
               </button>
             ))}
           </div>
         </div>
       )}
-
-      <p className="mt-5 max-w-3xl text-xs leading-relaxed text-slate-500">
-        <span className="font-medium text-slate-700">Negotiation room</span> is a transparent first-cut signal from EBITDA
-        margin (≥20% High · 10–20% Medium · &lt;10% Low) — fatter supplier margins mean more room to push on price/terms.
-        Vendors under <span className="font-medium text-slate-700">Limited public data</span> are small private firms Tracxn holds no financial filing for.
-      </p>
-      </>)}
-    </main>
-  );
-}
-
-/* --------------------------------------------- P0 Supplier overview (charts) */
-
-function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const byName = useMemo(() => new Map(all.map((e) => [e.brand, e])), [all]);
-
-  const revByCat: Slice[] = useMemo(() => {
-    const m: Record<string, number> = {};
-    for (const e of all) m[e.category] = (m[e.category] ?? 0) + (toCrore(revOf(e)) ?? 0);
-    return Object.entries(m)
-      .map(([label, value]) => ({ label, value: Math.round(value), color: CATEGORY_COLOR[label] ?? "#94a3b8" }))
-      .sort((a, b) => b.value - a.value);
-  }, [all]);
-
-  const topRev: Slice[] = useMemo(
-    () =>
-      [...all]
-        .filter((e) => revOf(e))
-        .sort((a, b) => (revOf(b) ?? 0) - (revOf(a) ?? 0))
-        .slice(0, 8)
-        .map((e) => ({ label: e.brand, value: Math.round(toCrore(revOf(e)) ?? 0), color: CATEGORY_COLOR[e.category] ?? "#94a3b8" })),
-    [all]
-  );
-
-  const coverage: Slice[] = useMemo(() => {
-    const order = ["full", "partial", "not_found"] as const;
-    return order.map((k) => ({ label: COVERAGE_META[k].label, value: all.filter((e) => e.coverage === k).length, color: COVERAGE_COLOR[k] }));
-  }, [all]);
-
-  const room: Slice[] = useMemo(() => {
-    const order: Room[] = ["High", "Medium", "Low", "Unknown"];
-    return order.map((k) => ({ label: k === "Unknown" ? "No data" : k, value: all.filter((e) => negotiationRoom(e) === k).length, color: ROOM_COLOR[k] }));
-  }, [all]);
-
-  const targets = useMemo(
-    () =>
-      [...all]
-        .filter((e) => negotiationRoom(e) === "High" && revOf(e))
-        .sort((a, b) => (revOf(b) ?? 0) - (revOf(a) ?? 0))
-        .slice(0, 5),
-    [all]
-  );
-
-  const flagged = useMemo(
-    () => [...all].filter((e) => e.pdf?.riskFlags?.length).sort((a, b) => (b.pdf!.riskFlags.length) - (a.pdf!.riskFlags.length)),
-    [all]
-  );
-
-  const totalCr = Math.round(revByCat.reduce((s, d) => s + d.value, 0));
-
-  return (
-    <div className="stagger grid grid-cols-1 gap-4 lg:grid-cols-3">
-      <Card title="Top suppliers by revenue" sub="latest disclosed · ₹ crore · colour = category" className="lg:col-span-2" accent="#0d9488">
-        <HBars data={topRev} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} onBar={(l) => byName.get(l) && onSelect(byName.get(l)!)} />
-        <div className="mt-4">
-          <Legend items={Object.entries(CATEGORY_COLOR).map(([label, color]) => ({ label, color }))} />
-        </div>
-      </Card>
-
-      <Card title="Revenue by category" sub="share of disclosed revenue" accent="#6366f1">
-        <Donut data={revByCat} centerValue={totalCr >= 1000 ? `₹${(totalCr / 1000).toFixed(0)}k` : `₹${totalCr}`} centerLabel="Cr total" unit=" Cr" />
-      </Card>
-
-      <Card title="Data coverage" sub="how complete each supplier is" accent="#059669">
-        <StackedMeter data={coverage} />
-      </Card>
-
-      <Card title="Negotiation room" sub="based on EBITDA margin — where to push" accent="#f59e0b">
-        <HBars data={room} valueLabel={(v) => String(v)} />
-        <div className="mt-3 text-xs text-slate-400">High ≥20% · Medium 10–20% · Low &lt;10% EBITDA margin</div>
-      </Card>
-
-      <Card title="Top negotiation targets" sub="fat-margin, high-revenue suppliers" accent="#0ea5e9">
-        {targets.length === 0 ? (
-          <div className="text-sm text-slate-400">No high-room suppliers with revenue yet.</div>
-        ) : (
-          <ul className="space-y-2">
-            {targets.map((e) => (
-              <li key={e.folder} onClick={() => onSelect(e)} className="flex cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 hover:bg-slate-50">
-                <div className="min-w-0">
-                  <div className="truncate text-sm font-medium text-slate-800">{e.brand}</div>
-                  <div className="text-xs text-slate-400">{e.category}</div>
-                </div>
-                <div className="text-right">
-                  <div className="font-mono text-sm text-slate-900">{fmtPct(ebitdaMarginOf(e))}</div>
-                  <div className="text-xs text-slate-400">EBITDA</div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </Card>
-
-      <Card title="Supplier risk watchlist" sub="flagged in the latest Tracxn filing — click to investigate" className="lg:col-span-3" accent="#e11d48">
-        {flagged.length === 0 ? (
-          <div className="text-sm text-slate-400">No suppliers flagged.</div>
-        ) : (
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {flagged.map((e) => (
-              <button key={e.folder} onClick={() => onSelect(e)} className="rounded-xl bg-rose-50/50 p-3 text-left ring-1 ring-rose-200 transition hover:bg-rose-50">
-                <div className="flex items-center justify-between">
-                  <div className="truncate text-sm font-medium text-slate-900">{e.brand}</div>
-                  <span className="ml-2 shrink-0 rounded-full bg-rose-100 px-1.5 text-xs font-semibold text-rose-700">{e.pdf!.riskFlags.length}</span>
-                </div>
-                <div className="mt-1 space-y-0.5">
-                  {e.pdf!.riskFlags.slice(0, 2).map((f, i) => (
-                    <div key={i} className="truncate text-xs text-rose-700">• {f}</div>
-                  ))}
-                </div>
-              </button>
-            ))}
-          </div>
-        )}
-      </Card>
-
-      <Card title="What we source" sub={`${RAW_MATERIALS.length} raw materials · ${PACKAGING.length} packaging components (client BOM)`} className="lg:col-span-3" accent="#14b8a6">
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div>
-            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-teal-700">
-              <span className="h-2 w-2 rounded-sm bg-teal-500" /> Raw materials
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {RAW_MATERIALS.map((m) => (
-                <span key={m} className="rounded-md bg-teal-50 px-2 py-0.5 text-xs text-teal-800 ring-1 ring-teal-100">{m}</span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-indigo-700">
-              <span className="h-2 w-2 rounded-sm bg-indigo-500" /> Packaging components
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {PACKAGING.map((m) => (
-                <span key={m} className="rounded-md bg-indigo-50 px-2 py-0.5 text-xs text-indigo-800 ring-1 ring-indigo-100">{m}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Card>
     </div>
   );
 }
@@ -458,13 +571,14 @@ function SupplierOverview({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
 /* ------------------------------------------------------ P2 Competitor view */
 
 type CompCat = "All" | (typeof COMPETITOR_CATEGORIES)[number];
-type CompSort = "revenue" | "funding" | "name";
+const CAT5_COLOR: Record<string, string> = {
+  Sunscreen: "#eb6834", "Face Serums": "#4a3aa7", Bodywash: "#2a78d6", "Body Scrub": "#e34948", "Body Lotion": "#1baf7a",
+};
 
 function CompetitorView() {
   const all = useMemo(() => competitorRows(), []);
   const [cat, setCat] = useState<CompCat>("All");
   const [query, setQuery] = useState("");
-  const [sort, setSort] = useState<CompSort>("revenue");
   const [selected, setSelected] = useState<CompetitorRow | null>(null);
   const [view, setView] = useState<"overview" | "table">("overview");
   const { open: openCompetitor, back } = useProfileNav(selected, setSelected);
@@ -474,101 +588,75 @@ function CompetitorView() {
     if (cat !== "All") r = r.filter((e) => e.categories.includes(cat));
     const q = query.trim().toLowerCase();
     if (q) r = r.filter((e) => `${e.brand} ${e.legalName ?? ""} ${e.parent ?? ""}`.toLowerCase().includes(q));
-    return [...r].sort((a, b) => {
-      switch (sort) {
-        case "name": return a.brand.localeCompare(b.brand);
-        case "funding": return (b.competitor?.fundingUSD ?? -1) - (a.competitor?.fundingUSD ?? -1);
-        default: return (revOf(b) ?? -1) - (revOf(a) ?? -1);
-      }
-    });
-  }, [all, cat, query, sort]);
+    return [...r].sort((a, b) => (revOf(b) ?? -1) - (revOf(a) ?? -1));
+  }, [all, cat, query]);
 
-  const kpis = useMemo(() => ({
-    tracked: all.length,
-    cats: COMPETITOR_CATEGORIES.length,
-    revCr: all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0),
-    deals: all.filter((e) => e.competitor?.materialEvent).length,
-  }), [all]);
+  const revCr = all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0);
 
   if (selected) return <CompanyPage entity={selected} onBack={back} kind="competitor" />;
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
-      <section className="stagger grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
-        <Kpi label="Competitors tracked" value={String(kpis.tracked)} sub="across 5 BPC categories" />
-        <Kpi label="Categories" value={String(kpis.cats)} sub="sunscreen · serums · wash · scrub · lotion" tone="teal" />
-        <Kpi label="Revenue in view" value={crStr(kpis.revCr)} sub="sum of disclosed competitor revenue" />
-        <Kpi label="Material events" value={String(kpis.deals)} sub="fundraises & acquisitions tracked" tone="amber" />
-      </section>
+      <ModuleHero
+        emoji="🥊"
+        title="Competitor Benchmarking"
+        subtitle="How rival BPC brands stack up on revenue, funding, pricing & the digital shelf"
+        tint="from-[#6d28d9] to-[#db2777]"
+        stats={[
+          { label: "Brands", value: String(all.length) },
+          { label: "Categories", value: String(COMPETITOR_CATEGORIES.length) },
+          { label: "Revenue in view", value: crStr(revCr) },
+          { label: "With deals", value: String(all.filter((e) => e.competitor?.materialEvent).length) },
+        ]}
+      />
 
-      <div className="mb-4 flex w-fit rounded-lg bg-slate-100 p-0.5 text-sm">
-        {(["overview", "table"] as const).map((v) => (
-          <button key={v} onClick={() => setView(v)}
-            className={`rounded-md px-3 py-1 font-medium capitalize transition ${view === v ? "bg-white text-teal-700 shadow-sm" : "text-slate-500 hover:text-slate-700"}`}>{v}</button>
-        ))}
-      </div>
+      <div className="mt-5 mb-4"><SubTabs tabs={[{ key: "overview", label: "Overview", emoji: "📊" }, { key: "table", label: "Directory", emoji: "📇" }]} value={view} onChange={(v) => setView(v as typeof view)} /></div>
 
       {view === "overview" && <CompetitorOverview all={all} onSelect={openCompetitor} />}
 
-      {view === "table" && (<>
-      <Toolbar
-        cats={["All", ...COMPETITOR_CATEGORIES]} cat={cat} setCat={(c) => setCat(c as CompCat)}
-        count={(c) => (c === "All" ? all.length : all.filter((e) => e.categories.includes(c)).length)}
-        query={query} setQuery={setQuery}
-        sortValue={sort} setSort={(s) => setSort(s as CompSort)}
-        sortOptions={[["revenue", "Revenue"], ["funding", "Funding raised"], ["name", "Name"]]}
-      />
+      {view === "table" && (
+        <div className="space-y-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap gap-1.5">
+              {(["All", ...COMPETITOR_CATEGORIES] as CompCat[]).map((c) => (
+                <button key={c} onClick={() => setCat(c)}
+                  className={`rounded-lg px-3 py-1.5 text-sm font-medium ring-1 transition ${cat === c ? "bg-violet-50 text-violet-700 ring-violet-300" : "bg-white text-slate-500 ring-slate-200 hover:ring-slate-300"}`}>
+                  {c}<span className="ml-1.5 text-xs text-slate-400">{c === "All" ? all.length : all.filter((e) => e.categories.includes(c)).length}</span>
+                </button>
+              ))}
+            </div>
+            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search…"
+              className="w-56 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-violet-400" />
+          </div>
 
-      <div className="mt-4 overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-        <table className="w-full min-w-[980px] border-collapse text-sm">
-          <thead>
-            <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
-              <Th>Brand</Th><Th>Categories</Th><Th right>Revenue</Th><Th right>Funding</Th>
-              <Th>Stage</Th><Th>Latest deal / event</Th><Th>Coverage</Th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((e) => (
-              <tr key={e.cin || e.brand} onClick={() => openCompetitor(e)}
-                className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
-                <td className="px-4 py-3"><div className="font-medium text-slate-900">{e.brand}</div>
-                  <div className="truncate text-xs text-slate-400">{e.parent ?? e.legalName ?? ""}</div></td>
-                <td className="px-4 py-3">
-                  <div className="flex flex-wrap gap-1">
-                    {e.categories.map((c) => (
-                      <span key={c} className="rounded-md bg-slate-100 px-1.5 py-0.5 text-xs text-slate-600">{c}</span>
-                    ))}
-                  </div>
-                </td>
-                <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
-                <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtUSD(e.competitor?.fundingUSD ?? null)}</td>
-                <td className="px-4 py-3 text-slate-600">{e.competitor?.stage ?? "—"}</td>
-                <td className="max-w-[260px] px-4 py-3 text-slate-600">
-                  <span className="line-clamp-1">{e.competitor?.materialEvent ?? "—"}</span>
-                </td>
-                <td className="px-4 py-3"><Pill cls={COVERAGE_META[e.coverage].cls}>{COVERAGE_META[e.coverage].label}</Pill></td>
-              </tr>
-            ))}
-            {rows.length === 0 && <EmptyRow cols={7} />}
-          </tbody>
-        </table>
-      </div>
-
-      <p className="mt-5 max-w-3xl text-xs leading-relaxed text-slate-500">
-        Financials, funding rounds, cap-table &amp; M&amp;A from the Tracxn snapshot. Brands compete across several categories —
-        rows are collapsed per brand with category chips. Digital-shelf metrics (discount, reviews, ratings) are live from Nykaa via Firecrawl.
-      </p>
-      </>)}
-
+          <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+            <table className="w-full min-w-[980px] border-collapse text-sm">
+              <thead>
+                <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+                  <Th>Brand</Th><Th>Categories</Th><Th right>Revenue</Th><Th right>Funding</Th><Th>Stage</Th><Th>Latest deal / event</Th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((e) => (
+                  <tr key={e.cin || e.brand} onClick={() => openCompetitor(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-violet-50/40">
+                    <td className="px-4 py-3"><div className="font-medium text-slate-900">{e.brand}</div>
+                      <div className="truncate text-xs text-slate-400">{e.parent ?? e.legalName ?? ""}</div></td>
+                    <td className="px-4 py-3"><div className="flex flex-wrap gap-1">{e.categories.map((c) => (<span key={c} className="rounded-md px-1.5 py-0.5 text-xs font-medium" style={{ background: `${CAT5_COLOR[c] ?? "#94a3b8"}18`, color: CAT5_COLOR[c] ?? "#64748b" }}>{c}</span>))}</div></td>
+                    <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
+                    <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtUSD(e.competitor?.fundingUSD ?? null)}</td>
+                    <td className="px-4 py-3 text-slate-600">{e.competitor?.stage ?? "—"}</td>
+                    <td className="max-w-[260px] px-4 py-3 text-slate-600"><span className="line-clamp-1">{e.competitor?.materialEvent ?? "—"}</span></td>
+                  </tr>
+                ))}
+                {rows.length === 0 && <EmptyRow cols={6} />}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
-
-/* ------------------------------------------ P2 Competitor overview (charts) */
-
-const CAT5_COLOR: Record<string, string> = {
-  Sunscreen: "#f59e0b", "Face Serums": "#6366f1", Bodywash: "#0ea5e9", "Body Scrub": "#f43f5e", "Body Lotion": "#0d9488",
-};
 
 function fundingBucket(stage: string | null | undefined): "Acquired" | "VC-funded" | "Unfunded" | "Unknown" {
   const s = (stage ?? "").toLowerCase();
@@ -577,118 +665,72 @@ function fundingBucket(stage: string | null | undefined): "Acquired" | "VC-funde
   if (/series|seed|funding raised|funded/.test(s)) return "VC-funded";
   return "Unknown";
 }
-const BUCKET_COLOR = { Acquired: "#059669", "VC-funded": "#0d9488", Unfunded: "#f59e0b", Unknown: "#cbd5e1" } as const;
-
-// Named funding breakdown — answers "which one is funded / not funded" directly,
-// instead of a donut that only shows proportions.
-function FundingBreakdown({ all, onSelect }: { all: CompetitorRow[]; onSelect: (e: CompetitorRow) => void }) {
-  const order = ["Acquired", "VC-funded", "Unfunded", "Unknown"] as const;
-  const groups = order
-    .map((k) => ({ bucket: k, brands: all.filter((e) => fundingBucket(e.competitor?.stage) === k) }))
-    .filter((g) => g.brands.length);
-  return (
-    <div className="space-y-3">
-      {groups.map(({ bucket, brands }) => (
-        <div key={bucket}>
-          <div className="mb-1.5 flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full" style={{ background: BUCKET_COLOR[bucket] }} />
-            <span className="text-sm font-semibold text-slate-700">{bucket}</span>
-            <span className="text-xs text-slate-400">{brands.length}</span>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {brands.map((e) => (
-              <button
-                key={e.cin || e.brand}
-                onClick={() => onSelect(e)}
-                className="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-100 hover:text-slate-900"
-                title={e.competitor?.materialEvent ?? undefined}
-              >
-                {e.brand}
-              </button>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+const BUCKET_COLOR = { Acquired: "#1baf7a", "VC-funded": "#2a78d6", Unfunded: "#eda100", Unknown: "#cbd5e1" } as const;
 
 function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect: (e: CompetitorRow) => void }) {
   const byName = useMemo(() => new Map(all.map((e) => [e.brand, e])), [all]);
   const pick = (l: string) => byName.get(l) && onSelect(byName.get(l)!);
 
   const topRev: Slice[] = useMemo(
-    () => [...all].filter((e) => revOf(e)).sort((a, b) => (revOf(b) ?? 0) - (revOf(a) ?? 0)).slice(0, 8)
-      .map((e) => ({ label: e.brand, value: Math.round(toCrore(revOf(e)) ?? 0), color: "#0d9488" })),
+    () => [...all].filter((e) => revOf(e)).sort((a, b) => (revOf(b) ?? 0) - (revOf(a) ?? 0)).slice(0, 8).map((e) => ({ label: e.brand, value: Math.round(toCrore(revOf(e)) ?? 0), color: "#6d28d9" })),
     [all]
   );
-
   const discount: Slice[] = useMemo(
     () => [...all].filter((e) => e.shelf?.avgDiscountPct != null).sort((a, b) => (b.shelf!.avgDiscountPct ?? 0) - (a.shelf!.avgDiscountPct ?? 0)).slice(0, 8)
-      .map((e) => ({
-        label: e.brand,
-        sub: e.shelf!.skuCount ? `across ${e.shelf!.skuCount} Nykaa product${e.shelf!.skuCount === 1 ? "" : "s"}` : undefined,
-        value: Math.round(e.shelf!.avgDiscountPct ?? 0),
-        color: "#f59e0b",
-      })),
+      .map((e) => ({ label: e.brand, sub: e.shelf!.skuCount ? `${e.shelf!.skuCount} Nykaa SKUs` : undefined, value: Math.round(e.shelf!.avgDiscountPct ?? 0), color: "#eb6834" })),
     [all]
   );
-
   const traction: Slice[] = useMemo(
-    () => [...all].filter((e) => e.shelf?.totalReviews).sort((a, b) => (b.shelf!.totalReviews ?? 0) - (a.shelf!.totalReviews ?? 0)).slice(0, 8)
-      .map((e) => ({ label: e.brand, value: Math.round((e.shelf!.totalReviews ?? 0) / 1e5) / 10, color: "#0ea5e9" })),
+    () => [...all].filter((e) => e.shelf?.totalReviews).sort((a, b) => (b.shelf!.totalReviews ?? 0) - (a.shelf!.totalReviews ?? 0)).slice(0, 8).map((e) => ({ label: e.brand, value: Math.round((e.shelf!.totalReviews ?? 0) / 1e5) / 10, color: "#2a78d6" })),
     [all]
   );
-
-  const ratings: Slice[] = useMemo(
-    () => [...all].filter((e) => e.shelf?.avgRating != null).sort((a, b) => (b.shelf!.avgRating ?? 0) - (a.shelf!.avgRating ?? 0)).slice(0, 8)
-      .map((e) => ({ label: e.brand, value: e.shelf!.avgRating ?? 0, color: "#059669" })),
-    [all]
-  );
-
   const cats: Slice[] = useMemo(
-    () => COMPETITOR_CATEGORIES.map((c) => ({ label: c, value: all.filter((e) => e.categories.includes(c)).length, color: CAT5_COLOR[c] ?? "#94a3b8" }))
-      .sort((a, b) => b.value - a.value),
+    () => COMPETITOR_CATEGORIES.map((c) => ({ label: c, value: all.filter((e) => e.categories.includes(c)).length, color: CAT5_COLOR[c] ?? "#94a3b8" })).sort((a, b) => b.value - a.value),
     [all]
   );
-
+  const fundingGroups = (["Acquired", "VC-funded", "Unfunded", "Unknown"] as const)
+    .map((k) => ({ bucket: k, brands: all.filter((e) => fundingBucket(e.competitor?.stage) === k) }))
+    .filter((g) => g.brands.length);
   const events = useMemo(() => all.filter((e) => e.competitor?.materialEvent).slice(0, 6), [all]);
 
   return (
-    <div className="stagger grid grid-cols-1 gap-4 lg:grid-cols-3">
-      <Card title="Top competitors by revenue" sub="latest disclosed · ₹ crore" className="lg:col-span-2" accent="#0d9488">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <Card title="💜 Top competitors by revenue" sub="latest disclosed · ₹ crore" accent="#6d28d9">
         <HBars data={topRev} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`)} onBar={pick} />
       </Card>
-
-      <Card title="Funding status" sub="which rivals are funded, acquired, or bootstrapped" accent="#6366f1">
-        <FundingBreakdown all={all} onSelect={onSelect} />
-      </Card>
-
-      <Card title="Heaviest discounting" sub="avg % off MRP across each brand's live Nykaa catalogue — high = liquidation or heavy marketing · click a bar for its products" accent="#f59e0b">
+      <Card title="🏷️ Heaviest discounting" sub="avg % off MRP on their live Nykaa shelf — high = liquidation or heavy marketing" accent="#eb6834">
         <HBars data={discount} valueLabel={(v) => `${v}%`} onBar={pick} />
       </Card>
-
-      <Card title="Market traction" sub="total reviews (millions) — a sales-velocity proxy" accent="#0ea5e9">
+      <Card title="🔥 Market traction" sub="total Nykaa reviews (millions) — a sales-velocity proxy" accent="#2a78d6">
         <HBars data={traction} valueLabel={(v) => `${v}m`} onBar={pick} />
       </Card>
-
-      <Card title="Customer ratings" sub="avg rating on Nykaa (out of 5)" accent="#059669">
-        {ratings.length === 0 ? (
-          <div className="text-sm text-slate-400">No ratings captured yet.</div>
-        ) : (
-          <HBars data={ratings} valueLabel={(v) => `${v.toFixed(1)}★`} onBar={pick} />
-        )}
-      </Card>
-
-      <Card title="Category presence" sub="competitors active per category" accent="#f43f5e">
+      <Card title="📚 Category presence" sub="rivals active per BPC category" accent="#e34948">
         <HBars data={cats} valueLabel={(v) => String(v)} />
       </Card>
-
-      <Card title="Recent deals & events" sub="fundraises & acquisitions" className="lg:col-span-2" accent="#8b5cf6">
+      <Card title="💰 Funding status" sub="which rivals are funded, acquired, or bootstrapped" accent="#4a3aa7">
+        <div className="space-y-3">
+          {fundingGroups.map(({ bucket, brands }) => (
+            <div key={bucket}>
+              <div className="mb-1.5 flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: BUCKET_COLOR[bucket] }} />
+                <span className="text-sm font-semibold text-slate-700">{bucket}</span>
+                <span className="text-xs text-slate-400">{brands.length}</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {brands.map((e) => (
+                  <button key={e.cin || e.brand} onClick={() => onSelect(e)} title={e.competitor?.materialEvent ?? undefined}
+                    className="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-100 hover:text-slate-900">{e.brand}</button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
+      <Card title="📰 Recent deals & events" sub="fundraises & acquisitions" accent="#db2777">
         {events.length === 0 ? (
           <div className="text-sm text-slate-400">No material events tracked.</div>
         ) : (
-          <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="space-y-2">
             {events.map((e) => (
               <li key={e.cin || e.brand} onClick={() => onSelect(e)} className="cursor-pointer rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200 hover:bg-slate-100">
                 <div className="text-sm font-medium text-slate-800">{e.brand}</div>
@@ -714,27 +756,32 @@ function DeliveryView() {
 
   const fyShort = (fy: string) => "'" + fy.split("-")[1];
   const revTrend: Slice[] = d.trend.map((t) => ({ label: fyShort(t.fy), value: cr(t.revenueINR), color: "#0d9488" }));
-  const profitTrend: Slice[] = d.trend.map((t) => ({ label: fyShort(t.fy), value: cr(t.netProfitINR), color: (t.netProfitINR ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
-  const dsoTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.dso ?? 0, color: "#0ea5e9" }));
-  const marginTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.ebitdaMarginPct ?? 0, color: (t.ebitdaMarginPct ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
+  const profitTrend: Slice[] = d.trend.map((t) => ({ label: fyShort(t.fy), value: cr(t.netProfitINR), color: (t.netProfitINR ?? 0) >= 0 ? "#1baf7a" : "#e34948" }));
+  const dsoTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.dso ?? 0, color: "#2a78d6" }));
+  const marginTrend: Slice[] = d.ratioTrend.map((t) => ({ label: fyShort(t.fy), value: t.ebitdaMarginPct ?? 0, color: (t.ebitdaMarginPct ?? 0) >= 0 ? "#1baf7a" : "#e34948" }));
 
   if (selected) return <CompanyPage entity={selected} onBack={back} kind="delivery" />;
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
-      <section className="stagger grid grid-cols-2 gap-3 py-6 lg:grid-cols-4">
-        <Kpi label="Partners tracked" value={String(partners.length)} sub="last-mile & logistics" />
-        <Kpi label="Publicly listed" value={String(partners.filter((p) => p.listed).length)} sub="rich financials available" tone="teal" />
-        <Kpi label="Delhivery revenue" value={crStr(cr(d.revenueINR))} sub={`FY ${d.latestFY} · consolidated`} />
-        <Kpi label="Delhivery DSO" value={`${Math.round(d.dso ?? 0)} d`} sub="days sales outstanding — the credit lever" tone="amber" />
-      </section>
+      <ModuleHero
+        emoji="🚚"
+        title="Delivery Partners"
+        subtitle="Last-mile & logistics partners — financial strength and the receivables (DSO) credit lever"
+        tint="from-[#0369a1] to-[#0d9488]"
+        stats={[
+          { label: "Partners", value: String(partners.length) },
+          { label: "Listed", value: String(partners.filter((p) => p.listed).length) },
+          { label: "Delhivery rev", value: crStr(cr(d.revenueINR)) },
+          { label: "Delhivery DSO", value: `${Math.round(d.dso ?? 0)} d` },
+        ]}
+      />
 
-      <div className="stagger grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <Card title="Delhivery — revenue trend" sub="₹ crore · consolidated · FY14–FY25 (12 years)" className="lg:col-span-2" accent="#0d9488">
+      <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <Card title="📈 Delhivery — revenue trend" sub="₹ crore · consolidated · FY14–FY25" className="lg:col-span-2" accent="#0d9488">
           <AreaLine data={revTrend} color="#0d9488" valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k` : `₹${v}`)} />
         </Card>
-
-        <Card title="Latest financials" sub={`FY ${d.latestFY}`} accent="#0d9488">
+        <Card title="💰 Latest financials" sub={`FY ${d.latestFY}`} accent="#0891b2">
           <div className="grid grid-cols-2 gap-3">
             <Stat label="Revenue" value={crStr(cr(d.revenueINR))} />
             <Stat label="Net profit" value={crStr(cr(d.netProfitINR))} />
@@ -745,47 +792,30 @@ function DeliveryView() {
             Turned profitable in FY {d.latestFY} (+{crStr(cr(d.netProfitINR))}) after years of losses.
           </div>
         </Card>
-
-        <Card title="Delhivery — profit turnaround" sub="net profit / (loss), ₹ crore" className="lg:col-span-2" accent="#f43f5e">
+        <Card title="📉 Delhivery — profit turnaround" sub="net profit / (loss), ₹ crore" className="lg:col-span-2" accent="#e34948">
           <Columns data={profitTrend} valueLabel={(v) => (v >= 0 ? `₹${v}` : `-₹${Math.abs(v)}`)} />
         </Card>
-
-        <Card title="Partner roster" sub="identified legal entities" accent="#6366f1">
+        <Card title="🚚 Partner roster" sub="identified legal entities" accent="#4a3aa7">
           <ul className="space-y-2">
             {partners.map((p) => (
-              <li
-                key={p.brand}
-                onClick={() => { const e = partnerEnts.get(nm(p.brand)); if (e) openPartner(e); }}
-                className={`flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 ring-1 ring-slate-200 ${partnerEnts.get(nm(p.brand))?.profile ? "cursor-pointer hover:bg-teal-50/60" : ""}`}
-              >
+              <li key={p.brand} onClick={() => { const e = partnerEnts.get(nm(p.brand)); if (e) openPartner(e); }}
+                className={`flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 ring-1 ring-slate-200 ${partnerEnts.get(nm(p.brand))?.profile ? "cursor-pointer hover:bg-teal-50/60" : ""}`}>
                 <div className="min-w-0">
                   <div className="text-sm font-medium text-slate-800">{p.brand}</div>
                   <div className="truncate text-xs text-slate-400">{p.legalName ?? "—"}</div>
                 </div>
-                {p.listed ? (
-                  <Pill cls="text-emerald-700 bg-emerald-50 ring-emerald-200">Listed</Pill>
-                ) : (
-                  <Pill cls="text-slate-600 bg-slate-100 ring-slate-200">Private</Pill>
-                )}
+                {p.listed ? <Pill cls="text-emerald-700 bg-emerald-50 ring-emerald-200">Listed</Pill> : <Pill cls="text-slate-600 bg-slate-100 ring-slate-200">Private</Pill>}
               </li>
             ))}
           </ul>
         </Card>
-
-        <Card title="Delhivery — receivables (DSO) trend" sub="days sales outstanding by fiscal year — the credit lever over time" className="lg:col-span-3" accent="#0ea5e9">
-          <AreaLine data={dsoTrend} color="#0ea5e9" valueLabel={(v) => `${Math.round(v)}d`} height={140} />
+        <Card title="🏦 Delhivery — receivables (DSO) trend" sub="days sales outstanding by year — the credit lever over time" className="lg:col-span-3" accent="#2a78d6">
+          <AreaLine data={dsoTrend} color="#2a78d6" valueLabel={(v) => `${Math.round(v)}d`} height={140} />
         </Card>
-
-        <Card title="Delhivery — EBITDA margin trend" sub="% by fiscal year — the path from deep losses to profit" className="lg:col-span-3" accent="#059669">
+        <Card title="⚡ Delhivery — EBITDA margin trend" sub="% by year — the path from deep losses to profit" className="lg:col-span-3" accent="#1baf7a">
           <Columns data={marginTrend} valueLabel={(v) => `${v}%`} height={155} />
         </Card>
       </div>
-
-      <p className="mt-5 max-w-3xl text-xs leading-relaxed text-slate-500">
-        Delhivery financials from its Tracxn export (FY13–FY25). The other partners are identified legal entities — their
-        financials come next from public filings / Probe42. <span className="font-medium text-slate-700">DSO 55 days</span> is
-        the receivables lever flagged in the calls.
-      </p>
     </main>
   );
 }
@@ -794,24 +824,30 @@ function DeliveryView() {
 
 type CompanyKind = "supplier" | "competitor" | "delivery";
 type CardDesc = { key: string; title: string; sub?: string; node: React.ReactNode };
+type CompanyTab = "trends" | "financials" | "insights" | "profile";
 
-// Full-page company profile — an entire dashboard for one company, opened when a
-// row/bar is clicked. Replaces the old side drawer. Composes every section we have
-// (headline KPIs, multi-year trends, balance sheet, cost structure, cash flow,
-// M&A, ownership, board, loans, competitors, live shelf, research) into a masonry.
+const TAB_KEYS: Record<CompanyTab, string[]> = {
+  trends: ["revprofit", "returns"],
+  financials: ["reported", "balance", "cost", "cashflow", "probe", "health"],
+  profile: ["details", "cats", "event", "shelf", "ownership", "board", "loans", "peers", "investors", "ma", "research"],
+  insights: [],
+};
+const WIDE_KEYS = new Set(["revprofit", "returns", "health", "research", "shelf"]);
+
 function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () => void; kind: CompanyKind }) {
-  // The page replaces the list in-place, so jump to the top — otherwise a row
-  // clicked below the fold opens already scrolled past the hero and KPIs.
   useEffect(() => { window.scrollTo(0, 0); }, [e.folder, e.category]);
+  const [tab, setTab] = useState<CompanyTab>("trends");
   const cards = useMemo(() => companyCards(e, kind), [e, kind]);
+  const ins = useMemo(() => supplierInsights(e), [e]);
+  const cardByKey = useMemo(() => new Map(cards.map((c) => [c.key, c])), [cards]);
+
   const py = latestYear(e);
   const room = negotiationRoom(e);
   const flags = e.pdf?.riskFlags ?? [];
   const roce = py?.rocePct ?? e.probe?.roce ?? null;
   const backLabel = kind === "competitor" ? "competitors" : kind === "delivery" ? "delivery" : "suppliers";
-  // "No financial data at all" — no detailed filing (profile / PDF / Probe) AND no
-  // base registry financials either. A company with reported base numbers (e.g.
-  // Ultra Beauty Care: revenue, EBITDA, 52 employees) must not get the notice.
+  const parentGroup = isParentBackedProfile(e) ? e.profile?.parent ?? "its parent group" : null;
+
   const f = e.financials;
   const hasReported =
     revOf(e) != null || f.ebitdaINR != null || f.netProfitINR != null || f.employeeCount != null ||
@@ -819,28 +855,30 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
     f.revenueCAGR1yrPct != null || f.revenueCAGR3yrPct != null || f.revenueCAGR5yrPct != null;
   const hasFiling = !!(e.profile?.years?.length || e.pdf || e.probe);
   const noFinancials = !hasFiling && !hasReported;
-  // When the attached filing is the parent group's (Dove/Vaseline → HUL, Derma Co →
-  // Honasa), the trend/balance-sheet cards below are the group's, not the brand's.
-  const parentGroup = isParentBackedProfile(e) ? e.profile?.parent ?? "its parent group" : null;
 
-  const kpis: { label: string; value: string }[] =
+  const metrics: { label: string; value: string; tint: string }[] =
     kind === "competitor"
       ? [
-          { label: "Revenue", value: fmtCrore(revOf(e)) },
-          { label: "Funding raised", value: fmtUSD(e.competitor?.fundingUSD ?? null) },
-          { label: "Stage", value: e.competitor?.stage ?? "—" },
-          { label: "Avg rating", value: e.shelf?.avgRating != null ? `${e.shelf.avgRating}★` : "—" },
-          { label: "Avg discount", value: fmtPct(e.shelf?.avgDiscountPct ?? null) },
-          { label: "Reviews", value: fmtInt(e.shelf?.totalReviews ?? null) },
+          { label: "Revenue", value: fmtCrore(revOf(e)), tint: "text-teal-200" },
+          { label: "Funding", value: fmtUSD(e.competitor?.fundingUSD ?? null), tint: "text-amber-200" },
+          { label: "Rating", value: e.shelf?.avgRating != null ? `${e.shelf.avgRating}★` : "—", tint: "text-emerald-200" },
+          { label: "Discount", value: fmtPct(e.shelf?.avgDiscountPct ?? null), tint: "text-rose-200" },
         ]
       : [
-          { label: "Revenue", value: fmtCrore(revOf(e)) },
-          { label: "EBITDA margin", value: fmtPct(ebitdaMarginOf(e)) },
-          { label: "Net margin", value: fmtPct(netMarginOf(e)) },
-          { label: "RoCE", value: fmtPct(roce) },
-          { label: "Receivable days", value: fmtDays(py?.receivableDays ?? e.probe?.receivableDays ?? null) },
-          { label: "Payable days", value: fmtDays(py?.payableDays ?? e.probe?.payableDays ?? null) },
+          { label: "Revenue", value: fmtCrore(revOf(e)), tint: "text-teal-200" },
+          { label: "EBITDA", value: fmtPct(ebitdaMarginOf(e)), tint: "text-amber-200" },
+          { label: "RoCE", value: fmtPct(roce), tint: "text-emerald-200" },
+          { label: "Collects", value: fmtDays(py?.receivableDays ?? e.probe?.receivableDays ?? null), tint: "text-sky-200" },
         ];
+
+  const tabsAvail: { key: CompanyTab; label: string; emoji: string }[] = [
+    { key: "trends", label: "Trends", emoji: "📈" },
+    { key: "financials", label: "Financials", emoji: "💰" },
+    { key: "insights", label: "Insights", emoji: "💡" },
+    { key: "profile", label: "Profile", emoji: "🏢" },
+  ];
+
+  const tabCards = (t: CompanyTab) => TAB_KEYS[t].map((k) => cardByKey.get(k)).filter((c): c is CardDesc => !!c);
 
   return (
     <main className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
@@ -848,63 +886,85 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
         <span className="text-base leading-none">←</span> Back to {backLabel}
       </button>
 
-      {/* hero */}
-      <div className="mt-3 rounded-2xl bg-[#0b1a2c] p-6 shadow-lg">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="min-w-0">
-            <div className="text-2xl font-bold tracking-tight text-white">{e.brand}</div>
-            <div className="mt-0.5 text-sm text-slate-400">{e.legalName ?? e.folder}</div>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              <span className="rounded-md bg-white/10 px-2 py-0.5 text-xs font-medium text-teal-200 ring-1 ring-white/10">{e.category}</span>
-              {kind !== "competitor" && room !== "Unknown" && (
-                <span className="rounded-md bg-white/10 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/10">Negotiation room: {room}</span>
-              )}
-              {e.pdf && (
-                flags.length ? (
-                  <span className="rounded-md bg-rose-500/20 px-2 py-0.5 text-xs font-medium text-rose-200 ring-1 ring-rose-400/30">{flags.length} risk flag{flags.length > 1 ? "s" : ""}</span>
-                ) : (
-                  <span className="rounded-md bg-emerald-500/20 px-2 py-0.5 text-xs font-medium text-emerald-200 ring-1 ring-emerald-400/30">No risk flags</span>
-                )
-              )}
-              <span className="rounded-md bg-white/10 px-2 py-0.5 text-xs font-medium text-slate-300 ring-1 ring-white/10">{COVERAGE_META[e.coverage].label} record</span>
+      {/* colourful hero */}
+      <div className="mt-3 overflow-hidden rounded-3xl bg-gradient-to-br from-[#0b3b39] via-[#0d9488] to-[#0891b2] p-6 text-white shadow-lg">
+        <div className="flex flex-wrap items-start justify-between gap-6">
+          <div className="flex min-w-0 items-start gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-2xl font-bold ring-1 ring-white/25">
+              {kind === "supplier" ? catEmoji(e.category) : e.brand.slice(0, 1).toUpperCase()}
+            </div>
+            <div className="min-w-0">
+              <div className="text-2xl font-bold tracking-tight">{e.brand}</div>
+              <div className="mt-0.5 text-sm text-white/70">{e.legalName ?? e.folder}</div>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                <span className="inline-flex items-center gap-1 rounded-full bg-white/12 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/20">{catEmoji(e.category)} {e.category}</span>
+                {kind !== "competitor" && room !== "Unknown" && (
+                  <span className="rounded-full bg-white/12 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/20">Negotiation room: {room}</span>
+                )}
+                {e.pdf && (flags.length
+                  ? <span className="rounded-full bg-rose-500/25 px-2 py-0.5 text-xs font-medium text-rose-100 ring-1 ring-rose-300/30">🚩 {flags.length} risk flag{flags.length > 1 ? "s" : ""}</span>
+                  : <span className="rounded-full bg-emerald-500/25 px-2 py-0.5 text-xs font-medium text-emerald-100 ring-1 ring-emerald-300/30">✓ No risk flags</span>)}
+              </div>
+              <div className="mt-2.5 flex flex-wrap gap-3 text-xs">
+                {e.website && <a href={/^https?:/.test(e.website) ? e.website : `https://${e.website}`} target="_blank" rel="noreferrer" className="text-teal-100 hover:underline">🌐 {e.website.replace(/^https?:\/\//, "")}</a>}
+                {e.tracxnUrl && <a href={e.tracxnUrl} target="_blank" rel="noreferrer" className="text-white/70 hover:text-teal-100 hover:underline">🔗 Tracxn record</a>}
+              </div>
             </div>
           </div>
-          <div className="flex flex-col items-end gap-1.5 text-xs">
-            {e.website && <a href={/^https?:/.test(e.website) ? e.website : `https://${e.website}`} target="_blank" rel="noreferrer" className="text-teal-300 hover:underline">{e.website.replace(/^https?:\/\//, "")} ↗</a>}
-            {e.tracxnUrl && <a href={e.tracxnUrl} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-teal-300 hover:underline">Tracxn record ↗</a>}
+          <div className="grid grid-cols-2 gap-2.5">
+            {metrics.map((k) => (
+              <div key={k.label} className="rounded-2xl bg-white/10 px-4 py-2.5 ring-1 ring-white/20">
+                <div className={`text-[10px] font-medium uppercase tracking-wide ${k.tint}`}>{k.label}</div>
+                <div className="text-lg font-bold tabular-nums">{k.value}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* headline KPI strip */}
-      <section className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-        {kpis.map((k) => (
-          <div key={k.label} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-            <div className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{k.label}</div>
-            <div className="mt-1.5 text-xl font-semibold tabular-nums text-slate-900">{k.value}</div>
-          </div>
-        ))}
-      </section>
-
-      {/* context banners */}
-      {noFinancials && (
-        <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm text-amber-800 ring-1 ring-amber-200">
-          No financial data is available for this company in Tracxn — only the registry basics below.
-        </div>
-      )}
       {parentGroup && (
         <div className="mt-4 rounded-2xl bg-sky-50 p-4 text-sm text-sky-800 ring-1 ring-sky-200">
-          {e.brand} has no standalone financials — the trends and balance sheet below are <span className="font-medium">{parentGroup}</span>'s consolidated group filing, not {e.brand} alone.
+          ℹ️ {e.brand} has no standalone financials — the trends & balance sheet below are <span className="font-medium">{parentGroup}</span>'s consolidated group filing, not {e.brand} alone.
+        </div>
+      )}
+      {noFinancials && (
+        <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm text-amber-800 ring-1 ring-amber-200">
+          No financial data is available for this company in Tracxn — only the registry basics (Profile tab).
         </div>
       )}
 
-      {/* everything we know, as a masonry of cards */}
-      <div className="mt-4 gap-4 [column-fill:balance] lg:columns-2 xl:columns-3 [&>*]:mb-4 [&>*]:break-inside-avoid">
-        {cards.map((c) => (
-          <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>
-        ))}
-      </div>
+      <div className="mt-4 mb-4"><SubTabs tabs={tabsAvail} value={tab} onChange={setTab} /></div>
+
+      {tab === "insights" ? (
+        ins.length === 0 ? (
+          <div className="rounded-2xl bg-white p-8 text-center text-sm text-slate-400 ring-1 ring-slate-200">No specific negotiation levers or risks surfaced for this company.</div>
+        ) : (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {ins.map((i, idx) => <InsightCard key={idx} ins={i} />)}
+          </div>
+        )
+      ) : (
+        <CardGrid cards={tabCards(tab)} emptyLabel="Nothing to show in this tab for this company." />
+      )}
     </main>
+  );
+}
+
+// Render a tab's cards: wide ones (charts) full-width stacked on top, the rest in a
+// tidy 2-column masonry. Keeps things aligned — no 3-column triangle.
+function CardGrid({ cards, emptyLabel }: { cards: CardDesc[]; emptyLabel: string }) {
+  if (cards.length === 0) return <div className="rounded-2xl bg-white p-8 text-center text-sm text-slate-400 ring-1 ring-slate-200">{emptyLabel}</div>;
+  const wide = cards.filter((c) => WIDE_KEYS.has(c.key));
+  const narrow = cards.filter((c) => !WIDE_KEYS.has(c.key));
+  return (
+    <div className="space-y-4">
+      {wide.map((c) => <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>)}
+      {narrow.length > 0 && (
+        <div className="gap-4 [column-fill:balance] sm:columns-2 [&>*]:mb-4 [&>*]:break-inside-avoid">
+          {narrow.map((c) => <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>)}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -932,10 +992,8 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
         <Row k="LEI" v={e.lei ?? "—"} mono /><Row k="Parent" v={e.parent ?? "—"} />
       </dl>
     );
-  cards.push({ key: "details", title: "Company details", node: details });
+  cards.push({ key: "details", title: "🏢 Company details", node: details });
 
-  // Registry-level financials that live on the base record (distinct from, and
-  // sometimes present even without, the multi-year PDF profile).
   const f = e.financials;
   const cagr = [f.revenueCAGR1yrPct, f.revenueCAGR3yrPct, f.revenueCAGR5yrPct];
   const reported: React.ReactNode[] = [];
@@ -944,310 +1002,216 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
   if (f.employeeCount != null) reported.push(<Stat key="emp" label="Employees" value={fmtInt(f.employeeCount)} />);
   if (f.paidUpCapitalINR != null) reported.push(<Stat key="paid" label="Paid-up capital" value={fmtCrore(f.paidUpCapitalINR)} />);
   if (f.authorizedCapitalINR != null) reported.push(<Stat key="auth" label="Authorized capital" value={fmtCrore(f.authorizedCapitalINR)} />);
-  if (reported.length) {
-    cards.push({ key: "reported", title: "Reported financials", node: <div className="grid grid-cols-2 gap-3">{reported}</div> });
-  }
+  if (reported.length) cards.push({ key: "reported", title: "📋 Reported financials", node: <div className="grid grid-cols-2 gap-3">{reported}</div> });
 
   if (kind === "competitor" && (e as CompetitorRow).categories?.length) {
-    cards.push({
-      key: "cats",
-      title: "Competes in",
-      node: (
-        <div className="flex flex-wrap gap-1.5">
-          {(e as CompetitorRow).categories.map((cat) => (
-            <span key={cat} className="rounded-md bg-teal-50 px-2 py-1 text-xs font-medium text-teal-700 ring-1 ring-teal-200">{cat}</span>
-          ))}
-        </div>
-      ),
-    });
+    cards.push({ key: "cats", title: "🧴 Competes in", node: (
+      <div className="flex flex-wrap gap-1.5">
+        {(e as CompetitorRow).categories.map((cat) => (
+          <span key={cat} className="rounded-md px-2 py-1 text-xs font-medium" style={{ background: `${CAT5_COLOR[cat] ?? "#94a3b8"}18`, color: CAT5_COLOR[cat] ?? "#64748b" }}>{cat}</span>
+        ))}
+      </div>
+    ) });
   }
 
-  if (c?.materialEvent) {
-    cards.push({ key: "event", title: "Latest material event", node: <p className="text-sm leading-relaxed text-slate-700">{c.materialEvent}</p> });
-  }
+  if (c?.materialEvent) cards.push({ key: "event", title: "📰 Latest material event", node: <p className="text-sm leading-relaxed text-slate-700">{c.materialEvent}</p> });
 
   if (e.shelf) {
-    cards.push({
-      key: "shelf",
-      title: `Live shelf · ${e.shelf.channels.join(", ")}`,
-      sub: e.shelf.scrapedAt ? `scraped ${fmtDate(e.shelf.scrapedAt)}` : undefined,
-      node: (
-        <>
-          <div className="grid grid-cols-2 gap-3">
-            <Stat label="Products on shelf" value={String(e.shelf.skuCount)} />
-            <Stat label="Avg rating" value={e.shelf.avgRating != null ? `${e.shelf.avgRating} ★` : "—"} />
-            <Stat label="Avg discount" value={fmtPct(e.shelf.avgDiscountPct)} />
-            <Stat label="Total reviews" value={fmtInt(e.shelf.totalReviews)} />
-          </div>
-          {e.shelf.topSku?.name && (
-            <div className="mt-3 rounded-xl bg-slate-50 p-3 text-sm ring-1 ring-slate-200">
-              <div className="text-xs font-medium text-slate-500">Hero SKU (most-reviewed)</div>
-              <div className="mt-0.5 text-slate-800">{e.shelf.topSku.name}</div>
-              <div className="mt-0.5 text-xs text-slate-500">
-                {e.shelf.topSku.rating != null ? `${e.shelf.topSku.rating}★ · ` : ""}
-                {fmtInt(e.shelf.topSku.reviewCount)} reviews
-                {e.shelf.topSku.priceINR != null ? ` · ₹${e.shelf.topSku.priceINR}` : ""}
-              </div>
+    cards.push({ key: "shelf", title: `🛒 Live shelf · ${e.shelf.channels.join(", ")}`, sub: e.shelf.scrapedAt ? `scraped ${fmtDate(e.shelf.scrapedAt)}` : undefined, node: (
+      <>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <Stat label="Products" value={String(e.shelf.skuCount)} />
+          <Stat label="Avg rating" value={e.shelf.avgRating != null ? `${e.shelf.avgRating} ★` : "—"} />
+          <Stat label="Avg discount" value={fmtPct(e.shelf.avgDiscountPct)} />
+          <Stat label="Reviews" value={fmtInt(e.shelf.totalReviews)} />
+        </div>
+        {e.shelf.topSku?.name && (
+          <div className="mt-3 rounded-xl bg-slate-50 p-3 text-sm ring-1 ring-slate-200">
+            <div className="text-xs font-medium text-slate-500">Hero SKU (most-reviewed)</div>
+            <div className="mt-0.5 text-slate-800">{e.shelf.topSku.name}</div>
+            <div className="mt-0.5 text-xs text-slate-500">
+              {e.shelf.topSku.rating != null ? `${e.shelf.topSku.rating}★ · ` : ""}{fmtInt(e.shelf.topSku.reviewCount)} reviews{e.shelf.topSku.priceINR != null ? ` · ₹${e.shelf.topSku.priceINR}` : ""}
             </div>
-          )}
-        </>
-      ),
-    });
+          </div>
+        )}
+      </>
+    ) });
   }
 
   if (e.probe) {
-    cards.push({
-      key: "probe",
-      title: "Probe42 · deep financials",
-      node: (
-        <div className="grid grid-cols-2 gap-3">
-          <Stat label="Receivable days" value={fmtDays(e.probe.receivableDays)} />
-          <Stat label="Payable days" value={fmtDays(e.probe.payableDays)} />
-          <Stat label="RoCE" value={fmtPct(e.probe.roce)} />
-          <Stat label="Cash conversion" value={fmtDays(e.probe.cashConversionCycleDays)} />
-          <Stat label="Peer median payables" value={fmtDays(e.probe.peerMedianPayableDays)} />
-          <Stat label="Credit rating" value={e.probe.creditRating ?? "—"} />
-        </div>
-      ),
-    });
+    cards.push({ key: "probe", title: "🔬 Probe42 · deep financials", node: (
+      <div className="grid grid-cols-2 gap-3">
+        <Stat label="Receivable days" value={fmtDays(e.probe.receivableDays)} />
+        <Stat label="Payable days" value={fmtDays(e.probe.payableDays)} />
+        <Stat label="RoCE" value={fmtPct(e.probe.roce)} />
+        <Stat label="Cash conversion" value={fmtDays(e.probe.cashConversionCycleDays)} />
+        <Stat label="Peer median payables" value={fmtDays(e.probe.peerMedianPayableDays)} />
+        <Stat label="Credit rating" value={e.probe.creditRating ?? "—"} />
+      </div>
+    ) });
   }
 
-  if (e.pdf) {
-    cards.push({ key: "health", title: "Financial health & risk · Tracxn", node: <HealthRiskBody pdf={e.pdf} /> });
-  }
+  if (e.pdf) cards.push({ key: "health", title: "🩺 Financial health & risk · Tracxn", node: <HealthRiskBody pdf={e.pdf} /> });
 
   if (e.profile) cards.push(...profileSections(e.profile));
 
-  if (c?.investors?.length) {
-    cards.push({
-      key: "investors",
-      title: "Investors",
-      node: (
-        <div className="flex flex-wrap gap-1.5">
-          {c.investors.map((inv) => <span key={inv} className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700">{inv}</span>)}
-        </div>
-      ),
-    });
-  }
+  if (c?.investors?.length) cards.push({ key: "investors", title: "🤝 Investors", node: (
+    <div className="flex flex-wrap gap-1.5">{c.investors.map((inv) => <span key={inv} className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700">{inv}</span>)}</div>
+  ) });
 
-  if (e.research) cards.push({ key: "research", title: "Research", node: <ResearchBody r={e.research} /> });
+  if (e.research) cards.push({ key: "research", title: "🔎 Research", node: <ResearchBody r={e.research} /> });
 
   return cards;
 }
 
-// At-a-glance risk indicator for the supplier table.
 function RiskCell({ e }: { e: Entity }) {
   const flags = e.pdf?.riskFlags ?? [];
   if (!e.pdf) return <span className="text-slate-300">—</span>;
-  if (!flags.length)
-    return <span className="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">Clear</span>;
+  if (!flags.length) return <span className="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">Clear</span>;
   return (
-    <span
-      title={flags.join(" · ")}
-      className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200"
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
-      {flags.length} flag{flags.length > 1 ? "s" : ""}
+    <span title={flags.join(" · ")} className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200">
+      <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />{flags.length} flag{flags.length > 1 ? "s" : ""}
     </span>
   );
 }
 
-// Break the Tracxn detailed-report profile into standalone dashboard cards:
-// multi-year trends, ratio trends, balance sheet, cost structure, cash flow,
-// M&A, ownership, board, loans, competitors.
 function profileSections(p: SupplierProfile): CardDesc[] {
-  const years = [...p.years].sort((a, b) => a.fy.localeCompare(b.fy)); // oldest → newest
+  const years = [...p.years].sort((a, b) => a.fy.localeCompare(b.fy));
   const latest = years[years.length - 1];
   const fyShort = (s: string) => "'" + (s.split("-")[1] ?? s);
   const cr = (v: number | null) => Math.round((v ?? 0) / 1e7);
   const num2 = (v: number | null) => (v != null ? v.toFixed(2) : "—");
   const rev = years.map((y) => ({ label: fyShort(y.fy), value: cr(y.revenueINR), color: "#0d9488" }));
-  const profit = years.map((y) => ({ label: fyShort(y.fy), value: cr(y.netProfitINR), color: (y.netProfitINR ?? 0) >= 0 ? "#059669" : "#f43f5e" }));
-  const roce = years.map((y) => ({ label: fyShort(y.fy), value: Math.round(y.rocePct ?? 0), color: "#6366f1" }));
-  const dso = years.map((y) => ({ label: fyShort(y.fy), value: Math.round(y.receivableDays ?? 0), color: "#0ea5e9" }));
+  const profit = years.map((y) => ({ label: fyShort(y.fy), value: cr(y.netProfitINR), color: (y.netProfitINR ?? 0) >= 0 ? "#1baf7a" : "#e34948" }));
+  const roce = years.map((y) => ({ label: fyShort(y.fy), value: Math.round(y.rocePct ?? 0), color: "#4a3aa7" }));
+  const dso = years.map((y) => ({ label: fyShort(y.fy), value: Math.round(y.receivableDays ?? 0), color: "#2a78d6" }));
   const hasReturns = years.some((y) => y.rocePct != null || y.receivableDays != null);
   const cs = p.costStructure;
   const costBars = [
     { label: "Materials", value: cr(cs.materialsINR), color: "#0d9488" },
-    { label: "Employee", value: cr(cs.employeeINR), color: "#6366f1" },
-    { label: "Marketing", value: cr(cs.marketingINR), color: "#f59e0b" },
-    { label: "Freight", value: cr(cs.freightINR), color: "#0ea5e9" },
-    { label: "Finance", value: cr(cs.financeINR), color: "#f43f5e" },
-    { label: "Depreciation", value: cr(cs.depreciationINR), color: "#8b5cf6" },
+    { label: "Employee", value: cr(cs.employeeINR), color: "#4a3aa7" },
+    { label: "Marketing", value: cr(cs.marketingINR), color: "#eda100" },
+    { label: "Freight", value: cr(cs.freightINR), color: "#2a78d6" },
+    { label: "Finance", value: cr(cs.financeINR), color: "#e34948" },
+    { label: "Depreciation", value: cr(cs.depreciationINR), color: "#eb6834" },
   ].filter((d) => d.value > 0);
 
   const out: CardDesc[] = [];
 
   if (years.length > 1) {
-    out.push({
-      key: "revprofit",
-      title: `Revenue & profit · ${years.length}-yr`,
-      sub: `FY${years[0].fy} → FY${latest.fy}`,
-      node: (
-        <>
-          <div className="mb-1 text-xs text-slate-500">Revenue (₹ Cr)</div>
-          <AreaLine data={rev} color="#0d9488" valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} />
-          <div className="mb-1 mt-3 text-xs text-slate-500">Net profit / (loss) (₹ Cr)</div>
-          <Columns data={profit} valueLabel={(v) => `₹${v.toLocaleString("en-IN")}`} />
-        </>
-      ),
-    });
+    out.push({ key: "revprofit", title: `📈 Revenue & profit · ${years.length}-yr`, sub: `FY${years[0].fy} → FY${latest.fy}`, node: (
+      <div className="grid gap-4 md:grid-cols-2">
+        <div><div className="mb-1 text-xs text-slate-500">Revenue (₹ Cr)</div><AreaLine data={rev} color="#0d9488" valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} /></div>
+        <div><div className="mb-1 text-xs text-slate-500">Net profit / (loss) (₹ Cr)</div><Columns data={profit} valueLabel={(v) => `₹${v.toLocaleString("en-IN")}`} /></div>
+      </div>
+    ) });
   }
 
   if (years.length > 1 && hasReturns) {
-    out.push({
-      key: "returns",
-      title: "Returns & working capital",
-      node: (
-        <>
-          <div className="mb-1 text-xs text-slate-500">RoCE (%)</div>
-          <AreaLine data={roce} color="#6366f1" valueLabel={(v) => `${v}%`} />
-          <div className="mb-1 mt-3 text-xs text-slate-500">Receivable days (DSO)</div>
-          <AreaLine data={dso} color="#0ea5e9" valueLabel={(v) => `${v}d`} />
-        </>
-      ),
-    });
+    out.push({ key: "returns", title: "⚙️ Returns & working capital", node: (
+      <div className="grid gap-4 md:grid-cols-2">
+        <div><div className="mb-1 text-xs text-slate-500">RoCE (%)</div><AreaLine data={roce} color="#4a3aa7" valueLabel={(v) => `${v}%`} /></div>
+        <div><div className="mb-1 text-xs text-slate-500">Receivable days — how fast they collect</div><AreaLine data={dso} color="#2a78d6" valueLabel={(v) => `${v}d`} /></div>
+      </div>
+    ) });
   }
 
   if (latest) {
-    out.push({
-      key: "balance",
-      title: `Balance sheet & ratios · FY${latest.fy}`,
-      node: (
-        <div className="grid grid-cols-2 gap-3">
-          <Stat label="Total debt" value={fmtCrore(latest.totalDebtINR)} />
-          <Stat label="Total equity" value={fmtCrore(latest.totalEquityINR)} />
-          <Stat label="Receivables" value={fmtCrore(latest.tradeReceivablesINR)} />
-          <Stat label="Payables" value={fmtCrore(latest.tradePayablesINR)} />
-          <Stat label="Inventory" value={fmtCrore(latest.inventoryINR)} />
-          <Stat label="Cash" value={fmtCrore(latest.cashINR)} />
-          <Stat label="Current ratio" value={num2(latest.currentRatio)} />
-          <Stat label="Debt / equity" value={num2(latest.debtToEquity)} />
-          <Stat label="Interest coverage" value={latest.interestCoverage != null ? `${latest.interestCoverage.toFixed(1)}x` : "—"} />
-          <Stat label="RoE" value={fmtPct(latest.roePct)} />
-        </div>
-      ),
-    });
+    out.push({ key: "balance", title: `⚖️ Balance sheet & ratios · FY${latest.fy}`, node: (
+      <div className="grid grid-cols-2 gap-3">
+        <Stat label="Total debt" value={fmtCrore(latest.totalDebtINR)} />
+        <Stat label="Total equity" value={fmtCrore(latest.totalEquityINR)} />
+        <Stat label="Receivables" value={fmtCrore(latest.tradeReceivablesINR)} />
+        <Stat label="Payables" value={fmtCrore(latest.tradePayablesINR)} />
+        <Stat label="Inventory" value={fmtCrore(latest.inventoryINR)} />
+        <Stat label="Cash" value={fmtCrore(latest.cashINR)} />
+        <Stat label="Current ratio" value={num2(latest.currentRatio)} />
+        <Stat label="Debt / equity" value={num2(latest.debtToEquity)} />
+        <Stat label="Interest coverage" value={latest.interestCoverage != null ? `${latest.interestCoverage.toFixed(1)}x` : "—"} />
+        <Stat label="RoE" value={fmtPct(latest.roePct)} />
+      </div>
+    ) });
   }
 
   if (costBars.length > 0) {
-    out.push({
-      key: "cost",
-      title: `Cost structure${cs.fy ? ` · FY${cs.fy}` : ""}`,
-      node: <HBars data={costBars} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} />,
-    });
+    out.push({ key: "cost", title: `🧾 Cost structure${cs.fy ? ` · FY${cs.fy}` : ""}`, node: <HBars data={costBars} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} /> });
   }
 
   if (latest && (latest.cashFromOpsINR != null || latest.cashFromInvestingINR != null || latest.cashFromFinancingINR != null)) {
-    out.push({
-      key: "cashflow",
-      title: `Cash flow · FY${latest.fy}`,
-      node: (
-        <div className="grid grid-cols-3 gap-3">
-          <Stat label="Operating" value={fmtCrore(latest.cashFromOpsINR)} />
-          <Stat label="Investing" value={fmtCrore(latest.cashFromInvestingINR)} />
-          <Stat label="Financing" value={fmtCrore(latest.cashFromFinancingINR)} />
-        </div>
-      ),
-    });
+    out.push({ key: "cashflow", title: `💵 Cash flow · FY${latest.fy}`, node: (
+      <div className="grid grid-cols-3 gap-3">
+        <Stat label="Operating" value={fmtCrore(latest.cashFromOpsINR)} />
+        <Stat label="Investing" value={fmtCrore(latest.cashFromInvestingINR)} />
+        <Stat label="Financing" value={fmtCrore(latest.cashFromFinancingINR)} />
+      </div>
+    ) });
   }
 
   if (p.acquisitions.length > 0) {
-    out.push({
-      key: "ma",
-      title: "M&A",
-      node: (
-        <div className="space-y-1">
-          {p.acquisitions.map((a, i) => (
-            <div key={i} className="rounded-lg bg-violet-50 p-2.5 text-sm ring-1 ring-violet-200">
-              <span className="font-medium text-violet-900">{a.role === "acquired" ? "Acquired by" : "Acquired"} {a.counterparty ?? "—"}</span>
-              <span className="text-violet-700"> {[a.stake, a.amountINR ? fmtCrore(a.amountINR) : null, a.date].filter(Boolean).join(" · ")}</span>
-            </div>
-          ))}
-        </div>
-      ),
-    });
+    out.push({ key: "ma", title: "🤝 M&A", node: (
+      <div className="space-y-1">
+        {p.acquisitions.map((a, i) => (
+          <div key={i} className="rounded-lg bg-violet-50 p-2.5 text-sm ring-1 ring-violet-200">
+            <span className="font-medium text-violet-900">{a.role === "acquired" ? "Acquired by" : "Acquired"} {a.counterparty ?? "—"}</span>
+            <span className="text-violet-700"> {[a.stake, a.amountINR ? fmtCrore(a.amountINR) : null, a.date].filter(Boolean).join(" · ")}</span>
+          </div>
+        ))}
+      </div>
+    ) });
   }
 
   if (p.parent || p.subsidiaries.length > 0 || p.capTable.founders.length > 0 || p.capTable.promoterPct != null) {
-    out.push({
-      key: "ownership",
-      title: "Ownership & structure",
-      node: (
-        <>
-          <dl className="space-y-2 text-sm">
-            {p.parent && <Row k="Parent / group" v={p.parent} />}
-            {p.capTable.promoterPct != null && <Row k="Promoter / public" v={`${p.capTable.promoterPct}% / ${p.capTable.publicPct ?? "—"}%`} />}
-            {p.capTable.founders.length > 0 && <Row k="Founders" v={p.capTable.founders.join(", ")} />}
-          </dl>
-          {p.subsidiaries.length > 0 && (
-            <div className="mt-2">
-              <div className="mb-1 text-xs text-slate-500">Subsidiaries</div>
-              <div className="flex flex-wrap gap-1.5">
-                {p.subsidiaries.map((s) => <span key={s} className="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-700 ring-1 ring-slate-200">{s}</span>)}
-              </div>
-            </div>
-          )}
-        </>
-      ),
-    });
+    out.push({ key: "ownership", title: "🏛️ Ownership & structure", node: (
+      <>
+        <dl className="space-y-2 text-sm">
+          {p.parent && <Row k="Parent / group" v={p.parent} />}
+          {p.capTable.promoterPct != null && <Row k="Promoter / public" v={`${p.capTable.promoterPct}% / ${p.capTable.publicPct ?? "—"}%`} />}
+          {p.capTable.founders.length > 0 && <Row k="Founders" v={p.capTable.founders.join(", ")} />}
+        </dl>
+        {p.subsidiaries.length > 0 && (
+          <div className="mt-2">
+            <div className="mb-1 text-xs text-slate-500">Subsidiaries</div>
+            <div className="flex flex-wrap gap-1.5">{p.subsidiaries.map((s) => <span key={s} className="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-700 ring-1 ring-slate-200">{s}</span>)}</div>
+          </div>
+        )}
+      </>
+    ) });
   }
 
   if (p.directors.length > 0) {
-    out.push({
-      key: "board",
-      title: "Board",
-      node: (
-        <div className="space-y-1">
-          {p.directors.map((d, i) => (
-            <div key={i} className="flex justify-between gap-4 text-sm">
-              <span className="text-slate-800">{d.name}</span>
-              <span className="text-right text-slate-400">{d.designation ?? ""}</span>
-            </div>
-          ))}
-        </div>
-      ),
-    });
+    out.push({ key: "board", title: "👔 Board", node: (
+      <div className="space-y-1">
+        {p.directors.map((d, i) => (
+          <div key={i} className="flex justify-between gap-4 text-sm"><span className="text-slate-800">{d.name}</span><span className="text-right text-slate-400">{d.designation ?? ""}</span></div>
+        ))}
+      </div>
+    ) });
   }
 
   if (p.loans.length > 0) {
-    out.push({
-      key: "loans",
-      title: "Loans & charges",
-      node: (
-        <div className="space-y-1">
-          {p.loans.map((l, i) => (
-            <div key={i} className="flex justify-between gap-4 text-sm">
-              <span className="truncate text-slate-800">{l.lender}</span>
-              <span className="shrink-0 font-mono text-slate-500">{l.amountINR ? fmtCrore(l.amountINR) : "—"}{l.status ? ` · ${l.status}` : ""}</span>
-            </div>
-          ))}
-        </div>
-      ),
-    });
+    out.push({ key: "loans", title: "🏦 Loans & charges", node: (
+      <div className="space-y-1">
+        {p.loans.map((l, i) => (
+          <div key={i} className="flex justify-between gap-4 text-sm"><span className="truncate text-slate-800">{l.lender}</span><span className="shrink-0 font-mono text-slate-500">{l.amountINR ? fmtCrore(l.amountINR) : "—"}{l.status ? ` · ${l.status}` : ""}</span></div>
+        ))}
+      </div>
+    ) });
   }
 
   if (p.competitors.length > 0) {
-    out.push({
-      key: "peers",
-      title: "Competitors / comparables",
-      node: (
-        <div className="flex flex-wrap gap-1.5">
-          {p.competitors.map((cName) => <span key={cName} className="rounded-md bg-teal-50 px-2 py-1 text-xs text-teal-800 ring-1 ring-teal-100">{cName}</span>)}
-        </div>
-      ),
-    });
+    out.push({ key: "peers", title: "🥊 Competitors / comparables", node: (
+      <div className="flex flex-wrap gap-1.5">{p.competitors.map((cName) => <span key={cName} className="rounded-md bg-teal-50 px-2 py-1 text-xs text-teal-800 ring-1 ring-teal-100">{cName}</span>)}</div>
+    ) });
   }
 
   return out;
 }
 
-// Financial-health & risk block from the parsed Tracxn detailed-report PDF.
 function HealthRiskBody({ pdf }: { pdf: SupplierPdf }) {
   const signed = (v: number | null, suffix = "%") => (v == null ? "—" : `${v > 0 ? "+" : ""}${v}${suffix}`);
   return (
     <>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         <Stat label="Current ratio" value={pdf.currentRatio != null ? pdf.currentRatio.toFixed(2) : "—"} />
         <Stat label="Interest coverage" value={pdf.interestCoverage != null ? `${pdf.interestCoverage.toFixed(1)}x` : "—"} />
         <Stat label="Debt / equity" value={pdf.debtToEquity != null ? pdf.debtToEquity.toFixed(2) : "—"} />
@@ -1258,30 +1222,18 @@ function HealthRiskBody({ pdf }: { pdf: SupplierPdf }) {
       {pdf.riskFlags.length > 0 ? (
         <div className="mt-3">
           <div className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-rose-600">Risk flags</div>
-          <div className="flex flex-wrap gap-1.5">
-            {pdf.riskFlags.map((f, i) => (
-              <span key={i} className="rounded-md bg-rose-50 px-2 py-1 text-xs text-rose-700 ring-1 ring-rose-200">{f}</span>
-            ))}
-          </div>
+          <div className="flex flex-wrap gap-1.5">{pdf.riskFlags.map((f, i) => <span key={i} className="rounded-md bg-rose-50 px-2 py-1 text-xs text-rose-700 ring-1 ring-rose-200">{f}</span>)}</div>
         </div>
       ) : (
-        <div className="mt-3 rounded-lg bg-emerald-50 px-3 py-2 text-xs text-emerald-700 ring-1 ring-emerald-200">
-          No risk indicators flagged in the latest filing.
-        </div>
+        <div className="mt-3 rounded-lg bg-emerald-50 px-3 py-2 text-xs text-emerald-700 ring-1 ring-emerald-200">No risk indicators flagged in the latest filing.</div>
       )}
     </>
   );
 }
 
-/* -------------------------------------------------------- shared UI pieces */
-
 function ResearchBody({ r }: { r: ResearchData }) {
   const List = ({ items }: { items: string[] }) => (
-    <ul className="space-y-1.5 text-sm text-slate-700">
-      {items.map((s, i) => (
-        <li key={i} className="flex gap-2"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-teal-400" />{s}</li>
-      ))}
-    </ul>
+    <ul className="space-y-1.5 text-sm text-slate-700">{items.map((s, i) => <li key={i} className="flex gap-2"><span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-teal-400" />{s}</li>)}</ul>
   );
   return (
     <div className="space-y-4">
@@ -1289,56 +1241,13 @@ function ResearchBody({ r }: { r: ResearchData }) {
       {r.products.length > 0 && (<div><div className="mb-1 text-xs font-medium text-slate-500">Products &amp; capabilities</div><List items={r.products.slice(0, 6)} /></div>)}
       {r.leadership.length > 0 && (<div><div className="mb-1 text-xs font-medium text-slate-500">Leadership</div><List items={r.leadership.slice(0, 5)} /></div>)}
       {r.ownership && (<div><div className="mb-1 text-xs font-medium text-slate-500">Ownership &amp; financials</div><p className="text-sm leading-relaxed text-slate-600">{r.ownership}</p></div>)}
-      {r.clients.length > 0 && (
-        <div>
-          <div className="mb-1 text-xs font-medium text-slate-500">Notable clients</div>
-          <div className="flex flex-wrap gap-1.5">{r.clients.slice(0, 10).map((c, i) => (<span key={i} className="rounded-md bg-slate-100 px-2 py-0.5 text-xs text-slate-600">{c}</span>))}</div>
-        </div>
-      )}
+      {r.clients.length > 0 && (<div><div className="mb-1 text-xs font-medium text-slate-500">Notable clients</div><div className="flex flex-wrap gap-1.5">{r.clients.slice(0, 10).map((c, i) => <span key={i} className="rounded-md bg-slate-100 px-2 py-0.5 text-xs text-slate-600">{c}</span>)}</div></div>)}
       {r.news.length > 0 && (<div><div className="mb-1 text-xs font-medium text-slate-500">Recent news</div><List items={r.news.slice(0, 5)} /></div>)}
     </div>
   );
 }
 
-function Toolbar({ cats, cat, setCat, count, query, setQuery, sortValue, setSort, sortOptions }: {
-  cats: string[]; cat: string; setCat: (c: string) => void; count: (c: string) => number;
-  query: string; setQuery: (q: string) => void; sortValue: string; setSort: (s: string) => void;
-  sortOptions: [string, string][];
-}) {
-  return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex flex-wrap gap-1.5">
-        {cats.map((c) => (
-          <button key={c} onClick={() => setCat(c)}
-            className={`rounded-lg px-3 py-1.5 text-sm font-medium ring-1 transition ${
-              cat === c ? "bg-teal-50 text-teal-700 ring-teal-300" : "bg-white text-slate-500 ring-slate-200 hover:text-slate-800 hover:ring-slate-300"
-            }`}>
-            {c}<span className={`ml-1.5 text-xs ${cat === c ? "text-teal-500" : "text-slate-400"}`}>{count(c)}</span>
-          </button>
-        ))}
-      </div>
-      <div className="flex gap-2">
-        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search…"
-          className="w-56 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-teal-400" />
-        <select value={sortValue} onChange={(e) => setSort(e.target.value)}
-          className="rounded-lg bg-white px-3 py-1.5 text-sm text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400">
-          {sortOptions.map(([v, l]) => <option key={v} value={v}>Sort: {l}</option>)}
-        </select>
-      </div>
-    </div>
-  );
-}
-
-function Kpi({ label, value, sub, tone }: { label: string; value: string; sub: string; tone?: "emerald" | "amber" | "teal" }) {
-  const accent = tone === "emerald" ? "text-emerald-600" : tone === "amber" ? "text-amber-600" : tone === "teal" ? "text-teal-600" : "text-slate-900";
-  return (
-    <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-      <div className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</div>
-      <div className={`mt-1.5 text-2xl font-semibold tabular-nums ${accent}`}>{value}</div>
-      <div className="mt-0.5 text-xs text-slate-400">{sub}</div>
-    </div>
-  );
-}
+/* -------------------------------------------------------- small primitives */
 
 function Th({ children, right }: { children: React.ReactNode; right?: boolean }) {
   return <th className={`px-4 py-3 font-medium ${right ? "text-right" : "text-left"}`}>{children}</th>;
@@ -1369,5 +1278,3 @@ function Row({ k, v, mono }: { k: string; v: string; mono?: boolean }) {
     </div>
   );
 }
-
-const crStr = (cr: number) => `₹${cr >= 1000 ? (cr / 1000).toFixed(1) + "k" : cr.toFixed(0)} Cr`;
