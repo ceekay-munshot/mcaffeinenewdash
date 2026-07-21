@@ -256,6 +256,57 @@ export function AreaLine({
   );
 }
 
+/* ------------------------------------------------------------- Radar */
+// Overlay several entities on the same 0–100 axes — the go-to "who's stronger
+// where" comparison visual. Each series is a translucent polygon + outline.
+export function Radar({ axes, series, size = 300 }: {
+  axes: string[];
+  series: { name: string; color: string; values: number[] }[];
+  size?: number;
+}) {
+  const cx = size / 2, cy = size / 2, R = size / 2 - 58;
+  const N = axes.length || 1;
+  const ang = (i: number) => -Math.PI / 2 + (i * 2 * Math.PI) / N;
+  const pt = (i: number, r: number) => [cx + Math.cos(ang(i)) * R * r, cy + Math.sin(ang(i)) * R * r] as const;
+  const clamp = (v: number) => Math.max(0, Math.min(1, v / 100));
+  const poly = (vals: number[]) => vals.map((v, i) => pt(i, clamp(v)).join(",")).join(" ");
+  const rings = [0.25, 0.5, 0.75, 1];
+  return (
+    <div>
+      <svg viewBox={`0 0 ${size} ${size}`} className="anim-pop mx-auto block h-auto w-full" style={{ maxWidth: size, overflow: "visible" }}>
+        {rings.map((r, ri) => (
+          <polygon key={ri} points={axes.map((_, i) => pt(i, r).join(",")).join(" ")} fill={ri === rings.length - 1 ? "#f8fafc" : "none"} stroke="#e2e8f0" strokeWidth="1" />
+        ))}
+        {axes.map((a, i) => {
+          const [x, y] = pt(i, 1);
+          const [lx, ly] = pt(i, 1.17);
+          const anchor = Math.abs(lx - cx) < 8 ? "middle" : lx > cx ? "start" : "end";
+          return (
+            <g key={i}>
+              <line x1={cx} y1={cy} x2={x} y2={y} stroke="#e2e8f0" strokeWidth="1" />
+              <text x={lx} y={ly} textAnchor={anchor} dominantBaseline="middle" fontSize="9" fontWeight="600" fill="#64748b">{a}</text>
+            </g>
+          );
+        })}
+        {series.map((s, si) => (
+          <polygon key={si} points={poly(s.values)} fill={`${s.color}22`} stroke={s.color} strokeWidth="2" strokeLinejoin="round" />
+        ))}
+        {series.map((s, si) => s.values.map((v, i) => {
+          const [x, y] = pt(i, clamp(v));
+          return <circle key={`${si}-${i}`} cx={x} cy={y} r="2.6" fill={s.color} stroke="#fff" strokeWidth="1" />;
+        }))}
+      </svg>
+      <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1.5">
+        {series.map((s) => (
+          <span key={s.name} className="flex items-center gap-1.5 text-xs font-medium text-slate-600">
+            <span className="h-2.5 w-2.5 rounded-sm" style={{ background: s.color }} />{s.name}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ------------------------------------------ Score bars (0–100 fitness) */
 // Normalised "how healthy is this?" bars — each dimension scored 0–100 and
 // coloured green/amber/red, with the real value shown. Turns a table of ratios
