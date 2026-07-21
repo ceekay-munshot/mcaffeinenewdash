@@ -313,17 +313,17 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "product" | "compare" | "benchmark";
+type SupTab = "board" | "product" | "benchmark";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "board", label: "Supplier board", emoji: "📇" },
   { key: "product", label: "By product", emoji: "🧴" },
-  { key: "compare", label: "Compare", emoji: "🆚" },
   { key: "benchmark", label: "Benchmark charts", emoji: "📊" },
 ];
 
 function SupplierView() {
   const all = useMemo(() => supplyEntities(), []);
   const [tab, setTab] = useState<SupTab>("board");
+  const [compareMode, setCompareMode] = useState(false);
   const [selected, setSelected] = useState<Entity | null>(null);
   const { open: openSupplier, back } = useProfileNav(selected, setSelected);
 
@@ -347,11 +347,19 @@ function SupplierView() {
           { label: "Spend in view", value: crStr(stats.revCr) },
           { label: "Levers found", value: String(stats.opps) },
         ]} />
-      <div className="mt-5 mb-4"><SubTabs tabs={SUP_TABS} value={tab} onChange={setTab} /></div>
-      {tab === "board" && <SupplierBoard all={all} onSelect={openSupplier} />}
-      {tab === "product" && <SupplierByProduct all={all} onSelect={openSupplier} />}
-      {tab === "compare" && <CompareView all={all} onSelect={openSupplier} />}
-      {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
+      {compareMode ? (
+        <div className="mt-6"><CompareView all={all} onSelect={openSupplier} onClose={() => setCompareMode(false)} /></div>
+      ) : (
+        <>
+          <div className="mt-5 mb-4 flex flex-wrap items-center justify-between gap-3">
+            <SubTabs tabs={SUP_TABS} value={tab} onChange={setTab} />
+            <button onClick={() => setCompareMode(true)} className="inline-flex items-center gap-1.5 rounded-lg bg-teal-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">🆚 Compare suppliers</button>
+          </div>
+          {tab === "board" && <SupplierBoard all={all} onSelect={openSupplier} />}
+          {tab === "product" && <SupplierByProduct all={all} onSelect={openSupplier} />}
+          {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
+        </>
+      )}
     </main>
   );
 }
@@ -512,12 +520,11 @@ function TrendCompare({ selected }: { selected: Entity[] }) {
 
 // Pick any suppliers (optionally narrowed by product / type) then Analyse them
 // head-to-head — a visual scorecard for "who do I renegotiate with / go with".
-function CompareView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: Entity) => void; onClose: () => void }) {
   const [picked, setPicked] = useState<string[]>([]);
   const [analysing, setAnalysing] = useState(false);
   const [prod, setProd] = useState("any");
   const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
-  const [query, setQuery] = useState("");
 
   const avail = useMemo(() => {
     const counts = new Map<string, number>();
@@ -529,56 +536,53 @@ function CompareView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
   const pool = useMemo(() => all.filter((e) => {
     if (cat !== "All" && e.category !== cat) return false;
     if (prod !== "any" && !productTagsOf(e).includes(prod)) return false;
-    const q = query.trim().toLowerCase();
-    if (q && !`${e.brand} ${e.legalName ?? ""}`.toLowerCase().includes(q)) return false;
     return true;
-  }), [all, cat, prod, query]);
+  }).sort((a, b) => a.brand.localeCompare(b.brand)), [all, cat, prod]);
 
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const selected = picked.map((f) => byFolder.get(f)).filter((e): e is Entity => !!e);
-  const toggle = (f: string) => setPicked((p) => (p.includes(f) ? p.filter((x) => x !== f) : p.length >= CMP_MAX ? p : [...p, f]));
+  const add = (f: string) => setPicked((p) => (p.includes(f) || p.length >= CMP_MAX ? p : [...p, f]));
+  const remove = (f: string) => setPicked((p) => p.filter((x) => x !== f));
+  const options = pool.filter((e) => !picked.includes(e.folder));
+  const full = picked.length >= CMP_MAX;
 
   if (analysing && selected.length >= 2) return <CompareAnalysis selected={selected} onBack={() => setAnalysing(false)} onSelect={onSelect} />;
 
   return (
-    <div className="space-y-4 pb-20">
-      <div className="flex flex-wrap items-center gap-3">
-        <Dropdown label="Product" value={prod} onChange={setProd} options={[{ key: "any", label: "Any product" }, ...avail.map((t) => ({ key: t.key, label: t.label, emoji: t.emoji }))]} />
-        <Dropdown label="Type" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c }))} />
-        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search…" className="w-44 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-teal-400" />
-      </div>
+    <div className="space-y-4">
+      <button onClick={onClose} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Back to suppliers</button>
 
-      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-        {pool.map((e) => {
-          const on = picked.includes(e.folder);
-          const dis = !on && picked.length >= CMP_MAX;
-          return (
-            <button key={e.folder} onClick={() => toggle(e.folder)} disabled={dis}
-              className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition ${on ? "border-teal-400 bg-teal-50 ring-1 ring-teal-300" : "border-slate-200 bg-white hover:border-slate-300"} ${dis ? "cursor-not-allowed opacity-40" : ""}`}>
-              <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-xs text-white ${on ? "border-teal-500 bg-teal-500" : "border-slate-300"}`}>{on ? "✓" : ""}</span>
-              <span className="min-w-0 flex-1">
-                <span className="flex items-center gap-1.5 truncate text-sm font-semibold text-slate-900">{catEmoji(e.category)}<span className="truncate">{e.brand}</span></span>
-                <span className="text-xs text-slate-400">{e.category} · {fmtCrore(revOf(e))}</span>
-              </span>
-            </button>
-          );
-        })}
-        {pool.length === 0 && <div className="col-span-full rounded-xl bg-white p-8 text-center text-sm text-slate-400 ring-1 ring-slate-200">No suppliers match this filter.</div>}
-      </div>
+      <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <div className="text-base font-semibold text-slate-900">🆚 Compare suppliers</div>
+        <div className="mt-0.5 text-sm text-slate-500">Optionally narrow by product or type, then add 2–6 suppliers from the dropdown and hit Compare.</div>
 
-      <div className="sticky bottom-3 z-10 flex flex-wrap items-center gap-3 rounded-2xl bg-white/95 p-3 shadow-lg ring-1 ring-slate-200 backdrop-blur">
-        <span className="text-sm font-medium text-slate-600">{selected.length ? `${selected.length} of ${CMP_MAX} selected` : "Pick 2–6 suppliers to compare"}</span>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <Dropdown label="Product" value={prod} onChange={setProd} options={[{ key: "any", label: "Any product" }, ...avail.map((t) => ({ key: t.key, label: t.label, emoji: t.emoji }))]} />
+          <Dropdown label="Type" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c }))} />
+          <label className="inline-flex items-center gap-2 text-sm">
+            <span className="text-slate-500">Add supplier</span>
+            <select value="" disabled={full} onChange={(e) => e.target.value && add(e.target.value)}
+              className="min-w-[15rem] rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400 disabled:opacity-50">
+              <option value="">{full ? "Max 6 selected" : options.length ? "Select a supplier…" : "No suppliers match"}</option>
+              {options.map((e) => <option key={e.folder} value={e.folder}>{e.brand} · {e.category} · {fmtCrore(revOf(e))}</option>)}
+            </select>
+          </label>
+        </div>
+
+        <div className="mt-4 flex min-h-[2rem] flex-wrap items-center gap-2">
+          {selected.length === 0 && <span className="text-sm text-slate-400">No suppliers selected yet.</span>}
           {selected.map((e, i) => (
-            <span key={e.folder} className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>
-              {e.brand}<button onClick={() => toggle(e.folder)} className="ml-0.5 opacity-80 hover:opacity-100">✕</button>
+            <span key={e.folder} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>
+              {e.brand}<button onClick={() => remove(e.folder)} className="opacity-80 transition hover:opacity-100">✕</button>
             </span>
           ))}
         </div>
-        <div className="ml-auto flex gap-2">
-          {selected.length > 0 && <button onClick={() => setPicked([])} className="rounded-lg px-3 py-1.5 text-sm text-slate-500 transition hover:text-slate-800">Clear</button>}
+
+        <div className="mt-5 flex items-center gap-3">
           <button disabled={selected.length < 2} onClick={() => setAnalysing(true)}
-            className={`rounded-lg px-4 py-1.5 text-sm font-semibold text-white transition ${selected.length >= 2 ? "bg-teal-600 hover:bg-teal-700" : "cursor-not-allowed bg-slate-300"}`}>Analyse →</button>
+            className={`rounded-lg px-5 py-2 text-sm font-semibold text-white transition ${selected.length >= 2 ? "bg-teal-600 hover:bg-teal-700" : "cursor-not-allowed bg-slate-300"}`}>Compare →</button>
+          {selected.length > 0 && <button onClick={() => setPicked([])} className="text-sm text-slate-500 transition hover:text-slate-800">Clear</button>}
+          <span className="text-sm text-slate-400">{selected.length ? `${selected.length} of ${CMP_MAX} selected` : "Pick at least 2"}</span>
         </div>
       </div>
     </div>
