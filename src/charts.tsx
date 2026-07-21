@@ -256,6 +256,54 @@ export function AreaLine({
   );
 }
 
+/* ------------------------------------------ Multi-series line (compare) */
+// Several entities overlaid on one time axis — the comparison-trend chart.
+// Each series is aligned to the shared xLabels; null points are gaps.
+export function MultiLine({ xLabels, series, valueLabel, height = 300 }: {
+  xLabels: string[];
+  series: { name: string; color: string; points: (number | null)[] }[];
+  valueLabel: (v: number) => string;
+  height?: number;
+}) {
+  const n = xLabels.length;
+  const allVals = series.flatMap((s) => s.points).filter((v): v is number => v != null);
+  if (!allVals.length) return <div className="py-10 text-center text-sm text-slate-400">No data for this metric.</div>;
+  let min = Math.min(...allVals), max = Math.max(...allVals);
+  if (min === max) { min -= 1; max += 1; }
+  const range = max - min;
+  const PAD_T = 12, PAD_B = 8;
+  const x = (i: number) => (n === 1 ? 50 : (i / (n - 1)) * 100);
+  const y = (v: number) => PAD_T + (1 - (v - min) / range) * (100 - PAD_T - PAD_B);
+  const pathFor = (pts: (number | null)[]) => {
+    let d = "", started = false;
+    pts.forEach((v, i) => { if (v == null) return; d += `${started ? "L" : "M"}${x(i).toFixed(2)} ${y(v).toFixed(2)} `; started = true; });
+    return d.trim();
+  };
+  return (
+    <div>
+      <div className="relative" style={{ height }}>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
+          {series.map((s, si) => <path key={si} d={pathFor(s.points)} fill="none" stroke={s.color} strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" className="anim-fade" />)}
+        </svg>
+        {series.map((s, si) => s.points.map((v, i) => v == null ? null : (
+          <div key={`${si}-${i}`} className="group absolute z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x(i)}%`, top: `${y(v)}%` }}>
+            <div className="h-2 w-2 rounded-full border border-white shadow-sm transition-transform group-hover:scale-150" style={{ background: s.color }} />
+            <div className="pointer-events-none absolute bottom-4 left-1/2 z-30 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
+              {s.name} · {xLabels[i]}: {valueLabel(v)}
+            </div>
+          </div>
+        )))}
+      </div>
+      <div className="mt-1.5 flex justify-between">
+        {xLabels.map((l, i) => <span key={i} className="flex-1 truncate text-center text-[11px] text-slate-400">{l}</span>)}
+      </div>
+      <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1.5">
+        {series.map((s) => <span key={s.name} className="flex items-center gap-1.5 text-xs font-medium text-slate-600"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: s.color }} />{s.name}</span>)}
+      </div>
+    </div>
+  );
+}
+
 /* ------------------------------------------------------------- Radar */
 // Overlay several entities on the same 0–100 axes — the go-to "who's stronger
 // where" comparison visual. Each series is a translucent polygon + outline.
