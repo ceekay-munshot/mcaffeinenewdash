@@ -123,7 +123,7 @@ export function HBars({
               style={{ width: `${Math.max(3, (d.value / max) * 100)}%`, background: `linear-gradient(90deg, ${d.color}, ${lighten(d.color)})`, boxShadow: `0 1px 4px ${d.color}33` }}
             />
           </div>
-          <div className="w-20 text-right font-mono font-semibold text-slate-900">{valueLabel(d.value)}</div>
+          <div className="whitespace-nowrap pl-1 text-right font-mono font-semibold text-slate-900">{valueLabel(d.value)}</div>
           <Tip className="-top-7 left-[9.5rem]">{d.label}: {valueLabel(d.value)}</Tip>
         </div>
       ))}
@@ -143,14 +143,21 @@ export function Columns({
   height?: number;
 }) {
   const vals = data.map((d) => d.value);
-  const top = Math.max(0, ...vals);
-  const bottom = Math.min(0, ...vals);
-  const range = top - bottom || 1;
-  const zeroPct = (top / range) * 100;
+  const rawTop = Math.max(0, ...vals);
+  const rawBottom = Math.min(0, ...vals);
+  const rawRange = rawTop - rawBottom || 1;
+  // Reserve headroom above positive bars (and below negative bars) so the value
+  // labels always sit inside the plot area instead of clipping off the top.
+  const padTop = rawRange * 0.14;
+  const padBottom = rawBottom < 0 ? rawRange * 0.12 : 0;
+  const range = rawRange + padTop + padBottom;
+  const zeroPct = ((rawTop + padTop) / range) * 100;
+  // With many columns, per-bar value labels collide — drop them and lean on hover.
+  const showValueLabels = data.length <= 8;
   return (
     <div>
       <div className="relative" style={{ height }}>
-        {bottom < 0 && <div className="absolute inset-x-0 border-t border-dashed border-slate-300" style={{ top: `${zeroPct}%` }} />}
+        {rawBottom < 0 && <div className="absolute inset-x-0 border-t border-dashed border-slate-300" style={{ top: `${zeroPct}%` }} />}
         <div className="flex h-full items-stretch gap-1.5">
           {data.map((d) => {
             const hPct = (Math.abs(d.value) / range) * 100;
@@ -161,12 +168,14 @@ export function Columns({
                   className="anim-grow-y absolute inset-x-0 rounded-md transition-[filter] group-hover:brightness-95"
                   style={{ top: `${topPct}%`, height: `${Math.max(hPct, 1.5)}%`, background: `linear-gradient(180deg, ${lighten(d.color, "e6")}, ${d.color})`, transformOrigin: d.value >= 0 ? "bottom" : "top" }}
                 />
-                <div
-                  className={`absolute inset-x-0 text-center text-[10px] font-semibold ${d.value >= 0 ? "text-slate-600" : "text-white"}`}
-                  style={d.value >= 0 ? { top: `calc(${topPct}% - 14px)` } : { top: `calc(${topPct}% + 3px)` }}
-                >
-                  {valueLabel(d.value)}
-                </div>
+                {showValueLabels && (
+                  <div
+                    className={`absolute inset-x-0 text-center text-[10px] font-semibold group-hover:opacity-0 ${d.value >= 0 ? "text-slate-600" : "text-white"}`}
+                    style={d.value >= 0 ? { top: `calc(${topPct}% - 14px)` } : { top: `calc(${topPct}% + 3px)` }}
+                  >
+                    {valueLabel(d.value)}
+                  </div>
+                )}
                 <Tip className="bottom-full left-1/2 mb-1 -translate-x-1/2">{d.label}: {valueLabel(d.value)}</Tip>
               </div>
             );
@@ -174,7 +183,7 @@ export function Columns({
         </div>
       </div>
       <div className="mt-1.5 flex gap-1.5">
-        {data.map((d) => (<div key={d.label} className="flex-1 text-center text-[11px] text-slate-400">{d.label}</div>))}
+        {data.map((d) => (<div key={d.label} className="flex-1 truncate text-center text-[11px] text-slate-400">{d.label}</div>))}
       </div>
     </div>
   );
@@ -219,22 +228,29 @@ export function AreaLine({
           {area && <path d={areaPath} fill={`url(#${gid})`} className="anim-fade" />}
           <path d={line} fill="none" stroke={color} strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" className="anim-fade" />
         </svg>
-        {data.map((d, i) => (
-          <div key={i} className="group absolute z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x(i)}%`, top: `${y(d.value)}%` }}>
-            <div className="h-2.5 w-2.5 rounded-full border-2 border-white shadow-sm transition-transform group-hover:scale-150" style={{ background: color }} />
-            {emphasize.has(i) && (
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-white px-1 text-[10px] font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200">
-                {valueLabel(d.value)}
+        {data.map((d, i) => {
+          // Keep labels inside the plot: left-anchor the first point, right-anchor the last.
+          const anchor = i === 0 ? "left-0 translate-x-0" : i === n - 1 ? "right-0 left-auto translate-x-0" : "left-1/2 -translate-x-1/2";
+          return (
+            <div key={i} className="group absolute z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x(i)}%`, top: `${y(d.value)}%` }}>
+              <div className="h-2.5 w-2.5 rounded-full border-2 border-white shadow-sm transition-transform group-hover:scale-150" style={{ background: color }} />
+              {emphasize.has(i) && (
+                <div className={`absolute bottom-3 ${anchor} whitespace-nowrap rounded bg-white px-1 text-[10px] font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 group-hover:opacity-0`}>
+                  {valueLabel(d.value)}
+                </div>
+              )}
+              <div className={`pointer-events-none absolute bottom-5 z-30 ${anchor} whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100`}>
+                {d.label}: {valueLabel(d.value)}
               </div>
-            )}
-            <div className="pointer-events-none absolute bottom-5 left-1/2 z-30 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
-              {d.label}: {valueLabel(d.value)}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className="mt-1.5 flex justify-between">
-        {data.map((d, i) => (<span key={i} className="text-[11px] text-slate-400">{d.label}</span>))}
+        {data.map((d, i) => {
+          const align = i === 0 ? "text-left" : i === n - 1 ? "text-right" : "text-center";
+          return <span key={i} className={`flex-1 truncate text-[11px] text-slate-400 ${align}`}>{d.label}</span>;
+        })}
       </div>
     </div>
   );
