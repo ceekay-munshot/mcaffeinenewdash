@@ -256,6 +256,27 @@ export function AreaLine({
   );
 }
 
+/* ------------------------------------------ Score bars (0–100 fitness) */
+// Normalised "how healthy is this?" bars — each dimension scored 0–100 and
+// coloured green/amber/red, with the real value shown. Turns a table of ratios
+// into a shape you can read at a glance.
+export function ScoreBars({ data }: { data: { label: string; score: number; value: string; hint?: string }[] }) {
+  const color = (s: number) => (s >= 60 ? "#1baf7a" : s >= 40 ? "#eda100" : "#e34948");
+  return (
+    <div className="space-y-2.5">
+      {data.map((d) => (
+        <div key={d.label} className="group grid grid-cols-[minmax(0,7.5rem)_1fr_auto] items-center gap-3 text-sm" title={d.hint}>
+          <div className="truncate text-slate-600">{d.label}</div>
+          <div className="h-2.5 rounded-full bg-slate-100">
+            <div className="anim-grow-x h-2.5 rounded-full" style={{ width: `${Math.max(3, Math.min(100, d.score))}%`, background: color(d.score) }} />
+          </div>
+          <div className="w-16 text-right font-mono text-xs font-semibold text-slate-700">{d.value}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ------------------------------------------------------- Stacked meter */
 
 export function StackedMeter({ data }: { data: Slice[] }) {
