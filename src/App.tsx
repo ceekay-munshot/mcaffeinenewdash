@@ -313,9 +313,10 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "benchmark";
+type SupTab = "board" | "product" | "benchmark";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "board", label: "Supplier board", emoji: "📇" },
+  { key: "product", label: "By product", emoji: "🧴" },
   { key: "benchmark", label: "Benchmark charts", emoji: "📊" },
 ];
 
@@ -347,8 +348,114 @@ function SupplierView() {
         ]} />
       <div className="mt-5 mb-4"><SubTabs tabs={SUP_TABS} value={tab} onChange={setTab} /></div>
       {tab === "board" && <SupplierBoard all={all} onSelect={openSupplier} />}
+      {tab === "product" && <SupplierByProduct all={all} onSelect={openSupplier} />}
       {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
     </main>
+  );
+}
+
+// Product / material taxonomy for the "By product" view. Each tag matches the
+// supplier's free-text industry + research.products + overview, so we can group
+// vendors that offer the same thing — a ready shortlist of sourcing alternatives.
+type ProductGroup = "Finished product" | "Raw material" | "Packaging";
+const GROUP_ORDER: Record<ProductGroup, number> = { "Finished product": 0, "Raw material": 1, Packaging: 2 };
+const PRODUCT_TAGS: { key: string; label: string; emoji: string; group: ProductGroup; re: RegExp }[] = [
+  { key: "facewash", label: "Face wash / cleanser", emoji: "🧼", group: "Finished product", re: /face ?wash|facial cleanser|cleanser/ },
+  { key: "bodywash", label: "Body wash / shower gel", emoji: "🚿", group: "Finished product", re: /body ?wash|shower gel|bathing/ },
+  { key: "haircare", label: "Shampoo / conditioner", emoji: "🧴", group: "Finished product", re: /shampoo|conditioner/ },
+  { key: "hairoil", label: "Hair oil", emoji: "🛢️", group: "Finished product", re: /hair oil/ },
+  { key: "serum", label: "Serums", emoji: "💧", group: "Finished product", re: /\bserum/ },
+  { key: "cream", label: "Creams / lotions / moisturisers", emoji: "🧴", group: "Finished product", re: /\bcream|lotion|moisturi[sz]er/ },
+  { key: "sunscreen", label: "Sunscreen", emoji: "☀️", group: "Finished product", re: /sunscreen|sun care|\bspf\b/ },
+  { key: "mask", label: "Sheet masks / patches", emoji: "🎭", group: "Finished product", re: /sheet mask|face mask|hydrogel|\bpatch|nose strip|wax strip/ },
+  { key: "scrub", label: "Scrubs / exfoliants", emoji: "🧽", group: "Finished product", re: /scrub|exfoliat/ },
+  { key: "soap", label: "Soaps / bars", emoji: "🧼", group: "Finished product", re: /\bsoap/ },
+  { key: "lip", label: "Lip care", emoji: "💄", group: "Finished product", re: /lip balm|lip care|lipstick|\blip\b/ },
+  { key: "wipes", label: "Wipes", emoji: "🧻", group: "Finished product", re: /\bwipes?\b/ },
+  { key: "surfactant", label: "Surfactants", emoji: "🫧", group: "Raw material", re: /surfactant/ },
+  { key: "preservative", label: "Preservatives", emoji: "🧪", group: "Raw material", re: /preservative/ },
+  { key: "fragrance", label: "Fragrances / essential oils", emoji: "🌸", group: "Raw material", re: /fragrance|essential oil|\baroma|perfum/ },
+  { key: "actives", label: "Actives / botanical extracts", emoji: "🌿", group: "Raw material", re: /\bactives?\b|\bextract|botanical/ },
+  { key: "emulsifier", label: "Emulsifiers", emoji: "🧫", group: "Raw material", re: /emulsifier/ },
+  { key: "specialtychem", label: "Specialty chemicals / ingredients", emoji: "⚗️", group: "Raw material", re: /specialty chemical|fine chemical|specialty ingredient|cosmetic ingredient|chemical distribut/ },
+  { key: "tube", label: "Tubes", emoji: "📏", group: "Packaging", re: /\btubes?\b/ },
+  { key: "jar", label: "Jars", emoji: "🫙", group: "Packaging", re: /\bjars?\b/ },
+  { key: "bottle", label: "Bottles", emoji: "🍾", group: "Packaging", re: /\bbottles?\b/ },
+  { key: "closure", label: "Caps / pumps / closures", emoji: "🔩", group: "Packaging", re: /\bcaps?\b|closure|\bpumps?\b|dispenser/ },
+  { key: "printed", label: "Cartons / boxes / labels", emoji: "📦", group: "Packaging", re: /carton|\bboxes?\b|\blabels?\b|printing|printed pack/ },
+  { key: "pouch", label: "Pouches / sachets / films", emoji: "🥡", group: "Packaging", re: /pouch|sachet|\bfilms?\b|laminat/ },
+];
+
+function productTagsOf(e: Entity): string[] {
+  const r = e.research;
+  const blob = [e.industry ?? "", ...(r?.products ?? []), r?.overview ?? ""].join(" · ").toLowerCase();
+  if (!blob.trim()) return [];
+  return PRODUCT_TAGS.filter((t) => t.re.test(blob)).map((t) => t.key);
+}
+
+// Group suppliers by what they actually sell — pick a product and see every
+// vendor that offers it, side by side on the negotiation metrics. A sourcing
+// shortlist: your alternatives / backup sources for that item.
+function SupplierByProduct({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const tagged = useMemo(() => all.map((e) => ({ e, tags: productTagsOf(e), levers: leverTagsOf(supplierInsights(e)) })), [all]);
+  const byTag = useMemo(() => {
+    const m = new Map<string, typeof tagged>();
+    PRODUCT_TAGS.forEach((t) => m.set(t.key, []));
+    tagged.forEach((x) => x.tags.forEach((k) => m.get(k)!.push(x)));
+    return m;
+  }, [tagged]);
+  const avail = PRODUCT_TAGS.map((t) => ({ t, n: byTag.get(t.key)!.length })).filter((x) => x.n > 0)
+    .sort((a, b) => GROUP_ORDER[a.t.group] - GROUP_ORDER[b.t.group] || b.n - a.n);
+  const [key, setKey] = useState(() => [...avail].sort((a, b) => b.n - a.n)[0]?.t.key ?? PRODUCT_TAGS[0].key);
+  const tag = PRODUCT_TAGS.find((t) => t.key === key) ?? PRODUCT_TAGS[0];
+  const rows = (byTag.get(key) ?? []).slice().sort((a, b) => (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1));
+  const untagged = tagged.filter((x) => x.tags.length === 0).length;
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center gap-3">
+        <Dropdown label="Product / material" value={key} onChange={setKey}
+          options={avail.map(({ t, n }) => ({ key: t.key, label: `${t.label} (${n})`, emoji: t.emoji }))} />
+        <span className="text-sm text-slate-500">{rows.length} supplier{rows.length !== 1 ? "s" : ""} offer {tag.emoji} {tag.label.toLowerCase()}</span>
+      </div>
+
+      <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+        <table className="w-full min-w-[880px] border-collapse text-sm">
+          <thead>
+            <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
+              <Th>Supplier</Th><Th>Type</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th>Negotiation levers</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(({ e, levers }) => (
+              <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
+                <td className="max-w-[260px] px-4 py-3.5">
+                  <div className="flex min-w-0 items-center gap-2 font-semibold text-slate-900" title={e.legalName ?? e.brand}><span className="shrink-0">{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></div>
+                </td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-slate-500">{e.category}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-900">{fmtCrore(revOf(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(supRoce(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDSO(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDPO(e))}</td>
+                <td className="px-4 py-3.5">
+                  {levers.length === 0 ? <span className="text-xs text-slate-400">—</span> : (
+                    <div className="flex flex-wrap gap-1">
+                      {levers.map(({ short, emoji, detail }) => (
+                        <span key={short} title={detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>
+                      ))}
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
+            {rows.length === 0 && <tr><td colSpan={8} className="px-4 py-10 text-center text-slate-400">No suppliers tagged for this product.</td></tr>}
+          </tbody>
+        </table>
+      </div>
+
+      {untagged > 0 && <div className="text-xs text-slate-400">{untagged} supplier{untagged > 1 ? "s have" : " has"} no product detail on file to classify.</div>}
+    </div>
   );
 }
 
