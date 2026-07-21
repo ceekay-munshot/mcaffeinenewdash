@@ -171,15 +171,6 @@ function Toggle<T extends string>({ options, value, onChange }: { options: { key
   );
 }
 
-function CatChip({ cat }: { cat: string }) {
-  const c = catColor(cat);
-  return (
-    <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium" style={{ background: `${c}14`, color: c }}>
-      <span>{catEmoji(cat)}</span>{cat}
-    </span>
-  );
-}
-
 function InsightCard({ ins, supplier, onOpen }: { ins: Insight; supplier?: string; onOpen?: () => void }) {
   const m = TONE_META[ins.tone];
   const Tag = onOpen ? "button" : "div";
@@ -302,34 +293,37 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
   const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<"levers" | "revenue" | "ebitda" | "dso">("levers");
+  const [showMore, setShowMore] = useState(false);
 
-  const enriched = useMemo(() => all.map((e) => ({ e, ins: supplierInsights(e) })), [all]);
-  const rows = useMemo(() => {
+  const enriched = useMemo(() => all.map((e) => ({ e, ins: supplierInsights(e), levers: leverTagsOf(supplierInsights(e)) })), [all]);
+  const filtered = useMemo(() => {
     let r = enriched;
     if (cat !== "All") r = r.filter((x) => x.e.category === cat);
     const q = query.trim().toLowerCase();
     if (q) r = r.filter((x) => `${x.e.brand} ${x.e.legalName ?? ""} ${x.e.cin ?? ""}`.toLowerCase().includes(q));
-    const opp = (x: { ins: Insight[] }) => x.ins.filter((i) => i.tone === "opportunity").length;
-    return [...r].sort((a, b) => {
+    return r;
+  }, [enriched, cat, query]);
+
+  // Main table = suppliers that actually have a lever to push on (so the Levers
+  // column is never blank). Everyone else — metrics-but-no-lever, revenue-only,
+  // or no filing — is collapsed behind a "+ Show more" button.
+  const active = useMemo(() => {
+    const withLever = filtered.filter((x) => x.levers.length > 0);
+    return [...withLever].sort((a, b) => {
       switch (sort) {
         case "revenue": return (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1);
         case "ebitda": return (ebitdaMarginOf(b.e) ?? -1) - (ebitdaMarginOf(a.e) ?? -1);
         case "dso": return (supDSO(a.e) ?? 1e9) - (supDSO(b.e) ?? 1e9);
-        default: return opp(b) - opp(a) || (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1);
+        default: return b.levers.length - a.levers.length || (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1);
       }
     });
-  }, [enriched, cat, query, sort]);
-
-  const withData = rows.filter((x) => revOf(x.e) != null);
-  const noData = rows.filter((x) => revOf(x.e) == null);
-  const totalOpp = enriched.reduce((s, x) => s + x.ins.filter((i) => i.tone === "opportunity").length, 0);
-  const totalRisk = enriched.reduce((s, x) => s + x.ins.filter((i) => i.tone === "risk").length, 0);
+  }, [filtered, sort]);
+  const others = useMemo(() => filtered.filter((x) => x.levers.length === 0).sort((a, b) => (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1)), [filtered]);
 
   return (
     <div className="space-y-4">
       <div className="rounded-2xl border border-teal-200 bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-3 text-sm text-teal-900">
-        <span className="font-semibold">{totalOpp} negotiation levers</span> and <span className="font-semibold">{totalRisk} risk flags</span> across your suppliers.
-        The <span className="font-medium">Levers</span> column shows where to push — hover a tag for the reason, or click a row for the full profile. Sorted by most levers first.
+        <span className="font-semibold">{active.length} suppliers with a clear negotiation lever.</span> The <span className="font-medium">Levers</span> column shows where to push — hover a tag for the reason, or click any row for the full profile. Sorted by most levers first.
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -353,62 +347,68 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
       </div>
 
       <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-        <table className="w-full min-w-[1040px] border-collapse text-sm">
+        <table className="w-full min-w-[920px] border-collapse text-sm">
           <thead>
             <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
-              <Th>Supplier</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th>Negotiation levers</Th><Th>Risk</Th>
+              <Th>Supplier</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th>Negotiation levers</Th>
             </tr>
           </thead>
           <tbody>
-            {withData.map(({ e, ins }) => {
-              const opps = ins.filter((i) => i.tone === "opportunity");
-              const risks = ins.filter((i) => i.tone === "risk");
-              const seen = new Set<string>();
-              const tags = opps.map((i) => ({ i, t: LEVER_TAG[i.title] })).filter((x) => x.t && !seen.has(x.t.short) && seen.add(x.t.short));
-              return (
-                <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 align-top transition hover:bg-teal-50/50">
-                  <td className="px-4 py-3"><div className="flex items-center gap-1.5 font-medium text-slate-900"><span>{catEmoji(e.category)}</span>{e.brand}</div><div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div></td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(supRoce(e))}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDSO(e))}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDPO(e))}</td>
-                  <td className="px-4 py-3">
-                    {tags.length === 0 ? <span className="text-xs text-slate-300">—</span> : (
-                      <div className="flex flex-wrap gap-1">
-                        {tags.map(({ i, t }) => <span key={t!.short} title={i.detail} className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{t!.emoji} {t!.short}</span>)}
-                      </div>
-                    )}
-                  </td>
-                  <td className="px-4 py-3">
-                    {risks.length === 0 ? <span className="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">Clear</span>
-                      : <span title={risks.map((r) => r.title).join(" · ")} className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200"><span className="h-1.5 w-1.5 rounded-full bg-rose-500" />{risks.length} risk{risks.length > 1 ? "s" : ""}</span>}
-                  </td>
-                </tr>
-              );
-            })}
-            {withData.length === 0 && <tr><td colSpan={8} className="px-4 py-10 text-center text-slate-400">{noData.length > 0 ? "No suppliers with financials match — see limited public data below." : "Nothing matches this filter."}</td></tr>}
+            {active.map(({ e, levers }) => (
+              <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
+                <td className="px-4 py-3">
+                  <div className="flex items-center gap-1.5 font-medium text-slate-900"><span>{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></div>
+                  <div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div>
+                </td>
+                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(supRoce(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDSO(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDPO(e))}</td>
+                <td className="px-4 py-3">
+                  <div className="flex flex-wrap gap-1">
+                    {levers.map(({ short, emoji, detail }) => (
+                      <span key={short} title={detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>
+                    ))}
+                  </div>
+                </td>
+              </tr>
+            ))}
+            {active.length === 0 && <tr><td colSpan={7} className="px-4 py-10 text-center text-slate-400">No suppliers with a negotiation lever match this filter{others.length > 0 ? " — try “Show more” below." : "."}</td></tr>}
           </tbody>
         </table>
       </div>
 
-      {noData.length > 0 && (
+      {others.length > 0 && (
         <div>
-          <div className="mb-2 flex items-baseline gap-2"><h3 className="text-sm font-semibold text-slate-700">Limited public data</h3><span className="text-xs text-slate-400">{noData.length} vendor{noData.length > 1 ? "s" : ""} · no financial filing in Tracxn</span></div>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {noData.map(({ e }) => (
-              <button key={e.category + e.folder} onClick={() => onSelect(e)} className="rounded-xl bg-white p-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:ring-teal-300">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="min-w-0"><div className="truncate text-sm font-medium text-slate-800">{e.brand}</div><div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div></div>
-                  <CatChip cat={e.category} />
-                </div>
-              </button>
-            ))}
-          </div>
+          <button onClick={() => setShowMore((s) => !s)} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-600 ring-1 ring-slate-200 transition hover:ring-slate-300">
+            <span className="text-teal-600">{showMore ? "–" : "+"}</span>
+            {showMore ? "Hide" : "Show"} {others.length} more supplier{others.length > 1 ? "s" : ""} with no active lever
+          </button>
+          {showMore && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {others.map(({ e }) => (
+                <button key={e.category + e.folder} onClick={() => onSelect(e)}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1.5 text-xs text-slate-600 ring-1 ring-slate-200 transition hover:text-slate-900 hover:ring-teal-300">
+                  <span>{catEmoji(e.category)}</span><span className="font-medium">{e.brand}</span>
+                  {revOf(e) != null && <span className="font-mono text-slate-400">{fmtCrore(revOf(e))}</span>}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
   );
+}
+
+// Deduped opportunity-lever tags for one supplier's insight list.
+function leverTagsOf(ins: Insight[]) {
+  const seen = new Set<string>();
+  return ins
+    .filter((i) => i.tone === "opportunity")
+    .map((i) => ({ ...LEVER_TAG[i.title], detail: i.detail }))
+    .filter((t) => t.short && !seen.has(t.short) && seen.add(t.short));
 }
 
 /* -------- Suppliers · Benchmark tab -------- */
@@ -506,9 +506,9 @@ function BenchmarkView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
 
 function TermBar({ value, max, color, label }: { value: number; max: number; color: string; label: string }) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="group relative flex items-center gap-2" title={label}>
       <div className="h-3 flex-1 rounded-full bg-slate-100">
-        <div className="h-3 rounded-full" style={{ width: `${Math.max(4, (value / max) * 100)}%`, background: `linear-gradient(90deg, ${color}, ${color}cc)` }} />
+        <div className="h-3 rounded-full transition-[filter] group-hover:brightness-95" style={{ width: `${Math.max(4, (value / max) * 100)}%`, background: `linear-gradient(90deg, ${color}, ${color}cc)` }} />
       </div>
       <span className="w-20 shrink-0 text-[11px] text-slate-500">{label}</span>
     </div>
