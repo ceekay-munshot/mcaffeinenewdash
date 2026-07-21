@@ -217,7 +217,7 @@ export function AreaLine({
             </linearGradient>
           </defs>
           {area && <path d={areaPath} fill={`url(#${gid})`} className="anim-fade" />}
-          <path d={line} fill="none" stroke={color} strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" className="anim-draw" />
+          <path d={line} fill="none" stroke={color} strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" className="anim-fade" />
         </svg>
         {data.map((d, i) => (
           <div key={i} className="group absolute z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x(i)}%`, top: `${y(d.value)}%` }}>

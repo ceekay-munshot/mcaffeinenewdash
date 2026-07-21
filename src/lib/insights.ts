@@ -154,14 +154,14 @@ export function supplierInsights(e: Entity): Insight[] {
       tone: "risk",
       icon: "🐌",
       title: "Pays its own suppliers very late",
-      detail: `Stretches supplier payments past 120 days${e.pdf?.msme ? `, and is flagged for ${e.pdf.msme.count} delayed MSME payments` : ""} — a sign of cash strain worth watching.`,
+      detail: `Stretches supplier payments past 120 days${e.pdf?.msme ? `, and is flagged for ${e.pdf.msme.count} late payments to small (MSME) vendors` : ""} — a sign of cash strain worth watching.`,
     });
   } else if (e.pdf?.msme) {
     out.push({
       tone: "risk",
       icon: "🚩",
-      title: "Flagged for late MSME payments",
-      detail: `${e.pdf.msme.count} delayed payments to small suppliers (₹${e.pdf.msme.amount}) — a working-capital-stress signal.`,
+      title: "Late paying its small vendors",
+      detail: `Flagged for ${e.pdf.msme.count} delayed payments (₹${e.pdf.msme.amount}) to small suppliers. Indian law requires paying MSME (micro/small/medium) vendors within 45 days, so this is a working-capital-stress signal.`,
     });
   }
 

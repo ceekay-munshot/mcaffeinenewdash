@@ -157,17 +157,16 @@ function SubTabs<T extends string>({ tabs, value, onChange }: { tabs: { key: T; 
   );
 }
 
-// Toggle chip row — the mechanism that lets ONE chart show many metrics.
-function Toggle<T extends string>({ options, value, onChange }: { options: { key: T; label: string; emoji: string }[]; value: T; onChange: (t: T) => void }) {
+// A labelled dropdown — replaces rows of toggle chips so the chart controls stay compact.
+function Dropdown<T extends string>({ value, onChange, options, label }: { value: T; onChange: (t: T) => void; options: { key: T; label: string; emoji?: string }[]; label?: string }) {
   return (
-    <div className="mb-4 flex flex-wrap gap-1.5">
-      {options.map((o) => (
-        <button key={o.key} onClick={() => onChange(o.key)}
-          className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium ring-1 transition ${value === o.key ? "bg-teal-600 text-white ring-teal-600 shadow-sm" : "bg-white text-slate-600 ring-slate-200 hover:ring-slate-300"}`}>
-          <span>{o.emoji}</span>{o.label}
-        </button>
-      ))}
-    </div>
+    <label className="inline-flex items-center gap-2 text-sm">
+      {label && <span className="text-slate-500">{label}</span>}
+      <select value={value} onChange={(e) => onChange(e.target.value as T)}
+        className="rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400">
+        {options.map((o) => <option key={o.key} value={o.key}>{o.emoji ? `${o.emoji} ` : ""}{o.label}</option>)}
+      </select>
+    </label>
   );
 }
 
@@ -192,12 +191,17 @@ function InsightCard({ ins, supplier, onOpen }: { ins: Insight; supplier?: strin
 
 type TrendMetric = { key: string; label: string; emoji: string; kind: "area" | "columns"; color: string; unit: (v: number) => string; slices: Slice[] };
 
-function MetricTrend({ metrics, height = 250 }: { metrics: TrendMetric[]; height?: number }) {
+type TrendMetric2 = TrendMetric & { unitWord?: string };
+
+function MetricTrend({ metrics, height = 250 }: { metrics: TrendMetric2[]; height?: number }) {
   const [k, setK] = useState(metrics[0].key);
   const m = metrics.find((x) => x.key === k) ?? metrics[0];
   return (
     <div>
-      <Toggle options={metrics.map((x) => ({ key: x.key, label: x.label, emoji: x.emoji }))} value={k} onChange={setK} />
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <Dropdown label="Show" value={k} onChange={setK} options={metrics.map((x) => ({ key: x.key, label: x.label, emoji: x.emoji }))} />
+        <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-500">by fiscal year{m.unitWord ? ` · ${m.unitWord}` : ""} · hover a point for the value</span>
+      </div>
       {m.kind === "area"
         ? <AreaLine data={m.slices} color={m.color} valueLabel={m.unit} height={height} />
         : <Columns data={m.slices} valueLabel={m.unit} height={height} />}
@@ -212,8 +216,8 @@ function MetricRank({ metrics, onBar }: { metrics: RankMetric[]; onBar?: (l: str
   const m = metrics.find((x) => x.key === k) ?? metrics[0];
   return (
     <div>
-      <Toggle options={metrics.map((x) => ({ key: x.key, label: x.label, emoji: x.emoji }))} value={k} onChange={setK} />
-      {m.note && <div className="-mt-2 mb-3 text-xs text-slate-500">{m.note}</div>}
+      <div className="mb-3"><Dropdown label="Rank by" value={k} onChange={setK} options={metrics.map((x) => ({ key: x.key, label: x.label, emoji: x.emoji }))} /></div>
+      {m.note && <div className="mb-3 text-xs text-slate-500">{m.note}</div>}
       {m.rows.length === 0 ? <div className="py-8 text-center text-sm text-slate-400">No data for this metric yet.</div> : <HBars data={m.rows} valueLabel={m.unit} onBar={onBar} />}
     </div>
   );
@@ -225,12 +229,12 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
   if (ys.length < 2) return [];
   const s = (fy: string) => "'" + (fy.split("-")[1] ?? fy);
   const cr = (v: number | null) => Math.round((v ?? 0) / 1e7);
-  const out: TrendMetric[] = [];
-  out.push({ key: "revenue", label: "Revenue", emoji: "💵", kind: "area", color: "#0d9488", unit: (v) => `₹${v.toLocaleString("en-IN")} Cr`, slices: ys.map((y) => ({ label: s(y.fy), value: cr(y.revenueINR), color: "#0d9488" })) });
-  if (ys.some((y) => y.netProfitINR != null)) out.push({ key: "profit", label: "Net profit", emoji: "📈", kind: "columns", color: "#1baf7a", unit: (v) => `₹${v.toLocaleString("en-IN")}`, slices: ys.map((y) => ({ label: s(y.fy), value: cr(y.netProfitINR), color: (y.netProfitINR ?? 0) >= 0 ? "#1baf7a" : "#e34948" })) });
-  if (ys.some((y) => y.ebitdaMarginPct != null)) out.push({ key: "ebitda", label: "EBITDA margin", emoji: "💰", kind: "area", color: "#eda100", unit: (v) => `${v}%`, slices: ys.map((y) => ({ label: s(y.fy), value: Math.round(y.ebitdaMarginPct ?? 0), color: "#eda100" })) });
-  if (ys.some((y) => y.rocePct != null)) out.push({ key: "roce", label: "Return on capital", emoji: "⚙️", kind: "area", color: "#4a3aa7", unit: (v) => `${v}%`, slices: ys.map((y) => ({ label: s(y.fy), value: Math.round(y.rocePct ?? 0), color: "#4a3aa7" })) });
-  if (ys.some((y) => y.receivableDays != null)) out.push({ key: "dso", label: "Collection days", emoji: "📥", kind: "area", color: "#2a78d6", unit: (v) => `${Math.round(v)}d`, slices: ys.map((y) => ({ label: s(y.fy), value: Math.round(y.receivableDays ?? 0), color: "#2a78d6" })) });
+  const out: TrendMetric2[] = [];
+  out.push({ key: "revenue", label: "Revenue", emoji: "💵", kind: "area", color: "#0d9488", unitWord: "₹ crore", unit: (v) => `₹${v.toLocaleString("en-IN")} Cr`, slices: ys.map((y) => ({ label: s(y.fy), value: cr(y.revenueINR), color: "#0d9488" })) });
+  if (ys.some((y) => y.netProfitINR != null)) out.push({ key: "profit", label: "Net profit", emoji: "📈", kind: "columns", color: "#1baf7a", unitWord: "₹ crore", unit: (v) => `₹${v.toLocaleString("en-IN")} Cr`, slices: ys.map((y) => ({ label: s(y.fy), value: cr(y.netProfitINR), color: (y.netProfitINR ?? 0) >= 0 ? "#1baf7a" : "#e34948" })) });
+  if (ys.some((y) => y.ebitdaMarginPct != null)) out.push({ key: "ebitda", label: "EBITDA margin", emoji: "💰", kind: "area", color: "#eda100", unitWord: "% of revenue", unit: (v) => `${v}%`, slices: ys.map((y) => ({ label: s(y.fy), value: Math.round(y.ebitdaMarginPct ?? 0), color: "#eda100" })) });
+  if (ys.some((y) => y.rocePct != null)) out.push({ key: "roce", label: "Return on capital", emoji: "⚙️", kind: "area", color: "#4a3aa7", unitWord: "%", unit: (v) => `${v}%`, slices: ys.map((y) => ({ label: s(y.fy), value: Math.round(y.rocePct ?? 0), color: "#4a3aa7" })) });
+  if (ys.some((y) => y.receivableDays != null)) out.push({ key: "dso", label: "Collection days", emoji: "📥", kind: "area", color: "#2a78d6", unitWord: "days to collect", unit: (v) => `${Math.round(v)} days`, slices: ys.map((y) => ({ label: s(y.fy), value: Math.round(y.receivableDays ?? 0), color: "#2a78d6" })) });
   return out;
 }
 
@@ -294,6 +298,8 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<"levers" | "revenue" | "ebitda" | "dso">("levers");
   const [showMore, setShowMore] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+  const TOP = 10;
 
   const enriched = useMemo(() => all.map((e) => ({ e, ins: supplierInsights(e), levers: leverTagsOf(supplierInsights(e)) })), [all]);
   const filtered = useMemo(() => {
@@ -356,7 +362,7 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
             </tr>
           </thead>
           <tbody>
-            {active.map(({ e, levers }) => (
+            {(showAll ? active : active.slice(0, TOP)).map(({ e, levers }) => (
               <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
                 <td className="max-w-[240px] px-4 py-3" title={e.brand}>
                   <div className="flex min-w-0 items-center gap-1.5 font-medium text-slate-900"><span className="shrink-0">{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></div>
@@ -384,6 +390,13 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
           </tbody>
         </table>
       </div>
+
+      {active.length > TOP && (
+        <button onClick={() => setShowAll((s) => !s)} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-600 ring-1 ring-slate-200 transition hover:ring-slate-300">
+          <span className="text-teal-600">{showAll ? "–" : "+"}</span>
+          {showAll ? `Show top ${TOP} only` : `Show ${active.length - TOP} more suppliers`}
+        </button>
+      )}
 
       {others.length > 0 && (
         <div>
@@ -459,23 +472,9 @@ function BenchmarkView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-        <div className="flex flex-wrap gap-1.5">
-          {SUP_METRICS.map((x) => (
-            <button key={x.key} onClick={() => setMetric(x.key)}
-              className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-sm font-medium ring-1 transition ${metric === x.key ? "bg-teal-600 text-white ring-teal-600 shadow-sm" : "bg-white text-slate-600 ring-slate-200 hover:ring-slate-300"}`}>
-              <span>{x.emoji}</span>{x.label}
-            </button>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {SUP_CATS.map((c) => (
-            <button key={c} onClick={() => setCat(c)}
-              className={`rounded-lg px-2.5 py-1.5 text-xs font-semibold ring-1 transition ${cat === c ? "bg-slate-800 text-white ring-slate-800" : "bg-white text-slate-500 ring-slate-200 hover:ring-slate-300"}`}>
-              {c === "All" ? "All" : `${catEmoji(c)} ${c}`}
-            </button>
-          ))}
-        </div>
+      <div className="flex flex-wrap items-center gap-3">
+        <Dropdown label="Compare on" value={metric} onChange={setMetric} options={SUP_METRICS.map((x) => ({ key: x.key, label: x.label, emoji: x.emoji }))} />
+        <Dropdown label="Category" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c === "All" ? "All categories" : c, emoji: c === "All" ? undefined : catEmoji(c) }))} />
       </div>
 
       <Card title={`${m.emoji} ${m.label} — every supplier ranked`} sub={m.note} accent="#0d9488">
@@ -1002,7 +1001,10 @@ function HealthRiskBody({ pdf }: { pdf: SupplierPdf }) {
         <Stat label="Interest coverage" value={pdf.interestCoverage != null ? `${pdf.interestCoverage.toFixed(1)}x` : "—"} />
         <Stat label="Debt / equity" value={pdf.debtToEquity != null ? pdf.debtToEquity.toFixed(2) : "—"} />
         <Stat label="Revenue YoY" value={signed(pdf.revenueChangePct)} /><Stat label="PAT 3-yr CAGR" value={signed(pdf.patCagr3yrPct)} />
-        <Stat label="MSME delays" value={pdf.msme ? `${pdf.msme.count} · ₹${pdf.msme.amount}` : "None"} />
+        <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200" title="MSME = Micro, Small & Medium enterprises. Indian law requires companies to pay MSME suppliers within 45 days; disclosed delays are a cash-stress signal.">
+          <div className="text-xs text-slate-500">Late payments to small vendors</div>
+          <div className="mt-0.5 font-mono text-sm text-slate-900">{pdf.msme ? `${pdf.msme.count} · ₹${pdf.msme.amount}` : "None"}</div>
+        </div>
       </div>
       {pdf.riskFlags.length > 0 ? (
         <div className="mt-3"><div className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-rose-600">Risk flags</div><div className="flex flex-wrap gap-1.5">{pdf.riskFlags.map((f, i) => <span key={i} className="rounded-md bg-rose-50 px-2 py-1 text-xs text-rose-700 ring-1 ring-rose-200">{f}</span>)}</div></div>
