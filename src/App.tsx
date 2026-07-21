@@ -11,7 +11,7 @@ import {
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom } from "./lib/health";
 import { CATEGORY_COLOR } from "./lib/palette";
-import { HBars, Columns, AreaLine, ScoreBars, Card, type Slice } from "./charts";
+import { HBars, Columns, AreaLine, ScoreBars, Radar, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
@@ -313,10 +313,11 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "product" | "benchmark";
+type SupTab = "board" | "product" | "compare" | "benchmark";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "board", label: "Supplier board", emoji: "📇" },
   { key: "product", label: "By product", emoji: "🧴" },
+  { key: "compare", label: "Compare", emoji: "🆚" },
   { key: "benchmark", label: "Benchmark charts", emoji: "📊" },
 ];
 
@@ -349,6 +350,7 @@ function SupplierView() {
       <div className="mt-5 mb-4"><SubTabs tabs={SUP_TABS} value={tab} onChange={setTab} /></div>
       {tab === "board" && <SupplierBoard all={all} onSelect={openSupplier} />}
       {tab === "product" && <SupplierByProduct all={all} onSelect={openSupplier} />}
+      {tab === "compare" && <CompareView all={all} onSelect={openSupplier} />}
       {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
     </main>
   );
@@ -455,6 +457,175 @@ function SupplierByProduct({ all, onSelect }: { all: Entity[]; onSelect: (e: Ent
       </div>
 
       {untagged > 0 && <div className="text-xs text-slate-400">{untagged} supplier{untagged > 1 ? "s have" : " has"} no product detail on file to classify.</div>}
+    </div>
+  );
+}
+
+/* ------------------------------------------------ Compare & analyse suppliers */
+
+const CMP_COLORS = ["#0d9488", "#e34948", "#2a78d6", "#eda100", "#7c3aed", "#0891b2"];
+const CMP_MAX = 6;
+const RENEG_WEIGHT: Record<string, number> = {
+  "Fat margins — push on price": 3, "Margins are widening": 2, "Room to extend our payment terms": 2,
+  "Collects faster than its peers": 1.5, "They already stretch their suppliers": 1.5, "Offer early payment for a discount": 1.5,
+};
+const FIT_ORDER = ["EBITDA margin", "Net margin", "RoCE", "Liquidity", "Low leverage", "Interest cover", "Fast collection"];
+const FIT_SHORT: Record<string, string> = { "EBITDA margin": "EBITDA", "Net margin": "Net", RoCE: "RoCE", Liquidity: "Liquidity", "Low leverage": "Low debt", "Interest cover": "Int cover", "Fast collection": "Collects" };
+
+// Pick any suppliers (optionally narrowed by product / type) then Analyse them
+// head-to-head — a visual scorecard for "who do I renegotiate with / go with".
+function CompareView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const [picked, setPicked] = useState<string[]>([]);
+  const [analysing, setAnalysing] = useState(false);
+  const [prod, setProd] = useState("any");
+  const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
+  const [query, setQuery] = useState("");
+
+  const avail = useMemo(() => {
+    const counts = new Map<string, number>();
+    PRODUCT_TAGS.forEach((t) => counts.set(t.key, 0));
+    all.forEach((e) => productTagsOf(e).forEach((k) => counts.set(k, (counts.get(k) ?? 0) + 1)));
+    return PRODUCT_TAGS.filter((t) => (counts.get(t.key) ?? 0) > 0);
+  }, [all]);
+
+  const pool = useMemo(() => all.filter((e) => {
+    if (cat !== "All" && e.category !== cat) return false;
+    if (prod !== "any" && !productTagsOf(e).includes(prod)) return false;
+    const q = query.trim().toLowerCase();
+    if (q && !`${e.brand} ${e.legalName ?? ""}`.toLowerCase().includes(q)) return false;
+    return true;
+  }), [all, cat, prod, query]);
+
+  const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
+  const selected = picked.map((f) => byFolder.get(f)).filter((e): e is Entity => !!e);
+  const toggle = (f: string) => setPicked((p) => (p.includes(f) ? p.filter((x) => x !== f) : p.length >= CMP_MAX ? p : [...p, f]));
+
+  if (analysing && selected.length >= 2) return <CompareAnalysis selected={selected} onBack={() => setAnalysing(false)} onSelect={onSelect} />;
+
+  return (
+    <div className="space-y-4 pb-20">
+      <div className="flex flex-wrap items-center gap-3">
+        <Dropdown label="Product" value={prod} onChange={setProd} options={[{ key: "any", label: "Any product" }, ...avail.map((t) => ({ key: t.key, label: t.label, emoji: t.emoji }))]} />
+        <Dropdown label="Type" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c }))} />
+        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search…" className="w-44 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-teal-400" />
+      </div>
+
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        {pool.map((e) => {
+          const on = picked.includes(e.folder);
+          const dis = !on && picked.length >= CMP_MAX;
+          return (
+            <button key={e.folder} onClick={() => toggle(e.folder)} disabled={dis}
+              className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition ${on ? "border-teal-400 bg-teal-50 ring-1 ring-teal-300" : "border-slate-200 bg-white hover:border-slate-300"} ${dis ? "cursor-not-allowed opacity-40" : ""}`}>
+              <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-xs text-white ${on ? "border-teal-500 bg-teal-500" : "border-slate-300"}`}>{on ? "✓" : ""}</span>
+              <span className="min-w-0 flex-1">
+                <span className="flex items-center gap-1.5 truncate text-sm font-semibold text-slate-900">{catEmoji(e.category)}<span className="truncate">{e.brand}</span></span>
+                <span className="text-xs text-slate-400">{e.category} · {fmtCrore(revOf(e))}</span>
+              </span>
+            </button>
+          );
+        })}
+        {pool.length === 0 && <div className="col-span-full rounded-xl bg-white p-8 text-center text-sm text-slate-400 ring-1 ring-slate-200">No suppliers match this filter.</div>}
+      </div>
+
+      <div className="sticky bottom-3 z-10 flex flex-wrap items-center gap-3 rounded-2xl bg-white/95 p-3 shadow-lg ring-1 ring-slate-200 backdrop-blur">
+        <span className="text-sm font-medium text-slate-600">{selected.length ? `${selected.length} of ${CMP_MAX} selected` : "Pick 2–6 suppliers to compare"}</span>
+        <div className="flex flex-wrap gap-1.5">
+          {selected.map((e, i) => (
+            <span key={e.folder} className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>
+              {e.brand}<button onClick={() => toggle(e.folder)} className="ml-0.5 opacity-80 hover:opacity-100">✕</button>
+            </span>
+          ))}
+        </div>
+        <div className="ml-auto flex gap-2">
+          {selected.length > 0 && <button onClick={() => setPicked([])} className="rounded-lg px-3 py-1.5 text-sm text-slate-500 transition hover:text-slate-800">Clear</button>}
+          <button disabled={selected.length < 2} onClick={() => setAnalysing(true)}
+            className={`rounded-lg px-4 py-1.5 text-sm font-semibold text-white transition ${selected.length >= 2 ? "bg-teal-600 hover:bg-teal-700" : "cursor-not-allowed bg-slate-300"}`}>Analyse →</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VerdictCard({ emoji, title, e, color, note, onSelect }: { emoji: string; title: string; e?: Entity | null; color?: string; note?: string | null; onSelect: (e: Entity) => void }) {
+  return (
+    <button onClick={e ? () => onSelect(e) : undefined} disabled={!e} className="flex items-center gap-3 rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-slate-200/70 transition hover:shadow-md disabled:cursor-default disabled:opacity-70">
+      <span className="text-2xl leading-none">{emoji}</span>
+      <div className="min-w-0">
+        <div className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">{title}</div>
+        <div className="flex items-center gap-2 text-lg font-bold text-slate-900">{color && <span className="h-3 w-3 rounded-sm" style={{ background: color }} />}{e ? e.brand : "—"}</div>
+        {note && <div className="text-xs text-slate-500">{note}</div>}
+      </div>
+    </button>
+  );
+}
+
+function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; onBack: () => void; onSelect: (e: Entity) => void }) {
+  const colorOf = (e: Entity) => CMP_COLORS[selected.indexOf(e) % CMP_COLORS.length];
+  const byName = new Map(selected.map((e) => [e.brand, e]));
+
+  const fitMaps = selected.map((e) => new Map(fitnessAxes(e).map((a) => [a.label, a.score])));
+  const commonLabels = FIT_ORDER.filter((l) => fitMaps.every((m) => m.has(l)));
+  const radarAxes = commonLabels.map((l) => FIT_SHORT[l] ?? l);
+  const radarSeries = selected.map((e, i) => ({ name: e.brand, color: CMP_COLORS[i % CMP_COLORS.length], values: commonLabels.map((l) => fitMaps[i].get(l) ?? 0) }));
+
+  const round = (v: number) => Math.round(v * 10) / 10;
+  const mk = (key: string, label: string, emoji: string, get: (e: Entity) => number | null, unit: (v: number) => string, note: string, higherBetter = true): RankMetric => ({
+    key, label, emoji, unit, note,
+    rows: selected.map((e) => ({ e, v: get(e) })).filter((x): x is { e: Entity; v: number } => x.v != null)
+      .sort((a, b) => (higherBetter ? b.v - a.v : a.v - b.v)).map(({ e, v }) => ({ label: e.brand, value: round(v), color: colorOf(e) })),
+  });
+  const metrics = [
+    mk("revenue", "Revenue", "💵", (e) => toCrore(revOf(e)), (v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`), "Scale — the size of the relationship."),
+    mk("ebitda", "EBITDA margin", "💰", ebitdaMarginOf, (v) => `${v}%`, "Profit cushion to negotiate a better price against."),
+    mk("net", "Net margin", "📊", netMarginOf, (v) => `${v}%`, "Bottom-line health."),
+    mk("roce", "RoCE", "⚙️", supRoce, (v) => `${v}%`, "How efficiently they turn capital into profit."),
+    mk("dso", "Collection days", "⏱️", supDSO, (v) => `${Math.round(v)} d`, "Lower = healthier cash, less dependent on us paying fast.", false),
+    mk("dpo", "Payment days", "📤", supDPO, (v) => `${Math.round(v)} d`, "Higher = they already stretch suppliers, so long terms are credible."),
+  ].filter((m) => m.rows.length > 0);
+
+  const reneg = selected.map((e) => ({ e, s: supplierInsights(e).filter((i) => i.tone === "opportunity").reduce((a, i) => a + (RENEG_WEIGHT[i.title] ?? 1), 0) })).sort((a, b) => b.s - a.s);
+  const fit = selected.map((e) => { const ax = fitnessAxes(e); return { e, s: ax.length ? ax.reduce((a, x) => a + x.score, 0) / ax.length : 0 }; }).sort((a, b) => b.s - a.s);
+  const bestReneg = reneg[0] && reneg[0].s > 0 ? reneg[0] : null;
+  const bestFit = fit[0];
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Change selection</button>
+        <div className="flex flex-wrap gap-1.5">{selected.map((e, i) => <span key={e.folder} className="inline-flex rounded-full px-2 py-0.5 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>{e.brand}</span>)}</div>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        <VerdictCard emoji="🤝" title="Most room to renegotiate" e={bestReneg?.e} color={bestReneg ? colorOf(bestReneg.e) : undefined} note={bestReneg ? supplierInsights(bestReneg.e).find((i) => i.tone === "opportunity")?.title : "No clear lever among these"} onSelect={onSelect} />
+        <VerdictCard emoji="🛡️" title="Most reliable to commit to" e={bestFit.e} color={colorOf(bestFit.e)} note={`Financial fitness ${Math.round(bestFit.s)}/100`} onSelect={onSelect} />
+      </div>
+
+      {commonLabels.length >= 3 && (
+        <Card title="🕸️ Financial fitness compared" sub="each axis scored 0–100 · a bigger shape is a healthier vendor" accent="#0d9488">
+          <Radar axes={radarAxes} series={radarSeries} size={340} />
+        </Card>
+      )}
+
+      {metrics.length > 0 && (
+        <Card title="📊 Head-to-head metrics" sub="switch the metric to compare the selected suppliers" accent="#2a78d6">
+          <MetricRank metrics={metrics} onBar={(l) => { const e = byName.get(l); if (e) onSelect(e); }} />
+        </Card>
+      )}
+
+      <Card title="🎯 Negotiation angles per supplier" sub="the levers each one hands you" accent="#eda100">
+        <div className="space-y-2.5">
+          {selected.map((e, i) => {
+            const lv = leverTagsOf(supplierInsights(e));
+            return (
+              <div key={e.folder} className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex min-w-[10rem] items-center gap-1.5 text-sm font-semibold text-slate-800"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{e.brand}</span>
+                {lv.length ? lv.map(({ short, emoji, detail }) => <span key={short} title={detail} className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>) : <span className="text-xs text-slate-400">No clear lever — healthy vendor</span>}
+              </div>
+            );
+          })}
+        </div>
+      </Card>
     </div>
   );
 }
