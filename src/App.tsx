@@ -771,6 +771,7 @@ function DeliveryView() {
   const nm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
   const listedMap = useMemo(() => new Map(partners.map((p) => [nm(p.brand), p.listed])), [partners]);
   const [selected, setSelected] = useState<Entity | null>(null);
+  const [trendKey, setTrendKey] = useState("");
   const { open: openPartner, back } = useProfileNav(selected, setSelected);
   const s = (fy: string) => "'" + fy.split("-")[1];
 
@@ -846,12 +847,27 @@ function DeliveryView() {
           <HBars data={revBars} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`)} onBar={(l) => { const r = rows.find((x) => x.e.brand === l); if (r) openPartner(r.e); }} />
         </Card>
 
-        <Card title="📈 Delhivery — 12-year track record" sub="the flagship partner — switch the metric to see revenue, profit turnaround, receivables & margin" accent="#0d9488">
-          <MetricTrend metrics={delhiveryMetrics} height={260} />
-          <div className="mt-4 rounded-xl bg-emerald-50 p-3 text-xs text-emerald-800 ring-1 ring-emerald-200">
-            Delhivery turned profitable in FY {d.latestFY} (+{crStr(cr(d.netProfitINR))}) after years of losses. It's the only listed partner and by far the largest.
-          </div>
-        </Card>
+        {(() => {
+          const trendRow = rows.find((r) => r.e.folder === trendKey) ?? rows[0];
+          const isDelhivery = !!trendRow && /delhivery/i.test(trendRow.e.brand);
+          const trendMetrics: TrendMetric2[] = isDelhivery ? delhiveryMetrics : buildTrendMetrics(trendRow.e);
+          return (
+            <Card title="📈 Partner track record" sub="pick any partner to see its multi-year performance — switch the metric for revenue, profit, receivables & margin" accent="#0d9488">
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <Dropdown label="Partner" value={trendRow?.e.folder ?? ""} onChange={setTrendKey} options={rows.map((r) => ({ key: r.e.folder, label: r.e.brand, emoji: r.listed ? "📈" : "🚚" }))} />
+                {trendRow && <button onClick={() => openPartner(trendRow.e)} className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600 transition hover:bg-slate-200">Open full profile →</button>}
+              </div>
+              {trendMetrics.length > 0
+                ? <MetricTrend key={trendRow?.e.folder} metrics={trendMetrics} height={260} />
+                : <div className="py-10 text-center text-sm text-slate-400">Only one year of data for this partner — open its full profile for the details.</div>}
+              {isDelhivery && (
+                <div className="mt-4 rounded-xl bg-emerald-50 p-3 text-xs text-emerald-800 ring-1 ring-emerald-200">
+                  Delhivery turned profitable in FY {d.latestFY} (+{crStr(cr(d.netProfitINR))}) after years of losses. It's the only listed partner and by far the largest.
+                </div>
+              )}
+            </Card>
+          );
+        })()}
 
         <Card title="🏦 The credit lever" sub="what this means for mcAFFEINE" accent="#0369a1">
           <div className="grid gap-3 sm:grid-cols-3">
