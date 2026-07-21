@@ -10,12 +10,12 @@ import {
   type SupplierPdf,
 } from "./types";
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
-import { negotiationRoom, ROOM_META, type Room } from "./lib/health";
+import { negotiationRoom } from "./lib/health";
 import { CATEGORY_COLOR } from "./lib/palette";
 import { HBars, Columns, AreaLine, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import {
-  supplierInsights, TONE_META, type Insight, type InsightTone,
+  supplierInsights, TONE_META, type Insight,
   supDSO, supDPO, supCCC, supRoce,
 } from "./lib/insights";
 
@@ -245,16 +245,15 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "insights" | "benchmark" | "directory";
+type SupTab = "board" | "benchmark";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
-  { key: "insights", label: "Insights", emoji: "💡" },
-  { key: "benchmark", label: "Benchmark", emoji: "📊" },
-  { key: "directory", label: "Directory", emoji: "📇" },
+  { key: "board", label: "Supplier board", emoji: "📇" },
+  { key: "benchmark", label: "Benchmark charts", emoji: "📊" },
 ];
 
 function SupplierView() {
   const all = useMemo(() => supplyEntities(), []);
-  const [tab, setTab] = useState<SupTab>("insights");
+  const [tab, setTab] = useState<SupTab>("board");
   const [selected, setSelected] = useState<Entity | null>(null);
   const { open: openSupplier, back } = useProfileNav(selected, setSelected);
 
@@ -279,56 +278,135 @@ function SupplierView() {
           { label: "Levers found", value: String(stats.opps) },
         ]} />
       <div className="mt-5 mb-4"><SubTabs tabs={SUP_TABS} value={tab} onChange={setTab} /></div>
-      {tab === "insights" && <SupplierInsightsView all={all} onSelect={openSupplier} />}
+      {tab === "board" && <SupplierBoard all={all} onSelect={openSupplier} />}
       {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
-      {tab === "directory" && <DirectoryView all={all} onSelect={openSupplier} />}
     </main>
   );
 }
 
-function SupplierInsightsView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const rows = useMemo(() => all.map((e) => ({ e, ins: supplierInsights(e) })).filter((x) => x.ins.length), [all]);
-  const byTone = (tone: InsightTone) =>
-    rows.flatMap(({ e, ins }) => ins.filter((i) => i.tone === tone).map((i) => ({ e, i }))).sort((a, b) => (revOf(b.e) ?? 0) - (revOf(a.e) ?? 0));
+// Short tag for each opportunity lever, so it fits in a table cell (full sentence
+// stays on hover + on the company page).
+const LEVER_TAG: Record<string, { emoji: string; short: string }> = {
+  "Room to extend our payment terms": { emoji: "💸", short: "Extend terms" },
+  "Collects faster than its peers": { emoji: "💸", short: "Extend terms" },
+  "They already stretch their suppliers": { emoji: "⏳", short: "They stretch" },
+  "Fat margins — push on price": { emoji: "💰", short: "Push price" },
+  "Margins are widening": { emoji: "📈", short: "Reprice" },
+  "Offer early payment for a discount": { emoji: "🤝", short: "Early-pay" },
+};
 
-  const sections: { tone: InsightTone; title: string; emoji: string; items: { e: Entity; i: Insight }[] }[] = [
-    { tone: "opportunity", title: "Where you can push", emoji: "💸", items: byTone("opportunity") },
-    { tone: "risk", title: "Risk watchlist", emoji: "🚩", items: byTone("risk") },
-    { tone: "watch", title: "Keep an eye on", emoji: "👀", items: byTone("watch") },
-  ];
+// One dense analyst table: every supplier is a row, negotiation metrics are
+// columns, and the levers/risks become compact tags. Replaces the old wall of
+// look-alike cards — scannable and sortable in one view.
+function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
+  const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<"levers" | "revenue" | "ebitda" | "dso">("levers");
+
+  const enriched = useMemo(() => all.map((e) => ({ e, ins: supplierInsights(e) })), [all]);
+  const rows = useMemo(() => {
+    let r = enriched;
+    if (cat !== "All") r = r.filter((x) => x.e.category === cat);
+    const q = query.trim().toLowerCase();
+    if (q) r = r.filter((x) => `${x.e.brand} ${x.e.legalName ?? ""} ${x.e.cin ?? ""}`.toLowerCase().includes(q));
+    const opp = (x: { ins: Insight[] }) => x.ins.filter((i) => i.tone === "opportunity").length;
+    return [...r].sort((a, b) => {
+      switch (sort) {
+        case "revenue": return (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1);
+        case "ebitda": return (ebitdaMarginOf(b.e) ?? -1) - (ebitdaMarginOf(a.e) ?? -1);
+        case "dso": return (supDSO(a.e) ?? 1e9) - (supDSO(b.e) ?? 1e9);
+        default: return opp(b) - opp(a) || (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1);
+      }
+    });
+  }, [enriched, cat, query, sort]);
+
+  const withData = rows.filter((x) => revOf(x.e) != null);
+  const noData = rows.filter((x) => revOf(x.e) == null);
+  const totalOpp = enriched.reduce((s, x) => s + x.ins.filter((i) => i.tone === "opportunity").length, 0);
+  const totalRisk = enriched.reduce((s, x) => s + x.ins.filter((i) => i.tone === "risk").length, 0);
 
   return (
-    <div className="space-y-5">
-      <div className="rounded-2xl border border-teal-200 bg-gradient-to-r from-teal-50 to-cyan-50 p-4">
-        <div className="flex items-start gap-3">
-          <span className="text-2xl">🧠</span>
-          <div className="text-sm leading-relaxed text-teal-900">
-            <span className="font-semibold">How to read this:</span> each card is a ready-to-use negotiation angle or risk, built from a supplier's own numbers.
-            E.g. if a supplier <span className="font-semibold">collects cash from its customers in ~20 days</span> but we pay it in 10, we're paying faster than it needs — so there's room to push our terms out.
-            Fat margins mean room on price; a tight cash cycle means they'll take an early-payment discount. Click any card for the full profile.
-          </div>
+    <div className="space-y-4">
+      <div className="rounded-2xl border border-teal-200 bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-3 text-sm text-teal-900">
+        <span className="font-semibold">{totalOpp} negotiation levers</span> and <span className="font-semibold">{totalRisk} risk flags</span> across your suppliers.
+        The <span className="font-medium">Levers</span> column shows where to push — hover a tag for the reason, or click a row for the full profile. Sorted by most levers first.
+      </div>
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-1.5">
+          {SUP_CATS.map((c) => (
+            <button key={c} onClick={() => setCat(c)}
+              className={`rounded-lg px-3 py-1.5 text-sm font-medium ring-1 transition ${cat === c ? "bg-teal-50 text-teal-700 ring-teal-300" : "bg-white text-slate-500 ring-slate-200 hover:ring-slate-300"}`}>
+              {c === "All" ? "All" : `${catEmoji(c)} ${c}`}
+              <span className="ml-1.5 text-xs text-slate-400">{c === "All" ? all.length : all.filter((e) => e.category === c).length}</span>
+            </button>
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search…"
+            className="w-48 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-teal-400" />
+          <select value={sort} onChange={(e) => setSort(e.target.value as typeof sort)}
+            className="rounded-lg bg-white px-3 py-1.5 text-sm text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400">
+            {[["levers", "Most levers"], ["revenue", "Revenue"], ["ebitda", "EBITDA margin"], ["dso", "Collects fastest"]].map(([v, l]) => <option key={v} value={v}>Sort: {l}</option>)}
+          </select>
         </div>
       </div>
 
-      {sections.map((sec) => {
-        const m = TONE_META[sec.tone];
-        return (
-          <div key={sec.tone}>
-            <div className="mb-2.5 flex items-center gap-2">
-              <span className="text-lg">{sec.emoji}</span>
-              <h3 className="text-base font-bold text-slate-800">{sec.title}</h3>
-              <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${m.bg} ${m.text}`}>{sec.items.length}</span>
-            </div>
-            {sec.items.length === 0 ? (
-              <div className="rounded-xl bg-white p-4 text-sm text-slate-400 ring-1 ring-slate-200">Nothing here — a good sign.</div>
-            ) : (
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                {sec.items.map(({ e, i }, idx) => <InsightCard key={e.folder + idx} ins={i} supplier={`${catEmoji(e.category)} ${e.brand}`} onOpen={() => onSelect(e)} />)}
-              </div>
-            )}
+      <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+        <table className="w-full min-w-[1040px] border-collapse text-sm">
+          <thead>
+            <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+              <Th>Supplier</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th>Negotiation levers</Th><Th>Risk</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {withData.map(({ e, ins }) => {
+              const opps = ins.filter((i) => i.tone === "opportunity");
+              const risks = ins.filter((i) => i.tone === "risk");
+              const seen = new Set<string>();
+              const tags = opps.map((i) => ({ i, t: LEVER_TAG[i.title] })).filter((x) => x.t && !seen.has(x.t.short) && seen.add(x.t.short));
+              return (
+                <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 align-top transition hover:bg-teal-50/50">
+                  <td className="px-4 py-3"><div className="flex items-center gap-1.5 font-medium text-slate-900"><span>{catEmoji(e.category)}</span>{e.brand}</div><div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div></td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(supRoce(e))}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDSO(e))}</td>
+                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDPO(e))}</td>
+                  <td className="px-4 py-3">
+                    {tags.length === 0 ? <span className="text-xs text-slate-300">—</span> : (
+                      <div className="flex flex-wrap gap-1">
+                        {tags.map(({ i, t }) => <span key={t!.short} title={i.detail} className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{t!.emoji} {t!.short}</span>)}
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-4 py-3">
+                    {risks.length === 0 ? <span className="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">Clear</span>
+                      : <span title={risks.map((r) => r.title).join(" · ")} className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200"><span className="h-1.5 w-1.5 rounded-full bg-rose-500" />{risks.length} risk{risks.length > 1 ? "s" : ""}</span>}
+                  </td>
+                </tr>
+              );
+            })}
+            {withData.length === 0 && <tr><td colSpan={8} className="px-4 py-10 text-center text-slate-400">{noData.length > 0 ? "No suppliers with financials match — see limited public data below." : "Nothing matches this filter."}</td></tr>}
+          </tbody>
+        </table>
+      </div>
+
+      {noData.length > 0 && (
+        <div>
+          <div className="mb-2 flex items-baseline gap-2"><h3 className="text-sm font-semibold text-slate-700">Limited public data</h3><span className="text-xs text-slate-400">{noData.length} vendor{noData.length > 1 ? "s" : ""} · no financial filing in Tracxn</span></div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {noData.map(({ e }) => (
+              <button key={e.category + e.folder} onClick={() => onSelect(e)} className="rounded-xl bg-white p-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:ring-teal-300">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="min-w-0"><div className="truncate text-sm font-medium text-slate-800">{e.brand}</div><div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div></div>
+                  <CatChip cat={e.category} />
+                </div>
+              </button>
+            ))}
           </div>
-        );
-      })}
+        </div>
+      )}
     </div>
   );
 }
@@ -433,108 +511,6 @@ function TermBar({ value, max, color, label }: { value: number; max: number; col
         <div className="h-3 rounded-full" style={{ width: `${Math.max(4, (value / max) * 100)}%`, background: `linear-gradient(90deg, ${color}, ${color}cc)` }} />
       </div>
       <span className="w-20 shrink-0 text-[11px] text-slate-500">{label}</span>
-    </div>
-  );
-}
-
-/* -------- Suppliers · Directory tab -------- */
-
-function DirectoryView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
-  const [query, setQuery] = useState("");
-  const [sort, setSort] = useState<"revenue" | "ebitda" | "room" | "name">("revenue");
-
-  const rows = useMemo(() => {
-    let r = all;
-    if (cat !== "All") r = r.filter((e) => e.category === cat);
-    const q = query.trim().toLowerCase();
-    if (q) r = r.filter((e) => `${e.brand} ${e.legalName ?? ""} ${e.cin ?? ""}`.toLowerCase().includes(q));
-    const roomRank: Record<Room, number> = { High: 3, Medium: 2, Low: 1, Unknown: 0 };
-    return [...r].sort((a, b) => {
-      switch (sort) {
-        case "name": return a.brand.localeCompare(b.brand);
-        case "ebitda": return (ebitdaMarginOf(b) ?? -1) - (ebitdaMarginOf(a) ?? -1);
-        case "room": return roomRank[negotiationRoom(b)] - roomRank[negotiationRoom(a)];
-        default: return (revOf(b) ?? -1) - (revOf(a) ?? -1);
-      }
-    });
-  }, [all, cat, query, sort]);
-  const withData = useMemo(() => rows.filter((e) => revOf(e) != null), [rows]);
-  const noData = useMemo(() => rows.filter((e) => revOf(e) == null), [rows]);
-
-  return (
-    <div className="space-y-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-1.5">
-          {SUP_CATS.map((c) => (
-            <button key={c} onClick={() => setCat(c)}
-              className={`rounded-lg px-3 py-1.5 text-sm font-medium ring-1 transition ${cat === c ? "bg-teal-50 text-teal-700 ring-teal-300" : "bg-white text-slate-500 ring-slate-200 hover:ring-slate-300"}`}>
-              {c === "All" ? "All" : `${catEmoji(c)} ${c}`}
-              <span className="ml-1.5 text-xs text-slate-400">{c === "All" ? all.length : all.filter((e) => e.category === c).length}</span>
-            </button>
-          ))}
-        </div>
-        <div className="flex gap-2">
-          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search…"
-            className="w-52 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-teal-400" />
-          <select value={sort} onChange={(e) => setSort(e.target.value as typeof sort)}
-            className="rounded-lg bg-white px-3 py-1.5 text-sm text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400">
-            {[["revenue", "Revenue"], ["ebitda", "EBITDA margin"], ["room", "Negotiation room"], ["name", "Name"]].map(([v, l]) => <option key={v} value={v}>Sort: {l}</option>)}
-          </select>
-        </div>
-      </div>
-
-      <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-        <table className="w-full min-w-[880px] border-collapse text-sm">
-          <thead>
-            <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
-              <Th>Company</Th><Th>Category</Th><Th right>Revenue</Th><Th right>EBITDA %</Th><Th right>Net %</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th>Negotiation room</Th><Th>Risk</Th>
-            </tr>
-          </thead>
-          <tbody>
-            {withData.map((e) => {
-              const room = negotiationRoom(e);
-              return (
-                <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
-                  <td className="px-4 py-3"><div className="font-medium text-slate-900">{e.brand}</div><div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div></td>
-                  <td className="px-4 py-3"><CatChip cat={e.category} /></td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(netMarginOf(e))}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtPct(supRoce(e))}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDSO(e))}</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDPO(e))}</td>
-                  <td className="px-4 py-3"><Pill cls={ROOM_META[room].cls} dot={ROOM_META[room].dot}>{ROOM_META[room].label}</Pill></td>
-                  <td className="px-4 py-3"><RiskCell e={e} /></td>
-                </tr>
-              );
-            })}
-            {withData.length === 0 && (
-              <tr><td colSpan={10} className="px-4 py-10 text-center text-slate-400">{noData.length > 0 ? "No suppliers with parsed financials match — see limited public data below." : "Nothing matches this filter."}</td></tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {noData.length > 0 && (
-        <div>
-          <div className="mb-2 flex items-baseline gap-2">
-            <h3 className="text-sm font-semibold text-slate-700">Limited public data</h3>
-            <span className="text-xs text-slate-400">{noData.length} vendor{noData.length > 1 ? "s" : ""} · no financial filing in Tracxn</span>
-          </div>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {noData.map((e) => (
-              <button key={e.category + e.folder} onClick={() => onSelect(e)} className="rounded-xl bg-white p-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:ring-teal-300">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="min-w-0"><div className="truncate text-sm font-medium text-slate-800">{e.brand}</div><div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div></div>
-                  <CatChip cat={e.category} />
-                </div>
-                <div className="mt-1.5 text-xs text-slate-400">{e.city ? `${e.city} · ` : ""}Registry basics only — click to view</div>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
@@ -1004,12 +980,6 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
   return cards;
 }
 
-function RiskCell({ e }: { e: Entity }) {
-  const flags = e.pdf?.riskFlags ?? [];
-  if (!e.pdf) return <span className="text-slate-300">—</span>;
-  if (!flags.length) return <span className="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">Clear</span>;
-  return <span title={flags.join(" · ")} className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200"><span className="h-1.5 w-1.5 rounded-full bg-rose-500" />{flags.length} flag{flags.length > 1 ? "s" : ""}</span>;
-}
 
 function HealthRiskBody({ pdf }: { pdf: SupplierPdf }) {
   const signed = (v: number | null, suffix = "%") => (v == null ? "—" : `${v > 0 ? "+" : ""}${v}${suffix}`);
