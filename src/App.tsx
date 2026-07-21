@@ -304,12 +304,13 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
     return r;
   }, [enriched, cat, query]);
 
-  // Main table = suppliers that actually have a lever to push on (so the Levers
-  // column is never blank). Everyone else — metrics-but-no-lever, revenue-only,
-  // or no filing — is collapsed behind a "+ Show more" button.
+  // Main table = suppliers we can actually analyse — those with financial depth
+  // (margins / returns / payment days), whether or not they have a lever. Levered
+  // suppliers sort to the top. Only the data-thin ones (revenue-only or no filing)
+  // collapse behind "+ Show more".
   const active = useMemo(() => {
-    const withLever = filtered.filter((x) => x.levers.length > 0);
-    return [...withLever].sort((a, b) => {
+    const withData = filtered.filter((x) => hasDepth(x.e));
+    return [...withData].sort((a, b) => {
       switch (sort) {
         case "revenue": return (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1);
         case "ebitda": return (ebitdaMarginOf(b.e) ?? -1) - (ebitdaMarginOf(a.e) ?? -1);
@@ -318,12 +319,13 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
       }
     });
   }, [filtered, sort]);
-  const others = useMemo(() => filtered.filter((x) => x.levers.length === 0).sort((a, b) => (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1)), [filtered]);
+  const others = useMemo(() => filtered.filter((x) => !hasDepth(x.e)).sort((a, b) => (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1)), [filtered]);
+  const leveredCount = active.filter((x) => x.levers.length > 0).length;
 
   return (
     <div className="space-y-4">
       <div className="rounded-2xl border border-teal-200 bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-3 text-sm text-teal-900">
-        <span className="font-semibold">{active.length} suppliers with a clear negotiation lever.</span> The <span className="font-medium">Levers</span> column shows where to push — hover a tag for the reason, or click any row for the full profile. Sorted by most levers first.
+        <span className="font-semibold">{active.length} suppliers with full financials · {leveredCount} carry a clear negotiation lever.</span> The <span className="font-medium">Levers</span> column shows where to push — hover a tag for the reason, or click any row for the full profile. Sorted by most levers first.
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -356,8 +358,8 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
           <tbody>
             {active.map(({ e, levers }) => (
               <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
-                <td className="px-4 py-3">
-                  <div className="flex items-center gap-1.5 font-medium text-slate-900"><span>{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></div>
+                <td className="max-w-[240px] px-4 py-3" title={e.brand}>
+                  <div className="flex min-w-0 items-center gap-1.5 font-medium text-slate-900"><span className="shrink-0">{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></div>
                   <div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div>
                 </td>
                 <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
@@ -366,15 +368,19 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
                 <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDSO(e))}</td>
                 <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDPO(e))}</td>
                 <td className="px-4 py-3">
-                  <div className="flex flex-wrap gap-1">
-                    {levers.map(({ short, emoji, detail }) => (
-                      <span key={short} title={detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>
-                    ))}
-                  </div>
+                  {levers.length === 0 ? (
+                    <span className="text-xs text-slate-400">No clear lever — healthy vendor</span>
+                  ) : (
+                    <div className="flex flex-wrap gap-1">
+                      {levers.map(({ short, emoji, detail }) => (
+                        <span key={short} title={detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>
+                      ))}
+                    </div>
+                  )}
                 </td>
               </tr>
             ))}
-            {active.length === 0 && <tr><td colSpan={7} className="px-4 py-10 text-center text-slate-400">No suppliers with a negotiation lever match this filter{others.length > 0 ? " — try “Show more” below." : "."}</td></tr>}
+            {active.length === 0 && <tr><td colSpan={7} className="px-4 py-10 text-center text-slate-400">No suppliers match this filter{others.length > 0 ? " — try “Show more” below." : "."}</td></tr>}
           </tbody>
         </table>
       </div>
@@ -383,7 +389,7 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
         <div>
           <button onClick={() => setShowMore((s) => !s)} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-600 ring-1 ring-slate-200 transition hover:ring-slate-300">
             <span className="text-teal-600">{showMore ? "–" : "+"}</span>
-            {showMore ? "Hide" : "Show"} {others.length} more supplier{others.length > 1 ? "s" : ""} with no active lever
+            {showMore ? "Hide" : "Show"} {others.length} vendor{others.length > 1 ? "s" : ""} with limited data (revenue-only or no Tracxn filing)
           </button>
           {showMore && (
             <div className="mt-3 flex flex-wrap gap-2">
@@ -400,6 +406,12 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
       )}
     </div>
   );
+}
+
+// A supplier we can actually analyse — has more than just a revenue figure
+// (a margin, return, or payment-days signal). Thin/revenue-only vendors collapse.
+function hasDepth(e: Entity) {
+  return ebitdaMarginOf(e) != null || netMarginOf(e) != null || supRoce(e) != null || supDSO(e) != null || supDPO(e) != null;
 }
 
 // Deduped opportunity-lever tags for one supplier's insight list.
