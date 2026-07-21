@@ -7,16 +7,15 @@ import {
   type Entity,
   type CompetitorRow,
   type ResearchData,
-  type SupplierPdf,
 } from "./types";
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
 import { negotiationRoom } from "./lib/health";
 import { CATEGORY_COLOR } from "./lib/palette";
-import { HBars, Columns, AreaLine, Card, type Slice } from "./charts";
+import { HBars, Columns, AreaLine, ScoreBars, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import {
-  supplierInsights, TONE_META, type Insight,
-  supDSO, supDPO, supCCC, supRoce,
+  supplierInsights, TONE_META, type Insight, type InsightTone,
+  supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
 } from "./lib/insights";
 
 /* -------------------------------------------------- data accessors / helpers */
@@ -170,20 +169,34 @@ function Dropdown<T extends string>({ value, onChange, options, label }: { value
   );
 }
 
-function InsightCard({ ins, supplier, onOpen }: { ins: Insight; supplier?: string; onOpen?: () => void }) {
-  const m = TONE_META[ins.tone];
-  const Tag = onOpen ? "button" : "div";
+
+// Compact, visual take on the levers — tone-grouped chips instead of a wall of
+// sentence cards. The full one-liner lives in the hover title, so the page stays
+// scannable but the detail is one hover away.
+function LeverStrip({ ins }: { ins: Insight[] }) {
+  const groups = (["opportunity", "risk", "watch"] as InsightTone[])
+    .map((t) => ({ t, items: ins.filter((i) => i.tone === t) }))
+    .filter((g) => g.items.length);
   return (
-    <Tag onClick={onOpen} className={`flex w-full text-left rounded-2xl ${m.bg} p-4 ring-1 ${m.ring} transition ${onOpen ? "hover:shadow-md" : ""}`}>
-      <div className="flex items-start gap-3">
-        <span className="text-xl leading-none">{ins.icon}</span>
-        <div className="min-w-0">
-          {supplier && <div className="truncate text-[11px] font-bold uppercase tracking-wide text-slate-500">{supplier}</div>}
-          <div className={`text-sm font-semibold ${m.text}`}>{ins.title}</div>
-          <div className="mt-1 text-[13px] leading-relaxed text-slate-600">{ins.detail}</div>
-        </div>
-      </div>
-    </Tag>
+    <div className="space-y-3">
+      {groups.map(({ t, items }) => {
+        const m = TONE_META[t];
+        return (
+          <div key={t}>
+            <div className="mb-1.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+              <span className={`h-2 w-2 rounded-full ${m.dot}`} />{m.emoji} {m.label}<span className="text-slate-400">· {items.length}</span>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {items.map((i, idx) => (
+                <span key={idx} title={i.detail} className={`inline-flex cursor-default items-center gap-1.5 rounded-lg ${m.bg} px-2.5 py-1.5 text-sm font-medium ${m.text} ring-1 ${m.ring}`}>
+                  <span className="text-base leading-none">{i.icon}</span>{i.title}
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -943,8 +956,8 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
           <Card title="📈 Performance over time" sub="One chart — switch the metric" accent="#0d9488"><MetricTrend metrics={trend} /></Card>
         )}
         {ins.length > 0 && (
-          <Card title="💡 Negotiation levers & risks" sub="ready-to-use angles built from this company's own numbers" accent="#eda100">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">{ins.map((i, idx) => <InsightCard key={idx} ins={i} />)}</div>
+          <Card title="💡 Negotiation levers & risks" sub="ready-to-use angles from this company's own numbers · hover any tag for the detail" accent="#eda100">
+            <LeverStrip ins={ins} />
           </Card>
         )}
         {cost && <Card title={cost.title} sub={cost.sub} accent="#0d9488">{cost.node}</Card>}
@@ -986,23 +999,16 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
   const py = latestYear(e);
   const f = e.financials;
   const cagr = [f.revenueCAGR1yrPct, f.revenueCAGR3yrPct, f.revenueCAGR5yrPct];
+  // Only the scalar facts NOT already shown in the hero, trend, fitness bars or
+  // balance-sheet chart — the ratio story is now visual, so this stays short.
   const stats: { label: string; value: string }[] = [];
-  const num2 = (v: number | null | undefined) => (v != null ? v.toFixed(2) : "—");
-  stats.push({ label: "Revenue", value: fmtCrore(revOf(e)) });
-  if (ebitdaMarginOf(e) != null) stats.push({ label: "EBITDA margin", value: fmtPct(ebitdaMarginOf(e)) });
-  if (netMarginOf(e) != null) stats.push({ label: "Net margin", value: fmtPct(netMarginOf(e)) });
   if (f.ebitdaINR != null) stats.push({ label: "EBITDA", value: fmtCrore(f.ebitdaINR) });
-  if (py?.rocePct != null || e.probe?.roce != null) stats.push({ label: "RoCE", value: fmtPct(py?.rocePct ?? e.probe?.roce ?? null) });
   if (py?.roePct != null) stats.push({ label: "RoE", value: fmtPct(py.roePct) });
-  if (supDSO(e) != null) stats.push({ label: "Collection days", value: fmtDays(supDSO(e)) });
-  if (supDPO(e) != null) stats.push({ label: "Payable days", value: fmtDays(supDPO(e)) });
-  if (py?.currentRatio != null) stats.push({ label: "Current ratio", value: num2(py.currentRatio) });
-  if (py?.debtToEquity != null) stats.push({ label: "Debt / equity", value: num2(py.debtToEquity) });
-  if (py?.interestCoverage != null) stats.push({ label: "Interest cover", value: `${py.interestCoverage.toFixed(1)}x` });
   if (cagr.some((v) => v != null)) stats.push({ label: "Rev CAGR 1/3/5y", value: cagr.map((v) => fmtPct(v)).join(" / ") });
+  if (supDPO(e) != null) stats.push({ label: "Pays suppliers in", value: fmtDays(supDPO(e)) });
   if (f.employeeCount != null) stats.push({ label: "Employees", value: fmtInt(f.employeeCount) });
   if (f.paidUpCapitalINR != null) stats.push({ label: "Paid-up capital", value: fmtCrore(f.paidUpCapitalINR) });
-  if (stats.length > 1) cards.push({ key: "keynums", title: `📊 Key numbers${py ? ` · FY${py.fy}` : ""}`, node: <StatTable rows={stats} /> });
+  if (stats.length > 0) cards.push({ key: "keynums", title: `📊 Other key numbers${py ? ` · FY${py.fy}` : ""}`, node: <StatTable rows={stats} /> });
 
   // Balance sheet — all positive ₹Cr magnitudes, so a ranked bar reads better than a tile wall.
   if (py && (py.totalDebtINR != null || py.tradeReceivablesINR != null || py.cashINR != null || py.inventoryINR != null)) {
@@ -1039,7 +1045,8 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
     if (costBars.length) cards.push({ key: "cost", title: `🧾 Cost structure${cs.fy ? ` · FY${cs.fy}` : ""}`, node: <HBars data={costBars} valueLabel={(v) => `₹${v.toLocaleString("en-IN")} Cr`} /> });
   }
 
-  if (e.pdf) cards.push({ key: "health", title: "🩺 Financial health & risk", node: <HealthRiskBody pdf={e.pdf} /> });
+  const fit = fitnessAxes(e);
+  if (fit.length >= 2 || e.pdf) cards.push({ key: "health", title: "🩺 Financial fitness & risk", sub: fit.length >= 2 ? "each bar scored 0–100 · green = strong, red = weak · hover for how it's scored" : undefined, node: <HealthRiskBody e={e} fit={fit} /> });
 
   if (e.shelf) {
     cards.push({ key: "shelf", title: `🛒 Live shelf · ${e.shelf.channels.join(", ")}`, sub: e.shelf.scrapedAt ? `scraped ${fmtDate(e.shelf.scrapedAt)}` : undefined, node: (
@@ -1099,24 +1106,47 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
 }
 
 
-function HealthRiskBody({ pdf }: { pdf: SupplierPdf }) {
-  const signed = (v: number | null, suffix = "%") => (v == null ? "—" : `${v > 0 ? "+" : ""}${v}${suffix}`);
+type FitAxis = { label: string; score: number; value: string; hint: string };
+// Normalise a company's ratios into 0–100 "fitness" scores so the health card
+// can be read as a shape (green/amber/red bars) instead of a table of numbers.
+function fitnessAxes(e: Entity): FitAxis[] {
+  const clamp = (n: number) => Math.max(0, Math.min(100, n));
+  const out: FitAxis[] = [];
+  const em = ebitdaMarginOf(e);
+  if (em != null) out.push({ label: "EBITDA margin", score: clamp((em / 25) * 100), value: `${Math.round(em)}%`, hint: "Operating profitability, scored against a 25% ‘excellent’ bar." });
+  const nm = netMarginOf(e);
+  if (nm != null) out.push({ label: "Net margin", score: clamp((nm / 15) * 100), value: `${Math.round(nm)}%`, hint: "Bottom-line margin, scored against a 15% bar." });
+  const rc = supRoce(e);
+  if (rc != null) out.push({ label: "RoCE", score: clamp((rc / 30) * 100), value: `${Math.round(rc)}%`, hint: "Return on capital employed — 30%+ scores full." });
+  const cur = supCurrent(e);
+  if (cur != null) out.push({ label: "Liquidity", score: clamp((cur / 2) * 100), value: cur.toFixed(2), hint: "Current ratio — 2+ is comfortable, below 1 is tight." });
+  const de = supDebtEq(e);
+  if (de != null) out.push({ label: "Low leverage", score: clamp(((2 - de) / 2) * 100), value: de.toFixed(2), hint: "Debt-to-equity — 0 scores full, 2+ scores zero." });
+  const ic = supIntCov(e);
+  if (ic != null) out.push({ label: "Interest cover", score: clamp((ic / 5) * 100), value: `${ic.toFixed(1)}x`, hint: "Times interest earned — 5x+ is healthy." });
+  const dso = supDSO(e);
+  if (dso != null) out.push({ label: "Fast collection", score: clamp(((90 - dso) / 90) * 100), value: `${Math.round(dso)} d`, hint: "Days to collect from customers — fewer is better." });
+  return out;
+}
+
+function HealthRiskBody({ e, fit }: { e: Entity; fit: FitAxis[] }) {
+  const pdf = e.pdf;
   return (
     <>
-      <StatTable rows={[
-        { label: "Current ratio", value: pdf.currentRatio != null ? pdf.currentRatio.toFixed(2) : "—" },
-        { label: "Interest coverage", value: pdf.interestCoverage != null ? `${pdf.interestCoverage.toFixed(1)}x` : "—" },
-        { label: "Debt / equity", value: pdf.debtToEquity != null ? pdf.debtToEquity.toFixed(2) : "—" },
-        { label: "Revenue YoY", value: signed(pdf.revenueChangePct) },
-        { label: "PAT 3-yr CAGR", value: signed(pdf.patCagr3yrPct) },
-      ]} />
-      <div className="mt-2 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200" title="MSME = Micro, Small & Medium enterprises. Indian law requires companies to pay MSME suppliers within 45 days; disclosed delays are a cash-stress signal.">
-        <div className="text-xs text-slate-500">Late payments to small (MSME) vendors</div>
-        <div className="mt-0.5 font-mono text-sm text-slate-900">{pdf.msme ? `${pdf.msme.count} late · ₹${pdf.msme.amount}` : "None"}</div>
-      </div>
-      {pdf.riskFlags.length > 0 ? (
-        <div className="mt-3"><div className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-rose-600">Risk flags</div><div className="flex flex-wrap gap-1.5">{pdf.riskFlags.map((f, i) => <span key={i} className="rounded-md bg-rose-50 px-2 py-1 text-xs text-rose-700 ring-1 ring-rose-200">{f}</span>)}</div></div>
-      ) : <div className="mt-3 rounded-lg bg-emerald-50 px-3 py-2 text-xs text-emerald-700 ring-1 ring-emerald-200">No risk indicators flagged in the latest filing.</div>}
+      {fit.length > 0 && <ScoreBars data={fit} />}
+      {pdf && (
+        <div className={fit.length > 0 ? "mt-4" : ""}>
+          {pdf.msme && (
+            <div className="mb-2 rounded-xl bg-amber-50 p-3 ring-1 ring-amber-200" title="MSME = Micro, Small & Medium enterprises. Indian law requires companies to pay MSME suppliers within 45 days; disclosed delays are a cash-stress signal.">
+              <div className="text-xs text-amber-700">🚩 Late payments to small (MSME) vendors</div>
+              <div className="mt-0.5 font-mono text-sm text-amber-900">{pdf.msme.count} late · ₹{pdf.msme.amount}</div>
+            </div>
+          )}
+          {pdf.riskFlags.length > 0 ? (
+            <div className="flex flex-wrap gap-1.5">{pdf.riskFlags.map((f, i) => <span key={i} className="rounded-md bg-rose-50 px-2 py-1 text-xs text-rose-700 ring-1 ring-rose-200">🚩 {f}</span>)}</div>
+          ) : <div className="rounded-lg bg-emerald-50 px-3 py-2 text-xs text-emerald-700 ring-1 ring-emerald-200">✓ No risk indicators flagged in the latest filing.</div>}
+        </div>
+      )}
     </>
   );
 }
