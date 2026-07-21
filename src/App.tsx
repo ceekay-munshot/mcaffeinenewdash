@@ -429,10 +429,6 @@ function SupplierPriorities({ all, onSelect }: { all: Entity[]; onSelect: (e: En
 
   return (
     <div className="space-y-4">
-      <div className="rounded-2xl border border-teal-200 bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-3 text-sm text-teal-900">
-        <span className="font-semibold">{ranked.length} suppliers have a live negotiation lever{confirmedCount > 0 ? ` · ${confirmedCount === 1 ? "1 is a confirmed mcAFFEINE vendor" : `${confirmedCount} are confirmed mcAFFEINE vendors`}` : ""}.</span> Ranked by <span className="font-medium">lever strength × supplier size</span> (a spend proxy) — start at the top. Click any row for the full profile.
-      </div>
-
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Dropdown label="Category" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c }))} />
         {confirmedCount > 0 && (
@@ -525,14 +521,9 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
     });
   }, [filtered, sort]);
   const others = useMemo(() => filtered.filter((x) => !hasDepth(x.e)).sort((a, b) => (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1)), [filtered]);
-  const leveredCount = active.filter((x) => x.levers.length > 0).length;
 
   return (
     <div className="space-y-4">
-      <div className="rounded-2xl border border-teal-200 bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-3 text-sm text-teal-900">
-        <span className="font-semibold">{active.length} suppliers with full financials · {leveredCount} carry a clear negotiation lever.</span> The <span className="font-medium">Levers</span> column shows where to push — hover a tag for the reason, or click any row for the full profile. Sorted by most levers first.
-      </div>
-
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap gap-1.5">
           {SUP_CATS.map((c) => (
