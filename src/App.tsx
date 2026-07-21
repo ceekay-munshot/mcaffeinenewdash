@@ -223,6 +223,66 @@ function MetricRank({ metrics, onBar }: { metrics: RankMetric[]; onBar?: (l: str
   );
 }
 
+// Peer comparison — this vendor against everyone else in its own category, on a
+// chosen metric. Answers a negotiator's question: "is this vendor richer / leaner /
+// slower-collecting than the pack?" Uses the real financials we hold, not just names.
+const PEER_METRICS: { key: string; label: string; emoji: string; get: (e: Entity) => number | null; unit: (v: number) => string; higherBetter: boolean; note: string }[] = [
+  { key: "revenue", label: "Revenue", emoji: "💵", get: (e) => toCrore(revOf(e)), unit: crStr, higherBetter: true, note: "Latest disclosed revenue, ₹ crore — where this vendor sits on scale." },
+  { key: "ebitda", label: "EBITDA margin", emoji: "💰", get: ebitdaMarginOf, unit: (v) => `${Math.round(v)}%`, higherBetter: true, note: "Profitability — a fatter margin than peers means more pricing cushion to negotiate." },
+  { key: "net", label: "Net margin", emoji: "📊", get: netMarginOf, unit: (v) => `${Math.round(v)}%`, higherBetter: true, note: "Bottom-line margin vs the category." },
+  { key: "roce", label: "RoCE", emoji: "⚙️", get: supRoce, unit: (v) => `${Math.round(v)}%`, higherBetter: true, note: "Return on capital employed vs peers." },
+  { key: "dso", label: "Collection days", emoji: "⏱️", get: supDSO, unit: (v) => `${Math.round(v)} d`, higherBetter: false, note: "Days to collect from customers — fewer than peers means a healthier cash position." },
+];
+
+function PeerCompareCard({ e }: { e: Entity }) {
+  const avail = useMemo(
+    () => PEER_METRICS.filter((mm) => mm.get(e) != null && DATA.entities.filter((p) => p.category === e.category && mm.get(p) != null).length >= 3),
+    [e],
+  );
+  const [k, setK] = useState(avail[0]?.key ?? "revenue");
+  if (avail.length === 0) return null;
+  const m = avail.find((x) => x.key === k) ?? avail[0];
+
+  const withVal = DATA.entities
+    .filter((p) => p.category === e.category && m.get(p) != null)
+    .map((p) => ({ p, v: m.get(p)! }))
+    .sort((a, b) => (m.higherBetter ? b.v - a.v : a.v - b.v));
+
+  const rankIdx = withVal.findIndex((x) => x.p.folder === e.folder);
+  const total = withVal.length;
+  const sortedVals = withVal.map((x) => x.v).sort((a, b) => a - b);
+  const median = sortedVals[Math.floor((sortedVals.length - 1) / 2)];
+  const selfVal = m.get(e)!;
+
+  // Show the leaders, but always keep this vendor visible even if it ranks low.
+  const TOP = 7;
+  let shown = withVal.slice(0, TOP);
+  if (rankIdx >= TOP) shown = [...withVal.slice(0, TOP - 1), withVal[rankIdx]];
+  const bars: Slice[] = shown.map(({ p, v }) => ({
+    label: p.brand,
+    value: v,
+    color: p.folder === e.folder ? "#0d9488" : "#cbd5e1",
+    sub: p.folder === e.folder ? "this vendor" : undefined,
+  }));
+
+  const better = m.higherBetter ? selfVal >= median : selfVal <= median;
+  const cmpWord = m.higherBetter ? (better ? "above" : "below") : better ? "better than" : "worse than";
+
+  return (
+    <div>
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <Dropdown label="Compare on" value={k} onChange={setK} options={avail.map((x) => ({ key: x.key, label: x.label, emoji: x.emoji }))} />
+        <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-500">vs {e.category} peers</span>
+      </div>
+      <div className="mb-3 text-xs text-slate-500">{m.note}</div>
+      <div className={`mb-4 rounded-xl px-3 py-2 text-sm ring-1 ${better ? "bg-emerald-50 text-emerald-800 ring-emerald-200" : "bg-amber-50 text-amber-800 ring-amber-200"}`}>
+        <span className="font-semibold">{e.brand}</span> ranks <span className="font-semibold">#{rankIdx + 1} of {total}</span> in {e.category} on {m.label.toLowerCase()} — {m.unit(selfVal)}, {cmpWord} the category median of {m.unit(median)}.
+      </div>
+      <HBars data={bars} valueLabel={m.unit} />
+    </div>
+  );
+}
+
 // Multi-year metrics for one company, from its Tracxn profile.
 function buildTrendMetrics(e: Entity): TrendMetric[] {
   const ys = e.profile?.years ? [...e.profile.years].sort((a, b) => a.fy.localeCompare(b.fy)) : [];
@@ -589,9 +649,9 @@ function CompetitorView() {
                   <tr key={e.cin || e.brand} onClick={() => openCompetitor(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-violet-50/40">
                     <td className="px-4 py-3"><div className="font-medium text-slate-900">{e.brand}</div><div className="truncate text-xs text-slate-400">{e.parent ?? e.legalName ?? ""}</div></td>
                     <td className="px-4 py-3"><div className="flex flex-wrap gap-1">{e.categories.map((c) => <span key={c} className="rounded-md px-1.5 py-0.5 text-xs font-medium" style={{ background: `${CAT5_COLOR[c] ?? "#94a3b8"}18`, color: CAT5_COLOR[c] ?? "#64748b" }}>{c}</span>)}</div></td>
-                    <td className="px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
-                    <td className="px-4 py-3 text-right font-mono text-slate-600">{fmtUSD(e.competitor?.fundingUSD ?? null)}</td>
-                    <td className="px-4 py-3 text-slate-600">{e.competitor?.stage ?? "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtUSD(e.competitor?.fundingUSD ?? null)}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-slate-600">{e.competitor?.stage ?? "—"}</td>
                     <td className="max-w-[260px] px-4 py-3 text-slate-600"><span className="line-clamp-1">{e.competitor?.materialEvent ?? "—"}</span></td>
                   </tr>
                 ))}
@@ -624,9 +684,18 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
   const metrics: RankMetric[] = [
     { key: "revenue", label: "Revenue", emoji: "💵", unit: (v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`), note: "Latest disclosed revenue, ₹ crore.", rows: rank((e) => toCrore(revOf(e)), "#6d28d9") },
     { key: "discount", label: "Discounting", emoji: "🏷️", unit: (v) => `${v}%`, note: "Avg % off MRP on their live Nykaa shelf — high = liquidation or heavy marketing.", rows: rank((e) => e.shelf?.avgDiscountPct ?? null, "#eb6834") },
-    { key: "traction", label: "Reviews", emoji: "🔥", unit: (v) => `${v}m`, note: "Total Nykaa reviews (millions) — a sales-velocity proxy.", rows: rank((e) => (e.shelf?.totalReviews != null ? e.shelf.totalReviews / 1e6 : null), "#2a78d6") },
+    { key: "traction", label: "Reviews", emoji: "🔥", unit: (v) => `${v}M reviews`, note: "Total Nykaa reviews (millions) — a sales-velocity proxy.", rows: rank((e) => (e.shelf?.totalReviews != null ? e.shelf.totalReviews / 1e6 : null), "#2a78d6") },
     { key: "rating", label: "Rating", emoji: "⭐", unit: (v) => `${v.toFixed(1)}★`, note: "Average customer rating on Nykaa (out of 5).", rows: rank((e) => e.shelf?.avgRating ?? null, "#1baf7a") },
   ];
+
+  // Profitability — the D2C reality is that many rivals burn cash. A diverging column
+  // per brand (green = profitable, red = loss-making) tells that story at a glance.
+  const marginCols: Slice[] = all
+    .map((e) => ({ e, v: ebitdaMarginOf(e) }))
+    .filter((x): x is { e: CompetitorRow; v: number } => x.v != null)
+    .sort((a, b) => b.v - a.v)
+    .map(({ e, v }) => ({ label: e.brand, value: Math.round(v * 10) / 10, color: v >= 0 ? "#1baf7a" : "#e34948" }));
+  const profitable = marginCols.filter((d) => d.value >= 0).length;
 
   const catRows: Slice[] = COMPETITOR_CATEGORIES.map((c) => ({ label: c, value: all.filter((e) => e.categories.includes(c)).length, color: CAT5_COLOR[c] ?? "#94a3b8" })).sort((a, b) => b.value - a.value);
   const fundingGroups = (["Acquired", "VC-funded", "Unfunded", "Unknown"] as const).map((k) => ({ bucket: k, brands: all.filter((e) => fundingBucket(e.competitor?.stage) === k) })).filter((g) => g.brands.length);
@@ -637,6 +706,16 @@ function CompetitorOverview({ all, onSelect }: { all: CompetitorRow[]; onSelect:
       <Card title="🥊 Compare rivals" sub="One chart — switch the metric to rank every brand" accent="#6d28d9">
         <MetricRank metrics={metrics} onBar={pick} />
       </Card>
+
+      {marginCols.length > 0 && (
+        <Card title="💹 Who actually makes money?" sub={`EBITDA margin per brand · green = profitable, red = burning cash · ${profitable} of ${marginCols.length} in the black · hover for the number`} accent="#1baf7a">
+          <div className="overflow-x-auto pb-1">
+            <div style={{ minWidth: Math.max(640, marginCols.length * 54) }}>
+              <Columns data={marginCols} valueLabel={(v) => `${v}%`} height={200} />
+            </div>
+          </div>
+        </Card>
+      )}
 
       <Card title="📚 Category presence" sub="how many rivals we track per BPC category" accent="#e34948">
         <HBars data={catRows} valueLabel={(v) => `${v} brand${v === 1 ? "" : "s"}`} />
@@ -677,16 +756,31 @@ function DeliveryView() {
   const { partners, delhivery: d } = DELIVERY;
   const cr = (inr: number | null) => (inr == null ? 0 : Math.round(inr / 1e7));
   const nm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
-  const partnerEnts = useMemo(() => new Map(DATA.entities.filter((e) => e.category === "Delivery Partners").map((e) => [nm(e.brand), e])), []);
+  const listedMap = useMemo(() => new Map(partners.map((p) => [nm(p.brand), p.listed])), [partners]);
   const [selected, setSelected] = useState<Entity | null>(null);
   const { open: openPartner, back } = useProfileNav(selected, setSelected);
   const s = (fy: string) => "'" + fy.split("-")[1];
 
-  const metrics: TrendMetric[] = [
-    { key: "revenue", label: "Revenue", emoji: "💵", kind: "area", color: "#0d9488", unit: (v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k` : `₹${v}`), slices: d.trend.map((t) => ({ label: s(t.fy), value: cr(t.revenueINR), color: "#0d9488" })) },
-    { key: "profit", label: "Net profit", emoji: "📈", kind: "columns", color: "#1baf7a", unit: (v) => (v >= 0 ? `₹${v}` : `-₹${Math.abs(v)}`), slices: d.trend.map((t) => ({ label: s(t.fy), value: cr(t.netProfitINR), color: (t.netProfitINR ?? 0) >= 0 ? "#1baf7a" : "#e34948" })) },
-    { key: "dso", label: "Collection days", emoji: "📥", kind: "area", color: "#2a78d6", unit: (v) => `${Math.round(v)}d`, slices: d.ratioTrend.map((t) => ({ label: s(t.fy), value: t.dso ?? 0, color: "#2a78d6" })) },
-    { key: "margin", label: "EBITDA margin", emoji: "💰", kind: "columns", color: "#1baf7a", unit: (v) => `${v}%`, slices: d.ratioTrend.map((t) => ({ label: s(t.fy), value: t.ebitdaMarginPct ?? 0, color: (t.ebitdaMarginPct ?? 0) >= 0 ? "#1baf7a" : "#e34948" })) },
+  // Every delivery partner now carries a full multi-year profile — build a real
+  // 5-way comparison from the latest year of each.
+  const rows = useMemo(() => {
+    return DATA.entities.filter((e) => e.category === "Delivery Partners" && e.profile?.years?.length)
+      .map((e) => {
+        const y = e.profile!.years[e.profile!.years.length - 1];
+        return { e, fy: y.fy, rev: cr(y.revenueINR), net: cr(y.netProfitINR), margin: y.ebitdaMarginPct, dso: y.receivableDays, listed: !!listedMap.get(nm(e.brand)) };
+      })
+      .sort((a, b) => b.rev - a.rev);
+  }, [listedMap]);
+
+  const profitable = rows.filter((r) => r.net >= 0).length;
+  const marginBars: Slice[] = rows.map((r) => ({ label: r.e.brand, value: Math.round(r.margin ?? 0), color: (r.margin ?? 0) >= 0 ? "#1baf7a" : "#e34948" }));
+  const revBars: Slice[] = rows.map((r) => ({ label: r.e.brand, value: r.rev, color: "#0369a1" }));
+
+  const delhiveryMetrics: TrendMetric2[] = [
+    { key: "revenue", label: "Revenue", emoji: "💵", kind: "area", color: "#0d9488", unitWord: "₹ crore", unit: (v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`), slices: d.trend.map((t) => ({ label: s(t.fy), value: cr(t.revenueINR), color: "#0d9488" })) },
+    { key: "profit", label: "Net profit", emoji: "📈", kind: "columns", color: "#1baf7a", unitWord: "₹ crore", unit: (v) => (v >= 0 ? `₹${v} Cr` : `-₹${Math.abs(v)} Cr`), slices: d.trend.map((t) => ({ label: s(t.fy), value: cr(t.netProfitINR), color: (t.netProfitINR ?? 0) >= 0 ? "#1baf7a" : "#e34948" })) },
+    { key: "dso", label: "Collection days", emoji: "📥", kind: "area", color: "#2a78d6", unitWord: "days to collect", unit: (v) => `${Math.round(v)} days`, slices: d.ratioTrend.map((t) => ({ label: s(t.fy), value: t.dso ?? 0, color: "#2a78d6" })) },
+    { key: "margin", label: "EBITDA margin", emoji: "💰", kind: "columns", color: "#1baf7a", unitWord: "%", unit: (v) => `${v}%`, slices: d.ratioTrend.map((t) => ({ label: s(t.fy), value: t.ebitdaMarginPct ?? 0, color: (t.ebitdaMarginPct ?? 0) >= 0 ? "#1baf7a" : "#e34948" })) },
   ];
 
   if (selected) return <CompanyPage entity={selected} onBack={back} kind="delivery" />;
@@ -697,66 +791,69 @@ function DeliveryView() {
         subtitle="Last-mile & logistics partners — financial strength and the receivables (DSO) credit lever"
         tint="from-[#0369a1] to-[#0d9488]"
         stats={[
-          { label: "Partners", value: String(partners.length) },
-          { label: "Listed", value: String(partners.filter((p) => p.listed).length) },
-          { label: "Delhivery rev", value: crStr(cr(d.revenueINR)) },
-          { label: "Delhivery DSO", value: `${Math.round(d.dso ?? 0)} d` },
+          { label: "Partners", value: String(rows.length) },
+          { label: "Profitable", value: `${profitable} of ${rows.length}` },
+          { label: "Biggest", value: rows[0] ? crStr(rows[0].rev) : "—" },
+          { label: "Listed", value: String(rows.filter((r) => r.listed).length) },
         ]} />
 
       <div className="mt-6 space-y-4">
-        <Card title="📈 Delhivery — 12-year track record" sub="Switch the metric — revenue, profit turnaround, receivables & margin" accent="#0d9488">
-          <MetricTrend metrics={metrics} height={260} />
-          <div className="mt-4 rounded-xl bg-emerald-50 p-3 text-xs text-emerald-800 ring-1 ring-emerald-200">
-            Turned profitable in FY {d.latestFY} (+{crStr(cr(d.netProfitINR))}) after years of losses. Latest: revenue {crStr(cr(d.revenueINR))} · EBITDA margin {d.ebitdaMarginPct ?? "—"}% · DSO {Math.round(d.dso ?? 0)}d.
+        <Card title="💹 Who's financially healthy?" sub={`EBITDA margin by partner, latest year (FY${rows[0]?.fy ?? ""}) — green = profitable, red = burning cash. A healthier partner is more reliable and less likely to hike rates.`} accent="#1baf7a">
+          <Columns data={marginBars} valueLabel={(v) => `${v}%`} height={190} />
+        </Card>
+
+        <Card title="🏁 Partner scorecard" sub="latest-year financials · click a partner for its full 5-year profile" accent="#0369a1">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[720px] border-collapse text-sm">
+              <thead>
+                <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+                  <Th>Partner</Th><Th>Status</Th><Th right>Revenue</Th><Th right>Net profit</Th><Th right>EBITDA %</Th><Th right>Collects</Th><Th>Health</Th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((r) => (
+                  <tr key={r.e.folder} onClick={() => openPartner(r.e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
+                    <td className="px-4 py-3"><div className="font-medium text-slate-900">{r.e.brand}</div><div className="truncate text-xs text-slate-400">{r.e.legalName ?? r.e.folder}</div></td>
+                    <td className="px-4 py-3">{r.listed ? <Pill cls="text-emerald-700 bg-emerald-50 ring-emerald-200">Listed</Pill> : <Pill cls="text-slate-600 bg-slate-100 ring-slate-200">Private</Pill>}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{crStr(r.rev)}</td>
+                    <td className={`whitespace-nowrap px-4 py-3 text-right font-mono ${r.net >= 0 ? "text-emerald-600" : "text-rose-600"}`}>{r.net >= 0 ? "+" : "−"}{crStr(Math.abs(r.net))}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{r.margin != null ? `${Math.round(r.margin)}%` : "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-500">{r.dso != null ? `${Math.round(r.dso)} d` : "—"}</td>
+                    <td className="px-4 py-3">{r.net >= 0
+                      ? <span className="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">Profitable</span>
+                      : <span className="inline-flex rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200">Loss-making</span>}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </Card>
 
-        <Card title="🚚 Partner roster" sub="identified legal entities — click a listed/private partner for its profile" accent="#4a3aa7">
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {partners.map((p) => (
-              <button key={p.brand} onClick={() => { const e = partnerEnts.get(nm(p.brand)); if (e) openPartner(e); }}
-                className={`flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2.5 ring-1 ring-slate-200 ${partnerEnts.get(nm(p.brand))?.profile ? "cursor-pointer hover:bg-teal-50/60" : ""}`}>
-                <div className="min-w-0"><div className="text-sm font-medium text-slate-800">{p.brand}</div><div className="truncate text-xs text-slate-400">{p.legalName ?? "—"}</div></div>
-                {p.listed ? <Pill cls="text-emerald-700 bg-emerald-50 ring-emerald-200">Listed</Pill> : <Pill cls="text-slate-600 bg-slate-100 ring-slate-200">Private</Pill>}
-              </button>
+        <Card title="📊 Revenue & scale" sub="latest-year revenue, ₹ crore — Delhivery is ~3–4× its nearest rival" accent="#0d9488">
+          <HBars data={revBars} valueLabel={(v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${v} Cr`)} onBar={(l) => { const r = rows.find((x) => x.e.brand === l); if (r) openPartner(r.e); }} />
+        </Card>
+
+        <Card title="📈 Delhivery — 12-year track record" sub="the flagship partner — switch the metric to see revenue, profit turnaround, receivables & margin" accent="#0d9488">
+          <MetricTrend metrics={delhiveryMetrics} height={260} />
+          <div className="mt-4 rounded-xl bg-emerald-50 p-3 text-xs text-emerald-800 ring-1 ring-emerald-200">
+            Delhivery turned profitable in FY {d.latestFY} (+{crStr(cr(d.netProfitINR))}) after years of losses. It's the only listed partner and by far the largest.
+          </div>
+        </Card>
+
+        <Card title="🏦 The credit lever" sub="what this means for mcAFFEINE" accent="#0369a1">
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { icon: "📥", t: "Collection days = your terms lever", d: `Partners collect from their clients in ${Math.min(...rows.map((r) => Math.round(r.dso ?? 999)))}–${Math.max(...rows.map((r) => Math.round(r.dso ?? 0)))} days. The longer they let clients pay, the more room to negotiate our own terms out.` },
+              { icon: "⚠️", t: `${rows.length - profitable} of ${rows.length} partners are loss-making`, d: "Cash-burning partners can hike rates or cut service under pressure — lean on the profitable, well-capitalised ones for critical lanes." },
+              { icon: "🏆", t: "Delhivery is the safe anchor", d: "Only listed partner, largest by revenue, and now profitable — the most reliable base to route volume through while negotiating the rest." },
+            ].map((x) => (
+              <div key={x.t} className="flex items-start gap-3 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
+                <span className="text-lg leading-none">{x.icon}</span>
+                <div><div className="text-sm font-semibold text-slate-800">{x.t}</div><div className="mt-0.5 text-[13px] leading-relaxed text-slate-600">{x.d}</div></div>
+              </div>
             ))}
           </div>
         </Card>
-
-        <div className="grid gap-4 lg:grid-cols-3">
-          <Card title="🏦 The credit lever" sub="what to push on with delivery partners" accent="#0369a1">
-            <div className="space-y-3">
-              {[
-                { icon: "📥", t: `Delhivery collects in ~${Math.round(d.dso ?? 0)} days`, d: "That's the receivables (DSO) lever — the longer they let clients pay, the more room there is for us to negotiate our own payment terms out." },
-                { icon: "💹", t: "Now profitable after a decade of losses", d: `Turned positive in FY ${d.latestFY} (+${crStr(cr(d.netProfitINR))}). A financially healthier partner is a more reliable one — and less likely to hike rates abruptly.` },
-                { icon: "⚖️", t: "Only 1 of 5 partners is listed", d: "Delhivery has full public filings; the other four are private, so their financials come next from Probe42 / MCA to complete the comparison." },
-              ].map((x) => (
-                <div key={x.t} className="flex items-start gap-3 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
-                  <span className="text-lg leading-none">{x.icon}</span>
-                  <div><div className="text-sm font-semibold text-slate-800">{x.t}</div><div className="mt-0.5 text-[13px] leading-relaxed text-slate-600">{x.d}</div></div>
-                </div>
-              ))}
-            </div>
-          </Card>
-
-          <Card title="💰 Delhivery — latest financials" sub={`FY ${d.latestFY} · consolidated`} accent="#0891b2" className="lg:col-span-2">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <Stat label="Revenue" value={crStr(cr(d.revenueINR))} />
-              <Stat label="Net profit" value={crStr(cr(d.netProfitINR))} />
-              <Stat label="EBITDA margin" value={d.ebitdaMarginPct != null ? `${d.ebitdaMarginPct}%` : "—"} />
-              <Stat label="Collection days" value={`${Math.round(d.dso ?? 0)} d`} />
-            </div>
-            <div className="mt-3 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
-              {d.trend.slice(-4).map((t) => (
-                <div key={t.fy} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
-                  <div className="text-xs text-slate-500">FY {t.fy}</div>
-                  <div className="mt-0.5 font-mono text-sm text-slate-900">{crStr(cr(t.revenueINR))}</div>
-                  <div className={`text-xs ${(t.netProfitINR ?? 0) >= 0 ? "text-emerald-600" : "text-rose-600"}`}>{(t.netProfitINR ?? 0) >= 0 ? "+" : "−"}{crStr(Math.abs(cr(t.netProfitINR)))}</div>
-                </div>
-              ))}
-            </div>
-          </Card>
-        </div>
       </div>
     </main>
   );
@@ -851,6 +948,9 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
           </Card>
         )}
         {cost && <Card title={cost.title} sub={cost.sub} accent="#0d9488">{cost.node}</Card>}
+        {kind === "supplier" && (
+          <Card title="🏁 How it stacks up against peers" sub="ranked against the same-category vendors we track" accent="#6d28d9"><PeerCompareCard e={e} /></Card>
+        )}
         {/* everything else packs into a balanced masonry — no tall charts here, so no triangle */}
         <div className="gap-4 [column-fill:balance] sm:columns-2 [&>*]:mb-4 [&>*]:break-inside-avoid">
           {masonry.map((c) => <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>)}
@@ -886,38 +986,45 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
   const py = latestYear(e);
   const f = e.financials;
   const cagr = [f.revenueCAGR1yrPct, f.revenueCAGR3yrPct, f.revenueCAGR5yrPct];
-  const stats: React.ReactNode[] = [];
+  const stats: { label: string; value: string }[] = [];
   const num2 = (v: number | null | undefined) => (v != null ? v.toFixed(2) : "—");
-  stats.push(<Stat key="rev" label="Revenue" value={fmtCrore(revOf(e))} />);
-  if (ebitdaMarginOf(e) != null) stats.push(<Stat key="em" label="EBITDA margin" value={fmtPct(ebitdaMarginOf(e))} />);
-  if (netMarginOf(e) != null) stats.push(<Stat key="nm" label="Net margin" value={fmtPct(netMarginOf(e))} />);
-  if (f.ebitdaINR != null) stats.push(<Stat key="ebitda" label="EBITDA" value={fmtCrore(f.ebitdaINR)} />);
-  if (py?.rocePct != null || e.probe?.roce != null) stats.push(<Stat key="roce" label="RoCE" value={fmtPct(py?.rocePct ?? e.probe?.roce ?? null)} />);
-  if (py?.roePct != null) stats.push(<Stat key="roe" label="RoE" value={fmtPct(py.roePct)} />);
-  if (supDSO(e) != null) stats.push(<Stat key="dso" label="Collection days" value={fmtDays(supDSO(e))} />);
-  if (supDPO(e) != null) stats.push(<Stat key="dpo" label="Payable days" value={fmtDays(supDPO(e))} />);
-  if (py?.currentRatio != null) stats.push(<Stat key="cr" label="Current ratio" value={num2(py.currentRatio)} />);
-  if (py?.debtToEquity != null) stats.push(<Stat key="de" label="Debt / equity" value={num2(py.debtToEquity)} />);
-  if (py?.interestCoverage != null) stats.push(<Stat key="ic" label="Interest cover" value={`${py.interestCoverage.toFixed(1)}x`} />);
-  if (cagr.some((v) => v != null)) stats.push(<Stat key="cagr" label="Rev CAGR 1/3/5y" value={cagr.map((v) => fmtPct(v)).join(" / ")} />);
-  if (f.employeeCount != null) stats.push(<Stat key="emp" label="Employees" value={fmtInt(f.employeeCount)} />);
-  if (f.paidUpCapitalINR != null) stats.push(<Stat key="paid" label="Paid-up capital" value={fmtCrore(f.paidUpCapitalINR)} />);
-  if (stats.length > 1) cards.push({ key: "keynums", title: `📊 Key numbers${py ? ` · FY${py.fy}` : ""}`, node: <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">{stats}</div> });
+  stats.push({ label: "Revenue", value: fmtCrore(revOf(e)) });
+  if (ebitdaMarginOf(e) != null) stats.push({ label: "EBITDA margin", value: fmtPct(ebitdaMarginOf(e)) });
+  if (netMarginOf(e) != null) stats.push({ label: "Net margin", value: fmtPct(netMarginOf(e)) });
+  if (f.ebitdaINR != null) stats.push({ label: "EBITDA", value: fmtCrore(f.ebitdaINR) });
+  if (py?.rocePct != null || e.probe?.roce != null) stats.push({ label: "RoCE", value: fmtPct(py?.rocePct ?? e.probe?.roce ?? null) });
+  if (py?.roePct != null) stats.push({ label: "RoE", value: fmtPct(py.roePct) });
+  if (supDSO(e) != null) stats.push({ label: "Collection days", value: fmtDays(supDSO(e)) });
+  if (supDPO(e) != null) stats.push({ label: "Payable days", value: fmtDays(supDPO(e)) });
+  if (py?.currentRatio != null) stats.push({ label: "Current ratio", value: num2(py.currentRatio) });
+  if (py?.debtToEquity != null) stats.push({ label: "Debt / equity", value: num2(py.debtToEquity) });
+  if (py?.interestCoverage != null) stats.push({ label: "Interest cover", value: `${py.interestCoverage.toFixed(1)}x` });
+  if (cagr.some((v) => v != null)) stats.push({ label: "Rev CAGR 1/3/5y", value: cagr.map((v) => fmtPct(v)).join(" / ") });
+  if (f.employeeCount != null) stats.push({ label: "Employees", value: fmtInt(f.employeeCount) });
+  if (f.paidUpCapitalINR != null) stats.push({ label: "Paid-up capital", value: fmtCrore(f.paidUpCapitalINR) });
+  if (stats.length > 1) cards.push({ key: "keynums", title: `📊 Key numbers${py ? ` · FY${py.fy}` : ""}`, node: <StatTable rows={stats} /> });
 
+  // Balance sheet — all positive ₹Cr magnitudes, so a ranked bar reads better than a tile wall.
   if (py && (py.totalDebtINR != null || py.tradeReceivablesINR != null || py.cashINR != null || py.inventoryINR != null)) {
-    cards.push({ key: "balance", title: `⚖️ Balance sheet · FY${py.fy}`, node: (
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-        <Stat label="Total debt" value={fmtCrore(py.totalDebtINR)} /><Stat label="Total equity" value={fmtCrore(py.totalEquityINR)} />
-        <Stat label="Receivables" value={fmtCrore(py.tradeReceivablesINR)} /><Stat label="Payables" value={fmtCrore(py.tradePayablesINR)} />
-        <Stat label="Inventory" value={fmtCrore(py.inventoryINR)} /><Stat label="Cash" value={fmtCrore(py.cashINR)} />
-      </div>
-    ) });
+    const bsBars = [
+      { label: "Total equity", value: toCrore(py.totalEquityINR), color: "#0d9488" },
+      { label: "Total debt", value: toCrore(py.totalDebtINR), color: "#e34948" },
+      { label: "Cash", value: toCrore(py.cashINR), color: "#2a78d6" },
+      { label: "Receivables", value: toCrore(py.tradeReceivablesINR), color: "#eda100" },
+      { label: "Payables", value: toCrore(py.tradePayablesINR), color: "#eb6834" },
+      { label: "Inventory", value: toCrore(py.inventoryINR), color: "#4a3aa7" },
+    ].filter((d): d is Slice => d.value != null && d.value > 0);
+    if (bsBars.length) cards.push({ key: "balance", title: `⚖️ Balance sheet · FY${py.fy}`, sub: "₹ crore", node: <HBars data={bsBars} valueLabel={crStr} /> });
   }
 
+  // Cash flow — signed by nature (investing/financing usually negative), so ± columns show the direction.
   if (py && (py.cashFromOpsINR != null || py.cashFromInvestingINR != null || py.cashFromFinancingINR != null)) {
-    cards.push({ key: "cashflow", title: `💵 Cash flow · FY${py.fy}`, node: (
-      <div className="grid grid-cols-3 gap-3"><Stat label="Operating" value={fmtCrore(py.cashFromOpsINR)} /><Stat label="Investing" value={fmtCrore(py.cashFromInvestingINR)} /><Stat label="Financing" value={fmtCrore(py.cashFromFinancingINR)} /></div>
-    ) });
+    const cfCols = [
+      { label: "Operating", value: toCrore(py.cashFromOpsINR), color: "#0d9488" },
+      { label: "Investing", value: toCrore(py.cashFromInvestingINR), color: "#2a78d6" },
+      { label: "Financing", value: toCrore(py.cashFromFinancingINR), color: "#eda100" },
+    ].filter((d): d is Slice => d.value != null);
+    if (cfCols.length) cards.push({ key: "cashflow", title: `💵 Cash flow · FY${py.fy}`, sub: "₹ crore · a bar below the line means cash went out", node: <Columns data={cfCols} valueLabel={crStr} height={150} /> });
   }
 
   // cost structure (full-width chart in the page, pulled out of the masonry)
@@ -996,15 +1103,16 @@ function HealthRiskBody({ pdf }: { pdf: SupplierPdf }) {
   const signed = (v: number | null, suffix = "%") => (v == null ? "—" : `${v > 0 ? "+" : ""}${v}${suffix}`);
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-        <Stat label="Current ratio" value={pdf.currentRatio != null ? pdf.currentRatio.toFixed(2) : "—"} />
-        <Stat label="Interest coverage" value={pdf.interestCoverage != null ? `${pdf.interestCoverage.toFixed(1)}x` : "—"} />
-        <Stat label="Debt / equity" value={pdf.debtToEquity != null ? pdf.debtToEquity.toFixed(2) : "—"} />
-        <Stat label="Revenue YoY" value={signed(pdf.revenueChangePct)} /><Stat label="PAT 3-yr CAGR" value={signed(pdf.patCagr3yrPct)} />
-        <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200" title="MSME = Micro, Small & Medium enterprises. Indian law requires companies to pay MSME suppliers within 45 days; disclosed delays are a cash-stress signal.">
-          <div className="text-xs text-slate-500">Late payments to small vendors</div>
-          <div className="mt-0.5 font-mono text-sm text-slate-900">{pdf.msme ? `${pdf.msme.count} · ₹${pdf.msme.amount}` : "None"}</div>
-        </div>
+      <StatTable rows={[
+        { label: "Current ratio", value: pdf.currentRatio != null ? pdf.currentRatio.toFixed(2) : "—" },
+        { label: "Interest coverage", value: pdf.interestCoverage != null ? `${pdf.interestCoverage.toFixed(1)}x` : "—" },
+        { label: "Debt / equity", value: pdf.debtToEquity != null ? pdf.debtToEquity.toFixed(2) : "—" },
+        { label: "Revenue YoY", value: signed(pdf.revenueChangePct) },
+        { label: "PAT 3-yr CAGR", value: signed(pdf.patCagr3yrPct) },
+      ]} />
+      <div className="mt-2 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200" title="MSME = Micro, Small & Medium enterprises. Indian law requires companies to pay MSME suppliers within 45 days; disclosed delays are a cash-stress signal.">
+        <div className="text-xs text-slate-500">Late payments to small (MSME) vendors</div>
+        <div className="mt-0.5 font-mono text-sm text-slate-900">{pdf.msme ? `${pdf.msme.count} late · ₹${pdf.msme.amount}` : "None"}</div>
       </div>
       {pdf.riskFlags.length > 0 ? (
         <div className="mt-3"><div className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-rose-600">Risk flags</div><div className="flex flex-wrap gap-1.5">{pdf.riskFlags.map((f, i) => <span key={i} className="rounded-md bg-rose-50 px-2 py-1 text-xs text-rose-700 ring-1 ring-rose-200">{f}</span>)}</div></div>
@@ -1040,6 +1148,19 @@ function EmptyRow({ cols }: { cols: number }) {
 }
 function Stat({ label, value }: { label: string; value: string }) {
   return <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200"><div className="text-xs text-slate-500">{label}</div><div className="mt-0.5 font-mono text-sm text-slate-900">{value}</div></div>;
+}
+// A dense two-column fact sheet — reads like a filing extract, not a wall of KPI tiles.
+function StatTable({ rows }: { rows: { label: string; value: string }[] }) {
+  return (
+    <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
+      {rows.map((r) => (
+        <div key={r.label} className="flex items-baseline justify-between gap-4 border-b border-slate-100 py-1.5">
+          <span className="text-sm text-slate-500">{r.label}</span>
+          <span className="font-mono text-sm font-medium text-slate-900">{r.value}</span>
+        </div>
+      ))}
+    </div>
+  );
 }
 function Row({ k, v, mono }: { k: string; v: string; mono?: boolean }) {
   return <div className="flex justify-between gap-4 border-b border-slate-100 pb-2"><dt className="shrink-0 text-slate-500">{k}</dt><dd className={`text-right text-slate-800 ${mono ? "font-mono text-xs" : ""}`}>{v}</dd></div>;
