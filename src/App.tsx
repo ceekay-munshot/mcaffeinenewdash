@@ -132,9 +132,9 @@ function ModuleHero({ emoji, title, subtitle, stats, tint }: {
         </div>
         <div className="flex flex-wrap gap-2.5">
           {stats.map((s) => (
-            <div key={s.label} className="rounded-2xl bg-white/12 px-4 py-2 ring-1 ring-white/20">
+            <div key={s.label} className="min-w-[7.5rem] rounded-2xl bg-white/12 px-4 py-2 ring-1 ring-white/20">
               <div className="text-[10px] font-medium uppercase tracking-wide text-white/70">{s.label}</div>
-              <div className="text-lg font-bold tabular-nums">{s.value}</div>
+              <div className="mt-0.5 text-xl font-bold tabular-nums leading-tight">{s.value}</div>
             </div>
           ))}
         </div>
@@ -313,16 +313,15 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "priorities" | "board" | "benchmark";
+type SupTab = "board" | "benchmark";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
-  { key: "priorities", label: "Negotiation priorities", emoji: "🎯" },
   { key: "board", label: "Supplier board", emoji: "📇" },
   { key: "benchmark", label: "Benchmark charts", emoji: "📊" },
 ];
 
 function SupplierView() {
   const all = useMemo(() => supplyEntities(), []);
-  const [tab, setTab] = useState<SupTab>("priorities");
+  const [tab, setTab] = useState<SupTab>("board");
   const [selected, setSelected] = useState<Entity | null>(null);
   const { open: openSupplier, back } = useProfileNav(selected, setSelected);
 
@@ -347,7 +346,6 @@ function SupplierView() {
           { label: "Levers found", value: String(stats.opps) },
         ]} />
       <div className="mt-5 mb-4"><SubTabs tabs={SUP_TABS} value={tab} onChange={setTab} /></div>
-      {tab === "priorities" && <SupplierPriorities all={all} onSelect={openSupplier} />}
       {tab === "board" && <SupplierBoard all={all} onSelect={openSupplier} />}
       {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
     </main>
@@ -365,126 +363,6 @@ const LEVER_TAG: Record<string, { emoji: string; short: string }> = {
   "Offer early payment for a discount": { emoji: "🤝", short: "Early-pay" },
 };
 
-// How much each lever type is worth in a negotiation — a direct price cut beats a
-// working-capital win, which beats a soft signal. Used to score priorities.
-const LEVER_WEIGHT: Record<string, number> = {
-  "Fat margins — push on price": 3,
-  "Margins are widening": 2,
-  "Room to extend our payment terms": 2,
-  "Collects faster than its peers": 1.5,
-  "They already stretch their suppliers": 1.5,
-  "Offer early payment for a discount": 1.5,
-};
-
-// The research notes sometimes carry a verified "this vendor supplies mcAFFEINE"
-// finding. Surface it: a confirmed supplier is a live relationship, not just a
-// tracked name, so it deserves priority. Guard against the "no link found" notes.
-function isConfirmedMcaffeineSupplier(e: Entity): boolean {
-  const txt = (e.research?.clients ?? []).join(" · ");
-  if (!txt) return false;
-  const positive = /(confirmed|verified|strong)[^·]*mcaffeine|mcaffeine['’]s official|official brand partner|manufactur[a-z]*\s+(for|to)\s+mcaffeine|supplies?\s+mcaffeine|mcaffeine\s+relationship/i.test(txt);
-  const negativeOnly = /(not publicly available|no named brand|no direct|no confirmed|could not|unverified)/i.test(txt) && !/confirmed mcaffeine|verified mcaffeine|official brand partner/i.test(txt);
-  return positive && !negativeOnly;
-}
-
-// The decision screen: one ranked list of where to negotiate first, scored by
-// lever strength × supplier size (a spend proxy), with the ready-made ask and a
-// risk caveat. Turns 44 profiles into a to-do list.
-function SupplierPriorities({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
-  const [confirmedOnly, setConfirmedOnly] = useState(false);
-  const [showAll, setShowAll] = useState(false);
-
-  const ranked = useMemo(() => {
-    const base = all.map((e) => {
-      const ins = supplierInsights(e);
-      return {
-        e,
-        opps: ins.filter((i) => i.tone === "opportunity"),
-        risks: ins.filter((i) => i.tone === "risk"),
-        rev: toCrore(revOf(e)) ?? 0,
-        confirmed: isConfirmedMcaffeineSupplier(e),
-      };
-    }).filter((x) => x.opps.length > 0);
-    const maxRev = Math.max(1, ...base.map((x) => x.rev));
-    const scored = base.map((x) => {
-      const oppScore = x.opps.reduce((s, i) => s + (LEVER_WEIGHT[i.title] ?? 1), 0);
-      const sizeNorm = x.rev > 0 ? 0.35 + 0.65 * (Math.sqrt(x.rev) / Math.sqrt(maxRev)) : 0.2;
-      const score = oppScore * sizeNorm * (x.confirmed ? 1.25 : 1);
-      return { ...x, score };
-    });
-    const maxScore = Math.max(1, ...scored.map((x) => x.score));
-    return scored.map((x) => ({ ...x, pct: Math.round((x.score / maxScore) * 100) })).sort((a, b) => b.score - a.score);
-  }, [all]);
-
-  const filtered = useMemo(
-    () => ranked.filter((x) => (cat === "All" || x.e.category === cat) && (!confirmedOnly || x.confirmed)),
-    [ranked, cat, confirmedOnly],
-  );
-  const confirmedCount = ranked.filter((x) => x.confirmed).length;
-  const TOP = 8;
-  const shown = showAll ? filtered : filtered.slice(0, TOP);
-
-  const band = (pct: number) => (pct >= 60 ? { label: "High", color: "#1baf7a", bg: "bg-emerald-50", text: "text-emerald-700", ring: "ring-emerald-200" } : pct >= 30 ? { label: "Medium", color: "#eda100", bg: "bg-amber-50", text: "text-amber-700", ring: "ring-amber-200" } : { label: "Low", color: "#64748b", bg: "bg-slate-100", text: "text-slate-600", ring: "ring-slate-200" });
-
-  return (
-    <div className="space-y-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <Dropdown label="Category" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c }))} />
-        {confirmedCount > 0 && (
-          <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-slate-600">
-            <input type="checkbox" checked={confirmedOnly} onChange={(e) => setConfirmedOnly(e.target.checked)} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-400" />
-            Confirmed mcAFFEINE vendors only
-          </label>
-        )}
-      </div>
-
-      {shown.length === 0 ? (
-        <div className="rounded-2xl bg-white p-10 text-center text-sm text-slate-400 ring-1 ring-slate-200">No suppliers match this filter.</div>
-      ) : (
-        <div className="space-y-2.5">
-          {shown.map((x, i) => {
-            const b = band(x.pct);
-            return (
-              <button key={x.e.folder} onClick={() => onSelect(x.e)} className="group flex w-full items-center gap-4 rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-slate-200/70 transition hover:shadow-md hover:ring-teal-200">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 font-mono text-sm font-bold text-slate-500 group-hover:bg-teal-100 group-hover:text-teal-700">{i + 1}</div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="truncate font-semibold text-slate-900">{x.e.brand}</span>
-                    <span className="rounded-md px-1.5 py-0.5 text-[11px] font-medium" style={{ background: `${catColor(x.e.category)}18`, color: catColor(x.e.category) }}>{catEmoji(x.e.category)} {x.e.category}</span>
-                    {x.confirmed && <span className="rounded-md bg-teal-50 px-1.5 py-0.5 text-[11px] font-medium text-teal-700 ring-1 ring-teal-200" title="Verified in research as a company that supplies mcAFFEINE.">✓ mcAFFEINE vendor</span>}
-                    <span className="text-xs text-slate-400">{fmtCrore(revOf(x.e))} revenue</span>
-                  </div>
-                  <div className="mt-1.5 flex flex-wrap gap-1.5">
-                    {x.opps.map((o, k) => {
-                      const t = LEVER_TAG[o.title];
-                      return <span key={k} title={o.detail} className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{t?.emoji ?? "💡"} {t?.short ?? o.title}</span>;
-                    })}
-                    {x.risks.length > 0 && <span title={x.risks.map((r) => r.detail).join(" · ")} className="inline-flex items-center gap-1 rounded-md bg-rose-50 px-1.5 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200">⚠️ {x.risks.length} risk{x.risks.length > 1 ? "s" : ""} to weigh</span>}
-                  </div>
-                </div>
-                <div className="w-24 shrink-0 text-right">
-                  <span className={`inline-flex rounded-full px-2 py-0.5 text-xs font-semibold ${b.bg} ${b.text} ring-1 ${b.ring}`}>{b.label}</span>
-                  <div className="mt-1.5 h-1.5 w-full rounded-full bg-slate-100">
-                    <div className="h-1.5 rounded-full" style={{ width: `${Math.max(6, x.pct)}%`, background: b.color }} />
-                  </div>
-                  <div className="mt-1 font-mono text-[11px] text-slate-400">priority {x.pct}</div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      )}
-
-      {filtered.length > TOP && (
-        <button onClick={() => setShowAll((v) => !v)} className="w-full rounded-xl border border-dashed border-slate-300 py-2.5 text-sm font-medium text-slate-500 transition hover:border-teal-300 hover:text-teal-700">
-          {showAll ? "Show fewer" : `Show ${filtered.length - TOP} more prioritised suppliers`}
-        </button>
-      )}
-    </div>
-  );
-}
-
 // One dense analyst table: every supplier is a row, negotiation metrics are
 // columns, and the levers/risks become compact tags. Replaces the old wall of
 // look-alike cards — scannable and sortable in one view.
@@ -492,7 +370,7 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
   const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<"levers" | "revenue" | "ebitda" | "dso">("levers");
-  const [showMore, setShowMore] = useState(false);
+  const [showLimited, setShowLimited] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const TOP = 10;
 
@@ -525,14 +403,15 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-1.5">
-          {SUP_CATS.map((c) => (
-            <button key={c} onClick={() => setCat(c)}
-              className={`rounded-lg px-3 py-1.5 text-sm font-medium ring-1 transition ${cat === c ? "bg-teal-50 text-teal-700 ring-teal-300" : "bg-white text-slate-500 ring-slate-200 hover:ring-slate-300"}`}>
-              {c === "All" ? "All" : `${catEmoji(c)} ${c}`}
-              <span className="ml-1.5 text-xs text-slate-400">{c === "All" ? all.length : all.filter((e) => e.category === c).length}</span>
-            </button>
-          ))}
+        <div className="flex flex-wrap items-center gap-4">
+          <Dropdown label="Category" value={cat} onChange={setCat}
+            options={SUP_CATS.map((c) => ({ key: c, label: c === "All" ? `All (${all.length})` : `${c} (${all.filter((e) => e.category === c).length})`, emoji: c === "All" ? undefined : catEmoji(c) }))} />
+          {others.length > 0 && (
+            <label className="inline-flex cursor-pointer items-center gap-2 whitespace-nowrap text-sm text-slate-600">
+              <input type="checkbox" checked={showLimited} onChange={(e) => setShowLimited(e.target.checked)} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-400" />
+              Include {others.length} limited-data vendor{others.length > 1 ? "s" : ""}
+            </label>
+          )}
         </div>
         <div className="flex gap-2">
           <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search…"
@@ -545,25 +424,24 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
       </div>
 
       <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-        <table className="w-full min-w-[920px] border-collapse text-sm">
+        <table className="w-full min-w-[880px] border-collapse text-sm">
           <thead>
-            <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+            <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
               <Th>Supplier</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th>Negotiation levers</Th>
             </tr>
           </thead>
           <tbody>
-            {(showAll ? active : active.slice(0, TOP)).map(({ e, levers }) => (
+            {[...(showAll ? active : active.slice(0, TOP)), ...(showLimited ? others : [])].map(({ e, levers }) => (
               <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
-                <td className="max-w-[240px] px-4 py-3" title={e.brand}>
-                  <div className="flex min-w-0 items-center gap-1.5 font-medium text-slate-900"><span className="shrink-0">{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></div>
-                  <div className="truncate text-xs text-slate-400">{e.legalName ?? e.folder}</div>
+                <td className="max-w-[300px] px-4 py-3.5">
+                  <div className="flex min-w-0 items-center gap-2 font-semibold text-slate-900" title={e.legalName ?? e.brand}><span className="shrink-0">{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></div>
                 </td>
-                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(supRoce(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDSO(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-500">{fmtDays(supDPO(e))}</td>
-                <td className="px-4 py-3">
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-900">{fmtCrore(revOf(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(supRoce(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDSO(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDPO(e))}</td>
+                <td className="px-4 py-3.5">
                   {levers.length === 0 ? (
                     <span className="text-xs text-slate-400">No clear lever — healthy vendor</span>
                   ) : (
@@ -576,7 +454,7 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
                 </td>
               </tr>
             ))}
-            {active.length === 0 && <tr><td colSpan={7} className="px-4 py-10 text-center text-slate-400">No suppliers match this filter{others.length > 0 ? " — try “Show more” below." : "."}</td></tr>}
+            {active.length === 0 && !showLimited && <tr><td colSpan={7} className="px-4 py-10 text-center text-slate-400">No suppliers match this filter.</td></tr>}
           </tbody>
         </table>
       </div>
@@ -586,26 +464,6 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
           <span className="text-teal-600">{showAll ? "–" : "+"}</span>
           {showAll ? `Show top ${TOP} only` : `Show ${active.length - TOP} more suppliers`}
         </button>
-      )}
-
-      {others.length > 0 && (
-        <div>
-          <button onClick={() => setShowMore((s) => !s)} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-600 ring-1 ring-slate-200 transition hover:ring-slate-300">
-            <span className="text-teal-600">{showMore ? "–" : "+"}</span>
-            {showMore ? "Hide" : "Show"} {others.length} vendor{others.length > 1 ? "s" : ""} with limited data (revenue-only or no Tracxn filing)
-          </button>
-          {showMore && (
-            <div className="mt-3 flex flex-wrap gap-2">
-              {others.map(({ e }) => (
-                <button key={e.category + e.folder} onClick={() => onSelect(e)}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1.5 text-xs text-slate-600 ring-1 ring-slate-200 transition hover:text-slate-900 hover:ring-teal-300">
-                  <span>{catEmoji(e.category)}</span><span className="font-medium">{e.brand}</span>
-                  {revOf(e) != null && <span className="font-mono text-slate-400">{fmtCrore(revOf(e))}</span>}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
       )}
     </div>
   );
@@ -1301,7 +1159,7 @@ function ResearchBody({ r }: { r: ResearchData }) {
 /* -------------------------------------------------------- small primitives */
 
 function Th({ children, right }: { children: React.ReactNode; right?: boolean }) {
-  return <th className={`px-4 py-3 font-medium ${right ? "text-right" : "text-left"}`}>{children}</th>;
+  return <th className={`px-4 py-3 font-bold ${right ? "text-right" : "text-left"}`}>{children}</th>;
 }
 function Pill({ children, cls, dot }: { children: React.ReactNode; cls: string; dot?: string }) {
   return <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium ring-1 ${cls}`}>{dot && <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />}{children}</span>;
