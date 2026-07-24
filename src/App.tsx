@@ -474,8 +474,8 @@ function SupplierByProduct({ all, onSelect }: { all: Entity[]; onSelect: (e: Ent
 const CMP_COLORS = ["#0d9488", "#e34948", "#2a78d6", "#eda100", "#7c3aed", "#0891b2"];
 const CMP_MAX = 6;
 const RENEG_WEIGHT: Record<string, number> = {
-  "Fat margins — push on price": 3, "Margins are widening": 2, "Room to extend our payment terms": 2,
-  "Collects faster than its peers": 1.5, "They already stretch their suppliers": 1.5, "Offer early payment for a discount": 1.5,
+  "Fat margins — push on price": 3, "Margins are widening": 2, "Room to extend our payment terms": 2, "Input-cost pass-through": 2,
+  "Collects faster than its peers": 1.5, "They already stretch their suppliers": 1.5, "Offer early payment for a discount": 1.5, "Carrying heavy stock": 1.5,
 };
 // A fiscal-year row from a supplier profile — source of every trend metric.
 type PYear = NonNullable<Entity["profile"]>["years"][number];
@@ -652,6 +652,8 @@ const LEVER_TAG: Record<string, { emoji: string; short: string }> = {
   "Fat margins — push on price": { emoji: "💰", short: "Push price" },
   "Margins are widening": { emoji: "📈", short: "Reprice" },
   "Offer early payment for a discount": { emoji: "🤝", short: "Early-pay" },
+  "Input-cost pass-through": { emoji: "🧪", short: "Cost pass-through" },
+  "Carrying heavy stock": { emoji: "📦", short: "Stock lever" },
 };
 
 // One dense analyst table: every supplier is a row, negotiation metrics are
