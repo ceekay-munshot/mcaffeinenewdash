@@ -117,6 +117,37 @@ export function supplierInsights(e: Entity): Insight[] {
     });
   }
 
+  // Materials-heavy: the price they charge us moves with input / commodity costs,
+  // so a fall in input prices is a concrete reason to reopen price.
+  const rev = last?.revenueINR ?? e.financials.revenueINR ?? null;
+  const materials = e.profile?.costStructure?.materialsINR ?? null;
+  if (materials != null && rev != null && rev > 0) {
+    const matPct = (materials / rev) * 100;
+    if (matPct >= 65) {
+      out.push({
+        tone: "opportunity",
+        icon: "🧪",
+        title: "Input-cost pass-through",
+        detail: `Raw materials are about ${r0(matPct)}% of its revenue, so the price it charges us tracks input costs closely — when commodity prices ease, push to have that saving passed through.`,
+      });
+    }
+  }
+
+  // Inventory-heavy: a lot of cash is locked up in stock, so a committed-volume /
+  // faster-offtake deal in exchange for a better price is attractive to them.
+  const inv = last?.inventoryINR ?? null;
+  if (inv != null && rev != null && rev > 0) {
+    const invDays = (inv / rev) * 365;
+    if (invDays >= 90 && invDays <= 400) {
+      out.push({
+        tone: "opportunity",
+        icon: "📦",
+        title: "Carrying heavy stock",
+        detail: `Holds roughly ${r0(invDays)} days of inventory (₹${r0(inv / 1e7)} Cr) — a lot of working capital tied up in stock, so a committed-volume or faster-offtake deal for a better price should land well.`,
+      });
+    }
+  }
+
   /* ---------- RISKS — supply-continuity flags ---------- */
 
   if (cur != null && cur < 1) {
