@@ -133,24 +133,22 @@ function Header({ module, setModule, generatedAt }: { module: Module; setModule:
 
 /* ------------------------------------------------------ reusable UI pieces */
 
+// Slim hero: title + one-line subtitle, and the headline figures inlined as a
+// single muted stat row instead of a wall of boxed KPI tiles.
 function ModuleHero({ emoji, title, subtitle, stats, tint }: {
   emoji: string; title: string; subtitle: string; tint: string; stats: { label: string; value: string }[];
 }) {
   return (
-    <section className={`mt-6 overflow-hidden rounded-3xl bg-gradient-to-r ${tint} p-5 text-white shadow-sm`}>
-      <div className="flex flex-wrap items-center justify-between gap-5">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 text-lg font-bold"><span className="text-2xl">{emoji}</span>{title}</div>
-          <div className="mt-0.5 text-sm text-white/75">{subtitle}</div>
-        </div>
-        <div className="flex flex-wrap gap-2.5">
-          {stats.map((s) => (
-            <div key={s.label} className="min-w-[7.5rem] rounded-2xl bg-white/12 px-4 py-2 ring-1 ring-white/20">
-              <div className="text-[10px] font-medium uppercase tracking-wide text-white/70">{s.label}</div>
-              <div className="mt-0.5 text-xl font-bold tabular-nums leading-tight">{s.value}</div>
-            </div>
-          ))}
-        </div>
+    <section className={`mt-6 overflow-hidden rounded-3xl bg-gradient-to-r ${tint} px-5 py-4 text-white shadow-sm`}>
+      <div className="flex items-center gap-2 text-lg font-bold"><span className="text-2xl">{emoji}</span>{title}</div>
+      <div className="mt-0.5 text-sm text-white/75">{subtitle}</div>
+      <div className="mt-3 flex flex-wrap items-baseline gap-x-6 gap-y-1.5">
+        {stats.map((s) => (
+          <span key={s.label} className="inline-flex items-baseline gap-1.5">
+            <span className="text-lg font-bold tabular-nums leading-none">{s.value}</span>
+            <span className="text-[11px] font-medium uppercase tracking-wide text-white/65">{s.label}</span>
+          </span>
+        ))}
       </div>
     </section>
   );
@@ -179,6 +177,26 @@ function Dropdown<T extends string>({ value, onChange, options, label }: { value
         {options.map((o) => <option key={o.key} value={o.key}>{o.emoji ? `${o.emoji} ` : ""}{o.label}</option>)}
       </select>
     </label>
+  );
+}
+
+// Progressive disclosure — collapses a block of reference cards behind one toggle
+// so a dense page opens focused but loses nothing. Closed, it names what's inside.
+function Expander({ count, hint, children }: { count: number; hint: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setOpen((o) => !o)}
+        className="flex w-full items-center justify-between gap-3 rounded-2xl bg-white px-4 py-3 text-left shadow-sm ring-1 ring-slate-200 transition hover:ring-slate-300">
+        <span className="min-w-0">
+          <span className="text-sm font-semibold text-slate-700">{open ? "Hide" : "Show"} full company detail</span>
+          <span className="text-sm text-slate-400"> · {count} sections</span>
+          {!open && hint && <span className="mt-0.5 line-clamp-1 text-xs text-slate-400">{hint}</span>}
+        </span>
+        <span className="shrink-0 text-teal-600" aria-hidden="true">{open ? "▲" : "▼"}</span>
+      </button>
+      {open && <div className="mt-4">{children}</div>}
+    </div>
   );
 }
 
@@ -437,9 +455,9 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
   return (
     <div className="space-y-4">
       <Section title="Key raw materials" emoji="🧪" accent="#0d9488" itemHead="Raw material"
-        rows={RM_SUPPLY} poolNote={`Each of mcAFFEINE's key ingredients and the vendor that supplies it · ${rmVendorCount} RM vendors tracked · how many others could supply each one is in the Market-structure tab`} />
+        rows={RM_SUPPLY} poolNote={`Each key ingredient & its current vendor · ${rmVendorCount} RM vendors tracked`} />
       <Section title="Key packaging" emoji="📦" accent="#2a78d6" itemHead="Packaging item"
-        rows={PM_SUPPLY} poolNote={`Each key packaging item and its vendor · ${pmVendorCount} PM vendors tracked · market alternatives per item are in the Market-structure tab`} />
+        rows={PM_SUPPLY} poolNote={`Each key packaging item & its vendor · ${pmVendorCount} PM vendors tracked`} />
     </div>
   );
 }
@@ -648,7 +666,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
           );
         })}
       </div>
-      <p className="text-[11px] leading-relaxed text-slate-400">Market structure from open-web research (BASF/dsm product pages, IndiaMART/TradeIndia supplier listings, Wikipedia/SpecialChem) — each card links its sources and carries a confidence dot. Supplier counts are indicative of market depth, not an exhaustive census.</p>
+      <p className="text-[11px] leading-relaxed text-slate-400">Counts indicate market depth from open-web research, not a census — each card links its sources and carries a confidence dot.</p>
     </div>
   );
 }
@@ -1021,7 +1039,7 @@ function BenchmarkView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
       </Card>
 
       <Card title="💸 Payment-terms map — who we can push"
-        sub="Teal = days they take to COLLECT from customers · Amber = days they take to PAY their suppliers. Short collection + long payment = they run on other people's cash, so extending our terms is realistic."
+        sub="Teal = days to collect · Amber = days to pay. Short collect + long pay = they run on other people's cash, so pushing our terms out is realistic."
         accent="#0d9488">
         {payTerms.length === 0 ? <div className="py-8 text-center text-sm text-slate-400">No suppliers with both collection & payment days yet.</div> : (
           <div className="grid grid-cols-1 gap-x-8 gap-y-3 lg:grid-cols-2">
@@ -1360,7 +1378,13 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
   const cards = useMemo(() => companyCards(e, kind), [e, kind]);
   const cardByKey = useMemo(() => new Map(cards.map((c) => [c.key, c])), [cards]);
   const cost = cardByKey.get("cost");
-  const masonry = cards.filter((c) => c.key !== "cost");
+  // The page opens on the negotiation spine (fitness/risk, balance sheet, market
+  // leverage); the registry & reference cards fold behind one expander so nothing
+  // is lost but the first screen stays focused.
+  const SPINE_KEYS = new Set(["health", "balance", "market"]);
+  const spine = cards.filter((c) => c.key !== "cost" && SPINE_KEYS.has(c.key));
+  const rest = cards.filter((c) => c.key !== "cost" && !SPINE_KEYS.has(c.key));
+  const restHint = rest.map((c) => c.title.replace(/^[^A-Za-z]+/, "").split(" · ")[0]).join(" · ");
 
   const py = latestYear(e);
   const room = negotiationRoom(e);
@@ -1433,7 +1457,7 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
           <Card title="📈 Performance over time" sub="One chart — switch the metric" accent="#0d9488"><MetricTrend metrics={trend} /></Card>
         )}
         {ins.length > 0 && (
-          <Card title="💡 Negotiation levers & risks" sub="ready-to-use angles from this company's own numbers · hover any tag for the detail" accent="#eda100">
+          <Card title="💡 Negotiation levers & risks" sub="from this company's own numbers · hover a tag for detail" accent="#eda100">
             <LeverStrip ins={ins} />
           </Card>
         )}
@@ -1441,10 +1465,20 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
         {kind === "supplier" && (
           <Card title="🏁 How it stacks up against peers" sub="ranked against the same-category vendors we track" accent="#6d28d9"><PeerCompareCard e={e} /></Card>
         )}
-        {/* everything else packs into a balanced masonry — no tall charts here, so no triangle */}
-        <div className="gap-4 [column-fill:balance] sm:columns-2 [&>*]:mb-4 [&>*]:break-inside-avoid">
-          {masonry.map((c) => <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>)}
-        </div>
+        {/* negotiation spine: fitness/risk, balance sheet, market leverage */}
+        {spine.length > 0 && (
+          <div className="gap-4 [column-fill:balance] sm:columns-2 [&>*]:mb-4 [&>*]:break-inside-avoid">
+            {spine.map((c) => <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>)}
+          </div>
+        )}
+        {/* registry & reference detail — one screen away, nothing dropped */}
+        {rest.length > 0 && (
+          <Expander count={rest.length} hint={restHint}>
+            <div className="gap-4 [column-fill:balance] sm:columns-2 [&>*]:mb-4 [&>*]:break-inside-avoid">
+              {rest.map((c) => <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>)}
+            </div>
+          </Expander>
+        )}
       </div>
     </main>
   );
