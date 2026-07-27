@@ -1,0 +1,334 @@
+{
+"aelius": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"allmask": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"ananya": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"anuspa": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"arovea": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"cheryl": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"kain": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"kapco": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"ngelectro": {
+"found": true,
+"summary": "NG Electro Products raised Rs 150 crore from JM Financial India Growth Fund III to expand manufacturing across consumer goods, personal care and nutraceuticals.",
+"news": [
+{
+"date": "2026-04",
+"title": "NG Electro Bags Rs 150 Cr to Fuel Expansion in India's Booming Consumer Market",
+"source": "Whalesbook",
+"url": "https://www.whalesbook.com/news/English/consumer-products/NG-Electro-Bags-indian-rupee150-Cr-to-Fuel-Expansion-in-Indias-Booming-Consumer-Market/69f0506935c37de4af352cd3",
+"oneLine": "Rs 150 crore raised from JM Financial fund to scale manufacturing and expansion."
+}
+],
+"signals": []
+},
+"samrvir": {
+"found": true,
+"summary": "Samrvir Biotech filed an IBC insolvency petition against Quorvion Private Limited in 2025, indicating a payment/recovery dispute with a counterparty.",
+"news": [],
+"signals": [
+{
+"type": "legal",
+"oneLine": "Filed IBC insolvency petition (C.P.(IB)/188/ND/2025) against Quorvion Pvt Ltd.",
+"source": "Tracxn legal details",
+"url": "https://tracxn.com/d/legal-entities/india/samrvir-biotech-private-limited/__w4BF2pkw0VxSsqTmFZO6aO7g3tl0EeNAv1hu73pEYeg"
+}
+]
+},
+"ultrabeautycare": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"vedicnaturals": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"zymo": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"A G Polypack": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"Alfa Exports": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"CONTINUITY PRINTERS PVT LTD": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"EPL Limited": {
+"found": true,
+"summary": "Indorama Ventures took a 24.9% stake from Blackstone in May 2025 and the firm won national quality and tube awards.",
+"news": [
+{
+"date": "2025-05",
+"title": "Indorama Ventures Expands in Indian Market with 24.9% Stake in EPL",
+"source": "itiger / Indorama Ventures",
+"url": "https://www.itiger.com/hans/news/2538692194",
+"oneLine": "Indorama Ventures bought 24.9% EPL stake from Blackstone, closed 27 May 2025."
+},
+{
+"date": "2025-04",
+"title": "EPL Nalagarh site wins IMC Ramkrishna Bajaj National Quality Excellence Award 2024",
+"source": "EPL Global",
+"url": "https://www.eplglobal.com/news-media/",
+"oneLine": "World's largest tube plant received national quality performance excellence award."
+}
+],
+"signals": []
+},
+"M-s Khosla Printers": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"Manjushree Technopack Limited": {
+"found": true,
+"summary": "A PAG-led consortium acquired a ~97% majority stake from Advent International for about USD 1 billion, completed March 2025.",
+"news": [
+{
+"date": "2025-03",
+"title": "PAG-led consortium acquires Manjushree Technopack for ~Rs 8,400 crore",
+"source": "Packaging South Asia",
+"url": "https://packagingsouthasia.com/type-of-article/industry-news/pag-acquire-manjushree/",
+"oneLine": "PAG, Ashoka, Nuvama, InCred bought ~97% from Advent, closed March 2025."
+}
+],
+"signals": []
+},
+"Pragati Glass & Industries Pvt. Ltd": {
+"found": true,
+"summary": "The company plans to expand capacity to one billion bottles a year with a new Gujarat plant starting 2026, riding cosmetic-industry growth.",
+"news": [
+{
+"date": "2025-09",
+"title": "Pragati Glass targets a billion bottles annually as India upgrades",
+"source": "WhatPackaging?",
+"url": "https://www.whatpackaging.co.in/news/pragati-glass-targets-a-billion-bottles-annually-as-india-upgrades-59294",
+"oneLine": "Expanding from 700M to 1B bottles yearly; new Gujarat facility begins 2026."
+}
+],
+"signals": []
+},
+"PRINTOTECH GLOBAL LIMITED": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"PRISHA TUBES PRIVATE LIMITED": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"Purity PolyTube Pvt Ltd": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"Radcom Packaging": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"SAMKIN TREASURE MOLDERS PRIVATE LIMITED": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"SICON PACKS PRIVATE LIMITED": {
+"found": true,
+"summary": "Sicon Packs achieved GMI print certification and is investing in a new Orthotec FLX3028 flexographic press.",
+"news": [
+{
+"date": "2025-10",
+"title": "Sicon Packs Pvt Ltd: Raising the Bar in Sustainable, High-Performance Labeling",
+"source": "Labels Flexible & More (lfam.in)",
+"url": "https://lfam.in/sicon-packs-pvt-ltd-raising-the-bar-in-sustainable-high-performance-labeling/",
+"oneLine": "Achieved GMI certification and investing in new Orthotec FLX3028 flexo press"
+}
+],
+"signals": []
+},
+"TAKEMOTO YOHKI INDIA PRIVATE LIMITED": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"ahmedabadagency": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"arkchemicals": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"beemanpharmaceuticals": {
+"found": false,
+"summary": "Identity confirmed as a Mumbai-based chemical/API/vitamin trader, but no significant recent news found.",
+"news": [],
+"signals": []
+},
+"connellbrothers": {
+"found": false,
+"summary": "No significant news found within the last 12 months; latest notable item (Connell Caldic-Stratachem distribution partnership) predates that window.",
+"news": [],
+"signals": []
+},
+"psteaindstries": {
+"found": false,
+"summary": "Drama Llama / P.S. Tea Industries is a tea and coffee beverage company, not a cosmetics/chemicals/packaging supplier; identity does not match.",
+"news": [],
+"signals": []
+},
+"givaudan": {
+"found": true,
+"summary": "Global flavour and fragrance leader reported 2025 full-year results and expanded in skin care/make-up via a stake in b.kolormakeup.",
+"news": [
+{
+"date": "2026-01",
+"title": "2025 Full year results",
+"source": "Givaudan",
+"url": "https://www.givaudan.com/media/media-releases/2026/2025-full-year-results",
+"oneLine": "Givaudan published full-year 2025 financial results."
+},
+{
+"date": "2025",
+"title": "Givaudan acquires 25% of b.kolormakeup & skincare",
+"source": "Givaudan",
+"url": "https://www.givaudan.com/investors/investor-information/investment-case/our-acquisitions",
+"oneLine": "Took 25% stake in b.kolormakeup to expand skincare/make-up."
+}
+],
+"signals": []
+},
+"kayceeenterprise": {
+"found": false,
+"summary": "Could not confirm identity of a specific Indian cosmetics/chemicals supplier named 'kaycee enterprise' (multiple unrelated 'Kay Cee' chemical firms exist); no news.",
+"news": [],
+"signals": []
+},
+"nirmaancosmetic": {
+"found": false,
+"summary": "Identity confirmed as a Mumbai cosmetic raw material firm incorporated March 2025, but too new with no significant news found.",
+"news": [],
+"signals": []
+},
+"northernaromatics": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"sggreentech": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"unitedenterprises": {
+"found": false,
+"summary": "No significant recent news found.",
+"news": [],
+"signals": []
+},
+"valuetree": {
+"found": true,
+"summary": "Global distributor IMCD acquired a majority stake in Valuetree, a major ownership change.",
+"news": [
+{
+"date": "2024-01",
+"title": "IMCD enhances its market presence in India with the acquisition of Valuetree",
+"source": "IMCD / Business Standard (ANI)",
+"url": "https://www.business-standard.com/content/press-releases-ani/imcd-enhances-its-market-presence-in-india-with-the-acquisition-of-valuetree-bolstering-growth-in-the-beauty-and-personal-care-market-124011000376_1.html",
+"oneLine": "Dutch distributor IMCD bought 70% of Valuetree, remaining 30% to follow."
+}
+],
+"signals": [
+{
+"type": "other",
+"oneLine": "Ownership change: founders sold majority control to multinational IMCD.",
+"source": "IndianChemicalNews",
+"url": "https://www.indianchemicalnews.com/supply-chain/imcd-acquires-indian-beauty-ingredients-distributor-valuetree-20224"
+}
+]
+},
+"yashamspecialityingredientspvtltd": {
+"found": true,
+"summary": "Yasham signed a deal to distribute NutriLeads' Benicaros prebiotic across India.",
+"news": [
+{
+"date": "2025-05",
+"title": "Agreement announced between NutriLeads and Yasham Specialty Ingredients to introduce Benicaros in India",
+"source": "Nutritional Outlook",
+"url": "https://www.nutritionaloutlook.com/view/agreement-announced-between-nutrileads-and-yasham-specialty-ingredients-to-introduce-benicaros-in-india",
+"oneLine": "Yasham to market NutriLeads' plant-based prebiotic Benicaros in India."
+}
+],
+"signals": []
+}
+}
