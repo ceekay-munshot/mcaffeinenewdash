@@ -209,9 +209,11 @@ export function supplierInsights(e: Entity): Insight[] {
 
   // Weakening supplier we depend on → protect the relationship rather than squeeze.
   // A supplier going under disrupts our own supply, so this is a qualitative lever:
-  // support / line up a backup instead of pushing hard on price.
+  // support / line up a backup instead of pushing hard on price. Only meaningful for
+  // supply-side entities (RM / PM / manufacturers / delivery) — not competitors.
   const netM = e.financials.netMarginPct ?? last?.netMarginPct ?? null;
-  if ((netM != null && netM < 0) || (revChg != null && revChg < -2)) {
+  const isSupplySide = !e.category.startsWith("Competitor");
+  if (isSupplySide && ((netM != null && netM < 0) || (revChg != null && revChg < -2))) {
     const why = netM != null && netM < 0 ? `running a net loss (${r0(netM)}% margin)` : `shrinking (${Math.abs(r0(revChg!))}% revenue drop)`;
     out.push({
       tone: "watch",

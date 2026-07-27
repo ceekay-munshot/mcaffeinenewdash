@@ -31,12 +31,6 @@
 "category": "RM Vendor"
 },
 {
-"item": "Sum of Formulation",
-"folder": "greenfarms",
-"brand": "Greenfarms",
-"category": "RM Vendor"
-},
-{
 "item": "Uvinul A Plus Granular",
 "folder": "ahmedabadagency",
 "brand": "Ahmedabadagency",
@@ -175,6 +169,12 @@
 "folder": "Purity PolyTube Pvt Ltd",
 "brand": "Purity PolyTube Pvt Ltd",
 "category": "PM Vendor"
+},
+{
+"item": "28mm neck 2337C MSL cap (Fliptop)",
+"folder": "",
+"brand": "",
+"category": ""
 }
 ]
 }

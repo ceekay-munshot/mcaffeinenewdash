@@ -392,7 +392,10 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
           <tbody>
             {rows.map(({ item, folder }) => {
               const e = byFolder.get(folder);
-              const levers = e ? leverTagsOf(supplierInsights(e)) : [];
+              const ins = e ? supplierInsights(e) : [];
+              const levers = leverTagsOf(ins);
+              // don't show only "negotiate" chips for a weakening vendor — flag caution too
+              const caution = ins.find((i) => i.title === "Protect the relationship") ?? ins.find((i) => i.tone === "risk");
               return (
                 <tr key={item} onClick={() => e && onSelect(e)} className={`border-t border-slate-100 transition ${e ? "cursor-pointer hover:bg-teal-50/50" : ""}`}>
                   <td className="max-w-[280px] px-4 py-3.5"><div className="truncate font-semibold text-slate-900" title={item}>{item}</div></td>
@@ -401,8 +404,9 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
                   <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{e ? fmtPct(ebitdaMarginOf(e)) : "—"}</td>
                   <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{e ? fmtPct(supRoce(e)) : "—"}</td>
                   <td className="px-4 py-3.5">
-                    {levers.length === 0 ? <span className="text-xs text-slate-400">—</span> : (
+                    {!caution && levers.length === 0 ? <span className="text-xs text-slate-400">—</span> : (
                       <div className="flex flex-wrap gap-1">
+                        {caution && <span title={caution.detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-rose-50 px-1.5 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200">{caution.icon} {caution.title === "Protect the relationship" ? "Protect" : "Caution"}</span>}
                         {levers.map(({ short, emoji, detail }) => <span key={short} title={detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>)}
                       </div>
                     )}
