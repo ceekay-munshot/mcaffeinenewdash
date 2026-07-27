@@ -15,6 +15,7 @@ import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, type Slice } from
 import { DELIVERY } from "./delivery";
 import { RM_SUPPLY, PM_SUPPLY, suppliedItems } from "./supply";
 import { newsOf, type SupplierNews } from "./news";
+import { allMarket, marketOfFolder, pmCategoryOf, CONC_META, LEV_META, type MarketEntry, type Concentration } from "./market";
 import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
@@ -315,11 +316,12 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "supply" | "product" | "benchmark";
+type SupTab = "board" | "supply" | "product" | "market" | "benchmark";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "board", label: "Supplier board", emoji: "📇" },
   { key: "supply", label: "Our supply chain", emoji: "🧬" },
   { key: "product", label: "By product", emoji: "🧴" },
+  { key: "market", label: "Market structure", emoji: "🌐" },
   { key: "benchmark", label: "Benchmark charts", emoji: "📊" },
 ];
 
@@ -361,6 +363,7 @@ function SupplierView() {
           {tab === "board" && <SupplierBoard all={all} onSelect={openSupplier} />}
           {tab === "supply" && <SupplyChainView all={all} onSelect={openSupplier} />}
           {tab === "product" && <SupplierByProduct all={all} onSelect={openSupplier} />}
+          {tab === "market" && <MarketStructureView all={all} onSelect={openSupplier} />}
           {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
         </>
       )}
@@ -371,8 +374,8 @@ function SupplierView() {
 // Our supply chain: mcAFFEINE's key raw materials & packaging, each tied to the
 // vendor that supplies it, shown next to that vendor's financial levers. This is
 // the L1 view anchored to what we actually buy (not generic companies). The
-// market-alternatives / monopoly count per ingredient is L2 (India Trade), noted
-// but not yet filled.
+// market-alternatives / monopoly count per ingredient is the L2 Market-structure
+// tab (marketOf / MarketStructureView).
 function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const rmVendorCount = useMemo(() => all.filter((e) => e.category === "RM Vendor").length, [all]);
@@ -424,9 +427,9 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
   return (
     <div className="space-y-4">
       <Section title="Key raw materials" emoji="🧪" accent="#0d9488" itemHead="Raw material"
-        rows={RM_SUPPLY} poolNote={`Each of mcAFFEINE's key ingredients and the vendor that supplies it · ${rmVendorCount} RM vendors tracked · how many others could supply each one comes in L2 (India Trade)`} />
+        rows={RM_SUPPLY} poolNote={`Each of mcAFFEINE's key ingredients and the vendor that supplies it · ${rmVendorCount} RM vendors tracked · how many others could supply each one is in the Market-structure tab`} />
       <Section title="Key packaging" emoji="📦" accent="#2a78d6" itemHead="Packaging item"
-        rows={PM_SUPPLY} poolNote={`Each key packaging item and its vendor · ${pmVendorCount} PM vendors tracked · market alternatives per item come in L2`} />
+        rows={PM_SUPPLY} poolNote={`Each key packaging item and its vendor · ${pmVendorCount} PM vendors tracked · market alternatives per item are in the Market-structure tab`} />
     </div>
   );
 }
@@ -532,6 +535,110 @@ function SupplierByProduct({ all, onSelect }: { all: Entity[]; onSelect: (e: Ent
       </div>
 
       {untagged > 0 && <div className="text-xs text-slate-400">{untagged} supplier{untagged > 1 ? "s have" : " has"} no product detail on file to classify.</div>}
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------- L2 Market structure */
+// The "India Trade" / monopoly check: for each thing we buy, how many credible
+// suppliers exist — and does that hand the leverage to us (a crowded commodity)
+// or to them (a sole-source proprietary molecule)? Laid out as a leverage map so
+// you see at a glance which buys we control vs which control us.
+const CONF_DOT: Record<string, string> = { high: "bg-emerald-400", medium: "bg-amber-400", low: "bg-slate-300" };
+
+function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
+  const [side, setSide] = useState<"rm" | "pm">("rm");
+  const entries = useMemo(() => allMarket().filter((m) => m.side === side), [side]);
+
+  // Which vendor(s) supply this market item today, and the clickable entity.
+  const vendorFor = (m: MarketEntry): { label: string; e?: Entity } => {
+    if (m.side === "rm") {
+      const row = RM_SUPPLY.find((s) => s.item === m.item && s.folder);
+      const e = row ? byFolder.get(row.folder) : undefined;
+      return { label: e?.brand ?? row?.brand ?? "—", e };
+    }
+    const rows = PM_SUPPLY.filter((s) => pmCategoryOf(s.item) === m.item && s.folder);
+    const names = [...new Set(rows.map((s) => byFolder.get(s.folder)?.brand ?? s.brand))];
+    return { label: names.length ? names.slice(0, 2).join(", ") + (names.length > 2 ? ` +${names.length - 2}` : "") : "—", e: rows[0] ? byFolder.get(rows[0].folder) : undefined };
+  };
+
+  const counts = useMemo(() => {
+    const c: Record<Concentration, number> = { sole: 0, concentrated: 0, competitive: 0 };
+    entries.forEach((m) => c[m.concentration]++);
+    return c;
+  }, [entries]);
+  const cols: Concentration[] = ["sole", "concentrated", "competitive"];
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Dropdown label="Show" value={side} onChange={(v) => setSide(v as "rm" | "pm")}
+          options={[{ key: "rm", label: `Raw materials (${allMarket().filter((m) => m.side === "rm").length})`, emoji: "🧪" }, { key: "pm", label: `Packaging (${allMarket().filter((m) => m.side === "pm").length})`, emoji: "📦" }]} />
+        <span className="text-sm text-slate-500">Who holds the pricing power on each {side === "rm" ? "ingredient" : "packaging category"} we buy</span>
+      </div>
+
+      {/* headline: how our buys split across the leverage spectrum */}
+      <Card title="🌐 Where the leverage sits" sub={`${entries.length} ${side === "rm" ? "key ingredients" : "packaging categories"} · left = they set the price, right = we do`} accent="#0d9488">
+        <div className="flex h-6 w-full overflow-hidden rounded-lg ring-1 ring-slate-200">
+          {cols.map((c) => counts[c] > 0 && (
+            <div key={c} title={`${counts[c]} ${CONC_META[c].label}`} className="flex items-center justify-center text-xs font-semibold text-white" style={{ width: `${(counts[c] / entries.length) * 100}%`, background: CONC_META[c].color }}>
+              {counts[c]}
+            </div>
+          ))}
+        </div>
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
+          {cols.map((c) => (
+            <span key={c} className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CONC_META[c].color }} />{CONC_META[c].emoji} {CONC_META[c].label} — {CONC_META[c].blurb}</span>
+          ))}
+        </div>
+      </Card>
+
+      {/* leverage map: three columns, sole-source (risky) → competitive (ours) */}
+      <div className="grid gap-3 md:grid-cols-3">
+        {cols.map((c) => {
+          const meta = CONC_META[c];
+          const items = entries.filter((m) => m.concentration === c);
+          return (
+            <div key={c} className={`rounded-2xl ${meta.bg} p-3 ring-1 ${meta.ring}`}>
+              <div className="mb-2.5 flex items-center justify-between px-1">
+                <div className={`text-sm font-bold ${meta.text}`}>{meta.emoji} {meta.label}</div>
+                <div className={`rounded-full bg-white/70 px-2 py-0.5 text-xs font-semibold ${meta.text}`}>{items.length}</div>
+              </div>
+              <div className="space-y-2">
+                {items.map((m) => {
+                  const v = vendorFor(m);
+                  const lev = LEV_META[m.leverage];
+                  return (
+                    <div key={m.item} onClick={() => v.e && onSelect(v.e)} className={`rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200/70 ${v.e ? "cursor-pointer transition hover:ring-teal-300" : ""}`}>
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0">
+                          <div className="truncate font-semibold text-slate-900" title={m.item}>{m.item}</div>
+                          {m.inci && <div className="truncate text-[11px] text-slate-500" title={m.inci}>{m.inci}</div>}
+                        </div>
+                        <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${CONF_DOT[m.confidence] ?? CONF_DOT.low}`} title={`${m.confidence} confidence`} />
+                      </div>
+                      <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                        <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-medium ${meta.bg} ${meta.text} ring-1 ${meta.ring}`}>{lev.emoji} {lev.label}</span>
+                        <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600" title={m.indiaSuppliers.join(" · ")}>🇮🇳 {m.indiaBand} in India</span>
+                      </div>
+                      <div className="mt-1.5 text-[11px] text-slate-400">{m.side === "rm" ? "Current vendor" : "We buy from"}: <span className="text-slate-600">{v.label}</span></div>
+                      <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{m.implication}</p>
+                      {m.sources.length > 0 && (
+                        <div className="mt-1.5 flex flex-wrap gap-1">
+                          {m.sources.slice(0, 3).map((s, i) => <a key={i} href={s} target="_blank" rel="noreferrer" onClick={(ev) => ev.stopPropagation()} className="text-[10px] text-slate-400 underline decoration-slate-300 hover:text-teal-600">src{i + 1}</a>)}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+                {items.length === 0 && <div className="px-1 py-6 text-center text-xs text-slate-400">None</div>}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <p className="text-[11px] leading-relaxed text-slate-400">Market structure from open-web research (BASF/dsm product pages, IndiaMART/TradeIndia supplier listings, Wikipedia/SpecialChem) — each card links its sources and carries a confidence dot. Supplier counts are indicative of market depth, not an exhaustive census.</p>
     </div>
   );
 }
@@ -1463,9 +1570,40 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
   const news = newsOf(e.folder);
   if (news) cards.push({ key: "news", title: "📰 News & signals", sub: "notable developments sourced from the open web · see each item's date", node: <NewsBody n={news} /> });
 
+  const market = marketOfFolder(e.folder);
+  if (market.length) cards.push({ key: "market", title: "🌐 Market structure", sub: "how many credible suppliers exist for what they sell us — who holds the pricing power (L2)", node: <MarketBody entries={market} /> });
+
   if (e.research) cards.push({ key: "research", title: "🔎 Research", node: <ResearchBody r={e.research} /> });
 
   return cards;
+}
+
+function MarketBody({ entries }: { entries: MarketEntry[] }) {
+  return (
+    <div className="space-y-2.5">
+      {entries.map((m) => {
+        const meta = CONC_META[m.concentration];
+        const lev = LEV_META[m.leverage];
+        return (
+          <div key={m.item} className={`rounded-xl ${meta.bg} p-3 ring-1 ${meta.ring}`}>
+            <div className="flex items-start justify-between gap-2">
+              <div className="min-w-0">
+                <div className="truncate text-sm font-semibold text-slate-900" title={m.item}>{m.item}</div>
+                {m.inci && <div className="truncate text-[11px] text-slate-500" title={m.inci}>{m.inci}</div>}
+              </div>
+              <span className={`shrink-0 rounded-md bg-white/70 px-1.5 py-0.5 text-[11px] font-semibold ${meta.text}`} title={meta.blurb}>{meta.emoji} {meta.label}</span>
+            </div>
+            <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+              <span className={`inline-flex items-center gap-1 rounded-md bg-white/70 px-1.5 py-0.5 text-[11px] font-medium ${meta.text}`}>{lev.emoji} {lev.label}</span>
+              <span className="inline-flex items-center gap-1 rounded-md bg-white/70 px-1.5 py-0.5 text-[11px] text-slate-600" title={m.indiaSuppliers.join(" · ")}>🇮🇳 {m.indiaBand} in India</span>
+            </div>
+            <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{m.implication}</p>
+            {m.sources.length > 0 && <div className="mt-1.5 flex flex-wrap gap-1">{m.sources.slice(0, 3).map((s, i) => <a key={i} href={s} target="_blank" rel="noreferrer" className="text-[10px] text-slate-400 underline decoration-slate-300 hover:text-teal-600">src{i + 1}</a>)}</div>}
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 function NewsBody({ n }: { n: SupplierNews }) {
