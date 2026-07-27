@@ -14,6 +14,7 @@ import { CATEGORY_COLOR } from "./lib/palette";
 import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import { RM_SUPPLY, PM_SUPPLY, suppliedItems } from "./supply";
+import { newsOf, type SupplierNews } from "./news";
 import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
@@ -1459,9 +1460,46 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
 
   if (c?.materialEvent) cards.push({ key: "event", title: "📰 Latest material event", node: <p className="text-sm leading-relaxed text-slate-700">{c.materialEvent}</p> });
 
+  const news = newsOf(e.folder);
+  if (news) cards.push({ key: "news", title: "📰 News & signals", sub: "notable developments sourced from the open web · see each item's date", node: <NewsBody n={news} /> });
+
   if (e.research) cards.push({ key: "research", title: "🔎 Research", node: <ResearchBody r={e.research} /> });
 
   return cards;
+}
+
+function NewsBody({ n }: { n: SupplierNews }) {
+  const sigTone: Record<string, string> = {
+    legal: "bg-rose-50 text-rose-700 ring-rose-200",
+    distress: "bg-rose-50 text-rose-700 ring-rose-200",
+    regulatory: "bg-amber-50 text-amber-700 ring-amber-200",
+    other: "bg-slate-100 text-slate-600 ring-slate-200",
+  };
+  return (
+    <div className="space-y-3">
+      {n.summary && <p className="text-sm leading-relaxed text-slate-600">{n.summary}</p>}
+      {n.signals.length > 0 && (
+        <div className="flex flex-wrap gap-1.5">
+          {n.signals.map((s, i) => (
+            <a key={i} href={s.url || undefined} target="_blank" rel="noreferrer" title={s.oneLine} className={`inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium ring-1 ${sigTone[s.type] ?? sigTone.other}`}>
+              ⚠️ {s.oneLine}
+            </a>
+          ))}
+        </div>
+      )}
+      {n.news.length > 0 && (
+        <ul className="space-y-2.5">
+          {n.news.map((it, i) => (
+            <li key={i} className="border-l-2 border-slate-200 pl-3">
+              <a href={it.url || undefined} target="_blank" rel="noreferrer" className="text-sm font-medium text-slate-800 hover:text-teal-700 hover:underline">{it.title}</a>
+              <div className="mt-0.5 text-xs text-slate-500">{it.oneLine}</div>
+              <div className="mt-0.5 text-[11px] text-slate-400">{[it.date, it.source].filter(Boolean).join(" · ")}</div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 
 
