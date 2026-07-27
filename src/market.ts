@@ -26,6 +26,10 @@ export type MarketEntry = {
   sources: string[];
   confidence: "high" | "medium" | "low";
   side: "rm" | "pm";
+  // Open-market price band per kg (IndiaMART research) — a negotiation reference.
+  priceINRPerKg?: string;
+  priceNote?: string;
+  priceSource?: string;
 };
 
 const MARKET = raw as MarketEntry[];

@@ -1,491 +1,533 @@
 [
-  {
-    "item": "Uvinul T150",
-    "inci": "Ethylhexyl Triazone (Ethylhexyl Triazone / Octyl Triazone; CAS 88122-99-0)",
-    "kind": "semi",
-    "upstream": "BASF (Germany) originated the trade name and molecule; now off-patent, so Chinese producers (e.g. Dalian Handom, Baoxu) also make generic ethylhexyl triazone",
-    "indiaBand": "few",
-    "indiaSuppliers": [
-      "Clever Pathway Pvt Ltd (Vadodara) - BASF make, IndiaMART",
-      "SG Green Tech Health & Beauty (Ghaziabad) - IndiaMART",
-      "PAT IMPEX India (Vadodara)",
-      "DRAVYOM Chemical",
-      "Chinese generic importers (Handom/Baoxu material)"
-    ],
-    "concentration": "concentrated",
-    "leverage": "balanced",
-    "implication": "BASF sets the branded price but the molecule is off-patent with credible Chinese/Indian generic supply, so mcAFFEINE can dual-source (qualify a generic ethylhexyl triazone against BASF grade) to cap the price and pressure the BASF distributor's margin.",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Ethylhexyl_triazone",
-      "https://www.specialchem.com/cosmetics/product/basf-uvinul-t-150",
-      "https://www.indiamart.com/proddetail/uvinul-t150-basf-make-2857607908030.html",
-      "https://www.indiamart.com/proddetail/ethylhexyl-triazone-25119430812.html",
-      "https://www.additivesforpolymer.com/portfolio/bx-uv-150/",
-      "https://www.handomchemicals.com/uvinul-t-150-product/"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "Uvinul A Plus Granular",
-    "inci": "Diethylamino Hydroxybenzoyl Hexyl Benzoate (DHHB; CAS 302776-68-7)",
-    "kind": "semi",
-    "upstream": "BASF (Germany) sells it as Uvinul A Plus; dsm-firmenich sells the same molecule as Parsol DHHB, and Chinese makers (Longchang, Sincere, SDHSH) offer generic DHHB - multiple originators",
-    "indiaBand": "few",
-    "indiaSuppliers": [
-      "KKD Chemical & Scientific Co. (Paonta Sahib) - BASF distributor, IndiaMART",
-      "Shree Sai Biotech (Indore) - generic DHHB, IndiaMART",
-      "PAT IMPEX India (Vadodara)",
-      "Chinese generic importers (Longchang/Sincere material)"
-    ],
-    "concentration": "concentrated",
-    "leverage": "balanced",
-    "implication": "Because the identical molecule comes from at least two Western originators (BASF Uvinul A Plus and dsm-firmenich Parsol DHHB) plus Chinese generics, mcAFFEINE should run a genuine multi-source tender rather than accept BASF list pricing.",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Diethylamino_hydroxybenzoyl_hexyl_benzoate",
-      "https://www.specialchem.com/cosmetics/product/basf-uvinul-a-plus-granular",
-      "https://www.indiamart.com/proddetail/uvinul-a-plus-basf-2856948182188.html",
-      "https://www.indiamart.com/proddetail/diethylamino-hydroxybenzoyl-hexyl-benzoate-cas-302776-68-7-2853718617833.html",
-      "https://longchangchemical.com/product/diethylamino-hydroxybenzoyl-hexyl-benzoate-dhhb-uvinul-a-plus-cas-302776-68-7/"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "Tinosorb M",
-    "inci": "Methylene Bis-Benzotriazolyl Tetramethylbutylphenol (MBBT / Bisoctrizole; CAS 103597-45-1)",
-    "kind": "semi",
-    "upstream": "BASF (Germany) trade name and original innovator; core molecule patents (early 1990s) have largely lapsed, so Chinese producers (e.g. Bisor Group) now make generic bisoctrizole - but BASF's micronized aqueous-dispersion grade remains the quality/regulatory benchmark",
-    "indiaBand": "few",
-    "indiaSuppliers": [
-      "Nueva Chemie LLP (Vadodara) - Bisoctrizole/MBBT",
-      "Atishay Specialities (Gurgaon) - Bisoctrizole",
-      "Balaji Fine Chem (Vasai Virar) - generic bisoctrizole",
-      "SD Precise Bioscience (New Delhi)",
-      "PAT IMPEX India (Vadodara) - BASF Tinosorb M"
-    ],
-    "concentration": "concentrated",
-    "leverage": "balanced",
-    "implication": "The molecule is off-patent with Chinese generic bisoctrizole available, but BASF's micronized grade drives performance, so mcAFFEINE should hold BASF on price using the generic as a benchmark while insisting BASF's particle-size/dispersion quality is what it is actually paying for.",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Tinosorb",
-      "https://incidecoder.com/ingredients/methylene-bis-benzotriazolyl-tetramethylbutylphenol",
-      "https://www.nuevachemie.com/bisoctrizole-tinosorb-m-mbbt-11839066.html",
-      "https://www.indiamart.com/proddetail/bisoctrizole-tinosorb-m-powder-2855649144848.html",
-      "https://m.bisorgroup.com/bisoctrizole/",
-      "https://www.chemicalbook.com/ChemicalProductProperty_EN_CB3283802.htm"
-    ],
-    "confidence": "medium",
-    "side": "rm"
-  },
-  {
-    "item": "Tinosorb A2B",
-    "inci": "Tris-Biphenyl Triazine (TBPT; CAS 31274-51-8, micronized/particulate cosmetic grade)",
-    "kind": "proprietary",
-    "upstream": "BASF (Germany) - newest-generation proprietary particulate UV filter, patent-protected, only recently added to the EU Annex VI positive list; no credible independent manufacturer of the cosmetic micronized grade",
-    "indiaBand": "sole",
-    "indiaSuppliers": [
-      "Available in India only through BASF authorized distributors/traders (e.g. KKD Chemicals, Sihauli Chemicals, PAT IMPEX-type resellers of genuine BASF material); IndiaMART low-price listings appear to be unverified placeholders, not a real generic market"
-    ],
-    "concentration": "sole",
-    "leverage": "them",
-    "implication": "This is a single-origin BASF-proprietary molecule with no generic, so unit price is BASF's to set - mcAFFEINE cannot win on price and should instead negotiate the distributor's margin, payment terms, volume rebates and marketing/formulation support, and treat A2B as a claim/differentiation ingredient rather than a commodity line.",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Tris-biphenyl_triazine",
-      "https://www.specialchem.com/cosmetics/product/basf-tinosorb-a2b",
-      "https://www.cosmeticsandtoiletries.com/regulations/spf-sun/news/21844582/basf-micronized-uv-filter-added-to-annex-vi-of-eu-cosmetics-regulation",
-      "https://care360.basf.com/global/en/Product-Finder/30478125",
-      "https://www.indiamart.com/proddetail/tinosorb-a2b-basf-2856238808030.html"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "Uvinul MC 80",
-    "inci": "Ethylhexyl Methoxycinnamate (Octinoxate / Octyl Methoxycinnamate / OMC; CAS 5466-77-3)",
-    "kind": "commodity",
-    "upstream": "Generic commodity molecule - BASF's Uvinul MC 80 is just one brand (others: Eusolex 2292); made by many global and Indian producers, the most widely used and cheapest organic UVB filter",
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "Esters And Solvents LLP (Navi Mumbai) - manufacturer",
-      "Sihauli Chemicals Pvt Ltd (Mumbai) - manufacturer/exporter",
-      "EABC Global",
-      "Dev Impex (Banaskantha, Gujarat)",
-      "Krishana Enterprises",
-      "Ditish Enterprises, Rajvi Enterprise, K.V.Bio Chem, Kip Chemicals (IndiaMART)"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "OMC is a fully commoditized filter with many Indian manufacturers, so mcAFFEINE holds the leverage - buy on open competitive tender/spot, standardize the spec, and pay near commodity index rather than any BASF brand premium.",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Uvinul",
-      "https://www.specialchem.com/cosmetics/product/basf-uvinul-mc-80",
-      "https://dir.indiamart.com/impcat/octyl-methoxycinnamate.html",
-      "https://www.esters-solvents.in/octyl-methoxycinnamate.html",
-      "https://sihaulichemicals.com/product/octyl-methoxycinnamate-omc/",
-      "https://www.tradeindia.com/manufacturers/octyl-methoxycinnamate.html"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "Cosroma EAA",
-    "inci": "3-O-Ethyl Ascorbic Acid (stable Vitamin C derivative)",
-    "kind": "semi",
-    "upstream": "Cosroma (Cosmax/COSROMA, China) owns the trade name; the molecule 3-O-Ethyl Ascorbic Acid is made by many Chinese specialty producers",
-    "indiaBand": "few",
-    "indiaSuppliers": [
-      "Imported/distributed in India rather than domestically synthesized; sourced via Chinese makers and Indian cosmetic-ingredient traders/importers"
-    ],
-    "concentration": "competitive",
-    "leverage": "balanced",
-    "implication": "Buy the molecule, not the Cosroma badge - qualify two or three alternate 3-O-Ethyl Ascorbic Acid suppliers from China so you are not paying a brand premium for a widely-made derivative.",
-    "sources": [
-      "https://www.cosroma.com/products/3-o-ethyl-ascorbic-acid-cosroma%C2%AE%C2%A0eaa",
-      "https://www.specialchem.com/cosmetics/product/cosroma-cosroma-eaa"
-    ],
-    "confidence": "medium",
-    "side": "rm"
-  },
-  {
-    "item": "Radia 7730",
-    "inci": "Isopropyl Myristate (IPM), CAS 110-27-0",
-    "kind": "commodity",
-    "upstream": "Radia is Oleon's (Avril Group) brand, but Isopropyl Myristate is a bulk commodity ester made by dozens of oleochemical firms worldwide",
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "Suyog Life Sciences",
-      "Dadia Chemical Industries",
-      "Mohini Organics",
-      "Kaival Chemicals",
-      "Emco Dyestuff/Kosha Chemtech",
-      "Dev International",
-      "Jigchem Universal"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "IPM is a domestic commodity with many Gujarat/Mumbai makers, so run it as a multi-vendor spot buy and let Indian suppliers undercut Oleon's imported Radia grade on price.",
-    "sources": [
-      "https://www.oleon.com/products-solutions/radia-7730",
-      "https://dir.indiamart.com/impcat/isopropyl-myristate.html",
-      "https://www.tradeindia.com/manufacturers/isopropyl-myristate.html"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "Cetiol C5",
-    "inci": "Coco-Caprylate, CAS 107525-85-9 (C8-C18 alkyl ester / light emollient)",
-    "kind": "semi",
-    "upstream": "Cetiol C5 is a BASF brand; Coco-Caprylate itself is a multi-source natural emollient offered by several oleochemical/emollient makers",
-    "indiaBand": "few",
-    "indiaSuppliers": [
-      "Shashwat Greentech (Surat)",
-      "SG Green Tech Health & Beauty (Ghaziabad)",
-      "Trckem",
-      "plus importers of Chinese/EU coco-caprylate"
-    ],
-    "concentration": "competitive",
-    "leverage": "balanced",
-    "implication": "The molecule is multi-source at roughly INR 1,200-1,850/kg locally, so use domestic coco-caprylate quotes as leverage while reserving BASF only for grades where sensory/quality data actually justifies the premium.",
-    "sources": [
-      "https://cosmetics.specialchem.com/product/i-basf-cetiol-c5",
-      "https://care360.basf.com/global/en/Product-Finder/30538241",
-      "https://www.indiamart.com/proddetail/coco-caprylate-25092711330.html"
-    ],
-    "confidence": "medium",
-    "side": "rm"
-  },
-  {
-    "item": "Repoly 100",
-    "inci": "Acrylates Copolymer (alkali-swellable anionic acrylic emulsion / rheology modifier), CAS 25035-69-2",
-    "kind": "semi",
-    "upstream": "Repoly 100 is a proprietary trade name of Guangzhou Reachin Chemical (China); the underlying Acrylates Copolymer thickener category is competitive (e.g. Lubrizol Carbopol Aqua SF, Dow, SNF equivalents)",
-    "indiaBand": "few",
-    "indiaSuppliers": [
-      "Yasham Specialty Ingredients (distributor)",
-      "Ahmedabad-based traders on IndiaMART (listed ~INR 250/kg)"
-    ],
-    "concentration": "concentrated",
-    "leverage": "balanced",
-    "implication": "The Repoly 100 name is single-origin (Reachin) and reaches India only through distributors, so avoid single-sourcing by benchmarking against interchangeable alkali-swellable acrylate thickeners (Carbopol Aqua SF-type) before locking volumes.",
-    "sources": [
-      "https://www.ulprospector.com/en/eu/PersonalCare/Detail/132861/9342755/Repoly-100",
-      "https://www.indiamart.com/proddetail/acrylate-copolymer-repoly-100-2856496555591.html",
-      "https://yasham.in/repoly-100/"
-    ],
-    "confidence": "medium",
-    "side": "rm"
-  },
-  {
-    "item": "Galaxy CAPB SB",
-    "inci": "Cocamidopropyl Betaine (amphoteric surfactant), supplied ~29-31% active",
-    "kind": "commodity",
-    "upstream": "Galaxy Surfactants (India's largest surfactant maker) brands this grade, but CAPB is a widely-made commodity surfactant with many domestic and global producers",
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "Galaxy Surfactants",
-      "Godrej Industries (Ginamide B)",
-      "Shreeji Pharma International (Vadodara)",
-      "Jigs Chemical (Ahmedabad)",
-      "A.B. Enterprises (Mumbai)"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "CAPB is a domestic commodity with several credible Indian makers, so keep at least two qualified suppliers (e.g. Galaxy plus Godrej) and tender annually to hold Galaxy to market pricing.",
-    "sources": [
-      "https://www.specialchem.com/cosmetics/product/galaxy-surfactants-galaxy-capb-sb",
-      "https://dir.indiamart.com/impcat/cocamidopropyl-betaine.html",
-      "https://www.gravitychemicals.com/product/godrej-industries-chemicals/secondary-ingredients/ginamide-b-capb/"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "Glycerine",
-    "inci": "Glycerin (glycerol / glycerine, USP/EP cosmetic-pharma grade)",
-    "kind": "commodity",
-    "upstream": "many (oleochemical by-product of soap/biodiesel/fatty-acid production; global makers Wilmar, IOI, KLK, Emery, Cargill; Indian makers Godrej Industries, VVF, Adani Wilmar, Kokan/Vincitore, ALMS)",
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "Godrej Industries",
-      "VVF (India)",
-      "Vincitore Chemicals Pvt Ltd",
-      "ALMS Group",
-      "Shreeji Pharma International",
-      "MSD Global Oleochem LLP",
-      "Innova Corporate (India)"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "Dozens of Indian and global oleochemical makers sell USP-grade glycerine at near-identical spec; multi-quote and switch freely on price, freight and payment terms.",
-    "sources": [
-      "https://dir.indiamart.com/impcat/glycerine.html",
-      "https://www.tradeindia.com/manufacturers/glycerine.html",
-      "https://www.vincitorechemicals.com/glycerine-manufacturers-in-india.php",
-      "https://almsgroup.in/oils/refined-glycerine-manufacturers-in-india/"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "Niacinamide",
-    "inci": "Niacinamide (nicotinamide, vitamin B3, cosmetic/pharma grade >=99.5%)",
-    "kind": "commodity",
-    "upstream": "many, off-patent (global scale makers: Jubilant Ingrevia (India, one of world's largest), Lonza, Vertellus; large Chinese supply from Brother Enterprises, Vanetta). Bulk trade-grade freely imported/distributed in India.",
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "Jubilant Ingrevia (manufacturer)",
-      "Akhil Healthcare Pvt Ltd (Vadodara)",
-      "Ases Chemical Works (Jodhpur)",
-      "Swadesh India Chemical Pvt Ltd",
-      "numerous IndiaMART/ExportersIndia distributors"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "Off-patent B3 with a domestic scale maker (Jubilant Ingrevia) plus many importer-distributors; run a reverse auction and use domestic-vs-imported quotes to hold price down.",
-    "sources": [
-      "https://dir.indiamart.com/impcat/niacinamide.html",
-      "https://www.exportersindia.com/indian-suppliers/niacinamide.htm",
-      "https://www.swadeshindia.in/portfolio/niacinamide-power/",
-      "https://www.pharmathirdpartymanufacturer.com/niacinamide-manufacturers-in-india"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "Alcohol Denat",
-    "inci": "Alcohol Denat. (denatured ethyl alcohol / denatured ethanol, cosmetic grade; ethanol + permitted denaturant e.g. DEP, MEK, Bitrex)",
-    "kind": "commodity",
-    "upstream": "many (ethanol from molasses/grain via sugar & distillery majors; abundant Indian ethanol capacity). Product itself is a commodity, but sale/movement is regulated.",
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "Sungrace Group (Pune)",
-      "Ocean Skin Science",
-      "Nanda Multi Chem",
-      "Formulators Inc",
-      "Keshariya Corporation",
-      "Swadesh India"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "Many denatured-ethanol suppliers so price is competitive, but state excise licensing/permits and denaturant spec govern movement and vary by state -- qualify licensed vendors and note logistics/excise, then multi-quote on the delivered price.",
-    "sources": [
-      "https://dir.indiamart.com/impcat/denatured-ethanol.html",
-      "https://www.tradeindia.com/manufacturers/denatured-ethyl-alcohol.html",
-      "https://www.sungracegroup.in/denatured-alcohol.php",
-      "https://formulatorsinc.in/products/denatured-ethyl-alcohol-ethanol-for-perfumes-cosmetic-grade"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "Octyl Methoxycinnamate",
-    "inci": "Ethylhexyl Methoxycinnamate (Octyl Methoxycinnamate / Octinoxate / OMC / EHMC UV filter)",
-    "kind": "commodity",
-    "upstream": "many, off-patent (unlike branded BASF Uvinul/Tinosorb filters); large Chinese/Indian merchant supply. Freely made and traded.",
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "Meru Chem Pvt Ltd (Mumbai)",
-      "Sihauli Chemicals Pvt Ltd (Mumbai)",
-      "Dev Impex (Gujarat)",
-      "VedaOils",
-      "Rajvi Enterprise",
-      "Aims Oxygen Pvt Ltd",
-      "Shreeji Pharma International",
-      "Kip Chemicals Pvt Ltd"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "Off-patent UV filter with many interchangeable Indian suppliers/importers, so unlike patented BASF filters you can multi-quote and switch freely on price without formulation lock-in.",
-    "sources": [
-      "https://dir.indiamart.com/impcat/octyl-methoxycinnamate.html",
-      "https://www.tradeindia.com/manufacturers/octyl-methoxycinnamate.html",
-      "https://www.meruchem.com/octyl-methoxycinnamate-6852236.html",
-      "https://sihaulichemicals.com/product/octyl-methoxycinnamate-omc/"
-    ],
-    "confidence": "high",
-    "side": "rm"
-  },
-  {
-    "item": "HDPE / PET plastic bottles",
-    "inci": null,
-    "kind": "commodity",
-    "upstream": null,
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "Manjushree Technopack",
-      "ALPLA India",
-      "Chemco Plastic Industries",
-      "Pearl Polymers",
-      "Time Technoplast"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "Rigid plastic bottle blow-moulding is highly fragmented in India, so mcAFFEINE can dual-source and push aggressively on price and MOQ.",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Manjushree_Technopack",
-      "https://in.solutions.kompass.com/blog/top-10-pet-bottle-manufacturers-in-india/",
-      "https://digitalgriot.com/pet-bottle-manufacturers-in-india/"
-    ],
-    "confidence": "high",
-    "side": "pm"
-  },
-  {
-    "item": "Cosmetic glass bottles & jars",
-    "inci": null,
-    "kind": "commodity",
-    "upstream": null,
-    "indiaBand": "few",
-    "indiaSuppliers": [
-      "Pragati Glass",
-      "PGP Glass (formerly Piramal Glass)",
-      "Haldyn Glass",
-      "AGI Greenpac",
-      "HNG (Hindusthan National Glass)"
-    ],
-    "concentration": "competitive",
-    "leverage": "balanced",
-    "implication": "Cosmetic-grade glass is more capital-intensive (furnaces) so credible converters are fewer than plastic, but with several real players mcAFFEINE still has enough alternatives to keep pricing competitive.",
-    "sources": [
-      "https://www.indiamart.com/piramal-glass-private-limited/aboutus.html",
-      "https://www.indiamart.com/pragatiglassindustries/",
-      "https://www.tradeindia.com/blog/top-10-glass-bottle-manufacturers-in-india-2/"
-    ],
-    "confidence": "medium",
-    "side": "pm"
-  },
-  {
-    "item": "Plastic laminated / extruded tubes",
-    "inci": null,
-    "kind": "concentrated",
-    "upstream": null,
-    "indiaBand": "few",
-    "indiaSuppliers": [
-      "EPL Limited (formerly Essel Propack)",
-      "Arista Tubes (Essel)",
-      "IntPack / Antilla Propack",
-      "Torrent Closures"
-    ],
-    "concentration": "concentrated",
-    "leverage": "balanced",
-    "implication": "Laminated tube capacity is dominated by EPL with only a handful of credible alternatives, so mcAFFEINE should qualify a second tube source early to avoid single-supplier dependence.",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Essel_Propack",
-      "https://www.plastemart.com/news-plastics-information/essel-propack-(epl-limited)-engineering-multilayer-laminated-tube-packaging-at-global-scale/75123"
-    ],
-    "confidence": "medium",
-    "side": "pm"
-  },
-  {
-    "item": "Folding cartons / mono-cartons",
-    "inci": null,
-    "kind": "commodity",
-    "upstream": null,
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "TCPL Packaging",
-      "Parksons Packaging",
-      "Huhtamaki India",
-      "Canpac",
-      "Uflex"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "Paperboard carton converting is a large fragmented field, so mcAFFEINE can competitively tender secondary packaging and switch printers with little friction.",
-    "sources": [
-      "https://parksonspackaging.com/our-products/folding-cartons/",
-      "https://www.indiamart.com/tcpl-packaging-pvt-ltd/aboutus.html",
-      "https://ensun.io/search/folding-carton/india"
-    ],
-    "confidence": "high",
-    "side": "pm"
-  },
-  {
-    "item": "Lotion / serum pumps & actuators",
-    "inci": null,
-    "kind": "concentrated",
-    "upstream": null,
-    "indiaBand": "few",
-    "indiaSuppliers": [
-      "Aptar (India operations/imports)",
-      "Sarvottam Polymers",
-      "Cimpex Packaging",
-      "Radcom Packaging"
-    ],
-    "concentration": "concentrated",
-    "leverage": "them",
-    "implication": "Precision dispensing pumps have few credible domestic makers and many local 'suppliers' are really importer-assemblers, so mcAFFEINE has less price leverage here and should lock volume commitments for continuity rather than expect deep discounts.",
-    "sources": [
-      "https://aptar.com/en-us/products/evolution-cosmetic-pump",
-      "https://cimpexpackaging.com/product/dispenser-pumps/",
-      "https://www.sarvottampolymers.co.in/lotion-pump.html"
-    ],
-    "confidence": "medium",
-    "side": "pm"
-  },
-  {
-    "item": "Flip-top caps & closures",
-    "inci": null,
-    "kind": "commodity",
-    "upstream": null,
-    "indiaBand": "many",
-    "indiaSuppliers": [
-      "Sarvottam Polymers",
-      "Veeglow Industries",
-      "Radcom Packaging",
-      "Shubh Propack",
-      "Prabhoti Plastic Industries"
-    ],
-    "concentration": "competitive",
-    "leverage": "us",
-    "implication": "Injection-moulded flip-top caps are made by many interchangeable moulders, so mcAFFEINE can drive hard on price and tooling terms and second-source easily.",
-    "sources": [
-      "https://capsandclosures.com/product-category/flip-top-cap/",
-      "https://ensun.io/search/flip-top-cap/india",
-      "https://www.prabhotiplasticindustries.com/caps-closures.html"
-    ],
-    "confidence": "high",
-    "side": "pm"
-  }
+ {
+  "item": "Uvinul T150",
+  "inci": "Ethylhexyl Triazone (Ethylhexyl Triazone / Octyl Triazone; CAS 88122-99-0)",
+  "kind": "semi",
+  "upstream": "BASF (Germany) originated the trade name and molecule; now off-patent, so Chinese producers (e.g. Dalian Handom, Baoxu) also make generic ethylhexyl triazone",
+  "indiaBand": "few",
+  "indiaSuppliers": [
+   "Clever Pathway Pvt Ltd (Vadodara) - BASF make, IndiaMART",
+   "SG Green Tech Health & Beauty (Ghaziabad) - IndiaMART",
+   "PAT IMPEX India (Vadodara)",
+   "DRAVYOM Chemical",
+   "Chinese generic importers (Handom/Baoxu material)"
+  ],
+  "concentration": "concentrated",
+  "leverage": "balanced",
+  "implication": "BASF sets the branded price but the molecule is off-patent with credible Chinese/Indian generic supply, so mcAFFEINE can dual-source (qualify a generic ethylhexyl triazone against BASF grade) to cap the price and pressure the BASF distributor's margin.",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Ethylhexyl_triazone",
+   "https://www.specialchem.com/cosmetics/product/basf-uvinul-t-150",
+   "https://www.indiamart.com/proddetail/uvinul-t150-basf-make-2857607908030.html",
+   "https://www.indiamart.com/proddetail/ethylhexyl-triazone-25119430812.html",
+   "https://www.additivesforpolymer.com/portfolio/bx-uv-150/",
+   "https://www.handomchemicals.com/uvinul-t-150-product/"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "₹500–2,687/kg",
+  "priceNote": "BASF lows look like bait; premium UVB filter",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Uvinul A Plus Granular",
+  "inci": "Diethylamino Hydroxybenzoyl Hexyl Benzoate (DHHB; CAS 302776-68-7)",
+  "kind": "semi",
+  "upstream": "BASF (Germany) sells it as Uvinul A Plus; dsm-firmenich sells the same molecule as Parsol DHHB, and Chinese makers (Longchang, Sincere, SDHSH) offer generic DHHB - multiple originators",
+  "indiaBand": "few",
+  "indiaSuppliers": [
+   "KKD Chemical & Scientific Co. (Paonta Sahib) - BASF distributor, IndiaMART",
+   "Shree Sai Biotech (Indore) - generic DHHB, IndiaMART",
+   "PAT IMPEX India (Vadodara)",
+   "Chinese generic importers (Longchang/Sincere material)"
+  ],
+  "concentration": "concentrated",
+  "leverage": "balanced",
+  "implication": "Because the identical molecule comes from at least two Western originators (BASF Uvinul A Plus and dsm-firmenich Parsol DHHB) plus Chinese generics, mcAFFEINE should run a genuine multi-source tender rather than accept BASF list pricing.",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Diethylamino_hydroxybenzoyl_hexyl_benzoate",
+   "https://www.specialchem.com/cosmetics/product/basf-uvinul-a-plus-granular",
+   "https://www.indiamart.com/proddetail/uvinul-a-plus-basf-2856948182188.html",
+   "https://www.indiamart.com/proddetail/diethylamino-hydroxybenzoyl-hexyl-benzoate-cas-302776-68-7-2853718617833.html",
+   "https://longchangchemical.com/product/diethylamino-hydroxybenzoyl-hexyl-benzoate-dhhb-uvinul-a-plus-cas-302776-68-7/"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "₹1,320–2,650/kg",
+  "priceNote": "BASF ₹1,320–1,520; generic DHHB ₹2,650",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Tinosorb M",
+  "inci": "Methylene Bis-Benzotriazolyl Tetramethylbutylphenol (MBBT / Bisoctrizole; CAS 103597-45-1)",
+  "kind": "semi",
+  "upstream": "BASF (Germany) trade name and original innovator; core molecule patents (early 1990s) have largely lapsed, so Chinese producers (e.g. Bisor Group) now make generic bisoctrizole - but BASF's micronized aqueous-dispersion grade remains the quality/regulatory benchmark",
+  "indiaBand": "few",
+  "indiaSuppliers": [
+   "Nueva Chemie LLP (Vadodara) - Bisoctrizole/MBBT",
+   "Atishay Specialities (Gurgaon) - Bisoctrizole",
+   "Balaji Fine Chem (Vasai Virar) - generic bisoctrizole",
+   "SD Precise Bioscience (New Delhi)",
+   "PAT IMPEX India (Vadodara) - BASF Tinosorb M"
+  ],
+  "concentration": "concentrated",
+  "leverage": "balanced",
+  "implication": "The molecule is off-patent with Chinese generic bisoctrizole available, but BASF's micronized grade drives performance, so mcAFFEINE should hold BASF on price using the generic as a benchmark while insisting BASF's particle-size/dispersion quality is what it is actually paying for.",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Tinosorb",
+   "https://incidecoder.com/ingredients/methylene-bis-benzotriazolyl-tetramethylbutylphenol",
+   "https://www.nuevachemie.com/bisoctrizole-tinosorb-m-mbbt-11839066.html",
+   "https://www.indiamart.com/proddetail/bisoctrizole-tinosorb-m-powder-2855649144848.html",
+   "https://m.bisorgroup.com/bisoctrizole/",
+   "https://www.chemicalbook.com/ChemicalProductProperty_EN_CB3283802.htm"
+  ],
+  "confidence": "medium",
+  "side": "rm",
+  "priceINRPerKg": "₹3,150–5,100/kg",
+  "priceNote": "BASF ₹4,000–5,100; generic bisoctrizole lower",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Tinosorb A2B",
+  "inci": "Tris-Biphenyl Triazine (TBPT; CAS 31274-51-8, micronized/particulate cosmetic grade)",
+  "kind": "proprietary",
+  "upstream": "BASF (Germany) - newest-generation proprietary particulate UV filter, patent-protected, only recently added to the EU Annex VI positive list; no credible independent manufacturer of the cosmetic micronized grade",
+  "indiaBand": "sole",
+  "indiaSuppliers": [
+   "Available in India only through BASF authorized distributors/traders (e.g. KKD Chemicals, Sihauli Chemicals, PAT IMPEX-type resellers of genuine BASF material); IndiaMART low-price listings appear to be unverified placeholders, not a real generic market"
+  ],
+  "concentration": "sole",
+  "leverage": "them",
+  "implication": "This is a single-origin BASF-proprietary molecule with no generic, so unit price is BASF's to set - mcAFFEINE cannot win on price and should instead negotiate the distributor's margin, payment terms, volume rebates and marketing/formulation support, and treat A2B as a claim/differentiation ingredient rather than a commodity line.",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Tris-biphenyl_triazine",
+   "https://www.specialchem.com/cosmetics/product/basf-tinosorb-a2b",
+   "https://www.cosmeticsandtoiletries.com/regulations/spf-sun/news/21844582/basf-micronized-uv-filter-added-to-annex-vi-of-eu-cosmetics-regulation",
+   "https://care360.basf.com/global/en/Product-Finder/30478125",
+   "https://www.indiamart.com/proddetail/tinosorb-a2b-basf-2856238808030.html"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "price not found",
+  "priceNote": "BASF sole-source; no real generic market",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Uvinul MC 80",
+  "inci": "Ethylhexyl Methoxycinnamate (Octinoxate / Octyl Methoxycinnamate / OMC; CAS 5466-77-3)",
+  "kind": "commodity",
+  "upstream": "Generic commodity molecule - BASF's Uvinul MC 80 is just one brand (others: Eusolex 2292); made by many global and Indian producers, the most widely used and cheapest organic UVB filter",
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "Esters And Solvents LLP (Navi Mumbai) - manufacturer",
+   "Sihauli Chemicals Pvt Ltd (Mumbai) - manufacturer/exporter",
+   "EABC Global",
+   "Dev Impex (Banaskantha, Gujarat)",
+   "Krishana Enterprises",
+   "Ditish Enterprises, Rajvi Enterprise, K.V.Bio Chem, Kip Chemicals (IndiaMART)"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "OMC is a fully commoditized filter with many Indian manufacturers, so mcAFFEINE holds the leverage - buy on open competitive tender/spot, standardize the spec, and pay near commodity index rather than any BASF brand premium.",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Uvinul",
+   "https://www.specialchem.com/cosmetics/product/basf-uvinul-mc-80",
+   "https://dir.indiamart.com/impcat/octyl-methoxycinnamate.html",
+   "https://www.esters-solvents.in/octyl-methoxycinnamate.html",
+   "https://sihaulichemicals.com/product/octyl-methoxycinnamate-omc/",
+   "https://www.tradeindia.com/manufacturers/octyl-methoxycinnamate.html"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "₹320–980/kg",
+  "priceNote": "mostly generic; no BASF premium",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Cosroma EAA",
+  "inci": "3-O-Ethyl Ascorbic Acid (stable Vitamin C derivative)",
+  "kind": "semi",
+  "upstream": "Cosroma (Cosmax/COSROMA, China) owns the trade name; the molecule 3-O-Ethyl Ascorbic Acid is made by many Chinese specialty producers",
+  "indiaBand": "few",
+  "indiaSuppliers": [
+   "Imported/distributed in India rather than domestically synthesized; sourced via Chinese makers and Indian cosmetic-ingredient traders/importers"
+  ],
+  "concentration": "competitive",
+  "leverage": "balanced",
+  "implication": "Buy the molecule, not the Cosroma badge - qualify two or three alternate 3-O-Ethyl Ascorbic Acid suppliers from China so you are not paying a brand premium for a widely-made derivative.",
+  "sources": [
+   "https://www.cosroma.com/products/3-o-ethyl-ascorbic-acid-cosroma%C2%AE%C2%A0eaa",
+   "https://www.specialchem.com/cosmetics/product/cosroma-cosroma-eaa"
+  ],
+  "confidence": "medium",
+  "side": "rm",
+  "priceINRPerKg": "₹14,000–17,800/kg",
+  "priceNote": "realistic cosmetic grade; ₹99/₹1,500 = bait",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Radia 7730",
+  "inci": "Isopropyl Myristate (IPM), CAS 110-27-0",
+  "kind": "commodity",
+  "upstream": "Radia is Oleon's (Avril Group) brand, but Isopropyl Myristate is a bulk commodity ester made by dozens of oleochemical firms worldwide",
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "Suyog Life Sciences",
+   "Dadia Chemical Industries",
+   "Mohini Organics",
+   "Kaival Chemicals",
+   "Emco Dyestuff/Kosha Chemtech",
+   "Dev International",
+   "Jigchem Universal"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "IPM is a domestic commodity with many Gujarat/Mumbai makers, so run it as a multi-vendor spot buy and let Indian suppliers undercut Oleon's imported Radia grade on price.",
+  "sources": [
+   "https://www.oleon.com/products-solutions/radia-7730",
+   "https://dir.indiamart.com/impcat/isopropyl-myristate.html",
+   "https://www.tradeindia.com/manufacturers/isopropyl-myristate.html"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "₹200–425/kg",
+  "priceNote": "generic IPM, many sellers",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Cetiol C5",
+  "inci": "Coco-Caprylate, CAS 107525-85-9 (C8-C18 alkyl ester / light emollient)",
+  "kind": "semi",
+  "upstream": "Cetiol C5 is a BASF brand; Coco-Caprylate itself is a multi-source natural emollient offered by several oleochemical/emollient makers",
+  "indiaBand": "few",
+  "indiaSuppliers": [
+   "Shashwat Greentech (Surat)",
+   "SG Green Tech Health & Beauty (Ghaziabad)",
+   "Trckem",
+   "plus importers of Chinese/EU coco-caprylate"
+  ],
+  "concentration": "competitive",
+  "leverage": "balanced",
+  "implication": "The molecule is multi-source at roughly INR 1,200-1,850/kg locally, so use domestic coco-caprylate quotes as leverage while reserving BASF only for grades where sensory/quality data actually justifies the premium.",
+  "sources": [
+   "https://cosmetics.specialchem.com/product/i-basf-cetiol-c5",
+   "https://care360.basf.com/global/en/Product-Finder/30538241",
+   "https://www.indiamart.com/proddetail/coco-caprylate-25092711330.html"
+  ],
+  "confidence": "medium",
+  "side": "rm",
+  "priceINRPerKg": "₹1,230–1,850/kg",
+  "priceNote": "generic coco-caprylate",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Repoly 100",
+  "inci": "Acrylates Copolymer (alkali-swellable anionic acrylic emulsion / rheology modifier), CAS 25035-69-2",
+  "kind": "semi",
+  "upstream": "Repoly 100 is a proprietary trade name of Guangzhou Reachin Chemical (China); the underlying Acrylates Copolymer thickener category is competitive (e.g. Lubrizol Carbopol Aqua SF, Dow, SNF equivalents)",
+  "indiaBand": "few",
+  "indiaSuppliers": [
+   "Yasham Specialty Ingredients (distributor)",
+   "Ahmedabad-based traders on IndiaMART (listed ~INR 250/kg)"
+  ],
+  "concentration": "concentrated",
+  "leverage": "balanced",
+  "implication": "The Repoly 100 name is single-origin (Reachin) and reaches India only through distributors, so avoid single-sourcing by benchmarking against interchangeable alkali-swellable acrylate thickeners (Carbopol Aqua SF-type) before locking volumes.",
+  "sources": [
+   "https://www.ulprospector.com/en/eu/PersonalCare/Detail/132861/9342755/Repoly-100",
+   "https://www.indiamart.com/proddetail/acrylate-copolymer-repoly-100-2856496555591.html",
+   "https://yasham.in/repoly-100/"
+  ],
+  "confidence": "medium",
+  "side": "rm",
+  "priceINRPerKg": "~₹250/kg",
+  "priceNote": "single IndiaMART listing (low confidence)",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Galaxy CAPB SB",
+  "inci": "Cocamidopropyl Betaine (amphoteric surfactant), supplied ~29-31% active",
+  "kind": "commodity",
+  "upstream": "Galaxy Surfactants (India's largest surfactant maker) brands this grade, but CAPB is a widely-made commodity surfactant with many domestic and global producers",
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "Galaxy Surfactants",
+   "Godrej Industries (Ginamide B)",
+   "Shreeji Pharma International (Vadodara)",
+   "Jigs Chemical (Ahmedabad)",
+   "A.B. Enterprises (Mumbai)"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "CAPB is a domestic commodity with several credible Indian makers, so keep at least two qualified suppliers (e.g. Galaxy plus Godrej) and tender annually to hold Galaxy to market pricing.",
+  "sources": [
+   "https://www.specialchem.com/cosmetics/product/galaxy-surfactants-galaxy-capb-sb",
+   "https://dir.indiamart.com/impcat/cocamidopropyl-betaine.html",
+   "https://www.gravitychemicals.com/product/godrej-industries-chemicals/secondary-ingredients/ginamide-b-capb/"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "₹60–95/kg",
+  "priceNote": "branded ₹88–93 barely above generic",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Glycerine",
+  "inci": "Glycerin (glycerol / glycerine, USP/EP cosmetic-pharma grade)",
+  "kind": "commodity",
+  "upstream": "many (oleochemical by-product of soap/biodiesel/fatty-acid production; global makers Wilmar, IOI, KLK, Emery, Cargill; Indian makers Godrej Industries, VVF, Adani Wilmar, Kokan/Vincitore, ALMS)",
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "Godrej Industries",
+   "VVF (India)",
+   "Vincitore Chemicals Pvt Ltd",
+   "ALMS Group",
+   "Shreeji Pharma International",
+   "MSD Global Oleochem LLP",
+   "Innova Corporate (India)"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "Dozens of Indian and global oleochemical makers sell USP-grade glycerine at near-identical spec; multi-quote and switch freely on price, freight and payment terms.",
+  "sources": [
+   "https://dir.indiamart.com/impcat/glycerine.html",
+   "https://www.tradeindia.com/manufacturers/glycerine.html",
+   "https://www.vincitorechemicals.com/glycerine-manufacturers-in-india.php",
+   "https://almsgroup.in/oils/refined-glycerine-manufacturers-in-india/"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "₹80–150/kg",
+  "priceNote": "IP/pharma grade; Godrej ~₹125",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Niacinamide",
+  "inci": "Niacinamide (nicotinamide, vitamin B3, cosmetic/pharma grade >=99.5%)",
+  "kind": "commodity",
+  "upstream": "many, off-patent (global scale makers: Jubilant Ingrevia (India, one of world's largest), Lonza, Vertellus; large Chinese supply from Brother Enterprises, Vanetta). Bulk trade-grade freely imported/distributed in India.",
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "Jubilant Ingrevia (manufacturer)",
+   "Akhil Healthcare Pvt Ltd (Vadodara)",
+   "Ases Chemical Works (Jodhpur)",
+   "Swadesh India Chemical Pvt Ltd",
+   "numerous IndiaMART/ExportersIndia distributors"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "Off-patent B3 with a domestic scale maker (Jubilant Ingrevia) plus many importer-distributors; run a reverse auction and use domestic-vs-imported quotes to hold price down.",
+  "sources": [
+   "https://dir.indiamart.com/impcat/niacinamide.html",
+   "https://www.exportersindia.com/indian-suppliers/niacinamide.htm",
+   "https://www.swadeshindia.in/portfolio/niacinamide-power/",
+   "https://www.pharmathirdpartymanufacturer.com/niacinamide-manufacturers-in-india"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "₹500–1,000/kg",
+  "priceNote": "99% purity, consistent",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Alcohol Denat",
+  "inci": "Alcohol Denat. (denatured ethyl alcohol / denatured ethanol, cosmetic grade; ethanol + permitted denaturant e.g. DEP, MEK, Bitrex)",
+  "kind": "commodity",
+  "upstream": "many (ethanol from molasses/grain via sugar & distillery majors; abundant Indian ethanol capacity). Product itself is a commodity, but sale/movement is regulated.",
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "Sungrace Group (Pune)",
+   "Ocean Skin Science",
+   "Nanda Multi Chem",
+   "Formulators Inc",
+   "Keshariya Corporation",
+   "Swadesh India"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "Many denatured-ethanol suppliers so price is competitive, but state excise licensing/permits and denaturant spec govern movement and vary by state -- qualify licensed vendors and note logistics/excise, then multi-quote on the delivered price.",
+  "sources": [
+   "https://dir.indiamart.com/impcat/denatured-ethanol.html",
+   "https://www.tradeindia.com/manufacturers/denatured-ethyl-alcohol.html",
+   "https://www.sungracegroup.in/denatured-alcohol.php",
+   "https://formulatorsinc.in/products/denatured-ethyl-alcohol-ethanol-for-perfumes-cosmetic-grade"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "₹49–115/L",
+  "priceNote": "sold per litre (≈₹62–146/kg)",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "Octyl Methoxycinnamate",
+  "inci": "Ethylhexyl Methoxycinnamate (Octyl Methoxycinnamate / Octinoxate / OMC / EHMC UV filter)",
+  "kind": "commodity",
+  "upstream": "many, off-patent (unlike branded BASF Uvinul/Tinosorb filters); large Chinese/Indian merchant supply. Freely made and traded.",
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "Meru Chem Pvt Ltd (Mumbai)",
+   "Sihauli Chemicals Pvt Ltd (Mumbai)",
+   "Dev Impex (Gujarat)",
+   "VedaOils",
+   "Rajvi Enterprise",
+   "Aims Oxygen Pvt Ltd",
+   "Shreeji Pharma International",
+   "Kip Chemicals Pvt Ltd"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "Off-patent UV filter with many interchangeable Indian suppliers/importers, so unlike patented BASF filters you can multi-quote and switch freely on price without formulation lock-in.",
+  "sources": [
+   "https://dir.indiamart.com/impcat/octyl-methoxycinnamate.html",
+   "https://www.tradeindia.com/manufacturers/octyl-methoxycinnamate.html",
+   "https://www.meruchem.com/octyl-methoxycinnamate-6852236.html",
+   "https://sihaulichemicals.com/product/octyl-methoxycinnamate-omc/"
+  ],
+  "confidence": "high",
+  "side": "rm",
+  "priceINRPerKg": "₹320–980/kg",
+  "priceNote": "same molecule as Uvinul MC 80",
+  "priceSource": "IndiaMART listings, Jul 2026"
+ },
+ {
+  "item": "HDPE / PET plastic bottles",
+  "inci": null,
+  "kind": "commodity",
+  "upstream": null,
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "Manjushree Technopack",
+   "ALPLA India",
+   "Chemco Plastic Industries",
+   "Pearl Polymers",
+   "Time Technoplast"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "Rigid plastic bottle blow-moulding is highly fragmented in India, so mcAFFEINE can dual-source and push aggressively on price and MOQ.",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Manjushree_Technopack",
+   "https://in.solutions.kompass.com/blog/top-10-pet-bottle-manufacturers-in-india/",
+   "https://digitalgriot.com/pet-bottle-manufacturers-in-india/"
+  ],
+  "confidence": "high",
+  "side": "pm"
+ },
+ {
+  "item": "Cosmetic glass bottles & jars",
+  "inci": null,
+  "kind": "commodity",
+  "upstream": null,
+  "indiaBand": "few",
+  "indiaSuppliers": [
+   "Pragati Glass",
+   "PGP Glass (formerly Piramal Glass)",
+   "Haldyn Glass",
+   "AGI Greenpac",
+   "HNG (Hindusthan National Glass)"
+  ],
+  "concentration": "competitive",
+  "leverage": "balanced",
+  "implication": "Cosmetic-grade glass is more capital-intensive (furnaces) so credible converters are fewer than plastic, but with several real players mcAFFEINE still has enough alternatives to keep pricing competitive.",
+  "sources": [
+   "https://www.indiamart.com/piramal-glass-private-limited/aboutus.html",
+   "https://www.indiamart.com/pragatiglassindustries/",
+   "https://www.tradeindia.com/blog/top-10-glass-bottle-manufacturers-in-india-2/"
+  ],
+  "confidence": "medium",
+  "side": "pm"
+ },
+ {
+  "item": "Plastic laminated / extruded tubes",
+  "inci": null,
+  "kind": "concentrated",
+  "upstream": null,
+  "indiaBand": "few",
+  "indiaSuppliers": [
+   "EPL Limited (formerly Essel Propack)",
+   "Arista Tubes (Essel)",
+   "IntPack / Antilla Propack",
+   "Torrent Closures"
+  ],
+  "concentration": "concentrated",
+  "leverage": "balanced",
+  "implication": "Laminated tube capacity is dominated by EPL with only a handful of credible alternatives, so mcAFFEINE should qualify a second tube source early to avoid single-supplier dependence.",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Essel_Propack",
+   "https://www.plastemart.com/news-plastics-information/essel-propack-(epl-limited)-engineering-multilayer-laminated-tube-packaging-at-global-scale/75123"
+  ],
+  "confidence": "medium",
+  "side": "pm"
+ },
+ {
+  "item": "Folding cartons / mono-cartons",
+  "inci": null,
+  "kind": "commodity",
+  "upstream": null,
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "TCPL Packaging",
+   "Parksons Packaging",
+   "Huhtamaki India",
+   "Canpac",
+   "Uflex"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "Paperboard carton converting is a large fragmented field, so mcAFFEINE can competitively tender secondary packaging and switch printers with little friction.",
+  "sources": [
+   "https://parksonspackaging.com/our-products/folding-cartons/",
+   "https://www.indiamart.com/tcpl-packaging-pvt-ltd/aboutus.html",
+   "https://ensun.io/search/folding-carton/india"
+  ],
+  "confidence": "high",
+  "side": "pm"
+ },
+ {
+  "item": "Lotion / serum pumps & actuators",
+  "inci": null,
+  "kind": "concentrated",
+  "upstream": null,
+  "indiaBand": "few",
+  "indiaSuppliers": [
+   "Aptar (India operations/imports)",
+   "Sarvottam Polymers",
+   "Cimpex Packaging",
+   "Radcom Packaging"
+  ],
+  "concentration": "concentrated",
+  "leverage": "them",
+  "implication": "Precision dispensing pumps have few credible domestic makers and many local 'suppliers' are really importer-assemblers, so mcAFFEINE has less price leverage here and should lock volume commitments for continuity rather than expect deep discounts.",
+  "sources": [
+   "https://aptar.com/en-us/products/evolution-cosmetic-pump",
+   "https://cimpexpackaging.com/product/dispenser-pumps/",
+   "https://www.sarvottampolymers.co.in/lotion-pump.html"
+  ],
+  "confidence": "medium",
+  "side": "pm"
+ },
+ {
+  "item": "Flip-top caps & closures",
+  "inci": null,
+  "kind": "commodity",
+  "upstream": null,
+  "indiaBand": "many",
+  "indiaSuppliers": [
+   "Sarvottam Polymers",
+   "Veeglow Industries",
+   "Radcom Packaging",
+   "Shubh Propack",
+   "Prabhoti Plastic Industries"
+  ],
+  "concentration": "competitive",
+  "leverage": "us",
+  "implication": "Injection-moulded flip-top caps are made by many interchangeable moulders, so mcAFFEINE can drive hard on price and tooling terms and second-source easily.",
+  "sources": [
+   "https://capsandclosures.com/product-category/flip-top-cap/",
+   "https://ensun.io/search/flip-top-cap/india",
+   "https://www.prabhotiplasticindustries.com/caps-closures.html"
+  ],
+  "confidence": "high",
+  "side": "pm"
+ }
 ]

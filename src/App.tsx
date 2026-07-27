@@ -712,6 +712,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                       <div className="mt-2 flex flex-wrap items-center gap-1.5">
                         <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-medium ${meta.bg} ${meta.text} ring-1 ${meta.ring}`}>{lev.emoji} {lev.label}</span>
                         <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600" title={m.indiaSuppliers.join(" · ")}>🇮🇳 {m.indiaBand} in India</span>
+                        {m.priceINRPerKg && !m.priceINRPerKg.includes("not found") && <span title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")} className="inline-flex items-center gap-1 rounded-md bg-orange-50 px-1.5 py-0.5 text-[11px] font-medium text-orange-700 ring-1 ring-orange-200">💰 {m.priceINRPerKg}</span>}
                       </div>
                       <div className="mt-1.5 text-[11px] text-slate-400">{m.side === "rm" ? "Current vendor" : "We buy from"}: <span className="text-slate-600">{v.label}</span></div>
                       <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{m.implication}</p>
@@ -1726,6 +1727,7 @@ function MarketBody({ entries }: { entries: MarketEntry[] }) {
             <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
               <span className={`inline-flex items-center gap-1 rounded-md bg-white/70 px-1.5 py-0.5 text-[11px] font-medium ${meta.text}`}>{lev.emoji} {lev.label}</span>
               <span className="inline-flex items-center gap-1 rounded-md bg-white/70 px-1.5 py-0.5 text-[11px] text-slate-600" title={m.indiaSuppliers.join(" · ")}>🇮🇳 {m.indiaBand} in India</span>
+              {m.priceINRPerKg && !m.priceINRPerKg.includes("not found") && <span title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")} className="inline-flex items-center gap-1 rounded-md bg-orange-50 px-1.5 py-0.5 text-[11px] font-medium text-orange-700 ring-1 ring-orange-200">💰 {m.priceINRPerKg}</span>}
             </div>
             <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{m.implication}</p>
             {m.sources.length > 0 && <div className="mt-1.5 flex flex-wrap gap-1">{m.sources.slice(0, 3).map((s, i) => <a key={i} href={s} target="_blank" rel="noreferrer" className="text-[10px] text-slate-400 underline decoration-slate-300 hover:text-teal-600">src{i + 1}</a>)}</div>}
