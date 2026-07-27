@@ -30,6 +30,22 @@ export type MarketEntry = {
   priceINRPerKg?: string;
   priceNote?: string;
   priceSource?: string;
+  // The other India vendors who sell this ingredient (IndiaMART/TradeIndia),
+  // enriched with public financials where we could find them.
+  alternatives?: AltVendor[];
+};
+
+// One alternative supplier for an ingredient — a rival to our current vendor.
+export type AltVendor = {
+  name: string;
+  location?: string;
+  note?: string;
+  revenueCr: number | null;
+  ebitdaPct: number | null;
+  rocePct: number | null;
+  cin?: string | null;
+  source?: string | null;
+  folder?: string | null; // set when it's a vendor we already track (clickable)
 };
 
 const MARKET = raw as MarketEntry[];

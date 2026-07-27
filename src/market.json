@@ -27,7 +27,53 @@
   "side": "rm",
   "priceINRPerKg": "₹500–2,687/kg",
   "priceNote": "BASF lows look like bait; premium UVB filter",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Clever Pathway Pvt Ltd",
+    "location": "Vadodara",
+    "note": "BASF make, IndiaMART",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "SG Green Tech Health & Beauty",
+    "location": "Ghaziabad",
+    "note": "IndiaMART",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": "sggreentech"
+   },
+   {
+    "name": "PAT IMPEX India",
+    "location": "Vadodara",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "DRAVYOM Chemical",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Uvinul A Plus Granular",
@@ -55,7 +101,42 @@
   "side": "rm",
   "priceINRPerKg": "₹1,320–2,650/kg",
   "priceNote": "BASF ₹1,320–1,520; generic DHHB ₹2,650",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "KKD Chemical & Scientific Co.",
+    "location": "Paonta Sahib",
+    "note": "BASF distributor, IndiaMART",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Shree Sai Biotech",
+    "location": "Indore",
+    "note": "generic DHHB, IndiaMART",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "PAT IMPEX India",
+    "location": "Vadodara",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Tinosorb M",
@@ -85,7 +166,64 @@
   "side": "rm",
   "priceINRPerKg": "₹3,150–5,100/kg",
   "priceNote": "BASF ₹4,000–5,100; generic bisoctrizole lower",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Nueva Chemie LLP",
+    "location": "Vadodara",
+    "note": "Bisoctrizole/MBBT",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Atishay Specialities",
+    "location": "Gurgaon",
+    "note": "Bisoctrizole",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Balaji Fine Chem",
+    "location": "Vasai Virar",
+    "note": "generic bisoctrizole",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "SD Precise Bioscience",
+    "location": "New Delhi",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "PAT IMPEX India",
+    "location": "Vadodara",
+    "note": "BASF Tinosorb M",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Tinosorb A2B",
@@ -110,7 +248,8 @@
   "side": "rm",
   "priceINRPerKg": "price not found",
   "priceNote": "BASF sole-source; no real generic market",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": []
  },
  {
   "item": "Uvinul MC 80",
@@ -141,7 +280,108 @@
   "side": "rm",
   "priceINRPerKg": "₹320–980/kg",
   "priceNote": "mostly generic; no BASF premium",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Esters And Solvents LLP",
+    "location": "Navi Mumbai",
+    "note": "manufacturer",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Sihauli Chemicals Pvt Ltd",
+    "location": "Mumbai",
+    "note": "manufacturer/exporter",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "EABC Global",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Dev Impex",
+    "location": "Banaskantha, Gujarat",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Krishana Enterprises",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Ditish Enterprises",
+    "location": "IndiaMART",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Rajvi Enterprise",
+    "location": "IndiaMART",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "K.V.Bio Chem",
+    "location": "IndiaMART",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Kip Chemicals",
+    "location": "IndiaMART",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Cosroma EAA",
@@ -163,7 +403,20 @@
   "side": "rm",
   "priceINRPerKg": "₹14,000–17,800/kg",
   "priceNote": "realistic cosmetic grade; ₹99/₹1,500 = bait",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Imported",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Radia 7730",
@@ -192,7 +445,97 @@
   "side": "rm",
   "priceINRPerKg": "₹200–425/kg",
   "priceNote": "generic IPM, many sellers",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Suyog Life Sciences",
+    "location": "",
+    "note": "",
+    "revenueCr": 20,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": "U24231GJ2003PTC042287",
+    "source": "thecompanycheck",
+    "folder": null
+   },
+   {
+    "name": "Dadia Chemical Industries",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Mohini Organics",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Kaival Chemicals",
+    "location": "",
+    "note": "",
+    "revenueCr": 89,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": "U24110GJ1995PTC027906",
+    "source": "thecompanycheck",
+    "folder": null
+   },
+   {
+    "name": "Emco Dyestuff",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Kosha Chemtech",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Dev International",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Jigchem Universal",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Cetiol C5",
@@ -218,7 +561,42 @@
   "side": "rm",
   "priceINRPerKg": "₹1,230–1,850/kg",
   "priceNote": "generic coco-caprylate",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Shashwat Greentech",
+    "location": "Surat",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "SG Green Tech Health & Beauty",
+    "location": "Ghaziabad",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": "sggreentech"
+   },
+   {
+    "name": "Trckem",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Repoly 100",
@@ -242,7 +620,20 @@
   "side": "rm",
   "priceINRPerKg": "~₹250/kg",
   "priceNote": "single IndiaMART listing (low confidence)",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Yasham Specialty Ingredients",
+    "location": "distributor",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Galaxy CAPB SB",
@@ -269,7 +660,64 @@
   "side": "rm",
   "priceINRPerKg": "₹60–95/kg",
   "priceNote": "branded ₹88–93 barely above generic",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Galaxy Surfactants",
+    "location": "",
+    "note": "",
+    "revenueCr": 5245,
+    "ebitdaPct": 9,
+    "rocePct": 13.5,
+    "cin": "L39877MH1986PLC039877",
+    "source": "screener.in",
+    "folder": null
+   },
+   {
+    "name": "Godrej Industries",
+    "location": "Ginamide B",
+    "note": "",
+    "revenueCr": 22237,
+    "ebitdaPct": 10,
+    "rocePct": 8.2,
+    "cin": "L24241MH1988PLC097781",
+    "source": "screener.in",
+    "folder": null
+   },
+   {
+    "name": "Shreeji Pharma International",
+    "location": "Vadodara",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Jigs Chemical",
+    "location": "Ahmedabad",
+    "note": "",
+    "revenueCr": 134,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": "U24303GJ2017PLC098853",
+    "source": "thecompanycheck",
+    "folder": null
+   },
+   {
+    "name": "A.B. Enterprises",
+    "location": "Mumbai",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Glycerine",
@@ -299,7 +747,86 @@
   "side": "rm",
   "priceINRPerKg": "₹80–150/kg",
   "priceNote": "IP/pharma grade; Godrej ~₹125",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Godrej Industries",
+    "location": "",
+    "note": "",
+    "revenueCr": 22237,
+    "ebitdaPct": 10,
+    "rocePct": 8.2,
+    "cin": "L24241MH1988PLC097781",
+    "source": "screener.in",
+    "folder": null
+   },
+   {
+    "name": "VVF",
+    "location": "India",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Vincitore Chemicals Pvt Ltd",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "ALMS Group",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Shreeji Pharma International",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "MSD Global Oleochem LLP",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Innova Corporate",
+    "location": "India",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Niacinamide",
@@ -327,7 +854,53 @@
   "side": "rm",
   "priceINRPerKg": "₹500–1,000/kg",
   "priceNote": "99% purity, consistent",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Jubilant Ingrevia",
+    "location": "manufacturer",
+    "note": "",
+    "revenueCr": 4388,
+    "ebitdaPct": 13,
+    "rocePct": 11.4,
+    "cin": "L24299UP2019PLC122657",
+    "source": "screener.in",
+    "folder": null
+   },
+   {
+    "name": "Akhil Healthcare Pvt Ltd",
+    "location": "Vadodara",
+    "note": "",
+    "revenueCr": 91,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": "U24231GJ2003PTC042667",
+    "source": "thecompanycheck",
+    "folder": null
+   },
+   {
+    "name": "Ases Chemical Works",
+    "location": "Jodhpur",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Swadesh India Chemical Pvt Ltd",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Alcohol Denat",
@@ -356,7 +929,75 @@
   "side": "rm",
   "priceINRPerKg": "₹49–115/L",
   "priceNote": "sold per litre (≈₹62–146/kg)",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Sungrace Group",
+    "location": "Pune",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Ocean Skin Science",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Nanda Multi Chem",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Formulators Inc",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Keshariya Corporation",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Swadesh India",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "Octyl Methoxycinnamate",
@@ -387,7 +1028,97 @@
   "side": "rm",
   "priceINRPerKg": "₹320–980/kg",
   "priceNote": "same molecule as Uvinul MC 80",
-  "priceSource": "IndiaMART listings, Jul 2026"
+  "priceSource": "IndiaMART listings, Jul 2026",
+  "alternatives": [
+   {
+    "name": "Meru Chem Pvt Ltd",
+    "location": "Mumbai",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Sihauli Chemicals Pvt Ltd",
+    "location": "Mumbai",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Dev Impex",
+    "location": "Gujarat",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "VedaOils",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Rajvi Enterprise",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Aims Oxygen Pvt Ltd",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Shreeji Pharma International",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   },
+   {
+    "name": "Kip Chemicals Pvt Ltd",
+    "location": "",
+    "note": "",
+    "revenueCr": null,
+    "ebitdaPct": null,
+    "rocePct": null,
+    "cin": null,
+    "source": null,
+    "folder": null
+   }
+  ]
  },
  {
   "item": "HDPE / PET plastic bottles",

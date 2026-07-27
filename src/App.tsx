@@ -637,7 +637,89 @@ function SupplierByProduct({ all, onSelect }: { all: Entity[]; onSelect: (e: Ent
 // you see at a glance which buys we control vs which control us.
 const CONF_DOT: Record<string, string> = { high: "bg-emerald-400", medium: "bg-amber-400", low: "bg-slate-300" };
 
+// Click a raw material → this page: every supplier that sells it (our current
+// vendor + the IndiaMART/TradeIndia alternatives) with price context and their
+// financials side by side, then the negotiation levers our vendor hands us.
+function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }: {
+  entry: MarketEntry; currentVendor: Entity | undefined; all: Entity[]; onBack: () => void; onSelectVendor: (e: Entity) => void;
+}) {
+  const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
+  const lev = LEV_META[entry.leverage];
+  const alts = entry.alternatives ?? [];
+  const ins = currentVendor ? supplierInsights(currentVendor) : [];
+  const hasPrice = !!entry.priceINRPerKg && !entry.priceINRPerKg.includes("not found");
+  const chip = "inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-semibold ring-1";
+  const loc = (e: Entity) => [(e.city ?? ""), (e.state ?? "").replace(/\s*\(implied\)\s*/i, "").trim()].filter(Boolean).join(", ") || "—";
+  return (
+    <div className="space-y-4">
+      <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Back to all ingredients</button>
+
+      <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="min-w-0">
+            <div className="text-xl font-bold text-slate-900">🧪 {entry.item}</div>
+            {entry.inci && <div className="mt-0.5 text-sm text-slate-500">{entry.inci}</div>}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {hasPrice && <span className={`${chip} bg-orange-50 text-orange-700 ring-orange-200`}>💰 {entry.priceINRPerKg}</span>}
+            <span className={`${chip} bg-slate-50 text-slate-700 ring-slate-200`}>{lev.emoji} {lev.label}</span>
+            <span className={`${chip} bg-slate-50 text-slate-700 ring-slate-200`}>🇮🇳 {entry.indiaBand} sellers in India</span>
+          </div>
+        </div>
+        <p className="mt-3 text-sm leading-relaxed text-slate-600">{entry.implication}</p>
+        {entry.priceNote && <p className="mt-1.5 text-xs text-slate-400">Price: {entry.priceNote}{entry.priceSource ? ` · ${entry.priceSource}` : ""}</p>}
+      </div>
+
+      <Card title={`🏭 Suppliers who sell ${entry.item}`} sub={alts.length ? `Our current vendor vs ${alts.length} alternatives found on IndiaMART / TradeIndia — click your vendor for its full profile` : "Our current vendor for this item"} accent="#0d9488">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[760px] border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
+                <Th>Supplier</Th><Th>Role</Th><Th>Location</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th>Note</Th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentVendor && (
+                <tr onClick={() => onSelectVendor(currentVendor)} className="cursor-pointer border-t border-slate-100 bg-teal-50/40 transition hover:bg-teal-50">
+                  <td className="px-4 py-3 font-semibold text-slate-900">⭐ {currentVendor.brand}</td>
+                  <td className="px-4 py-3"><span className="inline-flex rounded-md bg-teal-100 px-1.5 py-0.5 text-xs font-medium text-teal-800">Our vendor</span></td>
+                  <td className="px-4 py-3 text-slate-500">{loc(currentVendor)}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(currentVendor))}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitdaMarginOf(currentVendor))}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(supRoce(currentVendor))}</td>
+                  <td className="px-4 py-3 text-xs text-slate-400">click for full profile →</td>
+                </tr>
+              )}
+              {alts.map((a) => {
+                const e = a.folder ? byFolder.get(a.folder) : undefined;
+                return (
+                  <tr key={a.name} onClick={e ? () => onSelectVendor(e) : undefined} className={`border-t border-slate-100 ${e ? "cursor-pointer hover:bg-teal-50/50" : ""}`}>
+                    <td className="px-4 py-3 font-medium text-slate-800">{a.name}</td>
+                    <td className="px-4 py-3"><span className="inline-flex rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600">Alternative</span></td>
+                    <td className="px-4 py-3 text-slate-500">{a.location || "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{a.revenueCr != null ? crStr(a.revenueCr) : "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{a.ebitdaPct != null ? `${a.ebitdaPct}%` : a.cin ? <span className="text-amber-600" title="Private company — pull via Tracxn/Probe using the CIN in the Note column">Tracxn</span> : "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{a.rocePct != null ? `${a.rocePct}%` : "—"}</td>
+                    <td className="px-4 py-3 text-xs text-slate-400">{[a.note, a.cin].filter(Boolean).join(" · ") || "—"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+
+      {currentVendor && ins.length > 0 && (
+        <Card title={`💡 Negotiation levers · ${currentVendor.brand}`} sub="from this vendor's own numbers · hover a tag for detail" accent="#eda100">
+          <LeverStrip ins={ins} />
+        </Card>
+      )}
+    </div>
+  );
+}
+
 function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const [openItem, setOpenItem] = useState<string | null>(null);
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const [side, setSide] = useState<"rm" | "pm">("rm");
   const entries = useMemo(() => allMarket().filter((m) => m.side === side), [side]);
@@ -660,6 +742,12 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
     return c;
   }, [entries]);
   const cols: Concentration[] = ["sole", "concentrated", "competitive"];
+
+  // Drilled into one ingredient → show its suppliers / prices / levers page.
+  if (openItem) {
+    const entry = allMarket().find((m) => m.item === openItem);
+    if (entry) return <IngredientDetail entry={entry} currentVendor={vendorFor(entry).e} all={all} onBack={() => setOpenItem(null)} onSelectVendor={onSelect} />;
+  }
 
   return (
     <div className="space-y-4">
@@ -701,7 +789,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                   const v = vendorFor(m);
                   const lev = LEV_META[m.leverage];
                   return (
-                    <div key={m.item} onClick={() => v.e && onSelect(v.e)} className={`rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200/70 ${v.e ? "cursor-pointer transition hover:ring-teal-300" : ""}`}>
+                    <div key={m.item} onClick={() => setOpenItem(m.item)} className="cursor-pointer rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200/70 transition hover:ring-teal-300">
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
                           <div className="truncate font-semibold text-slate-900" title={m.item}>{m.item}</div>
