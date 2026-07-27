@@ -344,13 +344,12 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "supply" | "product" | "market" | "benchmark";
+type SupTab = "board" | "supply" | "product" | "market";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "board", label: "Supplier board", emoji: "📇" },
   { key: "supply", label: "Our supply chain", emoji: "🧬" },
   { key: "product", label: "By product", emoji: "🧴" },
   { key: "market", label: "Market structure", emoji: "🌐" },
-  { key: "benchmark", label: "Benchmark charts", emoji: "📊" },
 ];
 
 function SupplierView() {
@@ -388,11 +387,10 @@ function SupplierView() {
             <SubTabs tabs={SUP_TABS} value={tab} onChange={setTab} />
             <button onClick={() => setCompareMode(true)} className="inline-flex items-center gap-1.5 rounded-lg bg-teal-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">🆚 Compare suppliers</button>
           </div>
-          {tab === "board" && <SupplierBoard all={all} onSelect={openSupplier} />}
+          {tab === "board" && <BoardTab all={all} onSelect={openSupplier} />}
           {tab === "supply" && <SupplyChainView all={all} onSelect={openSupplier} />}
           {tab === "product" && <SupplierByProduct all={all} onSelect={openSupplier} />}
           {tab === "market" && <MarketStructureView all={all} onSelect={openSupplier} />}
-          {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
         </>
       )}
     </main>
@@ -865,6 +863,29 @@ const LEVER_TAG: Record<string, { emoji: string; short: string }> = {
   "Input-cost pass-through": { emoji: "🧪", short: "Cost pass-through" },
   "Carrying heavy stock": { emoji: "📦", short: "Stock lever" },
 };
+
+// The supplier board holds two views of the same vendor set — a scannable table
+// and the benchmark charts — behind one compact toggle, so it's one tab, not two.
+function BoardTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const [mode, setMode] = useState<"table" | "charts">("table");
+  const opts: { key: "table" | "charts"; label: string; emoji: string }[] = [
+    { key: "table", label: "Table", emoji: "📇" },
+    { key: "charts", label: "Charts", emoji: "📊" },
+  ];
+  return (
+    <div className="space-y-4">
+      <div className="inline-flex gap-1 rounded-xl bg-slate-100 p-1 ring-1 ring-slate-200">
+        {opts.map((o) => (
+          <button key={o.key} onClick={() => setMode(o.key)}
+            className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition ${mode === o.key ? "bg-white text-teal-700 shadow-sm" : "text-slate-500 hover:text-slate-800"}`}>
+            <span>{o.emoji}</span>{o.label}
+          </button>
+        ))}
+      </div>
+      {mode === "table" ? <SupplierBoard all={all} onSelect={onSelect} /> : <BenchmarkView all={all} onSelect={onSelect} />}
+    </div>
+  );
+}
 
 // One dense analyst table: every supplier is a row, negotiation metrics are
 // columns, and the levers/risks become compact tags. Replaces the old wall of
