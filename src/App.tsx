@@ -80,7 +80,7 @@ export default function App() {
   // Competitors & Delivery are locked for now — only ever show Suppliers.
   const active = MODULES.find((m) => m.key === module)?.locked ? "suppliers" : module;
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#f6f4ef] text-slate-800">
+    <div className="min-h-screen overflow-x-clip bg-[#f6f4ef] text-slate-800">
       <Header module={active} setModule={setModule} generatedAt={DATA.generatedAt} />
       {active === "suppliers" && <SupplierView />}
       {active === "competitors" && <CompetitorView />}
