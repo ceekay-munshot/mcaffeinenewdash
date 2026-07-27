@@ -1,180 +1,589 @@
 {
-"rm": [
-{
-"item": "Cosroma EAA",
-"folder": "arkchemicals",
-"brand": "Ark Chemicals",
-"category": "RM Vendor"
-},
-{
-"item": "Uvinul T150",
-"folder": "givaudan",
-"brand": "Givaudan",
-"category": "RM Vendor"
-},
-{
-"item": "Radia 7730",
-"folder": "",
-"brand": "",
-"category": ""
-},
-{
-"item": "Glycerine",
-"folder": "beemanpharmaceuticals",
-"brand": "beemanpharmaceuticals",
-"category": "RM Vendor"
-},
-{
-"item": "Tinosorb A2B",
-"folder": "yashamspecialityingredientspvtltd",
-"brand": "Yasham",
-"category": "RM Vendor"
-},
-{
-"item": "Uvinul A Plus Granular",
-"folder": "ahmedabadagency",
-"brand": "Ahmedabadagency",
-"category": "RM Vendor"
-},
-{
-"item": "Cetiol C5",
-"folder": "northernaromatics",
-"brand": "Northern Aromatics",
-"category": "RM Vendor"
-},
-{
-"item": "Galaxy CAPB SB",
-"folder": "unitedenterprises",
-"brand": "United Enterprises",
-"category": "RM Vendor"
-},
-{
-"item": "Uvinul MC 80",
-"folder": "valuetree",
-"brand": "ValueTree",
-"category": "RM Vendor"
-},
-{
-"item": "Tinosorb M",
-"folder": "sggreentech",
-"brand": "SG Green Tech Health & Beauty",
-"category": "RM Vendor"
-},
-{
-"item": "Niacinamide",
-"folder": "nirmaancosmetic",
-"brand": "nirmaancosmetic",
-"category": "RM Vendor"
-},
-{
-"item": "Repoly 100",
-"folder": "connellbrothers",
-"brand": "Connell Brothers (India) — now operating as Caldic Specialties India Pvt Ltd / Connell Caldic",
-"category": "RM Vendor"
-},
-{
-"item": "Alcohol Denat",
-"folder": "kayceeenterprise",
-"brand": "kayceeenterprise",
-"category": "RM Vendor"
-},
-{
-"item": "Octyl MethoxyCinnamate (OMC)",
-"folder": "",
-"brand": "",
-"category": ""
-}
-],
-"pm": [
-{
-"item": "300ml HDPE 2337C Vacation Bottle",
-"folder": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
-"brand": "Takemoto Yohki",
-"category": "PM Vendor"
-},
-{
-"item": "28/410 on-off lotion pump 475C APT actuator-67mm Dip Tube",
-"folder": "PRINTOTECH GLOBAL LIMITED",
-"brand": "Printotech Global",
-"category": "PM Vendor"
-},
-{
-"item": "18/410mm KH180 Serum Pump with Overcap 394C- 57mm dip tube",
-"folder": "CONTINUITY PRINTERS PVT LTD",
-"brand": "Continuity Printers",
-"category": "PM Vendor"
-},
-{
-"item": "300ml 695C HDPE Slant Bottle",
-"folder": "Alfa Exports",
-"brand": "Alfa Exports India",
-"category": "PM Vendor"
-},
-{
-"item": "50ml Frosted KM Lotion Glass Bottle with Printing",
-"folder": "M-s Khosla Printers",
-"brand": "M-s Khosla Printers",
-"category": "PM Vendor"
-},
-{
-"item": "All I Need Sunscreen SPF 50 PA+++_50ml Matt 2296C Oval Printed Tube with 2296C Screw FTC (35dia*110 mm)",
-"folder": "Radcom Packaging",
-"brand": "Radcom Packaging",
-"category": "PM Vendor"
-},
-{
-"item": "Moisturizing Sunscreen SPF 50_50 ml_Carton",
-"folder": "Manjushree Technopack Limited",
-"brand": "Manjushree Technopack Limited",
-"category": "PM Vendor"
-},
-{
-"item": "Double Shot Radiance-Lift Serum Carton 50ml Carton with Insert",
-"folder": "Pragati Glass & Industries Pvt. Ltd",
-"brand": "Pragati Glass & Industries Pvt. Ltd",
-"category": "PM Vendor"
-},
-{
-"item": "Under eye cream_15ml Zinc applicator Printed Tube with Black cap (19 Dia*90mm)",
-"folder": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
-"brand": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
-"category": "PM Vendor"
-},
-{
-"item": "250ml Pet tinted blue Oval Bottle",
-"folder": "SICON PACKS PRIVATE LIMITED",
-"brand": "SICON PACKS PRIVATE LIMITED",
-"category": "PM Vendor"
-},
-{
-"item": "30ml Serum Hyphen Inner",
-"folder": "A G Polypack",
-"brand": "A G Polypack",
-"category": "PM Vendor"
-},
-{
-"item": "28/410 on-off lotion pump White APT actuator-67mm Dip Tube",
-"folder": "EPL Limited",
-"brand": "EPL Limited",
-"category": "PM Vendor"
-},
-{
-"item": "225 ml Glass drink Jar",
-"folder": "PRISHA TUBES PRIVATE LIMITED",
-"brand": "PRISHA TUBES PRIVATE LIMITED",
-"category": "PM Vendor"
-},
-{
-"item": "300ml Blue (646C) HDPE Slant Bottle",
-"folder": "Purity PolyTube Pvt Ltd",
-"brand": "Purity PolyTube Pvt Ltd",
-"category": "PM Vendor"
-},
-{
-"item": "28mm neck 2337C MSL cap (Fliptop)",
-"folder": "",
-"brand": "",
-"category": ""
-}
-]
+ "rm": [
+  {
+   "item": "Cosroma EAA",
+   "folder": "arkchemicals",
+   "brand": "Ark Chemicals",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Uvinul T150",
+   "folder": "givaudan",
+   "brand": "Givaudan",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Radia 7730",
+   "folder": "",
+   "brand": "",
+   "category": ""
+  },
+  {
+   "item": "Glycerine",
+   "folder": "beemanpharmaceuticals",
+   "brand": "beemanpharmaceuticals",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Tinosorb A2B",
+   "folder": "yashamspecialityingredientspvtltd",
+   "brand": "Yasham",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Uvinul A Plus Granular",
+   "folder": "ahmedabadagency",
+   "brand": "Ahmedabadagency",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Cetiol C5",
+   "folder": "northernaromatics",
+   "brand": "Northern Aromatics",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Galaxy CAPB SB",
+   "folder": "unitedenterprises",
+   "brand": "United Enterprises",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Uvinul MC 80",
+   "folder": "valuetree",
+   "brand": "ValueTree",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Tinosorb M",
+   "folder": "sggreentech",
+   "brand": "SG Green Tech Health & Beauty",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Niacinamide",
+   "folder": "nirmaancosmetic",
+   "brand": "nirmaancosmetic",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Repoly 100",
+   "folder": "connellbrothers",
+   "brand": "Connell Brothers (India) — now operating as Caldic Specialties India Pvt Ltd / Connell Caldic",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Alcohol Denat",
+   "folder": "kayceeenterprise",
+   "brand": "kayceeenterprise",
+   "category": "RM Vendor"
+  },
+  {
+   "item": "Octyl MethoxyCinnamate (OMC)",
+   "folder": "",
+   "brand": "",
+   "category": ""
+  }
+ ],
+ "pm": [
+  {
+   "item": "300ml HDPE 2337C Vacation Bottle",
+   "folder": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+   "brand": "Takemoto Yohki",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "28/410 on-off lotion pump 475C APT actuator-67mm Dip Tube",
+   "folder": "PRINTOTECH GLOBAL LIMITED",
+   "brand": "Printotech Global",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "18/410mm KH180 Serum Pump with Overcap 394C- 57mm dip tube",
+   "folder": "CONTINUITY PRINTERS PVT LTD",
+   "brand": "Continuity Printers",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "300ml 695C HDPE Slant Bottle",
+   "folder": "Alfa Exports",
+   "brand": "Alfa Exports India",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "50ml Frosted KM Lotion Glass Bottle with Printing",
+   "folder": "M-s Khosla Printers",
+   "brand": "M-s Khosla Printers",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "All I Need Sunscreen SPF 50 PA+++_50ml Matt 2296C Oval Printed Tube with 2296C Screw FTC (35dia*110 mm)",
+   "folder": "Radcom Packaging",
+   "brand": "Radcom Packaging",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "Moisturizing Sunscreen SPF 50_50 ml_Carton",
+   "folder": "Manjushree Technopack Limited",
+   "brand": "Manjushree Technopack Limited",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "Double Shot Radiance-Lift Serum Carton 50ml Carton with Insert",
+   "folder": "Pragati Glass & Industries Pvt. Ltd",
+   "brand": "Pragati Glass & Industries Pvt. Ltd",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "Under eye cream_15ml Zinc applicator Printed Tube with Black cap (19 Dia*90mm)",
+   "folder": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+   "brand": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "250ml Pet tinted blue Oval Bottle",
+   "folder": "SICON PACKS PRIVATE LIMITED",
+   "brand": "SICON PACKS PRIVATE LIMITED",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "30ml Serum Hyphen Inner",
+   "folder": "A G Polypack",
+   "brand": "A G Polypack",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "28/410 on-off lotion pump White APT actuator-67mm Dip Tube",
+   "folder": "EPL Limited",
+   "brand": "EPL Limited",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "225 ml Glass drink Jar",
+   "folder": "PRISHA TUBES PRIVATE LIMITED",
+   "brand": "PRISHA TUBES PRIVATE LIMITED",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "300ml Blue (646C) HDPE Slant Bottle",
+   "folder": "Purity PolyTube Pvt Ltd",
+   "brand": "Purity PolyTube Pvt Ltd",
+   "category": "PM Vendor"
+  },
+  {
+   "item": "28mm neck 2337C MSL cap (Fliptop)",
+   "folder": "",
+   "brand": "",
+   "category": ""
+  }
+ ],
+ "mf": [
+  {
+   "item": "Cosroma EAA",
+   "folder": "aelius",
+   "brand": "Aelius Parallel Holdings",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Uvinul T150",
+   "folder": "samrvir",
+   "brand": "Samrvir",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Radia 7730",
+   "folder": "kain",
+   "brand": "KAIN Cosmeceuticals",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Glycerine",
+   "folder": "ultrabeautycare",
+   "brand": "Ultra Beauty Care",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Tinosorb A2B",
+   "folder": "revepharma",
+   "brand": "revepharma",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "All I Need Sunscreen SPF 50 PA+++",
+   "folder": "cheryl",
+   "brand": "Cheryl Laboratories",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Moisturizing Sunscreen SPF 50",
+   "folder": "ngelectro",
+   "brand": "NG Electro",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Double Shot Radiance-Lift Serum",
+   "folder": "ananya",
+   "brand": "Ananya",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Under eye cream",
+   "folder": "allmask",
+   "brand": "All Mask",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Uvinul MC 80",
+   "folder": "vedicnaturals",
+   "brand": "vedicnaturals",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Tinosorb M",
+   "folder": "anuspa",
+   "brand": "Anuspa Heritage Products",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Niacinamide",
+   "folder": "adf",
+   "brand": "adf",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Repoly 100",
+   "folder": "kapco",
+   "brand": "kapco",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Alcohol Denat",
+   "folder": "zymo",
+   "brand": "Zymo",
+   "category": "Manufacturer"
+  },
+  {
+   "item": "Octyl MethoxyCinnamate (OMC)",
+   "folder": "arovea",
+   "brand": "arovea",
+   "category": "Manufacturer"
+  }
+ ],
+ "lines": [
+  {
+   "no": 1,
+   "product": null,
+   "rm": {
+    "item": "Cosroma EAA",
+    "folder": "arkchemicals",
+    "brand": "Ark Chemicals",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "aelius",
+    "brand": "Aelius Parallel Holdings",
+    "mapped": true
+   },
+   "pm": {
+    "item": "300ml HDPE 2337C Vacation Bottle",
+    "folder": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+    "brand": "Takemoto Yohki",
+    "mapped": true
+   }
+  },
+  {
+   "no": 2,
+   "product": null,
+   "rm": {
+    "item": "Uvinul T150",
+    "folder": "givaudan",
+    "brand": "Givaudan",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "samrvir",
+    "brand": "Samrvir",
+    "mapped": true
+   },
+   "pm": {
+    "item": "28/410 on-off lotion pump 475C APT actuator-67mm Dip Tube",
+    "folder": "PRINTOTECH GLOBAL LIMITED",
+    "brand": "Printotech Global",
+    "mapped": true
+   }
+  },
+  {
+   "no": 3,
+   "product": null,
+   "rm": {
+    "item": "Radia 7730",
+    "folder": "",
+    "brand": "psteaindstries",
+    "mapped": false
+   },
+   "mf": {
+    "folder": "kain",
+    "brand": "KAIN Cosmeceuticals",
+    "mapped": true
+   },
+   "pm": {
+    "item": "18/410mm KH180 Serum Pump with Overcap 394C- 57mm dip tube",
+    "folder": "CONTINUITY PRINTERS PVT LTD",
+    "brand": "Continuity Printers",
+    "mapped": true
+   }
+  },
+  {
+   "no": 4,
+   "product": null,
+   "rm": {
+    "item": "Glycerine",
+    "folder": "beemanpharmaceuticals",
+    "brand": "beemanpharmaceuticals",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "ultrabeautycare",
+    "brand": "Ultra Beauty Care",
+    "mapped": true
+   },
+   "pm": {
+    "item": "300ml 695C HDPE Slant Bottle",
+    "folder": "Alfa Exports",
+    "brand": "Alfa Exports India",
+    "mapped": true
+   }
+  },
+  {
+   "no": 5,
+   "product": null,
+   "rm": {
+    "item": "Tinosorb A2B",
+    "folder": "yashamspecialityingredientspvtltd",
+    "brand": "Yasham",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "revepharma",
+    "brand": "revepharma",
+    "mapped": true
+   },
+   "pm": {
+    "item": "50ml Frosted KM Lotion Glass Bottle with Printing",
+    "folder": "M-s Khosla Printers",
+    "brand": "M-s Khosla Printers",
+    "mapped": true
+   }
+  },
+  {
+   "no": 6,
+   "product": "All I Need Sunscreen SPF 50 PA+++",
+   "rm": {
+    "item": "Sum of Formulation",
+    "folder": "",
+    "brand": "greenfarms",
+    "mapped": false
+   },
+   "mf": {
+    "folder": "cheryl",
+    "brand": "Cheryl Laboratories",
+    "mapped": true
+   },
+   "pm": {
+    "item": "All I Need Sunscreen SPF 50 PA+++_50ml Matt 2296C Oval Printed Tube with 2296C Screw FTC (35dia*110 mm)",
+    "folder": "Radcom Packaging",
+    "brand": "Radcom Packaging",
+    "mapped": true
+   }
+  },
+  {
+   "no": 7,
+   "product": "Moisturizing Sunscreen SPF 50",
+   "rm": {
+    "item": "Uvinul A Plus Granular",
+    "folder": "ahmedabadagency",
+    "brand": "Ahmedabadagency",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "ngelectro",
+    "brand": "NG Electro",
+    "mapped": true
+   },
+   "pm": {
+    "item": "Moisturizing Sunscreen SPF 50_50 ml_Carton",
+    "folder": "Manjushree Technopack Limited",
+    "brand": "Manjushree Technopack Limited",
+    "mapped": true
+   }
+  },
+  {
+   "no": 8,
+   "product": "Double Shot Radiance-Lift Serum",
+   "rm": {
+    "item": "Cetiol C5",
+    "folder": "northernaromatics",
+    "brand": "Northern Aromatics",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "ananya",
+    "brand": "Ananya",
+    "mapped": true
+   },
+   "pm": {
+    "item": "Double Shot Radiance-Lift Serum Carton 50ml Carton with Insert",
+    "folder": "Pragati Glass & Industries Pvt. Ltd",
+    "brand": "Pragati Glass & Industries Pvt. Ltd",
+    "mapped": true
+   }
+  },
+  {
+   "no": 9,
+   "product": "Under eye cream",
+   "rm": {
+    "item": "Galaxy CAPB SB",
+    "folder": "unitedenterprises",
+    "brand": "United Enterprises",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "allmask",
+    "brand": "All Mask",
+    "mapped": true
+   },
+   "pm": {
+    "item": "Under eye cream_15ml Zinc applicator Printed Tube with Black cap (19 Dia*90mm)",
+    "folder": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+    "brand": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+    "mapped": true
+   }
+  },
+  {
+   "no": 10,
+   "product": null,
+   "rm": {
+    "item": "Uvinul MC 80",
+    "folder": "valuetree",
+    "brand": "ValueTree",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "vedicnaturals",
+    "brand": "vedicnaturals",
+    "mapped": true
+   },
+   "pm": {
+    "item": "250ml Pet tinted blue Oval Bottle",
+    "folder": "SICON PACKS PRIVATE LIMITED",
+    "brand": "SICON PACKS PRIVATE LIMITED",
+    "mapped": true
+   }
+  },
+  {
+   "no": 11,
+   "product": null,
+   "rm": {
+    "item": "Tinosorb M",
+    "folder": "sggreentech",
+    "brand": "SG Green Tech Health & Beauty",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "anuspa",
+    "brand": "Anuspa Heritage Products",
+    "mapped": true
+   },
+   "pm": {
+    "item": "30ml Serum Hyphen Inner",
+    "folder": "A G Polypack",
+    "brand": "A G Polypack",
+    "mapped": true
+   }
+  },
+  {
+   "no": 12,
+   "product": null,
+   "rm": {
+    "item": "Niacinamide",
+    "folder": "nirmaancosmetic",
+    "brand": "nirmaancosmetic",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "adf",
+    "brand": "adf",
+    "mapped": true
+   },
+   "pm": {
+    "item": "28/410 on-off lotion pump White APT actuator-67mm Dip Tube",
+    "folder": "EPL Limited",
+    "brand": "EPL Limited",
+    "mapped": true
+   }
+  },
+  {
+   "no": 13,
+   "product": null,
+   "rm": {
+    "item": "Repoly 100",
+    "folder": "connellbrothers",
+    "brand": "Connell Brothers (India) — now operating as Caldic Specialties India Pvt Ltd / Connell Caldic",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "kapco",
+    "brand": "kapco",
+    "mapped": true
+   },
+   "pm": {
+    "item": "225 ml Glass drink Jar",
+    "folder": "PRISHA TUBES PRIVATE LIMITED",
+    "brand": "PRISHA TUBES PRIVATE LIMITED",
+    "mapped": true
+   }
+  },
+  {
+   "no": 14,
+   "product": null,
+   "rm": {
+    "item": "Alcohol Denat",
+    "folder": "kayceeenterprise",
+    "brand": "kayceeenterprise",
+    "mapped": true
+   },
+   "mf": {
+    "folder": "zymo",
+    "brand": "Zymo",
+    "mapped": true
+   },
+   "pm": {
+    "item": "300ml Blue (646C) HDPE Slant Bottle",
+    "folder": "Purity PolyTube Pvt Ltd",
+    "brand": "Purity PolyTube Pvt Ltd",
+    "mapped": true
+   }
+  },
+  {
+   "no": 15,
+   "product": null,
+   "rm": {
+    "item": "Octyl MethoxyCinnamate (OMC)",
+    "folder": "",
+    "brand": "wellnexingredients",
+    "mapped": false
+   },
+   "mf": {
+    "folder": "arovea",
+    "brand": "arovea",
+    "mapped": true
+   },
+   "pm": {
+    "item": "28mm neck 2337C MSL cap (Fliptop)",
+    "folder": "",
+    "brand": "—",
+    "mapped": false
+   }
+  }
+ ]
 }

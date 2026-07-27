@@ -6,10 +6,18 @@
 import raw from "./supply.json";
 
 export type SupplyRow = { item: string; folder: string; brand: string; category: string };
-const SUPPLY = raw as { rm: SupplyRow[]; pm: SupplyRow[] };
+// One leg of a supply line — the vendor (or contract manufacturer) for that node.
+// `mapped` is false when the sheet named a vendor we don't yet track as an entity.
+export type SupplyLeg = { item?: string; folder: string; brand: string; mapped: boolean };
+// One row of the client's key-ingredients sheet, reconstructed as a full chain:
+// raw material → its vendor → the contract manufacturer → packaging → its vendor.
+export type SupplyLine = { no: number; product: string | null; rm: SupplyLeg; mf: SupplyLeg; pm: SupplyLeg };
+const SUPPLY = raw as { rm: SupplyRow[]; pm: SupplyRow[]; mf: SupplyRow[]; lines: SupplyLine[] };
 
 export const RM_SUPPLY = SUPPLY.rm;
 export const PM_SUPPLY = SUPPLY.pm;
+export const MF_SUPPLY = SUPPLY.mf;
+export const SUPPLY_LINES = SUPPLY.lines;
 
 // folder -> the mcAFFEINE items this vendor supplies (raw materials + packaging)
 const byFolder = (() => {

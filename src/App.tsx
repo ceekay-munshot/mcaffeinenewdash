@@ -13,9 +13,9 @@ import { negotiationRoom } from "./lib/health";
 import { CATEGORY_COLOR } from "./lib/palette";
 import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
-import { RM_SUPPLY, PM_SUPPLY, suppliedItems } from "./supply";
+import { RM_SUPPLY, PM_SUPPLY, SUPPLY_LINES, suppliedItems, type SupplyLine, type SupplyLeg } from "./supply";
 import { newsOf, type SupplierNews } from "./news";
-import { allMarket, marketOfFolder, pmCategoryOf, CONC_META, LEV_META, type MarketEntry, type Concentration } from "./market";
+import { allMarket, marketOf, marketOfFolder, pmCategoryOf, CONC_META, LEV_META, type MarketEntry, type Concentration } from "./market";
 import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
@@ -397,11 +397,60 @@ function SupplierView() {
   );
 }
 
-// Our supply chain: mcAFFEINE's key raw materials & packaging, each tied to the
-// vendor that supplies it, shown next to that vendor's financial levers. This is
-// the L1 view anchored to what we actually buy (not generic companies). The
-// market-alternatives / monopoly count per ingredient is the L2 Market-structure
-// tab (marketOf / MarketStructureView).
+// Is this supply node a single point of failure — only one credible source, per
+// the L2 market-structure research? RM matches by trade name, PM by its category.
+function isSoleLeg(item: string | undefined, kind: "rm" | "pm"): boolean {
+  if (!item) return false;
+  const key = kind === "rm" ? item : pmCategoryOf(item);
+  return !!key && marketOf(key)?.concentration === "sole";
+}
+
+// One node in a supply line — a clickable vendor / manufacturer with its role.
+function ChainNode({ emoji, role, item, leg, sole, onOpen }: {
+  emoji: string; role: string; item?: string | null; leg: SupplyLeg; sole?: boolean; onOpen: (folder: string) => void;
+}) {
+  const clickable = leg.mapped;
+  return (
+    <button type="button" disabled={!clickable} onClick={clickable ? () => onOpen(leg.folder) : undefined}
+      className={`flex w-full flex-col gap-0.5 rounded-xl p-2.5 text-left ring-1 transition ${clickable ? "bg-white ring-slate-200 hover:bg-teal-50/40 hover:ring-teal-300" : "cursor-default bg-slate-50 ring-slate-100"}`}>
+      <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">{emoji} {role}</span>
+      {item && <span className="truncate text-xs text-slate-500" title={item}>{item}</span>}
+      <span className={`truncate text-sm font-semibold ${clickable ? "text-teal-700" : "text-slate-500"}`} title={leg.brand}>{leg.brand}{clickable ? " ↗" : ""}</span>
+      {sole && <span className="mt-0.5 inline-flex w-fit items-center gap-1 rounded bg-rose-50 px-1.5 py-0.5 text-[10px] font-medium text-rose-700 ring-1 ring-rose-200">🔒 single source</span>}
+    </button>
+  );
+}
+
+// One line of the key-ingredients sheet as a full chain: raw material → its
+// vendor → the contract manufacturer → packaging → its vendor, with single-source
+// risk flagged from the market-structure research.
+function SupplyLineCard({ line, onOpen }: { line: SupplyLine; onOpen: (folder: string) => void }) {
+  const rmSole = isSoleLeg(line.rm.item, "rm");
+  const pmSole = isSoleLeg(line.pm.item, "pm");
+  const soleCount = (rmSole ? 1 : 0) + (pmSole ? 1 : 0);
+  const Arrow = () => <div className="hidden self-center px-0.5 text-slate-300 sm:block" aria-hidden="true">→</div>;
+  return (
+    <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-200">
+      <div className="mb-2 flex flex-wrap items-center gap-2 px-1">
+        <span className="text-xs font-semibold text-slate-400">Line {line.no}</span>
+        {line.product && <span className="text-sm font-semibold text-slate-900">{line.product}</span>}
+        {soleCount > 0 && <span className="inline-flex items-center gap-1 rounded-md bg-rose-50 px-1.5 py-0.5 text-[11px] font-medium text-rose-700 ring-1 ring-rose-200">🔒 {soleCount} single-source risk</span>}
+      </div>
+      <div className="grid items-stretch gap-1.5 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
+        <ChainNode emoji="🧪" role="Raw material" item={line.rm.item} leg={line.rm} sole={rmSole} onOpen={onOpen} />
+        <Arrow />
+        <ChainNode emoji="🏭" role="Made by" leg={line.mf} onOpen={onOpen} />
+        <Arrow />
+        <ChainNode emoji="📦" role="Packaging" item={line.pm.item} leg={line.pm} sole={pmSole} onOpen={onOpen} />
+      </div>
+    </div>
+  );
+}
+
+// Our supply chain: every line of mcAFFEINE's key-ingredients sheet reconstructed
+// as a full chain (raw material → vendor → contract manufacturer → packaging →
+// vendor), flagging single-source risk. The detailed per-leg vendor tables fold
+// underneath. Market depth per item is the L2 Market-structure tab.
 function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const rmVendorCount = useMemo(() => all.filter((e) => e.category === "RM Vendor").length, [all]);
@@ -450,12 +499,28 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
     </Card>
   );
 
+  const mfVendorCount = useMemo(() => all.filter((e) => e.category === "Manufacturer").length, [all]);
+  const openFolder = (folder: string) => { const e = byFolder.get(folder); if (e) onSelect(e); };
+  const soleLines = SUPPLY_LINES.filter((l) => isSoleLeg(l.rm.item, "rm") || isSoleLeg(l.pm.item, "pm")).length;
+
   return (
     <div className="space-y-4">
-      <Section title="Key raw materials" emoji="🧪" accent="#0d9488" itemHead="Raw material"
-        rows={RM_SUPPLY} poolNote={`Each key ingredient & its current vendor · ${rmVendorCount} RM vendors tracked`} />
-      <Section title="Key packaging" emoji="📦" accent="#2a78d6" itemHead="Packaging item"
-        rows={PM_SUPPLY} poolNote={`Each key packaging item & its vendor · ${pmVendorCount} PM vendors tracked`} />
+      <Card title="🔗 Supply chain, line by line"
+        sub={`Every line of the key-ingredients sheet — raw material → its vendor → contract manufacturer → packaging → its vendor · ${rmVendorCount} RM · ${mfVendorCount} manufacturers · ${pmVendorCount} PM tracked${soleLines ? ` · ${soleLines} line${soleLines > 1 ? "s" : ""} carr${soleLines > 1 ? "y" : "ies"} single-source risk` : ""}`}
+        accent="#0d9488">
+        <div className="space-y-2.5">
+          {SUPPLY_LINES.map((l) => <SupplyLineCard key={l.no} line={l} onOpen={openFolder} />)}
+        </div>
+      </Card>
+
+      <Expander count={2} hint="Raw-material vendors table · packaging vendors table — each with financial levers">
+        <div className="space-y-4">
+          <Section title="Key raw materials" emoji="🧪" accent="#0d9488" itemHead="Raw material"
+            rows={RM_SUPPLY} poolNote={`Each key ingredient & its current vendor · ${rmVendorCount} RM vendors tracked`} />
+          <Section title="Key packaging" emoji="📦" accent="#2a78d6" itemHead="Packaging item"
+            rows={PM_SUPPLY} poolNote={`Each key packaging item & its vendor · ${pmVendorCount} PM vendors tracked`} />
+        </div>
+      </Expander>
     </div>
   );
 }
