@@ -207,6 +207,20 @@ export function supplierInsights(e: Entity): Insight[] {
     });
   }
 
+  // Weakening supplier we depend on → protect the relationship rather than squeeze.
+  // A supplier going under disrupts our own supply, so this is a qualitative lever:
+  // support / line up a backup instead of pushing hard on price.
+  const netM = e.financials.netMarginPct ?? last?.netMarginPct ?? null;
+  if ((netM != null && netM < 0) || (revChg != null && revChg < -2)) {
+    const why = netM != null && netM < 0 ? `running a net loss (${r0(netM)}% margin)` : `shrinking (${Math.abs(r0(revChg!))}% revenue drop)`;
+    out.push({
+      tone: "watch",
+      icon: "🤲",
+      title: "Protect the relationship",
+      detail: `This supplier is financially ${why} — rather than push hard on price, it may pay to keep the relationship healthy and line up a backup source, since losing them would disrupt our supply.`,
+    });
+  }
+
   return out;
 }
 
