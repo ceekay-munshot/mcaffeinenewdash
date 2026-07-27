@@ -13,6 +13,7 @@ import { negotiationRoom } from "./lib/health";
 import { CATEGORY_COLOR } from "./lib/palette";
 import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
+import { RM_SUPPLY, PM_SUPPLY, suppliedItems } from "./supply";
 import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
@@ -313,9 +314,10 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "product" | "benchmark";
+type SupTab = "board" | "supply" | "product" | "benchmark";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "board", label: "Supplier board", emoji: "📇" },
+  { key: "supply", label: "Our supply chain", emoji: "🧬" },
   { key: "product", label: "By product", emoji: "🧴" },
   { key: "benchmark", label: "Benchmark charts", emoji: "📊" },
 ];
@@ -356,11 +358,75 @@ function SupplierView() {
             <button onClick={() => setCompareMode(true)} className="inline-flex items-center gap-1.5 rounded-lg bg-teal-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">🆚 Compare suppliers</button>
           </div>
           {tab === "board" && <SupplierBoard all={all} onSelect={openSupplier} />}
+          {tab === "supply" && <SupplyChainView all={all} onSelect={openSupplier} />}
           {tab === "product" && <SupplierByProduct all={all} onSelect={openSupplier} />}
           {tab === "benchmark" && <BenchmarkView all={all} onSelect={openSupplier} />}
         </>
       )}
     </main>
+  );
+}
+
+// Our supply chain: mcAFFEINE's key raw materials & packaging, each tied to the
+// vendor that supplies it, shown next to that vendor's financial levers. This is
+// the L1 view anchored to what we actually buy (not generic companies). The
+// market-alternatives / monopoly count per ingredient is L2 (India Trade), noted
+// but not yet filled.
+function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
+  const rmVendorCount = useMemo(() => all.filter((e) => e.category === "RM Vendor").length, [all]);
+  const pmVendorCount = useMemo(() => all.filter((e) => e.category === "PM Vendor").length, [all]);
+
+  const Section = ({ title, emoji, accent, itemHead, rows, poolNote }: {
+    title: string; emoji: string; accent: string; itemHead: string;
+    rows: { item: string; folder: string }[]; poolNote: string;
+  }) => (
+    <Card title={`${emoji} ${title}`} sub={poolNote} accent={accent}>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[820px] border-collapse text-sm">
+          <thead>
+            <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
+              <Th>{itemHead}</Th><Th>Current vendor</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th>Negotiation levers</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(({ item, folder }) => {
+              const e = byFolder.get(folder);
+              const ins = e ? supplierInsights(e) : [];
+              const levers = leverTagsOf(ins);
+              // don't show only "negotiate" chips for a weakening vendor — flag caution too
+              const caution = ins.find((i) => i.title === "Protect the relationship") ?? ins.find((i) => i.tone === "risk");
+              return (
+                <tr key={item} onClick={() => e && onSelect(e)} className={`border-t border-slate-100 transition ${e ? "cursor-pointer hover:bg-teal-50/50" : ""}`}>
+                  <td className="max-w-[280px] px-4 py-3.5"><div className="truncate font-semibold text-slate-900" title={item}>{item}</div></td>
+                  <td className="max-w-[220px] px-4 py-3.5">{e ? <span className="flex items-center gap-1.5 text-slate-700" title={e.brand}><span className="shrink-0">{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></span> : <span className="text-slate-400">—</span>}</td>
+                  <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-900">{e ? fmtCrore(revOf(e)) : "—"}</td>
+                  <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{e ? fmtPct(ebitdaMarginOf(e)) : "—"}</td>
+                  <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{e ? fmtPct(supRoce(e)) : "—"}</td>
+                  <td className="px-4 py-3.5">
+                    {!caution && levers.length === 0 ? <span className="text-xs text-slate-400">—</span> : (
+                      <div className="flex flex-wrap gap-1">
+                        {caution && <span title={caution.detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-rose-50 px-1.5 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200">{caution.icon} {caution.title === "Protect the relationship" ? "Protect" : "Caution"}</span>}
+                        {levers.map(({ short, emoji, detail }) => <span key={short} title={detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>)}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </Card>
+  );
+
+  return (
+    <div className="space-y-4">
+      <Section title="Key raw materials" emoji="🧪" accent="#0d9488" itemHead="Raw material"
+        rows={RM_SUPPLY} poolNote={`Each of mcAFFEINE's key ingredients and the vendor that supplies it · ${rmVendorCount} RM vendors tracked · how many others could supply each one comes in L2 (India Trade)`} />
+      <Section title="Key packaging" emoji="📦" accent="#2a78d6" itemHead="Packaging item"
+        rows={PM_SUPPLY} poolNote={`Each key packaging item and its vendor · ${pmVendorCount} PM vendors tracked · market alternatives per item come in L2`} />
+    </div>
   );
 }
 
@@ -605,7 +671,15 @@ function VerdictCard({ emoji, title, e, color, note, onSelect }: { emoji: string
 function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; onBack: () => void; onSelect: (e: Entity) => void }) {
   const colorOf = (e: Entity) => CMP_COLORS[selected.indexOf(e) % CMP_COLORS.length];
 
-  const reneg = selected.map((e) => ({ e, s: supplierInsights(e).filter((i) => i.tone === "opportunity").reduce((a, i) => a + (RENEG_WEIGHT[i.title] ?? 1), 0) })).sort((a, b) => b.s - a.s);
+  // A weakening supplier can carry both an opportunity lever and a "protect the
+  // relationship" watch — don't let it win "most room to renegotiate". Protection
+  // overrides the aggressive-negotiation score.
+  const reneg = selected.map((e) => {
+    const ins = supplierInsights(e);
+    const protect = ins.some((i) => i.title === "Protect the relationship");
+    const s = protect ? 0 : ins.filter((i) => i.tone === "opportunity").reduce((a, i) => a + (RENEG_WEIGHT[i.title] ?? 1), 0);
+    return { e, s };
+  }).sort((a, b) => b.s - a.s);
   const fit = selected.map((e) => { const ax = fitnessAxes(e); return { e, s: ax.length ? ax.reduce((a, x) => a + x.score, 0) / ax.length : 0 }; }).sort((a, b) => b.s - a.s);
   const bestReneg = reneg[0] && reneg[0].s > 0 ? reneg[0] : null;
   const bestFit = fit[0];
@@ -1212,6 +1286,7 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
               <div className="mt-0.5 text-sm text-white/70">{e.legalName ?? e.folder}</div>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 <span className="inline-flex items-center gap-1 rounded-full bg-white/12 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/20">{catEmoji(e.category)} {e.category}</span>
+                {suppliedItems(e.folder).length > 0 && <span className="inline-flex items-center gap-1 rounded-full bg-teal-400/25 px-2 py-0.5 text-xs font-medium text-teal-50 ring-1 ring-teal-200/40" title={`Supplies mcAFFEINE: ${suppliedItems(e.folder).join(", ")}`}>🧬 Supplies: {suppliedItems(e.folder).slice(0, 2).join(", ")}{suppliedItems(e.folder).length > 2 ? ` +${suppliedItems(e.folder).length - 2}` : ""}</span>}
                 {kind !== "competitor" && room !== "Unknown" && <span className="rounded-full bg-white/12 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/20">Negotiation room: {room}</span>}
                 {e.pdf && (flags.length ? <span className="rounded-full bg-rose-500/25 px-2 py-0.5 text-xs font-medium text-rose-100 ring-1 ring-rose-300/30">🚩 {flags.length} risk flag{flags.length > 1 ? "s" : ""}</span> : <span className="rounded-full bg-emerald-500/25 px-2 py-0.5 text-xs font-medium text-emerald-100 ring-1 ring-emerald-300/30">✓ No risk flags</span>)}
               </div>

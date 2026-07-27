@@ -1,0 +1,186 @@
+{
+"rm": [
+{
+"item": "Cosroma EAA",
+"folder": "arkchemicals",
+"brand": "Ark Chemicals",
+"category": "RM Vendor"
+},
+{
+"item": "Uvinul T150",
+"folder": "givaudan",
+"brand": "Givaudan",
+"category": "RM Vendor"
+},
+{
+"item": "Radia 7730",
+"folder": "psteaindstries",
+"brand": "Drama Llama",
+"category": "RM Vendor"
+},
+{
+"item": "Glycerine",
+"folder": "beemanpharmaceuticals",
+"brand": "beemanpharmaceuticals",
+"category": "RM Vendor"
+},
+{
+"item": "Tinosorb A2B",
+"folder": "yashamspecialityingredientspvtltd",
+"brand": "Yasham",
+"category": "RM Vendor"
+},
+{
+"item": "Sum of Formulation",
+"folder": "",
+"brand": "",
+"category": ""
+},
+{
+"item": "Uvinul A Plus Granular",
+"folder": "ahmedabadagency",
+"brand": "Ahmedabadagency",
+"category": "RM Vendor"
+},
+{
+"item": "Cetiol C5",
+"folder": "northernaromatics",
+"brand": "Northern Aromatics",
+"category": "RM Vendor"
+},
+{
+"item": "Galaxy CAPB SB",
+"folder": "unitedenterprises",
+"brand": "United Enterprises",
+"category": "RM Vendor"
+},
+{
+"item": "Uvinul MC 80",
+"folder": "valuetree",
+"brand": "ValueTree",
+"category": "RM Vendor"
+},
+{
+"item": "Tinosorb M",
+"folder": "sggreentech",
+"brand": "SG Green Tech Health & Beauty",
+"category": "RM Vendor"
+},
+{
+"item": "Niacinamide",
+"folder": "nirmaancosmetic",
+"brand": "nirmaancosmetic",
+"category": "RM Vendor"
+},
+{
+"item": "Repoly 100",
+"folder": "connellbrothers",
+"brand": "Connell Brothers (India) — now operating as Caldic Specialties India Pvt Ltd / Connell Caldic",
+"category": "RM Vendor"
+},
+{
+"item": "Alcohol Denat",
+"folder": "kayceeenterprise",
+"brand": "kayceeenterprise",
+"category": "RM Vendor"
+},
+{
+"item": "Octyl MethoxyCinnamate (OMC)",
+"folder": "",
+"brand": "",
+"category": ""
+}
+],
+"pm": [
+{
+"item": "300ml HDPE 2337C Vacation Bottle",
+"folder": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+"brand": "Takemoto Yohki",
+"category": "PM Vendor"
+},
+{
+"item": "28/410 on-off lotion pump 475C APT actuator-67mm Dip Tube",
+"folder": "PRINTOTECH GLOBAL LIMITED",
+"brand": "Printotech Global",
+"category": "PM Vendor"
+},
+{
+"item": "18/410mm KH180 Serum Pump with Overcap 394C- 57mm dip tube",
+"folder": "CONTINUITY PRINTERS PVT LTD",
+"brand": "Continuity Printers",
+"category": "PM Vendor"
+},
+{
+"item": "300ml 695C HDPE Slant Bottle",
+"folder": "Alfa Exports",
+"brand": "Alfa Exports India",
+"category": "PM Vendor"
+},
+{
+"item": "50ml Frosted KM Lotion Glass Bottle with Printing",
+"folder": "M-s Khosla Printers",
+"brand": "M-s Khosla Printers",
+"category": "PM Vendor"
+},
+{
+"item": "All I Need Sunscreen SPF 50 PA+++_50ml Matt 2296C Oval Printed Tube with 2296C Screw FTC (35dia*110 mm)",
+"folder": "Radcom Packaging",
+"brand": "Radcom Packaging",
+"category": "PM Vendor"
+},
+{
+"item": "Moisturizing Sunscreen SPF 50_50 ml_Carton",
+"folder": "Manjushree Technopack Limited",
+"brand": "Manjushree Technopack Limited",
+"category": "PM Vendor"
+},
+{
+"item": "Double Shot Radiance-Lift Serum Carton 50ml Carton with Insert",
+"folder": "Pragati Glass & Industries Pvt. Ltd",
+"brand": "Pragati Glass & Industries Pvt. Ltd",
+"category": "PM Vendor"
+},
+{
+"item": "Under eye cream_15ml Zinc applicator Printed Tube with Black cap (19 Dia*90mm)",
+"folder": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+"brand": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+"category": "PM Vendor"
+},
+{
+"item": "250ml Pet tinted blue Oval Bottle",
+"folder": "SICON PACKS PRIVATE LIMITED",
+"brand": "SICON PACKS PRIVATE LIMITED",
+"category": "PM Vendor"
+},
+{
+"item": "30ml Serum Hyphen Inner",
+"folder": "A G Polypack",
+"brand": "A G Polypack",
+"category": "PM Vendor"
+},
+{
+"item": "28/410 on-off lotion pump White APT actuator-67mm Dip Tube",
+"folder": "EPL Limited",
+"brand": "EPL Limited",
+"category": "PM Vendor"
+},
+{
+"item": "225 ml Glass drink Jar",
+"folder": "PRISHA TUBES PRIVATE LIMITED",
+"brand": "PRISHA TUBES PRIVATE LIMITED",
+"category": "PM Vendor"
+},
+{
+"item": "300ml Blue (646C) HDPE Slant Bottle",
+"folder": "Purity PolyTube Pvt Ltd",
+"brand": "Purity PolyTube Pvt Ltd",
+"category": "PM Vendor"
+},
+{
+"item": "28mm neck 2337C MSL cap (Fliptop)",
+"folder": "",
+"brand": "",
+"category": ""
+}
+]
+}
