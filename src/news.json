@@ -63,14 +63,14 @@
 },
 "samrvir": {
 "found": true,
-"summary": "Samrvir Biotech filed an IBC insolvency petition against Quorvion Private Limited in 2025, indicating a payment/recovery dispute with a counterparty.",
+"summary": "Samrvir Biotech is the PETITIONER in an NCLT insolvency case (C.P.(IB)/188/ND/2025, filed Mar 2025, pending) against its counterparty Clensta International Pvt Ltd — i.e. it is pursuing recovery of dues, not itself under insolvency.",
 "news": [],
 "signals": [
 {
 "type": "legal",
-"oneLine": "Filed IBC insolvency petition (C.P.(IB)/188/ND/2025) against Quorvion Pvt Ltd.",
+"oneLine": "Petitioner in IBC case C.P.(IB)/188/ND/2025 vs Clensta International (recovery of dues, pending).",
 "source": "Tracxn legal details",
-"url": "https://tracxn.com/d/legal-entities/india/samrvir-biotech-private-limited/__w4BF2pkw0VxSsqTmFZO6aO7g3tl0EeNAv1hu73pEYeg"
+"url": "https://tracxn.com/d/legal-entities/india/samrvir-biotech-private-limited"
 }
 ]
 },

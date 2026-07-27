@@ -1461,7 +1461,7 @@ function companyCards(e: Entity, kind: CompanyKind): CardDesc[] {
   if (c?.materialEvent) cards.push({ key: "event", title: "📰 Latest material event", node: <p className="text-sm leading-relaxed text-slate-700">{c.materialEvent}</p> });
 
   const news = newsOf(e.folder);
-  if (news) cards.push({ key: "news", title: "📰 Recent news & signals", sub: "last ~12 months, from the open web", node: <NewsBody n={news} /> });
+  if (news) cards.push({ key: "news", title: "📰 News & signals", sub: "notable developments sourced from the open web · see each item's date", node: <NewsBody n={news} /> });
 
   if (e.research) cards.push({ key: "research", title: "🔎 Research", node: <ResearchBody r={e.research} /> });
 
