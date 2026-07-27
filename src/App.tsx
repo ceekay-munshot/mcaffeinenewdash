@@ -671,7 +671,15 @@ function VerdictCard({ emoji, title, e, color, note, onSelect }: { emoji: string
 function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; onBack: () => void; onSelect: (e: Entity) => void }) {
   const colorOf = (e: Entity) => CMP_COLORS[selected.indexOf(e) % CMP_COLORS.length];
 
-  const reneg = selected.map((e) => ({ e, s: supplierInsights(e).filter((i) => i.tone === "opportunity").reduce((a, i) => a + (RENEG_WEIGHT[i.title] ?? 1), 0) })).sort((a, b) => b.s - a.s);
+  // A weakening supplier can carry both an opportunity lever and a "protect the
+  // relationship" watch — don't let it win "most room to renegotiate". Protection
+  // overrides the aggressive-negotiation score.
+  const reneg = selected.map((e) => {
+    const ins = supplierInsights(e);
+    const protect = ins.some((i) => i.title === "Protect the relationship");
+    const s = protect ? 0 : ins.filter((i) => i.tone === "opportunity").reduce((a, i) => a + (RENEG_WEIGHT[i.title] ?? 1), 0);
+    return { e, s };
+  }).sort((a, b) => b.s - a.s);
   const fit = selected.map((e) => { const ax = fitnessAxes(e); return { e, s: ax.length ? ax.reduce((a, x) => a + x.score, 0) / ax.length : 0 }; }).sort((a, b) => b.s - a.s);
   const bestReneg = reneg[0] && reneg[0].s > 0 ? reneg[0] : null;
   const bestFit = fit[0];
