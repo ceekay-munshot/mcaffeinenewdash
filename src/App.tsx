@@ -80,7 +80,7 @@ export default function App() {
   // Competitors & Delivery are locked for now — only ever show Suppliers.
   const active = MODULES.find((m) => m.key === module)?.locked ? "suppliers" : module;
   return (
-    <div className="min-h-screen bg-[#f6f4ef] text-slate-800">
+    <div className="min-h-screen overflow-x-hidden bg-[#f6f4ef] text-slate-800">
       <Header module={active} setModule={setModule} generatedAt={DATA.generatedAt} />
       {active === "suppliers" && <SupplierView />}
       {active === "competitors" && <CompetitorView />}
@@ -105,16 +105,19 @@ function Header({ module, setModule, generatedAt }: { module: Module; setModule:
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <nav className="flex gap-1 rounded-2xl bg-black/15 p-1 ring-1 ring-white/15">
+          <nav className="flex flex-wrap justify-end gap-1 rounded-2xl bg-black/15 p-1 ring-1 ring-white/15">
             {MODULES.map((m) => m.locked ? (
-              <span key={m.key} title="Coming soon — locked while we focus on Suppliers"
-                className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-sm font-semibold text-white/40">
-                <span className="opacity-60">{m.emoji}</span>{m.label}<span className="text-[11px]">🔒</span>
-              </span>
+              <button key={m.key} type="button" aria-disabled="true"
+                aria-label={`${m.label} — coming soon, locked while we focus on Suppliers`}
+                title="Coming soon — locked while we focus on Suppliers"
+                onClick={(e) => e.preventDefault()}
+                className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-xl px-2.5 py-1.5 text-sm font-semibold text-white/40 sm:px-3.5">
+                <span className="opacity-60" aria-hidden="true">{m.emoji}</span>{m.label}<span className="text-[11px]" aria-hidden="true">🔒</span>
+              </button>
             ) : (
               <button key={m.key} onClick={() => setModule(m.key)}
-                className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-sm font-semibold transition ${module === m.key ? "bg-white text-[#0b3b39] shadow-sm" : "text-white/80 hover:bg-white/10 hover:text-white"}`}>
-                <span>{m.emoji}</span>{m.label}
+                className={`inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 text-sm font-semibold transition sm:px-3.5 ${module === m.key ? "bg-white text-[#0b3b39] shadow-sm" : "text-white/80 hover:bg-white/10 hover:text-white"}`}>
+                <span aria-hidden="true">{m.emoji}</span>{m.label}
               </button>
             ))}
           </nav>
