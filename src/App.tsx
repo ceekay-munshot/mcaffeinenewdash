@@ -672,10 +672,10 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
 
       <Card title={`🏭 Suppliers who sell ${entry.item}`} sub={alts.length ? `Our current vendor vs ${alts.length} alternatives found on IndiaMART / TradeIndia — click your vendor for its full profile` : "Our current vendor for this item"} accent="#0d9488">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[760px] border-collapse text-sm">
+          <table className="w-full min-w-[880px] border-collapse text-sm">
             <thead>
               <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
-                <Th>Supplier</Th><Th>Role</Th><Th>Location</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th>Note</Th>
+                <Th>Supplier</Th><Th>Role</Th><Th>Location</Th><Th right>Market ₹/kg</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th>Note</Th>
               </tr>
             </thead>
             <tbody>
@@ -684,6 +684,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
                   <td className="px-4 py-3 font-semibold text-slate-900">⭐ {currentVendor.brand}</td>
                   <td className="px-4 py-3"><span className="inline-flex rounded-md bg-teal-100 px-1.5 py-0.5 text-xs font-medium text-teal-800">Our vendor</span></td>
                   <td className="px-4 py-3 text-slate-500">{loc(currentVendor)}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-orange-700">{hasPrice ? entry.priceINRPerKg : "—"}</td>
                   <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(currentVendor))}</td>
                   <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitdaMarginOf(currentVendor))}</td>
                   <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(supRoce(currentVendor))}</td>
@@ -697,6 +698,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
                     <td className="px-4 py-3 font-medium text-slate-800">{a.name}</td>
                     <td className="px-4 py-3"><span className="inline-flex rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600">Alternative</span></td>
                     <td className="px-4 py-3 text-slate-500">{a.location || "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-orange-600">{hasPrice ? entry.priceINRPerKg : "—"}</td>
                     <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{a.revenueCr != null ? crStr(a.revenueCr) : "—"}</td>
                     <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{a.ebitdaPct != null ? `${a.ebitdaPct}%` : a.cin ? <span className="text-amber-600" title="Private company — pull via Tracxn/Probe using the CIN in the Note column">Tracxn</span> : "—"}</td>
                     <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{a.rocePct != null ? `${a.rocePct}%` : "—"}</td>
@@ -707,6 +709,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
             </tbody>
           </table>
         </div>
+        <p className="mt-2 px-1 text-[11px] leading-relaxed text-slate-400">"Market ₹/kg" is the open-market band for this material (IndiaMART) — the going rate, shown for reference, not each seller's individual quote. Exact per-vendor quotes come back on an RFQ.</p>
       </Card>
 
       {currentVendor && ins.length > 0 && (
