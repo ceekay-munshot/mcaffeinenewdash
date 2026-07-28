@@ -29,6 +29,9 @@ const LIVE = has("--live");
 const REFRESH = has("--refresh");
 const LIMIT = val("--limit") ? Number(val("--limit")) : Infinity;
 const ONLY = val("--only");
+// --status: only ask Probe42 whether data exists (datastatus), never pull the
+// paid comprehensive report. A cheap availability survey before spending credits.
+const STATUS_ONLY = has("--status");
 
 mkdirSync(CACHE_DIR, { recursive: true });
 
@@ -64,6 +67,24 @@ if (ONLY) targets = targets.filter((e) => e.cin === ONLY || e.folder === ONLY);
 
 console.log(`Probe42 enrich — base=${probe.base} env=${probe.env} live=${LIVE}`);
 console.log(`Targets: ${targets.length} supply-side companies with a CIN` + (Number.isFinite(LIMIT) ? ` (limit ${LIMIT})` : ""));
+
+// --status: availability survey only. Calls datastatus (no comprehensive report,
+// so no report credit), prints who has data ready vs who'd need an async update.
+if (STATUS_ONLY) {
+  console.log(`\n--status: checking Probe42 data availability only — NOT pulling any report.\n`);
+  let hasData = 0, noData = 0, errs = 0;
+  const list = Number.isFinite(LIMIT) ? targets.slice(0, LIMIT) : targets;
+  for (const e of list) {
+    const s = await probe.dataStatus(e.cin);
+    if (!s.ok) { console.log(`  ? ${e.brand} (${e.cin}) — datastatus ${s.status}`); errs++; continue; }
+    const last = findFirst(s.body, "last_details_updated");
+    if (last == null) { console.log(`  · ${e.brand} (${e.cin}) — NO data ready yet (would need an async update ~4h)`); noData++; }
+    else { console.log(`  ✓ ${e.brand} (${e.cin}) — HAS DATA (last updated ${last})`); hasData++; }
+  }
+  console.log(`\nStatus check done. has-data=${hasData} · no-data=${noData} · errors=${errs}`);
+  console.log(`(no comprehensive report was pulled)`);
+  process.exit(0);
+}
 
 let fetched = 0, cached = 0, skipped = 0;
 for (const e of targets) {

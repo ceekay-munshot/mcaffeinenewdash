@@ -17,12 +17,20 @@ name: Probe42 refresh
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: "check-status = only ask if Probe42 has data (no report pulled) · fetch-data = pull the report (spends a credit)"
+        required: true
+        default: "check-status"
+        type: choice
+        options:
+          - check-status
+          - fetch-data
       limit:
-        description: "Max NEW companies to fetch this run (each one spends credits)"
+        description: "How many companies to act on this run"
         required: true
         default: "1"
       company:
-        description: "Optional: a specific supplier to fetch — its CIN or folder name (blank = auto-pick the first un-fetched one)"
+        description: "Optional: a specific supplier — its CIN or folder name (blank = auto-pick the first un-fetched one)"
         required: false
         default: ""
 
@@ -98,7 +106,7 @@ jobs:
             exit 1
           fi
 
-      - name: Enrich from Probe42 (LIVE — spends credits)
+      - name: Run Probe42 (status check, or live fetch — per mode)
         env:
           # production key; prefer the new name, fall back to the old one
           PROBE42_API_KEY: ${{ secrets.PROBE42_API_KEY_PROD || secrets.PROBE42_API_KEY }}
@@ -107,7 +115,7 @@ jobs:
           PROBE42_REPORT_PREFIX: ${{ vars.PROBE42_REPORT_PREFIX }}
           PROBE42_API_VERSION: ${{ vars.PROBE42_API_VERSION }}
           PROBE42_ENV: ${{ vars.PROBE42_ENV }}
-        run: node scripts/probe/enrich.mjs --live --limit "${{ github.event.inputs.limit }}" ${{ github.event.inputs.company && format('--only {0}', github.event.inputs.company) || '' }}
+        run: node scripts/probe/enrich.mjs --live ${{ github.event.inputs.mode == 'check-status' && '--status' || '' }} --limit "${{ github.event.inputs.limit }}" ${{ github.event.inputs.company && format('--only {0}', github.event.inputs.company) || '' }}
 
       - name: Commit refreshed data
         run: |

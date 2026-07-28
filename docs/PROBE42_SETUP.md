@@ -66,6 +66,15 @@ variables → Actions → **Variables** tab):
 | `PROBE42_REPORT_PREFIX` | prod report segment from Probe42's POC (if different)     |
 | `VPN_EXPECTED_EXIT_IP`  | `15.207.17.59` (optional — enables the ✅/⚠️ auto-check)   |
 
-Then Actions → **Probe42 refresh** → Run workflow → set **limit = 1** for the
-first test: one company, one small credit spend, to confirm live data flows.
-The job is manual-only and limited per run, so cost never surprises you.
+Then Actions → **Probe42 refresh** → Run workflow. It has a **mode**:
+
+- **`check-status`** (default) — only asks Probe42 whether it *has* data for the
+  company (the `datastatus` endpoint); it does **not** pull the report, so it
+  spends no report credit. Use this first to see if a company is worth fetching.
+- **`fetch-data`** — pulls the full report for the company (spends a credit).
+  Already-cached companies are read free and never re-charged.
+
+Recommended first run: **mode `check-status`, limit `1`, company `<a folder>`** to
+confirm the prod endpoint works and the company has data — then switch to
+**`fetch-data`** for the real pull. Manual-only and limited per run, so cost
+never surprises you.
