@@ -32,12 +32,18 @@ function headers() {
   };
 }
 
+function hdrsToObj(res) {
+  const h = {};
+  res.headers.forEach((v, k) => { h[k] = v; });
+  return h;
+}
+
 async function get(path) {
   const res = await fetch(`${BASE}${path}`, { headers: headers() });
   const text = await res.text();
   let body;
   try { body = JSON.parse(text); } catch { body = text; }
-  return { ok: res.ok, status: res.status, body };
+  return { ok: res.ok, status: res.status, body, headers: hdrsToObj(res) };
 }
 
 async function post(path) {
@@ -45,7 +51,7 @@ async function post(path) {
   const text = await res.text();
   let body;
   try { body = JSON.parse(text); } catch { body = text; }
-  return { ok: res.ok, status: res.status, body };
+  return { ok: res.ok, status: res.status, body, headers: hdrsToObj(res) };
 }
 
 export const probe = {

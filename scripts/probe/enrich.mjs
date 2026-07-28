@@ -74,12 +74,18 @@ if (STATUS_ONLY) {
   console.log(`\n--status: checking Probe42 data availability only — NOT pulling any report.\n`);
   let hasData = 0, noData = 0, errs = 0;
   const list = Number.isFinite(LIMIT) ? targets.slice(0, LIMIT) : targets;
-  for (const e of list) {
+  for (const [i, e] of list.entries()) {
     const s = await probe.dataStatus(e.cin);
-    if (!s.ok) { console.log(`  ? ${e.brand} (${e.cin}) — datastatus ${s.status}`); errs++; continue; }
-    const last = findFirst(s.body, "last_details_updated");
-    if (last == null) { console.log(`  · ${e.brand} (${e.cin}) — NO data ready yet (would need an async update ~4h)`); noData++; }
-    else { console.log(`  ✓ ${e.brand} (${e.cin}) — HAS DATA (last updated ${last})`); hasData++; }
+    if (!s.ok) { console.log(`  ? ${e.brand} (${e.cin}) — datastatus ${s.status}`); errs++; }
+    else {
+      const last = findFirst(s.body, "last_details_updated");
+      if (last == null) { console.log(`  · ${e.brand} (${e.cin}) — NO data ready yet (would need an async update ~4h)`); noData++; }
+      else { console.log(`  ✓ ${e.brand} (${e.cin}) — HAS DATA (last updated ${last})`); hasData++; }
+    }
+    // surface any credit/quota signal Probe42 returns, so cost is visible in-log
+    const quota = Object.entries(s.headers || {}).filter(([k]) => /credit|quota|limit|remain|balance|usage/i.test(k));
+    if (quota.length) console.log(`      credit/quota headers: ${quota.map(([k, v]) => `${k}=${v}`).join(" · ")}`);
+    if (i === 0) console.log(`      (raw datastatus body of 1st company, for inspection) ${JSON.stringify(s.body).slice(0, 800)}`);
   }
   console.log(`\nStatus check done. has-data=${hasData} · no-data=${noData} · errors=${errs}`);
   console.log(`(no comprehensive report was pulled)`);
