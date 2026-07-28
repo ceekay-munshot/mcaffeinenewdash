@@ -50,10 +50,22 @@ It will:
 ✅ Success = the "after" IP matches the IP Probe42 has whitelisted. It does **not**
 call Probe42, so it costs nothing.
 
-## Step 3 — (later, together) actually pull data
+## Step 3 — the real pull (spends credits)
 
-Once the VPN check is green, we wire the same VPN-connect steps into
-`.github/workflows/probe-refresh.yml` (the real pull) and do a tiny **1-company**
-test run to confirm real data flows — then decide how to spend the rest of the
-credits. That pull is **manual-only** and limited per run, so it never surprises
-you on cost.
+The `Probe42 refresh` workflow is now wired: it connects the VPN, routes the
+Probe42 host through it, and **hard-aborts before any call if Probe42 isn't
+going through the tunnel** — so a misconfig can't burn a credit.
+
+Before the first run, set these repo **Variables** (Settings → Secrets and
+variables → Actions → **Variables** tab):
+
+| Variable                | Value                                                     |
+| ----------------------- | --------------------------------------------------------- |
+| `PROBE42_ENV`           | `prod`                                                    |
+| `PROBE42_PATH_PREFIX`   | prod path segment from Probe42's POC (if not `probe_pro`) |
+| `PROBE42_REPORT_PREFIX` | prod report segment from Probe42's POC (if different)     |
+| `VPN_EXPECTED_EXIT_IP`  | `15.207.17.59` (optional — enables the ✅/⚠️ auto-check)   |
+
+Then Actions → **Probe42 refresh** → Run workflow → set **limit = 1** for the
+first test: one company, one small credit spend, to confirm live data flows.
+The job is manual-only and limited per run, so cost never surprises you.

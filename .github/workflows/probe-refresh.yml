@@ -1,15 +1,26 @@
 name: Probe42 refresh
 
 # Manual-only by design: each live fetch spends Probe42 credits, so this never
-# runs on a schedule automatically. Trigger it from the Actions tab when you want
-# to pull deep financials, choosing how many companies to fetch.
+# runs on a schedule. Trigger it from the Actions tab and choose how many
+# companies to fetch (default 1 for a safe first test).
+#
+# Probe42 prod is IP-whitelisted, so this job connects the client VPN and routes
+# the Probe42 host through it BEFORE any call, then hard-aborts (no credit spent)
+# if Probe42 isn't actually going through the tunnel. See docs/PROBE42_SETUP.md.
+#
+# Secrets:  PROBE42_API_KEY_PROD, VPN_OVPN, VPN_USER, VPN_PASS
+#           (old names PROBE42_API_KEY / VPN_CONFIG / VPN_USERNAME / VPN_PASSWORD
+#            still work as a fallback).
+# Variables (for prod): PROBE42_ENV=prod  (+ PROBE42_PATH_PREFIX /
+#           PROBE42_REPORT_PREFIX from Probe42's POC if the default segment differs).
+
 on:
   workflow_dispatch:
     inputs:
       limit:
-        description: "Max NEW companies to fetch this run (cost control)"
+        description: "Max NEW companies to fetch this run (each one spends credits)"
         required: true
-        default: "2"
+        default: "1"
 
 permissions:
   contents: write
@@ -22,19 +33,78 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Enrich from Probe42
+
+      - name: Install OpenVPN
+        run: sudo apt-get update -y && sudo apt-get install -y openvpn
+
+      - name: Write VPN config + auth file (not printed)
         env:
-          # secret — the production key. Prefer PROBE42_API_KEY_PROD; fall back to
-          # the old PROBE42_API_KEY name if that's the only one set.
+          VPN_CONFIG: ${{ secrets.VPN_OVPN || secrets.VPN_CONFIG }}
+          VPN_USERNAME: ${{ secrets.VPN_USER || secrets.VPN_USERNAME }}
+          VPN_PASSWORD: ${{ secrets.VPN_PASS || secrets.VPN_PASSWORD }}
+        run: |
+          printf '%s\n' "$VPN_CONFIG" > client.ovpn
+          u="$(printf '%s' "$VPN_USERNAME" | tr -d '\r\n')"
+          p="$(printf '%s' "$VPN_PASSWORD" | tr -d '\r\n')"
+          printf '%s\n%s\n' "$u" "$p" > vpn-auth.txt
+          chmod 600 client.ovpn vpn-auth.txt
+          if grep -q '^[[:space:]]*auth-user-pass' client.ovpn; then
+            sed -i 's|^[[:space:]]*auth-user-pass.*|auth-user-pass vpn-auth.txt|' client.ovpn
+          else
+            echo 'auth-user-pass vpn-auth.txt' >> client.ovpn
+          fi
+
+      - name: Connect VPN
+        run: |
+          sudo openvpn --config client.ovpn --auth-user-pass vpn-auth.txt \
+            --daemon --log vpn.log --writepid vpn.pid
+          up=0
+          for i in $(seq 1 30); do
+            if ip addr show tun0 >/dev/null 2>&1; then up=1; break; fi
+            sleep 2
+          done
+          if [ "$up" -ne 1 ]; then
+            echo "::error::VPN tunnel did not come up. Last 40 log lines:"
+            sudo tail -n 40 vpn.log || true
+            exit 1
+          fi
+          echo "✅ Tunnel is up (tun0)."
+
+      - name: Route Probe42 through the VPN (aborts before any credit if it can't)
+        env:
+          PROBE42_BASE_URL: ${{ vars.PROBE42_BASE_URL }}
+        run: |
+          base="${PROBE42_BASE_URL:-https://api.probe42.in}"
+          host="$(printf '%s' "$base" | sed -E 's#^https?://##; s#/.*##')"
+          ips="$(getent ahostsv4 "$host" | awk '{print $1}' | sort -u)"
+          if [ -z "$ips" ]; then echo "::error::could not resolve $host"; exit 1; fi
+          first=""
+          for ip in $ips; do
+            sudo ip route replace "$ip/32" dev tun0 || true
+            [ -z "$first" ] && first="$ip"
+          done
+          # Pin the hostname to a routed IP so DNS can't hand Node an un-routed one mid-run.
+          echo "$first $host" | sudo tee -a /etc/hosts >/dev/null
+          echo "Routed $host through the VPN (IPs: $ips); pinned to $first"
+          # HARD GATE: if Probe42 is not going through tun0, stop BEFORE spending a credit.
+          if ip route get "$first" 2>/dev/null | grep -q 'dev tun0'; then
+            echo "✅ Probe42 traffic will go through the VPN (whitelisted IP)."
+          else
+            echo "::error::Probe42 is NOT routed through the VPN — aborting before spending any credits."
+            exit 1
+          fi
+
+      - name: Enrich from Probe42 (LIVE — spends credits)
+        env:
+          # production key; prefer the new name, fall back to the old one
           PROBE42_API_KEY: ${{ secrets.PROBE42_API_KEY_PROD || secrets.PROBE42_API_KEY }}
-          # optional non-secret config (set as repo *Variables* once Probe42's POC
-          # confirms the current endpoint). Empty values fall back to code defaults.
           PROBE42_BASE_URL: ${{ vars.PROBE42_BASE_URL }}
           PROBE42_PATH_PREFIX: ${{ vars.PROBE42_PATH_PREFIX }}
           PROBE42_REPORT_PREFIX: ${{ vars.PROBE42_REPORT_PREFIX }}
           PROBE42_API_VERSION: ${{ vars.PROBE42_API_VERSION }}
           PROBE42_ENV: ${{ vars.PROBE42_ENV }}
         run: node scripts/probe/enrich.mjs --live --limit "${{ github.event.inputs.limit }}"
+
       - name: Commit refreshed data
         run: |
           git config user.name "github-actions[bot]"
