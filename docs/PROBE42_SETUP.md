@@ -14,17 +14,18 @@ arrives from that whitelisted IP.
 GitHub → repo **Settings → Secrets and variables → Actions → New repository secret**.
 Add these four (names must match exactly):
 
-| Secret                 | What to paste                                              |
-| ---------------------- | ---------------------------------------------------------- |
-| `PROBE42_API_KEY_PROD` | your **production** Probe42 API key (preferred name)       |
-| `VPN_CONFIG`           | the **entire contents** of the `.ovpn` file                |
-| `VPN_USERNAME`         | the VPN login name                                         |
-| `VPN_PASSWORD`         | the VPN password                                           |
+| Secret                 | What to paste                               | Old name (fallback) |
+| ---------------------- | ------------------------------------------- | ------------------- |
+| `PROBE42_API_KEY_PROD` | your **production** Probe42 API key         | `PROBE42_API_KEY`   |
+| `VPN_OVPN`             | the **entire contents** of the `.ovpn` file | `VPN_CONFIG`        |
+| `VPN_USER`             | the VPN login name (e.g. `yash`)            | `VPN_USERNAME`      |
+| `VPN_PASS`             | the VPN password                            | `VPN_PASSWORD`      |
 
-Key-name note: the workflows read `PROBE42_API_KEY_PROD` first and fall back to
-the older `PROBE42_API_KEY` if only that one is set. So if you can't edit the old
-sandbox secret, just **add a new one named `PROBE42_API_KEY_PROD`** with the
-production key — it takes precedence automatically, no code change needed.
+Key-name note: if you **can't edit or delete** an existing secret, just **add a
+new one under the name in the first column** — the workflows read the new name
+first and fall back to the old name automatically, so no code change is needed.
+You only need to add the ones you're changing; anything already correct can stay
+under its old name.
 
 ### Optional — non-secret config (only when Probe42's POC confirms the prod endpoint)
 

@@ -7,11 +7,12 @@ name: Probe42 VPN check (0 credits)
 # whitelisted. It deliberately does NOT call the Probe42 API — so it spends no
 # credits. Run it from the Actions tab AFTER adding the 4 secrets below.
 #
-# Required repo secrets (Settings -> Secrets and variables -> Actions -> Secrets):
-#   PROBE42_API_KEY   your production Probe42 API key
-#   VPN_CONFIG        the full contents of the .ovpn file (paste the whole file)
-#   VPN_USERNAME      VPN login name
-#   VPN_PASSWORD      VPN password
+# Required repo secrets (Settings -> Secrets and variables -> Actions -> Secrets).
+# New names are read first; old names still work as a fallback (in parentheses).
+#   PROBE42_API_KEY_PROD   production Probe42 API key      (old: PROBE42_API_KEY)
+#   VPN_OVPN               full contents of the .ovpn file (old: VPN_CONFIG)
+#   VPN_USER               VPN login name, e.g. yash       (old: VPN_USERNAME)
+#   VPN_PASS               VPN password                    (old: VPN_PASSWORD)
 #
 # See docs/PROBE42_SETUP.md for the full walkthrough.
 
@@ -33,9 +34,9 @@ jobs:
 
       - name: Verify the 4 secrets exist (values are never printed)
         env:
-          VPN_CONFIG: ${{ secrets.VPN_CONFIG }}
-          VPN_USERNAME: ${{ secrets.VPN_USERNAME }}
-          VPN_PASSWORD: ${{ secrets.VPN_PASSWORD }}
+          VPN_CONFIG: ${{ secrets.VPN_OVPN || secrets.VPN_CONFIG }}
+          VPN_USERNAME: ${{ secrets.VPN_USER || secrets.VPN_USERNAME }}
+          VPN_PASSWORD: ${{ secrets.VPN_PASS || secrets.VPN_PASSWORD }}
           # Prefer the new production key; fall back to the old name if that's all that's set.
           PROBE42_API_KEY: ${{ secrets.PROBE42_API_KEY_PROD || secrets.PROBE42_API_KEY }}
         run: |
@@ -54,9 +55,9 @@ jobs:
 
       - name: Write VPN config + auth file (not printed)
         env:
-          VPN_CONFIG: ${{ secrets.VPN_CONFIG }}
-          VPN_USERNAME: ${{ secrets.VPN_USERNAME }}
-          VPN_PASSWORD: ${{ secrets.VPN_PASSWORD }}
+          VPN_CONFIG: ${{ secrets.VPN_OVPN || secrets.VPN_CONFIG }}
+          VPN_USERNAME: ${{ secrets.VPN_USER || secrets.VPN_USERNAME }}
+          VPN_PASSWORD: ${{ secrets.VPN_PASS || secrets.VPN_PASSWORD }}
         run: |
           printf '%s\n' "$VPN_CONFIG" > client.ovpn
           # Strip any stray CR/newlines from the pasted username/password so the
