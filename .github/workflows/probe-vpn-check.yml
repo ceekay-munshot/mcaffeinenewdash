@@ -1,0 +1,96 @@
+name: Probe42 VPN check (0 credits)
+
+# ZERO-CREDIT setup verification.
+#
+# This connects the client VPN and prints the runner's public IP before and
+# after, so you can confirm the Action now exits through the IP that Probe42 has
+# whitelisted. It deliberately does NOT call the Probe42 API — so it spends no
+# credits. Run it from the Actions tab AFTER adding the 4 secrets below.
+#
+# Required repo secrets (Settings -> Secrets and variables -> Actions -> Secrets):
+#   PROBE42_API_KEY   your production Probe42 API key
+#   VPN_CONFIG        the full contents of the .ovpn file (paste the whole file)
+#   VPN_USERNAME      VPN login name
+#   VPN_PASSWORD      VPN password
+#
+# See docs/PROBE42_SETUP.md for the full walkthrough.
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  vpn-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Public IP BEFORE VPN
+        run: |
+          echo "Runner public IP (before VPN):"
+          curl -s https://api.ipify.org || echo "(ip service unreachable)"
+          echo
+
+      - name: Verify the 4 secrets exist (values are never printed)
+        env:
+          VPN_CONFIG: ${{ secrets.VPN_CONFIG }}
+          VPN_USERNAME: ${{ secrets.VPN_USERNAME }}
+          VPN_PASSWORD: ${{ secrets.VPN_PASSWORD }}
+          PROBE42_API_KEY: ${{ secrets.PROBE42_API_KEY }}
+        run: |
+          fail=0
+          for name in VPN_CONFIG VPN_USERNAME VPN_PASSWORD PROBE42_API_KEY; do
+            val="${!name}"
+            if [ -z "$val" ]; then echo "❌ missing: $name"; fail=1; else echo "✅ present: $name"; fi
+          done
+          if [ "$fail" -ne 0 ]; then
+            echo "::error::Add the missing secret(s) under Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+
+      - name: Install OpenVPN
+        run: sudo apt-get update -y && sudo apt-get install -y openvpn
+
+      - name: Write VPN config + auth file (not printed)
+        env:
+          VPN_CONFIG: ${{ secrets.VPN_CONFIG }}
+          VPN_USERNAME: ${{ secrets.VPN_USERNAME }}
+          VPN_PASSWORD: ${{ secrets.VPN_PASSWORD }}
+        run: |
+          printf '%s\n' "$VPN_CONFIG" > client.ovpn
+          printf '%s\n%s\n' "$VPN_USERNAME" "$VPN_PASSWORD" > vpn-auth.txt
+          chmod 600 client.ovpn vpn-auth.txt
+          # Point the config at our credentials file instead of prompting.
+          if grep -q '^[[:space:]]*auth-user-pass' client.ovpn; then
+            sed -i 's|^[[:space:]]*auth-user-pass.*|auth-user-pass vpn-auth.txt|' client.ovpn
+          else
+            echo 'auth-user-pass vpn-auth.txt' >> client.ovpn
+          fi
+
+      - name: Connect VPN (no Probe42 call)
+        run: |
+          sudo openvpn --config client.ovpn --auth-user-pass vpn-auth.txt \
+            --daemon --log vpn.log --writepid vpn.pid
+          echo "Waiting for the tunnel (tun0) to come up…"
+          up=0
+          for i in $(seq 1 30); do
+            if ip addr show tun0 >/dev/null 2>&1; then up=1; break; fi
+            sleep 2
+          done
+          if [ "$up" -ne 1 ]; then
+            echo "::error::VPN tunnel did not come up. Last 40 log lines:"
+            sudo tail -n 40 vpn.log || true
+            exit 1
+          fi
+          echo "✅ Tunnel is up (tun0)."
+
+      - name: Public IP AFTER VPN (should be your whitelisted IP)
+        run: |
+          sleep 3
+          echo "Runner public IP (after VPN):"
+          curl -s https://api.ipify.org || echo "(ip service unreachable)"
+          echo
+          echo "→ Confirm this matches the IP Probe42 has whitelisted for your account."
+
+      - name: Done — 0 Probe42 credits spent
+        run: echo "VPN verified. The Probe42 API was NOT called. Credits untouched."
