@@ -99,5 +99,28 @@ jobs:
           echo
           echo "→ Confirm this matches the IP Probe42 has whitelisted for your account."
 
+      - name: Does Probe42 traffic actually use the VPN? (still no Probe42 call)
+        env:
+          PROBE42_BASE_URL: ${{ vars.PROBE42_BASE_URL }}
+        run: |
+          echo "=== Routes the VPN pushed (what tunnels through tun0) ==="
+          ip route
+          echo
+          base="${PROBE42_BASE_URL:-https://api.probe42.in}"
+          host="$(printf '%s' "$base" | sed -E 's#^https?://##; s#/.*##')"
+          ip="$(getent hosts "$host" | awk '{print $1; exit}')"
+          echo "=== $host resolves to: ${ip:-<dns lookup failed>} ==="
+          if [ -n "$ip" ]; then
+            echo "Route the runner would use to reach it:"
+            ip route get "$ip" || true
+            if ip route get "$ip" 2>/dev/null | grep -q 'dev tun0'; then
+              echo "✅ Probe42 traffic routes THROUGH the VPN (tun0) → your whitelisted IP is used."
+            else
+              echo "⚠️  Probe42 traffic does NOT use the VPN — it would exit via the runner's own IP."
+              echo "    Split tunnel. Share this log with Claude; we'll route ${host} through the VPN."
+            fi
+          fi
+          echo "(no Probe42 API was called — 0 credits)"
+
       - name: Done — 0 Probe42 credits spent
-        run: echo "VPN verified. The Probe42 API was NOT called. Credits untouched."
+        run: echo "VPN checked. The Probe42 API was NOT called. Credits untouched."
