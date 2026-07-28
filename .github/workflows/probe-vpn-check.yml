@@ -59,7 +59,12 @@ jobs:
           VPN_PASSWORD: ${{ secrets.VPN_PASSWORD }}
         run: |
           printf '%s\n' "$VPN_CONFIG" > client.ovpn
-          printf '%s\n%s\n' "$VPN_USERNAME" "$VPN_PASSWORD" > vpn-auth.txt
+          # Strip any stray CR/newlines from the pasted username/password so the
+          # two-line auth file is exactly username\npassword (a common paste bug).
+          u="$(printf '%s' "$VPN_USERNAME" | tr -d '\r\n')"
+          p="$(printf '%s' "$VPN_PASSWORD" | tr -d '\r\n')"
+          printf '%s\n%s\n' "$u" "$p" > vpn-auth.txt
+          echo "username length: ${#u} chars · password length: ${#p} chars"
           chmod 600 client.ovpn vpn-auth.txt
           # Point the config at our credentials file instead of prompting.
           if grep -q '^[[:space:]]*auth-user-pass' client.ovpn; then
