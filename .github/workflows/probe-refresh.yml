@@ -24,8 +24,9 @@ jobs:
           node-version: "22"
       - name: Enrich from Probe42
         env:
-          # secret — the key value
-          PROBE42_API_KEY: ${{ secrets.PROBE42_API_KEY }}
+          # secret — the production key. Prefer PROBE42_API_KEY_PROD; fall back to
+          # the old PROBE42_API_KEY name if that's the only one set.
+          PROBE42_API_KEY: ${{ secrets.PROBE42_API_KEY_PROD || secrets.PROBE42_API_KEY }}
           # optional non-secret config (set as repo *Variables* once Probe42's POC
           # confirms the current endpoint). Empty values fall back to code defaults.
           PROBE42_BASE_URL: ${{ vars.PROBE42_BASE_URL }}

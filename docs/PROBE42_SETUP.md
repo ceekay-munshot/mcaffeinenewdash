@@ -14,15 +14,17 @@ arrives from that whitelisted IP.
 GitHub → repo **Settings → Secrets and variables → Actions → New repository secret**.
 Add these four (names must match exactly):
 
-| Secret            | What to paste                                         |
-| ----------------- | ----------------------------------------------------- |
-| `PROBE42_API_KEY` | your **production** Probe42 API key                   |
-| `VPN_CONFIG`      | the **entire contents** of the `.ovpn` file           |
-| `VPN_USERNAME`    | the VPN login name                                    |
-| `VPN_PASSWORD`    | the VPN password                                      |
+| Secret                 | What to paste                                              |
+| ---------------------- | ---------------------------------------------------------- |
+| `PROBE42_API_KEY_PROD` | your **production** Probe42 API key (preferred name)       |
+| `VPN_CONFIG`           | the **entire contents** of the `.ovpn` file                |
+| `VPN_USERNAME`         | the VPN login name                                         |
+| `VPN_PASSWORD`         | the VPN password                                           |
 
-(If you already created these last time under different names, tell me and I'll
-point the workflow at your names instead.)
+Key-name note: the workflows read `PROBE42_API_KEY_PROD` first and fall back to
+the older `PROBE42_API_KEY` if only that one is set. So if you can't edit the old
+sandbox secret, just **add a new one named `PROBE42_API_KEY_PROD`** with the
+production key — it takes precedence automatically, no code change needed.
 
 ### Optional — non-secret config (only when Probe42's POC confirms the prod endpoint)
 
