@@ -99,26 +99,43 @@ jobs:
           echo
           echo "→ Confirm this matches the IP Probe42 has whitelisted for your account."
 
-      - name: Does Probe42 traffic actually use the VPN? (still no Probe42 call)
+      - name: Route Probe42 through the VPN and confirm the exit IP (still 0 credits)
         env:
           PROBE42_BASE_URL: ${{ vars.PROBE42_BASE_URL }}
+          EXPECTED_IP: ${{ vars.VPN_EXPECTED_EXIT_IP }}
         run: |
-          echo "=== Routes the VPN pushed (what tunnels through tun0) ==="
+          echo "=== Routing table (before fix) ==="
           ip route
           echo
           base="${PROBE42_BASE_URL:-https://api.probe42.in}"
           host="$(printf '%s' "$base" | sed -E 's#^https?://##; s#/.*##')"
-          ip="$(getent hosts "$host" | awk '{print $1; exit}')"
-          echo "=== $host resolves to: ${ip:-<dns lookup failed>} ==="
-          if [ -n "$ip" ]; then
-            echo "Route the runner would use to reach it:"
-            ip route get "$ip" || true
-            if ip route get "$ip" 2>/dev/null | grep -q 'dev tun0'; then
-              echo "✅ Probe42 traffic routes THROUGH the VPN (tun0) → your whitelisted IP is used."
+          probe_ip="$(getent ahostsv4 "$host" | awk '{print $1; exit}')"
+          echo_host="ifconfig.me"
+          echo_ip="$(getent ahostsv4 "$echo_host" | awk '{print $1; exit}')"
+          echo "Probe42 host $host -> ${probe_ip:-<dns failed>}"
+          echo "test host    $echo_host -> ${echo_ip:-<dns failed>}"
+          echo
+          # Send Probe42 (and one IP-echo host, to read back our exit IP) through the
+          # tunnel per-host, so the runner's own link to GitHub stays direct.
+          [ -n "$probe_ip" ] && sudo ip route replace "$probe_ip/32" dev tun0 || true
+          [ -n "$echo_ip" ]  && sudo ip route replace "$echo_ip/32"  dev tun0 || true
+          echo "Route to Probe42 after fix:"; ip route get "$probe_ip" || true
+          echo
+          # What public IP do we appear as when going through the tunnel?
+          exit_ip="$(curl -s --max-time 20 --resolve ${echo_host}:443:${echo_ip} https://${echo_host}/ip 2>/dev/null | tr -d '[:space:]')"
+          echo "=== Exit IP through the VPN: ${exit_ip:-<no response>} ==="
+          if [ -n "$EXPECTED_IP" ]; then
+            echo "=== Whitelisted IP (VPN_EXPECTED_EXIT_IP): $EXPECTED_IP ==="
+            if [ "$exit_ip" = "$EXPECTED_IP" ]; then
+              echo "✅ MATCH — VPN traffic exits at your whitelisted IP. Probe42 will accept the call."
+            elif [ -z "$exit_ip" ]; then
+              echo "⚠️  No response through the tunnel — the VPN may block general internet egress. Check with Tech."
             else
-              echo "⚠️  Probe42 traffic does NOT use the VPN — it would exit via the runner's own IP."
-              echo "    Split tunnel. Share this log with Claude; we'll route ${host} through the VPN."
+              echo "⚠️  Exit IP != whitelisted IP. Share this log with Claude."
             fi
+          else
+            echo "→ Compare the exit IP above with your whitelisted IP (15.207.17.59). A match = Probe42 will accept it."
+            [ -z "$exit_ip" ] && echo "⚠️  No response through the tunnel — the VPN may block internet egress; check with Tech."
           fi
           echo "(no Probe42 API was called — 0 credits)"
 
