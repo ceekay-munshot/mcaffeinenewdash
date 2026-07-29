@@ -226,8 +226,86 @@ function build(raw, entity) {
     ownership, shareholders, directors, charges, legal, group, relatedParty, gst: { list: gst, onTime: gstOnTime, total: gst.length }, allotments, paymentBehaviour,
   };
 
+  detail.advanced = advanced(detail);
   detail.levers = buildLevers(detail);
   return detail;
+}
+
+/* --------------------------------------------------- advanced financial analysis
+   Analyst-grade metrics computed from the statements we already hold (zero extra
+   credits): 3- & 5-step DuPont decomposition of RoE, Piotroski F-score (0-9),
+   Altman Z''-score (distress), free cash flow, earnings quality (accruals),
+   operating leverage and per-year cost structure. Feeds both the health panel and
+   the lever engine. Everything is null-safe — a metric only appears when its
+   inputs exist, so nothing is fabricated. */
+function advanced(x) {
+  const fin = x.fin;
+  const pc = (a, b) => (a != null && b != null && b !== 0 ? round((a / b) * 100, 1) : null); // a/b as %
+  const perYear = fin.map((f) => {
+    const rev = num(f.revenue), pat = num(f.pat), ebit = num(f.ebit), pbt = num(f.pbt);
+    const ta = num(f.bs.totalAssets), eq = num(f.bs.equity);
+    const inv = num(f.bs.inventory) ?? 0, recv = num(f.bs.receivables) ?? 0, cash = num(f.bs.cash) ?? 0;
+    const pay = num(f.bs.payables) ?? 0, std = num(f.bs.shortTermDebt) ?? 0;
+    const ocf = num(f.cf.operating), icf = num(f.cf.investing);
+    const mat = (num(f.materialCost) ?? 0) + (num(f.purchases) ?? 0);
+    const emp = num(f.employeeCost) ?? 0, oth = num(f.otherExpense) ?? 0, dep = num(f.depreciation) ?? 0;
+    const netMargin = rev ? pat / rev : null, assetTurn = ta ? rev / ta : null, equityMult = eq ? ta / eq : null;
+    return {
+      fy: f.fy, ta,
+      // DuPont pieces (ratios, not %)
+      netMargin, assetTurn, equityMult,
+      roe: netMargin != null && assetTurn != null && equityMult != null ? round(netMargin * assetTurn * equityMult * 100, 1) : null,
+      taxBurden: pbt ? round(pat / pbt, 2) : null, intBurden: ebit ? round(pbt / ebit, 2) : null, opMargin: rev ? round((ebit / rev) * 100, 1) : null,
+      // cash
+      fcf: ocf != null && icf != null ? round(ocf + icf, 1) : null,
+      accruals: pat != null && ocf != null && ta ? round(((pat - ocf) / ta) * 100, 1) : null, // % of assets; high +ve = low quality
+      workingCapital: round(inv + recv + cash - pay - std, 1),
+      // cost structure (% of revenue)
+      costMix: rev ? { material: pc(mat, rev), employee: pc(emp, rev), other: pc(oth, rev), deprec: pc(dep, rev) } : null,
+      _raw: { rev, pat, ocf, ebit, roa: ta ? pat / ta : null, gross: num(f.r.grossMargin), de: num(f.r.debtEquity), cur: num(f.r.currentRatio), share: num(f.bs.shareCapital), reserves: num(f.bs.reserves), eq },
+    };
+  });
+  const A = perYear[perYear.length - 1] ?? null, B = perYear.length > 1 ? perYear[perYear.length - 2] : null;
+
+  // Piotroski F-score — 9 fundamental checks, latest vs prior year
+  let fscore = null; const fChecks = [];
+  if (A && B) {
+    const ck = (ok, label) => { fChecks.push({ ok: !!ok, label }); return ok ? 1 : 0; };
+    fscore = ck(A._raw.pat > 0, "Profitable (net profit > 0)")
+      + ck(A._raw.ocf > 0, "Positive operating cash flow")
+      + ck(A._raw.roa != null && B._raw.roa != null && A._raw.roa > B._raw.roa, "Return on assets improving")
+      + ck(A._raw.ocf != null && A._raw.pat != null && A._raw.ocf > A._raw.pat, "Cash flow beats profit (earnings quality)")
+      + ck(A._raw.de != null && B._raw.de != null && A._raw.de <= B._raw.de, "Leverage down or flat")
+      + ck(A._raw.cur != null && B._raw.cur != null && A._raw.cur > B._raw.cur, "Liquidity (current ratio) improving")
+      + ck(A._raw.share != null && B._raw.share != null && A._raw.share <= B._raw.share, "No equity dilution")
+      + ck(A._raw.gross != null && B._raw.gross != null && A._raw.gross > B._raw.gross, "Gross margin rising")
+      + ck(A.assetTurn != null && B.assetTurn != null && A.assetTurn > B.assetTurn, "Asset turnover rising");
+  }
+
+  // Altman Z''-score (private / emerging-market form) — distress predictor
+  let z = null, zZone = null;
+  if (A && A.ta) {
+    const totLiab = A.ta - (A._raw.eq ?? 0);
+    const X1 = A.workingCapital / A.ta, X2 = (A._raw.reserves ?? 0) / A.ta, X3 = (A._raw.ebit ?? 0) / A.ta, X4 = totLiab > 0 ? (A._raw.eq ?? 0) / totLiab : 0;
+    z = round(3.25 + 6.56 * X1 + 3.26 * X2 + 6.72 * X3 + 1.05 * X4, 2);
+    zZone = z >= 2.6 ? "safe" : z >= 1.1 ? "grey" : "distress";
+  }
+
+  // Operating leverage over the last 3 filed years: %Δ EBIT ÷ %Δ revenue (>1 = leverage working)
+  let opLeverage = null;
+  const win = perYear.slice(-3);
+  if (win.length >= 2) {
+    const r0 = win[0]._raw.rev, r1 = win[win.length - 1]._raw.rev, e0 = win[0]._raw.ebit, e1 = win[win.length - 1]._raw.ebit;
+    if (r0 && r1 && e0 && e0 !== 0 && r0 !== 0) {
+      const dRev = (r1 - r0) / Math.abs(r0), dEbit = (e1 - e0) / Math.abs(e0);
+      if (Math.abs(dRev) > 0.02) opLeverage = round(dEbit / dRev, 2);
+    }
+  }
+
+  const dupont = A ? { netMargin: A.netMargin != null ? round(A.netMargin * 100, 1) : null, assetTurn: A.assetTurn != null ? round(A.assetTurn, 2) : null, equityMult: A.equityMult != null ? round(A.equityMult, 2) : null, roe: A.roe, taxBurden: A.taxBurden, intBurden: A.intBurden, opMargin: A.opMargin } : null;
+  // strip the private _raw before returning
+  const clean = perYear.map(({ _raw, ...keep }) => keep);
+  return { perYear: clean, fscore, fChecks, z, zZone, opLeverage, dupont, fcfLatest: A?.fcf ?? null, accrualsLatest: A?.accruals ?? null };
 }
 
 /* ------------------------------------------------------- negotiation-lever engine

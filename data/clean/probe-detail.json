@@ -1349,6 +1349,303 @@
       "delayedSuppliers": [],
       "trend": []
     },
+    "advanced": {
+      "perYear": [
+        {
+          "fy": "FY14",
+          "ta": 100.1,
+          "netMargin": 0.26591107236268524,
+          "assetTurn": 1.145854145854146,
+          "equityMult": 1.0939890710382514,
+          "roe": 33.3,
+          "taxBurden": 1.17,
+          "intBurden": 1.11,
+          "opMargin": 20.5,
+          "fcf": -13.5,
+          "accruals": 13.7,
+          "workingCapital": 19.3,
+          "costMix": {
+            "material": 72.9,
+            "employee": 4,
+            "other": 2.9,
+            "deprec": 1.4
+          }
+        },
+        {
+          "fy": "FY15",
+          "ta": 117.5,
+          "netMargin": 0.15497835497835497,
+          "assetTurn": 0.9829787234042553,
+          "equityMult": 1.0740402193784278,
+          "roe": 16.4,
+          "taxBurden": 0.76,
+          "intBurden": 1,
+          "opMargin": 20.3,
+          "fcf": -3.3,
+          "accruals": 0.1,
+          "workingCapital": 15.2,
+          "costMix": {
+            "material": 80.1,
+            "employee": 2.5,
+            "other": 1.7,
+            "deprec": 0.5
+          }
+        },
+        {
+          "fy": "FY16",
+          "ta": 141,
+          "netMargin": 0.17342879872712808,
+          "assetTurn": 0.8914893617021277,
+          "equityMult": 1.0746951219512195,
+          "roe": 16.6,
+          "taxBurden": 0.77,
+          "intBurden": 1,
+          "opMargin": 22.5,
+          "fcf": 0,
+          "accruals": 3.4,
+          "workingCapital": 15.9,
+          "costMix": {
+            "material": 76.6,
+            "employee": 2.1,
+            "other": 2.4,
+            "deprec": 0.4
+          }
+        },
+        {
+          "fy": "FY17",
+          "ta": 176.2,
+          "netMargin": 0.23872875092387283,
+          "assetTurn": 0.7678774120317822,
+          "equityMult": 1.0776758409785931,
+          "roe": 19.8,
+          "taxBurden": 0.8,
+          "intBurden": 1,
+          "opMargin": 29.9,
+          "fcf": 0,
+          "accruals": 9.4,
+          "workingCapital": 20.7,
+          "costMix": {
+            "material": 73.5,
+            "employee": 2.2,
+            "other": 1.8,
+            "deprec": 0.3
+          }
+        },
+        {
+          "fy": "FY18",
+          "ta": 223.3,
+          "netMargin": 0.23228111971411552,
+          "assetTurn": 0.7519032691446484,
+          "equityMult": 1.1038062283737025,
+          "roe": 19.3,
+          "taxBurden": 0.78,
+          "intBurden": 0.99,
+          "opMargin": 30.3,
+          "fcf": 27.8,
+          "accruals": 6.2,
+          "workingCapital": 38.2,
+          "costMix": {
+            "material": 71.8,
+            "employee": 2,
+            "other": 2.3,
+            "deprec": 0.7
+          }
+        },
+        {
+          "fy": "FY19",
+          "ta": 263.2,
+          "netMargin": 0.2271853986551393,
+          "assetTurn": 0.791033434650456,
+          "equityMult": 1.0544871794871795,
+          "roe": 19,
+          "taxBurden": 0.86,
+          "intBurden": 0.99,
+          "opMargin": 26.6,
+          "fcf": 0,
+          "accruals": 6.3,
+          "workingCapital": 46,
+          "costMix": {
+            "material": 71.6,
+            "employee": 1.8,
+            "other": 2.7,
+            "deprec": 0.7
+          }
+        },
+        {
+          "fy": "FY20",
+          "ta": 376.5,
+          "netMargin": 0.3297524521251751,
+          "assetTurn": 0.5686586985391766,
+          "equityMult": 1.0683881952326901,
+          "roe": 20,
+          "taxBurden": 0.86,
+          "intBurden": 1,
+          "opMargin": 38.5,
+          "fcf": -2.8,
+          "accruals": 1.8,
+          "workingCapital": 36.7,
+          "costMix": {
+            "material": 65.4,
+            "employee": 2.4,
+            "other": 4.3,
+            "deprec": 2
+          }
+        },
+        {
+          "fy": "FY21",
+          "ta": 491.1,
+          "netMargin": 0.44532340623545835,
+          "assetTurn": 0.43758908572592137,
+          "equityMult": 1.0424538314582892,
+          "roe": 20.3,
+          "taxBurden": 0.94,
+          "intBurden": 1,
+          "opMargin": 47.4,
+          "fcf": 4.3,
+          "accruals": 6.6,
+          "workingCapital": 49.9,
+          "costMix": {
+            "material": 54.8,
+            "employee": 2.8,
+            "other": 4.4,
+            "deprec": 2
+          }
+        },
+        {
+          "fy": "FY22",
+          "ta": 586.9,
+          "netMargin": 0.38904109589041097,
+          "assetTurn": 0.37314704378940194,
+          "equityMult": 1.0334565944708576,
+          "roe": 15,
+          "taxBurden": 0.94,
+          "intBurden": 1,
+          "opMargin": 41.3,
+          "fcf": 0.4,
+          "accruals": 4.3,
+          "workingCapital": 54.6,
+          "costMix": {
+            "material": 59.5,
+            "employee": 3.2,
+            "other": 5.3,
+            "deprec": 2.8
+          }
+        },
+        {
+          "fy": "FY23",
+          "ta": 675.7,
+          "netMargin": 0.3716814159292035,
+          "assetTurn": 0.35119135711114396,
+          "equityMult": 1.034445805266381,
+          "roe": 13.5,
+          "taxBurden": 0.93,
+          "intBurden": 1,
+          "opMargin": 40.2,
+          "fcf": -0.1,
+          "accruals": 3.7,
+          "workingCapital": 53.6,
+          "costMix": {
+            "material": 61.7,
+            "employee": 3.7,
+            "other": 4,
+            "deprec": 2.8
+          }
+        },
+        {
+          "fy": "FY24",
+          "ta": 807.8,
+          "netMargin": 0.4378145219266715,
+          "assetTurn": 0.34439217628125773,
+          "equityMult": 1.0214972180070814,
+          "roe": 15.4,
+          "taxBurden": 0.88,
+          "intBurden": 1,
+          "opMargin": 50,
+          "fcf": 2.1,
+          "accruals": 5.1,
+          "workingCapital": 57,
+          "costMix": {
+            "material": 57.2,
+            "employee": 3.5,
+            "other": 3.5,
+            "deprec": 2.2
+          }
+        },
+        {
+          "fy": "FY25",
+          "ta": 941.7,
+          "netMargin": 0.4381912817176317,
+          "assetTurn": 0.3264309227991929,
+          "equityMult": 1.0147629310344828,
+          "roe": 14.5,
+          "taxBurden": 0.87,
+          "intBurden": 1,
+          "opMargin": 50.3,
+          "fcf": 1.8,
+          "accruals": 9.3,
+          "workingCapital": 85.1,
+          "costMix": {
+            "material": 57.4,
+            "employee": 3.4,
+            "other": 5.2,
+            "deprec": 0.9
+          }
+        }
+      ],
+      "fscore": 5,
+      "fChecks": [
+        {
+          "ok": true,
+          "label": "Profitable (net profit > 0)"
+        },
+        {
+          "ok": true,
+          "label": "Positive operating cash flow"
+        },
+        {
+          "ok": false,
+          "label": "Return on assets improving"
+        },
+        {
+          "ok": false,
+          "label": "Cash flow beats profit (earnings quality)"
+        },
+        {
+          "ok": true,
+          "label": "Leverage down or flat"
+        },
+        {
+          "ok": true,
+          "label": "Liquidity (current ratio) improving"
+        },
+        {
+          "ok": true,
+          "label": "No equity dilution"
+        },
+        {
+          "ok": false,
+          "label": "Gross margin rising"
+        },
+        {
+          "ok": false,
+          "label": "Asset turnover rising"
+        }
+      ],
+      "z": 79.28,
+      "zZone": "safe",
+      "opLeverage": 2.11,
+      "dupont": {
+        "netMargin": 43.8,
+        "assetTurn": 0.33,
+        "equityMult": 1.01,
+        "roe": 14.5,
+        "taxBurden": 0.87,
+        "intBurden": 1,
+        "opMargin": 50.3
+      },
+      "fcfLatest": 1.8,
+      "accrualsLatest": 9.3
+    },
     "levers": [
       {
         "tone": "opportunity",
@@ -2783,6 +3080,303 @@
         }
       ]
     },
+    "advanced": {
+      "perYear": [
+        {
+          "fy": "FY14",
+          "ta": 532,
+          "netMargin": 0.041374214998152935,
+          "assetTurn": 1.5265037593984963,
+          "equityMult": 1.5555555555555556,
+          "roe": 9.8,
+          "taxBurden": 0.66,
+          "intBurden": 0.82,
+          "opMargin": 7.6,
+          "fcf": -9.2,
+          "accruals": 2.8,
+          "workingCapital": 145.7,
+          "costMix": {
+            "material": 68.9,
+            "employee": 5.6,
+            "other": 16.6,
+            "deprec": 1.5
+          }
+        },
+        {
+          "fy": "FY15",
+          "ta": 602.3,
+          "netMargin": 0.04016151915311579,
+          "assetTurn": 1.5213348829486968,
+          "equityMult": 1.5976127320954907,
+          "roe": 9.8,
+          "taxBurden": 0.66,
+          "intBurden": 0.86,
+          "opMargin": 7.1,
+          "fcf": -1.5,
+          "accruals": 4.1,
+          "workingCapital": 165.4,
+          "costMix": {
+            "material": 70.3,
+            "employee": 5.8,
+            "other": 15.5,
+            "deprec": 1.9
+          }
+        },
+        {
+          "fy": "FY16",
+          "ta": 641.6,
+          "netMargin": 0.055492424242424246,
+          "assetTurn": 1.6458852867830422,
+          "equityMult": 1.472910927456382,
+          "roe": 13.5,
+          "taxBurden": 0.64,
+          "intBurden": 0.92,
+          "opMargin": 9.4,
+          "fcf": 28.6,
+          "accruals": -2.7,
+          "workingCapital": 209.3,
+          "costMix": {
+            "material": 67.6,
+            "employee": 5.3,
+            "other": 17.4,
+            "deprec": 1.4
+          }
+        },
+        {
+          "fy": "FY17",
+          "ta": 811.6,
+          "netMargin": 0.07395873880887505,
+          "assetTurn": 1.5826761951700345,
+          "equityMult": 1.5313207547169811,
+          "roe": 17.9,
+          "taxBurden": 0.65,
+          "intBurden": 1,
+          "opMargin": 11.4,
+          "fcf": 16,
+          "accruals": -0.3,
+          "workingCapital": 233.9,
+          "costMix": {
+            "material": 58.5,
+            "employee": 5.3,
+            "other": 24.5,
+            "deprec": 0.9
+          }
+        },
+        {
+          "fy": "FY18",
+          "ta": 1186,
+          "netMargin": 0.07534197522022489,
+          "assetTurn": 1.177318718381113,
+          "equityMult": 1.8662470495672698,
+          "roe": 16.6,
+          "taxBurden": 0.65,
+          "intBurden": 1,
+          "opMargin": 11.7,
+          "fcf": -98.6,
+          "accruals": 5,
+          "workingCapital": 305.3,
+          "costMix": {
+            "material": 63.9,
+            "employee": 5.8,
+            "other": 18.2,
+            "deprec": 0.8
+          }
+        },
+        {
+          "fy": "FY19",
+          "ta": 1486.8,
+          "netMargin": 0.04028906955736224,
+          "assetTurn": 1.1168280871670702,
+          "equityMult": 2.1188542112013677,
+          "roe": 9.5,
+          "taxBurden": 0.65,
+          "intBurden": 0.97,
+          "opMargin": 6.4,
+          "fcf": -109.6,
+          "accruals": 6.1,
+          "workingCapital": 308.5,
+          "costMix": {
+            "material": 72.4,
+            "employee": 5.2,
+            "other": 16.1,
+            "deprec": 0.8
+          }
+        },
+        {
+          "fy": "FY20",
+          "ta": 1597.4,
+          "netMargin": 0.05089744241623023,
+          "assetTurn": 1.2311881807937899,
+          "equityMult": 1.9952535598301275,
+          "roe": 12.5,
+          "taxBurden": 0.73,
+          "intBurden": 0.89,
+          "opMargin": 7.8,
+          "fcf": 150.3,
+          "accruals": -6.6,
+          "workingCapital": 427.5,
+          "costMix": {
+            "material": 71.5,
+            "employee": 5.2,
+            "other": 15.5,
+            "deprec": 2.2
+          }
+        },
+        {
+          "fy": "FY21",
+          "ta": 1689.3,
+          "netMargin": 0.06433980241713054,
+          "assetTurn": 1.1804297638074943,
+          "equityMult": 1.9083822864889288,
+          "roe": 14.5,
+          "taxBurden": 0.75,
+          "intBurden": 0.94,
+          "opMargin": 9.1,
+          "fcf": 121.7,
+          "accruals": -0.9,
+          "workingCapital": 526.9,
+          "costMix": {
+            "material": 66.7,
+            "employee": 5.9,
+            "other": 15.1,
+            "deprec": 2.3
+          }
+        },
+        {
+          "fy": "FY22",
+          "ta": 2879.7,
+          "netMargin": 0.0704030101990296,
+          "assetTurn": 0.7013925061638365,
+          "equityMult": 1.9358026351169668,
+          "roe": 9.6,
+          "taxBurden": 0.79,
+          "intBurden": 0.77,
+          "opMargin": 11.6,
+          "fcf": -1086.4,
+          "accruals": 43.1,
+          "workingCapital": -102.6,
+          "costMix": {
+            "material": 68.7,
+            "employee": 6.7,
+            "other": 16.6,
+            "deprec": 2.4
+          }
+        },
+        {
+          "fy": "FY23",
+          "ta": 3290.6,
+          "netMargin": 0.04918254900189686,
+          "assetTurn": 0.6728864036953747,
+          "equityMult": 1.3561096229136615,
+          "roe": 4.5,
+          "taxBurden": 0.83,
+          "intBurden": 0.74,
+          "opMargin": 8,
+          "fcf": -250.7,
+          "accruals": 12.6,
+          "workingCapital": 166.9,
+          "costMix": {
+            "material": 70,
+            "employee": 6,
+            "other": 15.8,
+            "deprec": 2.1
+          }
+        },
+        {
+          "fy": "FY24",
+          "ta": 3642,
+          "netMargin": 0.11086120880019629,
+          "assetTurn": 0.671444261394838,
+          "equityMult": 1.3504393933775816,
+          "roe": 10.1,
+          "taxBurden": 0.71,
+          "intBurden": 0.94,
+          "opMargin": 16.5,
+          "fcf": 129.5,
+          "accruals": 2.2,
+          "workingCapital": 592.8,
+          "costMix": {
+            "material": 69.2,
+            "employee": 6,
+            "other": 12.4,
+            "deprec": 1.9
+          }
+        },
+        {
+          "fy": "FY25",
+          "ta": 4036.4,
+          "netMargin": 0.07602221100454316,
+          "assetTurn": 0.736175800218016,
+          "equityMult": 1.3827549587201535,
+          "roe": 7.7,
+          "taxBurden": 0.64,
+          "intBurden": 0.93,
+          "opMargin": 12.9,
+          "fcf": -56.6,
+          "accruals": 3.1,
+          "workingCapital": 550.5,
+          "costMix": {
+            "material": 69.9,
+            "employee": 5.8,
+            "other": 13.8,
+            "deprec": 1.6
+          }
+        }
+      ],
+      "fscore": 5,
+      "fChecks": [
+        {
+          "ok": true,
+          "label": "Profitable (net profit > 0)"
+        },
+        {
+          "ok": true,
+          "label": "Positive operating cash flow"
+        },
+        {
+          "ok": false,
+          "label": "Return on assets improving"
+        },
+        {
+          "ok": false,
+          "label": "Cash flow beats profit (earnings quality)"
+        },
+        {
+          "ok": true,
+          "label": "Leverage down or flat"
+        },
+        {
+          "ok": false,
+          "label": "Liquidity (current ratio) improving"
+        },
+        {
+          "ok": true,
+          "label": "No equity dilution"
+        },
+        {
+          "ok": false,
+          "label": "Gross margin rising"
+        },
+        {
+          "ok": true,
+          "label": "Asset turnover rising"
+        }
+      ],
+      "z": 9.87,
+      "zZone": "safe",
+      "opLeverage": 3.4,
+      "dupont": {
+        "netMargin": 7.6,
+        "assetTurn": 0.74,
+        "equityMult": 1.38,
+        "roe": 7.7,
+        "taxBurden": 0.64,
+        "intBurden": 0.93,
+        "opMargin": 12.9
+      },
+      "fcfLatest": -56.6,
+      "accrualsLatest": 3.1
+    },
     "levers": [
       {
         "tone": "opportunity",
@@ -4136,6 +4730,303 @@
           "lakh": 48.2
         }
       ]
+    },
+    "advanced": {
+      "perYear": [
+        {
+          "fy": "FY14",
+          "ta": 31.6,
+          "netMargin": 0.07692307692307693,
+          "assetTurn": 1.0284810126582278,
+          "equityMult": 1.8057142857142858,
+          "roe": 14.3,
+          "taxBurden": 0.68,
+          "intBurden": 0.88,
+          "opMargin": 12.9,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 0.1,
+          "costMix": {
+            "material": 51.1,
+            "employee": 8.3,
+            "other": 24.6,
+            "deprec": 4
+          }
+        },
+        {
+          "fy": "FY15",
+          "ta": 36.7,
+          "netMargin": 0.06224066390041493,
+          "assetTurn": 1.3133514986376023,
+          "equityMult": 1.9114583333333335,
+          "roe": 15.6,
+          "taxBurden": 0.65,
+          "intBurden": 0.92,
+          "opMargin": 10.4,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 5.5,
+          "costMix": {
+            "material": 58.9,
+            "employee": 7.9,
+            "other": 19.1,
+            "deprec": 4.6
+          }
+        },
+        {
+          "fy": "FY16",
+          "ta": 39.7,
+          "netMargin": 0.021691973969631236,
+          "assetTurn": 1.1612090680100755,
+          "equityMult": 1.955665024630542,
+          "roe": 4.9,
+          "taxBurden": 0.59,
+          "intBurden": 0.85,
+          "opMargin": 4.3,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 5.1,
+          "costMix": {
+            "material": 63.1,
+            "employee": 9.8,
+            "other": 22.1,
+            "deprec": 3.5
+          }
+        },
+        {
+          "fy": "FY17",
+          "ta": 43,
+          "netMargin": 0.05519480519480519,
+          "assetTurn": 1.4325581395348836,
+          "equityMult": 1.8220338983050846,
+          "roe": 14.4,
+          "taxBurden": 0.65,
+          "intBurden": 0.95,
+          "opMargin": 8.9,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 5.8,
+          "costMix": {
+            "material": 63.1,
+            "employee": 8.6,
+            "other": 17.5,
+            "deprec": 2.8
+          }
+        },
+        {
+          "fy": "FY18",
+          "ta": 57,
+          "netMargin": 0.050946142649199416,
+          "assetTurn": 1.2052631578947368,
+          "equityMult": 2.103321033210332,
+          "roe": 12.9,
+          "taxBurden": 0.65,
+          "intBurden": 0.95,
+          "opMargin": 8.3,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 3.2,
+          "costMix": {
+            "material": 68.7,
+            "employee": 10.5,
+            "other": 19.9,
+            "deprec": 2.8
+          }
+        },
+        {
+          "fy": "FY19",
+          "ta": 96,
+          "netMargin": 0.045838359469240045,
+          "assetTurn": 0.8635416666666668,
+          "equityMult": 3.1067961165048543,
+          "roe": 12.3,
+          "taxBurden": 0.79,
+          "intBurden": 0.89,
+          "opMargin": 6.5,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": -1.6,
+          "costMix": {
+            "material": 62.7,
+            "employee": 10,
+            "other": 19.4,
+            "deprec": 2.5
+          }
+        },
+        {
+          "fy": "FY20",
+          "ta": 101,
+          "netMargin": 0.002136752136752137,
+          "assetTurn": 0.9267326732673267,
+          "equityMult": 3.247588424437299,
+          "roe": 0.6,
+          "taxBurden": 0.07,
+          "intBurden": 0.54,
+          "opMargin": 5.3,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": -4.3,
+          "costMix": {
+            "material": 62.2,
+            "employee": 10.5,
+            "other": 18.4,
+            "deprec": 3.4
+          }
+        },
+        {
+          "fy": "FY21",
+          "ta": 106.9,
+          "netMargin": 0.07228915662650603,
+          "assetTurn": 0.931711880261927,
+          "equityMult": 2.7911227154047,
+          "roe": 18.8,
+          "taxBurden": 0.91,
+          "intBurden": 0.7,
+          "opMargin": 11.3,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 3.4,
+          "costMix": {
+            "material": 61,
+            "employee": 9.3,
+            "other": 16.3,
+            "deprec": 3.8
+          }
+        },
+        {
+          "fy": "FY22",
+          "ta": 108.1,
+          "netMargin": 0.07252747252747253,
+          "assetTurn": 1.2627197039777984,
+          "equityMult": 2.242738589211618,
+          "roe": 20.5,
+          "taxBurden": 0.63,
+          "intBurden": 0.84,
+          "opMargin": 13.6,
+          "fcf": 10.8,
+          "accruals": -2.5,
+          "workingCapital": 13.5,
+          "costMix": {
+            "material": 61.7,
+            "employee": 8.3,
+            "other": 14.9,
+            "deprec": 2.9
+          }
+        },
+        {
+          "fy": "FY23",
+          "ta": 128.5,
+          "netMargin": 0.0750788643533123,
+          "assetTurn": 1.2334630350194553,
+          "equityMult": 2.1381031613976704,
+          "roe": 19.8,
+          "taxBurden": 0.7,
+          "intBurden": 0.87,
+          "opMargin": 12.4,
+          "fcf": 11.3,
+          "accruals": -3.1,
+          "workingCapital": 19.2,
+          "costMix": {
+            "material": 64.5,
+            "employee": 8.2,
+            "other": 13.3,
+            "deprec": 2.6
+          }
+        },
+        {
+          "fy": "FY24",
+          "ta": 149.1,
+          "netMargin": 0.10459324847814057,
+          "assetTurn": 1.2119382964453387,
+          "equityMult": 1.8873417721518986,
+          "roe": 23.9,
+          "taxBurden": 0.77,
+          "intBurden": 0.93,
+          "opMargin": 14.8,
+          "fcf": 5.8,
+          "accruals": 0.6,
+          "workingCapital": 29.5,
+          "costMix": {
+            "material": 62,
+            "employee": 7.7,
+            "other": 13.5,
+            "deprec": 2.4
+          }
+        },
+        {
+          "fy": "FY25",
+          "ta": 157.9,
+          "netMargin": 0.09547004383828543,
+          "assetTurn": 1.3001899936668777,
+          "equityMult": 1.7181719260065287,
+          "roe": 21.3,
+          "taxBurden": 0.74,
+          "intBurden": 0.95,
+          "opMargin": 13.6,
+          "fcf": 16.4,
+          "accruals": 1.1,
+          "workingCapital": 33.7,
+          "costMix": {
+            "material": 64.2,
+            "employee": 7.3,
+            "other": 12.4,
+            "deprec": 2.4
+          }
+        }
+      ],
+      "fscore": 6,
+      "fChecks": [
+        {
+          "ok": true,
+          "label": "Profitable (net profit > 0)"
+        },
+        {
+          "ok": true,
+          "label": "Positive operating cash flow"
+        },
+        {
+          "ok": false,
+          "label": "Return on assets improving"
+        },
+        {
+          "ok": false,
+          "label": "Cash flow beats profit (earnings quality)"
+        },
+        {
+          "ok": true,
+          "label": "Leverage down or flat"
+        },
+        {
+          "ok": true,
+          "label": "Liquidity (current ratio) improving"
+        },
+        {
+          "ok": true,
+          "label": "No equity dilution"
+        },
+        {
+          "ok": false,
+          "label": "Gross margin rising"
+        },
+        {
+          "ok": true,
+          "label": "Asset turnover rising"
+        }
+      ],
+      "z": 9.17,
+      "zZone": "safe",
+      "opLeverage": 1.41,
+      "dupont": {
+        "netMargin": 9.5,
+        "assetTurn": 1.3,
+        "equityMult": 1.72,
+        "roe": 21.3,
+        "taxBurden": 0.74,
+        "intBurden": 0.95,
+        "opMargin": 13.6
+      },
+      "fcfLatest": 16.4,
+      "accrualsLatest": 1.1
     },
     "levers": [
       {
@@ -5520,6 +6411,303 @@
           "lakh": 16.6
         }
       ]
+    },
+    "advanced": {
+      "perYear": [
+        {
+          "fy": "FY14",
+          "ta": 20,
+          "netMargin": 0.007220216606498195,
+          "assetTurn": 1.385,
+          "equityMult": 2.197802197802198,
+          "roe": 2.2,
+          "taxBurden": 0.67,
+          "intBurden": 0.27,
+          "opMargin": 4,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 5,
+          "costMix": {
+            "material": 57,
+            "employee": 14.8,
+            "other": 17.7,
+            "deprec": 2.2
+          }
+        },
+        {
+          "fy": "FY15",
+          "ta": 20.2,
+          "netMargin": 0.01775147928994083,
+          "assetTurn": 1.6732673267326732,
+          "equityMult": 2.126315789473684,
+          "roe": 6.3,
+          "taxBurden": 0.86,
+          "intBurden": 0.44,
+          "opMargin": 4.7,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 5,
+          "costMix": {
+            "material": 66.9,
+            "employee": 14.2,
+            "other": 14.2,
+            "deprec": 2.1
+          }
+        },
+        {
+          "fy": "FY16",
+          "ta": 24.6,
+          "netMargin": 0.02293577981651376,
+          "assetTurn": 1.7723577235772356,
+          "equityMult": 2.3207547169811322,
+          "roe": 9.4,
+          "taxBurden": 0.42,
+          "intBurden": 0.8,
+          "opMargin": 6.9,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 5.7,
+          "costMix": {
+            "material": 71.6,
+            "employee": 12.6,
+            "other": 11.5,
+            "deprec": 1.4
+          }
+        },
+        {
+          "fy": "FY17",
+          "ta": 30.2,
+          "netMargin": 0.0624,
+          "assetTurn": 2.06953642384106,
+          "equityMult": 2.0827586206896553,
+          "roe": 26.9,
+          "taxBurden": 0.67,
+          "intBurden": 0.94,
+          "opMargin": 9.9,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 9.9,
+          "costMix": {
+            "material": 72,
+            "employee": 9.6,
+            "other": 9.3,
+            "deprec": 1
+          }
+        },
+        {
+          "fy": "FY18",
+          "ta": 35,
+          "netMargin": 0.06379585326953748,
+          "assetTurn": 1.7914285714285716,
+          "equityMult": 1.8918918918918919,
+          "roe": 21.6,
+          "taxBurden": 0.66,
+          "intBurden": 0.81,
+          "opMargin": 12,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 11.5,
+          "costMix": {
+            "material": 74,
+            "employee": 11.2,
+            "other": 9.4,
+            "deprec": 0.8
+          }
+        },
+        {
+          "fy": "FY19",
+          "ta": 39.7,
+          "netMargin": 0.08930817610062892,
+          "assetTurn": 2.0025188916876573,
+          "equityMult": 1.55078125,
+          "roe": 27.7,
+          "taxBurden": 0.71,
+          "intBurden": 0.93,
+          "opMargin": 13.5,
+          "fcf": null,
+          "accruals": null,
+          "workingCapital": 17,
+          "costMix": {
+            "material": 67,
+            "employee": 10.6,
+            "other": 8.1,
+            "deprec": 0.6
+          }
+        },
+        {
+          "fy": "FY20",
+          "ta": 53.6,
+          "netMargin": 0.10521235521235522,
+          "assetTurn": 1.9328358208955223,
+          "equityMult": 1.4684931506849315,
+          "roe": 29.9,
+          "taxBurden": 0.74,
+          "intBurden": 0.97,
+          "opMargin": 14.8,
+          "fcf": 2.3,
+          "accruals": 6.3,
+          "workingCapital": 23.5,
+          "costMix": {
+            "material": 74.5,
+            "employee": 9,
+            "other": 7.1,
+            "deprec": 1
+          }
+        },
+        {
+          "fy": "FY21",
+          "ta": 73.1,
+          "netMargin": 0.13729729729729728,
+          "assetTurn": 1.265389876880985,
+          "equityMult": 1.485772357723577,
+          "roe": 25.8,
+          "taxBurden": 0.74,
+          "intBurden": 0.98,
+          "opMargin": 18.9,
+          "fcf": 7.8,
+          "accruals": -9.2,
+          "workingCapital": 21.2,
+          "costMix": {
+            "material": 66.7,
+            "employee": 9.6,
+            "other": 6.4,
+            "deprec": 1.2
+          }
+        },
+        {
+          "fy": "FY22",
+          "ta": 116.3,
+          "netMargin": 0.14129692832764504,
+          "assetTurn": 1.2596732588134136,
+          "equityMult": 1.663805436337625,
+          "roe": 29.6,
+          "taxBurden": 0.74,
+          "intBurden": 1,
+          "opMargin": 19.1,
+          "fcf": 11.4,
+          "accruals": 4.9,
+          "workingCapital": 38.8,
+          "costMix": {
+            "material": 73.9,
+            "employee": 8.7,
+            "other": 4.8,
+            "deprec": 0.3
+          }
+        },
+        {
+          "fy": "FY23",
+          "ta": 124.8,
+          "netMargin": 0.1633486472690148,
+          "assetTurn": 1.5697115384615385,
+          "equityMult": 1.3054393305439331,
+          "roe": 33.5,
+          "taxBurden": 0.76,
+          "intBurden": 1,
+          "opMargin": 21.6,
+          "fcf": 5.5,
+          "accruals": 4.3,
+          "workingCapital": 40.2,
+          "costMix": {
+            "material": 64.6,
+            "employee": 6.8,
+            "other": 5.9,
+            "deprec": 0.1
+          }
+        },
+        {
+          "fy": "FY24",
+          "ta": 142.3,
+          "netMargin": 0.1645193260654113,
+          "assetTurn": 1.4181307097680955,
+          "equityMult": 1.4173306772908367,
+          "roe": 33.1,
+          "taxBurden": 0.74,
+          "intBurden": 0.99,
+          "opMargin": 22.2,
+          "fcf": 28.8,
+          "accruals": 4.9,
+          "workingCapital": 48.1,
+          "costMix": {
+            "material": 72.2,
+            "employee": 7.6,
+            "other": 6.7,
+            "deprec": 0.2
+          }
+        },
+        {
+          "fy": "FY25",
+          "ta": 152.6,
+          "netMargin": 0.15381319622964867,
+          "assetTurn": 1.5294888597640892,
+          "equityMult": 1.4450757575757576,
+          "roe": 34,
+          "taxBurden": 0.74,
+          "intBurden": 1,
+          "opMargin": 20.8,
+          "fcf": 31.9,
+          "accruals": 13.7,
+          "workingCapital": 69.5,
+          "costMix": {
+            "material": 74.4,
+            "employee": 7.2,
+            "other": 5.9,
+            "deprec": 0.2
+          }
+        }
+      ],
+      "fscore": 6,
+      "fChecks": [
+        {
+          "ok": true,
+          "label": "Profitable (net profit > 0)"
+        },
+        {
+          "ok": true,
+          "label": "Positive operating cash flow"
+        },
+        {
+          "ok": true,
+          "label": "Return on assets improving"
+        },
+        {
+          "ok": false,
+          "label": "Cash flow beats profit (earnings quality)"
+        },
+        {
+          "ok": true,
+          "label": "Leverage down or flat"
+        },
+        {
+          "ok": false,
+          "label": "Liquidity (current ratio) improving"
+        },
+        {
+          "ok": true,
+          "label": "No equity dilution"
+        },
+        {
+          "ok": false,
+          "label": "Gross margin rising"
+        },
+        {
+          "ok": true,
+          "label": "Asset turnover rising"
+        }
+      ],
+      "z": 12.98,
+      "zZone": "safe",
+      "opLeverage": 0.78,
+      "dupont": {
+        "netMargin": 15.4,
+        "assetTurn": 1.53,
+        "equityMult": 1.45,
+        "roe": 34,
+        "taxBurden": 0.74,
+        "intBurden": 1,
+        "opMargin": 20.8
+      },
+      "fcfLatest": 31.9,
+      "accrualsLatest": 13.7
     },
     "levers": [
       {
@@ -7173,6 +8361,303 @@
         }
       ]
     },
+    "advanced": {
+      "perYear": [
+        {
+          "fy": "FY14",
+          "ta": 503.5,
+          "netMargin": 0.06031528444139821,
+          "assetTurn": 0.8693147964250248,
+          "equityMult": 3.4043272481406355,
+          "roe": 17.8,
+          "taxBurden": 0.67,
+          "intBurden": 0.64,
+          "opMargin": 13.9,
+          "fcf": -24.4,
+          "accruals": 6.1,
+          "workingCapital": 54.6,
+          "costMix": {
+            "material": 72.8,
+            "employee": 4.9,
+            "other": 12.2,
+            "deprec": 9.8
+          }
+        },
+        {
+          "fy": "FY15",
+          "ta": 477.6,
+          "netMargin": 0.06614563476934808,
+          "assetTurn": 1.0984087102177555,
+          "equityMult": 2.6386740331491714,
+          "roe": 19.2,
+          "taxBurden": 0.7,
+          "intBurden": 0.71,
+          "opMargin": 13.2,
+          "fcf": 62.8,
+          "accruals": -16.7,
+          "workingCapital": 102.9,
+          "costMix": {
+            "material": 55.5,
+            "employee": 6.1,
+            "other": 10.9,
+            "deprec": 9
+          }
+        },
+        {
+          "fy": "FY16",
+          "ta": 489.2,
+          "netMargin": 0.10633984518982677,
+          "assetTurn": 1.1091578086672118,
+          "equityMult": 2.0772823779193206,
+          "roe": 24.5,
+          "taxBurden": 0.66,
+          "intBurden": 0.85,
+          "opMargin": 18.9,
+          "fcf": 51.7,
+          "accruals": -11.1,
+          "workingCapital": 119.5,
+          "costMix": {
+            "material": 51.4,
+            "employee": 4.6,
+            "other": 16.3,
+            "deprec": 8.4
+          }
+        },
+        {
+          "fy": "FY17",
+          "ta": 878.6,
+          "netMargin": 0.07792207792207793,
+          "assetTurn": 0.8501024356931481,
+          "equityMult": 2.986403806934059,
+          "roe": 19.8,
+          "taxBurden": 0.74,
+          "intBurden": 0.76,
+          "opMargin": 13.8,
+          "fcf": -237.3,
+          "accruals": -2.8,
+          "workingCapital": 142.6,
+          "costMix": {
+            "material": 47.1,
+            "employee": 4.8,
+            "other": 28.7,
+            "deprec": 10.5
+          }
+        },
+        {
+          "fy": "FY18",
+          "ta": 909.3,
+          "netMargin": 0.03922822726788189,
+          "assetTurn": 1.0316727152754868,
+          "equityMult": 2.7454710144927534,
+          "roe": 11.1,
+          "taxBurden": 0.7,
+          "intBurden": 0.56,
+          "opMargin": 10.1,
+          "fcf": 39.5,
+          "accruals": -7.5,
+          "workingCapital": 204.6,
+          "costMix": {
+            "material": 53.1,
+            "employee": 5.6,
+            "other": 21.6,
+            "deprec": 11.1
+          }
+        },
+        {
+          "fy": "FY19",
+          "ta": 992.3,
+          "netMargin": 0.04343284881190704,
+          "assetTurn": 1.1578151768618363,
+          "equityMult": 2.702342047930283,
+          "roe": 13.6,
+          "taxBurden": 0.65,
+          "intBurden": 0.65,
+          "opMargin": 10.3,
+          "fcf": 44.1,
+          "accruals": -7.4,
+          "workingCapital": 162.9,
+          "costMix": {
+            "material": 58.3,
+            "employee": 5.3,
+            "other": 17.1,
+            "deprec": 8.5
+          }
+        },
+        {
+          "fy": "FY20",
+          "ta": 1199.9,
+          "netMargin": 0.06484136527610766,
+          "assetTurn": 0.9009917493124425,
+          "equityMult": 2.6153007846556235,
+          "roe": 15.3,
+          "taxBurden": 0.71,
+          "intBurden": 0.7,
+          "opMargin": 13,
+          "fcf": 35.3,
+          "accruals": -9.7,
+          "workingCapital": 80.1,
+          "costMix": {
+            "material": 59.1,
+            "employee": 7.7,
+            "other": 18.3,
+            "deprec": 6
+          }
+        },
+        {
+          "fy": "FY21",
+          "ta": 1258,
+          "netMargin": 0.09711743083768622,
+          "assetTurn": 0.8217806041335453,
+          "equityMult": 2.2348552140699947,
+          "roe": 17.8,
+          "taxBurden": 0.82,
+          "intBurden": 0.88,
+          "opMargin": 13.3,
+          "fcf": 124.9,
+          "accruals": -11.4,
+          "workingCapital": 32.3,
+          "costMix": {
+            "material": 50.8,
+            "employee": 9,
+            "other": 17.9,
+            "deprec": 7.3
+          }
+        },
+        {
+          "fy": "FY22",
+          "ta": 1998.2,
+          "netMargin": 0.05674868439766747,
+          "assetTurn": 0.7037333600240216,
+          "equityMult": 2.167480203926673,
+          "roe": 8.7,
+          "taxBurden": 0.72,
+          "intBurden": 0.68,
+          "opMargin": 11.5,
+          "fcf": -323.5,
+          "accruals": -9.8,
+          "workingCapital": 53.2,
+          "costMix": {
+            "material": 62.9,
+            "employee": 7.3,
+            "other": 16.6,
+            "deprec": 5.5
+          }
+        },
+        {
+          "fy": "FY23",
+          "ta": 2300.2,
+          "netMargin": 0.02824023279110814,
+          "assetTurn": 0.9113555343013653,
+          "equityMult": 2.4187171398527862,
+          "roe": 6.2,
+          "taxBurden": 0.65,
+          "intBurden": 0.53,
+          "opMargin": 8.2,
+          "fcf": 7.1,
+          "accruals": -11.5,
+          "workingCapital": 99.6,
+          "costMix": {
+            "material": 65.4,
+            "employee": 6.5,
+            "other": 16,
+            "deprec": 6.3
+          }
+        },
+        {
+          "fy": "FY24",
+          "ta": 2284.3,
+          "netMargin": 0.06650921114785074,
+          "assetTurn": 0.9267609333274963,
+          "equityMult": 2.2659458387064775,
+          "roe": 14,
+          "taxBurden": 0.88,
+          "intBurden": 0.69,
+          "opMargin": 10.9,
+          "fcf": 203.1,
+          "accruals": -9.3,
+          "workingCapital": 34.5,
+          "costMix": {
+            "material": 59.5,
+            "employee": 6.5,
+            "other": 17.4,
+            "deprec": 7.3
+          }
+        },
+        {
+          "fy": "FY25",
+          "ta": 3205.3,
+          "netMargin": 0.0963499104988715,
+          "assetTurn": 0.8017346270239916,
+          "equityMult": 2.2714903266954862,
+          "roe": 17.5,
+          "taxBurden": 0.93,
+          "intBurden": 1.26,
+          "opMargin": 8.3,
+          "fcf": -394.3,
+          "accruals": -3,
+          "workingCapital": 57,
+          "costMix": {
+            "material": 61.6,
+            "employee": 11.3,
+            "other": 15.2,
+            "deprec": 7.8
+          }
+        }
+      ],
+      "fscore": 6,
+      "fChecks": [
+        {
+          "ok": true,
+          "label": "Profitable (net profit > 0)"
+        },
+        {
+          "ok": true,
+          "label": "Positive operating cash flow"
+        },
+        {
+          "ok": true,
+          "label": "Return on assets improving"
+        },
+        {
+          "ok": true,
+          "label": "Cash flow beats profit (earnings quality)"
+        },
+        {
+          "ok": true,
+          "label": "Leverage down or flat"
+        },
+        {
+          "ok": false,
+          "label": "Liquidity (current ratio) improving"
+        },
+        {
+          "ok": false,
+          "label": "No equity dilution"
+        },
+        {
+          "ok": true,
+          "label": "Gross margin rising"
+        },
+        {
+          "ok": false,
+          "label": "Asset turnover rising"
+        }
+      ],
+      "z": 6.05,
+      "zZone": "safe",
+      "opLeverage": 1,
+      "dupont": {
+        "netMargin": 9.6,
+        "assetTurn": 0.8,
+        "equityMult": 2.27,
+        "roe": 17.5,
+        "taxBurden": 0.93,
+        "intBurden": 1.26,
+        "opMargin": 8.3
+      },
+      "fcfLatest": -394.3,
+      "accrualsLatest": -3
+    },
     "levers": [
       {
         "tone": "opportunity",
@@ -8459,6 +9944,283 @@
           "lakh": 0.4
         }
       ]
+    },
+    "advanced": {
+      "perYear": [
+        {
+          "fy": "FY15",
+          "ta": 32.4,
+          "netMargin": 0.007531380753138075,
+          "assetTurn": 3.6882716049382718,
+          "equityMult": 3.6404494382022468,
+          "roe": 10.1,
+          "taxBurden": 0.69,
+          "intBurden": 0.65,
+          "opMargin": 1.7,
+          "fcf": 0.7,
+          "accruals": 0.3,
+          "workingCapital": 2.8,
+          "costMix": {
+            "material": 96.2,
+            "employee": 1.1,
+            "other": 1.3,
+            "deprec": 0
+          }
+        },
+        {
+          "fy": "FY16",
+          "ta": 30.7,
+          "netMargin": 0.007081038552321008,
+          "assetTurn": 4.140065146579804,
+          "equityMult": 3.1326530612244894,
+          "roe": 9.2,
+          "taxBurden": 0.64,
+          "intBurden": 0.78,
+          "opMargin": 1.4,
+          "fcf": 0.7,
+          "accruals": 0.7,
+          "workingCapital": 11.5,
+          "costMix": {
+            "material": 96.5,
+            "employee": 1.1,
+            "other": 1.3,
+            "deprec": 0.1
+          }
+        },
+        {
+          "fy": "FY17",
+          "ta": 35.2,
+          "netMargin": 0.007072135785007072,
+          "assetTurn": 4.017045454545454,
+          "equityMult": 3.229357798165138,
+          "roe": 9.2,
+          "taxBurden": 0.63,
+          "intBurden": 0.73,
+          "opMargin": 1.6,
+          "fcf": 0.7,
+          "accruals": 0.9,
+          "workingCapital": 6.9,
+          "costMix": {
+            "material": 95.8,
+            "employee": 1.1,
+            "other": 1.6,
+            "deprec": 0
+          }
+        },
+        {
+          "fy": "FY18",
+          "ta": 51.2,
+          "netMargin": 0.022193211488250653,
+          "assetTurn": 2.9921874999999996,
+          "equityMult": 3.5804195804195804,
+          "roe": 23.8,
+          "taxBurden": 0.69,
+          "intBurden": 0.89,
+          "opMargin": 3.6,
+          "fcf": 0.9,
+          "accruals": 2.7,
+          "workingCapital": 4.9,
+          "costMix": {
+            "material": 94.2,
+            "employee": 1.7,
+            "other": 1.2,
+            "deprec": 0.1
+          }
+        },
+        {
+          "fy": "FY19",
+          "ta": 41.7,
+          "netMargin": 0.01936912008854455,
+          "assetTurn": 4.333333333333333,
+          "equityMult": 2.342696629213483,
+          "roe": 19.7,
+          "taxBurden": 0.7,
+          "intBurden": 0.91,
+          "opMargin": 3,
+          "fcf": -0.1,
+          "accruals": 9.4,
+          "workingCapital": 12,
+          "costMix": {
+            "material": 94.2,
+            "employee": 1.7,
+            "other": 1.2,
+            "deprec": 0.1
+          }
+        },
+        {
+          "fy": "FY20",
+          "ta": 49.3,
+          "netMargin": 0.024330900243309,
+          "assetTurn": 3.3346855983772823,
+          "equityMult": 2.2511415525114153,
+          "roe": 18.3,
+          "taxBurden": 0.74,
+          "intBurden": 0.96,
+          "opMargin": 3.4,
+          "fcf": 9.1,
+          "accruals": -9.7,
+          "workingCapital": 15.5,
+          "costMix": {
+            "material": 94,
+            "employee": 2.2,
+            "other": 0.8,
+            "deprec": 0.1
+          }
+        },
+        {
+          "fy": "FY21",
+          "ta": 80.2,
+          "netMargin": 0.027465667915106115,
+          "assetTurn": 2.9962593516209477,
+          "equityMult": 2.077720207253886,
+          "roe": 17.1,
+          "taxBurden": 0.74,
+          "intBurden": 0.87,
+          "opMargin": 4.2,
+          "fcf": 3.3,
+          "accruals": 16.3,
+          "workingCapital": 37.4,
+          "costMix": {
+            "material": 92.8,
+            "employee": 3.9,
+            "other": 2.2,
+            "deprec": 0.1
+          }
+        },
+        {
+          "fy": "FY22",
+          "ta": 121.8,
+          "netMargin": 0.023386342376052385,
+          "assetTurn": 2.6330049261083746,
+          "equityMult": 2.60813704496788,
+          "roe": 16.1,
+          "taxBurden": 0.75,
+          "intBurden": 0.85,
+          "opMargin": 3.6,
+          "fcf": -10.5,
+          "accruals": 32.3,
+          "workingCapital": 61.7,
+          "costMix": {
+            "material": 101.6,
+            "employee": 2.8,
+            "other": 3.5,
+            "deprec": 0.1
+          }
+        },
+        {
+          "fy": "FY23",
+          "ta": 153.2,
+          "netMargin": 0.04139185808505799,
+          "assetTurn": 2.8701044386422976,
+          "equityMult": 2.346094946401225,
+          "roe": 27.9,
+          "taxBurden": 0.74,
+          "intBurden": 0.84,
+          "opMargin": 6.6,
+          "fcf": -12.3,
+          "accruals": 16.3,
+          "workingCapital": 47.6,
+          "costMix": {
+            "material": 89.7,
+            "employee": 1.8,
+            "other": 3.4,
+            "deprec": 0.2
+          }
+        },
+        {
+          "fy": "FY24",
+          "ta": 196.9,
+          "netMargin": 0.02734817050169747,
+          "assetTurn": 2.6927374301675977,
+          "equityMult": 2.467418546365915,
+          "roe": 18.2,
+          "taxBurden": 0.69,
+          "intBurden": 0.8,
+          "opMargin": 4.9,
+          "fcf": 0.1,
+          "accruals": 3.1,
+          "workingCapital": 53.2,
+          "costMix": {
+            "material": 95.8,
+            "employee": 1.3,
+            "other": 4.1,
+            "deprec": 0.3
+          }
+        },
+        {
+          "fy": "FY25",
+          "ta": 192.3,
+          "netMargin": 0.05922865013774105,
+          "assetTurn": 3.020280811232449,
+          "equityMult": 1.6838879159369529,
+          "roe": 30.1,
+          "taxBurden": 0.76,
+          "intBurden": 0.91,
+          "opMargin": 8.5,
+          "fcf": 33.1,
+          "accruals": 0.6,
+          "workingCapital": 86.7,
+          "costMix": {
+            "material": 84.7,
+            "employee": 1,
+            "other": 2.1,
+            "deprec": 0.3
+          }
+        }
+      ],
+      "fscore": 8,
+      "fChecks": [
+        {
+          "ok": true,
+          "label": "Profitable (net profit > 0)"
+        },
+        {
+          "ok": true,
+          "label": "Positive operating cash flow"
+        },
+        {
+          "ok": true,
+          "label": "Return on assets improving"
+        },
+        {
+          "ok": false,
+          "label": "Cash flow beats profit (earnings quality)"
+        },
+        {
+          "ok": true,
+          "label": "Leverage down or flat"
+        },
+        {
+          "ok": true,
+          "label": "Liquidity (current ratio) improving"
+        },
+        {
+          "ok": true,
+          "label": "No equity dilution"
+        },
+        {
+          "ok": true,
+          "label": "Gross margin rising"
+        },
+        {
+          "ok": true,
+          "label": "Asset turnover rising"
+        }
+      ],
+      "z": 11.38,
+      "zZone": "safe",
+      "opLeverage": 2.18,
+      "dupont": {
+        "netMargin": 5.9,
+        "assetTurn": 3.02,
+        "equityMult": 1.68,
+        "roe": 30.1,
+        "taxBurden": 0.76,
+        "intBurden": 0.91,
+        "opMargin": 8.5
+      },
+      "fcfLatest": 33.1,
+      "accrualsLatest": 0.6
     },
     "levers": [
       {
