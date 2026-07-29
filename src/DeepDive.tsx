@@ -16,7 +16,15 @@ interface FinRow {
   otherIncome?: number | null; depreciation?: number | null; ebit?: number | null; interest?: number | null; pbt?: number | null; tax?: number | null;
   bs: Record<string, number | null>; cf: Record<string, number | null>; r: Ratios;
 }
-interface Lever { tone: "opportunity" | "watch" | "risk"; strength: number; title: string; detail: string }
+interface Evidence { label: string; value: string; tab: string }
+interface Lever { tone: "opportunity" | "watch" | "risk"; strength: number; title: string; detail: string; evidence?: Evidence[] }
+interface CostMix { material: number | null; employee: number | null; other: number | null; deprec: number | null }
+interface AdvYear { fy: string; roe: number | null; netMargin: number | null; assetTurn: number | null; equityMult: number | null; taxBurden: number | null; intBurden: number | null; opMargin: number | null; fcf: number | null; accruals: number | null; workingCapital: number | null; costMix: CostMix | null }
+interface Advanced {
+  perYear: AdvYear[]; fscore: number | null; fChecks: { ok: boolean; label: string }[]; z: number | null; zZone: "safe" | "grey" | "distress" | null;
+  opLeverage: number | null; fcfLatest: number | null; accrualsLatest: number | null;
+  dupont: { netMargin: number | null; assetTurn: number | null; equityMult: number | null; roe: number | null; taxBurden: number | null; intBurden: number | null; opMargin: number | null } | null;
+}
 interface Detail {
   cin: string; legalName: string; description: string | null; website: string | null; city: string | null; state: string | null;
   incorporation: string | null; classification: string | null; status: string | null; industry: string | null; segment: string | null;
@@ -40,6 +48,7 @@ interface Detail {
   allotments: { date: string; type: string; instrument: string; amountCr: number | null }[];
   paymentBehaviour: { hasData: boolean; latestPeriod: string | null; latestDueLakh: number | null; worstPeriod: string | null; worstLakh: number | null; delayedSuppliers: string[]; trend: { period: string; lakh: number | null }[] };
   levers: Lever[];
+  advanced?: Advanced;
 }
 const DETAILS = DETAIL as unknown as Record<string, Detail>;
 
@@ -116,7 +125,7 @@ export default function DeepDive({ entity, onClose, supplies }: { entity: Entity
       </div>
 
       <div className="mx-auto max-w-[1680px] px-4 py-6 sm:px-6">
-        {tab === "levers" && <LeversTab d={d} opps={opps} cautions={cautions} />}
+        {tab === "levers" && <LeversTab d={d} opps={opps} cautions={cautions} onGoto={(t) => setTab(t as TabKey)} />}
         {tab === "financials" && <FinancialsTab d={d} />}
         {tab === "peers" && <PeersTab d={d} />}
         {tab === "owners" && <OwnersTab d={d} />}
@@ -131,7 +140,14 @@ export default function DeepDive({ entity, onClose, supplies }: { entity: Entity
 }
 
 /* ===================================================================== LEVERS */
-function LeversTab({ d, opps, cautions }: { d: Detail; opps: number; cautions: number }) {
+const TAB_META: Record<string, { name: string; cls: string }> = {
+  financials: { name: "Financials", cls: "bg-teal-100 text-teal-700 hover:bg-teal-200" },
+  peers: { name: "Peers", cls: "bg-sky-100 text-sky-700 hover:bg-sky-200" },
+  owners: { name: "Owners", cls: "bg-violet-100 text-violet-700 hover:bg-violet-200" },
+  risk: { name: "Risk & legal", cls: "bg-rose-100 text-rose-700 hover:bg-rose-200" },
+};
+function LeversTab({ d, opps, cautions, onGoto }: { d: Detail; opps: number; cautions: number; onGoto: (t: string) => void }) {
+  const [open, setOpen] = useState<string | null>(null);
   const groups: { tone: Lever["tone"]; title: string; ring: string; bg: string; text: string; emoji: string }[] = [
     { tone: "opportunity", title: "Plays for us", ring: "ring-emerald-200", bg: "bg-emerald-50", text: "text-emerald-800", emoji: "✅" },
     { tone: "watch", title: "Worth watching", ring: "ring-amber-200", bg: "bg-amber-50", text: "text-amber-800", emoji: "👀" },
@@ -142,8 +158,9 @@ function LeversTab({ d, opps, cautions }: { d: Detail; opps: number; cautions: n
       <div className="mb-4 rounded-2xl bg-gradient-to-r from-teal-600 to-cyan-600 p-4 text-white shadow-sm">
         <div className="text-xs font-semibold uppercase tracking-wide text-teal-100">Negotiation-lever engine</div>
         <div className="mt-0.5 text-lg font-semibold">{opps} play{opps !== 1 ? "s" : ""} in our favour · {cautions} to watch — read straight off {d.yearsCovered}&nbsp;years of their filings.</div>
+        <div className="mt-1 text-xs text-teal-100/90">Click any lever to see the exact numbers behind it.</div>
       </div>
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid items-start gap-4 lg:grid-cols-3">
         {groups.map((g) => {
           const items = d.levers.filter((l) => l.tone === g.tone);
           return (
@@ -151,15 +168,40 @@ function LeversTab({ d, opps, cautions }: { d: Detail; opps: number; cautions: n
               <div className="mb-2 flex items-center gap-2 text-sm font-bold text-slate-700">{g.emoji} {g.title} <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-500">{items.length}</span></div>
               <div className="space-y-2.5">
                 {items.length === 0 && <div className="rounded-xl bg-white p-3 text-sm text-slate-400 ring-1 ring-slate-200">None.</div>}
-                {items.map((lv, i) => (
-                  <div key={i} className={`rounded-xl ${g.bg} p-3.5 ring-1 ${g.ring}`}>
-                    <div className="flex items-start justify-between gap-2">
-                      <div className={`text-sm font-semibold ${g.text}`}>{lv.title}</div>
-                      <span className="shrink-0 text-xs" title={`strength ${lv.strength}/3`}>{"●".repeat(lv.strength)}<span className="text-slate-300">{"●".repeat(3 - lv.strength)}</span></span>
+                {items.map((lv, i) => {
+                  const key = g.tone + i, isOpen = open === key, hasEv = (lv.evidence?.length ?? 0) > 0;
+                  return (
+                    <div key={i} className={`overflow-hidden rounded-xl ${g.bg} ring-1 ${g.ring} transition ${isOpen ? "shadow-md" : ""}`}>
+                      <button onClick={() => hasEv && setOpen(isOpen ? null : key)} className={`flex w-full items-start justify-between gap-2 p-3.5 text-left ${hasEv ? "hover:bg-white/30" : "cursor-default"}`}>
+                        <div className="min-w-0">
+                          <div className={`text-sm font-semibold ${g.text}`}>{lv.title}</div>
+                          <p className="mt-1 text-xs leading-relaxed text-slate-600">{lv.detail}</p>
+                        </div>
+                        <div className="flex shrink-0 flex-col items-end gap-1">
+                          <span className="text-xs" title={`strength ${lv.strength}/3`}>{"●".repeat(lv.strength)}<span className="text-slate-300">{"●".repeat(3 - lv.strength)}</span></span>
+                          {hasEv && <span className="whitespace-nowrap text-[10px] font-semibold text-slate-400">{isOpen ? "hide ▲" : "why? ▾"}</span>}
+                        </div>
+                      </button>
+                      {isOpen && hasEv && (
+                        <div className="border-t border-white/70 bg-white/60 px-3.5 py-2.5">
+                          <div className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">The numbers behind it — tap a source to open that tab</div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {lv.evidence!.map((e, j) => {
+                              const tm = TAB_META[e.tab] ?? { name: e.tab, cls: "bg-slate-100 text-slate-600 hover:bg-slate-200" };
+                              return (
+                                <span key={j} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2 py-1 text-xs ring-1 ring-slate-200">
+                                  <span className="text-slate-500">{e.label}</span>
+                                  <span className="font-semibold text-slate-900">{e.value}</span>
+                                  <button onClick={() => onGoto(e.tab)} title={`Open ${tm.name}`} className={`rounded px-1.5 py-0.5 text-[9px] font-semibold transition ${tm.cls}`}>{tm.name} →</button>
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-600">{lv.detail}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           );
