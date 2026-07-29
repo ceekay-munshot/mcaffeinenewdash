@@ -147,12 +147,16 @@ function build(raw, entity) {
   const shSum = (d.shareholdings_summary ?? [])[0] ?? {};
   const ownership = { promoterPct: round(shSum.promoter, 1), publicPct: round(typeof shSum.public === "number" ? shSum.public : shSum.public?.total, 1) };
 
-  // directors + their other companies
+  // directors + their OTHER current directorships (the "overboarding" signal).
+  // Exclude this very company, any board the person has already left, and dupes,
+  // so the count reflects how stretched they are across other live companies.
+  const selfCin = d.company?.cin ?? null;
   const sig = d.authorized_signatories ?? [];
   const netByName = new Map((d.director_network ?? []).map((x) => [x.name, x.network?.companies ?? []]));
   const directors = sig.filter((s) => !s.date_of_cessation).map((s) => {
-    const others = netByName.get(s.name) ?? [];
-    return { name: clean(s.name), designation: s.designation ?? null, since: s.date_of_appointment ? String(s.date_of_appointment).slice(0, 4) : null, age: num(s.age), otherCount: others.length, others: others.slice(0, 6).map((c) => clean(c.legal_name)) };
+    const raw = (netByName.get(s.name) ?? []).filter((c) => c.cin && c.cin !== selfCin && !c.date_of_cessation);
+    const names = [...new Set(raw.map((c) => clean(c.legal_name)).filter(Boolean))];
+    return { name: clean(s.name), designation: s.designation ?? null, since: s.date_of_appointment ? String(s.date_of_appointment).slice(0, 4) : null, age: num(s.age), otherCount: names.length, others: names.slice(0, 6) };
   });
 
   // charges / lenders

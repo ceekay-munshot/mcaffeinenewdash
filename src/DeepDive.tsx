@@ -480,20 +480,45 @@ function PeerGapTrend({ benchmarks }: { benchmarks: Detail["peers"]["benchmarks"
 function OwnersTab({ d }: { d: Detail }) {
   const shares = d.shareholders.map<Slice>((s, i) => ({ label: s.name, value: s.pct, color: SH_COLORS[i % SH_COLORS.length], sub: s.type }));
   const grp = (["holding", "subsidiaries", "associates", "jointVentures"] as const).map((k) => ({ k, items: d.group[k] ?? [] })).filter((g) => g.items.length);
+  // Probe's promoter/public split is unreliable for wholly-owned subsidiaries
+  // (it can report >100%). Only show it when it's sane; else fall back to a count.
+  const valid = (v: number | null) => v != null && v >= 0 && v <= 100;
+  const ownSub = valid(d.ownership.promoterPct) || valid(d.ownership.publicPct)
+    ? `promoter ${valid(d.ownership.promoterPct) ? pct(d.ownership.promoterPct) : "—"} · public ${valid(d.ownership.publicPct) ? pct(d.ownership.publicPct) : "—"}`
+    : `${d.shareholders.length} holder${d.shareholders.length === 1 ? "" : "s"} on file`;
   return (
     <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
-      <Card title="Shareholding (>5%)" sub={`promoter ${pct(d.ownership.promoterPct)} · public ${pct(d.ownership.publicPct)}`} accent={C.indigo}>
+      <Card title="Shareholding (>5%)" sub={ownSub} accent={C.indigo}>
         {shares.length ? <Donut data={shares} centerValue={`${shares.length}`} centerLabel="holders" unit="%" /> : <Empty t="No disclosed holders >5%." />}
       </Card>
-      <Card title="Who runs it" sub={`${d.directors.length} on the board today`} accent={C.violet} className="xl:col-span-2">
+      <Card title="Who runs it — board & overboarding" sub={`${d.directors.length} director${d.directors.length === 1 ? "" : "s"} · how many other live companies each also sits on`} accent={C.violet} className="xl:col-span-2">
         {d.directors.length ? (
-          <div className="grid gap-2 sm:grid-cols-2">
-            {d.directors.map((p, i) => (
-              <div key={i} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
-                <div className="flex items-center justify-between gap-2"><span className="truncate font-semibold text-slate-800">{p.name}</span><span className="shrink-0 text-xs text-slate-500">{p.designation ?? "Director"}{p.since ? ` · ${p.since}` : ""}</span></div>
-                {p.otherCount > 0 && <div className="mt-1 text-[11px] text-slate-500">Also on {p.otherCount} other board{p.otherCount > 1 ? "s" : ""}: {p.others.slice(0, 4).join(", ")}{p.otherCount > 4 ? "…" : ""}</div>}
-              </div>
-            ))}
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[560px] border-collapse text-sm">
+              <thead>
+                <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-500">
+                  <th className="px-3 py-2">Director</th><th className="px-3 py-2">Role</th>
+                  <th className="px-3 py-2 text-center">Since</th><th className="px-3 py-2 text-center">Age</th>
+                  <th className="px-3 py-2 text-center">Other boards</th><th className="px-3 py-2">Also sits on</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[...d.directors].sort((a, b) => b.otherCount - a.otherCount).map((p, i) => {
+                  const tone = p.otherCount >= 6 ? "bg-rose-100 text-rose-700" : p.otherCount >= 3 ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-500";
+                  return (
+                    <tr key={i} className="border-t border-slate-100 hover:bg-slate-50/70">
+                      <td className="px-3 py-2 font-semibold text-slate-800">{p.name}</td>
+                      <td className="px-3 py-2 text-slate-600">{p.designation ?? "Director"}</td>
+                      <td className="px-3 py-2 text-center font-mono text-slate-500">{p.since ?? "—"}</td>
+                      <td className="px-3 py-2 text-center font-mono text-slate-500">{p.age ?? "—"}</td>
+                      <td className="px-3 py-2 text-center"><span className={`inline-block min-w-[1.75rem] rounded-full px-2 py-0.5 text-xs font-bold ${tone}`}>{p.otherCount}</span></td>
+                      <td className="px-3 py-2 text-xs text-slate-500">{p.others.length ? <span title={p.others.join(", ")}>{p.others.slice(0, 3).join(", ")}{p.otherCount > 3 ? ` +${p.otherCount - 3} more` : ""}</span> : <span className="text-slate-300">—</span>}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <p className="mt-2 px-1 text-[11px] text-slate-400">"Other boards" = other live companies this person is a director of. <span className="font-medium text-amber-600">Amber 3–5</span> · <span className="font-medium text-rose-600">red 6+</span> = a stretched (overboarded) director — a governance signal worth a look.</p>
           </div>
         ) : <Empty t="No current directors on file." />}
       </Card>

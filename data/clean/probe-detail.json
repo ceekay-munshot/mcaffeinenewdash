@@ -1098,11 +1098,9 @@
         "designation": "Director",
         "since": "2023",
         "age": 71,
-        "otherCount": 5,
+        "otherCount": 3,
         "others": [
           "INDIAMO",
-          "NORTHERN AROMATICS",
-          "NORTHERN AROMATICS",
           "ONCQUEST LABORATORIES",
           "ELEPHANT INDIA FINANCE"
         ]
@@ -1112,11 +1110,9 @@
         "designation": "Additional Director",
         "since": "2023",
         "age": 71,
-        "otherCount": 5,
+        "otherCount": 3,
         "others": [
           "INDIAMO",
-          "NORTHERN AROMATICS",
-          "NORTHERN AROMATICS",
           "ONCQUEST LABORATORIES",
           "ELEPHANT INDIA FINANCE"
         ]
@@ -1126,22 +1122,16 @@
         "designation": "Whole-time director",
         "since": "2023",
         "age": 54,
-        "otherCount": 2,
-        "others": [
-          "NORTHERN AROMATICS",
-          "NORTHERN AROMATICS"
-        ]
+        "otherCount": 0,
+        "others": []
       },
       {
         "name": "VIRENDRA PRASAD JOSHI",
         "designation": "Additional Director",
         "since": "2023",
         "age": 54,
-        "otherCount": 2,
-        "others": [
-          "NORTHERN AROMATICS",
-          "NORTHERN AROMATICS"
-        ]
+        "otherCount": 0,
+        "others": []
       },
       {
         "name": "VIKAS AGGARWAL",
@@ -1156,12 +1146,8 @@
         "designation": "Director",
         "since": "2025",
         "age": 50,
-        "otherCount": 3,
-        "others": [
-          "TIRUPATI MEDICARE",
-          "PRODAPT SOLUTIONS",
-          "NORTHERN AROMATICS"
-        ]
+        "otherCount": 0,
+        "others": []
       }
     ],
     "charges": {
@@ -2504,11 +2490,10 @@
         "designation": "Whole-time director",
         "since": "2022",
         "age": 48,
-        "otherCount": 3,
+        "otherCount": 2,
         "others": [
           "NATUREX INDIA",
-          "VALENTINE FOODS",
-          "GIVAUDAN (INDIA)"
+          "VALENTINE FOODS"
         ]
       },
       {
@@ -2516,12 +2501,11 @@
         "designation": "Whole-time director",
         "since": "2021",
         "age": 55,
-        "otherCount": 4,
+        "otherCount": 3,
         "others": [
           "NATUREX INDIA",
           "VALENTINE FOODS",
-          "PRIGIV SPECIALTIES",
-          "GIVAUDAN (INDIA)"
+          "PRIGIV SPECIALTIES"
         ]
       },
       {
@@ -2529,10 +2513,9 @@
         "designation": "Whole-time director",
         "since": "2023",
         "age": 54,
-        "otherCount": 3,
+        "otherCount": 2,
         "others": [
           "NATUREX INDIA",
-          "GIVAUDAN (INDIA)",
           "VALENTINE FOODS"
         ]
       }
@@ -3880,14 +3863,13 @@
         "designation": "Director",
         "since": "2001",
         "age": 69,
-        "otherCount": 7,
+        "otherCount": 5,
         "others": [
-          "CHERYL LABORATORIES",
           "GOPALDAS VISRAM PHARMA",
           "KRUPA POLYMERS (INDIA)",
-          "GOPALDAS VISRAM POLYMERS",
           "FACT WISE TECH",
-          "GOPALDAS VISRAM AND COMPANY"
+          "GOPALDAS VISRAM AND COMPANY",
+          "GOPALDAS VISRAM PACKAGING"
         ]
       },
       {
@@ -3895,12 +3877,10 @@
         "designation": "Director",
         "since": "2001",
         "age": 65,
-        "otherCount": 6,
+        "otherCount": 4,
         "others": [
-          "CHERYL LABORATORIES",
           "GOPALDAS VISRAM PHARMA",
           "KRUPA POLYMERS (INDIA)",
-          "GOPALDAS VISRAM POLYMERS",
           "GOPALDAS VISRAM AND COMPANY",
           "GOPALDAS VISRAM PACKAGING"
         ]
@@ -3910,12 +3890,10 @@
         "designation": "Director",
         "since": "2010",
         "age": 36,
-        "otherCount": 5,
+        "otherCount": 3,
         "others": [
-          "CHERYL LABORATORIES",
           "KRUPA POLYMERS (INDIA)",
           "GOPALDAS VISRAM AND COMPANY",
-          "FUSION COSMECEUTICS",
           "GOPALDAS VISRAM PACKAGING"
         ]
       },
@@ -3924,9 +3902,8 @@
         "designation": "Director",
         "since": "2018",
         "age": 30,
-        "otherCount": 5,
+        "otherCount": 4,
         "others": [
-          "CHERYL LABORATORIES",
           "FACT WISE TECH",
           "LIANGZI QUANTUM APPLICATIONS",
           "RYOSHI QUANTUM MECHANICS",
@@ -3938,14 +3915,14 @@
         "designation": "Director",
         "since": "2001",
         "age": 70,
-        "otherCount": 10,
+        "otherCount": 8,
         "others": [
-          "CHERYL LABORATORIES",
           "GOPALDAS VISRAM PHARMA",
           "KRUPA POLYMERS (INDIA)",
           "ALL INDIA PHARMACEUTICAL DISTRIBUTORS AN D CLEARING AND FORWARDING AGENTS ORGANIS",
-          "GOPALDAS VISRAM POLYMERS",
-          "LIANGZI QUANTUM APPLICATIONS"
+          "LIANGZI QUANTUM APPLICATIONS",
+          "RYOSHI QUANTUM MECHANICS",
+          "GOPALDAS VISRAM AND COMPANY"
         ]
       }
     ],
@@ -5326,14 +5303,14 @@
         "designation": "Whole-time director",
         "since": "1997",
         "age": 64,
-        "otherCount": 8,
+        "otherCount": 7,
         "others": [
           "YASHAM CHEMPHAR",
           "YASHAM BIO-SCIENCE",
-          "YASHAM SPECIALITY INGREDIENTS",
           "YASHAM-MITSUYA CONSTRUCTION ADDITIVES",
           "SAMIPYA WELFARE FOUNDATION",
-          "YASHARTH WELLNESS SOLUTIONS"
+          "YASHARTH WELLNESS SOLUTIONS",
+          "YASHARTH PROPERTIES"
         ]
       },
       {
@@ -5341,7 +5318,7 @@
         "designation": "Managing Director",
         "since": "1997",
         "age": 68,
-        "otherCount": 9,
+        "otherCount": 7,
         "others": [
           "YASHAM CHEMPHAR",
           "YASHAM BIO-SCIENCE",
@@ -6683,14 +6660,9 @@
         "designation": "Managing Director",
         "since": "2022",
         "age": 57,
-        "otherCount": 6,
+        "otherCount": 1,
         "others": [
-          "MERITOR HVS (INDIA)",
-          "GARRETT MOTION TECHNOLOGIES (INDIA)",
-          "AXLETECH INDIA",
-          "HONEYWELL TURBO (INDIA)",
-          "MTL NEW INITIATIVES",
-          "ALTERNICQ"
+          "MTL NEW INITIATIVES"
         ]
       },
       {
@@ -6698,14 +6670,14 @@
         "designation": "Director",
         "since": "2025",
         "age": 63,
-        "otherCount": 23,
+        "otherCount": 8,
         "others": [
-          "WELSPUN LIVING",
-          "PNB METLIFE INDIA INSURANCE COMPANY",
-          "THE INDIAN SOCIETY OF ADVERTISERS",
-          "HSBC CONSULTANCY SERVICES (INDIA)",
-          "QUINTESSENTIALLY LIFESTYLE SERVICES (INDIA)",
-          "NUVAMA WEALTH FINANCE"
+          "VERSUNI INDIA HOME SOLUTIONS",
+          "CEIGALL INDIA",
+          "DVARA KSHETRIYA GRAMIN FINANCIAL SERVICES",
+          "RAYMOND LIFESTYLE",
+          "MOTHERSON SUMI WIRING INDIA",
+          "STAR HEALTH AND ALLIED INSURANCE COMPANY"
         ]
       },
       {
@@ -6713,14 +6685,14 @@
         "designation": "Director",
         "since": "2025",
         "age": 66,
-        "otherCount": 33,
+        "otherCount": 11,
         "others": [
-          "VARASH PROPERTIES",
-          "PALACE SOLAR ENERGY",
-          "NEPTUNE DEVELOPERS",
-          "AXIS MUTUAL FUND TRUSTEE",
-          "APCOTEX INDUSTRIES",
-          "CENTURION BANK OF PUNJAB"
+          "CENTURION BANK OF PUNJAB",
+          "TERRAFIRMA AGROPROCESSING (INDIA)",
+          "FABMALL (INDIA)",
+          "TRINETHRA SUPERRETAIL",
+          "H.A.S.TWO HOLDINGS",
+          "NUVAMA WEALTH FINANCE"
         ]
       },
       {
@@ -6728,14 +6700,13 @@
         "designation": "Director",
         "since": "2025",
         "age": 48,
-        "otherCount": 10,
+        "otherCount": 5,
         "others": [
-          "KIMS AL SHIFA HEALTHCARE",
-          "HICARE SERVICES",
-          "FOOD SERVICE (INDIA)",
-          "KIDS CLINIC INDIA",
           "OPTIMUS LIFE SCIENCE",
-          "OPTIMUS DRUGS"
+          "OPTIMUS DRUGS",
+          "OPTIMUS PHARMA",
+          "ANJAN DRUG",
+          "PRAVESHA INDUSTRIES"
         ]
       },
       {
@@ -6743,14 +6714,13 @@
         "designation": "Director",
         "since": "2025",
         "age": 40,
-        "otherCount": 9,
+        "otherCount": 5,
         "others": [
           "ACME FORMULATION",
-          "NOVAAIR",
           "PAGAC ADVISORS INDIA",
-          "NOVAAIR TECHNOLOGIES",
           "SEKHMET PHARMAVENTURES",
-          "NUVAMA WEALTH MANAGEMENT"
+          "NUVAMA WEALTH MANAGEMENT",
+          "PRAVESHA INDUSTRIES"
         ]
       },
       {
@@ -6758,14 +6728,14 @@
         "designation": "Director",
         "since": "2025",
         "age": 48,
-        "otherCount": 17,
+        "otherCount": 7,
         "others": [
           "ACME FORMULATION",
-          "ANJAN DRUG",
-          "JBF INDUSTRIES",
           "RADIANT LIFE CARE",
           "NUVAMA WEALTH FINANCE",
-          "RADIANT LIFE CARE"
+          "PAGAC ADVISORS INDIA",
+          "SEKHMET PHARMAVENTURES",
+          "NUVAMA WEALTH MANAGEMENT"
         ]
       },
       {
@@ -6773,7 +6743,7 @@
         "designation": "Director",
         "since": "2025",
         "age": 66,
-        "otherCount": 11,
+        "otherCount": 10,
         "others": [
           "SUTLEJ TEXTILES AND INDUSTRIES",
           "ECL FINANCE",
@@ -6788,14 +6758,9 @@
         "designation": "CEO",
         "since": null,
         "age": 0,
-        "otherCount": 6,
+        "otherCount": 1,
         "others": [
-          "MERITOR HVS (INDIA)",
-          "GARRETT MOTION TECHNOLOGIES (INDIA)",
-          "AXLETECH INDIA",
-          "HONEYWELL TURBO (INDIA)",
-          "MTL NEW INITIATIVES",
-          "ALTERNICQ"
+          "MTL NEW INITIATIVES"
         ]
       },
       {
@@ -8324,14 +8289,14 @@
         "designation": "Director",
         "since": "2024",
         "age": 46,
-        "otherCount": 12,
+        "otherCount": 11,
         "others": [
           "ALCHEMIE AGENCIES",
           "AROMA CHEMICAL AGENCIES (INDIA)",
           "CHAMPION SOFTWARE TECHNOLOGIES",
           "IMCD INDIA",
           "SIGNET EXCIPIENTS",
-          "VALUETREE INGREDIENTS"
+          "MONACHEM ADDITIVES"
         ]
       },
       {
@@ -8339,14 +8304,14 @@
         "designation": "Director",
         "since": "2024",
         "age": 42,
-        "otherCount": 10,
+        "otherCount": 6,
         "others": [
-          "ROCHE DIAGNOSTICS INDIA",
-          "ROCHE PRODUCTS (INDIA)",
           "IMCD INDIA",
-          "ROCHE INDIA HEALTHCARE INSTITUTE",
-          "VALUETREE INGREDIENTS",
-          "PARKASH DYECHEM"
+          "PARKASH DYECHEM",
+          "TRADEIMPEX POLYMERS (INDIA)",
+          "SIGNET EXCIPIENTS",
+          "TRICHEM HEALTHCARE",
+          "TRICHEM LIFESCIENCES"
         ]
       }
     ],
