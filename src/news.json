@@ -200,10 +200,17 @@
   ]
  },
  "PRINTOTECH GLOBAL LIMITED": {
-  "found": false,
-  "summary": "No significant recent news found.",
+  "found": true,
+  "summary": "Seamless & laminated tube-packaging maker for cosmetics, pharma & oral care (since 1994).",
   "news": [],
-  "signals": []
+  "signals": [
+   {
+    "type": "Market position",
+    "oneLine": "Makes laminated/seamless tubes for cosmetics & personal care on German extrusion + Swiss decoration lines; BRCGS-certified, recyclable/EPR-compliant. Quality is their moat — compete them on price by qualifying a second tube source.",
+    "source": "Printotech",
+    "url": "https://www.printotech.com/"
+   }
+  ]
  },
  "PRISHA TUBES PRIVATE LIMITED": {
   "found": false,
@@ -218,10 +225,17 @@
   "signals": []
  },
  "Radcom Packaging": {
-  "found": false,
-  "summary": "No significant recent news found.",
+  "found": true,
+  "summary": "Cleanroom (cGMP / ISO 15378) maker of PET/HDPE bottles, jars & caps for cosmetics & pharma (Vasai, since 2011).",
   "news": [],
-  "signals": []
+  "signals": [
+   {
+    "type": "Market position",
+    "oneLine": "Two Class-1-lakh cleanroom facilities with USDMF & cGMP approvals — pharma-grade packaging. Compliance makes them sticky and gives pricing power; qualify a second cGMP source to keep them honest.",
+    "source": "Radcom",
+    "url": "https://radcompackaging.com/"
+   }
+  ]
  },
  "SAMKIN TREASURE MOLDERS PRIVATE LIMITED": {
   "found": false,
