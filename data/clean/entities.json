@@ -10382,6 +10382,20 @@
           "Sprivil Healthcare",
           "Wonder Products Group"
         ]
+      },
+      "probe": {
+        "receivableDays": 56,
+        "payableDays": 57,
+        "cashConversionCycleDays": 51.19,
+        "roce": 27.68,
+        "roe": 22.65,
+        "ebitdaMargin": 8.78,
+        "netMargin": 6.34,
+        "peerMedianPayableDays": null,
+        "peerMedianReceivableDays": null,
+        "creditRating": null,
+        "profitabilityScore": 4,
+        "fetchedAt": "2026-07-29T19:08:33.480Z"
       }
     },
     {
@@ -12730,6 +12744,20 @@
           "founders": []
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 153.53,
+        "payableDays": 74.74,
+        "cashConversionCycleDays": 121.66,
+        "roce": 17.43,
+        "roe": 15.72,
+        "ebitdaMargin": 10.79,
+        "netMargin": 5.67,
+        "peerMedianPayableDays": 36.29,
+        "peerMedianReceivableDays": 64.805,
+        "creditRating": "A4 (Issuer Not Cooperating/Reaffirmed)",
+        "profitabilityScore": 4,
+        "fetchedAt": "2026-07-29T19:08:35.546Z"
       }
     },
     {
@@ -14877,6 +14905,20 @@
           "Arkema",
           "Clariant"
         ]
+      },
+      "probe": {
+        "receivableDays": 146.96,
+        "payableDays": 85.58,
+        "cashConversionCycleDays": 84,
+        "roce": 24.8,
+        "roe": 18.59,
+        "ebitdaMargin": 4.91,
+        "netMargin": 4.62,
+        "peerMedianPayableDays": 33.855000000000004,
+        "peerMedianReceivableDays": 46.28,
+        "creditRating": "SME 1",
+        "profitabilityScore": 4,
+        "fetchedAt": "2026-07-29T19:08:36.953Z"
       }
     },
     {
@@ -15199,6 +15241,20 @@
           "Performance Chemiserve",
           "SBL Energy"
         ]
+      },
+      "probe": {
+        "receivableDays": 70.88,
+        "payableDays": 45.13,
+        "cashConversionCycleDays": 97.67,
+        "roce": 23.34,
+        "roe": 17.1,
+        "ebitdaMargin": 11.39,
+        "netMargin": 8.39,
+        "peerMedianPayableDays": 42.285,
+        "peerMedianReceivableDays": 56.144999999999996,
+        "creditRating": null,
+        "profitabilityScore": 4,
+        "fetchedAt": "2026-07-29T19:08:38.735Z"
       }
     },
     {
@@ -16764,5 +16820,5 @@
       }
     }
   ],
-  "probeEnrichedCount": 6
+  "probeEnrichedCount": 10
 }
