@@ -572,8 +572,8 @@ const CONF_DOT: Record<string, string> = { high: "bg-emerald-400", medium: "bg-a
 // Click a raw material → this page: every supplier that sells it (our current
 // vendor + the IndiaMART/TradeIndia alternatives) with price context and their
 // financials side by side, then the negotiation levers our vendor hands us.
-function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }: {
-  entry: MarketEntry; currentVendor: Entity | undefined; all: Entity[]; onBack: () => void; onSelectVendor: (e: Entity) => void;
+function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, backLabel = "all ingredients" }: {
+  entry: MarketEntry; currentVendor: Entity | undefined; all: Entity[]; onBack: () => void; onSelectVendor: (e: Entity) => void; backLabel?: string;
 }) {
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const [deep, setDeep] = useState(false);
@@ -590,7 +590,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
   const STEPS: [string, string][] = [["①", "Suppliers"], ["②", "Price"], ["③", "Financials"], ["④", "Levers"]];
   return (
     <div className="space-y-4">
-      <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Back to all ingredients</button>
+      <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Back to {backLabel}</button>
 
       <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -872,6 +872,7 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
   const [prod, setProd] = useState("any");
   const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
   const [query, setQuery] = useState("");
+  const [ingredient, setIngredient] = useState<MarketEntry | null>(null);
 
   const avail = useMemo(() => {
     const counts = new Map<string, number>();
@@ -899,6 +900,13 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
   const topCat = (c: (typeof SUP_CATS)[number]) => all.filter((e) => e.category === c && revOf(e) != null).sort((a, b) => (revOf(b) ?? 0) - (revOf(a) ?? 0)).slice(0, CMP_MAX);
   const presetCls = "inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition hover:bg-teal-50 hover:text-teal-700 hover:ring-teal-300";
 
+  const vendorForIngredient = (entry: MarketEntry): Entity | undefined => {
+    if (entry.side === "rm") { const row = RM_SUPPLY.find((s) => s.item === entry.item && s.folder); return row ? byFolder.get(row.folder) : undefined; }
+    const row = PM_SUPPLY.find((s) => pmCategoryOf(s.item) === entry.item && s.folder);
+    return row ? byFolder.get(row.folder) : undefined;
+  };
+
+  if (ingredient) return <IngredientDetail entry={ingredient} currentVendor={vendorForIngredient(ingredient)} all={all} onBack={() => setIngredient(null)} onSelectVendor={onSelect} backLabel="compare" />;
   if (analysing && selected.length >= 2) return <CompareAnalysis selected={selected} onBack={() => setAnalysing(false)} onSelect={onSelect} />;
 
   return (
@@ -913,6 +921,17 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
         <div className="mt-3 flex flex-wrap gap-2">
           {enriched.length >= 2 && <button onClick={() => launch(enriched)} className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110">✨ Our {enriched.length} deep-dive suppliers</button>}
           {(["Manufacturer", "RM Vendor", "PM Vendor"] as const).map((c) => topCat(c).length >= 2 ? <button key={c} onClick={() => launch(topCat(c))} className={presetCls}>{catEmoji(c)} Top {c}s</button> : null)}
+        </div>
+
+        {/* ingredient sellers — every seller of one ingredient (incl. IndiaMART alternatives) with price */}
+        <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-3">
+          <span className="text-sm font-medium text-slate-600">🧪 Or see one ingredient's sellers &amp; prices:</span>
+          <select value="" onChange={(e) => { const entry = allMarket().find((m) => m.item === e.target.value); if (entry) setIngredient(entry); }}
+            className="min-w-[16rem] rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400">
+            <option value="">Pick an ingredient…</option>
+            <optgroup label="Raw materials">{allMarket().filter((m) => m.side === "rm").map((m) => <option key={m.item} value={m.item}>{m.item}</option>)}</optgroup>
+            <optgroup label="Packaging">{allMarket().filter((m) => m.side === "pm").map((m) => <option key={m.item} value={m.item}>{m.item}</option>)}</optgroup>
+          </select>
         </div>
 
         {/* filters */}
