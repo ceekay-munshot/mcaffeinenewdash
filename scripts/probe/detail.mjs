@@ -73,7 +73,21 @@ function ratioRow(f) {
 
 /* -------------------------------------------------------------------- build one */
 
-function build(raw) {
+// Probe's registered name is normally the best display name, but a supplier that
+// was renamed after an acquisition can come back under a stale/holdco name that
+// no longer matches the vendor we track (Manjushree's Advent holdco still files as
+// "Alternicq Limited"; Connell Brothers now files as "Caldic"). When Probe's name
+// shares no token with the tracked brand, use our own curated name instead.
+function displayLegalName(probeName, entity) {
+  const p = clean(probeName);
+  const brand = entity?.brand ?? "";
+  const tok = brand.toLowerCase().split(/\s+/)[0];
+  if (!p) return entity?.legalName ?? brand ?? null;
+  if (tok && tok.length >= 3 && p.toLowerCase().includes(tok)) return p; // Probe name matches the brand → trust it
+  return entity?.legalName ?? p; // renamed / holdco name → prefer our curated name
+}
+
+function build(raw, entity) {
   const d = raw.data ?? raw;
   const finsRaw = d.financials ?? [];
 
@@ -187,7 +201,7 @@ function build(raw) {
 
   const detail = {
     // identity
-    cin: co.cin ?? null, legalName: co.legal_name ?? null, description: (d.description?.desc_thousand_char ?? "").slice(0, 600) || null,
+    cin: co.cin ?? null, legalName: displayLegalName(co.legal_name, entity), description: (d.description?.desc_thousand_char ?? "").slice(0, 600) || null,
     website: co.website ?? null, city: co.registered_address?.city ?? null, state: co.registered_address?.state ?? null,
     incorporation: co.incorporation_date ?? null, classification: co.classification ?? null, status: co.status ?? null,
     industry: pc0.bizIndustry ?? null, segment: pc0.bizSegment ?? null,
@@ -302,12 +316,16 @@ function buildLevers(x) {
 
 /* ------------------------------------------------------------------------- run */
 
+const ENT = existsSync("data/clean/entities.json")
+  ? new Map((JSON.parse(readFileSync("data/clean/entities.json", "utf8")).entities ?? []).map((e) => [e.cin, e]))
+  : new Map();
+
 const outObj = {};
 if (existsSync(CACHE)) {
   for (const f of readdirSync(CACHE)) {
     if (!f.endsWith(".json")) continue;
     const cin = f.replace(/\.json$/, "");
-    try { outObj[cin] = build(JSON.parse(readFileSync(join(CACHE, f), "utf8"))); }
+    try { outObj[cin] = build(JSON.parse(readFileSync(join(CACHE, f), "utf8")), ENT.get(cin)); }
     catch (e) { console.log(`  ! ${cin}: ${e.message}`); }
   }
 }
