@@ -1,0 +1,2749 @@
+{
+  "metadata": {
+    "api_version": "1.3",
+    "last_updated": "2026-04-25",
+    "identifier_changed": false
+  },
+  "data": {
+    "company": {
+      "cin": "U25209GJ2020PTC114326",
+      "legal_name": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+      "efiling_status": "Active",
+      "incorporation_date": "2020-07-03",
+      "paid_up_capital": 5000000,
+      "sum_of_charges": 580976000,
+      "authorized_capital": 5000000,
+      "active_compliance": null,
+      "cirp_status": null,
+      "lei": {
+        "number": "335800EKTSDMLH2T8905",
+        "status": "ISSUED",
+        "registration_date": "2024-05-02",
+        "last_updated_date": "2026-04-07",
+        "next_renewal_date": "2027-05-02"
+      },
+      "registered_address": {
+        "full_address": "UNIT NO. 603, SAMANVAYA SILVER, NEAR   MUJMAHUDA CIRCLE, NEXT TO ROYAL ORCHID,VADODARA, Vadodara, Gujarat - 390012",
+        "address_line1": "UNIT NO. 603, SAMANVAYA SILVER, NEAR   MUJMAHUDA CIRCLE, NEXT TO ROYAL ORCHID,",
+        "address_line2": null,
+        "city": "VADODARA",
+        "pincode": "390012",
+        "state": "Gujarat"
+      },
+      "business_address": {
+        "address_line1": "603, Samanvaya Silver, Near Mujmahuda Circle,",
+        "address_line2": "Next To Royal Orchid",
+        "city": "Vadodara",
+        "pincode": 390012,
+        "state": "Gujarat"
+      },
+      "pan": "ABDCS8842F",
+      "website": "https://samkin.net/",
+      "classification": "Private Limited Indian Non-Government Company",
+      "status": "Unlisted",
+      "next_cin": null,
+      "last_agm_date": "2025-09-30",
+      "last_filing_date": "2025-03-31",
+      "email": "samkintm@gmail.com"
+    },
+    "description": {
+      "desc_thousand_char": "Samkin Treasure Molders Private Limited (STMPL) is engaged in the business of manufacturing plastic bottles and jars. The company offers products such as agro bottles, cream and gel jars, hand wash, dish wash and glass cleaner bottles, PP and HDPE bottles and jars and many more. Its clientele includes Abbott, Raymond, Beardo, Amul, Bisleri, Himalaya and Sun Pharma, among others. The company was incorporated in 2020 and has its registered office located in Vadodara, Gujarat."
+    },
+    "name_history": [],
+    "authorized_signatories": [
+      {
+        "pan": "AACPT4143R",
+        "din": "03199154",
+        "name": "SAMIR YOGESH TREASURER",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1975-08-21",
+        "age": 51,
+        "date_of_appointment": "2020-07-03",
+        "date_of_appointment_for_current_designation": "2020-07-03",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2020-07-03",
+            "filing_date": null
+          }
+        ]
+      },
+      {
+        "pan": "ADZPT9251E",
+        "din": "03197693",
+        "name": "SNEHA TREASURER",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Female",
+        "date_of_birth": "1980-01-21",
+        "age": 46,
+        "date_of_appointment": "2020-07-03",
+        "date_of_appointment_for_current_designation": "2020-07-03",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2020-07-03",
+            "filing_date": null
+          }
+        ]
+      }
+    ],
+    "director_network": [
+      {
+        "name": "SNEHA TREASURER",
+        "pan": "ADZPT9251E",
+        "din": "03197693",
+        "network": {
+          "companies": [
+            {
+              "cin": "U25209GJ2020PTC114326",
+              "legal_name": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2020-07-03",
+              "paid_up_capital": 5000000,
+              "sum_of_charges": 580976000,
+              "city": "VADODARA",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2020-07-03",
+              "date_of_appointment_for_current_designation": "2020-07-03",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U37100GJ2022PTC134376",
+              "legal_name": "SAMKIN SUSTAINABLE SOLUTIONS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2022-07-29",
+              "paid_up_capital": 6620000,
+              "sum_of_charges": 210200000,
+              "city": "VADODARA",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2022-07-29",
+              "date_of_appointment_for_current_designation": "2022-07-29",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": []
+        }
+      },
+      {
+        "name": "SAMIR YOGESH TREASURER",
+        "pan": "AACPT4143R",
+        "din": "03199154",
+        "network": {
+          "companies": [
+            {
+              "cin": "U25209GJ2020PTC114326",
+              "legal_name": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2020-07-03",
+              "paid_up_capital": 5000000,
+              "sum_of_charges": 580976000,
+              "city": "VADODARA",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2020-07-03",
+              "date_of_appointment_for_current_designation": "2020-07-03",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U37100GJ2022PTC134376",
+              "legal_name": "SAMKIN SUSTAINABLE SOLUTIONS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2022-07-29",
+              "paid_up_capital": 6620000,
+              "sum_of_charges": 210200000,
+              "city": "VADODARA",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2022-07-29",
+              "date_of_appointment_for_current_designation": "2022-07-29",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": []
+        }
+      }
+    ],
+    "contact_details": {
+      "email": [
+        {
+          "emailId": "samkintm@gmail.com",
+          "status": null
+        },
+        {
+          "emailId": "sales.bottles@gmail.com",
+          "status": null
+        },
+        {
+          "emailId": "samkin.mktg@gmail.com",
+          "status": null
+        },
+        {
+          "emailId": "sales@samkin.net",
+          "status": null
+        }
+      ],
+      "phone": [
+        {
+          "phoneNumber": "09377542201",
+          "status": null
+        },
+        {
+          "phoneNumber": "07046811411",
+          "status": null
+        },
+        {
+          "phoneNumber": "07229072211",
+          "status": null
+        },
+        {
+          "phoneNumber": "09512030983",
+          "status": null
+        }
+      ]
+    },
+    "open_charges": [
+      {
+        "id": 101258971,
+        "date": "2026-03-19",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 20300000,
+        "type": "Creation"
+      },
+      {
+        "id": 100604021,
+        "date": "2026-03-13",
+        "holder_name": "AXIS BANK LIMITED",
+        "amount": 122500000,
+        "type": "Modification"
+      },
+      {
+        "id": 100604014,
+        "date": "2026-03-03",
+        "holder_name": "AXIS BANK LIMITED",
+        "amount": 122500000,
+        "type": "Modification"
+      },
+      {
+        "id": 101224054,
+        "date": "2026-01-28",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 10000000,
+        "type": "Creation"
+      },
+      {
+        "id": 101203205,
+        "date": "2025-12-11",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 56163000,
+        "type": "Creation"
+      },
+      {
+        "id": 101207643,
+        "date": "2025-12-11",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 56163000,
+        "type": "Creation"
+      },
+      {
+        "id": 101134521,
+        "date": "2025-06-24",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 15000000,
+        "type": "Creation"
+      },
+      {
+        "id": 101092298,
+        "date": "2025-05-06",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 15000000,
+        "type": "Creation"
+      },
+      {
+        "id": 101004748,
+        "date": "2024-11-13",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 16775000,
+        "type": "Creation"
+      },
+      {
+        "id": 101007929,
+        "date": "2024-11-13",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 16775000,
+        "type": "Creation"
+      },
+      {
+        "id": 100930260,
+        "date": "2024-05-30",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 14000000,
+        "type": "Creation"
+      },
+      {
+        "id": 100842182,
+        "date": "2023-12-28",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 24000000,
+        "type": "Creation"
+      },
+      {
+        "id": 100814130,
+        "date": "2023-10-27",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 24000000,
+        "type": "Creation"
+      },
+      {
+        "id": 100688810,
+        "date": "2023-03-20",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 22500000,
+        "type": "Creation"
+      },
+      {
+        "id": 100686777,
+        "date": "2023-03-02",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 45300000,
+        "type": "Creation"
+      }
+    ],
+    "open_charges_latest_event": [
+      {
+        "id": 101258971,
+        "date": "2026-03-19",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 20300000,
+        "type": "Creation",
+        "property_type": "Others (Corporate Guarantee of the Samkin Treasure Molder Pvt. Ltd.)",
+        "number_of_chargeholder": 1,
+        "instrument_description": "A Corporate guarantee of the company i.e. Samkin Tresure Molder Pvt. Ltd. as per Resolution dated 19/03/2026.",
+        "filing_date": "2026-03-27",
+        "rate_of_interest": "8.35%",
+        "terms_of_payment": "54 monthly installments after moratorium of 6 months",
+        "property_particulars": "Corporate Guarantor of Samkin Treasure Molders Pvt Ltd, with both director of Samir Treasurer & Senha treasurer",
+        "extent_and_operation": "First Charge",
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 101224054,
+        "date": "2026-01-28",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 10000000,
+        "type": "Creation",
+        "property_type": "Movable property - Equipment and Machinery Others (Invoice based Financing)",
+        "number_of_chargeholder": 1,
+        "instrument_description": "The Charge creating as per the Loan Agreement Cum Hypothecation dated 28/01/2026 & Sanction letter dated 27/01/2026",
+        "filing_date": "2026-01-31",
+        "rate_of_interest": "9.50%",
+        "terms_of_payment": "The validity limit i.e. Tranche tenure will be for 365 days; the tenure for each Invoice financed will be 75 days; due date of payment of installmenta nd interest will be on demand, Bullet repayment schedule will be followed",
+        "property_particulars": "Second charge by way of hypothecation on all the movables (save and except book debts) including the movables, plant, machinery, machinery spares, tools & accessories, office equipments, computers, furnitures and fixtures, both present and future",
+        "extent_and_operation": "The first charge shall be the repayment to the bank of all monies, including the principal sum, interest, costs, charges, expenses, and any other monies payable from time to time. All rights, remedies, terms, and conditions to be observed by the company shall apply to the aggregate credit facility amounting to Rs. 100 lakh.",
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 101207643,
+        "date": "2025-12-11",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 56163000,
+        "type": "Creation",
+        "property_type": null,
+        "number_of_chargeholder": null,
+        "instrument_description": null,
+        "filing_date": null,
+        "rate_of_interest": null,
+        "terms_of_payment": null,
+        "property_particulars": null,
+        "extent_and_operation": null,
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": null,
+        "consortium_holding": null
+      },
+      {
+        "id": 101203205,
+        "date": "2025-12-11",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 56163000,
+        "type": "Creation",
+        "property_type": null,
+        "number_of_chargeholder": null,
+        "instrument_description": null,
+        "filing_date": null,
+        "rate_of_interest": null,
+        "terms_of_payment": null,
+        "property_particulars": null,
+        "extent_and_operation": null,
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": null,
+        "consortium_holding": null
+      },
+      {
+        "id": 101134521,
+        "date": "2025-06-24",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 15000000,
+        "type": "Creation",
+        "property_type": "Immovable property or any interest therein - Commercial",
+        "number_of_chargeholder": 1,
+        "instrument_description": "As per Indenture of Mortgage dated 24/06/2025 & Sanction letter dated 09/04/2025",
+        "filing_date": "2025-08-11",
+        "rate_of_interest": "9.00%",
+        "terms_of_payment": "54 Monthly installments after moratorium of 6 months",
+        "property_particulars": "Extension of First Charge by way of Mortgage in favour of SIDBI of the leasehold rights of the all the immovable properties owned by the borrower, both present and future, situated at Industrial Plot No 614, GIDC Ankleshwar, Dist. Bharuch, admeasuring 1000 Sq. Mtr., including Factory shed, buildings. Details security as per sanction letter dated 09/04/25 point no. L & M & Agreement for Indenture of Mortgage dated 24/06/25",
+        "extent_and_operation": "First Charge",
+        "other_terms": "Term loan sanction Under Privileged Customer Scheme (PCS)",
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 101092298,
+        "date": "2025-05-06",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 15000000,
+        "type": "Creation",
+        "property_type": "Movable property - Equipment and Machinery",
+        "number_of_chargeholder": 1,
+        "instrument_description": "The Charge creating as per the Agreement for Term Loan Limit Cum Hypothecation dated 06/05/2025 & Sanction letter dated 09/04/2025",
+        "filing_date": "2025-05-16",
+        "rate_of_interest": "9.00%",
+        "terms_of_payment": "54 Monthly installments after moratorium of 6 months",
+        "property_particulars": "Details security as per sanction letter dated 09/04/25 point no. L & M & Agreement for term loan cum hypothecation dated 06/05/25",
+        "extent_and_operation": "First Charge",
+        "other_terms": "Term loan sanction Under Privileged Customer Scheme (PCS)",
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 101007929,
+        "date": "2024-11-13",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 16775000,
+        "type": "Creation",
+        "property_type": null,
+        "number_of_chargeholder": null,
+        "instrument_description": null,
+        "filing_date": null,
+        "rate_of_interest": null,
+        "terms_of_payment": null,
+        "property_particulars": null,
+        "extent_and_operation": null,
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": null,
+        "consortium_holding": null
+      },
+      {
+        "id": 101004748,
+        "date": "2024-11-13",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 16775000,
+        "type": "Creation",
+        "property_type": null,
+        "number_of_chargeholder": null,
+        "instrument_description": null,
+        "filing_date": null,
+        "rate_of_interest": null,
+        "terms_of_payment": null,
+        "property_particulars": null,
+        "extent_and_operation": null,
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": null,
+        "consortium_holding": null
+      },
+      {
+        "id": 100930260,
+        "date": "2024-05-30",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 14000000,
+        "type": "Creation",
+        "property_type": "Immovable property or any interest therein - Commercial Movable property - Equipment and Machinery Movable property - Others",
+        "number_of_chargeholder": 1,
+        "instrument_description": "AS PER AGREEMENT FOR TERM LOAN CUM HYPOTHECATION DATED 30/05/2024 & INDENTURE OF MORTGAGE DATED 30/05/2024.",
+        "filing_date": "2024-06-12",
+        "rate_of_interest": "8.30%",
+        "terms_of_payment": "As per Sanction Letter dated 03/05/2024 & Point No. 6 & 7",
+        "property_particulars": "Expansion by way of acquisition of plant & machinery at its factory at plot no. 614 GIDC Ankleshwar, Bharuch, Gujarat 393002",
+        "extent_and_operation": "FIRST CHARGE BY WAY OF HYPOTHECATION ON MOVABLE PROPERTY & MORTGAGE DEED ON IMMOVABLE PROPERTY DATED 30/05/2024",
+        "other_terms": "Details primary & collateral security of Haypothication & Mortgage deed on 30/05/2024 and as per sanction letter dated 03/05/2024 point no. 9",
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 100842182,
+        "date": "2023-12-28",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 24000000,
+        "type": "Creation",
+        "property_type": "Immovable property or any interest therein - Commercial",
+        "number_of_chargeholder": 1,
+        "instrument_description": "The Charge creating as per the Indenture Mortgage dated/28/12/2023 & Sanction Letter 27/10/2023",
+        "filing_date": "2024-01-06",
+        "rate_of_interest": "8.20%",
+        "terms_of_payment": "As per Sanction Letter dated 27/10/2023 & Indenture Mortgage dated 28/12/2023",
+        "property_particulars": "Primary Security of first charge by way of hypo. of all the movables (save and except book debts and stock) including, plant machinery, spares, tools & accessories, office equipment, computers, F & F acquired to be acquired under the project / scheme, both present and future at plot no. 614 GIDC Ankleshwar Dist. Bharuch. Collateral security of extension of first charges by way of mortgage in favour of SIDBI of the leasehold rights of the all the immovalbe property both present and future, situated at Ind. Plot 614 Ankleshwar including factory shed, building and struture thereon and owned by Samkin Treasure Molders Private Ltd",
+        "extent_and_operation": "Term Loan of Rs. 240 Lacs against charge as per Mortgage Deed & Sanction letter enclosed.",
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 100814130,
+        "date": "2023-10-27",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 24000000,
+        "type": "Creation",
+        "property_type": "Immovable property or any interest therein - Commercial Movable property - Equipment and Machinery Movable property - Inventory Movable property - Inventory (incl. Receivables)",
+        "number_of_chargeholder": 1,
+        "instrument_description": "The Charge creating as per the Agreement for Term Loan Limit Cum Hypothecation dated 27/10/2023. This agreement shall mean and include this agreement for term loanlimit cum hypo.together with LOI allschedule annexedhereto, all amendments,addendums, supplementsto this agreement ,letter issued by SIDBIto the Borrower and allother writings andother related documentsunder scheme ofPrivileged CustomerScheme - Platinum",
+        "filing_date": "2023-11-22",
+        "rate_of_interest": "8.20%",
+        "terms_of_payment": "As per Sanction Letter dated 27/10/2023 & Point No. I & J",
+        "property_particulars": "Primary Security of first charge by way of hypo. of all the movables (save and except book debts and stock) including, plant machinery, spares, tools & accessories, office equipment, computers, F & F acquired to be acquired under the project / scheme, both present and future at plot no. 614 GIDC Ankleshwar Dist. Bharuch. Collateral security of extension of first charges by way of mortgage in favour of SIDBI of the leasehold rights of the all the immovalbe property both present and future, situated at Ind. Plot 614 Ankleshwar including factory shed, building and struture thereon and owned by Samkin Treasure Molders Private Ltd.",
+        "extent_and_operation": "As per Sanction letter point No. L & M Security & Additional Security dated 27/10/2023",
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 100688810,
+        "date": "2023-03-20",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 22500000,
+        "type": "Creation",
+        "property_type": "Immovable property or any interest therein - Commercial Movable property - Equipment and Machinery",
+        "number_of_chargeholder": 1,
+        "instrument_description": "Creating charge as per Agreement of Term Loan Limit Cum Hypo, & Indenture of Mortgage dated 20/03/2023. First charge by way of hypo. of all the movables (save and except book debts and stock) incl. P & M, spares, tool, F&F office equipment, computer, acquired under the project scheme at plot no. 614 GIDC, Ankleshwar. Extension of first charge by way of mortgage in favour of SIDBI of the leasehold rights of the all the immovable properties both present and future situated at Industrial plot no. 614, GIDC Ankleshwar, adm. 1000 Sq. Mt. incl. factory shed, building and structure thereon and owned by Samkin Treasure Molders Pvt. Ltd. Further, Extension of first charge by way of hypo. on existing p & m, tool, equipment f & f etc. already charge as per earlier SIDBI loan. Details of security as per Sanction letter dated 07/03/2023 point no. L",
+        "filing_date": "2023-03-24",
+        "rate_of_interest": "8.05%",
+        "terms_of_payment": "Borrower to SIDBI in 54 monthly installments after 6 months from the date of first disbursement of the loan limit as per the repayment schedule.",
+        "property_particulars": "Industrial Plot no. 614, GIDC Ankleshwar, Dist. Bharuch, alongwith factory building",
+        "extent_and_operation": "Extension of first charge by way of Hypo. of Existing & future plant & machinery & equipment mortgage in favour of SIDBI of the leasehold rights of the all the immovable properties both present and future situated at Industrial plot no. 614, GIDC Ankleshwar, adm. 1000 Sq. Mt. incl. factory shed, building and structure thereon and owned by Samkin Treasure Molders Pvt. Ltd.",
+        "other_terms": "Creation of Additional security as per sanction letter point no. M",
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 100686777,
+        "date": "2023-03-02",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 45300000,
+        "type": "Creation",
+        "property_type": "Immovable property or any interest therein - Commercial Movable property - Equipment and Machinery Others (DEED OF CONFIRMATION)",
+        "number_of_chargeholder": 1,
+        "instrument_description": "The Charge creating as per the Deed of Confirmation by way of loan agreement dated 07/11/2014, 15/01/2016, 28/12/2016, 12/10/2017, 27/07/2018, 22/10/2018, 07/07/2019 & 21/02/2022 to execute the all agreement created the securities in favour of SIDBI. details as per deed.",
+        "filing_date": "2023-03-14",
+        "rate_of_interest": "8.50%",
+        "terms_of_payment": "as per sanction letter",
+        "property_particulars": "As per Deed of Confirmation dated 02/03/2023",
+        "extent_and_operation": "as per sanction letter",
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 100604021,
+        "date": "2026-03-13",
+        "holder_name": "AXIS BANK LIMITED",
+        "amount": 122500000,
+        "type": "Modification",
+        "property_type": null,
+        "number_of_chargeholder": null,
+        "instrument_description": null,
+        "filing_date": null,
+        "rate_of_interest": null,
+        "terms_of_payment": null,
+        "property_particulars": null,
+        "extent_and_operation": null,
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": null,
+        "consortium_holding": null
+      },
+      {
+        "id": 100604014,
+        "date": "2026-03-03",
+        "holder_name": "AXIS BANK LIMITED",
+        "amount": 122500000,
+        "type": "Modification",
+        "property_type": "Movable property - Inventory Movable property - Inventory (incl. Receivables) Book debts",
+        "number_of_chargeholder": 1,
+        "instrument_description": "The Charge Modifying as per Supplemental Deed of Hypothecation dated 03/03/2026",
+        "filing_date": "2026-04-13",
+        "rate_of_interest": "8.15%",
+        "terms_of_payment": "As per Sanction Letter dated 23/02/2026",
+        "property_particulars": "The whole of the Borrower's stocks of raw materials, goods-in-process, semifinished and finished goods, consumable stores and spares and such other movables, including book debts, bills, whether documentary or clean, both present and future, whether in the possession or under the control of the Borrower or not, whether now lying loose or in cases or which are now lying or stored in or about or shall hereafter from time to time during the continuance of these presents be brought into or upon or be stored or be in or about all the Borrower's factories, premises and godowns situate at PLOT NO 603 , GIDC, ANKLESHWAR , DICT BHARUCH , Ankleshwar , Gujarat , 393002 or wherever else the same may be or be held by any party to the order or disposition of the Borrower or in the course of transit or on high seas or on order or delivery (referred to as the ?Current Assets?, which expression shall, as the context may permit or require, mean any or each of such Current Assets).",
+        "extent_and_operation": "Entire Current Assets of Stock & Book debts at factory Plot No. 603 GIDC Ankleshwar, Owner : Samkin Treasure Molders Pvt. Ltd.",
+        "other_terms": null,
+        "modification_particulars": "As per supplemental deed of Hypothecation dated 03/03/2026",
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      }
+    ],
+    "charge_sequence": [
+      {
+        "charge_id": 100604021,
+        "status": "Modification",
+        "date": "2024-09-13",
+        "amount": 92500000,
+        "holder_name": "AXIS BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Immovable property or any interest therein - Commercial",
+        "filing_date": "2024-09-25",
+        "property_particulars": "Extension of Equitable mortgage of Industrial Plot No. 611/1 & 611/2 at GIDC Ankleshwar, Dist. Bharuch, containing by area admeasurement 1200 sq.mtrs in the name of the company (Owner : Samkin Treasure Molders Pvt. Ltd.)"
+      },
+      {
+        "charge_id": 100604021,
+        "status": "Creation",
+        "date": "2022-08-04",
+        "amount": null,
+        "holder_name": "UNKNOWN CHARGE HOLDER",
+        "number_of_holder": null,
+        "property_type": null,
+        "filing_date": null,
+        "property_particulars": null
+      },
+      {
+        "charge_id": 100604014,
+        "status": "Modification",
+        "date": "2026-03-03",
+        "amount": null,
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "number_of_holder": null,
+        "property_type": null,
+        "filing_date": null,
+        "property_particulars": null
+      },
+      {
+        "charge_id": 100604014,
+        "status": "Modification",
+        "date": "2026-03-03",
+        "amount": 122500000,
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "number_of_holder": 1,
+        "property_type": "Movable property - Inventory,Movable property - Inventory (incl. Receivables),Book debts",
+        "filing_date": "2026-03-19",
+        "property_particulars": "The whole of the Borrower's stocks of raw materials, goods-in-process, semifinished and finished goods, consumable stores and spares and such other movables, including book debts, bills, whether documentary or clean, both present and future, whether in the possession or under the control of the Borrower or not, whether now lying loose or in cases or which are now lying or stored in or about or shall hereafter from time to time during the continuance of these presents be brought into or upon or be stored or be in or about all the Borrower's factories, premises and godowns situate at PLOT NO 603 , GIDC, ANKLESHWAR , DICT BHARUCH , Ankleshwar , Gujarat , 393002 or wherever else the same may be or be held by any party to the order or disposition of the Borrower or in the course of transit or on high seas or on order or delivery (referred to as the ?Current Assets?, which expression shall, as the context may permit or require, mean any or each of such Current Assets)."
+      },
+      {
+        "charge_id": 100604014,
+        "status": "Modification",
+        "date": "2024-07-31",
+        "amount": 92500000,
+        "holder_name": "AXIS BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Movable property - Inventory,Movable property - Inventory (incl. Receivables),Book debts",
+        "filing_date": "2024-08-29",
+        "property_particulars": "Extension of Hypo. of entire Current assets of the borrower at factory 611/1 & 611/2 GIDC Ankleshwar, Owner : Samkin Treasure Molders Pvt. Ltd."
+      },
+      {
+        "charge_id": 100604014,
+        "status": "Creation",
+        "date": "2022-07-29",
+        "amount": null,
+        "holder_name": "UNKNOWN CHARGE HOLDER",
+        "number_of_holder": null,
+        "property_type": null,
+        "filing_date": null,
+        "property_particulars": null
+      }
+    ],
+    "financials": [
+      {
+        "year": "2025-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2025-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2024-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 16.18,
+          "gross_profit_margin": 40.04,
+          "net_margin": 2.72,
+          "ebitda_margin": 8.71,
+          "return_on_equity": 21.82,
+          "return_on_capital_employed": 16.68,
+          "debt_ratio": 0.5,
+          "debt_by_equity": 1.82,
+          "interest_coverage_ratio": 2.65,
+          "current_ratio": 1.3,
+          "quick_ratio": 1.1,
+          "inventory_by_sales_days": 14.37,
+          "debtors_by_sales_days": 45.64,
+          "payables_by_sales_days": 24.32,
+          "cash_conversion_cycle": 35.69,
+          "sales_by_net_fixed_assets": 5.01
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 122686252.87,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 1007483.59,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 0,
+            "current_investments": 35239323,
+            "inventories": 24189998.53,
+            "trade_receivables": 76841869.35,
+            "cash_and_bank_balances": 3178824.11,
+            "short_term_loans_and_advances": 14661101.27,
+            "other_current_assets": 79630.4,
+            "given_assets_total": 277884483.12
+          },
+          "liabilities": {
+            "share_capital": 3120000,
+            "reserves_and_surplus": 73367772.15,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 82765671.64,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 56240082.04,
+            "trade_payables": 40954998.07,
+            "other_current_liabilities": 12654991.76,
+            "short_term_provisions": 8780967.46,
+            "given_liabilities_total": 277884483.12
+          },
+          "subTotals": {
+            "total_equity": 76487772.15,
+            "total_non_current_liabilities": 82765671.64,
+            "total_current_liabilities": 118631039.33,
+            "net_fixed_assets": 122686252.87,
+            "total_current_assets": 154190746.66,
+            "capital_wip": 0,
+            "total_debt": 139005753.68,
+            "total_other_non_current_assets": 1007483.59
+          },
+          "metadata": {
+            "doc_id": "136/U25209GJ2020PTC114326/mca/AnnualReturnsEform/a5b17fce5e5d0d7e4ea511d7672b4194v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 122686252.87,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 614565444.81,
+            "total_cost_of_materials_consumed": 365176795.94,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 3343112.4,
+            "total_employee_benefit_expense": 34367345,
+            "total_other_expenses": 158169473.08,
+            "operating_profit": 53508718.39,
+            "other_income": 5240350.42,
+            "depreciation": 22804310,
+            "profit_before_interest_and_tax": 35944758.81,
+            "interest": 13577524.16,
+            "profit_before_tax_and_exceptional_items_before_tax": 22367234.65,
+            "exceptional_items_before_tax": -39815.2,
+            "profit_before_tax": 22327419.45,
+            "income_tax": 5636960.91,
+            "profit_for_period_from_continuing_operations": 16690458.54,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 16690458.54
+          },
+          "subTotals": {
+            "total_operating_cost": 561056726.42
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 606627884.39,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 7937560.42,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 22804310
+          },
+          "metadata": {
+            "docId": "136/U25209GJ2020PTC114326/mca/AnnualReturnsEform/a5b17fce5e5d0d7e4ea511d7672b4194v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 9000000,
+          "payment_to_auditors": 247500,
+          "insurance_expenses": 708819.17,
+          "power_and_fuel": 40836966.26
+        },
+        "auditor": {
+          "auditor_name": "PARIKH DHANANJAY CHANDRAKANT",
+          "auditor_firm_name": "D C PARIKH & CO",
+          "pan": "AAGFD4730J",
+          "membership_number": "037212",
+          "firm_registration_number": "107537W",
+          "address": "311-312 R K PLAZA, NR. UTTKARSHVIDHYALYA DIWALIPURA VADODARA Gujarat India 390007"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2024-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2025-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2023-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 6.62,
+          "gross_profit_margin": 43.48,
+          "net_margin": 2.87,
+          "ebitda_margin": 8.27,
+          "return_on_equity": 25.42,
+          "return_on_capital_employed": 16.69,
+          "debt_ratio": 0.52,
+          "debt_by_equity": 2.15,
+          "interest_coverage_ratio": 2.84,
+          "current_ratio": 1.08,
+          "quick_ratio": 0.91,
+          "inventory_by_sales_days": 14.18,
+          "debtors_by_sales_days": 39.55,
+          "payables_by_sales_days": 29.31,
+          "cash_conversion_cycle": 24.42,
+          "sales_by_net_fixed_assets": 4.72
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 112066766.33,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 473607.5,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 0,
+            "current_investments": 33508457,
+            "inventories": 20546019.4,
+            "trade_receivables": 57312756.42,
+            "cash_and_bank_balances": 1340444.56,
+            "short_term_loans_and_advances": 20018492.51,
+            "other_current_assets": 119445.6,
+            "given_assets_total": 245385989.32
+          },
+          "liabilities": {
+            "share_capital": 3120000,
+            "reserves_and_surplus": 56677313.61,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 62728560.17,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 66062359.21,
+            "trade_payables": 42479981.43,
+            "other_current_liabilities": 6495302.85,
+            "short_term_provisions": 7822472.05,
+            "given_liabilities_total": 245385989.32
+          },
+          "subTotals": {
+            "total_equity": 59797313.61,
+            "total_non_current_liabilities": 62728560.17,
+            "total_current_liabilities": 122860115.54,
+            "net_fixed_assets": 112066766.33,
+            "total_current_assets": 132845615.49,
+            "capital_wip": 0,
+            "total_debt": 128790919.38,
+            "total_other_non_current_assets": 473607.5
+          },
+          "metadata": {
+            "doc_id": "136/U25209GJ2020PTC114326/mca/AnnualReturnsEform/a5b17fce5e5d0d7e4ea511d7672b4194v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 207092352.21,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 528963983.02,
+            "total_cost_of_materials_consumed": 296453100.37,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 2527908.6,
+            "total_employee_benefit_expense": 29568788,
+            "total_other_expenses": 156690257.03,
+            "operating_profit": 43723929.02,
+            "other_income": 6442570,
+            "depreciation": 18688818.89,
+            "profit_before_interest_and_tax": 31477680.13,
+            "interest": 11095993.39,
+            "profit_before_tax_and_exceptional_items_before_tax": 20381686.74,
+            "exceptional_items_before_tax": -39815.2,
+            "profit_before_tax": 20341871.54,
+            "income_tax": 5141896.95,
+            "profit_for_period_from_continuing_operations": 15199974.59,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 15199974.59
+          },
+          "subTotals": {
+            "total_operating_cost": 485240054
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 491228923.39,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 37735059.63,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 18688818.89
+          },
+          "metadata": {
+            "docId": "136/U25209GJ2020PTC114326/mca/AnnualReturnsEform/a5b17fce5e5d0d7e4ea511d7672b4194v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 9000000,
+          "payment_to_auditors": 235000,
+          "insurance_expenses": 738682.1,
+          "power_and_fuel": 38408836
+        },
+        "auditor": {
+          "auditor_name": "PARIKH DHANANJAY CHANDRAKANT",
+          "auditor_firm_name": "D C PARIKH & CO",
+          "pan": "AAGFD4730J",
+          "membership_number": "037212",
+          "firm_registration_number": "107537W",
+          "address": "311-312 R K PLAZA, NR. UTKARSHVIDHYALYA DIWALIPURA VADODARA GJ IN 390007"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2023-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2024-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2022-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": 37.98,
+          "net_margin": 2.89,
+          "ebitda_margin": 7.79,
+          "return_on_equity": 32.14,
+          "return_on_capital_employed": 18.7,
+          "debt_ratio": 0.49,
+          "debt_by_equity": 2.56,
+          "interest_coverage_ratio": 2.82,
+          "current_ratio": 1.35,
+          "quick_ratio": 1.18,
+          "inventory_by_sales_days": 12.79,
+          "debtors_by_sales_days": 52.28,
+          "payables_by_sales_days": 38.34,
+          "cash_conversion_cycle": 26.73,
+          "sales_by_net_fixed_assets": 5.33
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 93136022.36,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 18685.45,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 0,
+            "current_investments": 38715159,
+            "inventories": 17382355.47,
+            "trade_receivables": 71059694.21,
+            "cash_and_bank_balances": 2309253.7,
+            "short_term_loans_and_advances": 11639537.89,
+            "other_current_assets": 159260.7,
+            "given_assets_total": 234419968.78
+          },
+          "liabilities": {
+            "share_capital": 3120000,
+            "reserves_and_surplus": 41477342.87,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 84951998.17,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 29081568.79,
+            "trade_payables": 52116474.44,
+            "other_current_liabilities": 17217797.92,
+            "short_term_provisions": 6454786.59,
+            "given_liabilities_total": 234419968.78
+          },
+          "subTotals": {
+            "total_equity": 44597342.87,
+            "total_non_current_liabilities": 84951998.17,
+            "total_current_liabilities": 104870627.74,
+            "net_fixed_assets": 93136022.36,
+            "total_current_assets": 141265260.97,
+            "capital_wip": 0,
+            "total_debt": 114033566.96,
+            "total_other_non_current_assets": 18685.45
+          },
+          "metadata": {
+            "doc_id": "136/U25209GJ2020PTC114326/mca/AnnualReturnsEform/08b8938ca3172e7946546ce9dfd17353v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 169472789.08,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 496106212.43,
+            "total_cost_of_materials_consumed": 316360677.86,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": -8687811,
+            "total_employee_benefit_expense": 28039395,
+            "total_other_expenses": 121764857.01,
+            "operating_profit": 38629093.56,
+            "other_income": 5484549.43,
+            "depreciation": 14449750,
+            "profit_before_interest_and_tax": 29663892.99,
+            "interest": 10523008.19,
+            "profit_before_tax_and_exceptional_items_before_tax": 19140884.8,
+            "exceptional_items_before_tax": -39815.2,
+            "profit_before_tax": 19101069.6,
+            "income_tax": 4767316.55,
+            "profit_for_period_from_continuing_operations": 14333753.05,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 14333753.05
+          },
+          "subTotals": {
+            "total_operating_cost": 457477118.87
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 471954630.71,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 24151581.72,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 14449750
+          },
+          "metadata": {
+            "docId": "136/U25209GJ2020PTC114326/mca/AnnualReturnsEform/08b8938ca3172e7946546ce9dfd17353v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 6600000,
+          "payment_to_auditors": 215000,
+          "insurance_expenses": 320813.32,
+          "power_and_fuel": 30437609
+        },
+        "auditor": {
+          "auditor_name": "PARIKH DHANANJAY CHANDRAKANT",
+          "auditor_firm_name": "D C PARIKH & CO",
+          "pan": "AAGFD4730J",
+          "membership_number": "037212",
+          "firm_registration_number": "107537W",
+          "address": "311-312 R K PLAZA, NR. UTKARSHVIDHYALYA DIWALIPURA VADODARA GJ IN 390007"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2022-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2023-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2020-07-03",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": null,
+          "net_margin": null,
+          "ebitda_margin": null,
+          "return_on_equity": 5.88,
+          "return_on_capital_employed": 0.06,
+          "debt_ratio": 0.99,
+          "debt_by_equity": 170.36,
+          "interest_coverage_ratio": 5.29,
+          "current_ratio": 54.79,
+          "quick_ratio": 54.79,
+          "inventory_by_sales_days": null,
+          "debtors_by_sales_days": null,
+          "payables_by_sales_days": null,
+          "cash_conversion_cycle": null,
+          "sales_by_net_fixed_assets": 0
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 10400475,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 0,
+            "current_investments": 2000000,
+            "inventories": 0,
+            "trade_receivables": 0,
+            "cash_and_bank_balances": 5638416.8,
+            "short_term_loans_and_advances": 113892.85,
+            "other_current_assets": 199076,
+            "given_assets_total": 18351860.65
+          },
+          "liabilities": {
+            "share_capital": 100000,
+            "reserves_and_surplus": 6249.65,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 18100475,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 0,
+            "trade_payables": 19980,
+            "other_current_liabilities": 117656,
+            "short_term_provisions": 7500,
+            "given_liabilities_total": 18351860.65
+          },
+          "subTotals": {
+            "total_equity": 106249.65,
+            "total_non_current_liabilities": 18100475,
+            "total_current_liabilities": 145136,
+            "net_fixed_assets": 10400475,
+            "total_current_assets": 7951385.65,
+            "capital_wip": 0,
+            "total_debt": 18100475,
+            "total_other_non_current_assets": 0
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 10400475,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 0,
+            "total_cost_of_materials_consumed": 0,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 0,
+            "total_employee_benefit_expense": 0,
+            "total_other_expenses": 78750,
+            "operating_profit": -78750,
+            "other_income": 89049,
+            "depreciation": 0,
+            "profit_before_interest_and_tax": 10299,
+            "interest": 1947.2,
+            "profit_before_tax_and_exceptional_items_before_tax": 8351.8,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": 8351.8,
+            "income_tax": 2102.15,
+            "profit_for_period_from_continuing_operations": 6249.65,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 6249.65
+          },
+          "subTotals": {
+            "total_operating_cost": 78750
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 0
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "PARIKH DHANANJAY CHANDRAKANT",
+          "auditor_firm_name": "D C PARIKH & CO",
+          "pan": "AAGFD4730J",
+          "membership_number": "037212",
+          "firm_registration_number": "107537W",
+          "address": "311-312 R K PLAZA, NR. UTKARSHVIDHYALYA DIWALIPURA VADODARA GJ IN 390007"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2021-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2022-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2020-07-03",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": null,
+          "net_margin": null,
+          "ebitda_margin": null,
+          "return_on_equity": 0,
+          "return_on_capital_employed": 0,
+          "debt_ratio": 0,
+          "debt_by_equity": 0,
+          "interest_coverage_ratio": null,
+          "current_ratio": null,
+          "quick_ratio": null,
+          "inventory_by_sales_days": null,
+          "debtors_by_sales_days": null,
+          "payables_by_sales_days": null,
+          "cash_conversion_cycle": null,
+          "sales_by_net_fixed_assets": null
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 0,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 0,
+            "current_investments": 0,
+            "inventories": 0,
+            "trade_receivables": 0,
+            "cash_and_bank_balances": 2196844,
+            "short_term_loans_and_advances": 14130,
+            "other_current_assets": 89026,
+            "given_assets_total": 2300000
+          },
+          "liabilities": {
+            "share_capital": 100000,
+            "reserves_and_surplus": 0,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 0,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 2200000,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 0,
+            "trade_payables": 0,
+            "other_current_liabilities": 0,
+            "short_term_provisions": 0,
+            "given_liabilities_total": 2300000
+          },
+          "subTotals": {
+            "total_equity": 100000,
+            "total_non_current_liabilities": 2200000,
+            "total_current_liabilities": 0,
+            "net_fixed_assets": 0,
+            "total_current_assets": 2300000,
+            "capital_wip": 0,
+            "total_debt": 0,
+            "total_other_non_current_assets": 0
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 0,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 0,
+            "total_cost_of_materials_consumed": 0,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 0,
+            "total_employee_benefit_expense": 0,
+            "total_other_expenses": 0,
+            "operating_profit": 0,
+            "other_income": 0,
+            "depreciation": 0,
+            "profit_before_interest_and_tax": 0,
+            "interest": 0,
+            "profit_before_tax_and_exceptional_items_before_tax": 0,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": 0,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": 0,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 0
+          },
+          "subTotals": {
+            "total_operating_cost": 0
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 0
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "PARIKH DHANANJAY CHANDRAKANT",
+          "auditor_firm_name": "D C PARIKH & CO",
+          "pan": "AAGFD4730J",
+          "membership_number": "037212",
+          "firm_registration_number": "107537W",
+          "address": "311-312 R K PLAZA, NR. UTKARSHVIDHYALYA DIWALIPURA VADODARA GJ IN 390007"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      }
+    ],
+    "nbfc_financials": [],
+    "financial_parameters": [
+      {
+        "year": "2025",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 34367345,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 122686252.87,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2024",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 29568788,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 207092352.21,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2023",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 28039395,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 169472789.08,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2022",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 0,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 10400475,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2021",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 0,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 0,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      }
+    ],
+    "industry_segments": [
+      {
+        "industry": "Packaging",
+        "segments": [
+          "Bottles and Caps"
+        ]
+      }
+    ],
+    "principal_business_activities": [
+      {
+        "year": "2025",
+        "main_activity_group_code": "C",
+        "main_activity_group_description": "Manufacturing",
+        "business_activity_code": "22",
+        "business_activity_description": "Manufacture of rubber and plastics products",
+        "percentage_of_turnover": 100
+      }
+    ],
+    "related_party_transactions": [
+      {
+        "financial_year": "2025-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2024-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2023-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2022-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2021-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      }
+    ],
+    "establishments_registered_with_epfo": [
+      {
+        "establishment_id": "SRBRH0038154000",
+        "establishment_name": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+        "working_status": "LIVE ESTABLISHMENT",
+        "principal_business_activities": "PLASTICS PRODUCTS",
+        "date_of_setup": "2002-11-18",
+        "address": "PLOT NO.610/611/614, G.I.D.C. ANKLESHWAR,BHARUCH,GUJARAT,393002,India",
+        "city": "BHARUCH",
+        "exemption_status_edli": "UNEXEMPTED",
+        "exemption_status_pension": "UNEXEMPTED",
+        "exemption_status_pf": "UNEXEMPTED",
+        "latest_wage_month": "MAR-26",
+        "latest_date_of_credit": null,
+        "no_of_employees": 121,
+        "amount": 495699,
+        "payment_timeliness": "Paid on Time",
+        "filing_details": [
+          {
+            "wage_month": "MAR-26",
+            "trrn": "2604187037943",
+            "date_of_credit": "2026-04-13",
+            "payment_due_date": "2026-04-15",
+            "no_of_employees": 121,
+            "amount": 495699,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "FEB-26",
+            "trrn": "2603187031429",
+            "date_of_credit": "2026-03-09",
+            "payment_due_date": "2026-03-15",
+            "no_of_employees": 121,
+            "amount": 471146,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JAN-26",
+            "trrn": "2602187024702",
+            "date_of_credit": "2026-02-09",
+            "payment_due_date": "2026-02-15",
+            "no_of_employees": 121,
+            "amount": 491065,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "DEC-25",
+            "trrn": "2601187019525",
+            "date_of_credit": "2026-01-10",
+            "payment_due_date": "2026-01-15",
+            "no_of_employees": 94,
+            "amount": 391016,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "NOV-25",
+            "trrn": "2512187014014",
+            "date_of_credit": "2025-12-13",
+            "payment_due_date": "2025-12-15",
+            "no_of_employees": 94,
+            "amount": 384910,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "OCT-25",
+            "trrn": "2511187008024",
+            "date_of_credit": "2025-11-12",
+            "payment_due_date": "2025-11-15",
+            "no_of_employees": 90,
+            "amount": 370556,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "SEP-25",
+            "trrn": "2510187002551",
+            "date_of_credit": "2025-10-09",
+            "payment_due_date": "2025-10-15",
+            "no_of_employees": 94,
+            "amount": 401112,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "AUG-25",
+            "trrn": "1872509002278",
+            "date_of_credit": "2025-09-10",
+            "payment_due_date": "2025-09-15",
+            "no_of_employees": 92,
+            "amount": 391671,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUL-25",
+            "trrn": "1872508001670",
+            "date_of_credit": "2025-08-12",
+            "payment_due_date": "2025-08-15",
+            "no_of_employees": 91,
+            "amount": 389632,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUN-25",
+            "trrn": "1872507002805",
+            "date_of_credit": "2025-07-14",
+            "payment_due_date": "2025-07-15",
+            "no_of_employees": 88,
+            "amount": 378483,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAY-25",
+            "trrn": "1872506001734",
+            "date_of_credit": "2025-06-11",
+            "payment_due_date": "2025-06-15",
+            "no_of_employees": 88,
+            "amount": 380814,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "APR-25",
+            "trrn": "1872505001754",
+            "date_of_credit": "2025-05-09",
+            "payment_due_date": "2025-05-15",
+            "no_of_employees": 88,
+            "amount": 374618,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAR-25",
+            "trrn": "1872504003181",
+            "date_of_credit": "2025-04-12",
+            "payment_due_date": "2025-04-15",
+            "no_of_employees": 49,
+            "amount": 208239,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAR-25",
+            "trrn": "1872504002688",
+            "date_of_credit": "2025-04-12",
+            "payment_due_date": "2025-04-15",
+            "no_of_employees": 86,
+            "amount": 332449,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "FEB-25",
+            "trrn": "1872503002223",
+            "date_of_credit": "2025-03-11",
+            "payment_due_date": "2025-03-15",
+            "no_of_employees": 87,
+            "amount": 320385,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JAN-25",
+            "trrn": "1872502002137",
+            "date_of_credit": "2025-02-10",
+            "payment_due_date": "2025-02-15",
+            "no_of_employees": 87,
+            "amount": 334119,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "DEC-24",
+            "trrn": "1872501001952",
+            "date_of_credit": "2025-01-10",
+            "payment_due_date": "2025-01-15",
+            "no_of_employees": 88,
+            "amount": 339637,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "NOV-24",
+            "trrn": "1872412002292",
+            "date_of_credit": "2024-12-10",
+            "payment_due_date": "2024-12-15",
+            "no_of_employees": 88,
+            "amount": 320573,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "OCT-24",
+            "trrn": "1872411002413",
+            "date_of_credit": "2024-11-12",
+            "payment_due_date": "2024-11-15",
+            "no_of_employees": 86,
+            "amount": 319895,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "SEP-24",
+            "trrn": "1872410002082",
+            "date_of_credit": "2024-10-09",
+            "payment_due_date": "2024-10-15",
+            "no_of_employees": 86,
+            "amount": 312414,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "AUG-24",
+            "trrn": "1872409001901",
+            "date_of_credit": "2024-09-10",
+            "payment_due_date": "2024-09-15",
+            "no_of_employees": 86,
+            "amount": 314278,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "AUG-24",
+            "trrn": "1872409001899",
+            "date_of_credit": "2024-09-10",
+            "payment_due_date": "2024-09-15",
+            "no_of_employees": 33,
+            "amount": 32378,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUL-24",
+            "trrn": "1872408001456",
+            "date_of_credit": "2024-08-08",
+            "payment_due_date": "2024-08-15",
+            "no_of_employees": 88,
+            "amount": 336693,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUN-24",
+            "trrn": "1872407001473",
+            "date_of_credit": "2024-07-08",
+            "payment_due_date": "2024-07-15",
+            "no_of_employees": 87,
+            "amount": 330205,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAY-24",
+            "trrn": "1872406001544",
+            "date_of_credit": "2024-06-08",
+            "payment_due_date": "2024-06-15",
+            "no_of_employees": 87,
+            "amount": 331506,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "APR-24",
+            "trrn": "1872405002444",
+            "date_of_credit": "2024-05-10",
+            "payment_due_date": "2024-05-15",
+            "no_of_employees": 85,
+            "amount": 317215,
+            "payment_timeliness": "Paid on Time"
+          }
+        ]
+      },
+      {
+        "establishment_id": "VDBRD2127857000",
+        "establishment_name": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+        "working_status": "LIVE ESTABLISHMENT",
+        "principal_business_activities": "PLASTICS PRODUCTS",
+        "date_of_setup": "2020-07-03",
+        "address": "UNIT NO. 603, SAMANVAYA SILVER, NEA MUJMAHUDA CIRCLE, NEXT TO ROYAL ORC,VADODARA,GUJARAT,390012,India",
+        "city": "VADODARA",
+        "exemption_status_edli": "UNEXEMPTED",
+        "exemption_status_pension": "UNEXEMPTED",
+        "exemption_status_pf": "UNEXEMPTED",
+        "latest_wage_month": null,
+        "latest_date_of_credit": null,
+        "no_of_employees": null,
+        "amount": null,
+        "payment_timeliness": null,
+        "filing_details": []
+      }
+    ],
+    "shareholdings": [
+      {
+        "shareholders": "promoter",
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "category": "equity",
+        "indian_held_no_of_shares": 312000,
+        "indian_held_percentage_of_shares": 100,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 312000,
+        "total_percentage_of_shares": 100
+      },
+      {
+        "shareholders": "promoter",
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "category": "preference",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      },
+      {
+        "shareholders": "public",
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "category": "equity",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      },
+      {
+        "shareholders": "public",
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "category": "preference",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      }
+    ],
+    "shareholdings_more_than_five_percent": [
+      {
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "SAMIR YOGESH TREASURER",
+            "shareholding_percentage": 98.4,
+            "no_of_shares": 307000
+          }
+        ],
+        "others": [],
+        "financial_year": "2025-03-31"
+      },
+      {
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "SAMIR YOGESH TREASURER",
+            "shareholding_percentage": 98.4,
+            "no_of_shares": 307000
+          }
+        ],
+        "others": [],
+        "financial_year": "2024-03-31"
+      },
+      {
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "SAMIR YOGESH TREASURER",
+            "shareholding_percentage": 98.4,
+            "no_of_shares": 307000
+          }
+        ],
+        "others": [],
+        "financial_year": "2023-03-31"
+      }
+    ],
+    "shareholdings_summary": [
+      {
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "total_equity_shares": 312000,
+        "total_preference_shares": 0,
+        "promoter": 2,
+        "public": null,
+        "total": 2,
+        "metadata": {
+          "doc_id": "136/U25209GJ2020PTC114326/mca/AnnualReturnsEform/a4da70a9ccc356b1b7ee5e062342498dv1.pdf",
+          "xml_to_pdf_converted_doc_id": null
+        }
+      }
+    ],
+    "director_shareholdings": [
+      {
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "din_pan": "03197693",
+        "full_name": "SNEHA TREASURER",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 5000,
+        "percentage_holding": 1.6
+      },
+      {
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "din_pan": "03199154",
+        "full_name": "SAMIR YOGESH TREASURER",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 307000,
+        "percentage_holding": 98.4
+      }
+    ],
+    "bifr_history": [],
+    "cdr_history": [],
+    "defaulter_list": [],
+    "legal_history": [],
+    "credit_ratings": [],
+    "credit_rating_rationale": [],
+    "unaccepted_rating": null,
+    "holding_entities": null,
+    "subsidiary_entities": null,
+    "associate_entities": null,
+    "joint_ventures": null,
+    "securities_allotment": [
+      {
+        "allotment_type": "Cash",
+        "allotment_date": "2026-01-01",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 18800000,
+        "number_of_securities_allotted": 188000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 90
+      },
+      {
+        "allotment_type": "Cash",
+        "allotment_date": "2022-04-01",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 30200000,
+        "number_of_securities_allotted": 302000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 90
+      }
+    ],
+    "peer_comparison": [
+      {
+        "bizIndustry": "Packaging",
+        "bizSegment": "Bottles and Caps",
+        "refYear": "2025",
+        "peers": [
+          {
+            "cin": "U28992GJ2011PTC067768",
+            "legalName": "SAYAJI PACKAGING PRIVATE LIMITED",
+            "revenue": 620623083,
+            "city": "VADODARA"
+          },
+          {
+            "cin": "U25209MH1990PTC055083",
+            "legalName": "NAGPUR POLYFILMS PRIVATE LIMITED",
+            "revenue": 617872356,
+            "city": "NAGPUR"
+          },
+          {
+            "cin": "U25209GJ2020PTC114326",
+            "legalName": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+            "revenue": 614565444.81,
+            "city": "Vadodara"
+          },
+          {
+            "cin": "U15400DL2020PTC374594",
+            "legalName": "MMG BEVERAGES PRIVATE LIMITED",
+            "revenue": 611251950,
+            "city": "NEW DELHI"
+          },
+          {
+            "cin": "U25200GJ2011PTC064756",
+            "legalName": "SHRI NAVKAR BLOWPACK PRIVATE LIMITED",
+            "revenue": 588697000,
+            "city": "BHARUCH"
+          }
+        ],
+        "benchMarks": [
+          {
+            "year": "2025",
+            "no_of_peers_in_sample": 30,
+            "revenue": 61.46,
+            "revenue_growth": 16.18,
+            "net_margin": 2.72,
+            "ebitda_margin": 8.71,
+            "return_on_equity": 21.82,
+            "sales_by_net_fixed_assets": 5.01,
+            "inventory_holding_period": 14.37,
+            "debtor_days_outstanding": 45.64,
+            "trade_payable_days": 24.32,
+            "cash_conversion_cycle": 35.69,
+            "debt_by_equity": 1.82,
+            "gross_profit_margin": 40.04,
+            "return_on_capital_employed": 16.68,
+            "interest_coverage_ratio": 2.65,
+            "debt_ratio": 0.5,
+            "current_ratio": 1.3,
+            "quick_ratio": 1.1,
+            "median_revenue": 58.51,
+            "median_revenue_growth": 16.18,
+            "median_net_margin": 3.6950000000000003,
+            "median_ebitda_margin": 8.285,
+            "median_return_on_equity": 11.25,
+            "median_sales_by_net_fixed_assets": 3.985,
+            "median_inventory_holding_period": 32.525000000000006,
+            "median_debtor_days_outstanding": 52.31,
+            "median_trade_payable_days": 22.48,
+            "median_cash_conversion_cycle": 69.425,
+            "median_debt_by_equity": 0.78,
+            "median_gross_profit_margin": 31.839999999999996,
+            "median_return_on_capital_employed": 11.83,
+            "median_interest_coverage_ratio": 3.6550000000000002,
+            "median_debt_ratio": 0.325,
+            "median_current_ratio": 1.52,
+            "median_quick_ratio": 1.2
+          },
+          {
+            "year": "2024",
+            "no_of_peers_in_sample": 29,
+            "revenue": 52.9,
+            "revenue_growth": 6.62,
+            "net_margin": 2.87,
+            "ebitda_margin": 8.27,
+            "return_on_equity": 25.42,
+            "sales_by_net_fixed_assets": 4.72,
+            "inventory_holding_period": 14.18,
+            "debtor_days_outstanding": 39.55,
+            "trade_payable_days": 29.31,
+            "cash_conversion_cycle": 24.419999999999998,
+            "debt_by_equity": 2.15,
+            "gross_profit_margin": 43.48,
+            "return_on_capital_employed": 16.69,
+            "interest_coverage_ratio": 2.84,
+            "debt_ratio": 0.52,
+            "current_ratio": 1.08,
+            "quick_ratio": 0.91,
+            "median_revenue": 52.06,
+            "median_revenue_growth": 6.265000000000001,
+            "median_net_margin": 2.06,
+            "median_ebitda_margin": 8.37,
+            "median_return_on_equity": 18.32,
+            "median_sales_by_net_fixed_assets": 3.39,
+            "median_inventory_holding_period": 28.97,
+            "median_debtor_days_outstanding": 56.12,
+            "median_trade_payable_days": 24.92,
+            "median_cash_conversion_cycle": 73.42,
+            "median_debt_by_equity": 0.96,
+            "median_gross_profit_margin": 31.74,
+            "median_return_on_capital_employed": 11.8,
+            "median_interest_coverage_ratio": 2.55,
+            "median_debt_ratio": 0.39,
+            "median_current_ratio": 1.58,
+            "median_quick_ratio": 1.2
+          },
+          {
+            "year": "2023",
+            "no_of_peers_in_sample": 28,
+            "revenue": 49.61,
+            "revenue_growth": null,
+            "net_margin": 2.89,
+            "ebitda_margin": 7.79,
+            "return_on_equity": 32.14,
+            "sales_by_net_fixed_assets": 5.33,
+            "inventory_holding_period": 12.79,
+            "debtor_days_outstanding": 52.28,
+            "trade_payable_days": 38.34,
+            "cash_conversion_cycle": 26.72999999999999,
+            "debt_by_equity": 2.56,
+            "gross_profit_margin": 37.98,
+            "return_on_capital_employed": 18.7,
+            "interest_coverage_ratio": 2.82,
+            "debt_ratio": 0.49,
+            "current_ratio": 1.35,
+            "quick_ratio": 1.18,
+            "median_revenue": 50.33,
+            "median_revenue_growth": 15.99,
+            "median_net_margin": 2.9050000000000002,
+            "median_ebitda_margin": 8.605,
+            "median_return_on_equity": 16.7,
+            "median_sales_by_net_fixed_assets": 4.39,
+            "median_inventory_holding_period": 31.68,
+            "median_debtor_days_outstanding": 51.035,
+            "median_trade_payable_days": 32.19,
+            "median_cash_conversion_cycle": 60.595000000000006,
+            "median_debt_by_equity": 0.9,
+            "median_gross_profit_margin": 31.185000000000002,
+            "median_return_on_capital_employed": 10.81,
+            "median_interest_coverage_ratio": 3.075,
+            "median_debt_ratio": 0.405,
+            "median_current_ratio": 1.585,
+            "median_quick_ratio": 1.27
+          }
+        ]
+      }
+    ],
+    "gst_details": [
+      {
+        "gstin": "24ABDCS8842F1Z9",
+        "status": "Active",
+        "company_name": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+        "trade_name": "SAMKIN TREASURE MOLDERS PRIVATE LIMITED",
+        "state": "Gujarat",
+        "state_jurisdiction": "Ghatak 40 (Vadodara)",
+        "centre_jurisdiction": "RANGE-I",
+        "date_of_registration": "2020-11-03",
+        "taxpayer_type": "Regular",
+        "nature_of_business_activities": "Factory / Manufacturing | Supplier of Services",
+        "filing_timeliness": "Filed After Due Date in last 12 Months,",
+        "filings": [
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2026-04-23",
+            "filing_due_date": "2026-04-20",
+            "financial_year": "2025-2026",
+            "tax_period": "March",
+            "status": "Delayed",
+            "filing_timeliness": "Filed After Due Date"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2026-04-10",
+            "filing_due_date": "2026-04-11",
+            "financial_year": "2025-2026",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2026-03-20",
+            "filing_due_date": "2026-03-20",
+            "financial_year": "2025-2026",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2026-03-10",
+            "filing_due_date": "2026-03-11",
+            "financial_year": "2025-2026",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2026-02-20",
+            "filing_due_date": "2026-02-20",
+            "financial_year": "2025-2026",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2026-02-10",
+            "filing_due_date": "2026-02-11",
+            "financial_year": "2025-2026",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2026-01-22",
+            "filing_due_date": "2026-01-20",
+            "financial_year": "2025-2026",
+            "tax_period": "December",
+            "status": "Delayed",
+            "filing_timeliness": "Filed After Due Date"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2026-01-09",
+            "filing_due_date": "2026-01-11",
+            "financial_year": "2025-2026",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-12-19",
+            "filing_due_date": "2025-12-20",
+            "financial_year": "2025-2026",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-12-09",
+            "filing_due_date": "2025-12-11",
+            "financial_year": "2025-2026",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-11-19",
+            "filing_due_date": "2025-11-20",
+            "financial_year": "2025-2026",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-11-10",
+            "filing_due_date": "2025-11-11",
+            "financial_year": "2025-2026",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-10-18",
+            "filing_due_date": "2025-10-25",
+            "financial_year": "2025-2026",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-10-09",
+            "filing_due_date": "2025-10-11",
+            "financial_year": "2025-2026",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-09-20",
+            "filing_due_date": "2025-09-20",
+            "financial_year": "2025-2026",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-09-10",
+            "filing_due_date": "2025-09-11",
+            "financial_year": "2025-2026",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-08-20",
+            "filing_due_date": "2025-08-20",
+            "financial_year": "2025-2026",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-08-08",
+            "filing_due_date": "2025-08-11",
+            "financial_year": "2025-2026",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-07-19",
+            "filing_due_date": "2025-07-20",
+            "financial_year": "2025-2026",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-07-09",
+            "filing_due_date": "2025-07-11",
+            "financial_year": "2025-2026",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-06-20",
+            "filing_due_date": "2025-06-20",
+            "financial_year": "2025-2026",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-06-10",
+            "filing_due_date": "2025-06-11",
+            "financial_year": "2025-2026",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-05-28",
+            "filing_due_date": "2025-05-20",
+            "financial_year": "2025-2026",
+            "tax_period": "April",
+            "status": "Delayed",
+            "filing_timeliness": "Filed After Due Date"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-05-10",
+            "filing_due_date": "2025-05-11",
+            "financial_year": "2025-2026",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-04-23",
+            "filing_due_date": "2025-04-20",
+            "financial_year": "2024-2025",
+            "tax_period": "March",
+            "status": "Delayed",
+            "filing_timeliness": "Filed After Due Date"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-04-10",
+            "filing_due_date": "2025-04-11",
+            "financial_year": "2024-2025",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-03-20",
+            "filing_due_date": "2025-03-20",
+            "financial_year": "2024-2025",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-03-10",
+            "filing_due_date": "2025-03-11",
+            "financial_year": "2024-2025",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-02-20",
+            "filing_due_date": "2025-02-20",
+            "financial_year": "2024-2025",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-02-10",
+            "filing_due_date": "2025-02-11",
+            "financial_year": "2024-2025",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-01-20",
+            "filing_due_date": "2025-01-22",
+            "financial_year": "2024-2025",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-01-08",
+            "filing_due_date": "2025-01-13",
+            "financial_year": "2024-2025",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-12-20",
+            "filing_due_date": "2024-12-20",
+            "financial_year": "2024-2025",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-12-10",
+            "filing_due_date": "2024-12-11",
+            "financial_year": "2024-2025",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-11-26",
+            "filing_due_date": "2024-11-20",
+            "financial_year": "2024-2025",
+            "tax_period": "October",
+            "status": "Delayed",
+            "filing_timeliness": "Filed After Due Date"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-11-09",
+            "filing_due_date": "2024-11-11",
+            "financial_year": "2024-2025",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-10-18",
+            "filing_due_date": "2024-10-20",
+            "financial_year": "2024-2025",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-10-09",
+            "filing_due_date": "2024-10-11",
+            "financial_year": "2024-2025",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-09-20",
+            "filing_due_date": "2024-09-20",
+            "financial_year": "2024-2025",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-09-10",
+            "filing_due_date": "2024-09-11",
+            "financial_year": "2024-2025",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-08-20",
+            "filing_due_date": "2024-08-20",
+            "financial_year": "2024-2025",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-08-10",
+            "filing_due_date": "2024-08-11",
+            "financial_year": "2024-2025",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-07-19",
+            "filing_due_date": "2024-07-20",
+            "financial_year": "2024-2025",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-07-10",
+            "filing_due_date": "2024-07-11",
+            "financial_year": "2024-2025",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-06-20",
+            "filing_due_date": "2024-06-20",
+            "financial_year": "2024-2025",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-06-11",
+            "filing_due_date": "2024-06-11",
+            "financial_year": "2024-2025",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-05-20",
+            "filing_due_date": "2024-05-20",
+            "financial_year": "2024-2025",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-05-10",
+            "filing_due_date": "2024-05-11",
+            "financial_year": "2024-2025",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR9",
+            "date_of_filing": "2025-12-30",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR9C",
+            "date_of_filing": "2025-12-30",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          }
+        ]
+      }
+    ],
+    "struckoff248_details": {
+      "struck_off_status": "As per our records, this corporate name was never removed under section 248(5) by ROC",
+      "restored_status": null
+    },
+    "msme_supplier_payment_delays": [],
+    "legal_cases_of_financial_disputes": [],
+    "probe_financial_score": {
+      "overall_financial_score": 4,
+      "growth_score": 4,
+      "profitability_score": 4,
+      "liquidity_score": 4,
+      "solvency_score": 3,
+      "efficiency_score": 5
+    },
+    "key_indicators": {
+      "revenue": "Between 50 and 250 cr.",
+      "profit": "Between 1 and 5 cr.",
+      "employee_count": "Between 101 and 500",
+      "pending_cases_filed_against_this_corporate": false,
+      "bureau_defaults": false,
+      "gst_filing_delay": true,
+      "epf_payment_delay": false,
+      "severe_pending_cases_filed_against_this_corporate": false,
+      "credit_rating": null
+    },
+    "filing_dates": {
+      "aoc_4": {
+        "financial_year": "2025-03-31",
+        "filing_date": "2025-12-11"
+      },
+      "mgt_7": {
+        "financial_year": "2025-03-31",
+        "filing_date": "2025-12-27"
+      }
+    }
+  }
+}

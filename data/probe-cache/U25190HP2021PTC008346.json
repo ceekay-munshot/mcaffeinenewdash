@@ -1,0 +1,1414 @@
+{
+  "metadata": {
+    "api_version": "1.3",
+    "last_updated": "2026-01-02",
+    "identifier_changed": false
+  },
+  "data": {
+    "company": {
+      "cin": "U25190HP2021PTC008346",
+      "legal_name": "SAMRVIR COSMIC SOLUTION PRIVATE LIMITED",
+      "efiling_status": "Active",
+      "incorporation_date": "2021-02-08",
+      "paid_up_capital": 8505270,
+      "sum_of_charges": 37000000,
+      "authorized_capital": 8600000,
+      "active_compliance": null,
+      "cirp_status": null,
+      "lei": {
+        "number": null,
+        "status": null,
+        "registration_date": null,
+        "last_updated_date": null,
+        "next_renewal_date": null
+      },
+      "registered_address": {
+        "full_address": "2352 Bhapoo, VPO Rajakhasa   Tehsil Indora, Indora, Kangra, Himachal Pradesh - 176401",
+        "address_line1": "2352 Bhapoo, VPO Rajakhasa   Tehsil Indora",
+        "address_line2": null,
+        "city": "Indora",
+        "pincode": "176401",
+        "state": "Himachal Pradesh"
+      },
+      "business_address": {
+        "address_line1": "2352, Bhapoo, VPO Rajakhasa,",
+        "address_line2": "Tehsil Indora",
+        "city": "Kangra",
+        "pincode": 176401,
+        "state": "Himachal Pradesh"
+      },
+      "pan": "ABFCS4256B",
+      "website": null,
+      "classification": "Private Limited Indian Non-Government Company",
+      "status": "Unlisted",
+      "next_cin": null,
+      "last_agm_date": "2024-12-31",
+      "last_filing_date": "2024-03-31",
+      "email": "sumant@samrvir.com"
+    },
+    "description": {
+      "desc_thousand_char": "Samrvir Cosmic Solution Private Limited (SCSPL), as per its MoA, was incorporated with the object to carry on the business of manufacturers, traders, importers, and exporters of all types of dispensers and dosing pumps including mist dispenser pumps, foamer dispenser pump, lotion dispenser pump and other pumps for application in the various segment including household goods, cosmetics, pharmaceuticals, and other segments. The company was incorporated in 2021 and has its registered office located in Indora, Himachal Pradesh."
+    },
+    "name_history": [],
+    "authorized_signatories": [
+      {
+        "pan": "ANDPK0891P",
+        "din": "07657597",
+        "name": "MANAK KAUSHIK",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1970-08-30",
+        "age": 56,
+        "date_of_appointment": "2021-02-08",
+        "date_of_appointment_for_current_designation": "2021-02-08",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2021-02-08",
+            "filing_date": null
+          }
+        ]
+      },
+      {
+        "pan": "AHRPK6953A",
+        "din": "01796340",
+        "name": "SUMANT VIR KAPOOR",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1972-06-02",
+        "age": 54,
+        "date_of_appointment": "2021-02-08",
+        "date_of_appointment_for_current_designation": "2021-02-08",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2021-02-08",
+            "filing_date": null
+          }
+        ]
+      }
+    ],
+    "director_network": [
+      {
+        "name": "SUMANT VIR KAPOOR",
+        "pan": "AHRPK6953A",
+        "din": "01796340",
+        "network": {
+          "companies": [
+            {
+              "cin": "U24233DL2005PTC137667",
+              "legal_name": "RAJ RASAYANA HERBALS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2005-06-16",
+              "paid_up_capital": 982960,
+              "sum_of_charges": 0,
+              "city": "NEW DELHI",
+              "active_compliance": "ACTIVE Non-Compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2005-06-16",
+              "date_of_appointment_for_current_designation": "2005-06-16",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U24303HR2019PTC082136",
+              "legal_name": "SAMRVIR BIOTECH PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2019-08-21",
+              "paid_up_capital": 7383080,
+              "sum_of_charges": 138570000,
+              "city": "GURGAON",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2019-08-21",
+              "date_of_appointment_for_current_designation": "2019-08-21",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U24100DL2020PTC373713",
+              "legal_name": "EFFIKASIA LIFESCIENCES PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2020-11-25",
+              "paid_up_capital": 100000,
+              "sum_of_charges": 0,
+              "city": "Delhi",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Whole-time director",
+              "date_of_appointment": "2020-11-25",
+              "date_of_appointment_for_current_designation": "2020-11-25",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U25190HP2021PTC008346",
+              "legal_name": "SAMRVIR COSMIC SOLUTION PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2021-02-08",
+              "paid_up_capital": 8505270,
+              "sum_of_charges": 37000000,
+              "city": "Indora",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2021-02-08",
+              "date_of_appointment_for_current_designation": "2021-02-08",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U24290HR2022PTC101458",
+              "legal_name": "BLUEFRIES NATURAL PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2022-02-17",
+              "paid_up_capital": 100000,
+              "sum_of_charges": 0,
+              "city": "Gurugram",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2022-02-17",
+              "date_of_appointment_for_current_designation": "2022-02-17",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U72100MH2023PTC410575",
+              "legal_name": "INNOSCIENCE RESEARCH PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2023-09-15",
+              "paid_up_capital": 100000,
+              "sum_of_charges": 0,
+              "city": "Thane",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2023-09-15",
+              "date_of_appointment_for_current_designation": "2023-09-15",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": []
+        }
+      },
+      {
+        "name": "MANAK KAUSHIK",
+        "pan": "ANDPK0891P",
+        "din": "07657597",
+        "network": {
+          "companies": [
+            {
+              "cin": "U25111DL2017PTC313955",
+              "legal_name": "VISHWAKARMA PACKAGING INDUSTRIES PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2017-03-06",
+              "paid_up_capital": 100000,
+              "sum_of_charges": 0,
+              "city": "DELHI",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2017-03-06",
+              "date_of_appointment_for_current_designation": "2017-03-06",
+              "date_of_cessation": "2025-11-10"
+            },
+            {
+              "cin": "U25190HP2021PTC008346",
+              "legal_name": "SAMRVIR COSMIC SOLUTION PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2021-02-08",
+              "paid_up_capital": 8505270,
+              "sum_of_charges": 37000000,
+              "city": "Indora",
+              "active_compliance": null,
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2021-02-08",
+              "date_of_appointment_for_current_designation": "2021-02-08",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": []
+        }
+      }
+    ],
+    "contact_details": {
+      "email": [
+        {
+          "emailId": "sumant@samrvir.com",
+          "status": null
+        }
+      ],
+      "phone": [
+        {
+          "phoneNumber": "9811963369",
+          "status": null
+        }
+      ]
+    },
+    "open_charges": [
+      {
+        "id": 100608442,
+        "date": "2022-06-27",
+        "holder_name": "PUNJAB NATIONAL BANK",
+        "amount": 37000000,
+        "type": "Creation"
+      }
+    ],
+    "open_charges_latest_event": [
+      {
+        "id": 100608442,
+        "date": "2022-06-27",
+        "holder_name": "PUNJAB NATIONAL BANK",
+        "amount": 37000000,
+        "type": "Creation",
+        "property_type": "Movable property - Inventory Book debts",
+        "number_of_chargeholder": 1,
+        "instrument_description": "Sanction of term loan of INR 320 lakhs and cash credit of INR 50 lakhs. Total credit facility of INR 370 lakhs.",
+        "filing_date": "2022-09-13",
+        "rate_of_interest": "8.40%",
+        "terms_of_payment": "As per attached sanction letter.",
+        "property_particulars": "EXTENSION OF CHARGE ON STOCKS AND BOOK DEBTS",
+        "extent_and_operation": "As per attached sanction letter.",
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      }
+    ],
+    "charge_sequence": [],
+    "financials": [
+      {
+        "year": "2023-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2023-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2022-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": null,
+          "net_margin": null,
+          "ebitda_margin": null,
+          "return_on_equity": null,
+          "return_on_capital_employed": -2.3,
+          "debt_ratio": 1.01,
+          "debt_by_equity": null,
+          "interest_coverage_ratio": null,
+          "current_ratio": 73.95,
+          "quick_ratio": 73.95,
+          "inventory_by_sales_days": null,
+          "debtors_by_sales_days": null,
+          "payables_by_sales_days": null,
+          "cash_conversion_cycle": null,
+          "sales_by_net_fixed_assets": 0
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 1148159,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 10801572.63,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 0,
+            "current_investments": 0,
+            "inventories": 0,
+            "trade_receivables": 0,
+            "cash_and_bank_balances": 55155,
+            "short_term_loans_and_advances": 19493540.02,
+            "other_current_assets": 42104.12,
+            "given_assets_total": 31540530.77
+          },
+          "liabilities": {
+            "share_capital": 100000,
+            "reserves_and_surplus": -772809.99,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 31948425.28,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 0,
+            "trade_payables": 240055.48,
+            "other_current_liabilities": 24860,
+            "short_term_provisions": 0,
+            "given_liabilities_total": 31540530.77
+          },
+          "subTotals": {
+            "total_equity": -672809.99,
+            "total_non_current_liabilities": 31948425.28,
+            "total_current_liabilities": 264915.48,
+            "net_fixed_assets": 1148159,
+            "total_current_assets": 19590799.14,
+            "capital_wip": 10801572.63,
+            "total_debt": 31948425.28,
+            "total_other_non_current_assets": 0
+          },
+          "metadata": {
+            "doc_id": "279/U25190HP2021PTC008346/mca/AnnualReturnsEform/32fb90e24d1d0938232485883302432fv1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 11949731.63,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 0,
+            "total_cost_of_materials_consumed": 0,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 0,
+            "total_employee_benefit_expense": 0,
+            "total_other_expenses": 719192.42,
+            "operating_profit": -719192.42,
+            "other_income": 13.13,
+            "depreciation": 0,
+            "profit_before_interest_and_tax": -719179.29,
+            "interest": 0,
+            "profit_before_tax_and_exceptional_items_before_tax": -719179.29,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -719179.29,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": -719179.29,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -719179.29
+          },
+          "subTotals": {
+            "total_operating_cost": 719192.42
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 0
+          },
+          "metadata": {
+            "docId": "279/U25190HP2021PTC008346/mca/AnnualReturnsEform/32fb90e24d1d0938232485883302432fv1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 11000,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "ANUJ KUMAR MITTAL",
+          "auditor_firm_name": "A A G & CO",
+          "pan": "ABCFA7594A",
+          "membership_number": "538154",
+          "firm_registration_number": "018296C",
+          "address": "751, First Floor, Sector-10 Guurgram HR IN 122001"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2022-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2023-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2021-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": null,
+          "net_margin": null,
+          "ebitda_margin": null,
+          "return_on_equity": -98.41,
+          "return_on_capital_employed": -1.12,
+          "debt_ratio": 0.96,
+          "debt_by_equity": 86.94,
+          "interest_coverage_ratio": null,
+          "current_ratio": 9.99,
+          "quick_ratio": 9.99,
+          "inventory_by_sales_days": null,
+          "debtors_by_sales_days": null,
+          "payables_by_sales_days": null,
+          "cash_conversion_cycle": null,
+          "sales_by_net_fixed_assets": 0
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 954145,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 2024518.54,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 0,
+            "current_investments": 0,
+            "inventories": 0,
+            "trade_receivables": 0,
+            "cash_and_bank_balances": 185042,
+            "short_term_loans_and_advances": 1036352.76,
+            "other_current_assets": 0,
+            "given_assets_total": 4200058.3
+          },
+          "liabilities": {
+            "share_capital": 100000,
+            "reserves_and_surplus": -53630.7,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 4031420,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 0,
+            "trade_payables": 111269,
+            "other_current_liabilities": 11000,
+            "short_term_provisions": 0,
+            "given_liabilities_total": 4200058.3
+          },
+          "subTotals": {
+            "total_equity": 46369.3,
+            "total_non_current_liabilities": 4031420,
+            "total_current_liabilities": 122269,
+            "net_fixed_assets": 954145,
+            "total_current_assets": 1221394.76,
+            "capital_wip": 2024518.54,
+            "total_debt": 4031420,
+            "total_other_non_current_assets": 0
+          },
+          "metadata": {
+            "doc_id": "279/U25190HP2021PTC008346/mca/AnnualReturnsEform/32fb90e24d1d0938232485883302432fv1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 954145,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 0,
+            "total_cost_of_materials_consumed": 0,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 0,
+            "total_employee_benefit_expense": 0,
+            "total_other_expenses": 45638,
+            "operating_profit": -45638,
+            "other_income": 7.3,
+            "depreciation": 0,
+            "profit_before_interest_and_tax": -45630.7,
+            "interest": 0,
+            "profit_before_tax_and_exceptional_items_before_tax": -45630.7,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -45630.7,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": -45630.7,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -45630.7
+          },
+          "subTotals": {
+            "total_operating_cost": 45638
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 0
+          },
+          "metadata": {
+            "docId": "279/U25190HP2021PTC008346/mca/AnnualReturnsEform/32fb90e24d1d0938232485883302432fv1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 10000,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "ANUJ KUMAR MITTAL",
+          "auditor_firm_name": "A A G & CO",
+          "pan": "ABCFA7594A",
+          "membership_number": "538154",
+          "firm_registration_number": "018296C",
+          "address": "751, First Floor, Sector-10 Guurgram HR IN 122001"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2021-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2022-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2021-02-08",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": null,
+          "net_margin": null,
+          "ebitda_margin": null,
+          "return_on_equity": -8.7,
+          "return_on_capital_employed": -8.7,
+          "debt_ratio": 0,
+          "debt_by_equity": 0,
+          "interest_coverage_ratio": null,
+          "current_ratio": 12.5,
+          "quick_ratio": 12.5,
+          "inventory_by_sales_days": null,
+          "debtors_by_sales_days": null,
+          "payables_by_sales_days": null,
+          "cash_conversion_cycle": null,
+          "sales_by_net_fixed_assets": null
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 0,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 0,
+            "current_investments": 0,
+            "inventories": 0,
+            "trade_receivables": 0,
+            "cash_and_bank_balances": 100000,
+            "short_term_loans_and_advances": 0,
+            "other_current_assets": 0,
+            "given_assets_total": 100000
+          },
+          "liabilities": {
+            "share_capital": 100000,
+            "reserves_and_surplus": -8000,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 0,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 0,
+            "trade_payables": 0,
+            "other_current_liabilities": 8000,
+            "short_term_provisions": 0,
+            "given_liabilities_total": 100000
+          },
+          "subTotals": {
+            "total_equity": 92000,
+            "total_non_current_liabilities": 0,
+            "total_current_liabilities": 8000,
+            "net_fixed_assets": 0,
+            "total_current_assets": 100000,
+            "capital_wip": 0,
+            "total_debt": 0,
+            "total_other_non_current_assets": 0
+          },
+          "metadata": {
+            "doc_id": "279/U25190HP2021PTC008346/mca/AnnualReturnsEform/374e36a7ac77ff50814957d3416f1ce1v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 0,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 0,
+            "total_cost_of_materials_consumed": 0,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 0,
+            "total_employee_benefit_expense": 0,
+            "total_other_expenses": 8000,
+            "operating_profit": -8000,
+            "other_income": 0,
+            "depreciation": 0,
+            "profit_before_interest_and_tax": -8000,
+            "interest": 0,
+            "profit_before_tax_and_exceptional_items_before_tax": -8000,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -8000,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": -8000,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -8000
+          },
+          "subTotals": {
+            "total_operating_cost": 8000
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 0
+          },
+          "metadata": {
+            "docId": "279/U25190HP2021PTC008346/mca/AnnualReturnsEform/374e36a7ac77ff50814957d3416f1ce1v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 8000,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "ANUJ KUMAR MITTAL",
+          "auditor_firm_name": "A A G & CO",
+          "pan": "ABCFA7594A",
+          "membership_number": "538154",
+          "firm_registration_number": "018296C",
+          "address": "751, First Floor, Sector-10 Guurgram HR IN 122001"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      }
+    ],
+    "nbfc_financials": [],
+    "financial_parameters": [
+      {
+        "year": "2023",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 0,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": 0,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 11949731.63,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2022",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 0,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": 0,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 954145,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2021",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 0,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": 0,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 0,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      }
+    ],
+    "industry_segments": [
+      {
+        "industry": "Machinery and Equipment",
+        "segments": [
+          "Pumps"
+        ]
+      }
+    ],
+    "principal_business_activities": [],
+    "related_party_transactions": [
+      {
+        "financial_year": "2023-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2022-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2021-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      }
+    ],
+    "establishments_registered_with_epfo": [
+      {
+        "establishment_id": "HPSML2299582000",
+        "establishment_name": "SAMRVIR COSMIC SOLUTION PRIVATE LIMITED",
+        "working_status": "CLOSED/ALL MEMBER EXCLUDED",
+        "principal_business_activities": "PLASTICS PRODUCTS",
+        "date_of_setup": "2021-02-08",
+        "address": "2352 Bhapoo, VPO Rajakhasa Tehsil Indora,Indora,HIMACHAL PRADESH,176401,India",
+        "city": "Indora",
+        "exemption_status_edli": "UNEXEMPTED",
+        "exemption_status_pension": "UNEXEMPTED",
+        "exemption_status_pf": "UNEXEMPTED",
+        "latest_wage_month": null,
+        "latest_date_of_credit": null,
+        "no_of_employees": null,
+        "amount": null,
+        "payment_timeliness": null,
+        "filing_details": []
+      }
+    ],
+    "shareholdings": [
+      {
+        "shareholders": "promoter",
+        "year": "2023",
+        "financial_year": "2023-03-31",
+        "category": "equity",
+        "indian_held_no_of_shares": 10000,
+        "indian_held_percentage_of_shares": 100,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 10000,
+        "total_percentage_of_shares": 100
+      },
+      {
+        "shareholders": "promoter",
+        "year": "2023",
+        "financial_year": "2023-03-31",
+        "category": "preference",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": null,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": null,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": null,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": null,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": null,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": null,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": null,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": null,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": null,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": null,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": null,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": null,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": null,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": null,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      },
+      {
+        "shareholders": "public",
+        "year": "2023",
+        "financial_year": "2023-03-31",
+        "category": "equity",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      },
+      {
+        "shareholders": "public",
+        "year": "2023",
+        "financial_year": "2023-03-31",
+        "category": "preference",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": null,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": null,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": null,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": null,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": null,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      }
+    ],
+    "shareholdings_more_than_five_percent": [
+      {
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "MANAK KAUSHIK",
+            "shareholding_percentage": 50,
+            "no_of_shares": 5000
+          },
+          {
+            "name": "SUMANT VIR KAPOOR",
+            "shareholding_percentage": 50,
+            "no_of_shares": 5000
+          }
+        ],
+        "others": [],
+        "financial_year": "2023-03-31"
+      },
+      {
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "MANAK KAUSHIK",
+            "shareholding_percentage": 50,
+            "no_of_shares": 5000
+          },
+          {
+            "name": "SUMANT VIR KAPOOR",
+            "shareholding_percentage": 50,
+            "no_of_shares": 5000
+          }
+        ],
+        "others": [],
+        "financial_year": "2022-03-31"
+      },
+      {
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "MANAK KAUSHIK",
+            "shareholding_percentage": 50,
+            "no_of_shares": 5000
+          },
+          {
+            "name": "SUMANT VIR KAPOOR",
+            "shareholding_percentage": 50,
+            "no_of_shares": 5000
+          }
+        ],
+        "others": [],
+        "financial_year": "2021-03-31"
+      }
+    ],
+    "shareholdings_summary": [
+      {
+        "year": "2023",
+        "financial_year": "2023-03-31",
+        "total_equity_shares": 10000,
+        "total_preference_shares": 0,
+        "promoter": 2,
+        "public": null,
+        "total": 2,
+        "metadata": {
+          "doc_id": "279/U25190HP2021PTC008346/mca/AnnualReturnsEform/d211910303fdb2ce164bed615418f130v1.pdf",
+          "xml_to_pdf_converted_doc_id": null
+        }
+      }
+    ],
+    "director_shareholdings": [
+      {
+        "year": "2023",
+        "financial_year": "2023-03-31",
+        "din_pan": "07657597",
+        "full_name": "MANAK KAUSHIK",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 5000,
+        "percentage_holding": 50
+      },
+      {
+        "year": "2023",
+        "financial_year": "2023-03-31",
+        "din_pan": "01796340",
+        "full_name": "SUMANT VIR KAPOOR",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 5000,
+        "percentage_holding": 50
+      }
+    ],
+    "bifr_history": [],
+    "cdr_history": [],
+    "defaulter_list": [],
+    "legal_history": [],
+    "credit_ratings": [],
+    "credit_rating_rationale": [],
+    "unaccepted_rating": null,
+    "holding_entities": null,
+    "subsidiary_entities": null,
+    "associate_entities": null,
+    "joint_ventures": null,
+    "securities_allotment": [
+      {
+        "allotment_type": "Other than cash",
+        "allotment_date": "2023-07-11",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 8405270,
+        "number_of_securities_allotted": 840527,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      },
+      {
+        "allotment_type": "Other than cash",
+        "allotment_date": "2023-07-11",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 8405270,
+        "number_of_securities_allotted": 840527,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      }
+    ],
+    "peer_comparison": [],
+    "gst_details": [
+      {
+        "gstin": "02ABFCS4256B1ZT",
+        "status": "Active",
+        "company_name": "SAMRVIR COSMIC SOLUTION PRIVATE LIMITED",
+        "trade_name": "SAMRVIR COSMIC SOLUTIONS PVT.LTD",
+        "state": "Himachal Pradesh",
+        "state_jurisdiction": "Damtal Circle",
+        "centre_jurisdiction": "PALAMPUR",
+        "date_of_registration": "2021-03-03",
+        "taxpayer_type": "Regular",
+        "nature_of_business_activities": "Factory / Manufacturing",
+        "filing_timeliness": "Filed After Due Date in last 12 Months,",
+        "filings": [
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-12-20",
+            "filing_due_date": "2025-12-20",
+            "financial_year": "2025-2026",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-12-11",
+            "filing_due_date": "2025-12-11",
+            "financial_year": "2025-2026",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-11-20",
+            "filing_due_date": "2025-11-20",
+            "financial_year": "2025-2026",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-11-11",
+            "filing_due_date": "2025-11-11",
+            "financial_year": "2025-2026",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-10-18",
+            "filing_due_date": "2025-10-25",
+            "financial_year": "2025-2026",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-10-11",
+            "filing_due_date": "2025-10-11",
+            "financial_year": "2025-2026",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-09-18",
+            "filing_due_date": "2025-09-20",
+            "financial_year": "2025-2026",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-09-11",
+            "filing_due_date": "2025-09-11",
+            "financial_year": "2025-2026",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-08-20",
+            "filing_due_date": "2025-08-20",
+            "financial_year": "2025-2026",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-08-20",
+            "filing_due_date": "2025-08-11",
+            "financial_year": "2025-2026",
+            "tax_period": "July",
+            "status": "Delayed",
+            "filing_timeliness": "Filed After Due Date"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-07-18",
+            "filing_due_date": "2025-07-24",
+            "financial_year": "2025-2026",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-07-13",
+            "filing_due_date": "2025-07-13",
+            "financial_year": "2025-2026",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-04-24",
+            "filing_due_date": "2025-04-24",
+            "financial_year": "2024-2025",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-04-11",
+            "filing_due_date": "2025-04-13",
+            "financial_year": "2024-2025",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-01-23",
+            "filing_due_date": "2025-01-26",
+            "financial_year": "2024-2025",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-01-12",
+            "filing_due_date": "2025-01-15",
+            "financial_year": "2024-2025",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-10-24",
+            "filing_due_date": "2024-10-24",
+            "financial_year": "2024-2025",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-10-11",
+            "filing_due_date": "2024-10-13",
+            "financial_year": "2024-2025",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-07-20",
+            "filing_due_date": "2024-07-24",
+            "financial_year": "2024-2025",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-07-11",
+            "filing_due_date": "2024-07-13",
+            "financial_year": "2024-2025",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-04-20",
+            "filing_due_date": "2024-04-24",
+            "financial_year": "2023-2024",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-04-13",
+            "filing_due_date": "2024-04-13",
+            "financial_year": "2023-2024",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-01-18",
+            "filing_due_date": "2024-01-24",
+            "financial_year": "2023-2024",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-01-11",
+            "filing_due_date": "2024-01-13",
+            "financial_year": "2023-2024",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-06-10",
+            "filing_due_date": null,
+            "financial_year": "2025-2026",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-06-08",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-05-11",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-02-09",
+            "filing_due_date": null,
+            "financial_year": "2023-2024",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          }
+        ]
+      }
+    ],
+    "struckoff248_details": {
+      "struck_off_status": "As per our records, this corporate name was never removed under section 248(5) by ROC",
+      "restored_status": null
+    },
+    "msme_supplier_payment_delays": [],
+    "legal_cases_of_financial_disputes": [],
+    "probe_financial_score": [],
+    "key_indicators": {
+      "revenue": "Less than 5 cr.",
+      "profit": "Loss Making",
+      "employee_count": "Upto 100",
+      "pending_cases_filed_against_this_corporate": false,
+      "bureau_defaults": false,
+      "gst_filing_delay": true,
+      "epf_payment_delay": null,
+      "severe_pending_cases_filed_against_this_corporate": false,
+      "credit_rating": null
+    },
+    "filing_dates": {
+      "aoc_4": {
+        "financial_year": "2023-03-31",
+        "filing_date": "2023-12-05"
+      },
+      "mgt_7": {
+        "financial_year": "2023-03-31",
+        "filing_date": "2023-12-05"
+      }
+    }
+  }
+}
