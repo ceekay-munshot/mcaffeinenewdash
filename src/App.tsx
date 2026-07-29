@@ -818,7 +818,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
 /* ------------------------------------------------ Compare & analyse suppliers */
 
 const CMP_COLORS = ["#0d9488", "#e34948", "#2a78d6", "#eda100", "#7c3aed", "#0891b2"];
-const CMP_MAX = 6;
+const CMP_MAX = 5;
 const RENEG_WEIGHT: Record<string, number> = {
   "Fat margins — push on price": 3, "Margins are widening": 2, "Room to extend our payment terms": 2, "Input-cost pass-through": 2,
   "Collects faster than its peers": 1.5, "They already stretch their suppliers": 1.5, "Offer early payment for a discount": 1.5, "Carrying heavy stock": 1.5,
@@ -871,6 +871,7 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
   const [analysing, setAnalysing] = useState(false);
   const [prod, setProd] = useState("any");
   const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
+  const [query, setQuery] = useState("");
 
   const avail = useMemo(() => {
     const counts = new Map<string, number>();
@@ -879,19 +880,24 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
     return PRODUCT_TAGS.filter((t) => (counts.get(t.key) ?? 0) > 0);
   }, [all]);
 
-  const pool = useMemo(() => all.filter((e) => {
-    if (cat !== "All" && e.category !== cat) return false;
-    if (prod !== "any" && !productTagsOf(e).includes(prod)) return false;
-    return true;
-  }).sort((a, b) => a.brand.localeCompare(b.brand)), [all, cat, prod]);
+  const pool = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return all.filter((e) => {
+      if (cat !== "All" && e.category !== cat) return false;
+      if (prod !== "any" && !productTagsOf(e).includes(prod)) return false;
+      if (q && !`${e.brand} ${e.legalName ?? ""}`.toLowerCase().includes(q)) return false;
+      return true;
+    }).sort((a, b) => (revOf(b) ?? -1) - (revOf(a) ?? -1));
+  }, [all, cat, prod, query]);
 
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const enriched = useMemo(() => all.filter((e) => hasDeepDive(e.cin)), [all]);
   const selected = picked.map((f) => byFolder.get(f)).filter((e): e is Entity => !!e);
-  const add = (f: string) => setPicked((p) => (p.includes(f) || p.length >= CMP_MAX ? p : [...p, f]));
-  const remove = (f: string) => setPicked((p) => p.filter((x) => x !== f));
-  const options = pool.filter((e) => !picked.includes(e.folder));
   const full = picked.length >= CMP_MAX;
+  const toggle = (f: string) => setPicked((p) => (p.includes(f) ? p.filter((x) => x !== f) : p.length >= CMP_MAX ? p : [...p, f]));
+  const launch = (list: Entity[]) => { setPicked(list.slice(0, CMP_MAX).map((e) => e.folder)); setAnalysing(true); };
+  const topCat = (c: (typeof SUP_CATS)[number]) => all.filter((e) => e.category === c && revOf(e) != null).sort((a, b) => (revOf(b) ?? 0) - (revOf(a) ?? 0)).slice(0, CMP_MAX);
+  const presetCls = "inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition hover:bg-teal-50 hover:text-teal-700 hover:ring-teal-300";
 
   if (analysing && selected.length >= 2) return <CompareAnalysis selected={selected} onBack={() => setAnalysing(false)} onSelect={onSelect} />;
 
@@ -901,41 +907,55 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
 
       <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
         <div className="text-base font-semibold text-slate-900">🆚 Compare suppliers</div>
-        <div className="mt-0.5 text-sm text-slate-500">Optionally narrow by product or type, then add 2–6 suppliers from the dropdown and hit Compare.</div>
-        {enriched.length >= 2 && (
-          <button onClick={() => { setPicked(enriched.slice(0, CMP_MAX).map((e) => e.folder)); setAnalysing(true); }}
-            className="mt-3 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:brightness-110">
-            ✨ Compare our {enriched.length} deep-dive suppliers (full Probe42) →
-          </button>
-        )}
+        <div className="mt-0.5 text-sm text-slate-500">Tick up to {CMP_MAX} suppliers below, or start from a quick view.</div>
 
+        {/* default views / presets */}
+        <div className="mt-3 flex flex-wrap gap-2">
+          {enriched.length >= 2 && <button onClick={() => launch(enriched)} className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110">✨ Our {enriched.length} deep-dive suppliers</button>}
+          {(["Manufacturer", "RM Vendor", "PM Vendor"] as const).map((c) => topCat(c).length >= 2 ? <button key={c} onClick={() => launch(topCat(c))} className={presetCls}>{catEmoji(c)} Top {c}s</button> : null)}
+        </div>
+
+        {/* filters */}
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <Dropdown label="Product" value={prod} onChange={setProd} options={[{ key: "any", label: "Any product" }, ...avail.map((t) => ({ key: t.key, label: t.label, emoji: t.emoji }))]} />
           <Dropdown label="Type" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c }))} />
-          <label className="inline-flex items-center gap-2 text-sm">
-            <span className="text-slate-500">Add supplier</span>
-            <select value="" disabled={full} onChange={(e) => e.target.value && add(e.target.value)}
-              className="min-w-[15rem] rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400 disabled:opacity-50">
-              <option value="">{full ? "Max 6 selected" : options.length ? "Select a supplier…" : "No suppliers match"}</option>
-              {options.map((e) => <option key={e.folder} value={e.folder}>{e.brand} · {e.category} · {fmtCrore(revOf(e))}</option>)}
-            </select>
-          </label>
+          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search suppliers…" className="w-52 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-teal-400" />
+          <span className={`ml-auto text-sm ${full ? "font-semibold text-teal-700" : "text-slate-400"}`}>{picked.length}/{CMP_MAX} picked</span>
         </div>
 
-        <div className="mt-4 flex min-h-[2rem] flex-wrap items-center gap-2">
-          {selected.length === 0 && <span className="text-sm text-slate-400">No suppliers selected yet.</span>}
-          {selected.map((e, i) => (
-            <span key={e.folder} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>
-              {e.brand}<button onClick={() => remove(e.folder)} className="opacity-80 transition hover:opacity-100">✕</button>
-            </span>
-          ))}
+        {/* checkbox grid */}
+        <div className="mt-3 max-h-72 overflow-y-auto rounded-xl bg-slate-50 p-2 ring-1 ring-slate-200">
+          <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
+            {pool.map((e) => {
+              const on = picked.includes(e.folder);
+              const disabled = !on && full;
+              return (
+                <label key={e.folder} className={`flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition ${on ? "bg-teal-50 ring-1 ring-teal-200" : disabled ? "cursor-not-allowed opacity-40" : "hover:bg-white"}`}>
+                  <input type="checkbox" checked={on} disabled={disabled} onChange={() => toggle(e.folder)} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-400" />
+                  <span className="shrink-0">{catEmoji(e.category)}</span>
+                  <span className="min-w-0 flex-1 truncate font-medium text-slate-800" title={e.brand}>{e.brand}{hasDeepDive(e.cin) && <span className="ml-1 text-[10px] text-teal-600" title="full Probe42 report on file">●</span>}</span>
+                  <span className="shrink-0 font-mono text-xs text-slate-400">{fmtCrore(revOf(e))}</span>
+                </label>
+              );
+            })}
+            {pool.length === 0 && <div className="col-span-full py-6 text-center text-sm text-slate-400">No suppliers match.</div>}
+          </div>
         </div>
 
-        <div className="mt-5 flex items-center gap-3">
-          <button disabled={selected.length < 2} onClick={() => setAnalysing(true)}
-            className={`rounded-lg px-5 py-2 text-sm font-semibold text-white transition ${selected.length >= 2 ? "bg-teal-600 hover:bg-teal-700" : "cursor-not-allowed bg-slate-300"}`}>Compare →</button>
+        {/* selected + compare */}
+        {selected.length > 0 && (
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {selected.map((e, i) => (
+              <span key={e.folder} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>
+                {e.brand}<button onClick={() => toggle(e.folder)} className="opacity-80 transition hover:opacity-100">✕</button>
+              </span>
+            ))}
+          </div>
+        )}
+        <div className="mt-4 flex items-center gap-3">
+          <button disabled={selected.length < 2} onClick={() => setAnalysing(true)} className={`rounded-lg px-5 py-2 text-sm font-semibold text-white transition ${selected.length >= 2 ? "bg-teal-600 hover:bg-teal-700" : "cursor-not-allowed bg-slate-300"}`}>Compare {selected.length >= 2 ? `${selected.length} ` : ""}→</button>
           {selected.length > 0 && <button onClick={() => setPicked([])} className="text-sm text-slate-500 transition hover:text-slate-800">Clear</button>}
-          <span className="text-sm text-slate-400">{selected.length ? `${selected.length} of ${CMP_MAX} selected` : "Pick at least 2"}</span>
+          {selected.length < 2 && <span className="text-sm text-slate-400">Pick at least 2</span>}
         </div>
       </div>
     </div>
@@ -977,6 +997,35 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
         <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Change selection</button>
         <div className="flex flex-wrap gap-1.5">{selected.map((e, i) => <span key={e.folder} className="inline-flex rounded-full px-2 py-0.5 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>{e.brand}</span>)}</div>
       </div>
+
+      {selected.some((e) => suppliedItems(e.folder).length > 0) && (
+        <Card title="🏷️ What they supply us & the market price" sub="the ingredient(s) each one provides to mcAFFEINE and its going open-market rate — IndiaMART band, not a per-vendor quote" accent="#eda100">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[620px] border-collapse text-sm">
+              <thead><tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700"><Th>Supplier</Th><Th>Supplies to us</Th><Th right>Market ₹/kg</Th><Th>Who holds the pricing power</Th></tr></thead>
+              <tbody>
+                {selected.flatMap((e, i) => {
+                  const items = suppliedItems(e.folder);
+                  if (!items.length) return [<tr key={e.folder} className="border-t border-slate-100"><td className="px-4 py-2 font-semibold text-slate-900"><span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{e.brand}</span></td><td className="px-4 py-2 text-slate-400" colSpan={3}>Not mapped to a tracked ingredient</td></tr>];
+                  return items.map((it, j) => {
+                    const mk = marketOf(it);
+                    const lev = mk ? LEV_META[mk.leverage] : null;
+                    const hasP = !!mk?.priceINRPerKg && !mk.priceINRPerKg.includes("not found");
+                    return (
+                      <tr key={e.folder + it} className="border-t border-slate-100">
+                        {j === 0 && <td rowSpan={items.length} className="px-4 py-2 align-top font-semibold text-slate-900"><span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{e.brand}</span></td>}
+                        <td className="px-4 py-2 text-slate-700">{it}</td>
+                        <td className="whitespace-nowrap px-4 py-2 text-right font-mono text-orange-700">{hasP ? mk!.priceINRPerKg : "—"}</td>
+                        <td className="px-4 py-2 text-xs text-slate-500">{lev ? `${lev.emoji} ${lev.label}` : "—"}</td>
+                      </tr>
+                    );
+                  });
+                })}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+      )}
 
       {enrichedCount(selected) >= 2 ? (
         // Rich Probe42 comparison — full financials, head-to-head trend, lever engine.
