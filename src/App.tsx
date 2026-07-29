@@ -20,7 +20,7 @@ import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
 } from "./lib/insights";
-import DeepDive, { hasDeepDive, probeLevers } from "./DeepDive";
+import DeepDive, { hasDeepDive, probeLevers, ProbeCompare, enrichedCount } from "./DeepDive";
 
 /* -------------------------------------------------- data accessors / helpers */
 
@@ -886,6 +886,7 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
   }).sort((a, b) => a.brand.localeCompare(b.brand)), [all, cat, prod]);
 
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
+  const enriched = useMemo(() => all.filter((e) => hasDeepDive(e.cin)), [all]);
   const selected = picked.map((f) => byFolder.get(f)).filter((e): e is Entity => !!e);
   const add = (f: string) => setPicked((p) => (p.includes(f) || p.length >= CMP_MAX ? p : [...p, f]));
   const remove = (f: string) => setPicked((p) => p.filter((x) => x !== f));
@@ -901,6 +902,12 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
       <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
         <div className="text-base font-semibold text-slate-900">🆚 Compare suppliers</div>
         <div className="mt-0.5 text-sm text-slate-500">Optionally narrow by product or type, then add 2–6 suppliers from the dropdown and hit Compare.</div>
+        {enriched.length >= 2 && (
+          <button onClick={() => { setPicked(enriched.slice(0, CMP_MAX).map((e) => e.folder)); setAnalysing(true); }}
+            className="mt-3 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:brightness-110">
+            ✨ Compare our {enriched.length} deep-dive suppliers (full Probe42) →
+          </button>
+        )}
 
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <Dropdown label="Product" value={prod} onChange={setProd} options={[{ key: "any", label: "Any product" }, ...avail.map((t) => ({ key: t.key, label: t.label, emoji: t.emoji }))]} />
@@ -971,28 +978,33 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
         <div className="flex flex-wrap gap-1.5">{selected.map((e, i) => <span key={e.folder} className="inline-flex rounded-full px-2 py-0.5 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>{e.brand}</span>)}</div>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
-        <VerdictCard emoji="🤝" title="Most room to renegotiate" e={bestReneg?.e} color={bestReneg ? colorOf(bestReneg.e) : undefined} note={bestReneg ? supplierInsights(bestReneg.e).find((i) => i.tone === "opportunity")?.title : "No clear lever among these"} onSelect={onSelect} />
-        <VerdictCard emoji="🛡️" title="Most reliable to commit to" e={bestFit.e} color={colorOf(bestFit.e)} note={`Financial fitness ${Math.round(bestFit.s)}/100`} onSelect={onSelect} />
-      </div>
-
-      <Card title="📈 Trend comparison" sub="pick a metric — every selected supplier's multi-year trend on one chart" accent="#0d9488">
-        <TrendCompare selected={selected} />
-      </Card>
-
-      <Card title="🎯 Negotiation angles per supplier" sub="the levers each one hands you" accent="#eda100">
-        <div className="space-y-2.5">
-          {selected.map((e, i) => {
-            const lv = leverTagsOf(supplierInsights(e));
-            return (
-              <div key={e.folder} className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex min-w-[10rem] items-center gap-1.5 text-sm font-semibold text-slate-800"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{e.brand}</span>
-                {lv.length ? lv.map(({ short, emoji, detail }) => <span key={short} title={detail} className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>) : <span className="text-xs text-slate-400">No clear lever — healthy vendor</span>}
-              </div>
-            );
-          })}
-        </div>
-      </Card>
+      {enrichedCount(selected) >= 2 ? (
+        // Rich Probe42 comparison — full financials, head-to-head trend, lever engine.
+        <ProbeCompare entities={selected} />
+      ) : (
+        <>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <VerdictCard emoji="🤝" title="Most room to renegotiate" e={bestReneg?.e} color={bestReneg ? colorOf(bestReneg.e) : undefined} note={bestReneg ? supplierInsights(bestReneg.e).find((i) => i.tone === "opportunity")?.title : "No clear lever among these"} onSelect={onSelect} />
+            <VerdictCard emoji="🛡️" title="Most reliable to commit to" e={bestFit.e} color={colorOf(bestFit.e)} note={`Financial fitness ${Math.round(bestFit.s)}/100`} onSelect={onSelect} />
+          </div>
+          <Card title="📈 Trend comparison" sub="pick a metric — every selected supplier's multi-year trend on one chart" accent="#0d9488">
+            <TrendCompare selected={selected} />
+          </Card>
+          <Card title="🎯 Negotiation angles per supplier" sub="the levers each one hands you" accent="#eda100">
+            <div className="space-y-2.5">
+              {selected.map((e, i) => {
+                const lv = leverTagsOf(supplierInsights(e));
+                return (
+                  <div key={e.folder} className="flex flex-wrap items-center gap-2">
+                    <span className="inline-flex min-w-[10rem] items-center gap-1.5 text-sm font-semibold text-slate-800"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{e.brand}</span>
+                    {lv.length ? lv.map(({ short, emoji, detail }) => <span key={short} title={detail} className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>) : <span className="text-xs text-slate-400">No clear lever — healthy vendor</span>}
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+        </>
+      )}
     </div>
   );
 }

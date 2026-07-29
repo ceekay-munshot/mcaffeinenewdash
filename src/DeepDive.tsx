@@ -433,6 +433,111 @@ function AboutTab({ d }: { d: Detail }) {
   );
 }
 
+/* ============================================ PROBE-POWERED SIDE-BY-SIDE COMPARE
+   Rendered inside the Compare flow. Lays the enriched suppliers next to each other
+   on the full Probe42 dataset — metrics table (best-of-group highlighted), a
+   head-to-head trend, and the lever engine per supplier. */
+const CMP = ["#0d9488", "#e11d48", "#2563eb", "#f59e0b", "#7c3aed", "#0891b2"];
+/** How many of these entities do we hold a Probe42 report for? */
+export function enrichedCount(entities: { cin?: string | null }[]): number { return entities.filter((e) => e.cin && DETAILS[e.cin]).length; }
+
+export function ProbeCompare({ entities }: { entities: { cin?: string | null; brand: string }[] }) {
+  const cos = entities.map((e) => ({ brand: e.brand, d: e.cin ? DETAILS[e.cin] : undefined })).filter((x): x is { brand: string; d: Detail } => !!x.d);
+  const [metric, setMetric] = useState("revenue");
+  if (cos.length < 2) return null;
+  const col = (i: number) => CMP[i % CMP.length];
+
+  const rows: { label: string; get: (d: Detail) => number | null; fmt: (v: number | null) => string; hi: number }[] = [
+    { label: "Revenue", get: (d) => n(d.latest.revenue), fmt: cr, hi: 1 },
+    { label: "EBITDA margin", get: (d) => n(d.latest.ebitdaMargin), fmt: pct, hi: 1 },
+    { label: "Net margin", get: (d) => n(d.latest.netMargin), fmt: pct, hi: 1 },
+    { label: "RoCE", get: (d) => n(d.latest.roce), fmt: pct, hi: 1 },
+    { label: "RoE", get: (d) => n(d.latest.roe), fmt: pct, hi: 1 },
+    { label: "Debt / equity", get: (d) => n(d.latest.debtEquity), fmt: (v) => (v == null ? "—" : v.toFixed(2)), hi: -1 },
+    { label: "Collects (DSO)", get: (d) => n(d.latest.debtorDays), fmt: days, hi: -1 },
+    { label: "Pays (DPO)", get: (d) => n(d.latest.payableDays), fmt: days, hi: 0 },
+    { label: "Cash cycle", get: (d) => n(d.latest.cashConversion), fmt: days, hi: -1 },
+    { label: "Employees", get: (d) => n(d.employees.latest), fmt: (v) => (v == null ? "—" : `${Math.round(v)}`), hi: 1 },
+    { label: "Financial score", get: (d) => n(d.score.overall), fmt: (v) => (v == null ? "—" : `${v}/10`), hi: 1 },
+  ];
+  const bestIdx = (r: (typeof rows)[number]) => {
+    if (r.hi === 0) return -1;
+    let bi = -1, bv = r.hi === 1 ? -Infinity : Infinity;
+    cos.forEach((c, i) => { const v = r.get(c.d); if (v == null) return; if ((r.hi === 1 && v > bv) || (r.hi === -1 && v < bv)) { bv = v; bi = i; } });
+    return bi;
+  };
+
+  const TM = [
+    { key: "revenue", label: "Revenue", unit: (v: number) => `₹${Math.round(v)} Cr`, get: (f: FinRow) => f.revenue },
+    { key: "ebitdaMargin", label: "EBITDA margin", unit: (v: number) => `${v}%`, get: (f: FinRow) => f.r.ebitdaMargin },
+    { key: "roce", label: "RoCE", unit: (v: number) => `${v}%`, get: (f: FinRow) => f.r.roce },
+    { key: "pat", label: "Profit", unit: (v: number) => `₹${Math.round(v)} Cr`, get: (f: FinRow) => f.pat },
+  ];
+  const tm = TM.find((x) => x.key === metric) ?? TM[0];
+  const years = [...new Set(cos.flatMap((c) => c.d.fin.map((f) => f.fy)))].sort();
+  const series = cos.map((c, i) => { const m = new Map(c.d.fin.map((f) => [f.fy, tm.get(f)])); return { name: c.brand, color: col(i), points: years.map((y) => m.get(y) ?? null) }; });
+
+  const oppCount = (d: Detail) => d.levers.filter((l) => l.tone === "opportunity").length;
+  const cagr = (d: Detail) => { const r = d.fin.map((f) => f.revenue).filter((v): v is number => v != null); return r.length >= 2 && r[0] ? (r[r.length - 1] / r[0]) ** (1 / (r.length - 1)) - 1 : -Infinity; };
+  const winBy = (f: (d: Detail) => number) => cos.reduce((b, c) => (f(c.d) > f(b.d) ? c : b), cos[0]);
+  const mostRoom = winBy(oppCount), healthiest = winBy((d) => d.score.overall ?? 0), fastest = winBy(cagr);
+
+  return (
+    <div className="space-y-4">
+      <div className="grid gap-3 sm:grid-cols-3">
+        <WinCard emoji="🤝" title="Most negotiation room" name={mostRoom.brand} note={`${oppCount(mostRoom.d)} levers in our favour`} />
+        <WinCard emoji="🛡️" title="Healthiest" name={healthiest.brand} note={`Probe score ${healthiest.d.score.overall}/10`} />
+        <WinCard emoji="🚀" title="Fastest growing" name={fastest.brand} note={cagr(fastest.d) > 0 ? `${Math.round(cagr(fastest.d) * 100)}%/yr revenue` : "—"} />
+      </div>
+      <Card title="Side by side" sub="latest year · green = best of the group" accent={TEAL}>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[560px] border-collapse text-sm">
+            <thead><tr className="border-b border-slate-200 text-left"><th className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-slate-500">Metric</th>{cos.map((c, i) => <th key={i} className="px-3 py-2 text-right"><span className="inline-flex items-center gap-1.5 font-semibold text-slate-800"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: col(i) }} />{c.brand}</span></th>)}</tr></thead>
+            <tbody>
+              {rows.map((r) => { const bi = bestIdx(r); return (
+                <tr key={r.label} className="border-t border-slate-100">
+                  <td className="px-3 py-1.5 font-medium text-slate-600">{r.label}</td>
+                  {cos.map((c, i) => <td key={i} className={`px-3 py-1.5 text-right font-mono tabular-nums ${i === bi ? "rounded bg-emerald-50 font-bold text-emerald-700" : "text-slate-800"}`}>{r.fmt(r.get(c.d))}</td>)}
+                </tr>
+              ); })}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+      <Card title="Head-to-head trend" sub="every supplier on one chart" accent={C.indigo}>
+        <div className="mb-3 flex flex-wrap gap-1.5">
+          {TM.map((x) => <button key={x.key} onClick={() => setMetric(x.key)} className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition ${metric === x.key ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"}`}>{x.label}</button>)}
+        </div>
+        <MultiLine xLabels={years} series={series} valueLabel={tm.unit} height={300} />
+      </Card>
+      <Card title="Negotiation levers, head to head" sub="what each supplier's numbers hand us" accent={C.amber}>
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {cos.map((c, i) => (
+            <div key={i} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
+              <div className="mb-1.5 flex items-center gap-1.5 font-semibold text-slate-800"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: col(i) }} />{c.brand}</div>
+              <div className="mb-2 flex flex-wrap gap-1.5 text-xs">
+                <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-700">{c.d.levers.filter((l) => l.tone === "opportunity").length} for us</span>
+                <span className="rounded-full bg-amber-100 px-2 py-0.5 text-amber-700">{c.d.levers.filter((l) => l.tone === "watch").length} watch</span>
+                <span className="rounded-full bg-rose-100 px-2 py-0.5 text-rose-700">{c.d.levers.filter((l) => l.tone === "risk").length} risk</span>
+              </div>
+              <ul className="space-y-1 text-xs text-slate-600">{c.d.levers.filter((l) => l.tone === "opportunity").slice(0, 3).map((l, j) => <li key={j}>✅ {l.title}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+      </Card>
+    </div>
+  );
+}
+function WinCard({ emoji, title, name, note }: { emoji: string; title: string; name: string; note: string }) {
+  return (
+    <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+      <div className="text-xs font-medium uppercase tracking-wide text-slate-500">{emoji} {title}</div>
+      <div className="mt-1 text-lg font-bold text-slate-900">{name}</div>
+      <div className="text-xs text-slate-500">{note}</div>
+    </div>
+  );
+}
+
 /* ---------------------------------------------------------------- helpers */
 function Kpi({ label, value, tone }: { label: string; value: string | number; tone: string }) {
   const c: Record<string, string> = { ink: "text-slate-900", teal: "text-teal-600", indigo: "text-indigo-600", sky: "text-sky-600", amber: "text-amber-600", emerald: "text-emerald-600", rose: "text-rose-600" };
