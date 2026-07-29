@@ -93,7 +93,7 @@ export default function App() {
 function Header({ module, setModule, generatedAt }: { module: Module; setModule: (m: Module) => void; generatedAt: string }) {
   return (
     <header className="sticky top-0 z-30 bg-gradient-to-r from-[#0b3b39] via-[#0d9488] to-[#0891b2] shadow-md">
-      <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-y-3 px-4 py-3.5 sm:px-6">
+      <div className="mx-auto flex max-w-[1680px] flex-wrap items-center justify-between gap-y-3 px-4 py-3.5 sm:px-6">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/15 text-xl ring-1 ring-white/25">☕</div>
           <div>
@@ -345,12 +345,11 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "supply" | "product" | "market";
+type SupTab = "board" | "market" | "supply";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
-  { key: "board", label: "Supplier board", emoji: "📇" },
-  { key: "supply", label: "Our supply chain", emoji: "🧬" },
-  { key: "product", label: "By product", emoji: "🧴" },
-  { key: "market", label: "Market structure", emoji: "🌐" },
+  { key: "board", label: "Suppliers", emoji: "🏭" },
+  { key: "market", label: "Ingredients", emoji: "🧪" },
+  { key: "supply", label: "Supply chain", emoji: "🧬" },
 ];
 
 function SupplierView() {
@@ -370,7 +369,7 @@ function SupplierView() {
   if (selected) return <CompanyPage entity={selected} onBack={back} kind="supplier" />;
 
   return (
-    <main className="mx-auto max-w-[1280px] px-4 pb-16 sm:px-6">
+    <main className="mx-auto max-w-[1680px] px-4 pb-16 sm:px-6">
       <ModuleHero emoji="🏭" title="Supplier Intelligence"
         subtitle="Financial health, negotiation levers & risk across every RM · PM · Manufacturer vendor"
         tint="from-[#0f766e] to-[#0891b2]"
@@ -389,9 +388,8 @@ function SupplierView() {
             <button onClick={() => setCompareMode(true)} className="inline-flex items-center gap-1.5 rounded-lg bg-teal-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">🆚 Compare suppliers</button>
           </div>
           {tab === "board" && <BoardTab all={all} onSelect={openSupplier} />}
-          {tab === "supply" && <SupplyChainView all={all} onSelect={openSupplier} />}
-          {tab === "product" && <SupplierByProduct all={all} onSelect={openSupplier} />}
           {tab === "market" && <MarketStructureView all={all} onSelect={openSupplier} />}
+          {tab === "supply" && <SupplyChainView all={all} onSelect={openSupplier} />}
         </>
       )}
     </main>
@@ -530,7 +528,6 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
 // supplier's free-text industry + research.products + overview, so we can group
 // vendors that offer the same thing — a ready shortlist of sourcing alternatives.
 type ProductGroup = "Finished product" | "Raw material" | "Packaging";
-const GROUP_ORDER: Record<ProductGroup, number> = { "Finished product": 0, "Raw material": 1, Packaging: 2 };
 const PRODUCT_TAGS: { key: string; label: string; emoji: string; group: ProductGroup; re: RegExp }[] = [
   { key: "facewash", label: "Face wash / cleanser", emoji: "🧼", group: "Finished product", re: /face ?wash|facial cleanser|cleanser/ },
   { key: "bodywash", label: "Body wash / shower gel", emoji: "🚿", group: "Finished product", re: /body ?wash|shower gel|bathing/ },
@@ -565,72 +562,6 @@ function productTagsOf(e: Entity): string[] {
   return PRODUCT_TAGS.filter((t) => t.re.test(blob)).map((t) => t.key);
 }
 
-// Group suppliers by what they actually sell — pick a product and see every
-// vendor that offers it, side by side on the negotiation metrics. A sourcing
-// shortlist: your alternatives / backup sources for that item.
-function SupplierByProduct({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const tagged = useMemo(() => all.map((e) => ({ e, tags: productTagsOf(e), levers: leverTagsOf(supplierInsights(e)) })), [all]);
-  const byTag = useMemo(() => {
-    const m = new Map<string, typeof tagged>();
-    PRODUCT_TAGS.forEach((t) => m.set(t.key, []));
-    tagged.forEach((x) => x.tags.forEach((k) => m.get(k)!.push(x)));
-    return m;
-  }, [tagged]);
-  const avail = PRODUCT_TAGS.map((t) => ({ t, n: byTag.get(t.key)!.length })).filter((x) => x.n > 0)
-    .sort((a, b) => GROUP_ORDER[a.t.group] - GROUP_ORDER[b.t.group] || b.n - a.n);
-  const [key, setKey] = useState(() => [...avail].sort((a, b) => b.n - a.n)[0]?.t.key ?? PRODUCT_TAGS[0].key);
-  const tag = PRODUCT_TAGS.find((t) => t.key === key) ?? PRODUCT_TAGS[0];
-  const rows = (byTag.get(key) ?? []).slice().sort((a, b) => (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1));
-  const untagged = tagged.filter((x) => x.tags.length === 0).length;
-
-  return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-3">
-        <Dropdown label="Product / material" value={key} onChange={setKey}
-          options={avail.map(({ t, n }) => ({ key: t.key, label: `${t.label} (${n})`, emoji: t.emoji }))} />
-        <span className="text-sm text-slate-500">{rows.length} supplier{rows.length !== 1 ? "s" : ""} offer {tag.emoji} {tag.label.toLowerCase()}</span>
-      </div>
-
-      <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-        <table className="w-full min-w-[880px] border-collapse text-sm">
-          <thead>
-            <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
-              <Th>Supplier</Th><Th>Type</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th>Negotiation levers</Th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map(({ e, levers }) => (
-              <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
-                <td className="max-w-[260px] px-4 py-3.5">
-                  <div className="flex min-w-0 items-center gap-2 font-semibold text-slate-900" title={e.legalName ?? e.brand}><span className="shrink-0">{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></div>
-                </td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-slate-500">{e.category}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-900">{fmtCrore(revOf(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(supRoce(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDSO(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDPO(e))}</td>
-                <td className="px-4 py-3.5">
-                  {levers.length === 0 ? <span className="text-xs text-slate-400">—</span> : (
-                    <div className="flex flex-wrap gap-1">
-                      {levers.map(({ short, emoji, detail }) => (
-                        <span key={short} title={detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>
-                      ))}
-                    </div>
-                  )}
-                </td>
-              </tr>
-            ))}
-            {rows.length === 0 && <tr><td colSpan={8} className="px-4 py-10 text-center text-slate-400">No suppliers tagged for this product.</td></tr>}
-          </tbody>
-        </table>
-      </div>
-
-      {untagged > 0 && <div className="text-xs text-slate-400">{untagged} supplier{untagged > 1 ? "s have" : " has"} no product detail on file to classify.</div>}
-    </div>
-  );
-}
-
 /* ---------------------------------------------------------- L2 Market structure */
 // The "India Trade" / monopoly check: for each thing we buy, how many credible
 // suppliers exist — and does that hand the leverage to us (a crowded commodity)
@@ -645,12 +576,17 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
   entry: MarketEntry; currentVendor: Entity | undefined; all: Entity[]; onBack: () => void; onSelectVendor: (e: Entity) => void;
 }) {
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
+  const [deep, setDeep] = useState(false);
   const lev = LEV_META[entry.leverage];
+  const conc = CONC_META[entry.concentration];
   const alts = entry.alternatives ?? [];
   const ins = currentVendor ? supplierInsights(currentVendor) : [];
+  const trend = useMemo(() => (currentVendor ? buildTrendMetrics(currentVendor) : []), [currentVendor]);
+  const canDeep = hasDeepDive(currentVendor?.cin);
   const hasPrice = !!entry.priceINRPerKg && !entry.priceINRPerKg.includes("not found");
   const chip = "inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-semibold ring-1";
   const loc = (e: Entity) => [(e.city ?? ""), (e.state ?? "").replace(/\s*\(implied\)\s*/i, "").trim()].filter(Boolean).join(", ") || "—";
+  const STEPS: [string, string][] = [["①", "Suppliers"], ["②", "Price"], ["③", "Financials"], ["④", "Levers"]];
   return (
     <div className="space-y-4">
       <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Back to all ingredients</button>
@@ -669,9 +605,17 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
         </div>
         <p className="mt-3 text-sm leading-relaxed text-slate-600">{entry.implication}</p>
         {entry.priceNote && <p className="mt-1.5 text-xs text-slate-400">Price: {entry.priceNote}{entry.priceSource ? ` · ${entry.priceSource}` : ""}</p>}
+        <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2 border-t border-slate-100 pt-3">
+          {STEPS.map(([n, l], i) => (
+            <span key={l} className="flex items-center gap-1.5">
+              <span className="inline-flex items-center gap-1 rounded-full bg-teal-50 px-2.5 py-1 text-xs font-semibold text-teal-700 ring-1 ring-teal-100">{n} {l}</span>
+              {i < STEPS.length - 1 && <span className="text-slate-300">→</span>}
+            </span>
+          ))}
+        </div>
       </div>
 
-      <Card title={`🏭 Suppliers who sell ${entry.item}`} sub={alts.length ? `Our current vendor vs ${alts.length} alternatives found on IndiaMART / TradeIndia — click your vendor for its full profile` : "Our current vendor for this item"} accent="#0d9488">
+      <Card title={`① Suppliers who sell ${entry.item}  ·  ② the price each offers`} sub={alts.length ? `Our current vendor vs ${alts.length} alternatives found on IndiaMART / TradeIndia — click a vendor for its full profile` : "Our current vendor for this item"} accent="#0d9488">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[880px] border-collapse text-sm">
             <thead>
@@ -713,11 +657,41 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
         <p className="mt-2 px-1 text-[11px] leading-relaxed text-slate-400">"Market ₹/kg" is the open-market band for this material (IndiaMART) — the going rate, shown for reference, not each seller's individual quote. Exact per-vendor quotes come back on an RFQ.</p>
       </Card>
 
-      {currentVendor && ins.length > 0 && (
-        <Card title={`💡 Negotiation levers · ${currentVendor.brand}`} sub="from this vendor's own numbers · hover a tag for detail" accent="#eda100">
-          <LeverStrip ins={ins} />
-        </Card>
+      {currentVendor && (
+        <div className="grid gap-4 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <Card title={`③ ${currentVendor.brand} — financials & the trend behind the price`} sub="the numbers that create (or kill) our leverage · switch the metric to see its trend" accent="#0891b2">
+              {canDeep && (
+                <button onClick={() => setDeep(true)} className="mb-3 inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110">📊 Open full financial deep-dive →</button>
+              )}
+              <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
+                {(([["Revenue", fmtCrore(revOf(currentVendor))], ["EBITDA margin", fmtPct(ebitdaMarginOf(currentVendor))], ["RoCE", fmtPct(supRoce(currentVendor))], ["Collects in", fmtDays(supDSO(currentVendor))], ["Pays in", fmtDays(supDPO(currentVendor))]]) as [string, string][]).map(([l, v]) => (
+                  <div key={l} className="rounded-xl bg-slate-50 p-2.5 ring-1 ring-slate-200">
+                    <div className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{l}</div>
+                    <div className="mt-0.5 font-mono text-sm font-semibold text-slate-900">{v}</div>
+                  </div>
+                ))}
+              </div>
+              {trend.length > 0
+                ? <MetricTrend metrics={trend} height={220} />
+                : <div className="rounded-xl bg-slate-50 p-4 text-sm text-slate-500 ring-1 ring-slate-200">The year-by-year trend unlocks once we pull this vendor's filings (Probe42). The figures above are the latest on file.</div>}
+            </Card>
+          </div>
+          <div>
+            <Card title="④ Negotiation levers" sub={`what ${currentVendor.brand}'s own numbers hand us`} accent="#eda100">
+              {ins.length > 0
+                ? <LeverStrip ins={ins} />
+                : <p className="text-sm text-slate-400">No standout lever — this reads as a healthy, fairly-priced vendor.</p>}
+              <div className={`mt-4 rounded-xl ${conc.bg} p-3 text-xs ring-1 ${conc.ring}`}>
+                <div className={`font-semibold ${conc.text}`}>{conc.emoji} {conc.label}</div>
+                <div className="mt-0.5 leading-relaxed text-slate-600">{conc.blurb} · {entry.indiaBand} credible sellers in India{hasPrice ? ` · going rate ${entry.priceINRPerKg}` : ""}.</div>
+              </div>
+            </Card>
+          </div>
+        </div>
       )}
+
+      {deep && canDeep && currentVendor && <DeepDive entity={currentVendor} onClose={() => setDeep(false)} />}
     </div>
   );
 }
@@ -1283,7 +1257,7 @@ function CompetitorView() {
   if (selected) return <CompanyPage entity={selected} onBack={back} kind="competitor" />;
 
   return (
-    <main className="mx-auto max-w-[1280px] px-4 pb-16 sm:px-6">
+    <main className="mx-auto max-w-[1680px] px-4 pb-16 sm:px-6">
       <ModuleHero emoji="🥊" title="Competitor Benchmarking"
         subtitle="How rival BPC brands stack up on revenue, funding, pricing & the digital shelf"
         tint="from-[#6d28d9] to-[#db2777]"
@@ -1457,7 +1431,7 @@ function DeliveryView() {
   if (selected) return <CompanyPage entity={selected} onBack={back} kind="delivery" />;
 
   return (
-    <main className="mx-auto max-w-[1280px] px-4 pb-16 sm:px-6">
+    <main className="mx-auto max-w-[1680px] px-4 pb-16 sm:px-6">
       <ModuleHero emoji="🚚" title="Delivery Partners"
         subtitle="Last-mile & logistics partners — financial strength and the receivables (DSO) credit lever"
         tint="from-[#0369a1] to-[#0d9488]"
@@ -1595,7 +1569,7 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
         ];
 
   return (
-    <main className="mx-auto max-w-[1280px] px-4 pb-16 sm:px-6">
+    <main className="mx-auto max-w-[1680px] px-4 pb-16 sm:px-6">
       <button onClick={onBack} className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700">
         <span className="text-base leading-none">←</span> Back to {backLabel}
       </button>

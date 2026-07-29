@@ -73,7 +73,7 @@ export default function DeepDive({ entity, onClose }: { entity: Entity; onClose:
     <div className="fixed inset-0 z-40 overflow-y-auto bg-slate-100">
       {/* header */}
       <div className="sticky top-0 z-10 border-b border-slate-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <div className="mx-auto flex max-w-[1680px] items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <span className="truncate text-lg font-bold text-slate-900">{entity.brand}</span>
@@ -87,7 +87,7 @@ export default function DeepDive({ entity, onClose }: { entity: Entity; onClose:
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1200px] px-4 py-6 sm:px-6">
+      <div className="mx-auto max-w-[1680px] px-4 py-6 sm:px-6">
         {/* KPI strip */}
         <div className="stagger mb-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
           <Kpi label={`Revenue ${L.year ?? ""}`} value={cr(num(L.revenueCr))} tone="ink" />
@@ -113,7 +113,7 @@ export default function DeepDive({ entity, onClose }: { entity: Entity; onClose:
           </div>
         )}
 
-        <div className="stagger grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <div className="stagger grid grid-cols-1 gap-4 lg:grid-cols-3 xl:grid-cols-4">
           <Card title="Revenue trend" sub="net revenue · ₹ crore" className="lg:col-span-2" accent={TEAL}>
             <AreaLine data={rev} color={TEAL} valueLabel={(v) => `₹${Math.round(v)} Cr`} />
           </Card>
