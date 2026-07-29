@@ -45,6 +45,16 @@
       "struckOff": false
     },
     "creditRating": null,
+    "nameHistory": [],
+    "forex": {
+      "fy": "FY23",
+      "earnCr": 3.6,
+      "spendCr": null
+    },
+    "agedReceivables": {
+      "fy": "FY20",
+      "amountCr": 0
+    },
     "latest": {
       "year": "FY25",
       "revenue": 307.4,
@@ -1103,7 +1113,8 @@
           "INDIAMO",
           "ONCQUEST LABORATORIES",
           "ELEPHANT INDIA FINANCE"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "NARESH CHANDER ARORA",
@@ -1115,7 +1126,8 @@
           "INDIAMO",
           "ONCQUEST LABORATORIES",
           "ELEPHANT INDIA FINANCE"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "VIRENDRA PRASAD JOSHI",
@@ -1123,7 +1135,8 @@
         "since": "2023",
         "age": 54,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       },
       {
         "name": "VIRENDRA PRASAD JOSHI",
@@ -1131,7 +1144,8 @@
         "since": "2023",
         "age": 54,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       },
       {
         "name": "VIKAS AGGARWAL",
@@ -1139,7 +1153,8 @@
         "since": null,
         "age": 0,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       },
       {
         "name": "ABHINAV DHALL",
@@ -1147,12 +1162,15 @@
         "since": "2025",
         "age": 50,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": null
       }
     ],
     "charges": {
       "count": 2,
       "sumCr": 5.2,
+      "everCreated": 12,
+      "satisfied": 4,
       "list": [
         {
           "holder": "HONGKONG AND SHANGHAI BANKING CORPORATION LIMITED",
@@ -1842,6 +1860,19 @@
       "struckOff": false
     },
     "creditRating": null,
+    "nameHistory": [
+      "VINAROM",
+      "ROURE AROMA"
+    ],
+    "forex": {
+      "fy": "FY19",
+      "earnCr": 0,
+      "spendCr": null
+    },
+    "agedReceivables": {
+      "fy": "FY17",
+      "amountCr": 0
+    },
     "latest": {
       "year": "FY25",
       "revenue": 2971.5,
@@ -2891,7 +2922,8 @@
         "since": null,
         "age": 39,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       },
       {
         "name": "FRANCIS ADHAV",
@@ -2902,7 +2934,8 @@
         "others": [
           "NATUREX INDIA",
           "VALENTINE FOODS"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "KARTHIKEYAN SHANMUGAM",
@@ -2914,7 +2947,8 @@
           "NATUREX INDIA",
           "VALENTINE FOODS",
           "PRIGIV SPECIALTIES"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "DEVAPRIYO CHAKRAVARTY",
@@ -2925,12 +2959,15 @@
         "others": [
           "NATUREX INDIA",
           "VALENTINE FOODS"
-        ]
+        ],
+        "ownPct": 0
       }
     ],
     "charges": {
       "count": 2,
       "sumCr": 5.9,
+      "everCreated": 3,
+      "satisfied": 1,
       "list": [
         {
           "holder": "PUNJAB NATIONAL BANK",
@@ -3660,7 +3697,38 @@
       "severeCases": false,
       "struckOff": false
     },
-    "creditRating": null,
+    "creditRating": {
+      "agency": "CRISIL",
+      "date": "2022-09-27",
+      "grade": null,
+      "gradeText": "SME 1",
+      "ratedAmountCr": 0,
+      "facilities": [
+        {
+          "loan": null,
+          "rating": "SME 1",
+          "amountCr": null
+        }
+      ],
+      "flags": {
+        "inc": false,
+        "withdrawn": false,
+        "isDefault": false,
+        "subInvestmentGrade": false,
+        "downgraded": false,
+        "strong": false
+      }
+    },
+    "nameHistory": [],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 0,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY25",
+      "amountCr": 0
+    },
     "latest": {
       "year": "FY25",
       "revenue": 260,
@@ -4746,7 +4814,8 @@
         "others": [
           "JKW CHEMICALS",
           "ARK SPECIALTY CHEMICALS INDIA"
-        ]
+        ],
+        "ownPct": 55
       },
       {
         "name": "RENUKA ANILKUMAR WADHWA",
@@ -4757,7 +4826,8 @@
         "others": [
           "JKW CHEMICALS",
           "ARK SPECIALTY CHEMICALS INDIA"
-        ]
+        ],
+        "ownPct": 15
       },
       {
         "name": "KUNAL ANILKUMAR WADHWA",
@@ -4767,7 +4837,8 @@
         "otherCount": 1,
         "others": [
           "ARK SPECIALTY CHEMICALS INDIA"
-        ]
+        ],
+        "ownPct": 10
       },
       {
         "name": "ANMOL ANILKUMAR WADHWA",
@@ -4775,7 +4846,8 @@
         "since": "2012",
         "age": 38,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 10
       },
       {
         "name": "PRIYA DUBEY WADHWA",
@@ -4783,12 +4855,15 @@
         "since": "2025",
         "age": 38,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       }
     ],
     "charges": {
       "count": 3,
       "sumCr": 33.2,
+      "everCreated": 9,
+      "satisfied": 1,
       "list": [
         {
           "holder": "HONGKONG AND SHANGHAI BANKING CORPORATION LIMITED",
@@ -5551,6 +5626,18 @@
       "struckOff": false
     },
     "creditRating": null,
+    "nameHistory": [
+      "CONNELL BROS COMPANY (INDIA)"
+    ],
+    "forex": {
+      "fy": "FY22",
+      "earnCr": 2.9,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY22",
+      "amountCr": 0
+    },
     "latest": {
       "year": "FY25",
       "revenue": 660.2,
@@ -6613,7 +6700,8 @@
         "since": "2023",
         "age": 58,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       },
       {
         "name": "DINAZ RUSTOM CHINWALLA",
@@ -6621,7 +6709,8 @@
         "since": "2026",
         "age": 48,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": null
       },
       {
         "name": "SMITA SUNIL SHETTY",
@@ -6629,12 +6718,15 @@
         "since": "2026",
         "age": 41,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": null
       }
     ],
     "charges": {
       "count": 1,
       "sumCr": 5,
+      "everCreated": 9,
+      "satisfied": 2,
       "list": [
         {
           "holder": "CITIBANK N.A",
@@ -7251,6 +7343,16 @@
       "struckOff": false
     },
     "creditRating": null,
+    "nameHistory": [],
+    "forex": {
+      "fy": "FY24",
+      "earnCr": 0,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY24",
+      "amountCr": 2.1
+    },
     "latest": {
       "year": "FY24",
       "revenue": 62.1,
@@ -8254,7 +8356,8 @@
           "GP SEAMLESS",
           "123 LIFESTYLE",
           "ANJUGOPAL FOUNDATION"
-        ]
+        ],
+        "ownPct": 50
       },
       {
         "name": "PARESHKUMAR GOPALBHAI GOTI",
@@ -8265,12 +8368,15 @@
         "others": [
           "123 LIFESTYLE",
           "ANJUGOPAL FOUNDATION"
-        ]
+        ],
+        "ownPct": 50
       }
     ],
     "charges": {
       "count": 2,
       "sumCr": 33.7,
+      "everCreated": 8,
+      "satisfied": 0,
       "list": [
         {
           "holder": "STANDARD CHARTERED BANK",
@@ -8807,6 +8913,16 @@
       "struckOff": false
     },
     "creditRating": null,
+    "nameHistory": [],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 0,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY25",
+      "amountCr": 0
+    },
     "latest": {
       "year": "FY25",
       "revenue": 205.3,
@@ -9803,7 +9919,8 @@
           "FACT WISE TECH",
           "GOPALDAS VISRAM AND COMPANY",
           "GOPALDAS VISRAM PACKAGING"
-        ]
+        ],
+        "ownPct": 8.4
       },
       {
         "name": "MUKUND VALLABHDAS THAKKER",
@@ -9816,7 +9933,8 @@
           "KRUPA POLYMERS (INDIA)",
           "GOPALDAS VISRAM AND COMPANY",
           "GOPALDAS VISRAM PACKAGING"
-        ]
+        ],
+        "ownPct": 7.9
       },
       {
         "name": "JAY MUKUND THAKKER",
@@ -9828,7 +9946,8 @@
           "KRUPA POLYMERS (INDIA)",
           "GOPALDAS VISRAM AND COMPANY",
           "GOPALDAS VISRAM PACKAGING"
-        ]
+        ],
+        "ownPct": 7.3
       },
       {
         "name": "KANAV CHANDRESH THAKKER",
@@ -9841,7 +9960,8 @@
           "LIANGZI QUANTUM APPLICATIONS",
           "RYOSHI QUANTUM MECHANICS",
           "GOPALDAS VISRAM AND COMPANY"
-        ]
+        ],
+        "ownPct": 8.6
       },
       {
         "name": "DINESH VALLABHDAS THAKKER",
@@ -9856,12 +9976,15 @@
           "LIANGZI QUANTUM APPLICATIONS",
           "RYOSHI QUANTUM MECHANICS",
           "GOPALDAS VISRAM AND COMPANY"
-        ]
+        ],
+        "ownPct": 8.6
       }
     ],
     "charges": {
       "count": 6,
       "sumCr": 45.3,
+      "everCreated": 38,
+      "satisfied": 12,
       "list": [
         {
           "holder": "AXIS BANK LIMITED",
@@ -10545,6 +10668,16 @@
       "struckOff": false
     },
     "creditRating": null,
+    "nameHistory": [],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 0,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY25",
+      "amountCr": 37.3
+    },
     "latest": {
       "year": "FY25",
       "revenue": 164.3,
@@ -11605,7 +11738,8 @@
         "since": "2019",
         "age": 40,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       },
       {
         "name": "PRIYANKA BIHARILAL JANGID",
@@ -11613,7 +11747,8 @@
         "since": "2023",
         "age": 32,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       },
       {
         "name": "ANURAG SHER SINGH SHARMA",
@@ -11621,7 +11756,8 @@
         "since": "2012",
         "age": 36,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 74.6
       },
       {
         "name": "POONAM BIHARILAL JANGID",
@@ -11629,12 +11765,15 @@
         "since": "2019",
         "age": 37,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       }
     ],
     "charges": {
       "count": 31,
       "sumCr": 100.4,
+      "everCreated": 27,
+      "satisfied": 3,
       "list": [
         {
           "holder": "ICICI BANK LIMITED",
@@ -12246,6 +12385,19 @@
             "tab": "risk"
           }
         ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Aged receivables piling up",
+        "detail": "₹37.3 Cr of receivables are over six months old — cash stuck, a sign of collection strain. A cash-tight supplier is more open to early-pay-for-discount.",
+        "evidence": [
+          {
+            "label": "Receivables >6m",
+            "value": "₹37.3 Cr",
+            "tab": "risk"
+          }
+        ]
       }
     ]
   },
@@ -12294,7 +12446,67 @@
       "severeCases": false,
       "struckOff": false
     },
-    "creditRating": "D",
+    "creditRating": {
+      "agency": "ACUITE",
+      "date": "2026-06-11",
+      "grade": "C",
+      "gradeText": "A4 (Issuer Not Cooperating/Reaffirmed)",
+      "ratedAmountCr": 33.3,
+      "facilities": [
+        {
+          "loan": "Bank Guarantee/Bank Loan Rating",
+          "rating": "A4 (Issuer Not Cooperating/Reaffirmed)",
+          "amountCr": 0.5
+        },
+        {
+          "loan": "Cash Credit",
+          "rating": "C (Issuer Not Cooperating/Reaffirmed)",
+          "amountCr": 7
+        },
+        {
+          "loan": "Cash Credit",
+          "rating": "C (Issuer Not Cooperating/Reaffirmed)",
+          "amountCr": 17.5
+        },
+        {
+          "loan": "Letter of Credit",
+          "rating": "A4 (Issuer Not Cooperating/Reaffirmed)",
+          "amountCr": 4
+        },
+        {
+          "loan": "Proposed Short Term Bank Facility",
+          "rating": "A4 (Issuer Not Cooperating/Reaffirmed)",
+          "amountCr": 2.3
+        },
+        {
+          "loan": "Term Loan",
+          "rating": "C (Issuer Not Cooperating/Reaffirmed)",
+          "amountCr": 2
+        }
+      ],
+      "flags": {
+        "inc": true,
+        "withdrawn": false,
+        "isDefault": false,
+        "subInvestmentGrade": true,
+        "downgraded": false,
+        "strong": false
+      }
+    },
+    "nameHistory": [
+      "PRAGATI MANUFACTURING INDUSTRIES",
+      "PRAGATI GLASS",
+      "PRAGATI GLASS WORKS"
+    ],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 209.3,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY25",
+      "amountCr": 36.1
+    },
     "latest": {
       "year": "FY25",
       "revenue": 440.1,
@@ -13369,7 +13581,8 @@
         "since": "2000",
         "age": 74,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0.1
       },
       {
         "name": "DINESH KUMAR GUPTA",
@@ -13384,7 +13597,8 @@
           "CHIRAG HOMES",
           "PG UV SPRAYS",
           "PG BLOWPLAST"
-        ]
+        ],
+        "ownPct": 42.9
       },
       {
         "name": "SHRADDHA DIYA",
@@ -13392,7 +13606,8 @@
         "since": null,
         "age": 35,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       },
       {
         "name": "ADITI DINESH GUPTA",
@@ -13402,12 +13617,15 @@
         "otherCount": 1,
         "others": [
           "SALONI HERBAL"
-        ]
+        ],
+        "ownPct": 0.2
       }
     ],
     "charges": {
       "count": 23,
       "sumCr": 101,
+      "everCreated": 71,
+      "satisfied": 25,
       "list": [
         {
           "holder": "BANK OF BARODA",
@@ -14080,6 +14298,24 @@
             "tab": "financials"
           }
         ]
+      },
+      {
+        "tone": "risk",
+        "strength": 2,
+        "title": "Rating flagged 'Issuer Not Cooperating'",
+        "detail": "ACUITE tags them \"Issuer Not Cooperating\", last around C — they stopped engaging their rating agency, often a stress or opacity signal. Push for transparency; keep a qualified backup.",
+        "evidence": [
+          {
+            "label": "Rating",
+            "value": "A4 (Issuer Not Cooperating/Reaffirmed)",
+            "tab": "risk"
+          },
+          {
+            "label": "Agency",
+            "value": "ACUITE",
+            "tab": "risk"
+          }
+        ]
       }
     ]
   },
@@ -14129,6 +14365,16 @@
       "struckOff": false
     },
     "creditRating": null,
+    "nameHistory": [],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 81.3,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY25",
+      "amountCr": 0
+    },
     "latest": {
       "year": "FY25",
       "revenue": 309.6,
@@ -15041,7 +15287,8 @@
           "ADIRA LABS",
           "VAYU SPECIAL CHEM",
           "FLURRY FOODS"
-        ]
+        ],
+        "ownPct": 98.8
       },
       {
         "name": "PIYUSH MITTAL",
@@ -15056,7 +15303,8 @@
           "ADIRA LABS",
           "VAYU SPECIAL CHEM",
           "FLURRY FOODS"
-        ]
+        ],
+        "ownPct": 98.8
       },
       {
         "name": "RAGHAV PIYUSH MITTAL",
@@ -15070,7 +15318,8 @@
           "ADIRA LABS",
           "VAYU SPECIAL CHEM",
           "FLURRY FOODS"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "SANJEEV SINGH",
@@ -15078,7 +15327,8 @@
         "since": "2017",
         "age": 53,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       },
       {
         "name": "LEENA MITTAL",
@@ -15090,7 +15340,8 @@
           "ALTIUS FINANCIAL CONSULTING LIMI TED",
           "ALTIUS MERCHANDISING",
           "ALKOMEX PHARMA"
-        ]
+        ],
+        "ownPct": 1.3
       },
       {
         "name": "VINIT JANARDAN RAI",
@@ -15104,12 +15355,15 @@
           "BIGHAAT AGRO",
           "MODISH TRACTORAURKISAN",
           "ISTHARA PARKS"
-        ]
+        ],
+        "ownPct": null
       }
     ],
     "charges": {
       "count": 3,
       "sumCr": 83.9,
+      "everCreated": 13,
+      "satisfied": 1,
       "list": [
         {
           "holder": "KOTAK MAHINDRA BANK LIMITED",
@@ -15848,7 +16102,56 @@
       "severeCases": false,
       "struckOff": false
     },
-    "creditRating": null,
+    "creditRating": {
+      "agency": "CRISIL",
+      "date": "2022-03-31",
+      "grade": "BB",
+      "gradeText": "Withdrawn (A4+/Issuer Not Cooperating)",
+      "ratedAmountCr": 15,
+      "facilities": [
+        {
+          "loan": "Bank Guarantee",
+          "rating": "Withdrawn (A4+/Issuer Not Cooperating)",
+          "amountCr": 0.5
+        },
+        {
+          "loan": "Cash Credit",
+          "rating": "Withdrawn (BB+/Stable/Issuer Not Cooperating)",
+          "amountCr": 7.5
+        },
+        {
+          "loan": "Non Fund Based Limit",
+          "rating": "Withdrawn (A4+/Issuer Not Cooperating)",
+          "amountCr": 5
+        },
+        {
+          "loan": "Proposed Fund Based Bank Facility",
+          "rating": "Withdrawn (BB+/Stable/Issuer Not Cooperating)",
+          "amountCr": 2
+        }
+      ],
+      "flags": {
+        "inc": true,
+        "withdrawn": true,
+        "isDefault": false,
+        "subInvestmentGrade": true,
+        "downgraded": true,
+        "strong": false
+      }
+    },
+    "nameHistory": [
+      "YASHAM IMPORTERS AND EXPORTERS",
+      "YASHAM IMPORTERS AND EXPORTERSLIMITED"
+    ],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 9.9,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY25",
+      "amountCr": 0
+    },
     "latest": {
       "year": "FY25",
       "revenue": 233.4,
@@ -16932,7 +17235,8 @@
           "SAMIPYA WELFARE FOUNDATION",
           "YASHARTH WELLNESS SOLUTIONS",
           "YASHARTH PROPERTIES"
-        ]
+        ],
+        "ownPct": 18.6
       },
       {
         "name": "VIVEK DATTATRAY SAMANT",
@@ -16947,12 +17251,15 @@
           "SAMIPYA WELFARE FOUNDATION",
           "YASHARTH WELLNESS SOLUTIONS",
           "YASHARTH PROPERTIES"
-        ]
+        ],
+        "ownPct": 67
       }
     ],
     "charges": {
       "count": 1,
       "sumCr": 5.5,
+      "everCreated": 35,
+      "satisfied": 15,
       "list": [
         {
           "holder": "HONGKONG AND SHANGHAI BANKING CORPORATION LIMITED",
@@ -17612,6 +17919,24 @@
             "tab": "risk"
           }
         ]
+      },
+      {
+        "tone": "risk",
+        "strength": 2,
+        "title": "Rating flagged 'Issuer Not Cooperating'",
+        "detail": "CRISIL tags them \"Issuer Not Cooperating\", last around BB — they stopped engaging their rating agency, often a stress or opacity signal. Push for transparency; keep a qualified backup.",
+        "evidence": [
+          {
+            "label": "Rating",
+            "value": "Withdrawn (A4+/Issuer Not Cooperating)",
+            "tab": "risk"
+          },
+          {
+            "label": "Agency",
+            "value": "CRISIL",
+            "tab": "risk"
+          }
+        ]
       }
     ]
   },
@@ -17660,7 +17985,66 @@
       "severeCases": false,
       "struckOff": false
     },
-    "creditRating": "AAA",
+    "creditRating": {
+      "agency": "CRISIL",
+      "date": "2026-05-20",
+      "grade": "AA",
+      "gradeText": "AA- (Under Rating Watch with Developing Implications)",
+      "ratedAmountCr": 1486,
+      "facilities": [
+        {
+          "loan": "Cash Credit",
+          "rating": "AA- (Under Rating Watch with Developing Implications)",
+          "amountCr": 225
+        },
+        {
+          "loan": "Cash Credit",
+          "rating": "AA- (Under Rating Watch with Developing Implications)",
+          "amountCr": 60
+        },
+        {
+          "loan": "Cash Credit",
+          "rating": "AA- (Under Rating Watch with Developing Implications)",
+          "amountCr": 185
+        },
+        {
+          "loan": "Foreign Exchange Forward",
+          "rating": "A1+ (Under Rating Watch with Developing Implications)",
+          "amountCr": 1.3
+        },
+        {
+          "loan": "Letter of Credit",
+          "rating": "A1+ (Under Rating Watch with Developing Implications)",
+          "amountCr": 15
+        },
+        {
+          "loan": "Letter of Credit",
+          "rating": "A1+ (Under Rating Watch with Developing Implications)",
+          "amountCr": 23
+        }
+      ],
+      "flags": {
+        "inc": false,
+        "withdrawn": false,
+        "isDefault": false,
+        "subInvestmentGrade": false,
+        "downgraded": false,
+        "strong": true
+      }
+    },
+    "nameHistory": [
+      "MANJUSHREE TECHNOPACK",
+      "MANJUSHREE EXTRUSIONS"
+    ],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 78,
+      "spendCr": null
+    },
+    "agedReceivables": {
+      "fy": "FY17",
+      "amountCr": 171.7
+    },
     "latest": {
       "year": "FY25",
       "revenue": 2569.8,
@@ -18712,7 +19096,8 @@
         "otherCount": 1,
         "others": [
           "MTL NEW INITIATIVES"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "ANISHA MOTWANI",
@@ -18727,7 +19112,8 @@
           "RAYMOND LIFESTYLE",
           "MOTHERSON SUMI WIRING INDIA",
           "STAR HEALTH AND ALLIED INSURANCE COMPANY"
-        ]
+        ],
+        "ownPct": null
       },
       {
         "name": "KAMLESH SHIVJI VIKAMSEY",
@@ -18742,7 +19128,8 @@
           "TRINETHRA SUPERRETAIL",
           "H.A.S.TWO HOLDINGS",
           "NUVAMA WEALTH FINANCE"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "SUMIT MOHAN NADGIR",
@@ -18756,7 +19143,8 @@
           "OPTIMUS PHARMA",
           "ANJAN DRUG",
           "PRAVESHA INDUSTRIES"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "ASWIN VIKRAM",
@@ -18770,7 +19158,8 @@
           "SEKHMET PHARMAVENTURES",
           "NUVAMA WEALTH MANAGEMENT",
           "PRAVESHA INDUSTRIES"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "NIKHIL KUMAR SRIVASTAVA",
@@ -18785,7 +19174,8 @@
           "PAGAC ADVISORS INDIA",
           "SEKHMET PHARMAVENTURES",
           "NUVAMA WEALTH MANAGEMENT"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "SAMEER AMBARISH KAJI",
@@ -18800,7 +19190,8 @@
           "NUVAMA CUSTODIAL SERVICES",
           "TRADE PE TECH",
           "EDELWEISS ASSET RECONSTRUCTION COMPANY"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "THIMMAIAH NAPANDA POOVAIAH",
@@ -18810,7 +19201,8 @@
         "otherCount": 1,
         "others": [
           "MTL NEW INITIATIVES"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "PEEYUSH GUPTA",
@@ -18818,7 +19210,8 @@
         "since": null,
         "age": 44,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": null
       },
       {
         "name": "HIMANSHU NAVINCHANDRA PARMAR",
@@ -18826,12 +19219,15 @@
         "since": null,
         "age": 40,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 0
       }
     ],
     "charges": {
       "count": 5,
       "sumCr": 1496.3,
+      "everCreated": 36,
+      "satisfied": 8,
       "list": [
         {
           "holder": "SBICAP TRUSTEE COMPANY LIMITED",
@@ -19655,6 +20051,24 @@
         ]
       },
       {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Solid investment-grade credit",
+        "detail": "CRISIL rates them AA — a financially sound, well-regarded supplier: reliable, but they can comfortably hold their price.",
+        "evidence": [
+          {
+            "label": "Rating",
+            "value": "AA- (Under Rating Watch with Developing Implications)",
+            "tab": "risk"
+          },
+          {
+            "label": "Agency",
+            "value": "CRISIL",
+            "tab": "risk"
+          }
+        ]
+      },
+      {
         "tone": "risk",
         "strength": 3,
         "title": "Serious legal cases pending",
@@ -19733,6 +20147,18 @@
       "struckOff": false
     },
     "creditRating": null,
+    "nameHistory": [
+      "OFFICEDGE INDIA"
+    ],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 4.4,
+      "spendCr": null
+    },
+    "agedReceivables": {
+      "fy": "FY23",
+      "amountCr": 40.2
+    },
     "latest": {
       "year": "FY25",
       "revenue": 580.8,
@@ -20760,7 +21186,8 @@
           "IMCD INDIA",
           "SIGNET EXCIPIENTS",
           "MONACHEM ADDITIVES"
-        ]
+        ],
+        "ownPct": 0
       },
       {
         "name": "NARENDRA SUJIT VARDE",
@@ -20775,12 +21202,15 @@
           "SIGNET EXCIPIENTS",
           "TRICHEM HEALTHCARE",
           "TRICHEM LIFESCIENCES"
-        ]
+        ],
+        "ownPct": 0
       }
     ],
     "charges": {
       "count": 1,
       "sumCr": 80,
+      "everCreated": 15,
+      "satisfied": 2,
       "list": [
         {
           "holder": "CITIBANK N.A",
@@ -21417,6 +21847,16 @@
       "struckOff": false
     },
     "creditRating": null,
+    "nameHistory": [],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 2.3,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY25",
+      "amountCr": 3.4
+    },
     "latest": {
       "year": "FY25",
       "revenue": 171.6,
@@ -22506,7 +22946,8 @@
         "since": "1980",
         "age": 71,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 58.6
       },
       {
         "name": "VARUN KAPOOR",
@@ -22514,7 +22955,8 @@
         "since": "2006",
         "age": 44,
         "otherCount": 0,
-        "others": []
+        "others": [],
+        "ownPct": 11
       },
       {
         "name": "RAJAN JAIN",
@@ -22526,7 +22968,8 @@
           "HIMALAYA TRANSPORT SYNDICATE",
           "A B TOOLS",
           "NARANJANDASS KARAMCHAND"
-        ]
+        ],
+        "ownPct": 0.1
       },
       {
         "name": "RAHUL KAPOOR",
@@ -22536,12 +22979,15 @@
         "otherCount": 1,
         "others": [
           "JORC INDIA"
-        ]
+        ],
+        "ownPct": 0
       }
     ],
     "charges": {
       "count": 1,
       "sumCr": 0.7,
+      "everCreated": 3,
+      "satisfied": 1,
       "list": [
         {
           "holder": "HDFC BANK LIMITED",
@@ -23180,7 +23626,50 @@
       "severeCases": false,
       "struckOff": false
     },
-    "creditRating": null,
+    "creditRating": {
+      "agency": "ICRA",
+      "date": "2020-10-27",
+      "grade": "BBB",
+      "gradeText": "Withdrawn (BBB-/Stable)",
+      "ratedAmountCr": 25.5,
+      "facilities": [
+        {
+          "loan": "Cash Credit (Long Term Fund Based)",
+          "rating": "Withdrawn (BBB-/Stable)",
+          "amountCr": 7.5
+        },
+        {
+          "loan": "Term Loan (Long Term Fund Based)",
+          "rating": "Withdrawn (BBB-/Stable)",
+          "amountCr": 5.6
+        },
+        {
+          "loan": "Unallocated Limit (Long Term)",
+          "rating": "Withdrawn (BBB-/Stable)",
+          "amountCr": 12.5
+        }
+      ],
+      "flags": {
+        "inc": false,
+        "withdrawn": true,
+        "isDefault": false,
+        "subInvestmentGrade": false,
+        "downgraded": false,
+        "strong": false
+      }
+    },
+    "nameHistory": [
+      "PRINTOTECH SERVICES (INDIA)"
+    ],
+    "forex": {
+      "fy": "FY25",
+      "earnCr": 0,
+      "spendCr": 0
+    },
+    "agedReceivables": {
+      "fy": "FY25",
+      "amountCr": 0
+    },
     "latest": {
       "year": "FY25",
       "revenue": 100.4,
@@ -24290,7 +24779,8 @@
           "OSR MERCANTILES",
           "PGL TUBE",
           "CHENAAB CARTONS & PACKAGING"
-        ]
+        ],
+        "ownPct": 8.4
       },
       {
         "name": "PUSHPA KUMAR",
@@ -24305,7 +24795,8 @@
           "EXCEL EXHIBITION INFRASTRUCTURE",
           "PEARL BUILDCON AND RESORTS",
           "PUSHPA PACKWELL"
-        ]
+        ],
+        "ownPct": 15.3
       },
       {
         "name": "PRAGATI KUMAR",
@@ -24320,12 +24811,15 @@
           "APJ PACKAGING",
           "EXCEL EXHIBITION INFRASTRUCTURE",
           "PEARL BUILDCON AND RESORTS"
-        ]
+        ],
+        "ownPct": 11.2
       }
     ],
     "charges": {
       "count": 9,
       "sumCr": 38.1,
+      "everCreated": 24,
+      "satisfied": 6,
       "list": [
         {
           "holder": "HDFC BANK LIMITED",

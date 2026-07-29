@@ -153,15 +153,24 @@ function build(raw, entity) {
   const selfCin = d.company?.cin ?? null;
   const sig = d.authorized_signatories ?? [];
   const netByName = new Map((d.director_network ?? []).map((x) => [x.name, x.network?.companies ?? []]));
+  // how much of THIS company each director personally owns (skin in the game)
+  const ownByName = new Map();
+  for (const s of [...(d.director_shareholdings ?? [])].sort((a, b) => String(a.financial_year ?? "").localeCompare(String(b.financial_year ?? "")))) {
+    const pc = num(s.percentage_holding);
+    if (s.full_name && pc != null) ownByName.set(clean(s.full_name), round(pc, 1)); // sorted ascending → latest year wins
+  }
   const directors = sig.filter((s) => !s.date_of_cessation).map((s) => {
     const raw = (netByName.get(s.name) ?? []).filter((c) => c.cin && c.cin !== selfCin && !c.date_of_cessation);
     const names = [...new Set(raw.map((c) => clean(c.legal_name)).filter(Boolean))];
-    return { name: clean(s.name), designation: s.designation ?? null, since: s.date_of_appointment ? String(s.date_of_appointment).slice(0, 4) : null, age: num(s.age), otherCount: names.length, others: names.slice(0, 6) };
+    return { name: clean(s.name), designation: s.designation ?? null, since: s.date_of_appointment ? String(s.date_of_appointment).slice(0, 4) : null, age: num(s.age), otherCount: names.length, others: names.slice(0, 6), ownPct: ownByName.get(clean(s.name)) ?? null };
   });
 
-  // charges / lenders
+  // charges / lenders — current open charges + the full history (created vs satisfied)
   const oc = d.open_charges ?? [];
-  const charges = { count: oc.length, sumCr: cr(d.company?.sum_of_charges), list: [...oc].sort((a, b) => (b.amount ?? 0) - (a.amount ?? 0)).slice(0, 8).map((c) => ({ holder: c.holder_name, amountCr: cr(c.amount), date: c.date, type: c.type })) };
+  const cs = d.charge_sequence ?? [];
+  const charges = { count: oc.length, sumCr: cr(d.company?.sum_of_charges),
+    everCreated: cs.length, satisfied: cs.filter((c) => /satisf/i.test(c.status ?? "")).length,
+    list: [...oc].sort((a, b) => (b.amount ?? 0) - (a.amount ?? 0)).slice(0, 8).map((c) => ({ holder: c.holder_name, amountCr: cr(c.amount), date: c.date, type: c.type })) };
 
   // legal cases
   const legalRaw = d.legal_history ?? [];
@@ -203,6 +212,45 @@ function build(raw, entity) {
   const score = d.probe_financial_score ?? {};
   const co = d.company ?? {};
 
+  // external credit ratings (CRISIL / CARE / ICRA) — the strongest outside-in signal
+  const LT_RANK = { AAA: 20, "AA+": 19, AA: 18, "AA-": 17, "A+": 16, A: 15, "A-": 14, "BBB+": 13, BBB: 12, "BBB-": 11, "BB+": 10, BB: 9, "BB-": 8, "B+": 7, B: 6, "B-": 5, C: 3, D: 1 };
+  const ltGrade = (s) => { const m = String(s ?? "").toUpperCase().match(/\b(AAA|AA[+-]|AA|BBB[+-]|BBB|BB[+-]|BB|A[+-]|A|B[+-]|B|C|D)\b/); return m ? m[1] : null; };
+  const crAll = [...(d.credit_ratings ?? [])].sort((a, b) => String(b.rating_date ?? "").localeCompare(String(a.rating_date ?? "")));
+  let creditRating = null;
+  if (crAll.length) {
+    const latestDate = crAll[0].rating_date;
+    const batch = crAll.filter((r) => r.rating_date === latestDate);
+    const txt = (r) => `${r.rating ?? ""} ${(r.rating_details ?? []).map((x) => `${x.action ?? ""} ${x.remarks ?? ""}`).join(" ")}`;
+    const grades = batch.map((r) => ltGrade(r.rating)).filter(Boolean);
+    const grade = grades.length ? grades.reduce((b, g) => ((LT_RANK[g] ?? 0) > (LT_RANK[b] ?? 0) ? g : b)) : null;
+    const rank = grade ? LT_RANK[grade] : null;
+    const dated = crAll.map((r) => ltGrade(r.rating)).filter(Boolean).map((g) => LT_RANK[g] ?? 0);
+    creditRating = {
+      agency: batch[0].rating_agency ? String(batch[0].rating_agency).toUpperCase() : null,
+      date: latestDate, grade, gradeText: batch[0].rating ?? null, ratedAmountCr: cr(batch.reduce((s, r) => s + (num(r.amount) ?? 0), 0)),
+      facilities: batch.slice(0, 6).map((r) => ({ loan: r.type_of_loan, rating: r.rating, amountCr: cr(r.amount) })),
+      flags: {
+        inc: crAll.some((r) => /not cooperating/i.test(txt(r))),
+        withdrawn: batch.length > 0 && batch.every((r) => /withdrawn/i.test(txt(r))),
+        isDefault: batch.some((r) => ltGrade(r.rating) === "D" || /\bdefault\b/i.test(txt(r))),
+        subInvestmentGrade: rank != null && rank < 11,
+        downgraded: dated.length >= 2 && dated[0] < dated[dated.length - 1],
+        strong: rank != null && rank >= 14,
+      },
+    };
+  }
+
+  // "formerly known as" — the rename trail (Manjushree ← Alternicq, Caldic ← Connell)
+  const curNameLc = (clean(co.legal_name) ?? "").toLowerCase();
+  const nameHistory = [...new Set((d.name_history ?? []).map((h) => clean(h.name)).filter((nm) => nm && nm.toLowerCase() !== curNameLc))];
+
+  // forex exposure + aged receivables (from financial_parameters, newest first)
+  const fpRaw = d.financial_parameters ?? [];
+  const fxRow = fpRaw.find((p) => num(p.earning_fc) != null || num(p.expenditure_fc) != null) ?? null;
+  const forex = fxRow ? { fy: fy(fxRow.year), earnCr: cr(fxRow.earning_fc), spendCr: cr(fxRow.expenditure_fc) } : null;
+  const arRow = fpRaw.find((p) => num(p.trade_receivable_exceeding_six_months) != null) ?? null;
+  const agedReceivables = arRow ? { fy: fy(arRow.year), amountCr: cr(arRow.trade_receivable_exceeding_six_months) } : null;
+
   const detail = {
     // identity
     cin: co.cin ?? null, legalName: displayLegalName(co.legal_name, entity), description: (d.description?.desc_thousand_char ?? "").slice(0, 600) || null,
@@ -216,7 +264,7 @@ function build(raw, entity) {
     score: { overall: num(score.overall_financial_score), growth: num(score.growth_score), profitability: num(score.profitability_score), liquidity: num(score.liquidity_score), solvency: num(score.solvency_score), efficiency: num(score.efficiency_score) },
     bands: { revenue: ki.revenue ?? null, profit: ki.profit ?? null, employees: ki.employee_count ?? null },
     flags: { gstDelay: !!ki.gst_filing_delay, epfDelay: !!ki.epf_payment_delay, bureauDefaults: !!ki.bureau_defaults, pendingCases: !!ki.pending_cases_filed_against_this_corporate, severeCases: !!ki.severe_pending_cases_filed_against_this_corporate, struckOff: /struck/i.test(d.struckoff248_details?.struck_off_status ?? "") },
-    creditRating: ki.credit_rating ?? null,
+    creditRating, nameHistory, forex, agedReceivables,
     // latest snapshot
     latest: { year: fy(latestFin.year), ...L, ...r0 },
     // the full stories
@@ -521,6 +569,32 @@ function buildLevers(x) {
       `Employees down ~${f} → ~${la} — a shrinking team can signal distress or restructuring.`,
       [ev("Headcount", `~${f} → ~${la}`)]);
   }
+
+  // --- external credit rating (the outside-in agency view) ---
+  const rt = x.creditRating;
+  if (rt) {
+    const rev = rt.gradeText ? [ev("Rating", rt.gradeText, "risk"), rt.agency && ev("Agency", rt.agency, "risk")].filter(Boolean) : [];
+    if (rt.flags.isDefault) add("risk", 3, "Rated in default",
+      `${rt.agency ?? "Their agency"} has them at default grade (${rt.gradeText ?? "D"}) — a serious solvency signal; secure supply and treat any advance with caution.`, rev);
+    else if (rt.flags.inc) add("risk", 2, "Rating flagged 'Issuer Not Cooperating'",
+      `${rt.agency ?? "The agency"} tags them "Issuer Not Cooperating"${rt.grade ? `, last around ${rt.grade}` : ""} — they stopped engaging their rating agency, often a stress or opacity signal. Push for transparency; keep a qualified backup.`, rev);
+    else if (rt.flags.subInvestmentGrade) add("risk", 2, "Sub-investment-grade credit",
+      `${rt.agency ?? "Their agency"} rates them ${rt.grade} — below investment grade; lenders price in elevated risk. Read as cash-constrained: a strong lever for early-pay discounts, and worth hedging supply.`, rev);
+    else if (rt.flags.downgraded) add("watch", 2, "Credit rating has slipped",
+      `Their agency rating has been downgraded over time (now ${rt.grade}) — deteriorating credit quality; watch for cash strain building.`, rev);
+    else if (rt.flags.strong) add("watch", 1, "Solid investment-grade credit",
+      `${rt.agency ?? "Their agency"} rates them ${rt.grade} — a financially sound, well-regarded supplier: reliable, but they can comfortably hold their price.`, rev);
+  }
+  // --- forex / import exposure ---
+  if (x.forex && x.forex.spendCr != null && x.forex.spendCr >= 20 && x.forex.spendCr > (x.forex.earnCr ?? 0) * 1.5)
+    add("watch", 1, "Import-exposed cost base",
+      `Spends ₹${x.forex.spendCr} Cr in foreign currency vs ₹${x.forex.earnCr ?? 0} Cr earned — a net importer, so a weaker rupee lifts their input costs and they'll try to pass it on. Lock a fixed-price rupee contract to pre-empt it.`,
+      [ev("Forex spend", `₹${x.forex.spendCr} Cr`), ev("Forex earned", `₹${x.forex.earnCr ?? 0} Cr`)]);
+  // --- aged receivables (>6 months) ---
+  if (x.agedReceivables && x.agedReceivables.amountCr != null && x.latest.revenue && x.agedReceivables.amountCr >= x.latest.revenue * 0.1)
+    add("watch", 1, "Aged receivables piling up",
+      `₹${x.agedReceivables.amountCr} Cr of receivables are over six months old — cash stuck, a sign of collection strain. A cash-tight supplier is more open to early-pay-for-discount.`,
+      [ev("Receivables >6m", `₹${x.agedReceivables.amountCr} Cr`, "risk")]);
 
   // sort: opportunities first, then watch, then risk; strongest first
   const toneRank = { opportunity: 0, watch: 1, risk: 2 };

@@ -32,7 +32,11 @@ interface Detail {
   activities: { desc: string; pct: number | null }[]; paidUpCr: number | null; authorizedCr: number | null; lastAgm: string | null; lastFiling: string | null;
   lastUpdated: string | null; yearsCovered: number | null;
   score: Record<string, number | null>; bands: { revenue: string | null; profit: string | null; employees: string | null };
-  flags: Record<string, boolean>; creditRating: string | null;
+  flags: Record<string, boolean>;
+  creditRating: { agency: string | null; date: string | null; grade: string | null; gradeText: string | null; ratedAmountCr: number | null; facilities: { loan: string | null; rating: string | null; amountCr: number | null }[]; flags: Record<string, boolean> } | null;
+  nameHistory: string[];
+  forex: { fy: string; earnCr: number | null; spendCr: number | null } | null;
+  agedReceivables: { fy: string; amountCr: number | null } | null;
   latest: Record<string, number | string | null>;
   fin: FinRow[];
   employees: { latest: number | null; yearly: { fy: string; count: number }[]; monthly: { month: string; count: number; onTime: boolean }[] };
@@ -40,8 +44,8 @@ interface Detail {
   vsMedian: { self: Ratios; median: Ratios };
   ownership: { promoterPct: number | null; publicPct: number | null };
   shareholders: { name: string; pct: number; type: string }[];
-  directors: { name: string; designation: string | null; since: string | null; age: number | null; otherCount: number; others: string[] }[];
-  charges: { count: number; sumCr: number | null; list: { holder: string; amountCr: number | null; date: string; type: string }[] };
+  directors: { name: string; designation: string | null; since: string | null; age: number | null; otherCount: number; others: string[]; ownPct: number | null }[];
+  charges: { count: number; sumCr: number | null; everCreated?: number; satisfied?: number; list: { holder: string; amountCr: number | null; date: string; type: string }[] };
   legal: { count: number; high: number; medium: number; against: number; list: { court: string; date: string; status: string; type: string; category: string; severity: string; counterparty: string }[] };
   group: Record<string, { name: string; pct: number | null; city: string | null }[]>;
   relatedParty: { year: string | null; count: number; totalCr: number | null; top: { name: string; relationship: string; kind: string; amountCr: number | null }[] };
@@ -103,7 +107,7 @@ export default function DeepDive({ entity, onClose, supplies }: { entity: Entity
                 {supplies && supplies.length > 0 && <span className="shrink-0 rounded-full bg-teal-400/20 px-2 py-0.5 text-[11px] font-medium text-teal-800 ring-1 ring-teal-300/50" title={`Supplies mcAFFEINE: ${supplies.join(", ")}`}>🧬 Supplies: {supplies.slice(0, 2).join(", ")}{supplies.length > 2 ? ` +${supplies.length - 2}` : ""}</span>}
                 {d.classification && <span className="hidden shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-500 sm:inline">{d.status}</span>}
               </div>
-              <div className="truncate text-xs text-slate-500">{entity.cin}{d.city ? ` · ${d.city}` : ""}{d.incorporation ? ` · inc. ${d.incorporation.slice(0, 4)}` : ""}</div>
+              <div className="truncate text-xs text-slate-500">{entity.cin}{d.city ? ` · ${d.city}` : ""}{d.incorporation ? ` · inc. ${d.incorporation.slice(0, 4)}` : ""}{d.nameHistory?.length ? <span className="text-slate-400"> · formerly {d.nameHistory.slice(0, 2).join(", ")}</span> : null}</div>
             </div>
             <button onClick={onClose} className="shrink-0 rounded-lg bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700">← Back</button>
           </div>
@@ -661,7 +665,7 @@ function OwnersTab({ d }: { d: Detail }) {
                 <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-500">
                   <th className="px-3 py-2">Director</th><th className="px-3 py-2">Role</th>
                   <th className="px-3 py-2 text-center">Since</th><th className="px-3 py-2 text-center">Age</th>
-                  <th className="px-3 py-2 text-center">Other boards</th><th className="px-3 py-2">Also sits on</th>
+                  <th className="px-3 py-2 text-center">Owns</th><th className="px-3 py-2 text-center">Other boards</th><th className="px-3 py-2">Also sits on</th>
                 </tr>
               </thead>
               <tbody>
@@ -673,6 +677,7 @@ function OwnersTab({ d }: { d: Detail }) {
                       <td className="px-3 py-2 text-slate-600">{p.designation ?? "Director"}</td>
                       <td className="px-3 py-2 text-center font-mono text-slate-500">{p.since ?? "—"}</td>
                       <td className="px-3 py-2 text-center font-mono text-slate-500">{p.age ?? "—"}</td>
+                      <td className={`px-3 py-2 text-center font-mono ${p.ownPct ? "font-semibold text-teal-700" : "text-slate-400"}`}>{p.ownPct != null ? `${p.ownPct}%` : "—"}</td>
                       <td className="px-3 py-2 text-center"><span className={`inline-block min-w-[1.75rem] rounded-full px-2 py-0.5 text-xs font-bold ${tone}`}>{p.otherCount}</span></td>
                       <td className="px-3 py-2 text-xs text-slate-500">{p.others.length ? <span title={p.others.join(", ")}>{p.others.slice(0, 3).join(", ")}{p.otherCount > 3 ? ` +${p.otherCount - 3} more` : ""}</span> : <span className="text-slate-300">—</span>}</td>
                     </tr>
@@ -711,9 +716,35 @@ function OwnersTab({ d }: { d: Detail }) {
 }
 
 /* =================================================================== RISK */
+function CreditRatingCard({ rt }: { rt: Detail["creditRating"] }) {
+  if (!rt) return <Card title="Credit rating" sub="external agency view" accent={C.slate}><Empty t="Not externally rated — no CRISIL / CARE / ICRA / Acuité rating on file." /></Card>;
+  const bad = rt.flags.isDefault || rt.flags.subInvestmentGrade || rt.flags.inc;
+  const gradeTone = rt.flags.isDefault || rt.flags.subInvestmentGrade ? "bg-rose-100 text-rose-700 ring-rose-200" : rt.flags.inc || rt.flags.downgraded ? "bg-amber-100 text-amber-700 ring-amber-200" : "bg-emerald-100 text-emerald-700 ring-emerald-200";
+  const chips: [string, boolean, "bad" | "warn" | "good"][] = [
+    ["In default", !!rt.flags.isDefault, "bad"], ["Sub-investment-grade", !!rt.flags.subInvestmentGrade, "bad"],
+    ["Issuer Not Cooperating", !!rt.flags.inc, "warn"], ["Downgraded over time", !!rt.flags.downgraded, "warn"],
+    ["Rating withdrawn", !!rt.flags.withdrawn, "warn"], ["Investment-grade", !!rt.flags.strong, "good"],
+  ];
+  const cTone = { bad: "bg-rose-50 text-rose-700 ring-rose-200", warn: "bg-amber-50 text-amber-700 ring-amber-200", good: "bg-emerald-50 text-emerald-700 ring-emerald-200" };
+  return (
+    <Card title="Credit rating" sub={`${rt.agency ?? "Agency"}${rt.date ? ` · as of ${rt.date}` : ""}`} accent={bad ? C.rose : C.emerald}>
+      <div className="flex items-center gap-3">
+        <span className={`rounded-lg px-3 py-1.5 text-lg font-bold ring-1 ${gradeTone}`}>{rt.grade ?? "—"}</span>
+        <div className="min-w-0 text-xs text-slate-500"><span className="block truncate text-slate-600">{rt.gradeText}</span>{rt.ratedAmountCr != null && <span>₹{rt.ratedAmountCr} Cr of facilities rated</span>}</div>
+      </div>
+      <div className="mt-2.5 flex flex-wrap gap-1.5">{chips.filter(([, on]) => on).map(([label, , t]) => <span key={label} className={`rounded-md px-1.5 py-0.5 text-[11px] font-semibold ring-1 ${cTone[t]}`}>{label}</span>)}</div>
+      {rt.facilities.length > 0 && (
+        <ul className="mt-3 space-y-1 border-t border-slate-100 pt-2 text-xs">
+          {rt.facilities.map((f, i) => <li key={i} className="flex items-center justify-between gap-2"><span className="truncate text-slate-600">{f.loan ?? "Facility"}</span><span className="shrink-0 font-mono text-slate-500">{f.rating}{f.amountCr != null ? ` · ₹${f.amountCr} Cr` : ""}</span></li>)}
+        </ul>
+      )}
+    </Card>
+  );
+}
 function RiskTab({ d }: { d: Detail }) {
   return (
     <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+      <CreditRatingCard rt={d.creditRating} />
       <Card title="Compliance flags" sub="statutory & bureau signals" accent={C.rose}>
         <div className="flex flex-wrap gap-2">
           <Flag on={d.flags.gstDelay} label="GST filing delay" /><Flag on={d.flags.epfDelay} label="EPF payment delay" />
@@ -721,12 +752,13 @@ function RiskTab({ d }: { d: Detail }) {
           <Flag on={d.flags.severeCases} label="Severe case" /><Flag on={d.flags.struckOff} label="Struck off" />
         </div>
         <dl className="mt-3 space-y-1.5 text-sm">
-          <Row k="Credit rating" v={d.creditRating ?? "Not rated"} />
           <Row k="GST registrations" v={`${d.gst.total} · ${d.gst.onTime} filing regularly`} />
+          {d.agedReceivables?.amountCr != null && <Row k="Receivables > 6 months old" v={cr(d.agedReceivables.amountCr)} />}
+          {d.forex && (d.forex.spendCr != null || d.forex.earnCr != null) && <Row k="Forex spend / earn" v={`${cr(d.forex.spendCr)} / ${cr(d.forex.earnCr)}`} />}
           <Row k="Paid-up capital" v={cr(d.paidUpCr)} />
         </dl>
       </Card>
-      <Card title="Secured lenders" sub={d.charges.count ? `${d.charges.count} open charge${d.charges.count > 1 ? "s" : ""} · ${cr(d.charges.sumCr)}` : "no secured borrowing on record"} accent={C.amber}>
+      <Card title="Secured lenders" sub={d.charges.count ? `${d.charges.count} open charge${d.charges.count > 1 ? "s" : ""} · ${cr(d.charges.sumCr)}${d.charges.everCreated ? ` · ${d.charges.everCreated} filed / ${d.charges.satisfied ?? 0} cleared over time` : ""}` : (d.charges.everCreated ? `no open charges · ${d.charges.everCreated} filed & ${d.charges.satisfied ?? 0} cleared over time` : "no secured borrowing on record")} accent={C.amber}>
         {d.charges.list.length ? (
           <ul className="space-y-1.5 text-sm">{d.charges.list.map((c, i) => <li key={i} className="flex items-center justify-between gap-3 border-b border-slate-100 pb-1.5"><span className="min-w-0"><span className="block truncate text-slate-800">{c.holder}</span><span className="text-[11px] text-slate-400">{c.date} · {c.type}</span></span><span className="shrink-0 font-mono text-slate-600">{cr(c.amountCr)}</span></li>)}</ul>
         ) : <Empty t="Unsecured — no lender charges filed." />}
