@@ -79,6 +79,37 @@ function build(raw) {
   const bigCharge = [...oc].sort((a, b) => (b.amount ?? 0) - (a.amount ?? 0))[0];
   const charges = { count: oc.length, sumCr: cr(d.company?.sum_of_charges), topHolder: bigCharge?.holder_name ?? null, topAmountCr: cr(bigCharge?.amount), topDate: bigCharge?.date ?? null };
 
+  // MSME payment behaviour — does THIS supplier pay its own small vendors on time?
+  // A supplier that routinely delays its vendors is squeezing working capital from
+  // its supply chain — a real signal in a price/terms negotiation.
+  const lakh = (n) => (typeof n === "number" && n ? Math.round((n / 1e5) * 10) / 10 : (n === 0 ? 0 : null));
+  const msme = d.msme_supplier_payment_delays ?? {};
+  const dfp = msme.delays_for_period ?? {};
+  const payTrend = (msme.trend ?? []).map((t) => ({ period: t.period, lakh: lakh(t.amount) }));
+  const worst = payTrend.reduce((m, t) => ((t.lakh ?? 0) > (m?.lakh ?? -1) ? t : m), null);
+  const paymentBehaviour = {
+    hasData: !!(payTrend.length || dfp.latest_period),
+    latestPeriod: dfp.latest_period ?? null,
+    latestDueLakh: lakh(dfp.total_amount_due_for_period),
+    worstPeriod: worst?.period ?? null,
+    worstLakh: worst?.lakh ?? null,
+    delayedSuppliers: (dfp.delays ?? []).map((x) => x.supplier_name).filter(Boolean).slice(0, 4),
+    trend: payTrend,
+  };
+
+  // current directors (still on the board) + who they are
+  const directorsAll = d.authorized_signatories ?? [];
+  const current = directorsAll.filter((s) => !s.date_of_cessation);
+  const directors = {
+    count: current.length,
+    total: directorsAll.length,
+    people: current.slice(0, 5).map((s) => ({ name: s.name, designation: s.designation ?? null, since: s.date_of_appointment ? String(s.date_of_appointment).slice(0, 4) : null })),
+  };
+
+  // industry / peer-set context
+  const pc0 = d.peer_comparison?.[0] ?? {};
+  const industry = { industry: pc0.bizIndustry ?? null, segment: pc0.bizSegment ?? null, peerSample: pc0.benchMarks?.[0]?.no_of_peers_in_sample ?? null };
+
   const ki = d.key_indicators ?? {};
   const score = d.probe_financial_score ?? {};
 
@@ -129,10 +160,14 @@ function build(raw) {
       cashCr: cr(bs0.assets?.cash_and_bank_balances),
     },
     series,
+    yearsCovered: fin.length,
     vsMedian,
     peers,
     shareholders,
     charges,
+    paymentBehaviour,
+    directors,
+    industry,
   };
 }
 
@@ -151,4 +186,4 @@ if (existsSync(CACHE)) {
 writeFileSync(OUT, JSON.stringify(out, null, 2));
 console.log(`Wrote ${OUT} — ${Object.keys(out).length} companies`);
 for (const [cin, v] of Object.entries(out))
-  console.log(`  ${v.legalName} (${cin}): ${v.series.length}yr series, ${v.peers.length} peers, ${v.shareholders.length} holders, score ${v.score.overall}/5`);
+  console.log(`  ${v.legalName} (${cin}): ${v.yearsCovered}yr filings, ${v.peers.length} peers, ${v.shareholders.length} holders, pays-late=${v.paymentBehaviour.hasData}, score ${v.score.overall}/10`);

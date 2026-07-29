@@ -155,6 +155,7 @@
         "revenueGrowth": 10.5
       }
     ],
+    "yearsCovered": 12,
     "vsMedian": {
       "receivableDays": {
         "self": 57,
@@ -226,6 +227,51 @@
       "topHolder": "HONGKONG AND SHANGHAI BANKING CORPORATION LIMITED",
       "topAmountCr": 5,
       "topDate": "2019-02-21"
+    },
+    "paymentBehaviour": {
+      "hasData": false,
+      "latestPeriod": null,
+      "latestDueLakh": null,
+      "worstPeriod": null,
+      "worstLakh": null,
+      "delayedSuppliers": [],
+      "trend": []
+    },
+    "directors": {
+      "count": 6,
+      "total": 14,
+      "people": [
+        {
+          "name": "NARESH CHANDER ARORA",
+          "designation": "Director",
+          "since": "2023"
+        },
+        {
+          "name": "NARESH CHANDER ARORA",
+          "designation": "Additional Director",
+          "since": "2023"
+        },
+        {
+          "name": "VIRENDRA PRASAD JOSHI",
+          "designation": "Whole-time director",
+          "since": "2023"
+        },
+        {
+          "name": "VIRENDRA PRASAD JOSHI",
+          "designation": "Additional Director",
+          "since": "2023"
+        },
+        {
+          "name": "VIKAS AGGARWAL",
+          "designation": "CFO",
+          "since": null
+        }
+      ]
+    },
+    "industry": {
+      "industry": "Food and Beverages",
+      "segment": "Flavouring and Seasoning Additives",
+      "peerSample": 30
     }
   },
   "U51100MH1997PTC104919": {
@@ -384,6 +430,7 @@
         "revenueGrowth": 15.7
       }
     ],
+    "yearsCovered": 22,
     "vsMedian": {
       "receivableDays": {
         "self": 69,
@@ -465,6 +512,58 @@
       "topHolder": "HONGKONG AND SHANGHAI BANKING CORPORATION LIMITED",
       "topAmountCr": 5.5,
       "topDate": "2022-03-11"
+    },
+    "paymentBehaviour": {
+      "hasData": true,
+      "latestPeriod": "April 2025 to September 2025",
+      "latestDueLakh": 16.6,
+      "worstPeriod": "April 2025 to September 2025",
+      "worstLakh": 16.6,
+      "delayedSuppliers": [
+        "Informa Markets India Pvt. Ltd.",
+        "Rajvi Plastic",
+        "CPL Aromas Pvt Ltd",
+        "UNITED ENTERPR ISES"
+      ],
+      "trend": [
+        {
+          "period": null,
+          "lakh": 0.2
+        },
+        {
+          "period": "October 2018 to March 2019",
+          "lakh": 0.2
+        },
+        {
+          "period": "October 2024 to March 2025",
+          "lakh": 0.1
+        },
+        {
+          "period": "April 2025 to September 2025",
+          "lakh": 16.6
+        }
+      ]
+    },
+    "directors": {
+      "count": 2,
+      "total": 2,
+      "people": [
+        {
+          "name": "NAMITA VIVEK SAMANT",
+          "designation": "Whole-time director",
+          "since": "1997"
+        },
+        {
+          "name": "VIVEK DATTATRAY SAMANT",
+          "designation": "Managing Director",
+          "since": "1997"
+        }
+      ]
+    },
+    "industry": {
+      "industry": "Chemicals",
+      "segment": "Chemical Retailers and Distributors",
+      "peerSample": 30
     }
   },
   "U74110MH2000PTC126561": {
@@ -623,6 +722,7 @@
         "revenueGrowth": 9.6
       }
     ],
+    "yearsCovered": 11,
     "vsMedian": {
       "receivableDays": {
         "self": 46,
@@ -704,6 +804,56 @@
       "topHolder": "CITIBANK N.A",
       "topAmountCr": 80,
       "topDate": "2024-01-12"
+    },
+    "paymentBehaviour": {
+      "hasData": true,
+      "latestPeriod": "October 2025 to March 2026",
+      "latestDueLakh": 0.4,
+      "worstPeriod": "April 2024 to September 2024",
+      "worstLakh": 72.8,
+      "delayedSuppliers": [
+        "Avs Global Logistics",
+        "Global Ocean Logistics India Private Limited"
+      ],
+      "trend": [
+        {
+          "period": "April 2024 to September 2024",
+          "lakh": 72.8
+        },
+        {
+          "period": "October 2024 to March 2025",
+          "lakh": 1.1
+        },
+        {
+          "period": "April 2025 to September 2025",
+          "lakh": 0.1
+        },
+        {
+          "period": "October 2025 to March 2026",
+          "lakh": 0.4
+        }
+      ]
+    },
+    "directors": {
+      "count": 2,
+      "total": 7,
+      "people": [
+        {
+          "name": "RAMANUJ CHANDRASHEKHAR KANKANI",
+          "designation": "Director",
+          "since": "2024"
+        },
+        {
+          "name": "NARENDRA SUJIT VARDE",
+          "designation": "Director",
+          "since": "2024"
+        }
+      ]
+    },
+    "industry": {
+      "industry": "Chemicals",
+      "segment": "Chemical Retailers and Distributors",
+      "peerSample": 30
     }
   }
 }

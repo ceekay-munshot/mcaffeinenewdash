@@ -20,6 +20,7 @@ import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
 } from "./lib/insights";
+import DeepDive, { hasDeepDive } from "./DeepDive";
 
 /* -------------------------------------------------- data accessors / helpers */
 
@@ -1551,6 +1552,8 @@ type CardDesc = { key: string; title: string; sub?: string; node: React.ReactNod
 
 function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () => void; kind: CompanyKind }) {
   useEffect(() => { window.scrollTo(0, 0); }, [e.folder, e.category]);
+  const [deep, setDeep] = useState(false);
+  const canDeepDive = hasDeepDive(e.cin);
   const trend = useMemo(() => buildTrendMetrics(e), [e]);
   const ins = useMemo(() => supplierInsights(e), [e]);
   const cards = useMemo(() => companyCards(e, kind), [e, kind]);
@@ -1627,6 +1630,16 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
         </div>
       </div>
 
+      {canDeepDive && (
+        <button onClick={() => setDeep(true)} className="mt-4 flex w-full items-center justify-between gap-3 rounded-2xl bg-gradient-to-r from-teal-600 to-cyan-600 px-5 py-3.5 text-left text-white shadow-sm transition hover:brightness-110">
+          <span className="min-w-0">
+            <span className="block text-sm font-semibold">📊 Open the financial deep-dive</span>
+            <span className="block text-xs text-teal-50">Full MCA accounts, peer comparison, payment behaviour &amp; risk flags — all from one Probe42 report.</span>
+          </span>
+          <span className="shrink-0 rounded-lg bg-white/20 px-3 py-1.5 text-sm font-medium ring-1 ring-white/30">View →</span>
+        </button>
+      )}
+
       {parentGroup && <div className="mt-4 rounded-2xl bg-sky-50 p-4 text-sm text-sky-800 ring-1 ring-sky-200">ℹ️ {e.brand} has no standalone financials — the trends & numbers below are <span className="font-medium">{parentGroup}</span>'s consolidated group filing, not {e.brand} alone.</div>}
       {noFinancials && <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm text-amber-800 ring-1 ring-amber-200">No financial data is available for this company in Tracxn — only the registry basics below.</div>}
 
@@ -1658,6 +1671,8 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
           </Expander>
         )}
       </div>
+
+      {deep && canDeepDive && <DeepDive entity={e} onClose={() => setDeep(false)} />}
     </main>
   );
 }

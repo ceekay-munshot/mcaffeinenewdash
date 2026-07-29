@@ -21,18 +21,32 @@ interface Detail {
   score: { overall: number | null; growth: number | null; profitability: number | null; liquidity: number | null; solvency: number | null; efficiency: number | null };
   latest: Record<string, number | string | null>;
   series: YearRow[];
+  yearsCovered: number | null;
   vsMedian: Record<string, Pair>;
   peers: { name: string; revenueCr: number; city: string | null; isSelf: boolean }[];
   shareholders: { name: string; pct: number; type: string }[];
   charges: { count: number; sumCr: number | null; topHolder: string | null; topAmountCr: number | null; topDate: string | null };
+  paymentBehaviour: {
+    hasData: boolean; latestPeriod: string | null; latestDueLakh: number | null;
+    worstPeriod: string | null; worstLakh: number | null; delayedSuppliers: string[];
+    trend: { period: string; lakh: number | null }[];
+  };
+  directors: { count: number; total: number; people: { name: string; designation: string | null; since: string | null }[] };
+  industry: { industry: string | null; segment: string | null; peerSample: number | null };
 }
 const DETAILS = DETAIL as Record<string, Detail>;
+
+/** True when we hold a Probe42 comprehensive report for this company (deep-dive available). */
+export function hasDeepDive(cin?: string | null): boolean {
+  return !!(cin && DETAILS[cin]);
+}
 
 const SH_COLORS = ["#0d9488", "#6366f1", "#f59e0b", "#0ea5e9", "#f43f5e", "#14b8a6", "#8b5cf6"];
 const num = (v: unknown): number | null => (typeof v === "number" ? v : null);
 const cr = (v: number | null) => (v == null ? "—" : v >= 1000 ? `₹${(v / 1000).toFixed(2)}k Cr` : `₹${v} Cr`);
 const days = (v: number | null) => (v == null ? "—" : `${Math.round(v)} d`);
 const pct = (v: number | null) => (v == null ? "—" : `${v}%`);
+const lk = (v: number | null) => (v == null ? "—" : v >= 100 ? `₹${(v / 100).toFixed(1)} Cr` : `₹${v} L`);
 
 export default function DeepDive({ entity, onClose }: { entity: Entity; onClose: () => void }) {
   const d = entity.cin ? DETAILS[entity.cin] : undefined;
@@ -49,7 +63,7 @@ export default function DeepDive({ entity, onClose }: { entity: Entity; onClose:
     { label: "Liquidity", value: d.score.liquidity ?? 0 },
     { label: "Solvency", value: d.score.solvency ?? 0 },
     { label: "Efficiency", value: d.score.efficiency ?? 0 },
-  ].map<Slice>((s) => ({ ...s, color: s.value >= 4 ? "#059669" : s.value >= 3 ? "#f59e0b" : "#f43f5e" }));
+  ].map<Slice>((s) => ({ ...s, color: s.value >= 7 ? "#059669" : s.value >= 4 ? "#f59e0b" : "#f43f5e" }));
 
   // negotiation headline
   const payGap = d.vsMedian.payableDays.median != null && d.vsMedian.payableDays.self != null
@@ -63,7 +77,7 @@ export default function DeepDive({ entity, onClose }: { entity: Entity; onClose:
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <span className="truncate text-lg font-bold text-slate-900">{entity.brand}</span>
-              <span className="shrink-0 rounded-full bg-teal-50 px-2 py-0.5 text-[11px] font-semibold text-teal-700 ring-1 ring-teal-200">Probe42 · 11-yr filings</span>
+              <span className="shrink-0 rounded-full bg-teal-50 px-2 py-0.5 text-[11px] font-semibold text-teal-700 ring-1 ring-teal-200">Probe42 · {d.yearsCovered ?? d.series.length}-yr filings</span>
             </div>
             <div className="truncate text-xs text-slate-500">
               {d.legalName} · {entity.cin}{d.city ? ` · ${d.city}` : ""}{d.incorporation ? ` · inc. ${d.incorporation.slice(0, 4)}` : ""}
@@ -81,7 +95,7 @@ export default function DeepDive({ entity, onClose }: { entity: Entity; onClose:
           <Kpi label="RoCE" value={pct(num(L.roce))} tone="teal" />
           <Kpi label="Receivable days" value={days(num(L.receivableDays))} tone="sky" />
           <Kpi label="Payable days" value={days(num(L.payableDays))} tone="amber" />
-          <Kpi label="Financial score" value={`${d.score.overall ?? "—"}/5`} tone={(d.score.overall ?? 0) >= 4 ? "emerald" : "amber"} />
+          <Kpi label="Financial score" value={`${d.score.overall ?? "—"}/10`} tone={(d.score.overall ?? 0) >= 7 ? "emerald" : "amber"} />
         </div>
 
         {/* negotiation headline */}
@@ -121,11 +135,11 @@ export default function DeepDive({ entity, onClose }: { entity: Entity; onClose:
             <AreaLine data={ccc} color="#0ea5e9" valueLabel={(v) => `${Math.round(v)}d`} area={false} />
           </Card>
 
-          <Card title="Financial health score" sub="Probe42 · out of 5" accent="#059669">
-            <HBars data={scoreBars} valueLabel={(v) => `${v}/5`} />
+          <Card title="Financial health score" sub="Probe42 · out of 10" accent="#059669">
+            <HBars data={scoreBars} valueLabel={(v) => `${v}/10`} />
           </Card>
 
-          <Card title="Peers by revenue" sub="5 closest peers · you highlighted · ₹ crore" className="lg:col-span-2" accent={TEAL}>
+          <Card title="Peers by revenue" sub={`${d.industry.segment ?? "closest peers"} · ${d.industry.peerSample ?? d.peers.length} in Probe's set · ₹ crore`} className="lg:col-span-2" accent={TEAL}>
             <HBars data={peerBars} valueLabel={(v) => `₹${Math.round(v)} Cr`} />
           </Card>
 
@@ -159,10 +173,44 @@ export default function DeepDive({ entity, onClose }: { entity: Entity; onClose:
               <Row k="Paid-up capital" v={cr(d.paidUpCr)} />
             </dl>
           </Card>
+
+          <Card title="Do they pay their own suppliers?" sub="MSME dues left unpaid past the 45-day limit (MCA MSME-1)" accent="#f59e0b">
+            {d.paymentBehaviour.hasData ? (
+              <div className="space-y-2 text-sm">
+                <dl className="space-y-1.5">
+                  <Row k={`Overdue now${d.paymentBehaviour.latestPeriod ? ` (${d.paymentBehaviour.latestPeriod})` : ""}`} v={lk(d.paymentBehaviour.latestDueLakh)} />
+                  <Row k={`Worst 6-month period${d.paymentBehaviour.worstPeriod ? ` (${d.paymentBehaviour.worstPeriod})` : ""}`} v={lk(d.paymentBehaviour.worstLakh)} />
+                </dl>
+                {d.paymentBehaviour.delayedSuppliers.length > 0 && (
+                  <div className="text-xs text-slate-500">Recently kept waiting: {d.paymentBehaviour.delayedSuppliers.join(", ")}</div>
+                )}
+                <div className="mt-1 rounded-lg bg-amber-50 px-2.5 py-2 text-xs text-amber-800 ring-1 ring-amber-100">
+                  Delays its own small vendors — runs a tight cash desk, so expect them to hold firm on payment terms.
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-lg bg-emerald-50 px-2.5 py-2 text-sm text-emerald-800 ring-1 ring-emerald-100">
+                ✓ No overdue MSME dues reported — pays its small suppliers on time (a sign of comfortable cash).
+              </div>
+            )}
+          </Card>
+
+          <Card title="Who runs it" sub={`${d.directors.count} on the board today${d.industry.industry ? ` · ${d.industry.industry}` : ""}`} accent="#8b5cf6">
+            {d.directors.people.length ? (
+              <ul className="space-y-1.5 text-sm">
+                {d.directors.people.map((p, i) => (
+                  <li key={i} className="flex items-center justify-between gap-3 border-b border-slate-100 pb-1.5">
+                    <span className="truncate text-slate-800">{p.name}</span>
+                    <span className="shrink-0 text-xs text-slate-500">{p.designation ?? "Director"}{p.since ? ` · since ${p.since}` : ""}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : <Empty />}
+          </Card>
         </div>
 
         <p className="mt-5 text-xs text-slate-400">
-          Source: Probe42 comprehensive filings (MCA){d.lastUpdated ? ` · data as of ${d.lastUpdated.slice(0, 10)}` : ""}. One of 3 suppliers enabled — the rest unlock once Probe42 is on the paid plan.
+          Source: Probe42 comprehensive filings (MCA){d.lastUpdated ? ` · data as of ${d.lastUpdated.slice(0, 10)}` : ""} · {d.yearsCovered ?? d.series.length} years of accounts. Everything on this page comes from one Probe42 report — no extra credits to show more.
         </p>
       </div>
     </div>
