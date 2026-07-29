@@ -121,10 +121,36 @@ jobs:
         if: ${{ github.event.inputs.mode == 'fetch-data' }}
         run: node scripts/probe/detail.mjs
 
-      - name: Commit refreshed data
+      # Save the paid reports as a downloadable artifact BEFORE the push. If the
+      # push ever fails (transient GitHub network blip), the credits are not lost —
+      # download this artifact and commit the files by hand.
+      - name: Back up pulled reports as an artifact (paid data is never lost)
+        if: ${{ always() && github.event.inputs.mode == 'fetch-data' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: probe-data-${{ github.run_id }}
+          path: |
+            data/probe-cache
+            data/clean/probe-detail.json
+            data/clean/entities.json
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Commit refreshed data (retries so a network blip never drops paid data)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/clean/entities.json data/clean/probe-detail.json data/probe-cache
-          git diff --cached --quiet || git commit -m "chore: refresh Probe42 financials + deep-dive analysis"
-          git push
+          if git diff --cached --quiet; then echo "nothing new to commit"; exit 0; fi
+          git commit -m "chore: refresh Probe42 financials + deep-dive analysis"
+          n=0
+          until git push; do
+            n=$((n+1))
+            if [ "$n" -ge 5 ]; then
+              echo "::error::push failed 5x — the pulled reports are in the 'probe-data' artifact on this run; download & commit them, no credits are lost."
+              exit 1
+            fi
+            echo "push failed (attempt $n) — retrying in $((n*10))s…"; sleep $((n*10))
+            git pull --rebase --autostash origin main || true
+          done
+          echo "✅ pushed"
