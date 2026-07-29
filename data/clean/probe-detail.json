@@ -1651,37 +1651,148 @@
         "tone": "opportunity",
         "strength": 3,
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 33.8% vs the peer median of 8.35% — about 25.4pp of extra cushion baked into their pricing. Push on price."
+        "detail": "EBITDA margin 33.8% vs the peer median 8.35% — about 25.4pp of extra cushion baked into their pricing. There's room to push on price.",
+        "evidence": [
+          {
+            "label": "EBITDA margin",
+            "value": "33.8%",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "8.35%",
+            "tab": "peers"
+          },
+          {
+            "label": "Advantage",
+            "value": "25.4pp",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed from 30.9% to 33.8% — profits are expanding, so they can absorb a better price for us."
+        "detail": "EBITDA margin climbed 30.9% → 33.8% — profit is expanding, so they can absorb a better price for us.",
+        "evidence": [
+          {
+            "label": "EBITDA margin",
+            "value": "30.9% → 33.8%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Returns come from fat margins, not leverage",
+        "detail": "DuPont: RoE 14.5% is driven by a 43.8% net margin on a near-unleveraged balance sheet (equity multiplier 1.01×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
+        "evidence": [
+          {
+            "label": "RoE",
+            "value": "14.5%",
+            "tab": "financials"
+          },
+          {
+            "label": "Net margin",
+            "value": "43.8%",
+            "tab": "financials"
+          },
+          {
+            "label": "Equity multiplier",
+            "value": "1.01×",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
         "title": "Cash is tied up for months",
-        "detail": "Cash-conversion cycle 96 days — a lot of working capital is locked up, so an early-payment-for-discount offer will land well."
+        "detail": "Cash-conversion cycle 96 days (was 83) — a lot of working capital is locked up. An early-payment-for-discount offer will land well.",
+        "evidence": [
+          {
+            "label": "Cash cycle",
+            "value": "96 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "72.31 d",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0 — a clean balance sheet with no interest burden to pass on to us; there's room on price."
+        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Growing fast — wants to keep us",
-        "detail": "Revenue up from ₹237.3 Cr to ₹307.4 Cr — a growing supplier that will fight to keep our volume; use it."
+        "detail": "Revenue up ₹237 Cr → ₹307 Cr, with operating leverage 2.11× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
+        "evidence": [
+          {
+            "label": "Revenue",
+            "value": "₹237 Cr → ₹307 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Operating leverage",
+            "value": "2.11×",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "title": "Their suppliers are squeezing them (paying faster)",
+        "detail": "Days-payable fell 30 → 11 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
+        "evidence": [
+          {
+            "label": "Days payable",
+            "value": "30 → 11",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Profit isn't turning into cash",
+        "detail": "Reported profit runs well ahead of cash generated (accruals 9.3% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
+        "evidence": [
+          {
+            "label": "Accruals (profit vs cash)",
+            "value": "9.3% of assets",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Several court cases on record",
-        "detail": "19 cases on file (10 filed against them) — mostly routine, but worth a glance."
+        "detail": "19 cases on file (10 filed against them) — mostly routine, but worth a glance.",
+        "evidence": [
+          {
+            "label": "Cases on file",
+            "value": "19",
+            "tab": "risk"
+          }
+        ]
       }
     ]
   },
@@ -3382,43 +3493,125 @@
         "tone": "opportunity",
         "strength": 2,
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed from 6.3% to 10.4% — profits are expanding, so they can absorb a better price for us."
+        "detail": "EBITDA margin climbed 6.3% → 10.4% — profit is expanding, so they can absorb a better price for us.",
+        "evidence": [
+          {
+            "label": "EBITDA margin",
+            "value": "6.3% → 10.4%",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "They already stretch their suppliers",
-        "detail": "They take 89 days to pay vs a peer norm of 55 — asking them for longer terms is credible; they do it themselves."
+        "title": "They already stretch their own suppliers",
+        "detail": "They take 89 days to pay vs a peer norm of 55 — asking them for longer terms is credible; they do it themselves.",
+        "evidence": [
+          {
+            "label": "Their payment days",
+            "value": "89 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "55 d",
+            "tab": "peers"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Free cash flow is negative — they're cash-hungry",
+        "detail": "Despite ₹226 Cr of net profit, free cash flow is −₹57 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
+        "evidence": [
+          {
+            "label": "Free cash flow",
+            "value": "−₹57 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Net profit",
+            "value": "₹226 Cr",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0.1 — a clean balance sheet with no interest burden to pass on to us; there's room on price."
+        "detail": "Debt-to-equity just 0.1 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0.1",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Growing fast — wants to keep us",
-        "detail": "Revenue up from ₹2214.2 Cr to ₹2971.5 Cr — a growing supplier that will fight to keep our volume; use it."
+        "detail": "Revenue up ₹2214 Cr → ₹2972 Cr, with operating leverage 3.4× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
+        "evidence": [
+          {
+            "label": "Revenue",
+            "value": "₹2214 Cr → ₹2972 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Operating leverage",
+            "value": "3.4×",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Pays its own small vendors late",
-        "detail": "Has delayed MSME dues (worst period October 2024 to March 2025: ₹297.6 L) — runs a tight cash desk, so expect them to hold firm on payment terms."
+        "detail": "Delayed MSME dues (worst October 2024 to March 2025: ₹297.6 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
+        "evidence": [
+          {
+            "label": "Worst MSME overdue",
+            "value": "₹297.6 L",
+            "tab": "risk"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Late on statutory filings",
-        "detail": "EPF payment delays on record — often an early sign of a cash squeeze."
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "EPF",
+            "tab": "risk"
+          }
+        ]
       },
       {
         "tone": "risk",
         "strength": 3,
         "title": "Serious legal cases pending",
-        "detail": "2 high-severity court cases (of 90 total) — a real continuity/reputation risk worth diligence."
+        "detail": "2 high-severity court cases (of 90 total) — a real continuity/reputation risk worth diligence.",
+        "evidence": [
+          {
+            "label": "High-severity cases",
+            "value": "2",
+            "tab": "risk"
+          },
+          {
+            "label": "Total cases",
+            "value": "90",
+            "tab": "risk"
+          }
+        ]
       }
     ]
   },
@@ -5033,43 +5226,130 @@
         "tone": "opportunity",
         "strength": 2,
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 15.5% vs the peer median of 11.61% — about 3.9pp of extra cushion baked into their pricing. Push on price."
+        "detail": "EBITDA margin 15.5% vs the peer median 11.61% — about 3.9pp of extra cushion baked into their pricing. There's room to push on price.",
+        "evidence": [
+          {
+            "label": "EBITDA margin",
+            "value": "15.5%",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "11.61%",
+            "tab": "peers"
+          },
+          {
+            "label": "Advantage",
+            "value": "3.9pp",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
         "title": "Very profitable use of capital",
-        "detail": "RoCE 28.1% vs peers 16.28% — they earn strong returns; there's margin to share with us."
+        "detail": "RoCE 28.1% vs peers 16.28% — they earn well above the cost of capital; there's margin to share with us.",
+        "evidence": [
+          {
+            "label": "RoCE",
+            "value": "28.1%",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "16.28%",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
-        "strength": 2,
+        "strength": 1,
         "title": "Collects its cash quickly",
-        "detail": "Gets paid in 43 days (peers 86.54) — healthy cash position, so we can push to extend our own payment terms."
+        "detail": "Gets paid in 43 days (peers 86.54) — a healthy cash position, so we can push to extend our own terms.",
+        "evidence": [
+          {
+            "label": "Collection days",
+            "value": "43 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "86.54 d",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0.08 — a clean balance sheet with no interest burden to pass on to us; there's room on price."
+        "detail": "Debt-to-equity just 0.08 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0.08",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Growing fast — wants to keep us",
-        "detail": "Revenue up from ₹158.5 Cr to ₹205.3 Cr — a growing supplier that will fight to keep our volume; use it."
+        "detail": "Revenue up ₹159 Cr → ₹205 Cr, with operating leverage 1.41× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
+        "evidence": [
+          {
+            "label": "Revenue",
+            "value": "₹159 Cr → ₹205 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Operating leverage",
+            "value": "1.41×",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Their input costs are climbing",
+        "detail": "Material cost rose 51.1% → 64.2% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
+        "evidence": [
+          {
+            "label": "Material % of sales",
+            "value": "51.1% → 64.2%",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Pays its own small vendors late",
-        "detail": "Has delayed MSME dues (worst period April 2023 to September 2023: ₹124.1 L) — runs a tight cash desk, so expect them to hold firm on payment terms."
+        "detail": "Delayed MSME dues (worst April 2023 to September 2023: ₹124.1 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
+        "evidence": [
+          {
+            "label": "Worst MSME overdue",
+            "value": "₹124.1 L",
+            "tab": "risk"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Late on statutory filings",
-        "detail": "GST filing delays on record — often an early sign of a cash squeeze."
+        "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "GST",
+            "tab": "risk"
+          }
+        ]
       }
     ]
   },
@@ -6714,43 +6994,174 @@
         "tone": "opportunity",
         "strength": 3,
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 19% vs the peer median of 1.73% — about 17.3pp of extra cushion baked into their pricing. Push on price."
+        "detail": "EBITDA margin 19% vs the peer median 1.73% — about 17.3pp of extra cushion baked into their pricing. There's room to push on price.",
+        "evidence": [
+          {
+            "label": "EBITDA margin",
+            "value": "19%",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "1.73%",
+            "tab": "peers"
+          },
+          {
+            "label": "Advantage",
+            "value": "17.3pp",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 3,
         "title": "Very profitable use of capital",
-        "detail": "RoCE 46% vs peers 13.64% — they earn strong returns; there's margin to share with us."
+        "detail": "RoCE 46% vs peers 13.64% — they earn well above the cost of capital; there's margin to share with us.",
+        "evidence": [
+          {
+            "label": "RoCE",
+            "value": "46%",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "13.64%",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "They already stretch their suppliers",
-        "detail": "They take 56 days to pay vs a peer norm of 31.7 — asking them for longer terms is credible; they do it themselves."
+        "title": "Returns come from fat margins, not leverage",
+        "detail": "DuPont: RoE 34% is driven by a 15.4% net margin on a near-unleveraged balance sheet (equity multiplier 1.45×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
+        "evidence": [
+          {
+            "label": "RoE",
+            "value": "34%",
+            "tab": "financials"
+          },
+          {
+            "label": "Net margin",
+            "value": "15.4%",
+            "tab": "financials"
+          },
+          {
+            "label": "Equity multiplier",
+            "value": "1.45×",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "They already stretch their own suppliers",
+        "detail": "They take 56 days to pay vs a peer norm of 31.7 — asking them for longer terms is credible; they do it themselves.",
+        "evidence": [
+          {
+            "label": "Their payment days",
+            "value": "56 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "31.7 d",
+            "tab": "peers"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Inventory is piling up",
+        "detail": "Inventory days rose 47 → 73 — stock is building faster than it sells. Overstocked suppliers move on price to clear volume.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "47 → 73 d",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0 — a clean balance sheet with no interest burden to pass on to us; there's room on price."
+        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Margins are compressing",
-        "detail": "EBITDA margin slipped from 20.5% to 19% — they're being squeezed; a hard price cut will meet resistance."
+        "detail": "EBITDA margin slipped 20.5% → 19% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
+        "evidence": [
+          {
+            "label": "EBITDA margin",
+            "value": "20.5% → 19%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Their input costs are climbing",
+        "detail": "Material cost rose 57% → 74.4% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
+        "evidence": [
+          {
+            "label": "Material % of sales",
+            "value": "57% → 74.4%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Profit isn't turning into cash",
+        "detail": "Reported profit runs well ahead of cash generated (accruals 13.7% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
+        "evidence": [
+          {
+            "label": "Accruals (profit vs cash)",
+            "value": "13.7% of assets",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Pays its own small vendors late",
-        "detail": "Has delayed MSME dues (worst period April 2025 to September 2025: ₹16.6 L) — runs a tight cash desk, so expect them to hold firm on payment terms."
+        "detail": "Delayed MSME dues (worst April 2025 to September 2025: ₹16.6 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
+        "evidence": [
+          {
+            "label": "Worst MSME overdue",
+            "value": "₹16.6 L",
+            "tab": "risk"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Several court cases on record",
-        "detail": "11 cases on file (0 filed against them) — mostly routine, but worth a glance."
+        "detail": "11 cases on file (0 filed against them) — mostly routine, but worth a glance.",
+        "evidence": [
+          {
+            "label": "Cases on file",
+            "value": "11",
+            "tab": "risk"
+          }
+        ]
       }
     ]
   },
@@ -8663,49 +9074,166 @@
         "tone": "opportunity",
         "strength": 2,
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed from 14% to 15.5% — profits are expanding, so they can absorb a better price for us."
+        "detail": "EBITDA margin climbed 14% → 15.5% — profit is expanding, so they can absorb a better price for us.",
+        "evidence": [
+          {
+            "label": "EBITDA margin",
+            "value": "14% → 15.5%",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Collects its cash quickly",
-        "detail": "Gets paid in 60 days (peers 67.86) — healthy cash position, so we can push to extend our own payment terms."
+        "title": "Margin eaten by overhead, not input cost",
+        "detail": "Gross margin is a healthy 41.9% — their raw-material economics are fine — but overhead (other expenses) climbed from 12.2% to 15.2% of sales. Overhead is semi-fixed and amortises as they scale, so their underlying unit economics already support a lower price. Anchor on their COGS, not the reported net margin.",
+        "evidence": [
+          {
+            "label": "Gross margin",
+            "value": "41.9%",
+            "tab": "financials"
+          },
+          {
+            "label": "Overhead % of sales",
+            "value": "12.2% → 15.2%",
+            "tab": "financials"
+          },
+          {
+            "label": "EBITDA margin",
+            "value": "15.5%",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "They already stretch their suppliers",
-        "detail": "They take 58 days to pay vs a peer norm of 39.67 — asking them for longer terms is credible; they do it themselves."
+        "title": "They already stretch their own suppliers",
+        "detail": "They take 58 days to pay vs a peer norm of 39.67 — asking them for longer terms is credible; they do it themselves.",
+        "evidence": [
+          {
+            "label": "Their payment days",
+            "value": "58 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "39.67 d",
+            "tab": "peers"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Thin liquidity — early pay is valuable to them",
+        "detail": "Current ratio 0.98 (quick 0.55) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
+        "evidence": [
+          {
+            "label": "Current ratio",
+            "value": "0.98",
+            "tab": "financials"
+          },
+          {
+            "label": "Quick ratio",
+            "value": "0.55",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Strong cash generation",
-        "detail": "Generated ₹343.6 Cr of operating cash — comfortably cash-positive, so they don't need to claw margin from us."
+        "detail": "Generated ₹344 Cr of operating cash (above net profit ₹248 Cr) — comfortably cash-positive, so they don't need to claw margin from us. Push on price, not terms.",
+        "evidence": [
+          {
+            "label": "Operating cash flow",
+            "value": "₹344 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Net profit",
+            "value": "₹248 Cr",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Free cash flow is negative — they're cash-hungry",
+        "detail": "Despite ₹248 Cr of net profit, free cash flow is −₹394 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
+        "evidence": [
+          {
+            "label": "Free cash flow",
+            "value": "−₹394 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Net profit",
+            "value": "₹248 Cr",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Pays its own small vendors late",
-        "detail": "Has delayed MSME dues (worst period October 2025 to March 2026: ₹570.7 L) — runs a tight cash desk, so expect them to hold firm on payment terms."
+        "detail": "Delayed MSME dues (worst October 2025 to March 2026: ₹570.7 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
+        "evidence": [
+          {
+            "label": "Worst MSME overdue",
+            "value": "₹570.7 L",
+            "tab": "risk"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Late on statutory filings",
-        "detail": "EPF payment delays on record — often an early sign of a cash squeeze."
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "EPF",
+            "tab": "risk"
+          }
+        ]
       },
       {
         "tone": "risk",
         "strength": 3,
         "title": "Serious legal cases pending",
-        "detail": "13 high-severity court cases (of 101 total) — a real continuity/reputation risk worth diligence."
+        "detail": "13 high-severity court cases (of 101 total) — a real continuity/reputation risk worth diligence.",
+        "evidence": [
+          {
+            "label": "High-severity cases",
+            "value": "13",
+            "tab": "risk"
+          },
+          {
+            "label": "Total cases",
+            "value": "101",
+            "tab": "risk"
+          }
+        ]
       },
       {
         "tone": "risk",
         "strength": 2,
-        "title": "Struggles to cover its interest",
-        "detail": "Interest cover only 1.7x — profits barely clear the interest bill; a cash-strained supplier."
+        "title": "Barely covers its interest bill",
+        "detail": "Interest cover only 1.7× — profit barely clears the interest. A cash-strained, rate-sensitive supplier; continuity risk if pushed.",
+        "evidence": [
+          {
+            "label": "Interest cover",
+            "value": "1.7×",
+            "tab": "financials"
+          }
+        ]
       }
     ]
   },
@@ -10227,49 +10755,169 @@
         "tone": "opportunity",
         "strength": 3,
         "title": "Very profitable use of capital",
-        "detail": "RoCE 38.2% vs peers 18.18% — they earn strong returns; there's margin to share with us."
+        "detail": "RoCE 38.2% vs peers 18.18% — they earn well above the cost of capital; there's margin to share with us.",
+        "evidence": [
+          {
+            "label": "RoCE",
+            "value": "38.2%",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "18.18%",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 8.4% vs the peer median of 2.09% — about 6.3pp of extra cushion baked into their pricing. Push on price."
+        "detail": "EBITDA margin 8.4% vs the peer median 2.09% — about 6.3pp of extra cushion baked into their pricing. There's room to push on price.",
+        "evidence": [
+          {
+            "label": "EBITDA margin",
+            "value": "8.4%",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "2.09%",
+            "tab": "peers"
+          },
+          {
+            "label": "Advantage",
+            "value": "6.3pp",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed from 6.7% to 8.4% — profits are expanding, so they can absorb a better price for us."
+        "detail": "EBITDA margin climbed 6.7% → 8.4% — profit is expanding, so they can absorb a better price for us.",
+        "evidence": [
+          {
+            "label": "EBITDA margin",
+            "value": "6.7% → 8.4%",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "title": "Working capital is deteriorating",
+        "detail": "Cash-conversion cycle stretched 9 → 64 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
+        "evidence": [
+          {
+            "label": "Cash cycle",
+            "value": "9 → 64 d",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
         "title": "Collects its cash quickly",
-        "detail": "Gets paid in 46 days (peers 54.08) — healthy cash position, so we can push to extend our own payment terms."
+        "detail": "Gets paid in 46 days (peers 54.08) — a healthy cash position, so we can push to extend our own terms.",
+        "evidence": [
+          {
+            "label": "Collection days",
+            "value": "46 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "54.08 d",
+            "tab": "peers"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0.13 — a clean balance sheet with no interest burden to pass on to us; there's room on price."
+        "detail": "Debt-to-equity just 0.13 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0.13",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "opportunity",
         "strength": 1,
         "title": "Growing fast — wants to keep us",
-        "detail": "Revenue up from ₹439.7 Cr to ₹580.8 Cr — a growing supplier that will fight to keep our volume; use it."
+        "detail": "Revenue up ₹440 Cr → ₹581 Cr, with operating leverage 2.18× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
+        "evidence": [
+          {
+            "label": "Revenue",
+            "value": "₹440 Cr → ₹581 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Operating leverage",
+            "value": "2.18×",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "title": "Their suppliers are squeezing them (paying faster)",
+        "detail": "Days-payable fell 55 → 37 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
+        "evidence": [
+          {
+            "label": "Days payable",
+            "value": "55 → 37",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Fundamentally strengthening (F-score high)",
+        "detail": "Piotroski F-score 8/9 — improving on most fundamental checks (profitability, cash, efficiency). A healthy, strengthening supplier that wants to grow with us — good for a volume-commitment deal, though they can hold their price.",
+        "evidence": [
+          {
+            "label": "Piotroski F-score",
+            "value": "8/9",
+            "tab": "financials"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Pays its own small vendors late",
-        "detail": "Has delayed MSME dues (worst period April 2024 to September 2024: ₹72.8 L) — runs a tight cash desk, so expect them to hold firm on payment terms."
+        "detail": "Delayed MSME dues (worst April 2024 to September 2024: ₹72.8 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
+        "evidence": [
+          {
+            "label": "Worst MSME overdue",
+            "value": "₹72.8 L",
+            "tab": "risk"
+          }
+        ]
       },
       {
         "tone": "watch",
         "strength": 1,
         "title": "Late on statutory filings",
-        "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze."
+        "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "GST + EPF",
+            "tab": "risk"
+          }
+        ]
       }
     ]
   }
