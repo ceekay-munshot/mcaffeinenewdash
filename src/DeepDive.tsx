@@ -1,9 +1,9 @@
 // Supplier Deep Dive — the COMPLETE Probe42 story for one enriched supplier,
 // organised into tabs so nothing is left out but you're never buried in scroll.
 // The lever engine's output leads; every historical number is a trend.
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { Entity } from "./types";
-import { AreaLine, Columns, HBars, Donut, MultiLine, Card, type Slice } from "./charts";
+import { AreaLine, HBars, Donut, MultiLine, Card, type Slice } from "./charts";
 import { TEAL } from "./lib/palette";
 import DETAIL from "@data/clean/probe-detail.json";
 
@@ -163,47 +163,101 @@ function LeversTab({ d, opps, cautions }: { d: Detail; opps: number; cautions: n
 }
 
 /* ============================================================= FINANCIALS/TRENDS */
+// One consolidated chart driven by a multi-check dropdown — tick any metrics to
+// overlay them, instead of a wall of separate charts. Metrics are grouped by unit
+// so same-unit picks (all margins, all days, all ₹) share a clean axis.
+type Metric = { key: string; label: string; group: string; unit: string; color: string; get: (f: FinRow) => number | null };
+const UNIT_FMT: Record<string, (v: number) => string> = { "₹cr": (v) => `₹${Math.round(v)} Cr`, "%": (v) => `${v}%`, d: (v) => `${Math.round(v)} d`, ratio: (v) => v.toFixed(2), ppl: (v) => `${Math.round(v)}` };
+const PAL = ["#0d9488", "#6366f1", "#0ea5e9", "#f59e0b", "#f43f5e", "#8b5cf6", "#059669", "#0891b2", "#e11d48", "#7c3aed"];
+const EXP_METRICS: Metric[] = [
+  { key: "revenue", label: "Revenue", group: "Money (₹ cr)", unit: "₹cr", color: PAL[0], get: (f) => f.revenue },
+  { key: "ebitda", label: "EBITDA", group: "Money (₹ cr)", unit: "₹cr", color: PAL[1], get: (f) => f.ebitda },
+  { key: "pat", label: "Profit after tax", group: "Money (₹ cr)", unit: "₹cr", color: PAL[2], get: (f) => f.pat },
+  { key: "equity", label: "Equity", group: "Money (₹ cr)", unit: "₹cr", color: PAL[3], get: (f) => f.bs.equity },
+  { key: "debt", label: "Debt", group: "Money (₹ cr)", unit: "₹cr", color: PAL[4], get: (f) => f.bs.debt },
+  { key: "assets", label: "Total assets", group: "Money (₹ cr)", unit: "₹cr", color: PAL[5], get: (f) => f.bs.totalAssets },
+  { key: "ocf", label: "Operating cash flow", group: "Money (₹ cr)", unit: "₹cr", color: PAL[6], get: (f) => f.cf.operating },
+  { key: "ebitdaMargin", label: "EBITDA margin", group: "Margins & returns (%)", unit: "%", color: PAL[1], get: (f) => f.r.ebitdaMargin },
+  { key: "netMargin", label: "Net margin", group: "Margins & returns (%)", unit: "%", color: PAL[0], get: (f) => f.r.netMargin },
+  { key: "grossMargin", label: "Gross margin", group: "Margins & returns (%)", unit: "%", color: PAL[2], get: (f) => f.r.grossMargin },
+  { key: "roce", label: "RoCE", group: "Margins & returns (%)", unit: "%", color: PAL[3], get: (f) => f.r.roce },
+  { key: "roe", label: "RoE", group: "Margins & returns (%)", unit: "%", color: PAL[5], get: (f) => f.r.roe },
+  { key: "dso", label: "Collects (DSO)", group: "Working-capital days", unit: "d", color: PAL[2], get: (f) => f.r.debtorDays },
+  { key: "dpo", label: "Pays (DPO)", group: "Working-capital days", unit: "d", color: PAL[3], get: (f) => f.r.payableDays },
+  { key: "invDays", label: "Inventory days", group: "Working-capital days", unit: "d", color: PAL[5], get: (f) => f.r.inventoryDays },
+  { key: "ccc", label: "Cash cycle", group: "Working-capital days", unit: "d", color: PAL[4], get: (f) => f.r.cashConversion },
+  { key: "de", label: "Debt / equity", group: "Ratios", unit: "ratio", color: PAL[4], get: (f) => f.r.debtEquity },
+  { key: "current", label: "Current ratio", group: "Ratios", unit: "ratio", color: PAL[0], get: (f) => f.r.currentRatio },
+  { key: "icov", label: "Interest cover", group: "Ratios", unit: "ratio", color: PAL[1], get: (f) => f.r.interestCover },
+];
+function TrendExplorer({ fin, empByFy }: { fin: FinRow[]; empByFy: Map<string, number> }) {
+  const metrics = useMemo(() => [...EXP_METRICS, { key: "hc", label: "Headcount", group: "People", unit: "ppl", color: PAL[7], get: (f: FinRow) => empByFy.get(f.fy) ?? null }], [empByFy]);
+  const [sel, setSel] = useState<Set<string>>(new Set(["revenue", "pat"]));
+  const [open, setOpen] = useState(false);
+  const chosen = metrics.filter((m) => sel.has(m.key));
+  const units = new Set(chosen.map((m) => m.unit));
+  const fmt = units.size === 1 ? (UNIT_FMT[[...units][0]] ?? ((v: number) => `${v}`)) : (v: number) => `${v}`;
+  const yrs = fin.map((f) => f.fy);
+  const series = chosen.map((m) => ({ name: m.label, color: m.color, points: fin.map(m.get) }));
+  const groups = [...new Set(metrics.map((m) => m.group))];
+  const toggle = (k: string) => setSel((s) => { const nx = new Set(s); nx.has(k) ? nx.delete(k) : nx.add(k); return nx; });
+  return (
+    <Card title="Trend explorer" sub="tick any metrics to overlay them · picks of the same unit (%, days, ₹) read cleanest" accent={TEAL}>
+      <div className="relative mb-2">
+        <button onClick={() => setOpen((o) => !o)} className="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 ring-1 ring-slate-300 hover:ring-teal-400">
+          ➕ Choose metrics <span className="rounded-full bg-teal-100 px-1.5 text-xs text-teal-700">{chosen.length}</span> <span className="text-slate-400">▾</span>
+        </button>
+        {open && (
+          <>
+            <button className="fixed inset-0 z-10 cursor-default" onClick={() => setOpen(false)} aria-label="close" />
+            <div className="absolute left-0 z-20 mt-1 max-h-[22rem] w-72 overflow-y-auto rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
+              {groups.map((g) => (
+                <div key={g} className="mb-1">
+                  <div className="px-2 py-1 text-[11px] font-bold uppercase tracking-wide text-slate-400">{g}</div>
+                  {metrics.filter((m) => m.group === g).map((m) => (
+                    <label key={m.key} className="flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 text-sm hover:bg-slate-50">
+                      <input type="checkbox" checked={sel.has(m.key)} onChange={() => toggle(m.key)} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-400" />
+                      <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: m.color }} />
+                      <span className="text-slate-700">{m.label}</span>
+                    </label>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {chosen.map((m) => (
+            <button key={m.key} onClick={() => toggle(m.key)} className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 text-xs text-slate-600 hover:bg-rose-50 hover:text-rose-600">
+              <span className="h-2 w-2 rounded-sm" style={{ background: m.color }} />{m.label}<span className="text-slate-400">✕</span>
+            </button>
+          ))}
+        </div>
+      </div>
+      {chosen.length ? <MultiLine xLabels={yrs} series={series} valueLabel={fmt} height={340} /> : <div className="py-16 text-center text-sm text-slate-400">Tick a metric above to plot it.</div>}
+    </Card>
+  );
+}
 function FinancialsTab({ d }: { d: Detail }) {
-  const yrs = d.fin.map((f) => f.fy);
-  const pts = (sel: (f: FinRow) => number | null) => d.fin.map(sel);
-  const line = (name: string, color: string, sel: (f: FinRow) => number | null) => ({ name, color, points: pts(sel) });
+  const empByFy = useMemo(() => new Map(d.employees.yearly.map((e) => [e.fy, e.count])), [d]);
   const monthly = d.employees.monthly;
   return (
-    <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
-      <Card title="Revenue & profit" sub="net revenue vs profit after tax · ₹ crore" accent={TEAL} className="xl:col-span-2">
-        <MultiLine xLabels={yrs} valueLabel={(v) => `₹${Math.round(v)} Cr`} series={[line("Revenue", TEAL, (f) => f.revenue), line("Profit after tax", C.indigo, (f) => f.pat)]} height={240} />
-      </Card>
-      <Card title="Financial-health score" sub="Probe42 · out of 10" accent={C.emerald}>
-        <HBars valueLabel={(v) => `${v}/10`} data={[["Growth", d.score.growth], ["Profitability", d.score.profitability], ["Liquidity", d.score.liquidity], ["Solvency", d.score.solvency], ["Efficiency", d.score.efficiency]].map<Slice>(([k, v]) => ({ label: k as string, value: (v as number) ?? 0, color: ((v as number) ?? 0) >= 7 ? C.emerald : ((v as number) ?? 0) >= 4 ? C.amber : C.rose }))} />
-      </Card>
-      <Card title="Margins" sub="EBITDA · net · gross · %" accent={C.indigo}>
-        <MultiLine xLabels={yrs} valueLabel={(v) => `${v}%`} series={[line("EBITDA", C.indigo, (f) => f.r.ebitdaMargin), line("Net", C.teal, (f) => f.r.netMargin), line("Gross", C.sky, (f) => f.r.grossMargin)]} height={220} />
-      </Card>
-      <Card title="Returns on capital" sub="RoCE · RoE · %" accent={C.teal}>
-        <MultiLine xLabels={yrs} valueLabel={(v) => `${v}%`} series={[line("RoCE", C.teal, (f) => f.r.roce), line("RoE", C.violet, (f) => f.r.roe)]} height={220} />
-      </Card>
-      <Card title="Cash flow" sub="operating · investing · financing · ₹ crore" accent={C.sky}>
-        <MultiLine xLabels={yrs} valueLabel={(v) => `₹${Math.round(v)} Cr`} series={[line("Operating", C.emerald, (f) => f.cf.operating), line("Investing", C.sky, (f) => f.cf.investing), line("Financing", C.amber, (f) => f.cf.financing)]} height={220} />
-      </Card>
-      <Card title="Working-capital days" sub="how long cash is tied up · lower is better" accent={C.amber}>
-        <MultiLine xLabels={yrs} valueLabel={(v) => `${Math.round(v)}d`} series={[line("Collects (DSO)", C.sky, (f) => f.r.debtorDays), line("Pays (DPO)", C.amber, (f) => f.r.payableDays), line("Inventory", C.violet, (f) => f.r.inventoryDays), line("Cash cycle", C.rose, (f) => f.r.cashConversion)]} height={220} />
-      </Card>
-      <Card title="Balance sheet" sub="equity · debt · total assets · ₹ crore" accent={C.violet}>
-        <MultiLine xLabels={yrs} valueLabel={(v) => `₹${Math.round(v)} Cr`} series={[line("Equity", C.teal, (f) => f.bs.equity), line("Debt", C.rose, (f) => f.bs.debt), line("Assets", C.slate, (f) => f.bs.totalAssets)]} height={220} />
-      </Card>
-      <Card title="Leverage" sub="debt ÷ equity by year · lower = safer" accent={C.rose}>
-        <Columns valueLabel={(v) => v.toFixed(2)} data={d.fin.map<Slice>((f) => ({ label: f.fy, value: f.r.debtEquity ?? 0, color: (f.r.debtEquity ?? 0) <= 0.5 ? C.emerald : (f.r.debtEquity ?? 0) <= 1 ? C.amber : C.rose }))} height={200} />
-      </Card>
-      {monthly.length > 1 && (
-        <Card title="Headcount" sub={`EPFO members · last ${monthly.length} months`} accent={C.teal} className="xl:col-span-2">
-          <AreaLine data={monthly.map<Slice>((m) => ({ label: m.month, value: m.count, color: TEAL }))} color={TEAL} valueLabel={(v) => `${Math.round(v)}`} height={200} />
-        </Card>
-      )}
-      <div className="lg:col-span-2 xl:col-span-3">
-        <Card title="Full financials — every year on file" sub="₹ crore · scroll →" accent="#334155">
-          <FinTable fin={d.fin} />
+    <div className="space-y-4">
+      <div className="grid gap-4 lg:grid-cols-3">
+        <div className="lg:col-span-2"><TrendExplorer fin={d.fin} empByFy={empByFy} /></div>
+        <Card title="Financial-health score" sub="Probe42 · out of 10" accent={C.emerald}>
+          <HBars valueLabel={(v) => `${v}/10`} data={[["Growth", d.score.growth], ["Profitability", d.score.profitability], ["Liquidity", d.score.liquidity], ["Solvency", d.score.solvency], ["Efficiency", d.score.efficiency]].map<Slice>(([k, v]) => ({ label: k as string, value: (v as number) ?? 0, color: ((v as number) ?? 0) >= 7 ? C.emerald : ((v as number) ?? 0) >= 4 ? C.amber : C.rose }))} />
+          {monthly.length > 1 && (
+            <div className="mt-4">
+              <div className="mb-1 text-xs font-semibold text-slate-500">Headcount · last {monthly.length} months (EPFO)</div>
+              <AreaLine data={monthly.map<Slice>((m) => ({ label: m.month, value: m.count, color: TEAL }))} color={TEAL} valueLabel={(v) => `${Math.round(v)}`} height={130} />
+            </div>
+          )}
         </Card>
       </div>
+      <Card title="Full financials — every year on file" sub="₹ crore · scroll →" accent="#334155">
+        <FinTable fin={d.fin} />
+      </Card>
     </div>
   );
 }
