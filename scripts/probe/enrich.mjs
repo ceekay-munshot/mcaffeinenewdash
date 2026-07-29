@@ -32,6 +32,9 @@ const ONLY = val("--only");
 // --status: only ask Probe42 whether data exists (datastatus), never pull the
 // paid comprehensive report. A cheap availability survey before spending credits.
 const STATUS_ONLY = has("--status");
+// --skip-have: drop companies we already hold a Probe report for (cached, or an
+// existing probe block) so a survey lists only what's still missing.
+const SKIP_HAVE = has("--skip-have");
 
 mkdirSync(CACHE_DIR, { recursive: true });
 
@@ -71,24 +74,31 @@ console.log(`Targets: ${targets.length} supply-side companies with a CIN` + (Num
 // --status: availability survey only. Calls datastatus (no comprehensive report,
 // so no report credit), prints who has data ready vs who'd need an async update.
 if (STATUS_ONLY) {
-  console.log(`\n--status: checking Probe42 data availability only — NOT pulling any report.\n`);
+  let list = targets;
+  if (SKIP_HAVE) {
+    const before = list.length;
+    list = list.filter((e) => !e.probe && !existsSync(cachePath(e.cin)));
+    console.log(`Skipping ${before - list.length} company(ies) we already hold a Probe report for.`);
+  }
+  console.log(`\n--status: availability check for ${list.length} companies — NO report pulled (0 report credits).\n`);
   let hasData = 0, noData = 0, errs = 0;
-  const list = Number.isFinite(LIMIT) ? targets.slice(0, LIMIT) : targets;
+  const ready = [];
   for (const [i, e] of list.entries()) {
     const s = await probe.dataStatus(e.cin);
     if (!s.ok) { console.log(`  ? ${e.brand} (${e.cin}) — datastatus ${s.status}`); errs++; }
     else {
       const last = findFirst(s.body, "last_details_updated");
-      if (last == null) { console.log(`  · ${e.brand} (${e.cin}) — NO data ready yet (would need an async update ~4h)`); noData++; }
-      else { console.log(`  ✓ ${e.brand} (${e.cin}) — HAS DATA (last updated ${last})`); hasData++; }
+      if (last == null) { console.log(`  · ${e.brand} — no data ready yet (would need an async update ~4h)`); noData++; }
+      else { console.log(`  ✓ ${e.brand} — HAS DATA (updated ${last})   → fetch with company=${e.folder}`); hasData++; ready.push(e.folder); }
     }
     // surface any credit/quota signal Probe42 returns, so cost is visible in-log
     const quota = Object.entries(s.headers || {}).filter(([k]) => /credit|quota|limit|remain|balance|usage/i.test(k));
     if (quota.length) console.log(`      credit/quota headers: ${quota.map(([k, v]) => `${k}=${v}`).join(" · ")}`);
-    if (i === 0) console.log(`      (raw datastatus body of 1st company, for inspection) ${JSON.stringify(s.body).slice(0, 800)}`);
+    if (i === 0) console.log(`      (raw datastatus body of 1st company, for inspection) ${JSON.stringify(s.body).slice(0, 600)}`);
   }
   console.log(`\nStatus check done. has-data=${hasData} · no-data=${noData} · errors=${errs}`);
-  console.log(`(no comprehensive report was pulled)`);
+  if (ready.length) console.log(`\nREADY TO FETCH (have data, not yet pulled): ${ready.join(", ")}`);
+  console.log(`(no comprehensive report was pulled — 0 report credits)`);
   process.exit(0);
 }
 
