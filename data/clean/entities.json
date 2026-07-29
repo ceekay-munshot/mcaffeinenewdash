@@ -9562,6 +9562,20 @@
           "Sprivil Healthcare",
           "NG Electro"
         ]
+      },
+      "probe": {
+        "receivableDays": 42.82,
+        "payableDays": 37.96,
+        "cashConversionCycleDays": 47.14,
+        "roce": 28.1,
+        "roe": 21.35,
+        "ebitdaMargin": 15.45,
+        "netMargin": 9.55,
+        "peerMedianPayableDays": 54.285,
+        "peerMedianReceivableDays": 86.54499999999999,
+        "creditRating": null,
+        "profitabilityScore": 4,
+        "fetchedAt": "2026-07-29T11:03:09.883Z"
       }
     },
     {
@@ -16721,5 +16735,6 @@
         ]
       }
     }
-  ]
+  ],
+  "probeEnrichedCount": 4
 }
