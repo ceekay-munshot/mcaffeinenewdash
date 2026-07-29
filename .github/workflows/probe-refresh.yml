@@ -115,7 +115,7 @@ jobs:
           PROBE42_REPORT_PREFIX: ${{ vars.PROBE42_REPORT_PREFIX }}
           PROBE42_API_VERSION: ${{ vars.PROBE42_API_VERSION }}
           PROBE42_ENV: ${{ vars.PROBE42_ENV }}
-        run: node scripts/probe/enrich.mjs --live ${{ github.event.inputs.mode == 'check-status' && '--status --skip-have' || '' }} --limit "${{ github.event.inputs.limit }}" ${{ github.event.inputs.company && format('--only {0}', github.event.inputs.company) || '' }}
+        run: node scripts/probe/enrich.mjs --live ${{ github.event.inputs.mode == 'check-status' && '--status --skip-have' || '' }} --limit "${{ github.event.inputs.limit }}" ${{ github.event.inputs.company && format('--only "{0}"', github.event.inputs.company) || '' }}
 
       - name: Commit refreshed data
         run: |

@@ -29,6 +29,8 @@ const LIVE = has("--live");
 const REFRESH = has("--refresh");
 const LIMIT = val("--limit") ? Number(val("--limit")) : Infinity;
 const ONLY = val("--only");
+// --only accepts one CIN/folder, or several separated by commas.
+const ONLY_SET = ONLY ? new Set(ONLY.split(",").map((s) => s.trim()).filter(Boolean)) : null;
 // --status: only ask Probe42 whether data exists (datastatus), never pull the
 // paid comprehensive report. A cheap availability survey before spending credits.
 const STATUS_ONLY = has("--status");
@@ -66,7 +68,7 @@ async function getComprehensive(cin) {
 
 const data = JSON.parse(readFileSync(ENTITIES, "utf8"));
 let targets = data.entities.filter((e) => SUPPLY.has(e.category) && e.cin && e.coverage !== "not_found");
-if (ONLY) targets = targets.filter((e) => e.cin === ONLY || e.folder === ONLY);
+if (ONLY_SET) targets = targets.filter((e) => ONLY_SET.has(e.cin) || ONLY_SET.has(e.folder));
 
 console.log(`Probe42 enrich — base=${probe.base} env=${probe.env} live=${LIVE}`);
 console.log(`Targets: ${targets.length} supply-side companies with a CIN` + (Number.isFinite(LIMIT) ? ` (limit ${LIMIT})` : ""));
