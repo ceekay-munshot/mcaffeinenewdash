@@ -295,6 +295,67 @@ function TrendExplorer({ fin, empByFy }: { fin: FinRow[]; empByFy: Map<string, n
     </Card>
   );
 }
+// Analyst-grade "X-ray": DuPont decomposition of RoE, Piotroski F-score checklist,
+// and Altman-Z distress gauge — the sophisticated read on financial health.
+function HealthPanel({ a }: { a: Advanced }) {
+  const dp = a.dupont;
+  const dupontRead = dp
+    ? (dp.equityMult != null && dp.equityMult >= 2.5 && (dp.netMargin ?? 0) < 6) ? "Leverage-driven return — fragile; debt is doing the work, not the operations."
+      : (dp.netMargin != null && dp.netMargin >= 8 && (dp.equityMult ?? 9) <= 1.6) ? "Margin-driven — real pricing power on a clean balance sheet."
+        : (dp.assetTurn != null && dp.assetTurn >= 1.5) ? "Turnover-driven — a lean, asset-light operator."
+          : "Balanced mix of margin, efficiency and leverage."
+    : "";
+  const zColor = a.zZone === "distress" ? "#e11d48" : a.zZone === "grey" ? "#f59e0b" : "#059669";
+  const zMark = a.z != null ? Math.max(2, Math.min(98, (Math.min(a.z, 6) / 6) * 100)) : null; // clamp display 0–6
+  const fCol = (a.fscore ?? 0) >= 7 ? "text-emerald-600" : (a.fscore ?? 0) >= 4 ? "text-amber-600" : "text-rose-600";
+  return (
+    <Card title="Financial-health X-ray" sub="DuPont · Piotroski · Altman-Z — analyst-grade signals computed from the filings, no extra data" accent={C.violet}>
+      <div className="grid gap-3 lg:grid-cols-3">
+        {/* DuPont */}
+        <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
+          <div className="mb-2 text-[11px] font-bold uppercase tracking-wide text-slate-500">DuPont — where the return comes from</div>
+          {dp && dp.roe != null ? (
+            <>
+              <div className="flex items-baseline justify-between"><span className="text-sm text-slate-500">Return on equity</span><span className="text-2xl font-bold text-violet-700">{dp.roe}%</span></div>
+              <div className="mt-2 flex items-stretch gap-1 text-center">
+                {[["Net margin", dp.netMargin != null ? dp.netMargin + "%" : "—"], ["× Asset turn", dp.assetTurn != null ? dp.assetTurn + "×" : "—"], ["× Leverage", dp.equityMult != null ? dp.equityMult + "×" : "—"]].map(([k, v]) => (
+                  <div key={k} className="flex-1 rounded-lg bg-white p-2 ring-1 ring-slate-200"><div className="font-mono text-sm font-bold text-slate-800">{v}</div><div className="text-[9px] leading-tight text-slate-500">{k}</div></div>
+                ))}
+              </div>
+              <div className="mt-2 text-[11px] leading-snug text-slate-500">{dupontRead}</div>
+            </>
+          ) : <Empty t="Not enough data." />}
+        </div>
+        {/* Piotroski */}
+        <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
+          <div className="mb-2 flex items-center justify-between"><span className="text-[11px] font-bold uppercase tracking-wide text-slate-500">Piotroski F-score</span><span className={`text-lg font-bold ${fCol}`}>{a.fscore ?? "—"}<span className="text-xs text-slate-400">/9</span></span></div>
+          {a.fChecks.length ? (
+            <div className="space-y-0.5">
+              {a.fChecks.map((c, i) => (
+                <div key={i} className="flex items-center gap-1.5 text-[11px]"><span className={c.ok ? "text-emerald-600" : "text-slate-300"}>{c.ok ? "✓" : "○"}</span><span className={c.ok ? "text-slate-700" : "text-slate-400"}>{c.label}</span></div>
+              ))}
+            </div>
+          ) : <Empty t="Needs 2+ years." />}
+        </div>
+        {/* Altman Z + cash tiles */}
+        <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
+          <div className="mb-2 flex items-center justify-between"><span className="text-[11px] font-bold uppercase tracking-wide text-slate-500">Altman-Z distress</span><span className="text-lg font-bold" style={{ color: zColor }}>{a.z ?? "—"} <span className="text-xs capitalize">{a.zZone ?? ""}</span></span></div>
+          <div className="relative mt-1 h-2.5 w-full overflow-hidden rounded-full">
+            <div className="absolute inset-0 flex"><div className="bg-rose-300" style={{ width: "18%" }} /><div className="bg-amber-200" style={{ width: "25%" }} /><div className="bg-emerald-300" style={{ width: "57%" }} /></div>
+            {zMark != null && <div className="absolute top-1/2 h-4 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded bg-slate-900 ring-2 ring-white" style={{ left: `${zMark}%` }} />}
+          </div>
+          <div className="mt-1 flex justify-between text-[9px] text-slate-400"><span>distress</span><span>grey</span><span>safe →</span></div>
+          <div className="mt-3 grid grid-cols-3 gap-1.5 text-center">
+            {[["Free cash flow", a.fcfLatest != null ? `₹${Math.round(a.fcfLatest)} Cr` : "—"], ["Op. leverage", a.opLeverage != null ? a.opLeverage + "×" : "—"], ["Accruals", a.accrualsLatest != null ? a.accrualsLatest + "%" : "—"]].map(([k, v]) => (
+              <div key={k} className="rounded-lg bg-white p-1.5 ring-1 ring-slate-200"><div className="font-mono text-xs font-bold text-slate-800">{v}</div><div className="text-[9px] leading-tight text-slate-500">{k}</div></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
 function FinancialsTab({ d }: { d: Detail }) {
   const empByFy = useMemo(() => new Map(d.employees.yearly.map((e) => [e.fy, e.count])), [d]);
   const monthly = d.employees.monthly;
@@ -312,6 +373,7 @@ function FinancialsTab({ d }: { d: Detail }) {
           )}
         </Card>
       </div>
+      {d.advanced && <HealthPanel a={d.advanced} />}
       <div className="grid gap-4 lg:grid-cols-2">
         <Card title="Where every ₹100 of sales goes" sub="cost structure each year · a fatter green band = more room on price" accent={C.amber}>
           <CostMix fin={d.fin} />
