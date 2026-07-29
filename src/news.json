@@ -56,17 +56,24 @@
  },
  "ngelectro": {
   "found": true,
-  "summary": "NG Electro Products raised Rs 150 crore from JM Financial India Growth Fund III to expand manufacturing across consumer goods, personal care and nutraceuticals.",
+  "summary": "PE-backed contract manufacturer (home care, beauty & personal care, nutraceuticals) — JM Financial invested ₹150 cr (2026).",
   "news": [
    {
-    "date": "2026-04",
-    "title": "NG Electro Bags Rs 150 Cr to Fuel Expansion in India's Booming Consumer Market",
-    "source": "Whalesbook",
-    "url": "https://www.whalesbook.com/news/English/consumer-products/NG-Electro-Bags-indian-rupee150-Cr-to-Fuel-Expansion-in-Indias-Booming-Consumer-Market/69f0506935c37de4af352cd3",
-    "oneLine": "Rs 150 crore raised from JM Financial fund to scale manufacturing and expansion."
+    "date": "2026",
+    "title": "JM Financial PE leads ₹150 crore investment in NG Electro Products",
+    "source": "News On Project",
+    "url": "https://www.newsonprojects.com/news/jm-financial-pe-leads-150-crore-investment-in-contract-manufacturing-platform-ng-electro-products",
+    "oneLine": "Growth capital to expand capacity, R&D and compliance — a contract manufacturer scaling across home & personal care and nutraceuticals."
    }
   ],
-  "signals": []
+  "signals": [
+   {
+    "type": "Capex / expansion",
+    "oneLine": "Fresh PE money (JM Financial) for capacity + R&D — well-funded and expanding, so they want volume to fill new lines; a stronger balance sheet also means less cash desperation on terms.",
+    "source": "News On Project",
+    "url": "https://www.newsonprojects.com/news/jm-financial-pe-leads-150-crore-investment-in-contract-manufacturing-platform-ng-electro-products"
+   }
+  ]
  },
  "samrvir": {
   "found": true,
@@ -181,17 +188,16 @@
  },
  "Pragati Glass & Industries Pvt. Ltd": {
   "found": true,
-  "summary": "The company plans to expand capacity to one billion bottles a year with a new Gujarat plant starting 2026, riding cosmetic-industry growth.",
-  "news": [
+  "summary": "Container-glass (bottles/jars) manufacturer for cosmetics, pharma & F&B.",
+  "news": [],
+  "signals": [
    {
-    "date": "2025-09",
-    "title": "Pragati Glass targets a billion bottles annually as India upgrades",
-    "source": "WhatPackaging?",
-    "url": "https://www.whatpackaging.co.in/news/pragati-glass-targets-a-billion-bottles-annually-as-india-upgrades-59294",
-    "oneLine": "Expanding from 700M to 1B bottles yearly; new Gujarat facility begins 2026."
+    "type": "Market position",
+    "oneLine": "Established container-glass maker serving cosmetics / pharma / F&B packaging. No major public developments in recent months — the read is in the financials.",
+    "source": "IndiaMART",
+    "url": "https://m.indiamart.com/pragatiglassworks"
    }
-  ],
-  "signals": []
+  ]
  },
  "PRINTOTECH GLOBAL LIMITED": {
   "found": false,
@@ -262,10 +268,32 @@
   "signals": []
  },
  "connellbrothers": {
-  "found": false,
-  "summary": "No significant news found within the last 12 months; latest notable item (Connell Caldic-Stratachem distribution partnership) predates that window.",
-  "news": [],
-  "signals": []
+  "found": true,
+  "summary": "Now part of Caldic-Connell — the Advent-backed global specialty-ingredients distributor (~€3bn sales, 43 countries).",
+  "news": [
+   {
+    "date": "2023-02-28",
+    "title": "Caldic and Connell complete merger — a global specialty-chemicals distributor (~€3bn sales)",
+    "source": "Caldic",
+    "url": "https://www.caldic.com/en/News/Caldic-joins-the-global-top-league-following-merger-with-Connell",
+    "oneLine": "Advent International + Wilbur-Ellis merge Caldic and Connell; the India business now runs under the Connell Caldic (APAC) brand."
+   },
+   {
+    "date": "2024",
+    "title": "Caldic acquires Chemhouse Marketing and Brink Chemicals in India",
+    "source": "Chemical Distributor News",
+    "url": "https://chemical-distributors.com/news/newsarticle.asp?newsid=817",
+    "oneLine": "Bolt-on of two India personal-care ingredient distributors, integrated into the APAC organisation."
+   }
+  ],
+  "signals": [
+   {
+    "type": "Ownership change",
+    "oneLine": "Advent-backed inside a €3bn global distributor. Deep principal ties and scale — but a distributor model means their price is largely a pass-through; push on the distributor margin, not the molecule.",
+    "source": "ICIS",
+    "url": "https://www.icis.com/explore/resources/news/2022/10/17/10815723/interview-caldic-connell-merger-to-create-global-leader-in-specialty-distribution-advent/"
+   }
+  ]
  },
  "psteaindstries": {
   "found": false,
