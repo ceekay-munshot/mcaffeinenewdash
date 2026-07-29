@@ -8600,6 +8600,20 @@
           "Sprivil Healthcare",
           "NG Electro"
         ]
+      },
+      "probe": {
+        "receivableDays": 68.7,
+        "payableDays": 23.91,
+        "cashConversionCycleDays": 81.73,
+        "roce": 28.16,
+        "roe": 36.32,
+        "ebitdaMargin": 14.84,
+        "netMargin": 7.97,
+        "peerMedianPayableDays": 34.29,
+        "peerMedianReceivableDays": 53.315,
+        "creditRating": null,
+        "profitabilityScore": 5,
+        "fetchedAt": "2026-07-29T19:18:36.185Z"
       }
     },
     {
@@ -10098,6 +10112,20 @@
           ]
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 78.84,
+        "payableDays": 91.83,
+        "cashConversionCycleDays": 59.02,
+        "roce": 10.04,
+        "roe": 8.29,
+        "ebitdaMargin": 4.47,
+        "netMargin": 5.39,
+        "peerMedianPayableDays": 23.009999999999998,
+        "peerMedianReceivableDays": 59.585,
+        "creditRating": null,
+        "profitabilityScore": 3,
+        "fetchedAt": "2026-07-29T19:18:37.759Z"
       }
     },
     {
@@ -13017,6 +13045,20 @@
           "founders": []
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 67.67,
+        "payableDays": 23.46,
+        "cashConversionCycleDays": 57.34,
+        "roce": 15.58,
+        "roe": 12.59,
+        "ebitdaMargin": 20.62,
+        "netMargin": 8.65,
+        "peerMedianPayableDays": 32.82,
+        "peerMedianReceivableDays": 62.019999999999996,
+        "creditRating": "Withdrawn (BBB-/Stable)",
+        "profitabilityScore": 4,
+        "fetchedAt": "2026-07-29T19:18:39.369Z"
       }
     },
     {
@@ -13838,6 +13880,20 @@
           ]
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 82.81,
+        "payableDays": 55.13,
+        "cashConversionCycleDays": 60.35,
+        "roce": 23.19,
+        "roe": 27.61,
+        "ebitdaMargin": 12.59,
+        "netMargin": 5.96,
+        "peerMedianPayableDays": 20.83,
+        "peerMedianReceivableDays": 58.665,
+        "creditRating": null,
+        "profitabilityScore": 5,
+        "fetchedAt": "2026-07-29T19:18:40.721Z"
       }
     },
     {
@@ -16820,5 +16876,5 @@
       }
     }
   ],
-  "probeEnrichedCount": 10
+  "probeEnrichedCount": 14
 }
