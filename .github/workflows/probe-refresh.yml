@@ -117,10 +117,14 @@ jobs:
           PROBE42_ENV: ${{ vars.PROBE42_ENV }}
         run: node scripts/probe/enrich.mjs --live ${{ github.event.inputs.mode == 'check-status' && '--status --skip-have' || '' }} --limit "${{ github.event.inputs.limit }}" ${{ github.event.inputs.company && format('--only "{0}"', github.event.inputs.company) || '' }}
 
+      - name: Rebuild the deep-dive + lever analysis (free — reads the cache, no API calls)
+        if: ${{ github.event.inputs.mode == 'fetch-data' }}
+        run: node scripts/probe/detail.mjs
+
       - name: Commit refreshed data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/clean/entities.json data/probe-cache
-          git diff --cached --quiet || git commit -m "chore: refresh Probe42 financials"
+          git add data/clean/entities.json data/clean/probe-detail.json data/probe-cache
+          git diff --cached --quiet || git commit -m "chore: refresh Probe42 financials + deep-dive analysis"
           git push
