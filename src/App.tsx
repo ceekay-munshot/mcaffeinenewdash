@@ -366,7 +366,12 @@ function SupplierView() {
     return { tracked: all.length, withFin, revCr, opps };
   }, [all]);
 
-  if (selected) return <CompanyPage entity={selected} onBack={back} kind="supplier" />;
+  // One view, not three: a supplier we hold a Probe42 report for opens straight
+  // into the full tabbed deep-dive (no separate "open deep-dive" / "show full
+  // detail" hops). Thin suppliers still get the lighter profile.
+  if (selected) return hasDeepDive(selected.cin)
+    ? <DeepDive entity={selected} onClose={back} supplies={suppliedItems(selected.folder)} />
+    : <CompanyPage entity={selected} onBack={back} kind="supplier" />;
 
   return (
     <main className="mx-auto max-w-[1680px] px-4 pb-16 sm:px-6">

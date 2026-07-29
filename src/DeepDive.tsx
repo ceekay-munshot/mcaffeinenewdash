@@ -63,7 +63,7 @@ const TABS = [
 ] as const;
 type TabKey = (typeof TABS)[number]["key"];
 
-export default function DeepDive({ entity, onClose }: { entity: Entity; onClose: () => void }) {
+export default function DeepDive({ entity, onClose, supplies }: { entity: Entity; onClose: () => void; supplies?: string[] }) {
   const d = entity.cin ? DETAILS[entity.cin] : undefined;
   const [tab, setTab] = useState<TabKey>("levers");
   if (!d) return null;
@@ -81,6 +81,7 @@ export default function DeepDive({ entity, onClose }: { entity: Entity; onClose:
               <div className="flex flex-wrap items-center gap-2">
                 <span className="truncate text-lg font-bold text-slate-900">{entity.brand}</span>
                 <span className="shrink-0 rounded-full bg-teal-50 px-2 py-0.5 text-[11px] font-semibold text-teal-700 ring-1 ring-teal-200">Probe42 · {d.yearsCovered ?? d.fin.length}-yr filings</span>
+                {supplies && supplies.length > 0 && <span className="shrink-0 rounded-full bg-teal-400/20 px-2 py-0.5 text-[11px] font-medium text-teal-800 ring-1 ring-teal-300/50" title={`Supplies mcAFFEINE: ${supplies.join(", ")}`}>🧬 Supplies: {supplies.slice(0, 2).join(", ")}{supplies.length > 2 ? ` +${supplies.length - 2}` : ""}</span>}
                 {d.classification && <span className="hidden shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-500 sm:inline">{d.status}</span>}
               </div>
               <div className="truncate text-xs text-slate-500">{d.legalName} · {entity.cin}{d.city ? ` · ${d.city}` : ""}{d.incorporation ? ` · inc. ${d.incorporation.slice(0, 4)}` : ""}</div>
