@@ -12477,6 +12477,20 @@
           "founders": []
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 60.19,
+        "payableDays": 57.91,
+        "cashConversionCycleDays": 78.05,
+        "roce": 8.83,
+        "roe": 17.55,
+        "ebitdaMargin": 15.46,
+        "netMargin": 9.64,
+        "peerMedianPayableDays": 39.675,
+        "peerMedianReceivableDays": 67.86,
+        "creditRating": "AA- (Under Rating Watch with Developing Implications)",
+        "profitabilityScore": 4,
+        "fetchedAt": "2026-07-29T16:03:40.848Z"
       }
     },
     {
@@ -15513,6 +15527,20 @@
           "founders": []
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 80.3,
+        "payableDays": 88.63,
+        "cashConversionCycleDays": 62.02,
+        "roce": 11.91,
+        "roe": 7.74,
+        "ebitdaMargin": 10.39,
+        "netMargin": 7.6,
+        "peerMedianPayableDays": 55,
+        "peerMedianReceivableDays": 75.25999999999999,
+        "creditRating": null,
+        "profitabilityScore": 3,
+        "fetchedAt": "2026-07-29T16:03:42.407Z"
       }
     },
     {
@@ -16736,5 +16764,5 @@
       }
     }
   ],
-  "probeEnrichedCount": 4
+  "probeEnrichedCount": 6
 }

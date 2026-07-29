@@ -1402,6 +1402,1449 @@
       }
     ]
   },
+  "U11200KA1985PTC007056": {
+    "cin": "U11200KA1985PTC007056",
+    "legalName": "GIVAUDAN (INDIA) PRIVATE LIMITED",
+    "description": "Givaudan (India) Private Limited (GIPL), as per its annual filings, GIPL is engaged in the business of manufacturing flavors and fragrances based on the technology developed and provided by Givaudan SA, the holding company. GIPL also undertakes to distribute flavors and fragrance products imported from its overseas group entities. The company was incorporated in 1985 and has its registered office located in Jigani, Karnataka.",
+    "website": "https://www.givaudan.com/",
+    "city": "Jigani",
+    "state": "Karnataka",
+    "incorporation": "1985-08-05",
+    "classification": "Private Limited Indian Non-Government Company",
+    "status": "Unlisted",
+    "industry": "Chemicals",
+    "segment": "Aromatics",
+    "activities": [
+      {
+        "desc": "Manufacture of chemicals and chemical products",
+        "pct": 100
+      }
+    ],
+    "paidUpCr": 20,
+    "authorizedCr": 25,
+    "lastAgm": "2025-11-01",
+    "lastFiling": "2025-03-31",
+    "lastUpdated": "2026-06-25",
+    "yearsCovered": 12,
+    "score": {
+      "overall": 4,
+      "growth": 4,
+      "profitability": 3,
+      "liquidity": 4,
+      "solvency": 4,
+      "efficiency": 4
+    },
+    "bands": {
+      "revenue": "More than 1000 cr.",
+      "profit": "More than 5 cr.",
+      "employees": "Between 101 and 500"
+    },
+    "flags": {
+      "gstDelay": false,
+      "epfDelay": true,
+      "bureauDefaults": false,
+      "pendingCases": true,
+      "severeCases": false,
+      "struckOff": false
+    },
+    "creditRating": null,
+    "latest": {
+      "year": "FY25",
+      "revenue": 2971.5,
+      "materialCost": 1776.2,
+      "purchases": 301.2,
+      "employeeCost": 171.6,
+      "otherExpense": 411.5,
+      "ebitda": 308.8,
+      "otherIncome": 122,
+      "depreciation": 48.3,
+      "ebit": 382.5,
+      "interest": 27.4,
+      "pbt": 355.1,
+      "tax": 129.2,
+      "pat": 225.9,
+      "tangibleAssets": 437.9,
+      "investments": 1.3,
+      "inventory": 572.7,
+      "receivables": 653.8,
+      "cash": 47.7,
+      "totalAssets": 4036.4,
+      "shareCapital": 20,
+      "reserves": 2899.2,
+      "equity": 2919.1,
+      "longTermDebt": 290.6,
+      "shortTermDebt": 2.2,
+      "debt": 292.8,
+      "payables": 721.5,
+      "operating": 99.3,
+      "investing": -155.9,
+      "financing": -41.1,
+      "revenueGrowth": 21.5,
+      "grossMargin": 30,
+      "ebitdaMargin": 10.4,
+      "netMargin": 7.6,
+      "roe": 7.7,
+      "roce": 11.9,
+      "debtRatio": 0.07,
+      "debtEquity": 0.1,
+      "interestCover": 14,
+      "currentRatio": 1.76,
+      "quickRatio": 1.02,
+      "inventoryDays": 70,
+      "debtorDays": 80,
+      "payableDays": 89,
+      "cashConversion": 62,
+      "salesByFixedAssets": 6.8
+    },
+    "fin": [
+      {
+        "fy": "FY14",
+        "yearFull": "2014-03-31",
+        "nature": "STANDALONE",
+        "revenue": 812.1,
+        "materialCost": 524,
+        "purchases": 35.4,
+        "employeeCost": 45.8,
+        "otherExpense": 135.1,
+        "ebitda": 72.5,
+        "otherIncome": 1.6,
+        "depreciation": 12.2,
+        "ebit": 61.9,
+        "interest": 11,
+        "pbt": 50.9,
+        "tax": 17.3,
+        "pat": 33.6,
+        "bs": {
+          "tangibleAssets": 103.3,
+          "investments": 0,
+          "inventory": 124.2,
+          "receivables": 193.5,
+          "cash": 1.8,
+          "totalAssets": 532,
+          "shareCapital": 8.7,
+          "reserves": 333.2,
+          "equity": 342,
+          "longTermDebt": 0,
+          "shortTermDebt": 34.2,
+          "debt": 34.2,
+          "payables": 139.6
+        },
+        "cf": {
+          "operating": 18.7,
+          "investing": -27.9,
+          "financing": 7.7
+        },
+        "r": {
+          "revenueGrowth": 14.5,
+          "grossMargin": 31.2,
+          "ebitdaMargin": 8.9,
+          "netMargin": 4.1,
+          "roe": 9.8,
+          "roce": 16.5,
+          "debtRatio": 0.06,
+          "debtEquity": 0.1,
+          "interestCover": 5.6,
+          "currentRatio": 1.86,
+          "quickRatio": 1.19,
+          "inventoryDays": 56,
+          "debtorDays": 87,
+          "payableDays": 63,
+          "cashConversion": 80,
+          "salesByFixedAssets": 7.9
+        }
+      },
+      {
+        "fy": "FY15",
+        "yearFull": "2015-03-31",
+        "nature": "STANDALONE",
+        "revenue": 916.3,
+        "materialCost": 602.5,
+        "purchases": 42.1,
+        "employeeCost": 53,
+        "otherExpense": 141.6,
+        "ebitda": 79.9,
+        "otherIncome": 2.5,
+        "depreciation": 17.4,
+        "ebit": 64.9,
+        "interest": 9.2,
+        "pbt": 55.7,
+        "tax": 18.9,
+        "pat": 36.8,
+        "bs": {
+          "tangibleAssets": 87.9,
+          "investments": 0,
+          "inventory": 150.4,
+          "receivables": 219.7,
+          "cash": 3,
+          "totalAssets": 602.3,
+          "shareCapital": 8.7,
+          "reserves": 368.2,
+          "equity": 377,
+          "longTermDebt": 0,
+          "shortTermDebt": 40.3,
+          "debt": 40.3,
+          "payables": 167.4
+        },
+        "cf": {
+          "operating": 12.4,
+          "investing": -13.9,
+          "financing": 2.7
+        },
+        "r": {
+          "revenueGrowth": 12.8,
+          "grossMargin": 30,
+          "ebitdaMargin": 8.7,
+          "netMargin": 4,
+          "roe": 9.8,
+          "roce": 15.6,
+          "debtRatio": 0.07,
+          "debtEquity": 0.11,
+          "interestCover": 7,
+          "currentRatio": 1.85,
+          "quickRatio": 1.17,
+          "inventoryDays": 60,
+          "debtorDays": 88,
+          "payableDays": 67,
+          "cashConversion": 81,
+          "salesByFixedAssets": 10.4
+        }
+      },
+      {
+        "fy": "FY16",
+        "yearFull": "2016-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1056,
+        "materialCost": 672.2,
+        "purchases": 41.6,
+        "employeeCost": 56.3,
+        "otherExpense": 183.4,
+        "ebitda": 110.3,
+        "otherIncome": 3.6,
+        "depreciation": 14.7,
+        "ebit": 99.2,
+        "interest": 8.2,
+        "pbt": 91,
+        "tax": 32.4,
+        "pat": 58.6,
+        "bs": {
+          "tangibleAssets": 94.6,
+          "investments": 0,
+          "inventory": 148.2,
+          "receivables": 245,
+          "cash": 2.2,
+          "totalAssets": 641.6,
+          "shareCapital": 8.7,
+          "reserves": 426.9,
+          "equity": 435.6,
+          "longTermDebt": 0,
+          "shortTermDebt": 13.7,
+          "debt": 13.7,
+          "payables": 172.4
+        },
+        "cf": {
+          "operating": 76.1,
+          "investing": -47.5,
+          "financing": -29.3
+        },
+        "r": {
+          "revenueGrowth": 15.2,
+          "grossMargin": 33.1,
+          "ebitdaMargin": 10.4,
+          "netMargin": 5.6,
+          "roe": 13.5,
+          "roce": 22.1,
+          "debtRatio": 0.02,
+          "debtEquity": 0.03,
+          "interestCover": 12.1,
+          "currentRatio": 2.16,
+          "quickRatio": 1.42,
+          "inventoryDays": 51,
+          "debtorDays": 85,
+          "payableDays": 60,
+          "cashConversion": 76,
+          "salesByFixedAssets": 11.2
+        }
+      },
+      {
+        "fy": "FY17",
+        "yearFull": "2017-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1284.5,
+        "materialCost": 705.9,
+        "purchases": 45.8,
+        "employeeCost": 68,
+        "otherExpense": 314.3,
+        "ebitda": 156.2,
+        "otherIncome": 1.2,
+        "depreciation": 11.5,
+        "ebit": 145.9,
+        "interest": 0.3,
+        "pbt": 145.6,
+        "tax": 50.6,
+        "pat": 95,
+        "bs": {
+          "tangibleAssets": 69.7,
+          "investments": 0,
+          "inventory": 184.2,
+          "receivables": 280.9,
+          "cash": 4.2,
+          "totalAssets": 811.6,
+          "shareCapital": 8.7,
+          "reserves": 521.3,
+          "equity": 530,
+          "longTermDebt": 0,
+          "shortTermDebt": 0,
+          "debt": 0,
+          "payables": 235.4
+        },
+        "cf": {
+          "operating": 97.5,
+          "investing": -81.5,
+          "financing": -14
+        },
+        "r": {
+          "revenueGrowth": 21.6,
+          "grossMargin": 41.9,
+          "ebitdaMargin": 12.2,
+          "netMargin": 7.4,
+          "roe": 17.9,
+          "roce": 27.5,
+          "debtRatio": 0,
+          "debtEquity": 0,
+          "interestCover": 488.8,
+          "currentRatio": 1.96,
+          "quickRatio": 1.29,
+          "inventoryDays": 52,
+          "debtorDays": 80,
+          "payableDays": 67,
+          "cashConversion": 65,
+          "salesByFixedAssets": 18.4
+        }
+      },
+      {
+        "fy": "FY18",
+        "yearFull": "2018-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1396.3,
+        "materialCost": 850.3,
+        "purchases": 42,
+        "employeeCost": 80.3,
+        "otherExpense": 254.6,
+        "ebitda": 171.2,
+        "otherIncome": 2.2,
+        "depreciation": 10.6,
+        "ebit": 162.8,
+        "interest": 0.3,
+        "pbt": 162.5,
+        "tax": 57.2,
+        "pat": 105.2,
+        "bs": {
+          "tangibleAssets": 81.8,
+          "investments": 0,
+          "inventory": 231.7,
+          "receivables": 343.6,
+          "cash": 59.9,
+          "totalAssets": 1186,
+          "shareCapital": 8.7,
+          "reserves": 626.7,
+          "equity": 635.5,
+          "longTermDebt": 156.3,
+          "shortTermDebt": 0,
+          "debt": 156.3,
+          "payables": 329.9
+        },
+        "cf": {
+          "operating": 46,
+          "investing": -144.6,
+          "financing": 154.3
+        },
+        "r": {
+          "revenueGrowth": 8.7,
+          "grossMargin": 36.2,
+          "ebitdaMargin": 12.3,
+          "netMargin": 7.5,
+          "roe": 16.6,
+          "roce": 20.6,
+          "debtRatio": 0.13,
+          "debtEquity": 0.25,
+          "interestCover": 557.5,
+          "currentRatio": 1.98,
+          "quickRatio": 1.37,
+          "inventoryDays": 61,
+          "debtorDays": 90,
+          "payableDays": 86,
+          "cashConversion": 64,
+          "salesByFixedAssets": 17.1
+        }
+      },
+      {
+        "fy": "FY19",
+        "yearFull": "2019-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1660.5,
+        "materialCost": 1125.9,
+        "purchases": 76.4,
+        "employeeCost": 86.5,
+        "otherExpense": 267.8,
+        "ebitda": 115.8,
+        "otherIncome": 3.1,
+        "depreciation": 12.7,
+        "ebit": 106.2,
+        "interest": 3,
+        "pbt": 103.1,
+        "tax": 36.2,
+        "pat": 66.9,
+        "bs": {
+          "tangibleAssets": 425.2,
+          "investments": 0,
+          "inventory": 312.6,
+          "receivables": 401.9,
+          "cash": 48.1,
+          "totalAssets": 1486.8,
+          "shareCapital": 8.7,
+          "reserves": 693,
+          "equity": 701.7,
+          "longTermDebt": 235.2,
+          "shortTermDebt": 35.4,
+          "debt": 270.7,
+          "payables": 418.7
+        },
+        "cf": {
+          "operating": -24.4,
+          "investing": -85.2,
+          "financing": 97.8
+        },
+        "r": {
+          "revenueGrowth": 18.9,
+          "grossMargin": 28.3,
+          "ebitdaMargin": 7,
+          "netMargin": 4,
+          "roe": 9.5,
+          "roce": 10.9,
+          "debtRatio": 0.18,
+          "debtEquity": 0.39,
+          "interestCover": 35.1,
+          "currentRatio": 1.83,
+          "quickRatio": 1.25,
+          "inventoryDays": 69,
+          "debtorDays": 88,
+          "payableDays": 92,
+          "cashConversion": 65,
+          "salesByFixedAssets": 3.9
+        }
+      },
+      {
+        "fy": "FY20",
+        "yearFull": "2020-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1966.7,
+        "materialCost": 1247.2,
+        "purchases": 158.9,
+        "employeeCost": 101.5,
+        "otherExpense": 304.7,
+        "ebitda": 195.1,
+        "otherIncome": 2.8,
+        "depreciation": 44.2,
+        "ebit": 153.7,
+        "interest": 17.5,
+        "pbt": 136.2,
+        "tax": 36.1,
+        "pat": 100.1,
+        "bs": {
+          "tangibleAssets": 475.3,
+          "investments": 0,
+          "inventory": 382.3,
+          "receivables": 389.3,
+          "cash": 134.8,
+          "totalAssets": 1597.4,
+          "shareCapital": 8.7,
+          "reserves": 791.9,
+          "equity": 800.6,
+          "longTermDebt": 256.3,
+          "shortTermDebt": 0,
+          "debt": 256.3,
+          "payables": 478.9
+        },
+        "cf": {
+          "operating": 204.8,
+          "investing": -54.5,
+          "financing": -63.5
+        },
+        "r": {
+          "revenueGrowth": 18.4,
+          "grossMargin": 30.6,
+          "ebitdaMargin": 9.9,
+          "netMargin": 5.1,
+          "roe": 12.5,
+          "roce": 14.5,
+          "debtRatio": 0.16,
+          "debtEquity": 0.32,
+          "interestCover": 8.8,
+          "currentRatio": 2.12,
+          "quickRatio": 1.38,
+          "inventoryDays": 71,
+          "debtorDays": 72,
+          "payableDays": 89,
+          "cashConversion": 54,
+          "salesByFixedAssets": 4.1
+        }
+      },
+      {
+        "fy": "FY21",
+        "yearFull": "2021-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1994.1,
+        "materialCost": 1151.2,
+        "purchases": 177.9,
+        "employeeCost": 116.9,
+        "otherExpense": 301.1,
+        "ebitda": 224.3,
+        "otherIncome": 4.8,
+        "depreciation": 46.7,
+        "ebit": 182.4,
+        "interest": 10.6,
+        "pbt": 171.8,
+        "tax": 43.5,
+        "pat": 128.3,
+        "bs": {
+          "tangibleAssets": 458.6,
+          "investments": 0,
+          "inventory": 380.5,
+          "receivables": 438.5,
+          "cash": 191.1,
+          "totalAssets": 1689.3,
+          "shareCapital": 8.7,
+          "reserves": 876.5,
+          "equity": 885.2,
+          "longTermDebt": 248.7,
+          "shortTermDebt": 0,
+          "debt": 248.7,
+          "payables": 483.2
+        },
+        "cf": {
+          "operating": 143.7,
+          "investing": -22,
+          "financing": -65.4
+        },
+        "r": {
+          "revenueGrowth": 1.4,
+          "grossMargin": 32.2,
+          "ebitdaMargin": 11.3,
+          "netMargin": 6.4,
+          "roe": 14.5,
+          "roce": 16.1,
+          "debtRatio": 0.15,
+          "debtEquity": 0.28,
+          "interestCover": 17.1,
+          "currentRatio": 2.24,
+          "quickRatio": 1.52,
+          "inventoryDays": 70,
+          "debtorDays": 80,
+          "payableDays": 88,
+          "cashConversion": 61,
+          "salesByFixedAssets": 4.4
+        }
+      },
+      {
+        "fy": "FY22",
+        "yearFull": "2022-03-31",
+        "nature": "STANDALONE",
+        "revenue": 2019.8,
+        "materialCost": 1204.6,
+        "purchases": 183.6,
+        "employeeCost": 135.6,
+        "otherExpense": 336.1,
+        "ebitda": 224.8,
+        "otherIncome": 58.1,
+        "depreciation": 47.9,
+        "ebit": 234.9,
+        "interest": 54.2,
+        "pbt": 180.7,
+        "tax": 38.5,
+        "pat": 142.2,
+        "bs": {
+          "tangibleAssets": 448,
+          "investments": 0,
+          "inventory": 464.6,
+          "receivables": 435,
+          "cash": 58.1,
+          "totalAssets": 2879.7,
+          "shareCapital": 13,
+          "reserves": 1474.6,
+          "equity": 1487.6,
+          "longTermDebt": 260.1,
+          "shortTermDebt": 535,
+          "debt": 795.1,
+          "payables": 525.3
+        },
+        "cf": {
+          "operating": -1098.7,
+          "investing": 12.3,
+          "financing": 953.4
+        },
+        "r": {
+          "revenueGrowth": 1.3,
+          "grossMargin": 34.5,
+          "ebitdaMargin": 11.1,
+          "netMargin": 7,
+          "roe": 9.6,
+          "roce": 10.3,
+          "debtRatio": 0.28,
+          "debtEquity": 0.53,
+          "interestCover": 4.3,
+          "currentRatio": 0.98,
+          "quickRatio": 0.56,
+          "inventoryDays": 84,
+          "debtorDays": 79,
+          "payableDays": 95,
+          "cashConversion": 68,
+          "salesByFixedAssets": 4.5
+        }
+      },
+      {
+        "fy": "FY23",
+        "yearFull": "2023-03-31",
+        "nature": "STANDALONE",
+        "revenue": 2214.2,
+        "materialCost": 1314.3,
+        "purchases": 235.7,
+        "employeeCost": 133.1,
+        "otherExpense": 349,
+        "ebitda": 139.1,
+        "otherIncome": 85.1,
+        "depreciation": 47.4,
+        "ebit": 176.8,
+        "interest": 45.9,
+        "pbt": 130.9,
+        "tax": 22.1,
+        "pat": 108.9,
+        "bs": {
+          "tangibleAssets": 430.6,
+          "investments": 0,
+          "inventory": 428,
+          "receivables": 531,
+          "cash": 17.9,
+          "totalAssets": 3290.6,
+          "shareCapital": 20,
+          "reserves": 2406.5,
+          "equity": 2426.5,
+          "longTermDebt": 2.1,
+          "shortTermDebt": 289.6,
+          "debt": 291.7,
+          "payables": 520.4
+        },
+        "cf": {
+          "operating": -305,
+          "investing": 54.3,
+          "financing": 210.5
+        },
+        "r": {
+          "revenueGrowth": 9.6,
+          "grossMargin": 28.1,
+          "ebitdaMargin": 6.3,
+          "netMargin": 4.9,
+          "roe": 4.5,
+          "roce": 6.5,
+          "debtRatio": 0.09,
+          "debtEquity": 0.12,
+          "interestCover": 3.9,
+          "currentRatio": 1.38,
+          "quickRatio": 0.87,
+          "inventoryDays": 71,
+          "debtorDays": 88,
+          "payableDays": 86,
+          "cashConversion": 72,
+          "salesByFixedAssets": 5.1
+        }
+      },
+      {
+        "fy": "FY24",
+        "yearFull": "2024-03-31",
+        "nature": "STANDALONE",
+        "revenue": 2445.4,
+        "materialCost": 1472.3,
+        "purchases": 220.7,
+        "employeeCost": 147.3,
+        "otherExpense": 303.7,
+        "ebitda": 348.6,
+        "otherIncome": 101.6,
+        "depreciation": 47.2,
+        "ebit": 403.1,
+        "interest": 22.4,
+        "pbt": 380.6,
+        "tax": 109.5,
+        "pat": 271.1,
+        "bs": {
+          "tangibleAssets": 431.5,
+          "investments": 1.3,
+          "inventory": 456.3,
+          "receivables": 575,
+          "cash": 138.9,
+          "totalAssets": 3642,
+          "shareCapital": 20,
+          "reserves": 2677,
+          "equity": 2696.9,
+          "longTermDebt": 285.6,
+          "shortTermDebt": 0,
+          "debt": 285.6,
+          "payables": 577.4
+        },
+        "cf": {
+          "operating": 189.9,
+          "investing": -60.4,
+          "financing": -8.4
+        },
+        "r": {
+          "revenueGrowth": 10.4,
+          "grossMargin": 32.7,
+          "ebitdaMargin": 14.3,
+          "netMargin": 11.1,
+          "roe": 10.1,
+          "roce": 13.5,
+          "debtRatio": 0.08,
+          "debtEquity": 0.11,
+          "interestCover": 18,
+          "currentRatio": 1.93,
+          "quickRatio": 1.21,
+          "inventoryDays": 68,
+          "debtorDays": 86,
+          "payableDays": 86,
+          "cashConversion": 68,
+          "salesByFixedAssets": 5.7
+        }
+      },
+      {
+        "fy": "FY25",
+        "yearFull": "2025-03-31",
+        "nature": "STANDALONE",
+        "revenue": 2971.5,
+        "materialCost": 1776.2,
+        "purchases": 301.2,
+        "employeeCost": 171.6,
+        "otherExpense": 411.5,
+        "ebitda": 308.8,
+        "otherIncome": 122,
+        "depreciation": 48.3,
+        "ebit": 382.5,
+        "interest": 27.4,
+        "pbt": 355.1,
+        "tax": 129.2,
+        "pat": 225.9,
+        "bs": {
+          "tangibleAssets": 437.9,
+          "investments": 1.3,
+          "inventory": 572.7,
+          "receivables": 653.8,
+          "cash": 47.7,
+          "totalAssets": 4036.4,
+          "shareCapital": 20,
+          "reserves": 2899.2,
+          "equity": 2919.1,
+          "longTermDebt": 290.6,
+          "shortTermDebt": 2.2,
+          "debt": 292.8,
+          "payables": 721.5
+        },
+        "cf": {
+          "operating": 99.3,
+          "investing": -155.9,
+          "financing": -41.1
+        },
+        "r": {
+          "revenueGrowth": 21.5,
+          "grossMargin": 30,
+          "ebitdaMargin": 10.4,
+          "netMargin": 7.6,
+          "roe": 7.7,
+          "roce": 11.9,
+          "debtRatio": 0.07,
+          "debtEquity": 0.1,
+          "interestCover": 14,
+          "currentRatio": 1.76,
+          "quickRatio": 1.02,
+          "inventoryDays": 70,
+          "debtorDays": 80,
+          "payableDays": 89,
+          "cashConversion": 62,
+          "salesByFixedAssets": 6.8
+        }
+      }
+    ],
+    "employees": {
+      "latest": 299,
+      "yearly": [],
+      "monthly": [
+        {
+          "month": "JUN-24",
+          "count": 285,
+          "onTime": true
+        },
+        {
+          "month": "JUL-24",
+          "count": 286,
+          "onTime": true
+        },
+        {
+          "month": "AUG-24",
+          "count": 290,
+          "onTime": true
+        },
+        {
+          "month": "SEP-24",
+          "count": 293,
+          "onTime": true
+        },
+        {
+          "month": "OCT-24",
+          "count": 289,
+          "onTime": true
+        },
+        {
+          "month": "NOV-24",
+          "count": 289,
+          "onTime": true
+        },
+        {
+          "month": "DEC-24",
+          "count": 293,
+          "onTime": true
+        },
+        {
+          "month": "JAN-25",
+          "count": 302,
+          "onTime": true
+        },
+        {
+          "month": "FEB-25",
+          "count": 301,
+          "onTime": true
+        },
+        {
+          "month": "MAR-25",
+          "count": 300,
+          "onTime": true
+        },
+        {
+          "month": "APR-25",
+          "count": 303,
+          "onTime": true
+        },
+        {
+          "month": "MAY-25",
+          "count": 303,
+          "onTime": true
+        },
+        {
+          "month": "JUN-25",
+          "count": 308,
+          "onTime": true
+        },
+        {
+          "month": "JUL-25",
+          "count": 304,
+          "onTime": true
+        },
+        {
+          "month": "AUG-25",
+          "count": 303,
+          "onTime": true
+        },
+        {
+          "month": "SEP-25",
+          "count": 305,
+          "onTime": true
+        },
+        {
+          "month": "OCT-25",
+          "count": 302,
+          "onTime": true
+        },
+        {
+          "month": "NOV-25",
+          "count": 300,
+          "onTime": true
+        },
+        {
+          "month": "DEC-25",
+          "count": 299,
+          "onTime": true
+        },
+        {
+          "month": "JAN-26",
+          "count": 298,
+          "onTime": true
+        },
+        {
+          "month": "FEB-26",
+          "count": 296,
+          "onTime": true
+        },
+        {
+          "month": "MAR-26",
+          "count": 297,
+          "onTime": true
+        },
+        {
+          "month": "APR-26",
+          "count": 301,
+          "onTime": false
+        },
+        {
+          "month": "MAY-26",
+          "count": 299,
+          "onTime": true
+        }
+      ]
+    },
+    "peers": {
+      "industry": "Chemicals",
+      "segment": "Aromatics",
+      "sampleSize": 30,
+      "named": [
+        {
+          "name": "FIRMENICH AROMATICS PRODUCTION (INDIA)",
+          "revenueCr": 3671.3,
+          "city": "MUMBAI"
+        },
+        {
+          "name": "GIVAUDAN (INDIA)",
+          "revenueCr": 2971.5,
+          "city": "Jigani",
+          "isSelf": true
+        },
+        {
+          "name": "INTERNATIONAL FLAVOURS & FRAGRANCES INDIA",
+          "revenueCr": 2485.1,
+          "city": "CHENNAI"
+        },
+        {
+          "name": "PRIVI SPECIALITY CHEMICALS",
+          "revenueCr": 2038.3,
+          "city": "THANE"
+        },
+        {
+          "name": "ETERNIS FINE CHEMICALS",
+          "revenueCr": 1433.4,
+          "city": "MUMBAI"
+        }
+      ],
+      "benchmarks": [
+        {
+          "year": "2025",
+          "peers": 30,
+          "self": {
+            "revenueGrowth": 21.52,
+            "ebitdaMargin": 10.39,
+            "netMargin": 7.6,
+            "roce": 11.91,
+            "roe": 7.74,
+            "debtorDays": 80.3,
+            "payableDays": 88.63,
+            "cashConversion": 62.02,
+            "debtEquity": 0.1,
+            "currentRatio": 1.76,
+            "grossMargin": 30.02
+          },
+          "median": {
+            "revenueGrowth": 18.21,
+            "ebitdaMargin": 10.03,
+            "netMargin": 5.44,
+            "roce": 14.48,
+            "roe": 14.84,
+            "debtorDays": 75.26,
+            "payableDays": 55,
+            "cashConversion": 90.06,
+            "debtEquity": 0.42,
+            "currentRatio": 1.62,
+            "grossMargin": 21.06
+          }
+        },
+        {
+          "year": "2024",
+          "peers": 30,
+          "self": {
+            "revenueGrowth": 10.44,
+            "ebitdaMargin": 14.26,
+            "netMargin": 11.09,
+            "roce": 13.51,
+            "roe": 10.05,
+            "debtorDays": 85.83,
+            "payableDays": 86.19,
+            "cashConversion": 67.74,
+            "debtEquity": 0.11,
+            "currentRatio": 1.93,
+            "grossMargin": 32.7
+          },
+          "median": {
+            "revenueGrowth": 8.64,
+            "ebitdaMargin": 9.66,
+            "netMargin": 4.28,
+            "roce": 14.07,
+            "roe": 12.8,
+            "debtorDays": 74.76,
+            "payableDays": 50.46,
+            "cashConversion": 96.98,
+            "debtEquity": 0.33,
+            "currentRatio": 1.8,
+            "grossMargin": 20.8
+          }
+        },
+        {
+          "year": "2023",
+          "peers": 29,
+          "self": {
+            "revenueGrowth": 9.62,
+            "ebitdaMargin": 6.28,
+            "netMargin": 4.92,
+            "roce": 6.51,
+            "roe": 4.49,
+            "debtorDays": 87.54,
+            "payableDays": 85.79,
+            "cashConversion": 72.31,
+            "debtEquity": 0.12,
+            "currentRatio": 1.38,
+            "grossMargin": 28.06
+          },
+          "median": {
+            "revenueGrowth": 7.65,
+            "ebitdaMargin": 6.88,
+            "netMargin": 4.37,
+            "roce": 12.84,
+            "roe": 12.29,
+            "debtorDays": 69.98,
+            "payableDays": 49.98,
+            "cashConversion": 87.74,
+            "debtEquity": 0.43,
+            "currentRatio": 1.55,
+            "grossMargin": 17.67
+          }
+        },
+        {
+          "year": "2022",
+          "peers": 28,
+          "self": {
+            "revenueGrowth": 1.29,
+            "ebitdaMargin": 11.13,
+            "netMargin": 7.04,
+            "roce": 10.29,
+            "roe": 9.56,
+            "debtorDays": 78.6,
+            "payableDays": 94.92,
+            "cashConversion": 67.64,
+            "debtEquity": 0.53,
+            "currentRatio": 0.98,
+            "grossMargin": 34.48
+          },
+          "median": {
+            "revenueGrowth": 21.23,
+            "ebitdaMargin": 8.64,
+            "netMargin": 5.5,
+            "roce": 11.54,
+            "roe": 13.95,
+            "debtorDays": 71.55,
+            "payableDays": 42.3,
+            "cashConversion": 92.05,
+            "debtEquity": 0.54,
+            "currentRatio": 1.52,
+            "grossMargin": 16.01
+          }
+        }
+      ]
+    },
+    "vsMedian": {
+      "self": {
+        "revenueGrowth": 21.52,
+        "ebitdaMargin": 10.39,
+        "netMargin": 7.6,
+        "roce": 11.91,
+        "roe": 7.74,
+        "debtorDays": 80.3,
+        "payableDays": 88.63,
+        "cashConversion": 62.02,
+        "debtEquity": 0.1,
+        "currentRatio": 1.76,
+        "grossMargin": 30.02
+      },
+      "median": {
+        "revenueGrowth": 18.21,
+        "ebitdaMargin": 10.03,
+        "netMargin": 5.44,
+        "roce": 14.48,
+        "roe": 14.84,
+        "debtorDays": 75.26,
+        "payableDays": 55,
+        "cashConversion": 90.06,
+        "debtEquity": 0.42,
+        "currentRatio": 1.62,
+        "grossMargin": 21.06
+      }
+    },
+    "ownership": {
+      "promoterPct": 2,
+      "publicPct": null
+    },
+    "shareholders": [
+      {
+        "name": "Givaudan SA",
+        "pct": 100,
+        "type": "Other"
+      }
+    ],
+    "directors": [
+      {
+        "name": "DIVYA CHHABRA",
+        "designation": "Company Secretary",
+        "since": null,
+        "age": 39,
+        "otherCount": 0,
+        "others": []
+      },
+      {
+        "name": "FRANCIS ADHAV",
+        "designation": "Whole-time director",
+        "since": "2022",
+        "age": 48,
+        "otherCount": 3,
+        "others": [
+          "NATUREX INDIA",
+          "VALENTINE FOODS",
+          "GIVAUDAN (INDIA)"
+        ]
+      },
+      {
+        "name": "KARTHIKEYAN SHANMUGAM",
+        "designation": "Whole-time director",
+        "since": "2021",
+        "age": 55,
+        "otherCount": 4,
+        "others": [
+          "NATUREX INDIA",
+          "VALENTINE FOODS",
+          "PRIGIV SPECIALTIES",
+          "GIVAUDAN (INDIA)"
+        ]
+      },
+      {
+        "name": "DEVAPRIYO CHAKRAVARTY",
+        "designation": "Whole-time director",
+        "since": "2023",
+        "age": 54,
+        "otherCount": 3,
+        "others": [
+          "NATUREX INDIA",
+          "GIVAUDAN (INDIA)",
+          "VALENTINE FOODS"
+        ]
+      }
+    ],
+    "charges": {
+      "count": 2,
+      "sumCr": 5.9,
+      "list": [
+        {
+          "holder": "PUNJAB NATIONAL BANK",
+          "amountCr": 5,
+          "date": "2026-01-29",
+          "type": "Creation"
+        },
+        {
+          "holder": "STATE BANK OF INDIA",
+          "amountCr": 0.9,
+          "date": "1991-07-11",
+          "type": "Modification"
+        }
+      ]
+    },
+    "legal": {
+      "count": 90,
+      "high": 2,
+      "medium": 45,
+      "against": 19,
+      "list": [
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2024-06-26",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "Captivate Foods"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2025-03-06",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "CAPTIVATE FOOD"
+        },
+        {
+          "court": "CCH1 PRL. CITY CIVIL and SESSIONS JUDGE",
+          "date": "2011-04-01",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "SHAHJAHAN BEGUM DR."
+        },
+        {
+          "court": "City Civil Court, Mumbai",
+          "date": "2016-08-12",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "CONART ENGINEERS"
+        },
+        {
+          "court": "High Court of Madras",
+          "date": "2022-04-27",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "The Principal Commissioner of Customs"
+        },
+        {
+          "court": "High Court of Madras",
+          "date": "2022-01-05",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "THE PRINCIPAL COMMISSIONER OF CUSTOMS"
+        },
+        {
+          "court": "Customs, Excise and Service Tax Appellate Tribunal",
+          "date": "2018-02-06",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Customs Duty",
+          "severity": "medium",
+          "counterparty": "BANGALORE-CUS"
+        },
+        {
+          "court": "Customs, Excise and Service Tax Appellate Tribunal",
+          "date": "2022-04-05",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Customs Duty",
+          "severity": "medium",
+          "counterparty": "COMMISSIONER OF CUSTOMS-COMMISSIONER OF CUSTOMS (II), CHENNAI"
+        }
+      ]
+    },
+    "group": {
+      "holding": [],
+      "subsidiaries": [],
+      "associates": [],
+      "jointVentures": []
+    },
+    "relatedParty": {
+      "year": "2025-03-31",
+      "count": 7,
+      "totalCr": 1769.3,
+      "top": [
+        {
+          "name": "Givaudan Internataional SA",
+          "relationship": "We could not Identify the Relationship Category",
+          "kind": "Expense",
+          "amountCr": 662.5
+        },
+        {
+          "name": "Givaudan Singapore Pte",
+          "relationship": "We could not Identify the Relationship Category",
+          "kind": "Revenue",
+          "amountCr": 650.3
+        },
+        {
+          "name": "GIVAUDAN SA",
+          "relationship": "Holding Company",
+          "kind": "Expense",
+          "amountCr": 224.4
+        },
+        {
+          "name": "Givaudan Singapore Pte",
+          "relationship": "We could not Identify the Relationship Category",
+          "kind": "Expense",
+          "amountCr": 166.2
+        },
+        {
+          "name": "Givaudan Internataional SA",
+          "relationship": "We could not Identify the Relationship Category",
+          "kind": "Revenue",
+          "amountCr": 43.5
+        },
+        {
+          "name": "Givaudan Finance SA",
+          "relationship": "We could not Identify the Relationship Category",
+          "kind": "Expense",
+          "amountCr": 21.7
+        }
+      ]
+    },
+    "gst": {
+      "list": [
+        {
+          "gstin": "26AAACV7454J1Z0",
+          "state": "Dadra and Nagar Haveli",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "25AAACV7454J1Z2",
+          "state": "Daman and Diu",
+          "status": "Cancelled",
+          "timeliness": null
+        },
+        {
+          "gstin": "06AAACV7454J1Z2",
+          "state": "Haryana",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "29AAACV7454J1ZU",
+          "state": "Karnataka",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "27AAACV7454J1ZY",
+          "state": "Maharashtra",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "27AAACV7454J4ZV",
+          "state": "Maharashtra",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "27AAACV7454J2ZX",
+          "state": "Maharashtra",
+          "status": "Cancelled",
+          "timeliness": null
+        },
+        {
+          "gstin": "27AAACV7454J3ZW",
+          "state": "Maharashtra",
+          "status": "Cancelled",
+          "timeliness": null
+        }
+      ],
+      "onTime": 5,
+      "total": 8
+    },
+    "allotments": [
+      {
+        "date": "2022-09-15",
+        "type": "Cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 830
+      },
+      {
+        "date": "2021-04-26",
+        "type": "Cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 460.3
+      },
+      {
+        "date": "2013-09-27",
+        "type": "Cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 50
+      },
+      {
+        "date": "2009-07-06",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 8.2
+      }
+    ],
+    "paymentBehaviour": {
+      "hasData": true,
+      "latestPeriod": "April 2025 to September 2025",
+      "latestDueLakh": 20.1,
+      "worstPeriod": "October 2024 to March 2025",
+      "worstLakh": 297.6,
+      "delayedSuppliers": [
+        "SKR SUPPLY CHAIN MANAGE MENT"
+      ],
+      "trend": [
+        {
+          "period": "October 2022 to March 2023",
+          "lakh": 129.2
+        },
+        {
+          "period": "April 2023 to September 2023",
+          "lakh": 293.4
+        },
+        {
+          "period": "October 2023 to March 2024",
+          "lakh": 9
+        },
+        {
+          "period": "April 2024 to September 2024",
+          "lakh": 221.4
+        },
+        {
+          "period": "October 2024 to March 2025",
+          "lakh": 297.6
+        },
+        {
+          "period": "April 2025 to September 2025",
+          "lakh": 20.1
+        }
+      ]
+    },
+    "levers": [
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Margins are widening",
+        "detail": "EBITDA margin climbed from 6.3% to 10.4% — profits are expanding, so they can absorb a better price for us."
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "They already stretch their suppliers",
+        "detail": "They take 89 days to pay vs a peer norm of 55 — asking them for longer terms is credible; they do it themselves."
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Almost no debt",
+        "detail": "Debt-to-equity just 0.1 — a clean balance sheet with no interest burden to pass on to us; there's room on price."
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Growing fast — wants to keep us",
+        "detail": "Revenue up from ₹2214.2 Cr to ₹2971.5 Cr — a growing supplier that will fight to keep our volume; use it."
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Pays its own small vendors late",
+        "detail": "Has delayed MSME dues (worst period October 2024 to March 2025: ₹297.6 L) — runs a tight cash desk, so expect them to hold firm on payment terms."
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Late on statutory filings",
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze."
+      },
+      {
+        "tone": "risk",
+        "strength": 3,
+        "title": "Serious legal cases pending",
+        "detail": "2 high-severity court cases (of 90 total) — a real continuity/reputation risk worth diligence."
+      }
+    ]
+  },
   "U24230MH1987PTC042262": {
     "cin": "U24230MH1987PTC042262",
     "legalName": "CHERYL LABORATORIES PVT LTD",
@@ -4143,6 +5586,1676 @@
         "strength": 1,
         "title": "Several court cases on record",
         "detail": "11 cases on file (0 filed against them) — mostly routine, but worth a glance."
+      }
+    ]
+  },
+  "U67120HR1987PLC138149": {
+    "cin": "U67120HR1987PLC138149",
+    "legalName": "ALTERNICQ LIMITED",
+    "description": "Alternicq Limited (AL), as per its credit ratings report, is engaged in the manufacturing and trading of PET (Polyethylene Terephthalate) jars and bottles, multi-layer containers, PET hot-fillable bottles, and pre-forms. The company’s products are used in the food, beverage, pharmaceutical, cosmetic, agricultural chemicals, and allied sectors. The company's PET preform manufacturing facility is located in Bidadi, Bangalore. The company caters to agrochemicals, beverages, food, home care, liquor and spirits, and personal care, among others. The company has its branches located in Amritsar, Badd",
+    "website": "https://www.manjushreeindia.com/",
+    "city": "Manesar",
+    "state": "Haryana",
+    "incorporation": "1987-11-13",
+    "classification": "Public Limited Indian Non-Government Company",
+    "status": "Unlisted",
+    "industry": "Packaging",
+    "segment": "Bottles and Caps",
+    "activities": [
+      {
+        "desc": "Manufacture of rubber and plastics products",
+        "pct": 100
+      }
+    ],
+    "paidUpCr": 19.7,
+    "authorizedCr": 25.1,
+    "lastAgm": "2025-07-25",
+    "lastFiling": "2025-03-31",
+    "lastUpdated": "2026-07-27",
+    "yearsCovered": 12,
+    "score": {
+      "overall": 4,
+      "growth": 5,
+      "profitability": 4,
+      "liquidity": 2,
+      "solvency": 3,
+      "efficiency": 4
+    },
+    "bands": {
+      "revenue": "More than 1000 cr.",
+      "profit": "More than 5 cr.",
+      "employees": "Between 1001 and 5000"
+    },
+    "flags": {
+      "gstDelay": false,
+      "epfDelay": true,
+      "bureauDefaults": false,
+      "pendingCases": true,
+      "severeCases": false,
+      "struckOff": false
+    },
+    "creditRating": "AAA",
+    "latest": {
+      "year": "FY25",
+      "revenue": 2569.8,
+      "materialCost": 1550.4,
+      "purchases": 31.9,
+      "employeeCost": 290,
+      "otherExpense": 389.7,
+      "ebitda": 397.2,
+      "otherIncome": 14.2,
+      "depreciation": 199.3,
+      "ebit": 212.1,
+      "interest": 122.3,
+      "pbt": 266.7,
+      "tax": 19.1,
+      "pat": 247.6,
+      "tangibleAssets": 1233.1,
+      "investments": 22.3,
+      "inventory": 533.5,
+      "receivables": 423.7,
+      "cash": 116.1,
+      "totalAssets": 3205.3,
+      "shareCapital": 17.3,
+      "reserves": 1393.7,
+      "equity": 1411.1,
+      "longTermDebt": 382.4,
+      "shortTermDebt": 608.6,
+      "debt": 990.9,
+      "payables": 407.7,
+      "operating": 343.6,
+      "investing": -737.9,
+      "financing": 483.2,
+      "revenueGrowth": 21.4,
+      "grossMargin": 41.9,
+      "ebitdaMargin": 15.5,
+      "netMargin": 9.6,
+      "roe": 17.6,
+      "roce": 8.8,
+      "debtRatio": 0.31,
+      "debtEquity": 0.7,
+      "interestCover": 1.7,
+      "currentRatio": 0.98,
+      "quickRatio": 0.55,
+      "inventoryDays": 76,
+      "debtorDays": 60,
+      "payableDays": 58,
+      "cashConversion": 78,
+      "salesByFixedAssets": 1.6
+    },
+    "fin": [
+      {
+        "fy": "FY14",
+        "yearFull": "2014-03-31",
+        "nature": "STANDALONE",
+        "revenue": 437.7,
+        "materialCost": 318.7,
+        "purchases": null,
+        "employeeCost": 21.3,
+        "otherExpense": 53.3,
+        "ebitda": 97.3,
+        "otherIncome": 6.7,
+        "depreciation": 43,
+        "ebit": 61,
+        "interest": 21.7,
+        "pbt": 39.3,
+        "tax": 12.9,
+        "pat": 26.4,
+        "bs": {
+          "tangibleAssets": 226.5,
+          "investments": 0,
+          "inventory": 109.9,
+          "receivables": 78.9,
+          "cash": 5.2,
+          "totalAssets": 503.5,
+          "shareCapital": 13.7,
+          "reserves": 134.2,
+          "equity": 147.9,
+          "longTermDebt": 134.6,
+          "shortTermDebt": 117.5,
+          "debt": 252.1,
+          "payables": 21.9
+        },
+        "cf": {
+          "operating": -4.5,
+          "investing": -19.9,
+          "financing": 24.3
+        },
+        "r": {
+          "revenueGrowth": 21.2,
+          "grossMargin": null,
+          "ebitdaMargin": 22.2,
+          "netMargin": 6,
+          "roe": 17.8,
+          "roce": 15.3,
+          "debtRatio": 0.5,
+          "debtEquity": 1.7,
+          "interestCover": 2.8,
+          "currentRatio": 1.18,
+          "quickRatio": 0.65,
+          "inventoryDays": 92,
+          "debtorDays": 66,
+          "payableDays": 18,
+          "cashConversion": 139,
+          "salesByFixedAssets": 1.9
+        }
+      },
+      {
+        "fy": "FY15",
+        "yearFull": "2015-03-31",
+        "nature": "STANDALONE",
+        "revenue": 524.6,
+        "materialCost": 291.1,
+        "purchases": null,
+        "employeeCost": 31.9,
+        "otherExpense": 57.3,
+        "ebitda": 113.1,
+        "otherIncome": 3.5,
+        "depreciation": 47.3,
+        "ebit": 69.4,
+        "interest": 19.9,
+        "pbt": 49.4,
+        "tax": 14.7,
+        "pat": 34.7,
+        "bs": {
+          "tangibleAssets": 211.6,
+          "investments": 0,
+          "inventory": 86.5,
+          "receivables": 86.9,
+          "cash": 4.6,
+          "totalAssets": 477.6,
+          "shareCapital": 13.7,
+          "reserves": 167.3,
+          "equity": 181,
+          "longTermDebt": 132,
+          "shortTermDebt": 65.4,
+          "debt": 197.4,
+          "payables": 9.7
+        },
+        "cf": {
+          "operating": 114.4,
+          "investing": -51.6,
+          "financing": -62.7
+        },
+        "r": {
+          "revenueGrowth": 19.9,
+          "grossMargin": null,
+          "ebitdaMargin": 21.6,
+          "netMargin": 6.6,
+          "roe": 19.2,
+          "roce": 18.3,
+          "debtRatio": 0.41,
+          "debtEquity": 1.09,
+          "interestCover": 3.5,
+          "currentRatio": 1.39,
+          "quickRatio": 0.83,
+          "inventoryDays": 60,
+          "debtorDays": 60,
+          "payableDays": 7,
+          "cashConversion": 114,
+          "salesByFixedAssets": 2.5
+        }
+      },
+      {
+        "fy": "FY16",
+        "yearFull": "2016-03-31",
+        "nature": "STANDALONE",
+        "revenue": 542.6,
+        "materialCost": 278.9,
+        "purchases": null,
+        "employeeCost": 24.7,
+        "otherExpense": 88.5,
+        "ebitda": 141.9,
+        "otherIncome": 5.8,
+        "depreciation": 45.4,
+        "ebit": 102.3,
+        "interest": 15.1,
+        "pbt": 87.2,
+        "tax": 29.4,
+        "pat": 57.7,
+        "bs": {
+          "tangibleAssets": 262.9,
+          "investments": 0,
+          "inventory": 84.3,
+          "receivables": 103.7,
+          "cash": 3.8,
+          "totalAssets": 489.2,
+          "shareCapital": 13.7,
+          "reserves": 221.7,
+          "equity": 235.5,
+          "longTermDebt": 120.8,
+          "shortTermDebt": 61.8,
+          "debt": 182.6,
+          "payables": 10.5
+        },
+        "cf": {
+          "operating": 111.8,
+          "investing": -60.1,
+          "financing": -51.6
+        },
+        "r": {
+          "revenueGrowth": 3.4,
+          "grossMargin": null,
+          "ebitdaMargin": 26.1,
+          "netMargin": 10.6,
+          "roe": 24.5,
+          "roce": 24.5,
+          "debtRatio": 0.37,
+          "debtEquity": 0.78,
+          "interestCover": 6.8,
+          "currentRatio": 1.73,
+          "quickRatio": 1.04,
+          "inventoryDays": 57,
+          "debtorDays": 70,
+          "payableDays": 7,
+          "cashConversion": 119,
+          "salesByFixedAssets": 2.1
+        }
+      },
+      {
+        "fy": "FY17",
+        "yearFull": "2017-03-31",
+        "nature": "STANDALONE",
+        "revenue": 746.9,
+        "materialCost": 351.5,
+        "purchases": 0,
+        "employeeCost": 35.9,
+        "otherExpense": 214,
+        "ebitda": 178,
+        "otherIncome": 3.5,
+        "depreciation": 78.5,
+        "ebit": 103,
+        "interest": 24.8,
+        "pbt": 78.2,
+        "tax": 20,
+        "pat": 58.2,
+        "bs": {
+          "tangibleAssets": 411.8,
+          "investments": 0,
+          "inventory": 141.8,
+          "receivables": 171.7,
+          "cash": 10.1,
+          "totalAssets": 878.6,
+          "shareCapital": 13.7,
+          "reserves": 280.4,
+          "equity": 294.2,
+          "longTermDebt": 259.8,
+          "shortTermDebt": 152.9,
+          "debt": 412.7,
+          "payables": 28.1
+        },
+        "cf": {
+          "operating": 83.1,
+          "investing": -320.4,
+          "financing": 239
+        },
+        "r": {
+          "revenueGrowth": 37.7,
+          "grossMargin": 57.3,
+          "ebitdaMargin": 23.8,
+          "netMargin": 7.8,
+          "roe": 19.8,
+          "roce": 14.6,
+          "debtRatio": 0.47,
+          "debtEquity": 1.4,
+          "interestCover": 4.2,
+          "currentRatio": 1.2,
+          "quickRatio": 0.73,
+          "inventoryDays": 69,
+          "debtorDays": 84,
+          "payableDays": 14,
+          "cashConversion": 139,
+          "salesByFixedAssets": 1.5
+        }
+      },
+      {
+        "fy": "FY18",
+        "yearFull": "2018-03-31",
+        "nature": "STANDALONE",
+        "revenue": 938.1,
+        "materialCost": 498.6,
+        "purchases": null,
+        "employeeCost": 52.9,
+        "otherExpense": 202.4,
+        "ebitda": 196.7,
+        "otherIncome": 1.8,
+        "depreciation": 103.8,
+        "ebit": 94.7,
+        "interest": 42,
+        "pbt": 52.7,
+        "tax": 16,
+        "pat": 36.8,
+        "bs": {
+          "tangibleAssets": 389.1,
+          "investments": 0,
+          "inventory": 184.8,
+          "receivables": 204.4,
+          "cash": 6.8,
+          "totalAssets": 909.3,
+          "shareCapital": 13.7,
+          "reserves": 317.5,
+          "equity": 331.2,
+          "longTermDebt": 255,
+          "shortTermDebt": 131.7,
+          "debt": 386.7,
+          "payables": 59.7
+        },
+        "cf": {
+          "operating": 105,
+          "investing": -65.5,
+          "financing": -41.1
+        },
+        "r": {
+          "revenueGrowth": 25.6,
+          "grossMargin": null,
+          "ebitdaMargin": 21,
+          "netMargin": 3.9,
+          "roe": 11.1,
+          "roce": 13.2,
+          "debtRatio": 0.43,
+          "debtEquity": 1.17,
+          "interestCover": 2.3,
+          "currentRatio": 1.34,
+          "quickRatio": 0.76,
+          "inventoryDays": 72,
+          "debtorDays": 80,
+          "payableDays": 23,
+          "cashConversion": 128,
+          "salesByFixedAssets": 2.1
+        }
+      },
+      {
+        "fy": "FY19",
+        "yearFull": "2019-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1148.9,
+        "materialCost": 669.8,
+        "purchases": null,
+        "employeeCost": 60.4,
+        "otherExpense": 196.3,
+        "ebitda": 211.4,
+        "otherIncome": 5.3,
+        "depreciation": 97.9,
+        "ebit": 118.7,
+        "interest": 41.2,
+        "pbt": 76.9,
+        "tax": 27,
+        "pat": 49.9,
+        "bs": {
+          "tangibleAssets": 386.1,
+          "investments": 0,
+          "inventory": 213.2,
+          "receivables": 240.8,
+          "cash": 7.1,
+          "totalAssets": 992.3,
+          "shareCapital": 13.7,
+          "reserves": 353.5,
+          "equity": 367.2,
+          "longTermDebt": 182.2,
+          "shortTermDebt": 211.7,
+          "debt": 393.9,
+          "payables": 86.5
+        },
+        "cf": {
+          "operating": 123.6,
+          "investing": -79.5,
+          "financing": -44
+        },
+        "r": {
+          "revenueGrowth": 22.5,
+          "grossMargin": null,
+          "ebitdaMargin": 18.4,
+          "netMargin": 4.3,
+          "roe": 13.6,
+          "roce": 15.6,
+          "debtRatio": 0.4,
+          "debtEquity": 1.07,
+          "interestCover": 2.9,
+          "currentRatio": 1.18,
+          "quickRatio": 0.69,
+          "inventoryDays": 68,
+          "debtorDays": 77,
+          "payableDays": 27,
+          "cashConversion": 117,
+          "salesByFixedAssets": 2.7
+        }
+      },
+      {
+        "fy": "FY20",
+        "yearFull": "2020-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1081.1,
+        "materialCost": 631.5,
+        "purchases": 7.6,
+        "employeeCost": 83.5,
+        "otherExpense": 198,
+        "ebitda": 189.9,
+        "otherIncome": 16.5,
+        "depreciation": 65.4,
+        "ebit": 141,
+        "interest": 42.4,
+        "pbt": 98.6,
+        "tax": 28.5,
+        "pat": 70.1,
+        "bs": {
+          "tangibleAssets": 413.9,
+          "investments": 0,
+          "inventory": 228.3,
+          "receivables": 187.2,
+          "cash": 13.3,
+          "totalAssets": 1199.9,
+          "shareCapital": 13.7,
+          "reserves": 445.1,
+          "equity": 458.8,
+          "longTermDebt": 187.6,
+          "shortTermDebt": 250.1,
+          "debt": 437.7,
+          "payables": 98.6
+        },
+        "cf": {
+          "operating": 186.2,
+          "investing": -150.9,
+          "financing": -35.3
+        },
+        "r": {
+          "revenueGrowth": -5.9,
+          "grossMargin": 43.6,
+          "ebitdaMargin": 17.6,
+          "netMargin": 6.5,
+          "roe": 15.3,
+          "roce": 15.7,
+          "debtRatio": 0.36,
+          "debtEquity": 0.95,
+          "interestCover": 3.3,
+          "currentRatio": 1.08,
+          "quickRatio": 0.6,
+          "inventoryDays": 77,
+          "debtorDays": 63,
+          "payableDays": 33,
+          "cashConversion": 107,
+          "salesByFixedAssets": 1.8
+        }
+      },
+      {
+        "fy": "FY21",
+        "yearFull": "2021-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1033.8,
+        "materialCost": 519.2,
+        "purchases": 6.1,
+        "employeeCost": 93.4,
+        "otherExpense": 185,
+        "ebitda": 206.4,
+        "otherIncome": 7,
+        "depreciation": 75.5,
+        "ebit": 137.9,
+        "interest": 40,
+        "pbt": 121.9,
+        "tax": 21.5,
+        "pat": 100.4,
+        "bs": {
+          "tangibleAssets": 488.2,
+          "investments": 2.5,
+          "inventory": 239.3,
+          "receivables": 195.4,
+          "cash": 0.4,
+          "totalAssets": 1258,
+          "shareCapital": 13.7,
+          "reserves": 549.2,
+          "equity": 562.9,
+          "longTermDebt": 190.4,
+          "shortTermDebt": 291.3,
+          "debt": 481.7,
+          "payables": 111.5
+        },
+        "cf": {
+          "operating": 243.6,
+          "investing": -118.7,
+          "financing": -125.2
+        },
+        "r": {
+          "revenueGrowth": -4.4,
+          "grossMargin": 46.9,
+          "ebitdaMargin": 20,
+          "netMargin": 9.7,
+          "roe": 17.8,
+          "roce": 13.2,
+          "debtRatio": 0.38,
+          "debtEquity": 0.86,
+          "interestCover": 3.5,
+          "currentRatio": 0.98,
+          "quickRatio": 0.48,
+          "inventoryDays": 84,
+          "debtorDays": 69,
+          "payableDays": 39,
+          "cashConversion": 114,
+          "salesByFixedAssets": 1.7
+        }
+      },
+      {
+        "fy": "FY22",
+        "yearFull": "2022-03-31",
+        "nature": "STANDALONE",
+        "revenue": 1406.2,
+        "materialCost": 877,
+        "purchases": 7.3,
+        "employeeCost": 102,
+        "otherExpense": 234,
+        "ebitda": 233.6,
+        "otherIncome": 6,
+        "depreciation": 77.7,
+        "ebit": 161.9,
+        "interest": 45.7,
+        "pbt": 110.7,
+        "tax": 30.9,
+        "pat": 79.8,
+        "bs": {
+          "tangibleAssets": 705.8,
+          "investments": 12.1,
+          "inventory": 336.5,
+          "receivables": 236.6,
+          "cash": 53.2,
+          "totalAssets": 1998.2,
+          "shareCapital": 13.7,
+          "reserves": 908.2,
+          "equity": 921.9,
+          "longTermDebt": 339.2,
+          "shortTermDebt": 334.9,
+          "debt": 674.1,
+          "payables": 238.2
+        },
+        "cf": {
+          "operating": 274.7,
+          "investing": -598.2,
+          "financing": 323.6
+        },
+        "r": {
+          "revenueGrowth": 36,
+          "grossMargin": 40.5,
+          "ebitdaMargin": 16.6,
+          "netMargin": 5.7,
+          "roe": 8.7,
+          "roce": 10.2,
+          "debtRatio": 0.34,
+          "debtEquity": 0.73,
+          "interestCover": 3.5,
+          "currentRatio": 1.05,
+          "quickRatio": 0.55,
+          "inventoryDays": 87,
+          "debtorDays": 61,
+          "payableDays": 62,
+          "cashConversion": 87,
+          "salesByFixedAssets": 1.3
+        }
+      },
+      {
+        "fy": "FY23",
+        "yearFull": "2023-03-31",
+        "nature": "STANDALONE",
+        "revenue": 2096.3,
+        "materialCost": 1361.3,
+        "purchases": 8.9,
+        "employeeCost": 136.5,
+        "otherExpense": 335,
+        "ebitda": 293.5,
+        "otherIncome": 12.2,
+        "depreciation": 132.8,
+        "ebit": 172.9,
+        "interest": 78.5,
+        "pbt": 91.1,
+        "tax": 31.9,
+        "pat": 59.2,
+        "bs": {
+          "tangibleAssets": 764.4,
+          "investments": 16,
+          "inventory": 352.3,
+          "receivables": 309.7,
+          "cash": 79.4,
+          "totalAssets": 2300.2,
+          "shareCapital": 13.7,
+          "reserves": 937.3,
+          "equity": 951,
+          "longTermDebt": 433.9,
+          "shortTermDebt": 371.3,
+          "debt": 805.2,
+          "payables": 270.5
+        },
+        "cf": {
+          "operating": 322.6,
+          "investing": -315.5,
+          "financing": 21.7
+        },
+        "r": {
+          "revenueGrowth": 49.1,
+          "grossMargin": 36.5,
+          "ebitdaMargin": 14,
+          "netMargin": 2.8,
+          "roe": 6.2,
+          "roce": 9.8,
+          "debtRatio": 0.35,
+          "debtEquity": 0.85,
+          "interestCover": 2.2,
+          "currentRatio": 1.11,
+          "quickRatio": 0.63,
+          "inventoryDays": 61,
+          "debtorDays": 54,
+          "payableDays": 47,
+          "cashConversion": 68,
+          "salesByFixedAssets": 1.8
+        }
+      },
+      {
+        "fy": "FY24",
+        "yearFull": "2024-03-31",
+        "nature": "STANDALONE",
+        "revenue": 2117,
+        "materialCost": 1255.3,
+        "purchases": 3.9,
+        "employeeCost": 138.5,
+        "otherExpense": 368.4,
+        "ebitda": 373.3,
+        "otherIncome": 13.3,
+        "depreciation": 154.9,
+        "ebit": 231.8,
+        "interest": 91.5,
+        "pbt": 160.9,
+        "tax": 20.1,
+        "pat": 140.8,
+        "bs": {
+          "tangibleAssets": 780.7,
+          "investments": 19.7,
+          "inventory": 353.6,
+          "receivables": 301.1,
+          "cash": 25.2,
+          "totalAssets": 2284.3,
+          "shareCapital": 13.7,
+          "reserves": 994.4,
+          "equity": 1008.1,
+          "longTermDebt": 384.4,
+          "shortTermDebt": 369.2,
+          "debt": 753.7,
+          "payables": 276.2
+        },
+        "cf": {
+          "operating": 352.4,
+          "investing": -149.3,
+          "financing": -257.1
+        },
+        "r": {
+          "revenueGrowth": 1,
+          "grossMargin": 41.6,
+          "ebitdaMargin": 17.6,
+          "netMargin": 6.7,
+          "roe": 14,
+          "roce": 13.2,
+          "debtRatio": 0.33,
+          "debtEquity": 0.75,
+          "interestCover": 2.5,
+          "currentRatio": 1.06,
+          "quickRatio": 0.56,
+          "inventoryDays": 61,
+          "debtorDays": 52,
+          "payableDays": 48,
+          "cashConversion": 65,
+          "salesByFixedAssets": 1.9
+        }
+      },
+      {
+        "fy": "FY25",
+        "yearFull": "2025-03-31",
+        "nature": "STANDALONE",
+        "revenue": 2569.8,
+        "materialCost": 1550.4,
+        "purchases": 31.9,
+        "employeeCost": 290,
+        "otherExpense": 389.7,
+        "ebitda": 397.2,
+        "otherIncome": 14.2,
+        "depreciation": 199.3,
+        "ebit": 212.1,
+        "interest": 122.3,
+        "pbt": 266.7,
+        "tax": 19.1,
+        "pat": 247.6,
+        "bs": {
+          "tangibleAssets": 1233.1,
+          "investments": 22.3,
+          "inventory": 533.5,
+          "receivables": 423.7,
+          "cash": 116.1,
+          "totalAssets": 3205.3,
+          "shareCapital": 17.3,
+          "reserves": 1393.7,
+          "equity": 1411.1,
+          "longTermDebt": 382.4,
+          "shortTermDebt": 608.6,
+          "debt": 990.9,
+          "payables": 407.7
+        },
+        "cf": {
+          "operating": 343.6,
+          "investing": -737.9,
+          "financing": 483.2
+        },
+        "r": {
+          "revenueGrowth": 21.4,
+          "grossMargin": 41.9,
+          "ebitdaMargin": 15.5,
+          "netMargin": 9.6,
+          "roe": 17.6,
+          "roce": 8.8,
+          "debtRatio": 0.31,
+          "debtEquity": 0.7,
+          "interestCover": 1.7,
+          "currentRatio": 0.98,
+          "quickRatio": 0.55,
+          "inventoryDays": 76,
+          "debtorDays": 60,
+          "payableDays": 58,
+          "cashConversion": 78,
+          "salesByFixedAssets": 1.6
+        }
+      }
+    ],
+    "employees": {
+      "latest": 718,
+      "yearly": [],
+      "monthly": [
+        {
+          "month": "JUN-24",
+          "count": 663,
+          "onTime": true
+        },
+        {
+          "month": "JUL-24",
+          "count": 704,
+          "onTime": true
+        },
+        {
+          "month": "AUG-24",
+          "count": 706,
+          "onTime": true
+        },
+        {
+          "month": "SEP-24",
+          "count": 709,
+          "onTime": true
+        },
+        {
+          "month": "OCT-24",
+          "count": 703,
+          "onTime": true
+        },
+        {
+          "month": "NOV-24",
+          "count": 717,
+          "onTime": true
+        },
+        {
+          "month": "DEC-24",
+          "count": 717,
+          "onTime": true
+        },
+        {
+          "month": "JAN-25",
+          "count": 729,
+          "onTime": true
+        },
+        {
+          "month": "FEB-25",
+          "count": 716,
+          "onTime": true
+        },
+        {
+          "month": "MAR-25",
+          "count": 716,
+          "onTime": true
+        },
+        {
+          "month": "APR-25",
+          "count": 712,
+          "onTime": true
+        },
+        {
+          "month": "MAY-25",
+          "count": 724,
+          "onTime": true
+        },
+        {
+          "month": "JUN-25",
+          "count": 729,
+          "onTime": false
+        },
+        {
+          "month": "JUL-25",
+          "count": 715,
+          "onTime": true
+        },
+        {
+          "month": "AUG-25",
+          "count": 719,
+          "onTime": true
+        },
+        {
+          "month": "SEP-25",
+          "count": 707,
+          "onTime": false
+        },
+        {
+          "month": "OCT-25",
+          "count": 709,
+          "onTime": true
+        },
+        {
+          "month": "NOV-25",
+          "count": 704,
+          "onTime": true
+        },
+        {
+          "month": "DEC-25",
+          "count": 702,
+          "onTime": true
+        },
+        {
+          "month": "JAN-26",
+          "count": 701,
+          "onTime": true
+        },
+        {
+          "month": "FEB-26",
+          "count": 703,
+          "onTime": true
+        },
+        {
+          "month": "MAR-26",
+          "count": 701,
+          "onTime": true
+        },
+        {
+          "month": "APR-26",
+          "count": 702,
+          "onTime": true
+        },
+        {
+          "month": "MAY-26",
+          "count": 718,
+          "onTime": true
+        }
+      ]
+    },
+    "peers": {
+      "industry": "Packaging",
+      "segment": "Bottles and Caps",
+      "sampleSize": 30,
+      "named": [
+        {
+          "name": "ALTERNICQ",
+          "revenueCr": 2569.8,
+          "city": "Manesar",
+          "isSelf": true
+        },
+        {
+          "name": "AGI GREENPAC",
+          "revenueCr": 2528.8,
+          "city": "KOLKATA"
+        },
+        {
+          "name": "TECHNOCRAFT INDUSTRIES (INDIA)",
+          "revenueCr": 2091.2,
+          "city": "MUMBAI"
+        },
+        {
+          "name": "BALL BEVERAGE PACKAGING (INDIA)",
+          "revenueCr": 1381,
+          "city": "BENGALURU"
+        },
+        {
+          "name": "EPL",
+          "revenueCr": 1323,
+          "city": "THANE"
+        }
+      ],
+      "benchmarks": [
+        {
+          "year": "2025",
+          "peers": 30,
+          "self": {
+            "revenueGrowth": 21.39,
+            "ebitdaMargin": 15.46,
+            "netMargin": 9.64,
+            "roce": 8.83,
+            "roe": 17.55,
+            "debtorDays": 60.19,
+            "payableDays": 57.91,
+            "cashConversion": 78.05,
+            "debtEquity": 0.7,
+            "currentRatio": 0.98,
+            "grossMargin": 41.91
+          },
+          "median": {
+            "revenueGrowth": 14.12,
+            "ebitdaMargin": 14.66,
+            "netMargin": 5.79,
+            "roce": 16.77,
+            "roe": 17.31,
+            "debtorDays": 67.86,
+            "payableDays": 39.67,
+            "cashConversion": 80.07,
+            "debtEquity": 0.53,
+            "currentRatio": 1.3,
+            "grossMargin": 40.11
+          }
+        },
+        {
+          "year": "2024",
+          "peers": 30,
+          "self": {
+            "revenueGrowth": 0.99,
+            "ebitdaMargin": 17.63,
+            "netMargin": 6.65,
+            "roce": 13.15,
+            "roe": 13.97,
+            "debtorDays": 51.91,
+            "payableDays": 47.62,
+            "cashConversion": 65.25,
+            "debtEquity": 0.75,
+            "currentRatio": 1.06,
+            "grossMargin": 41.58
+          },
+          "median": {
+            "revenueGrowth": 3.18,
+            "ebitdaMargin": 13.98,
+            "netMargin": 6.15,
+            "roce": 16.78,
+            "roe": 15.32,
+            "debtorDays": 66.16,
+            "payableDays": 35.51,
+            "cashConversion": 77.44,
+            "debtEquity": 0.57,
+            "currentRatio": 1.47,
+            "grossMargin": 41.45
+          }
+        },
+        {
+          "year": "2023",
+          "peers": 30,
+          "self": {
+            "revenueGrowth": 49.07,
+            "ebitdaMargin": 14,
+            "netMargin": 2.83,
+            "roce": 9.84,
+            "roe": 6.23,
+            "debtorDays": 53.93,
+            "payableDays": 47.09,
+            "cashConversion": 68.18,
+            "debtEquity": 0.85,
+            "currentRatio": 1.11,
+            "grossMargin": 36.5
+          },
+          "median": {
+            "revenueGrowth": 35.53,
+            "ebitdaMargin": 12.84,
+            "netMargin": 5.28,
+            "roce": 14.93,
+            "roe": 16.13,
+            "debtorDays": 59.71,
+            "payableDays": 30.53,
+            "cashConversion": 65.84,
+            "debtEquity": 0.65,
+            "currentRatio": 1.55,
+            "grossMargin": 36.92
+          }
+        },
+        {
+          "year": "2022",
+          "peers": 30,
+          "self": {
+            "revenueGrowth": 36.03,
+            "ebitdaMargin": 16.61,
+            "netMargin": 5.68,
+            "roce": 10.15,
+            "roe": 8.66,
+            "debtorDays": 61.4,
+            "payableDays": 61.83,
+            "cashConversion": 86.92,
+            "debtEquity": 0.73,
+            "currentRatio": 1.05,
+            "grossMargin": 40.51
+          },
+          "median": {
+            "revenueGrowth": 36.03,
+            "ebitdaMargin": 14.38,
+            "netMargin": 5.43,
+            "roce": 11.56,
+            "roe": 14.94,
+            "debtorDays": 71.01,
+            "payableDays": 34.46,
+            "cashConversion": 85.7,
+            "debtEquity": 0.55,
+            "currentRatio": 1.72,
+            "grossMargin": 35.74
+          }
+        }
+      ]
+    },
+    "vsMedian": {
+      "self": {
+        "revenueGrowth": 21.39,
+        "ebitdaMargin": 15.46,
+        "netMargin": 9.64,
+        "roce": 8.83,
+        "roe": 17.55,
+        "debtorDays": 60.19,
+        "payableDays": 57.91,
+        "cashConversion": 78.05,
+        "debtEquity": 0.7,
+        "currentRatio": 0.98,
+        "grossMargin": 41.91
+      },
+      "median": {
+        "revenueGrowth": 14.12,
+        "ebitdaMargin": 14.66,
+        "netMargin": 5.79,
+        "roce": 16.77,
+        "roe": 17.31,
+        "debtorDays": 67.86,
+        "payableDays": 39.67,
+        "cashConversion": 80.07,
+        "debtEquity": 0.53,
+        "currentRatio": 1.3,
+        "grossMargin": 40.11
+      }
+    },
+    "ownership": {
+      "promoterPct": null,
+      "publicPct": 1839
+    },
+    "shareholders": [
+      {
+        "name": "AI LENARCO MIDCO",
+        "pct": 97.8,
+        "type": "Other"
+      }
+    ],
+    "directors": [
+      {
+        "name": "THIMMAIAH NAPANDA POOVAIAH",
+        "designation": "Managing Director",
+        "since": "2022",
+        "age": 57,
+        "otherCount": 6,
+        "others": [
+          "MERITOR HVS (INDIA)",
+          "GARRETT MOTION TECHNOLOGIES (INDIA)",
+          "AXLETECH INDIA",
+          "HONEYWELL TURBO (INDIA)",
+          "MTL NEW INITIATIVES",
+          "ALTERNICQ"
+        ]
+      },
+      {
+        "name": "ANISHA MOTWANI",
+        "designation": "Director",
+        "since": "2025",
+        "age": 63,
+        "otherCount": 23,
+        "others": [
+          "WELSPUN LIVING",
+          "PNB METLIFE INDIA INSURANCE COMPANY",
+          "THE INDIAN SOCIETY OF ADVERTISERS",
+          "HSBC CONSULTANCY SERVICES (INDIA)",
+          "QUINTESSENTIALLY LIFESTYLE SERVICES (INDIA)",
+          "NUVAMA WEALTH FINANCE"
+        ]
+      },
+      {
+        "name": "KAMLESH SHIVJI VIKAMSEY",
+        "designation": "Director",
+        "since": "2025",
+        "age": 66,
+        "otherCount": 33,
+        "others": [
+          "VARASH PROPERTIES",
+          "PALACE SOLAR ENERGY",
+          "NEPTUNE DEVELOPERS",
+          "AXIS MUTUAL FUND TRUSTEE",
+          "APCOTEX INDUSTRIES",
+          "CENTURION BANK OF PUNJAB"
+        ]
+      },
+      {
+        "name": "SUMIT MOHAN NADGIR",
+        "designation": "Director",
+        "since": "2025",
+        "age": 48,
+        "otherCount": 10,
+        "others": [
+          "KIMS AL SHIFA HEALTHCARE",
+          "HICARE SERVICES",
+          "FOOD SERVICE (INDIA)",
+          "KIDS CLINIC INDIA",
+          "OPTIMUS LIFE SCIENCE",
+          "OPTIMUS DRUGS"
+        ]
+      },
+      {
+        "name": "ASWIN VIKRAM",
+        "designation": "Director",
+        "since": "2025",
+        "age": 40,
+        "otherCount": 9,
+        "others": [
+          "ACME FORMULATION",
+          "NOVAAIR",
+          "PAGAC ADVISORS INDIA",
+          "NOVAAIR TECHNOLOGIES",
+          "SEKHMET PHARMAVENTURES",
+          "NUVAMA WEALTH MANAGEMENT"
+        ]
+      },
+      {
+        "name": "NIKHIL KUMAR SRIVASTAVA",
+        "designation": "Director",
+        "since": "2025",
+        "age": 48,
+        "otherCount": 17,
+        "others": [
+          "ACME FORMULATION",
+          "ANJAN DRUG",
+          "JBF INDUSTRIES",
+          "RADIANT LIFE CARE",
+          "NUVAMA WEALTH FINANCE",
+          "RADIANT LIFE CARE"
+        ]
+      },
+      {
+        "name": "SAMEER AMBARISH KAJI",
+        "designation": "Director",
+        "since": "2025",
+        "age": 66,
+        "otherCount": 11,
+        "others": [
+          "SUTLEJ TEXTILES AND INDUSTRIES",
+          "ECL FINANCE",
+          "RAS EXTRUSTIONS",
+          "NUVAMA CUSTODIAL SERVICES",
+          "TRADE PE TECH",
+          "EDELWEISS ASSET RECONSTRUCTION COMPANY"
+        ]
+      },
+      {
+        "name": "THIMMAIAH NAPANDA POOVAIAH",
+        "designation": "CEO",
+        "since": null,
+        "age": 0,
+        "otherCount": 6,
+        "others": [
+          "MERITOR HVS (INDIA)",
+          "GARRETT MOTION TECHNOLOGIES (INDIA)",
+          "AXLETECH INDIA",
+          "HONEYWELL TURBO (INDIA)",
+          "MTL NEW INITIATIVES",
+          "ALTERNICQ"
+        ]
+      },
+      {
+        "name": "PEEYUSH GUPTA",
+        "designation": "CFO",
+        "since": null,
+        "age": 44,
+        "otherCount": 0,
+        "others": []
+      },
+      {
+        "name": "HIMANSHU NAVINCHANDRA PARMAR",
+        "designation": "Company Secretary",
+        "since": null,
+        "age": 40,
+        "otherCount": 0,
+        "others": []
+      }
+    ],
+    "charges": {
+      "count": 5,
+      "sumCr": 1496.3,
+      "list": [
+        {
+          "holder": "SBICAP TRUSTEE COMPANY LIMITED",
+          "amountCr": 856.3,
+          "date": "2025-03-07",
+          "type": "Modification"
+        },
+        {
+          "holder": "ICICI BANK LIMITED",
+          "amountCr": 325,
+          "date": "2026-05-05",
+          "type": "Creation"
+        },
+        {
+          "holder": "BAJAJ FINANCE LIMITED",
+          "amountCr": 150,
+          "date": "2025-08-26",
+          "type": "Creation"
+        },
+        {
+          "holder": "KOTAK MAHINDRA BANK LIMITED",
+          "amountCr": 125,
+          "date": "2026-02-12",
+          "type": "Creation"
+        },
+        {
+          "holder": "DBS BANK INDIA LIMITED",
+          "amountCr": 40,
+          "date": "2026-04-15",
+          "type": "Creation"
+        }
+      ]
+    },
+    "legal": {
+      "count": 101,
+      "high": 13,
+      "medium": 63,
+      "against": 11,
+      "list": [
+        {
+          "court": "National Company Law Tribunal",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "TRIMURTI FOODTECH"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2023-10-20",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "AJE INDIA"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2019-09-16",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "Trimurti Food Tech"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2019-10-16",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "Trimurti Food Tech"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2024-08-05",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "HANSRAJ AGROFRESHLTD"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "TRIMURTI FOODTECH"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2025-10-15",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "HANSRAJ AGROFRESH"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2020-11-25",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "Trimurti Food Tech"
+        }
+      ]
+    },
+    "group": {
+      "holding": [],
+      "subsidiaries": [],
+      "associates": [],
+      "jointVentures": []
+    },
+    "relatedParty": {
+      "year": "2025-03-31",
+      "count": 0,
+      "totalCr": 0,
+      "top": []
+    },
+    "gst": {
+      "list": [
+        {
+          "gstin": "37AAACM9418K1Z4",
+          "state": "Andhra Pradesh",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "18AAACM9418K1Z4",
+          "state": "Assam",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "22AAACM9418K1ZF",
+          "state": "Chhattisgarh",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "26AAACM9418K1Z7",
+          "state": "Dadra and Nagar Haveli",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "07AAACM9418K1Z7",
+          "state": "Delhi",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "07AAACM9418K2Z6",
+          "state": "Delhi",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "30AAACM9418K1ZI",
+          "state": "Goa",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "06AAACM9418K2Z8",
+          "state": "Haryana",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "06AAACM9418K1Z9",
+          "state": "Haryana",
+          "status": "Cancelled",
+          "timeliness": null
+        },
+        {
+          "gstin": "02AAACM9418K1ZH",
+          "state": "Himachal Pradesh",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "29AAACM9418K3ZZ",
+          "state": "Karnataka",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "29AAACM9418K1Z1",
+          "state": "Karnataka",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "29AAACM9418K2Z0",
+          "state": "Karnataka",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "27AAACM9418K2Z4",
+          "state": "Maharashtra",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "27AAACM9418K1Z5",
+          "state": "Maharashtra",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "21AAACM9418K1ZH",
+          "state": "Odisha",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "03AAACM9418K1ZF",
+          "state": "Punjab",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "36AAACM9418K1Z6",
+          "state": "Telangana",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "09AAACM9418K1Z3",
+          "state": "Uttar Pradesh",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "05AAACM9418K1ZB",
+          "state": "Uttarakhand",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        },
+        {
+          "gstin": "19AAACM9418K1Z2",
+          "state": "West Bengal",
+          "status": "Active",
+          "timeliness": "Filed on Time"
+        }
+      ],
+      "onTime": 20,
+      "total": 21
+    },
+    "allotments": [
+      {
+        "date": "2026-02-23",
+        "type": "Cash",
+        "instrument": "Preference Share",
+        "amountCr": 250
+      },
+      {
+        "date": "2025-09-30",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 529.1
+      },
+      {
+        "date": "2025-03-28",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 35.2
+      },
+      {
+        "date": "2025-03-28",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 262
+      },
+      {
+        "date": "2025-03-28",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 25
+      },
+      {
+        "date": "2025-03-28",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 265
+      },
+      {
+        "date": "2025-03-28",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 265
+      },
+      {
+        "date": "2025-03-28",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 262
+      },
+      {
+        "date": "2025-03-28",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 25
+      },
+      {
+        "date": "2025-03-28",
+        "type": "Other than cash",
+        "instrument": "Equity Shares Without Differential Rights",
+        "amountCr": 35.2
+      },
+      {
+        "date": "2024-07-24",
+        "type": "Cash",
+        "instrument": "Debentures",
+        "amountCr": 2.1
+      },
+      {
+        "date": "2024-07-15",
+        "type": "Cash",
+        "instrument": "Debentures",
+        "amountCr": 527
+      },
+      {
+        "date": "2022-01-18",
+        "type": "Cash",
+        "instrument": "Debentures",
+        "amountCr": 262
+      },
+      {
+        "date": "2022-01-07",
+        "type": "Cash",
+        "instrument": "Debentures",
+        "amountCr": 265
+      },
+      {
+        "date": "2021-04-12",
+        "type": "Cash",
+        "instrument": "Debentures",
+        "amountCr": 25
+      },
+      {
+        "date": "2019-12-18",
+        "type": "Cash",
+        "instrument": "Debentures",
+        "amountCr": 35.2
+      }
+    ],
+    "paymentBehaviour": {
+      "hasData": true,
+      "latestPeriod": "October 2025 to March 2026",
+      "latestDueLakh": 570.7,
+      "worstPeriod": "October 2025 to March 2026",
+      "worstLakh": 570.7,
+      "delayedSuppliers": [
+        "CHAITAN YA PACKAGI NGS",
+        "DONALD SON INDIA FILTER SYSTEMS",
+        "Edward Food Reserch & Analysis Centre",
+        "EUREKA INDUSTR IAL EQUIPM ENTS"
+      ],
+      "trend": [
+        {
+          "period": "October 2023 to March 2024",
+          "lakh": 146.7
+        },
+        {
+          "period": "April 2024 to September 2024",
+          "lakh": 341.3
+        },
+        {
+          "period": "October 2024 to March 2025",
+          "lakh": 279.1
+        },
+        {
+          "period": "April 2025 to September 2025",
+          "lakh": 343.1
+        },
+        {
+          "period": "October 2025 to March 2026",
+          "lakh": 570.7
+        }
+      ]
+    },
+    "levers": [
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Margins are widening",
+        "detail": "EBITDA margin climbed from 14% to 15.5% — profits are expanding, so they can absorb a better price for us."
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Collects its cash quickly",
+        "detail": "Gets paid in 60 days (peers 67.86) — healthy cash position, so we can push to extend our own payment terms."
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "They already stretch their suppliers",
+        "detail": "They take 58 days to pay vs a peer norm of 39.67 — asking them for longer terms is credible; they do it themselves."
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Strong cash generation",
+        "detail": "Generated ₹343.6 Cr of operating cash — comfortably cash-positive, so they don't need to claw margin from us."
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Pays its own small vendors late",
+        "detail": "Has delayed MSME dues (worst period October 2025 to March 2026: ₹570.7 L) — runs a tight cash desk, so expect them to hold firm on payment terms."
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Late on statutory filings",
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze."
+      },
+      {
+        "tone": "risk",
+        "strength": 3,
+        "title": "Serious legal cases pending",
+        "detail": "13 high-severity court cases (of 101 total) — a real continuity/reputation risk worth diligence."
+      },
+      {
+        "tone": "risk",
+        "strength": 2,
+        "title": "Struggles to cover its interest",
+        "detail": "Interest cover only 1.7x — profits barely clear the interest bill; a cash-strained supplier."
       }
     ]
   },
