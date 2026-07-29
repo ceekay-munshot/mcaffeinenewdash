@@ -12,16 +12,30 @@
   "signals": []
  },
  "ananya": {
-  "found": false,
-  "summary": "No significant recent news found.",
+  "found": true,
+  "summary": "Herbal / personal-care manufacturer offering formulation + in-house packaging.",
   "news": [],
-  "signals": []
+  "signals": [
+   {
+    "type": "Market position",
+    "oneLine": "Herbal & personal-care contract maker with in-house packaging. Low public-news profile — the read is in the financials (8 years on file).",
+    "source": "Ananya Herbal",
+    "url": "https://www.ananyaherbal.com/"
+   }
+  ]
  },
  "anuspa": {
-  "found": false,
-  "summary": "No significant recent news found.",
+  "found": true,
+  "summary": "Private-label / contract soap & personal-care maker (Himachal + Mumbai) with a blue-chip client roster.",
   "news": [],
-  "signals": []
+  "signals": [
+   {
+    "type": "Market position",
+    "oneLine": "Contract-makes soaps for Unilever, ITC, Godrej, MamaEarth, Kama Ayurveda & Sun Pharma — ~6 cr cakes/month, 700+ formulations. Diversified across big clients, so less dependent on any one buyer. But CARE rates them 'B' (sub-investment-grade) — probe their cash position.",
+    "source": "Anuspa",
+    "url": "https://anuspaheritage.com/"
+   }
+  ]
  },
  "arovea": {
   "found": false,
@@ -76,17 +90,10 @@
   ]
  },
  "samrvir": {
-  "found": true,
-  "summary": "Samrvir Biotech is the PETITIONER in an NCLT insolvency case (C.P.(IB)/188/ND/2025, filed Mar 2025, pending) against its counterparty Clensta International Pvt Ltd — i.e. it is pursuing recovery of dues, not itself under insolvency.",
+  "found": false,
+  "summary": "No significant recent news found.",
   "news": [],
-  "signals": [
-   {
-    "type": "legal",
-    "oneLine": "Petitioner in IBC case C.P.(IB)/188/ND/2025 vs Clensta International (recovery of dues, pending).",
-    "source": "Tracxn legal details",
-    "url": "https://tracxn.com/d/legal-entities/india/samrvir-biotech-private-limited"
-   }
-  ]
+  "signals": []
  },
  "ultrabeautycare": {
   "found": false,
@@ -126,24 +133,31 @@
  },
  "EPL Limited": {
   "found": true,
-  "summary": "Indorama Ventures took a 24.9% stake from Blackstone in May 2025 and the firm won national quality and tube awards.",
+  "summary": "World's largest laminated-tube maker (ex-Essel Propack); Blackstone is selling its stake to Indorama Ventures.",
   "news": [
    {
-    "date": "2025-05",
-    "title": "Indorama Ventures Expands in Indian Market with 24.9% Stake in EPL",
-    "source": "itiger / Indorama Ventures",
-    "url": "https://www.itiger.com/hans/news/2538692194",
-    "oneLine": "Indorama Ventures bought 24.9% EPL stake from Blackstone, closed 27 May 2025."
+    "date": "2025",
+    "title": "Blackstone selling its EPL stake; Indorama Ventures acquiring (CCI-approved)",
+    "source": "PE Insights",
+    "url": "https://pe-insights.com/blackstone-sells-221m-minority-stake-in-epl-to-indorama-ventures/",
+    "oneLine": "Ownership transition at ₹240/share — promoter holding down to 26.4% (Jun 2025); a new strategic owner incoming."
    },
    {
-    "date": "2025-04",
-    "title": "EPL Nalagarh site wins IMC Ramkrishna Bajaj National Quality Excellence Award 2024",
+    "date": "2025-11",
+    "title": "EPL declares ₹2.50 interim dividend for FY26",
     "source": "EPL Global",
-    "url": "https://www.eplglobal.com/news-media/",
-    "oneLine": "World's largest tube plant received national quality performance excellence award."
+    "url": "https://www.eplglobal.com/",
+    "oneLine": "LTM revenue ₹4,137 cr, EBITDA ₹806 cr (~17% YoY) — a healthy, growing listed supplier."
    }
   ],
-  "signals": []
+  "signals": [
+   {
+    "type": "Ownership change",
+    "oneLine": "Blackstone → Indorama Ventures — a strategic (not PE) owner incoming: likely stable and long-term, but a global packaging major with scale. Listed, well-capitalised, CARE AA, growing 17% — they can hold price; push on multi-year volume & service, not distress.",
+    "source": "PE Insights",
+    "url": "https://pe-insights.com/blackstone-sells-221m-minority-stake-in-epl-to-indorama-ventures/"
+   }
+  ]
  },
  "M-s Khosla Printers": {
   "found": false,
@@ -238,10 +252,17 @@
   ]
  },
  "SAMKIN TREASURE MOLDERS PRIVATE LIMITED": {
-  "found": false,
-  "summary": "No significant recent news found.",
+  "found": true,
+  "summary": "Cosmetics packaging maker — PET bottles, jars, caps & shampoo bottles (Gujarat, since 1998).",
   "news": [],
-  "signals": []
+  "signals": [
+   {
+    "type": "Market position",
+    "oneLine": "Makes PET bottles, cosmetic/cream jars, caps and shampoo bottles from Ankleshwar/Vadodara. Commodity packaging with many interchangeable makers — leverage sits with the buyer; multi-source to hold price.",
+    "source": "Samkin",
+    "url": "https://www.samkinindustries.com/"
+   }
+  ]
  },
  "SICON PACKS PRIVATE LIMITED": {
   "found": true,
