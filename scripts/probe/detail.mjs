@@ -101,11 +101,13 @@ function build(raw) {
     .map((p) => ({ fy: fy(p.year), count: num(p.number_of_employees) }))
     .reverse();
   const est = [...(d.establishments_registered_with_epfo ?? [])].sort((a, b) => (b.filing_details?.length ?? 0) - (a.filing_details?.length ?? 0))[0];
-  const empMonthly = [...(est?.filing_details ?? [])]
+  const rawMonthly = [...(est?.filing_details ?? [])]
     .map((x) => ({ month: x.wage_month, count: num(x.no_of_employees), onTime: /on time/i.test(x.payment_timeliness ?? "") }))
-    .filter((x) => x.count != null)
-    .reverse()
-    .slice(-24);
+    .filter((x) => x.count != null && x.count > 0);
+  // Drop placeholder / nil-filing months: a real headcount doesn't crash to ~1 and
+  // back to 45. Anything under 30% of the median is a filing artifact, not real.
+  const medHC = rawMonthly.length ? [...rawMonthly.map((x) => x.count)].sort((a, b) => a - b)[Math.floor(rawMonthly.length / 2)] : 0;
+  const empMonthly = rawMonthly.filter((x) => medHC === 0 || x.count >= medHC * 0.3).reverse().slice(-24);
   const latestHeadcount = empMonthly.length ? empMonthly[empMonthly.length - 1].count : (empYearly.length ? empYearly[empYearly.length - 1].count : null);
 
   // peers — every benchmark year, self vs peer median across the key ratios

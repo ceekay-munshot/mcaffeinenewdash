@@ -14,6 +14,19 @@ export interface Slice {
 
 const lighten = (hex: string, a = "cc") => `${hex}${a}`;
 
+// Round "nice" axis ticks spanning [min,max] — gives a clean Y scale + gridlines.
+function niceTicks(min: number, max: number, count = 4): number[] {
+  if (!(max > min)) { max = min + 1; min -= 1; }
+  const step0 = (max - min) / count;
+  const mag = Math.pow(10, Math.floor(Math.log10(step0)));
+  const norm = step0 / mag;
+  const step = (norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10) * mag;
+  const lo = Math.floor(min / step) * step;
+  const ticks: number[] = [];
+  for (let v = lo; v <= max + step * 1e-6; v += step) ticks.push(Math.round(v * 1e6) / 1e6);
+  return ticks;
+}
+
 // styled hover tooltip (shows on hover of a `group` parent)
 function Tip({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
@@ -142,48 +155,48 @@ export function Columns({
   valueLabel: (v: number) => string;
   height?: number;
 }) {
+  const [hi, setHi] = useState<number | null>(null);
   const vals = data.map((d) => d.value);
-  const rawTop = Math.max(0, ...vals);
-  const rawBottom = Math.min(0, ...vals);
-  const rawRange = rawTop - rawBottom || 1;
-  // Reserve headroom above positive bars (and below negative bars) so the value
-  // labels always sit inside the plot area instead of clipping off the top.
-  const padTop = rawRange * 0.14;
-  const padBottom = rawBottom < 0 ? rawRange * 0.12 : 0;
-  const range = rawRange + padTop + padBottom;
-  const zeroPct = ((rawTop + padTop) / range) * 100;
-  // With many columns, per-bar value labels collide — drop them and lean on hover.
-  const showValueLabels = data.length <= 8;
+  const ticks = niceTicks(Math.min(0, ...vals), Math.max(0, ...vals), 4);
+  const lo = ticks[0], top = ticks[ticks.length - 1], range = top - lo || 1;
+  const yPct = (v: number) => (1 - (v - lo) / range) * 100;
+  const zeroPct = yPct(0);
+  const showLbl = data.length <= 10;
   return (
     <div>
-      <div className="relative" style={{ height }}>
-        {rawBottom < 0 && <div className="absolute inset-x-0 border-t border-dashed border-slate-300" style={{ top: `${zeroPct}%` }} />}
-        <div className="flex h-full items-stretch gap-1.5">
-          {data.map((d) => {
-            const hPct = (Math.abs(d.value) / range) * 100;
-            const topPct = d.value >= 0 ? zeroPct - hPct : zeroPct;
-            return (
-              <div key={d.label} className="group relative flex-1">
-                <div
-                  className="anim-grow-y absolute inset-x-0 rounded-md transition-[filter] group-hover:brightness-95"
-                  style={{ top: `${topPct}%`, height: `${Math.max(hPct, 1.5)}%`, background: `linear-gradient(180deg, ${lighten(d.color, "e6")}, ${d.color})`, transformOrigin: d.value >= 0 ? "bottom" : "top" }}
-                />
-                {showValueLabels && (
+      <div className="flex" style={{ height }}>
+        <div className="relative w-11 shrink-0">
+          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 font-mono text-[10px] text-slate-400" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
+        </div>
+        <div className="relative flex-1">
+          {ticks.map((t) => <div key={t} className={`absolute inset-x-0 border-t ${t === 0 ? "border-slate-300" : "border-slate-100"}`} style={{ top: `${yPct(t)}%` }} />)}
+          <div className="absolute inset-0 flex items-stretch gap-1.5">
+            {data.map((d, i) => {
+              const hPct = (Math.abs(d.value) / range) * 100;
+              const topPct = d.value >= 0 ? zeroPct - hPct : zeroPct;
+              return (
+                <div key={d.label} className="group relative flex-1" onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(null)}>
                   <div
-                    className={`absolute inset-x-0 text-center text-[10px] font-semibold group-hover:opacity-0 ${d.value >= 0 ? "text-slate-600" : "text-white"}`}
-                    style={d.value >= 0 ? { top: `calc(${topPct}% - 14px)` } : { top: `calc(${topPct}% + 3px)` }}
-                  >
-                    {valueLabel(d.value)}
-                  </div>
-                )}
-                <Tip className="bottom-full left-1/2 mb-1 -translate-x-1/2">{d.label}: {valueLabel(d.value)}</Tip>
-              </div>
-            );
-          })}
+                    className="anim-grow-y absolute inset-x-0 rounded-md transition-[filter] group-hover:brightness-95"
+                    style={{ top: `${topPct}%`, height: `${Math.max(hPct, 1)}%`, background: `linear-gradient(180deg, ${lighten(d.color, "e6")}, ${d.color})`, transformOrigin: d.value >= 0 ? "bottom" : "top" }}
+                  />
+                  {showLbl && (
+                    <div
+                      className={`absolute inset-x-0 text-center text-[10px] font-semibold transition-opacity ${hi === i ? "opacity-0" : ""} ${d.value >= 0 ? "text-slate-600" : "text-white"}`}
+                      style={d.value >= 0 ? { top: `calc(${topPct}% - 14px)` } : { top: `calc(${topPct}% + 3px)` }}
+                    >
+                      {valueLabel(d.value)}
+                    </div>
+                  )}
+                  {hi === i && <div className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-1 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium text-white shadow-lg">{d.label}: {valueLabel(d.value)}</div>}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-      <div className="mt-1.5 flex gap-1.5">
-        {data.map((d) => (<div key={d.label} className="flex-1 truncate text-center text-[11px] text-slate-400">{d.label}</div>))}
+      <div className="ml-11 flex gap-1.5">
+        {data.map((d, i) => (<div key={d.label} className={`flex-1 truncate text-center text-[10px] ${hi === i ? "font-semibold text-slate-600" : "text-slate-400"}`}>{d.label}</div>))}
       </div>
     </div>
   );
@@ -191,117 +204,96 @@ export function Columns({
 
 /* ------------------------------------------------ Area / line (trends) */
 
-export function AreaLine({
-  data,
-  color,
-  valueLabel,
-  height = 175,
-  area = true,
-}: {
-  data: Slice[];
-  color: string;
+// Shared line/area engine: real Y-axis (nice ticks + gridlines), X-axis labels,
+// and a crosshair hover — moving the mouse anywhere over the plot snaps to the
+// nearest point and shows a vertical guide + a tooltip listing every series'
+// value at that year. Big hit target, so hovering always works.
+function LineBase({ xLabels, series, valueLabel, height, area }: {
+  xLabels: string[];
+  series: { name: string; color: string; points: (number | null)[] }[];
   valueLabel: (v: number) => string;
-  height?: number;
+  height: number;
   area?: boolean;
 }) {
-  const n = data.length;
-  const vals = data.map((d) => d.value);
-  const min = Math.min(...vals), max = Math.max(...vals);
-  const range = max - min || 1;
-  const PAD_T = 16, PAD_B = 8;
-  const x = (i: number) => (n === 1 ? 50 : (i / (n - 1)) * 100);
-  const y = (v: number) => PAD_T + (1 - (v - min) / range) * (100 - PAD_T - PAD_B);
-  const line = data.map((d, i) => `${i ? "L" : "M"}${x(i).toFixed(2)} ${y(d.value).toFixed(2)}`).join(" ");
-  const areaPath = `${line} L100 100 L0 100 Z`;
-  const gid = "grad" + color.replace("#", "");
-  const emphasize = new Set([0, n - 1, vals.indexOf(max)]);
+  const [hi, setHi] = useState<number | null>(null);
+  const n = xLabels.length;
+  const allVals = series.flatMap((s) => s.points).filter((v): v is number => v != null);
+  if (!allVals.length) return <div className="py-10 text-center text-sm text-slate-400">No data for this metric.</div>;
+  const ticks = niceTicks(Math.min(...allVals), Math.max(...allVals), 4);
+  const lo = ticks[0], hiV = ticks[ticks.length - 1], range = hiV - lo || 1;
+  const PAD = 5;
+  const yPct = (v: number) => PAD + (1 - (v - lo) / range) * (100 - 2 * PAD);
+  const xPct = (i: number) => (n === 1 ? 50 : (i / (n - 1)) * 100);
+  const pathFor = (pts: (number | null)[]) => {
+    let d = "", started = false;
+    pts.forEach((v, i) => { if (v == null) return; d += `${started ? "L" : "M"}${xPct(i).toFixed(2)} ${yPct(v).toFixed(2)} `; started = true; });
+    return d.trim();
+  };
+  const single = series.length === 1;
+  const gid = "ag" + series[0].color.replace("#", "");
+  const nonNull = series[0].points.map((v, i) => (v != null ? i : -1)).filter((i) => i >= 0);
+  const firstI = nonNull[0] ?? 0, lastI = nonNull[nonNull.length - 1] ?? n - 1;
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    setHi(Math.max(0, Math.min(n - 1, Math.round(((e.clientX - r.left) / r.width) * (n - 1)))));
+  };
+  const leftAnchor = hi != null && hi < n / 2;
   return (
     <div>
-      <div className="relative" style={{ height }}>
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
-          <defs>
-            <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={color} stopOpacity="0.30" />
-              <stop offset="100%" stopColor={color} stopOpacity="0.02" />
-            </linearGradient>
-          </defs>
-          {area && <path d={areaPath} fill={`url(#${gid})`} className="anim-fade" />}
-          <path d={line} fill="none" stroke={color} strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" className="anim-fade" />
-        </svg>
-        {data.map((d, i) => {
-          // Keep labels inside the plot: left-anchor the first point, right-anchor the last.
-          const anchor = i === 0 ? "left-0 translate-x-0" : i === n - 1 ? "right-0 left-auto translate-x-0" : "left-1/2 -translate-x-1/2";
-          return (
-            <div key={i} className="group absolute z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x(i)}%`, top: `${y(d.value)}%` }}>
-              <div className="h-2.5 w-2.5 rounded-full border-2 border-white shadow-sm transition-transform group-hover:scale-150" style={{ background: color }} />
-              {emphasize.has(i) && (
-                <div className={`absolute bottom-3 ${anchor} whitespace-nowrap rounded bg-white px-1 text-[10px] font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 group-hover:opacity-0`}>
-                  {valueLabel(d.value)}
+      <div className="flex" style={{ height }}>
+        <div className="relative w-11 shrink-0">
+          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 font-mono text-[10px] text-slate-400" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
+        </div>
+        <div className="relative flex-1" onMouseMove={onMove} onMouseLeave={() => setHi(null)}>
+          {ticks.map((t) => <div key={t} className="absolute inset-x-0 border-t border-slate-100" style={{ top: `${yPct(t)}%` }} />)}
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
+            {single && <defs><linearGradient id={gid} x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={series[0].color} stopOpacity="0.28" /><stop offset="100%" stopColor={series[0].color} stopOpacity="0.02" /></linearGradient></defs>}
+            {area && single && <path d={`${pathFor(series[0].points)} L${xPct(lastI).toFixed(2)} 100 L${xPct(firstI).toFixed(2)} 100 Z`} fill={`url(#${gid})`} className="anim-fade" />}
+            {series.map((s, si) => <path key={si} d={pathFor(s.points)} fill="none" stroke={s.color} strokeWidth="2.25" vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" className="anim-fade" />)}
+          </svg>
+          {hi != null && <div className="pointer-events-none absolute inset-y-0 w-px bg-slate-300" style={{ left: `${xPct(hi)}%` }} />}
+          {hi != null && series.map((s, si) => { const v = s.points[hi]; return v == null ? null : <div key={si} className="pointer-events-none absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow" style={{ left: `${xPct(hi)}%`, top: `${yPct(v)}%`, background: s.color }} />; })}
+          {hi != null && (
+            <div className="pointer-events-none absolute top-1 z-30 rounded-lg bg-slate-900/95 px-2.5 py-1.5 text-[11px] shadow-lg" style={leftAnchor ? { left: `${xPct(hi)}%`, marginLeft: 8 } : { right: `${100 - xPct(hi)}%`, marginRight: 8 }}>
+              <div className="mb-0.5 font-semibold text-white">{xLabels[hi]}</div>
+              {series.map((s, si) => { const v = s.points[hi]; return v == null ? null : (
+                <div key={si} className="flex items-center gap-1.5 whitespace-nowrap">
+                  {!single && <span className="h-2 w-2 rounded-sm" style={{ background: s.color }} />}
+                  {!single && <span className="text-slate-300">{s.name}</span>}
+                  <span className={`font-mono font-semibold text-white ${single ? "" : "ml-auto pl-2"}`}>{valueLabel(v)}</span>
                 </div>
-              )}
-              <div className={`pointer-events-none absolute bottom-5 z-30 ${anchor} whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100`}>
-                {d.label}: {valueLabel(d.value)}
-              </div>
+              ); })}
             </div>
-          );
-        })}
+          )}
+        </div>
       </div>
-      <div className="mt-1.5 flex justify-between">
-        {data.map((d, i) => {
-          const align = i === 0 ? "text-left" : i === n - 1 ? "text-right" : "text-center";
-          return <span key={i} className={`flex-1 truncate text-[11px] text-slate-400 ${align}`}>{d.label}</span>;
-        })}
+      <div className="ml-11 flex">
+        {xLabels.map((l, i) => <span key={i} className={`flex-1 truncate text-center text-[10px] ${hi === i ? "font-semibold text-slate-600" : "text-slate-400"}`}>{l}</span>)}
       </div>
+      {!single && (
+        <div className="ml-11 mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1.5">
+          {series.map((s) => <span key={s.name} className="flex items-center gap-1.5 text-xs font-medium text-slate-600"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: s.color }} />{s.name}</span>)}
+        </div>
+      )}
     </div>
   );
 }
 
+export function AreaLine({ data, color, valueLabel, height = 175, area = true }: {
+  data: Slice[]; color: string; valueLabel: (v: number) => string; height?: number; area?: boolean;
+}) {
+  return <LineBase xLabels={data.map((d) => d.label)} series={[{ name: "", color, points: data.map((d) => d.value) }]} valueLabel={valueLabel} height={height} area={area} />;
+}
+
 /* ------------------------------------------ Multi-series line (compare) */
 // Several entities overlaid on one time axis — the comparison-trend chart.
-// Each series is aligned to the shared xLabels; null points are gaps.
 export function MultiLine({ xLabels, series, valueLabel, height = 300 }: {
   xLabels: string[];
   series: { name: string; color: string; points: (number | null)[] }[];
   valueLabel: (v: number) => string;
   height?: number;
 }) {
-  const n = xLabels.length;
-  const allVals = series.flatMap((s) => s.points).filter((v): v is number => v != null);
-  if (!allVals.length) return <div className="py-10 text-center text-sm text-slate-400">No data for this metric.</div>;
-  let min = Math.min(...allVals), max = Math.max(...allVals);
-  if (min === max) { min -= 1; max += 1; }
-  const range = max - min;
-  const PAD_T = 12, PAD_B = 8;
-  const x = (i: number) => (n === 1 ? 50 : (i / (n - 1)) * 100);
-  const y = (v: number) => PAD_T + (1 - (v - min) / range) * (100 - PAD_T - PAD_B);
-  const pathFor = (pts: (number | null)[]) => {
-    let d = "", started = false;
-    pts.forEach((v, i) => { if (v == null) return; d += `${started ? "L" : "M"}${x(i).toFixed(2)} ${y(v).toFixed(2)} `; started = true; });
-    return d.trim();
-  };
-  return (
-    <div>
-      <div className="relative" style={{ height }}>
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
-          {series.map((s, si) => <path key={si} d={pathFor(s.points)} fill="none" stroke={s.color} strokeWidth="2.5" vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" className="anim-fade" />)}
-        </svg>
-        {series.map((s, si) => s.points.map((v, i) => v == null ? null : (
-          <div key={`${si}-${i}`} className="group absolute z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x(i)}%`, top: `${y(v)}%` }}>
-            <div className="h-2 w-2 rounded-full border border-white shadow-sm transition-transform group-hover:scale-150" style={{ background: s.color }} />
-            <div className="pointer-events-none absolute bottom-4 left-1/2 z-30 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
-              {s.name} · {xLabels[i]}: {valueLabel(v)}
-            </div>
-          </div>
-        )))}
-      </div>
-      <div className="mt-1.5 flex justify-between">
-        {xLabels.map((l, i) => <span key={i} className="flex-1 truncate text-center text-[11px] text-slate-400">{l}</span>)}
-      </div>
-      <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1.5">
-        {series.map((s) => <span key={s.name} className="flex items-center gap-1.5 text-xs font-medium text-slate-600"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: s.color }} />{s.name}</span>)}
-      </div>
-    </div>
-  );
+  return <LineBase xLabels={xLabels} series={series} valueLabel={valueLabel} height={height} area={false} />;
 }
 
 /* ------------------------------------------------------------- Radar */

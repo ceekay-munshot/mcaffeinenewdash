@@ -263,26 +263,57 @@ function FinancialsTab({ d }: { d: Detail }) {
   );
 }
 function FinTable({ fin }: { fin: FinRow[] }) {
-  const rows: [string, (f: FinRow) => string][] = [
-    ["Revenue", (f) => cr(f.revenue)], ["EBITDA", (f) => cr(f.ebitda)], ["PAT", (f) => cr(f.pat)],
-    ["EBITDA %", (f) => pct(f.r.ebitdaMargin)], ["Net %", (f) => pct(f.r.netMargin)], ["RoCE", (f) => pct(f.r.roce)], ["RoE", (f) => pct(f.r.roe)],
-    ["Debt/Eq", (f) => (f.r.debtEquity ?? "—") + ""], ["Int cover", (f) => xN(f.r.interestCover)], ["Current", (f) => (f.r.currentRatio ?? "—") + ""],
-    ["Collects", (f) => days(f.r.debtorDays)], ["Pays", (f) => days(f.r.payableDays)], ["Cash cycle", (f) => days(f.r.cashConversion)],
-    ["Equity", (f) => cr(f.bs.equity)], ["Debt", (f) => cr(f.bs.debt)], ["Op. cash", (f) => cr(f.cf.operating)],
+  // dir: +1 = higher is better, -1 = lower is better, 0 = neutral (no colour)
+  const rows: { label: string; get: (f: FinRow) => number | null; fmt: (v: number | null) => string; dir: number }[] = [
+    { label: "Revenue", get: (f) => f.revenue, fmt: cr, dir: 1 },
+    { label: "EBITDA", get: (f) => f.ebitda, fmt: cr, dir: 1 },
+    { label: "PAT", get: (f) => f.pat, fmt: cr, dir: 1 },
+    { label: "EBITDA %", get: (f) => f.r.ebitdaMargin, fmt: pct, dir: 1 },
+    { label: "Net %", get: (f) => f.r.netMargin, fmt: pct, dir: 1 },
+    { label: "RoCE", get: (f) => f.r.roce, fmt: pct, dir: 1 },
+    { label: "RoE", get: (f) => f.r.roe, fmt: pct, dir: 1 },
+    { label: "Debt / equity", get: (f) => f.r.debtEquity, fmt: (v) => (v == null ? "—" : v.toFixed(2)), dir: -1 },
+    { label: "Interest cover", get: (f) => f.r.interestCover, fmt: xN, dir: 1 },
+    { label: "Current ratio", get: (f) => f.r.currentRatio, fmt: (v) => (v == null ? "—" : v.toFixed(2)), dir: 1 },
+    { label: "Collects (DSO)", get: (f) => f.r.debtorDays, fmt: days, dir: -1 },
+    { label: "Pays (DPO)", get: (f) => f.r.payableDays, fmt: days, dir: 0 },
+    { label: "Cash cycle", get: (f) => f.r.cashConversion, fmt: days, dir: -1 },
+    { label: "Equity", get: (f) => f.bs.equity, fmt: cr, dir: 1 },
+    { label: "Debt", get: (f) => f.bs.debt, fmt: cr, dir: -1 },
+    { label: "Operating cash", get: (f) => f.cf.operating, fmt: cr, dir: 1 },
   ];
+  const move = (r: (typeof rows)[number], i: number): { cls: string; arrow: string } => {
+    if (r.dir === 0 || i === 0) return { cls: "text-slate-800", arrow: "" };
+    const v = r.get(fin[i]), p = r.get(fin[i - 1]);
+    if (v == null || p == null) return { cls: "text-slate-800", arrow: "" };
+    const chg = p === 0 ? (v > 0 ? 1 : v < 0 ? -1 : 0) : (v - p) / Math.abs(p);
+    if (Math.abs(chg) < 0.02) return { cls: "text-slate-400", arrow: "" };       // stable
+    const better = r.dir === 1 ? chg > 0 : chg < 0;
+    return { cls: better ? "text-emerald-600" : "text-rose-500", arrow: v > p ? " ▲" : " ▼" };
+  };
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[720px] border-collapse text-sm">
-        <thead><tr className="border-b border-slate-200 text-left text-xs font-bold uppercase tracking-wider text-slate-500"><th className="sticky left-0 bg-white px-3 py-2">Metric</th>{fin.map((f) => <th key={f.fy} className="px-3 py-2 text-right font-mono">{f.fy}</th>)}</tr></thead>
+      <table className="w-full min-w-[760px] border-collapse text-sm">
+        <thead>
+          <tr className="text-left">
+            <th className="sticky left-0 z-10 bg-white px-3 py-2 text-xs font-bold uppercase tracking-wider text-slate-500">Metric</th>
+            {fin.map((f) => <th key={f.fy} className="border-b-2 border-teal-500/40 bg-teal-50/60 px-3 py-2 text-right font-mono text-xs font-bold text-teal-800">{f.fy}</th>)}
+          </tr>
+        </thead>
         <tbody>
-          {rows.map(([label, get]) => (
-            <tr key={label} className="border-t border-slate-100">
-              <td className="sticky left-0 bg-white px-3 py-1.5 font-medium text-slate-600">{label}</td>
-              {fin.map((f) => <td key={f.fy} className="whitespace-nowrap px-3 py-1.5 text-right font-mono tabular-nums text-slate-800">{get(f)}</td>)}
+          {rows.map((r) => (
+            <tr key={r.label} className="border-t border-slate-100 hover:bg-slate-50/70">
+              <td className="sticky left-0 z-10 bg-white px-3 py-1.5 font-semibold text-slate-700">{r.label}</td>
+              {fin.map((f, i) => { const m = move(r, i); return <td key={f.fy} className={`whitespace-nowrap px-3 py-1.5 text-right font-mono tabular-nums ${m.cls}`}>{r.fmt(r.get(f))}<span className="text-[9px]">{m.arrow}</span></td>; })}
             </tr>
           ))}
         </tbody>
       </table>
+      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 px-1 text-[11px] text-slate-400">
+        <span><b className="text-emerald-600">▲ green</b> = better than the year before</span>
+        <span><b className="text-rose-500">▼ red</b> = worse</span>
+        <span><b className="text-slate-400">grey</b> = about the same</span>
+      </div>
     </div>
   );
 }

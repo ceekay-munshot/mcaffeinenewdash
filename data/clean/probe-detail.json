@@ -777,6 +777,16 @@
       ],
       "monthly": [
         {
+          "month": "JUN-24",
+          "count": 21,
+          "onTime": true
+        },
+        {
+          "month": "JUL-24",
+          "count": 51,
+          "onTime": true
+        },
+        {
           "month": "AUG-24",
           "count": 53,
           "onTime": true
@@ -794,11 +804,6 @@
         {
           "month": "OCT-24",
           "count": 55,
-          "onTime": true
-        },
-        {
-          "month": "OCT-24",
-          "count": 1,
           "onTime": true
         },
         {
@@ -844,11 +849,6 @@
         {
           "month": "JUN-25",
           "count": 53,
-          "onTime": true
-        },
-        {
-          "month": "JUN-25",
-          "count": 1,
           "onTime": true
         },
         {
@@ -3552,6 +3552,16 @@
       ],
       "monthly": [
         {
+          "month": "APR-24",
+          "count": 91,
+          "onTime": true
+        },
+        {
+          "month": "MAY-24",
+          "count": 89,
+          "onTime": true
+        },
+        {
           "month": "JUN-24",
           "count": 92,
           "onTime": true
@@ -3585,16 +3595,6 @@
           "month": "DEC-24",
           "count": 90,
           "onTime": true
-        },
-        {
-          "month": "DEC-24",
-          "count": 1,
-          "onTime": false
-        },
-        {
-          "month": "DEC-24",
-          "count": 1,
-          "onTime": false
         },
         {
           "month": "JAN-25",
@@ -4880,13 +4880,23 @@
       ],
       "monthly": [
         {
-          "month": "AUG-24",
-          "count": 43,
+          "month": "MAY-24",
+          "count": 42,
           "onTime": true
         },
         {
+          "month": "JUN-24",
+          "count": 42,
+          "onTime": true
+        },
+        {
+          "month": "JUL-24",
+          "count": 42,
+          "onTime": false
+        },
+        {
           "month": "AUG-24",
-          "count": 1,
+          "count": 43,
           "onTime": true
         },
         {
@@ -4895,18 +4905,8 @@
           "onTime": true
         },
         {
-          "month": "SEP-24",
-          "count": 1,
-          "onTime": true
-        },
-        {
           "month": "OCT-24",
           "count": 43,
-          "onTime": true
-        },
-        {
-          "month": "OCT-24",
-          "count": 1,
           "onTime": true
         },
         {
