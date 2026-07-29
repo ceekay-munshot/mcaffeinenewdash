@@ -20,7 +20,7 @@ import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
 } from "./lib/insights";
-import DeepDive, { hasDeepDive } from "./DeepDive";
+import DeepDive, { hasDeepDive, probeLevers } from "./DeepDive";
 
 /* -------------------------------------------------- data accessors / helpers */
 
@@ -583,6 +583,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
   const ins = currentVendor ? supplierInsights(currentVendor) : [];
   const trend = useMemo(() => (currentVendor ? buildTrendMetrics(currentVendor) : []), [currentVendor]);
   const canDeep = hasDeepDive(currentVendor?.cin);
+  const pLev = probeLevers(currentVendor?.cin);
   const hasPrice = !!entry.priceINRPerKg && !entry.priceINRPerKg.includes("not found");
   const chip = "inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-semibold ring-1";
   const loc = (e: Entity) => [(e.city ?? ""), (e.state ?? "").replace(/\s*\(implied\)\s*/i, "").trim()].filter(Boolean).join(", ") || "—";
@@ -678,8 +679,21 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor }:
             </Card>
           </div>
           <div>
-            <Card title="④ Negotiation levers" sub={`what ${currentVendor.brand}'s own numbers hand us`} accent="#eda100">
-              {ins.length > 0
+            <Card title="④ Negotiation levers" sub={pLev.length ? `auto-generated from ${currentVendor.brand}'s full Probe42 filings` : `what ${currentVendor.brand}'s own numbers hand us`} accent="#eda100">
+              {pLev.length > 0 ? (
+                <div className="space-y-2">
+                  {pLev.slice(0, 6).map((lv, i) => {
+                    const t = lv.tone === "opportunity" ? "border-emerald-300 bg-emerald-50" : lv.tone === "risk" ? "border-rose-300 bg-rose-50" : "border-amber-300 bg-amber-50";
+                    return (
+                      <div key={i} className={`rounded-lg border-l-4 ${t} px-2.5 py-1.5`}>
+                        <div className="text-xs font-semibold text-slate-800">{lv.title}</div>
+                        <p className="mt-0.5 text-[11px] leading-snug text-slate-600">{lv.detail}</p>
+                      </div>
+                    );
+                  })}
+                  {pLev.length > 6 && <p className="text-[11px] text-slate-400">+{pLev.length - 6} more — open the deep-dive above.</p>}
+                </div>
+              ) : ins.length > 0
                 ? <LeverStrip ins={ins} />
                 : <p className="text-sm text-slate-400">No standout lever — this reads as a healthy, fairly-priced vendor.</p>}
               <div className={`mt-4 rounded-xl ${conc.bg} p-3 text-xs ring-1 ${conc.ring}`}>
