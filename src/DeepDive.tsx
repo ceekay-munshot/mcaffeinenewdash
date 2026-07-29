@@ -28,7 +28,7 @@ interface Advanced {
 }
 interface Detail {
   cin: string; legalName: string; description: string | null; website: string | null; city: string | null; state: string | null;
-  incorporation: string | null; classification: string | null; status: string | null; industry: string | null; segment: string | null;
+  incorporation: string | null; classification: string | null; status: string | null; industry: string | null; segment: string | null; segments: string[];
   activities: { desc: string; pct: number | null }[]; paidUpCr: number | null; authorizedCr: number | null; lastAgm: string | null; lastFiling: string | null;
   lastUpdated: string | null; yearsCovered: number | null;
   score: Record<string, number | null>; bands: { revenue: string | null; profit: string | null; employees: string | null };
@@ -47,6 +47,7 @@ interface Detail {
   directors: { name: string; designation: string | null; since: string | null; age: number | null; otherCount: number; others: string[]; ownPct: number | null }[];
   charges: { count: number; sumCr: number | null; everCreated?: number; satisfied?: number; list: { holder: string; amountCr: number | null; date: string; type: string }[] };
   legal: { count: number; high: number; medium: number; against: number; list: { court: string; date: string; status: string; type: string; category: string; severity: string; counterparty: string }[] };
+  financialDisputes: { count: number; receivable: number; payable: number; list: { direction: string; type: string | null; verdict: string | null; court: string | null; counterparty: string | null; caseNo: string | null; amountCr: number | null; date: string | null }[] };
   group: Record<string, { name: string; pct: number | null; city: string | null }[]>;
   relatedParty: { year: string | null; count: number; totalCr: number | null; top: { name: string; relationship: string; kind: string; amountCr: number | null }[] };
   gst: { list: { gstin: string; state: string; status: string; timeliness: string }[]; onTime: number; total: number };
@@ -774,6 +775,21 @@ function RiskTab({ d }: { d: Detail }) {
           </div>
         ) : <div className="rounded-lg bg-emerald-50 px-2.5 py-2 text-sm text-emerald-800 ring-1 ring-emerald-100">✓ No overdue MSME dues reported — pays its small suppliers on time.</div>}
       </Card>
+      {d.financialDisputes.count > 0 && (
+        <Card title="Financial disputes" sub={`${d.financialDisputes.count} recovery/default case${d.financialDisputes.count > 1 ? "s" : ""} · ${d.financialDisputes.payable} against them · ${d.financialDisputes.receivable} they filed`} accent={d.financialDisputes.payable > 0 ? C.rose : C.amber}>
+          <ul className="space-y-1.5 text-sm">
+            {d.financialDisputes.list.map((f, i) => (
+              <li key={i} className="flex items-start justify-between gap-3 border-b border-slate-100 pb-1.5">
+                <span className="min-w-0">
+                  <span className="block truncate text-slate-800">{f.counterparty || f.type || "—"}</span>
+                  <span className="text-[11px] text-slate-400">{f.direction === "payable" ? "⚠ pursued against them" : "↳ they're recovering"}{f.verdict ? ` · ${f.verdict.toLowerCase()}` : ""}{f.date ? ` · ${f.date}` : ""}</span>
+                </span>
+                {f.amountCr != null && <span className="shrink-0 font-mono text-slate-600">{cr(f.amountCr)}</span>}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      )}
       <Card title={`Litigation — ${d.legal.count} case${d.legal.count !== 1 ? "s" : ""} on record`} sub={`${d.legal.high} high-severity · ${d.legal.against} filed against them`} accent={C.rose} className="lg:col-span-2 xl:col-span-3">
         {d.legal.list.length ? (
           <div className="overflow-x-auto">
@@ -799,7 +815,7 @@ function RiskTab({ d }: { d: Detail }) {
 function AboutTab({ d }: { d: Detail }) {
   return (
     <div className="grid gap-4 lg:grid-cols-3">
-      <Card title="What they do" sub={[d.industry, d.segment].filter(Boolean).join(" · ") || "business profile"} accent={TEAL} className="lg:col-span-2">
+      <Card title="What they do" sub={[...new Set([d.industry, d.segment, ...(d.segments ?? [])].filter(Boolean))].join(" · ") || "business profile"} accent={TEAL} className="lg:col-span-2">
         {d.description ? <p className="text-sm leading-relaxed text-slate-600">{d.description}</p> : <Empty t="No description on file." />}
         {d.activities.length > 0 && <div className="mt-3 space-y-1">{d.activities.map((a, i) => <div key={i} className="flex justify-between gap-3 text-sm"><span className="text-slate-600">{a.desc}</span>{a.pct != null && <span className="shrink-0 font-mono text-slate-400">{a.pct}% of turnover</span>}</div>)}</div>}
       </Card>

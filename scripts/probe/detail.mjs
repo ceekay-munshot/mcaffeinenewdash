@@ -184,6 +184,15 @@ function build(raw, entity) {
       .map((c) => ({ court: c.court, date: c.date, status: c.case_status, type: c.case_type, category: c.case_category, severity: c.severity, counterparty: clean(/against/i.test(c.case_type ?? "") ? c.petitioner : c.respondent) })),
   };
 
+  // financial-dispute litigation (recovery / default / insolvency) — distinct from
+  // the general legal history. "receivable" = they're chasing a customer for money;
+  // "payable" = someone is chasing THEM for a default.
+  const fd0 = d.legal_cases_of_financial_disputes ?? {};
+  const fdItems = [];
+  for (const [bucket, arr] of Object.entries(fd0))
+    for (const c of arr ?? []) fdItems.push({ direction: /pay/i.test(bucket) ? "payable" : "receivable", type: c.type_of_financial_dispute, verdict: c.verdict, court: c.court, counterparty: clean(c.litigant), caseNo: c.case_no, amountCr: cr(c.amount_under_default), date: c.date_of_judgement });
+  const financialDisputes = { count: fdItems.length, receivable: fdItems.filter((x) => x.direction === "receivable").length, payable: fdItems.filter((x) => x.direction === "payable").length, list: fdItems.slice(0, 8) };
+
   // group structure
   const names = (o) => (o?.company ?? []).map((c) => ({ name: clean(c.legal_name), pct: round(c.share_holding_percentage, 0), city: c.city }));
   const group = { holding: names(d.holding_entities), subsidiaries: names(d.subsidiary_entities), associates: names(d.associate_entities), jointVentures: names(d.joint_ventures) };
@@ -256,7 +265,7 @@ function build(raw, entity) {
     cin: co.cin ?? null, legalName: displayLegalName(co.legal_name, entity), description: (d.description?.desc_thousand_char ?? "").slice(0, 600) || null,
     website: co.website ?? null, city: co.registered_address?.city ?? null, state: co.registered_address?.state ?? null,
     incorporation: co.incorporation_date ?? null, classification: co.classification ?? null, status: co.status ?? null,
-    industry: pc0.bizIndustry ?? null, segment: pc0.bizSegment ?? null,
+    industry: pc0.bizIndustry ?? null, segment: pc0.bizSegment ?? null, segments: d.industry_segments?.[0]?.segments ?? [],
     activities: (d.principal_business_activities ?? []).map((a) => ({ desc: a.business_activity_description, pct: num(a.percentage_of_turnover) })).filter((a) => a.desc).slice(0, 4),
     paidUpCr: cr(co.paid_up_capital), authorizedCr: cr(co.authorized_capital), lastAgm: co.last_agm_date ?? null, lastFiling: co.last_filing_date ?? null,
     lastUpdated: raw.metadata?.last_updated ?? null, yearsCovered: fin.length,
@@ -271,7 +280,7 @@ function build(raw, entity) {
     fin, employees: { latest: latestHeadcount, yearly: empYearly, monthly: empMonthly },
     peers: { industry: pc0.bizIndustry ?? null, segment: pc0.bizSegment ?? null, sampleSize: benchmarks[0]?.peers ?? null, named: namedPeers, benchmarks },
     vsMedian: { self: bm, median: bmMed },
-    ownership, shareholders, directors, charges, legal, group, relatedParty, gst: { list: gst, onTime: gstOnTime, total: gst.length }, allotments, paymentBehaviour,
+    ownership, shareholders, directors, charges, legal, financialDisputes, group, relatedParty, gst: { list: gst, onTime: gstOnTime, total: gst.length }, allotments, paymentBehaviour,
   };
 
   detail.advanced = advanced(detail);
@@ -555,6 +564,14 @@ function buildLevers(x) {
   else if (x.legal.count >= 5) add("watch", 1, "Several court cases on record",
     `${x.legal.count} cases on file (${x.legal.against} filed against them) — mostly routine, but worth a glance.`,
     [ev("Cases on file", String(x.legal.count), "risk")]);
+  // --- financial-dispute litigation (recovery / default) ---
+  const fd = x.financialDisputes;
+  if (fd && fd.payable > 0) add("risk", 2, "Being pursued for financial defaults",
+    `${fd.payable} financial-dispute case${fd.payable > 1 ? "s" : ""} where they're the defendant — someone is chasing them in court for money owed. A solvency / cash-flow red flag.`,
+    [ev("Defaults pursued", String(fd.payable), "risk")]);
+  else if (fd && fd.receivable >= 2) add("watch", 1, "Chasing customers through the courts",
+    `${fd.receivable} recovery/insolvency case${fd.receivable > 1 ? "s" : ""} they've filed to collect from customers — their own receivables are turning bad, so expect them to stay tight on the terms they give us.`,
+    [ev("Recovery cases", String(fd.receivable), "risk")]);
   if (x.flags.gstDelay || x.flags.epfDelay) add("watch", 1, "Late on statutory filings",
     `${[x.flags.gstDelay && "GST filing", x.flags.epfDelay && "EPF payment"].filter(Boolean).join(" + ")} delays on record — often an early sign of a cash squeeze.`,
     [ev("Filing flags", [x.flags.gstDelay && "GST", x.flags.epfDelay && "EPF"].filter(Boolean).join(" + "), "risk")]);

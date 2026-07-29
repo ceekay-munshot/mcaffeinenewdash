@@ -11,6 +11,9 @@
     "status": "Listed",
     "industry": "Packaging",
     "segment": "Bottles and Caps",
+    "segments": [
+      "Bottles and Caps"
+    ],
     "activities": [
       {
         "desc": "Manufacture of rubber and plastics products",
@@ -1410,6 +1413,33 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 2,
+      "receivable": 2,
+      "payable": 0,
+      "list": [
+        {
+          "direction": "receivable",
+          "type": "RECOVERY FROM GOODS AND SERVICES",
+          "verdict": "ALLOWED",
+          "court": "National Company Law Tribunal",
+          "counterparty": "VLCC Personal Care",
+          "caseNo": "IB-81/ND/2021",
+          "amountCr": null,
+          "date": "2021-07-05"
+        },
+        {
+          "direction": "receivable",
+          "type": "RECOVERY FROM GOODS AND SERVICES",
+          "verdict": "ALLOWED",
+          "court": "National Company Law Tribunal",
+          "counterparty": "VLCC Personal Care",
+          "caseNo": "C.P. (IB) - 81/2021",
+          "amountCr": null,
+          "date": "2021-07-05"
+        }
+      ]
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -2185,6 +2215,19 @@
       {
         "tone": "watch",
         "strength": 1,
+        "title": "Chasing customers through the courts",
+        "detail": "2 recovery/insolvency cases they've filed to collect from customers — their own receivables are turning bad, so expect them to stay tight on the terms they give us.",
+        "evidence": [
+          {
+            "label": "Recovery cases",
+            "value": "2",
+            "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -2245,6 +2288,9 @@
     "status": "Unlisted",
     "industry": "Food and Beverages",
     "segment": "Flavouring and Seasoning Additives",
+    "segments": [
+      "Flavouring and Seasoning Additives"
+    ],
     "activities": [
       {
         "desc": "Manufacture of pharmaceuticals, medicinal chemical and botanical products",
@@ -3500,6 +3546,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -4060,6 +4112,9 @@
     "status": "Unlisted",
     "industry": "Chemicals",
     "segment": "Aromatics",
+    "segments": [
+      "Aromatics"
+    ],
     "activities": [
       {
         "desc": "Manufacture of chemicals and chemical products",
@@ -5297,6 +5352,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -5898,6 +5959,9 @@
     "status": "Unlisted",
     "industry": "Chemicals",
     "segment": "Chemical Retailers and Distributors",
+    "segments": [
+      "Chemical Retailers and Distributors"
+    ],
     "activities": [
       {
         "desc": "Wholesale trade, except of motor vehicles and motorcycleS",
@@ -7199,6 +7263,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -7822,6 +7892,9 @@
     "status": "Unlisted",
     "industry": "Chemicals",
     "segment": "Chemical Retailers and Distributors",
+    "segments": [
+      "Chemical Retailers and Distributors"
+    ],
     "activities": [
       {
         "desc": "Wholesale trade, except of motor vehicles and motorcycleS",
@@ -9032,6 +9105,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -9543,6 +9622,9 @@
     "status": "Unlisted",
     "industry": "FMCG",
     "segment": "Personal Care and Skin Care",
+    "segments": [
+      "Personal Care and Skin Care"
+    ],
     "activities": [
       {
         "desc": "Other manufacturing including jewelry, musical instruments, medical instruments, sports goods, etc. activities",
@@ -10652,6 +10734,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -11113,6 +11201,9 @@
     "status": "Unlisted",
     "industry": "Pharma",
     "segment": "Formulations",
+    "segments": [
+      "Personal Care and Skin Care"
+    ],
     "activities": [
       {
         "desc": "Manufacture of chemicals and chemical products",
@@ -12302,6 +12393,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -12868,6 +12965,9 @@
     "status": "Unlisted",
     "industry": "FMCG",
     "segment": "Soaps and Detergents",
+    "segments": [
+      "Soaps and Detergents"
+    ],
     "activities": [
       {
         "desc": "Other manufacturing",
@@ -14102,6 +14202,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -14695,6 +14801,9 @@
     "status": "Unlisted",
     "industry": null,
     "segment": null,
+    "segments": [
+      "Pumps"
+    ],
     "activities": [],
     "paidUpCr": 0.9,
     "authorizedCr": 0.9,
@@ -15038,6 +15147,12 @@
       "against": 0,
       "list": []
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -15228,6 +15343,9 @@
     "status": "Unlisted",
     "industry": "Packaging",
     "segment": "Bottles and Caps",
+    "segments": [
+      "Bottles and Caps"
+    ],
     "activities": [
       {
         "desc": "Manufacture of rubber and plastics products",
@@ -16490,6 +16608,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -17007,6 +17131,9 @@
     "status": "Unlisted",
     "industry": "Packaging",
     "segment": "Bottles and Caps",
+    "segments": [
+      "Bottles and Caps"
+    ],
     "activities": [
       {
         "desc": "Manufacture of rubber and plastics products",
@@ -17758,6 +17885,12 @@
       "against": 0,
       "list": []
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -18057,6 +18190,9 @@
     "status": "Unlisted",
     "industry": "Packaging",
     "segment": "Bottles and Caps",
+    "segments": [
+      "Bottles and Caps"
+    ],
     "activities": [
       {
         "desc": "Other manufacturing",
@@ -19401,6 +19537,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -19975,6 +20117,9 @@
     "status": "Unlisted",
     "industry": null,
     "segment": null,
+    "segments": [
+      "Unclassified Segment"
+    ],
     "activities": [
       {
         "desc": "Other manufacturing",
@@ -21082,6 +21227,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -21713,6 +21864,9 @@
     "status": "Unlisted",
     "industry": "Chemicals",
     "segment": "Chemical Retailers and Distributors",
+    "segments": [
+      "Chemical Retailers and Distributors"
+    ],
     "activities": [
       {
         "desc": "Wholesale Trading",
@@ -22993,6 +23147,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [
@@ -23596,6 +23756,9 @@
     "status": "Unlisted",
     "industry": "Packaging",
     "segment": "Bottles and Caps",
+    "segments": [
+      "Bottles and Caps"
+    ],
     "activities": [
       {
         "desc": "Manufacture of rubber and plastics products",
@@ -24985,6 +25148,33 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 2,
+      "receivable": 2,
+      "payable": 0,
+      "list": [
+        {
+          "direction": "receivable",
+          "type": "RECOVERY FROM GOODS AND SERVICES",
+          "verdict": "DISALLOWED",
+          "court": "National Company Law Tribunal",
+          "counterparty": "AJE INDIA",
+          "caseNo": "558(MB)2022",
+          "amountCr": null,
+          "date": "2023-12-18"
+        },
+        {
+          "direction": "receivable",
+          "type": "RECOVERY FROM GOODS AND SERVICES",
+          "verdict": "ALLOWED",
+          "court": "Civil Judge Senior Division, TC Nalagarh",
+          "counterparty": "M/s Manchanda Herbal Product",
+          "caseNo": "Civil Suit/178/2019",
+          "amountCr": 0,
+          "date": "2022-08-16"
+        }
+      ]
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -25684,6 +25874,19 @@
       {
         "tone": "watch",
         "strength": 1,
+        "title": "Chasing customers through the courts",
+        "detail": "2 recovery/insolvency cases they've filed to collect from customers — their own receivables are turning bad, so expect them to stay tight on the terms they give us.",
+        "evidence": [
+          {
+            "label": "Recovery cases",
+            "value": "2",
+            "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -25757,6 +25960,9 @@
     "status": "Unlisted",
     "industry": "Chemicals",
     "segment": "Chemical Retailers and Distributors",
+    "segments": [
+      "Chemical Retailers and Distributors"
+    ],
     "activities": [
       {
         "desc": "Wholesale and retail trade; repair of motor vehicles and motorcycles",
@@ -26881,6 +27087,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [
         {
@@ -27457,6 +27669,9 @@
     "status": "Unlisted",
     "industry": "Chemicals",
     "segment": "Aromatics",
+    "segments": [
+      "Aromatics"
+    ],
     "activities": [
       {
         "desc": "Manufacture of chemicals and chemical products",
@@ -28694,6 +28909,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -29237,6 +29458,9 @@
     "status": "Unlisted",
     "industry": "Packaging",
     "segment": "Bottles and Caps",
+    "segments": [
+      "Bottles and Caps"
+    ],
     "activities": [
       {
         "desc": "Manufacture of rubber and plastics products",
@@ -30595,6 +30819,12 @@
         }
       ]
     },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
+    },
     "group": {
       "holding": [],
       "subsidiaries": [],
@@ -31122,6 +31352,9 @@
     "status": "Unlisted",
     "industry": "FMCG",
     "segment": "Personal Care and Skin Care",
+    "segments": [
+      "Personal Care and Skin Care"
+    ],
     "activities": [
       {
         "desc": "Manufacture of chemicals and chemical products",
@@ -32033,6 +32266,12 @@
           "counterparty": "BNC INTERNATIONAL LLP AND ORS & ORS."
         }
       ]
+    },
+    "financialDisputes": {
+      "count": 0,
+      "receivable": 0,
+      "payable": 0,
+      "list": []
     },
     "group": {
       "holding": [],
