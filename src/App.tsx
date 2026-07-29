@@ -8,7 +8,7 @@ import {
   type CompetitorRow,
   type ResearchData,
 } from "./types";
-import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore } from "./lib/format";
+import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore, fullName } from "./lib/format";
 import { negotiationRoom } from "./lib/health";
 import { CATEGORY_COLOR } from "./lib/palette";
 import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, type Slice } from "./charts";
@@ -432,7 +432,7 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
               return (
                 <tr key={item ?? folder} onClick={() => e && onSelect(e)} className={`border-t border-slate-100 transition ${e ? "cursor-pointer hover:bg-teal-50/50" : ""}`}>
                   {itemHead && <td className="max-w-[280px] px-4 py-3.5"><div className="truncate font-semibold text-slate-900" title={item}>{item}</div></td>}
-                  <td className="max-w-[220px] px-4 py-3.5">{e ? <span className="flex items-center gap-1.5 text-slate-700" title={e.brand}><span className="shrink-0">{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></span> : <span className="text-slate-400">—</span>}</td>
+                  <td className="min-w-[240px] px-4 py-3.5">{e ? <span className="flex items-start gap-1.5 font-medium text-slate-800"><span className="shrink-0 leading-relaxed">{catEmoji(e.category)}</span><span className="leading-snug">{fullName(e.legalName, e.brand)}</span></span> : <span className="text-slate-400">—</span>}</td>
                   <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-900">{e ? fmtCrore(revOf(e)) : "—"}</td>
                   <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{e ? fmtPct(ebitdaMarginOf(e)) : "—"}</td>
                   <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{e ? fmtPct(supRoce(e)) : "—"}</td>
@@ -573,7 +573,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
             <tbody>
               {currentVendor && (
                 <tr onClick={() => onSelectVendor(currentVendor)} className="cursor-pointer border-t border-slate-100 bg-teal-50/40 transition hover:bg-teal-50">
-                  <td className="px-4 py-3 font-semibold text-slate-900">⭐ {currentVendor.brand}</td>
+                  <td className="px-4 py-3 font-semibold leading-snug text-slate-900">⭐ {fullName(currentVendor.legalName, currentVendor.brand)}</td>
                   <td className="px-4 py-3"><span className="inline-flex rounded-md bg-teal-100 px-1.5 py-0.5 text-xs font-medium text-teal-800">Our vendor</span></td>
                   <td className="px-4 py-3 text-slate-500">{loc(currentVendor)}</td>
                   <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-orange-700">{hasPrice ? entry.priceINRPerKg : "—"}</td>
@@ -667,10 +667,10 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
     if (m.side === "rm") {
       const row = RM_SUPPLY.find((s) => s.item === m.item && s.folder);
       const e = row ? byFolder.get(row.folder) : undefined;
-      return { label: e?.brand ?? row?.brand ?? "—", e };
+      return { label: e ? fullName(e.legalName, e.brand) : (row?.brand ?? "—"), e };
     }
     const rows = PM_SUPPLY.filter((s) => pmCategoryOf(s.item) === m.item && s.folder);
-    const names = [...new Set(rows.map((s) => byFolder.get(s.folder)?.brand ?? s.brand))];
+    const names = [...new Set(rows.map((s) => { const en = byFolder.get(s.folder); return en ? fullName(en.legalName, en.brand) : s.brand; }))];
     return { label: names.length ? names.slice(0, 2).join(", ") + (names.length > 2 ? ` +${names.length - 2}` : "") : "—", e: rows[0] ? byFolder.get(rows[0].folder) : undefined };
   };
 
@@ -711,52 +711,47 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
         </div>
       </Card>
 
-      {/* leverage map: three columns, sole-source (risky) → competitive (ours) */}
-      <div className="grid items-start gap-3 md:grid-cols-3">
-        {cols.map((c) => {
-          const meta = CONC_META[c];
-          const items = entries.filter((m) => m.concentration === c);
-          return (
-            <div key={c} className={`rounded-2xl ${meta.bg} p-3 ring-1 ${meta.ring}`}>
-              <div className="mb-2.5 flex items-center justify-between px-1">
-                <div className={`text-sm font-bold ${meta.text}`}>{meta.emoji} {meta.label}</div>
-                <div className={`rounded-full bg-white/70 px-2 py-0.5 text-xs font-semibold ${meta.text}`}>{items.length}</div>
-              </div>
-              <div className="space-y-2">
-                {items.map((m) => {
-                  const v = vendorFor(m);
-                  const lev = LEV_META[m.leverage];
-                  return (
-                    <div key={m.item} onClick={() => setOpenItem(m.item)} className="cursor-pointer rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200/70 transition hover:ring-teal-300">
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="min-w-0">
-                          <div className="truncate font-semibold text-slate-900" title={m.item}>{m.item}</div>
-                          {m.inci && <div className="truncate text-[11px] text-slate-500" title={m.inci}>{m.inci}</div>}
-                        </div>
-                        <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${CONF_DOT[m.confidence] ?? CONF_DOT.low}`} title={`${m.confidence} confidence`} />
-                      </div>
-                      <div className="mt-2 flex flex-wrap items-center gap-1.5">
-                        <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-medium ${meta.bg} ${meta.text} ring-1 ${meta.ring}`}>{lev.emoji} {lev.label}</span>
-                        <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600" title={m.indiaSuppliers.join(" · ")}>🇮🇳 {m.indiaBand} in India</span>
-                        {m.priceINRPerKg && !m.priceINRPerKg.includes("not found") && <span title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")} className="inline-flex items-center gap-1 rounded-md bg-orange-50 px-1.5 py-0.5 text-[11px] font-medium text-orange-700 ring-1 ring-orange-200">💰 {m.priceINRPerKg}</span>}
-                      </div>
-                      <div className="mt-1.5 text-[11px] text-slate-400">{m.side === "rm" ? "Current vendor" : "We buy from"}: <span className="text-slate-600">{v.label}</span></div>
-                      <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{m.implication}</p>
-                      {m.sources.length > 0 && (
-                        <div className="mt-1.5 flex flex-wrap gap-1">
-                          {m.sources.slice(0, 3).map((s, i) => <a key={i} href={s} target="_blank" rel="noreferrer" onClick={(ev) => ev.stopPropagation()} className="text-[10px] text-slate-400 underline decoration-slate-300 hover:text-teal-600">src{i + 1}</a>)}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-                {items.length === 0 && <div className="px-1 py-6 text-center text-xs text-slate-400">None</div>}
-              </div>
+      {/* leverage map: compact cards grouped by concentration, each group spanning
+          the full width so the sparse groups don't leave a tall empty column. The
+          per-item analysis lives one click deeper (drill-down), keeping this a
+          fast, scannable board rather than a wall of prose. */}
+      {cols.map((c) => {
+        const meta = CONC_META[c];
+        const items = entries.filter((m) => m.concentration === c);
+        if (items.length === 0) return null;
+        return (
+          <div key={c}>
+            <div className="mb-2 flex items-center gap-2 px-0.5">
+              <span className={`text-sm font-bold ${meta.text}`}>{meta.emoji} {meta.label}</span>
+              <span className={`rounded-full ${meta.bg} px-2 py-0.5 text-xs font-semibold ${meta.text} ring-1 ${meta.ring}`}>{items.length}</span>
             </div>
-          );
-        })}
-      </div>
-      <p className="text-[11px] leading-relaxed text-slate-400">Counts indicate market depth from open-web research, not a census — each card links its sources and carries a confidence dot.</p>
+            <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {items.map((m) => {
+                const v = vendorFor(m);
+                const lev = LEV_META[m.leverage];
+                return (
+                  <div key={m.item} onClick={() => setOpenItem(m.item)} className="cursor-pointer rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200/70 transition hover:-translate-y-0.5 hover:shadow-md hover:ring-teal-300" style={{ borderLeft: `3px solid ${meta.color}` }}>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <div className="truncate font-semibold text-slate-900" title={m.item}>{m.item}</div>
+                        {m.inci && <div className="truncate text-[11px] text-slate-500" title={m.inci}>{m.inci}</div>}
+                      </div>
+                      <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${CONF_DOT[m.confidence] ?? CONF_DOT.low}`} title={`${m.confidence} confidence`} />
+                    </div>
+                    <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                      <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-medium ${meta.bg} ${meta.text} ring-1 ${meta.ring}`}>{lev.emoji} {lev.label}</span>
+                      <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600" title={`${m.indiaBand} sellers in India · ${m.indiaSuppliers.join(" · ")}`}>🇮🇳 {m.indiaBand}</span>
+                      {m.priceINRPerKg && !m.priceINRPerKg.includes("not found") && <span title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")} className="inline-flex items-center gap-1 rounded-md bg-orange-50 px-1.5 py-0.5 text-[11px] font-medium text-orange-700 ring-1 ring-orange-200">💰 {m.priceINRPerKg}</span>}
+                    </div>
+                    <div className="mt-2 truncate text-[11px] text-slate-400" title={v.label}>{m.side === "rm" ? "Vendor" : "We buy from"}: <span className="text-slate-600">{v.label}</span></div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+      <p className="text-[11px] text-slate-400">Open-web research, not a census · dot = confidence · click any card for its price, financials & full negotiation analysis.</p>
     </div>
   );
 }
@@ -898,7 +893,7 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
                 <label key={e.folder} className={`flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition ${on ? "bg-teal-50 ring-1 ring-teal-200" : disabled ? "cursor-not-allowed opacity-40" : "hover:bg-white"}`}>
                   <input type="checkbox" checked={on} disabled={disabled} onChange={() => toggle(e.folder)} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-400" />
                   <span className="shrink-0">{catEmoji(e.category)}</span>
-                  <span className="min-w-0 flex-1 truncate font-medium text-slate-800" title={e.brand}>{e.brand}{hasDeepDive(e.cin) && <span className="ml-1 text-[10px] text-teal-600" title="full Probe42 report on file">●</span>}</span>
+                  <span className="min-w-0 flex-1 truncate font-medium text-slate-800" title={fullName(e.legalName, e.brand)}>{e.brand}{hasDeepDive(e.cin) && <span className="ml-1 text-[10px] text-teal-600" title="full Probe42 report on file">●</span>}</span>
                   <span className="shrink-0 font-mono text-xs text-slate-400">{fmtCrore(revOf(e))}</span>
                 </label>
               );
@@ -933,7 +928,7 @@ function VerdictCard({ emoji, title, e, color, note, onSelect }: { emoji: string
       <span className="text-2xl leading-none">{emoji}</span>
       <div className="min-w-0">
         <div className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">{title}</div>
-        <div className="flex items-center gap-2 text-lg font-bold text-slate-900">{color && <span className="h-3 w-3 rounded-sm" style={{ background: color }} />}{e ? e.brand : "—"}</div>
+        <div className="flex items-center gap-2 text-lg font-bold leading-snug text-slate-900">{color && <span className="h-3 w-3 shrink-0 rounded-sm" style={{ background: color }} />}{e ? fullName(e.legalName, e.brand) : "—"}</div>
         {note && <div className="text-xs text-slate-500">{note}</div>}
       </div>
     </button>
@@ -971,14 +966,14 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
               <tbody>
                 {selected.flatMap((e, i) => {
                   const items = suppliedItems(e.folder);
-                  if (!items.length) return [<tr key={e.folder} className="border-t border-slate-100"><td className="px-4 py-2 font-semibold text-slate-900"><span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{e.brand}</span></td><td className="px-4 py-2 text-slate-400" colSpan={3}>Not mapped to a tracked ingredient</td></tr>];
+                  if (!items.length) return [<tr key={e.folder} className="border-t border-slate-100"><td className="px-4 py-2 font-semibold leading-snug text-slate-900"><span className="inline-flex items-start gap-1.5"><span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{fullName(e.legalName, e.brand)}</span></td><td className="px-4 py-2 text-slate-400" colSpan={3}>Not mapped to a tracked ingredient</td></tr>];
                   return items.map((it, j) => {
                     const mk = marketOf(it);
                     const lev = mk ? LEV_META[mk.leverage] : null;
                     const hasP = !!mk?.priceINRPerKg && !mk.priceINRPerKg.includes("not found");
                     return (
                       <tr key={e.folder + it} className="border-t border-slate-100">
-                        {j === 0 && <td rowSpan={items.length} className="px-4 py-2 align-top font-semibold text-slate-900"><span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{e.brand}</span></td>}
+                        {j === 0 && <td rowSpan={items.length} className="px-4 py-2 align-top font-semibold leading-snug text-slate-900"><span className="inline-flex items-start gap-1.5"><span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{fullName(e.legalName, e.brand)}</span></td>}
                         <td className="px-4 py-2 text-slate-700">{it}</td>
                         <td className="whitespace-nowrap px-4 py-2 text-right font-mono text-orange-700">{hasP ? mk!.priceINRPerKg : "—"}</td>
                         <td className="px-4 py-2 text-xs text-slate-500">{lev ? `${lev.emoji} ${lev.label}` : "—"}</td>
@@ -1129,8 +1124,8 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
           <tbody>
             {[...(showAll ? active : active.slice(0, TOP)), ...(showLimited ? others : [])].map(({ e, levers }) => (
               <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
-                <td className="max-w-[300px] px-4 py-3.5">
-                  <div className="flex min-w-0 items-center gap-2 font-semibold text-slate-900" title={e.legalName ?? e.brand}><span className="shrink-0">{catEmoji(e.category)}</span><span className="truncate">{e.brand}</span></div>
+                <td className="min-w-[240px] px-4 py-3.5">
+                  <div className="flex items-start gap-2 font-semibold leading-snug text-slate-900"><span className="shrink-0 leading-relaxed">{catEmoji(e.category)}</span><span>{fullName(e.legalName, e.brand)}</span></div>
                 </td>
                 <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-900">{fmtCrore(revOf(e))}</td>
                 <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
@@ -1331,7 +1326,7 @@ function CompetitorView() {
               <tbody>
                 {rows.map((e) => (
                   <tr key={e.cin || e.brand} onClick={() => openCompetitor(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-violet-50/40">
-                    <td className="px-4 py-3"><div className="font-medium text-slate-900">{e.brand}</div><div className="truncate text-xs text-slate-400">{e.parent ?? e.legalName ?? ""}</div></td>
+                    <td className="px-4 py-3"><div className="font-medium leading-snug text-slate-900">{fullName(e.legalName, e.brand)}</div>{e.parent && <div className="truncate text-xs text-slate-400">↳ {e.parent}</div>}</td>
                     <td className="px-4 py-3"><div className="flex flex-wrap gap-1">{e.categories.map((c) => <span key={c} className="rounded-md px-1.5 py-0.5 text-xs font-medium" style={{ background: `${CAT5_COLOR[c] ?? "#94a3b8"}18`, color: CAT5_COLOR[c] ?? "#64748b" }}>{c}</span>)}</div></td>
                     <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
                     <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtUSD(e.competitor?.fundingUSD ?? null)}</td>
@@ -1498,7 +1493,7 @@ function DeliveryView() {
               <tbody>
                 {rows.map((r) => (
                   <tr key={r.e.folder} onClick={() => openPartner(r.e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
-                    <td className="px-4 py-3"><div className="font-medium text-slate-900">{r.e.brand}</div><div className="truncate text-xs text-slate-400">{r.e.legalName ?? r.e.folder}</div></td>
+                    <td className="px-4 py-3"><div className="font-medium leading-snug text-slate-900">{fullName(r.e.legalName, r.e.brand)}</div></td>
                     <td className="px-4 py-3">{r.listed ? <Pill cls="text-emerald-700 bg-emerald-50 ring-emerald-200">Listed</Pill> : <Pill cls="text-slate-600 bg-slate-100 ring-slate-200">Private</Pill>}</td>
                     <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{crStr(r.rev)}</td>
                     <td className={`whitespace-nowrap px-4 py-3 text-right font-mono ${r.net >= 0 ? "text-emerald-600" : "text-rose-600"}`}>{r.net >= 0 ? "+" : "−"}{crStr(Math.abs(r.net))}</td>
@@ -1619,8 +1614,7 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
           <div className="flex min-w-0 items-start gap-4">
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-2xl font-bold ring-1 ring-white/25">{kind === "supplier" ? catEmoji(e.category) : e.brand.slice(0, 1).toUpperCase()}</div>
             <div className="min-w-0">
-              <div className="text-2xl font-bold tracking-tight">{e.brand}</div>
-              <div className="mt-0.5 text-sm text-white/70">{e.legalName ?? e.folder}</div>
+              <div className="text-2xl font-bold leading-tight tracking-tight">{fullName(e.legalName, e.brand)}</div>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 <span className="inline-flex items-center gap-1 rounded-full bg-white/12 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/20">{catEmoji(e.category)} {e.category}</span>
                 {suppliedItems(e.folder).length > 0 && <span className="inline-flex items-center gap-1 rounded-full bg-teal-400/25 px-2 py-0.5 text-xs font-medium text-teal-50 ring-1 ring-teal-200/40" title={`Supplies mcAFFEINE: ${suppliedItems(e.folder).join(", ")}`}>🧬 Supplies: {suppliedItems(e.folder).slice(0, 2).join(", ")}{suppliedItems(e.folder).length > 2 ? ` +${suppliedItems(e.folder).length - 2}` : ""}</span>}

@@ -37,3 +37,26 @@ export function fmtDate(iso: string | null): string {
   const d = new Date(iso);
   return Number.isNaN(d.getTime()) ? iso : d.toISOString().slice(0, 10);
 }
+
+// Registry legal names are ALL-CAPS ("VALUETREE INGREDIENTS PRIVATE LIMITED").
+// Title-case them, but keep the brand's own casing as the prefix so the reader
+// sees one clean full name ("ValueTree Ingredients Private Limited") — never the
+// short + full pair. Falls back to the brand when there is no legal name.
+export function fullName(legalName: string | null | undefined, brand: string): string {
+  const clean = (legalName ?? "")
+    .replace(/\[[^\]]*\]/g, "") // drop editorial "[sic …]" notes
+    .replace(/\s*\([^)]*\)\s*$/, "") // drop a trailing "(India)"-style qualifier
+    .replace(/\bLIM(?:ITD|TED|ITE)\b/i, "LIMITED") // fix known registry typos of "LIMITED"
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!clean) return brand;
+  const tc = clean.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase()).replace(/\bLlp\b/g, "LLP");
+  // Preserve the brand's own casing as the prefix ONLY when it's intentional
+  // mixed-case ("ValueTree", "EPL") — not an all-lowercase folder slug ("kapco",
+  // "arovea"), which should just title-case cleanly.
+  const intentionalCase = brand && brand !== brand.toLowerCase() && brand !== brand.toUpperCase();
+  if (intentionalCase && tc.toLowerCase().startsWith(brand.toLowerCase())) {
+    return brand + tc.slice(brand.length);
+  }
+  return tc;
+}

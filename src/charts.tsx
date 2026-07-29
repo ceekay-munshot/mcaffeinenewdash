@@ -165,8 +165,8 @@ export function Columns({
   return (
     <div>
       <div className="flex" style={{ height }}>
-        <div className="relative w-11 shrink-0">
-          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 font-mono text-[10px] text-slate-400" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
+        <div className="relative w-14 shrink-0">
+          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] text-slate-400" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
         </div>
         <div className="relative flex-1">
           {ticks.map((t) => <div key={t} className={`absolute inset-x-0 border-t ${t === 0 ? "border-slate-300" : "border-slate-100"}`} style={{ top: `${yPct(t)}%` }} />)}
@@ -241,8 +241,8 @@ function LineBase({ xLabels, series, valueLabel, height, area }: {
   return (
     <div>
       <div className="flex" style={{ height }}>
-        <div className="relative w-11 shrink-0">
-          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 font-mono text-[10px] text-slate-400" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
+        <div className="relative w-14 shrink-0">
+          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] text-slate-400" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
         </div>
         <div className="relative flex-1" onMouseMove={onMove} onMouseLeave={() => setHi(null)}>
           {ticks.map((t) => <div key={t} className="absolute inset-x-0 border-t border-slate-100" style={{ top: `${yPct(t)}%` }} />)}
