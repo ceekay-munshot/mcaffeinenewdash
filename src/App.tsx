@@ -14,7 +14,7 @@ import { CATEGORY_COLOR } from "./lib/palette";
 import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import { RM_SUPPLY, PM_SUPPLY, suppliedItems } from "./supply";
-import { newsOf, type SupplierNews } from "./news";
+import { newsOf, type SupplierNews, type Signal, type NewsItem } from "./news";
 import { allMarket, marketOf, marketOfFolder, pmCategoryOf, CONC_META, LEV_META, type MarketEntry, type Concentration } from "./market";
 import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
@@ -345,12 +345,13 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "market" | "supply" | "rates";
+type SupTab = "board" | "market" | "supply" | "rates" | "news";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "board", label: "Suppliers", emoji: "🏭" },
   { key: "market", label: "Ingredients", emoji: "🧪" },
   { key: "supply", label: "Supply chain", emoji: "🧬" },
   { key: "rates", label: "Rate benchmark", emoji: "💰" },
+  { key: "news", label: "Newsroom", emoji: "📰" },
 ];
 
 /* ---- L3 · mcAFFEINE's own rates vs the market band + the supplier's room ----
@@ -447,6 +448,115 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
   );
 }
 
+/* ---- Consolidated newsroom — every tracked supplier's news in one front page.
+   Signals that move a negotiation (ownership changes, capex) lead; dated press
+   follows newest-first; softer market-position notes sit at the bottom. Each name
+   opens its deep-dive, each headline links out. Reads the same news.json the
+   per-supplier News tab uses — one source of truth. */
+const NEWS_LEAD = new Set(["Ownership change", "Capex / expansion"]);
+const NEWS_SIG: Record<string, { emoji: string; border: string; chip: string }> = {
+  "Ownership change": { emoji: "🔀", border: "border-indigo-400", chip: "bg-indigo-100 text-indigo-700" },
+  "Capex / expansion": { emoji: "🏗️", border: "border-emerald-400", chip: "bg-emerald-100 text-emerald-700" },
+  "Market position": { emoji: "📊", border: "border-slate-300", chip: "bg-slate-100 text-slate-600" },
+};
+function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const { leads, notes, items, covered } = useMemo(() => {
+    const leads: { e: Entity; s: Signal }[] = [];
+    const notes: { e: Entity; s: Signal }[] = [];
+    const items: { e: Entity; it: NewsItem }[] = [];
+    const seen = new Set<string>();
+    for (const e of all) {
+      const n = newsOf(e.folder);
+      if (!n) continue;
+      seen.add(e.folder);
+      for (const s of n.signals) (NEWS_LEAD.has(s.type) ? leads : notes).push({ e, s });
+      for (const it of n.news) items.push({ e, it });
+    }
+    items.sort((a, b) => b.it.date.localeCompare(a.it.date));
+    leads.sort((a, b) => (a.s.type === "Ownership change" ? 0 : 1) - (b.s.type === "Ownership change" ? 0 : 1));
+    return { leads, notes, items, covered: seen.size };
+  }, [all]);
+  const month = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+  const total = leads.length + notes.length + items.length;
+  const NameBtn = ({ e }: { e: Entity }) => (
+    <button onClick={() => onSelect(e)} className="inline-flex items-start gap-1 text-left text-sm font-semibold leading-snug text-teal-700 hover:underline"><span className="shrink-0">{catEmoji(e.category)}</span>{fullName(e.legalName, e.brand)}</button>
+  );
+  const Src = ({ url, source }: { url?: string; source?: string }) => !source ? null : url
+    ? <a href={url} target="_blank" rel="noreferrer" className="text-[11px] font-medium text-slate-400 hover:text-teal-600">{source} ↗</a>
+    : <span className="text-[11px] font-medium text-slate-400">{source}</span>;
+  return (
+    <div className="space-y-4">
+      <div className="rounded-3xl bg-gradient-to-br from-[#0b3b39] via-[#0d9488] to-[#0891b2] p-5 text-white shadow-lg">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="min-w-0">
+            <div className="text-lg font-bold">📰 Supplier newsroom — everything, in one place</div>
+            <div className="mt-1 max-w-2xl text-sm text-white/80">Ownership moves, expansions and press across every tracked supplier — newest first. Each headline links to its source; each name opens its deep-dive.</div>
+          </div>
+          <div className="shrink-0 rounded-2xl bg-white/12 px-4 py-2.5 text-right ring-1 ring-white/20">
+            <div className="text-[10px] font-medium uppercase tracking-wide text-teal-50">Stories on file</div>
+            <div className="text-2xl font-bold tabular-nums">{total}</div>
+            <div className="text-[11px] text-white/70">across {covered} suppliers · as of {month}</div>
+          </div>
+        </div>
+      </div>
+      {leads.length > 0 && (
+        <div>
+          <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">🔔 Moves that change your leverage</h3>
+          <div className="grid gap-3 md:grid-cols-2">
+            {leads.map(({ e, s }, i) => {
+              const st = NEWS_SIG[s.type] ?? NEWS_SIG["Market position"];
+              return (
+                <div key={i} className={`rounded-2xl border-l-4 ${st.border} bg-white p-4 shadow-sm ring-1 ring-slate-200/70`}>
+                  <div className="flex items-center justify-between gap-2">
+                    <NameBtn e={e} />
+                    <span className={`shrink-0 rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${st.chip}`}>{st.emoji} {s.type}</span>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700">{s.oneLine}</p>
+                  <div className="mt-2"><Src url={s.url} source={s.source} /></div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      {items.length > 0 && (
+        <Card title="🗞 Latest headlines" sub="dated press across all suppliers · newest first" accent="#0891b2">
+          <div className="grid gap-x-8 lg:grid-cols-2">
+            {items.map(({ e, it }, i) => (
+              <div key={i} className="border-b border-slate-100 py-3">
+                <div className="mb-1 flex items-center gap-2">
+                  <span className="shrink-0 rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-slate-500">{it.date}</span>
+                  <NameBtn e={e} />
+                </div>
+                {it.url
+                  ? <a href={it.url} target="_blank" rel="noreferrer" className="text-sm font-bold leading-snug text-slate-900 hover:text-teal-700 hover:underline">{it.title}</a>
+                  : <span className="text-sm font-bold leading-snug text-slate-900">{it.title}</span>}
+                <p className="mt-0.5 text-xs leading-relaxed text-slate-600">{it.oneLine}</p>
+                <div className="mt-1"><Src url={it.url} source={it.source} /></div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
+      {notes.length > 0 && (
+        <Card title="📊 Where they sit in the market" sub="positioning notes for the quieter suppliers — no hard press, but useful context" accent="#64748b">
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {notes.map(({ e, s }, i) => (
+              <div key={i} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200/70">
+                <NameBtn e={e} />
+                <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{s.oneLine}</p>
+                <div className="mt-1"><Src url={s.url} source={s.source} /></div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
+      {total === 0 && <div className="rounded-2xl bg-white p-12 text-center text-sm text-slate-400 ring-1 ring-slate-200">No supplier news on file yet.</div>}
+      <p className="px-1 text-[11px] leading-relaxed text-slate-400">Gathered from the open web · a supplier typically surfaces only a handful of items in six months, so a short list is normal. Suppliers with no public footprint don't appear here — their leverage lives in the financials. Click any name to open its full deep-dive.</p>
+    </div>
+  );
+}
+
 function SupplierView() {
   const all = useMemo(() => supplyEntities(), []);
   const [tab, setTab] = useState<SupTab>("board");
@@ -491,6 +601,7 @@ function SupplierView() {
           {tab === "market" && <MarketStructureView all={all} onSelect={openSupplier} />}
           {tab === "supply" && <SupplyChainView all={all} onSelect={openSupplier} />}
           {tab === "rates" && <L3RateBench all={all} onSelect={openSupplier} />}
+          {tab === "news" && <SupplierNewsroom all={all} onSelect={openSupplier} />}
         </>
       )}
     </main>
