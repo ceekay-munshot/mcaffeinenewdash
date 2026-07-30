@@ -349,23 +349,26 @@ const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "board", label: "Suppliers", emoji: "🏭" },
   { key: "market", label: "Ingredients", emoji: "🧪" },
   { key: "supply", label: "Supply chain", emoji: "🧬" },
-  { key: "rates", label: "Rate benchmark", emoji: "💰" },
   { key: "news", label: "Newsroom", emoji: "📰" },
+  { key: "rates", label: "Rate benchmark", emoji: "💰" },
 ];
 
-/* ---- L3 · mcAFFEINE's own rates vs the market band + the supplier's room ----
-   The buyer types one number per line they buy — nothing else. Each rate is
-   checked against (a) the open-market band we hold for that material and (b) the
-   supplier's own financial room, so the output is both "you're overpaying" and
-   "here's the leverage to fix it". Ships pre-filled for the demo. */
-type L3Line = { item: string; supplier: string; rate: number; qtyKg: number };
+/* ---- L3 · mcAFFEINE's own rates vs the market band, vendor by vendor --------
+   Real buying isn't one price per material — it's several vendors quoting the
+   same thing. So each line holds the incumbent's rate plus any competing quotes,
+   and each quote is scored against (a) the open-market band we hold and (b) that
+   vendor's own financial health. The cheapest quote is only a win if the vendor
+   behind it can actually survive the contract, so the health score travels with
+   the price. Ships pre-filled for the demo. */
+type L3Quote = { supplier: string; rate: number };
+type L3Line = { item: string; qtyKg: number; quotes: L3Quote[] };   // quotes[0] = incumbent
 const L3_LINES: L3Line[] = [
-  { item: "Uvinul MC 80", supplier: "ValueTree", rate: 780, qtyKg: 4000 },
-  { item: "Cetiol C5", supplier: "Northern Aromatics", rate: 1650, qtyKg: 5000 },
-  { item: "Tinosorb A2B", supplier: "Yasham", rate: 3400, qtyKg: 800 },
-  { item: "Cosroma EAA", supplier: "Ark Chemicals", rate: 17500, qtyKg: 400 },
-  { item: "Repoly 100", supplier: "Caldic", rate: 300, qtyKg: 12000 },
-  { item: "Niacinamide", supplier: "nirmaancosmetic", rate: 950, qtyKg: 3000 },
+  { item: "Uvinul MC 80", qtyKg: 4000, quotes: [{ supplier: "ValueTree", rate: 780 }, { supplier: "Givaudan", rate: 620 }] },
+  { item: "Cetiol C5", qtyKg: 5000, quotes: [{ supplier: "Northern Aromatics", rate: 1650 }] },
+  { item: "Tinosorb A2B", qtyKg: 800, quotes: [{ supplier: "Yasham", rate: 3400 }] },
+  { item: "Cosroma EAA", qtyKg: 400, quotes: [{ supplier: "Ark Chemicals", rate: 17500 }, { supplier: "ValueTree", rate: 15400 }] },
+  { item: "Repoly 100", qtyKg: 12000, quotes: [{ supplier: "Caldic", rate: 300 }] },
+  { item: "Niacinamide", qtyKg: 3000, quotes: [{ supplier: "nirmaancosmetic", rate: 950 }] },
 ];
 function l3Band(s?: string): { min: number; max: number; mid: number } | null {
   if (!s || /not found/i.test(s)) return null;
@@ -376,13 +379,10 @@ function l3Band(s?: string): { min: number; max: number; mid: number } | null {
 }
 const l3Norm = (s: string) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 const l3Money = (rs: number) => (rs >= 1e7 ? `₹${(rs / 1e7).toFixed(2)} Cr` : `₹${(rs / 1e5).toFixed(1)} L`);
-
-// The steps the progress panel walks through. Purely presentational, but each
-// line names something the engine genuinely does, so the wait explains itself.
 const L3_STEPS = [
   "Reading your rate card…",
   "Matching each material to its open-market band…",
-  "Pulling each supplier's latest filed financials…",
+  "Pulling each quoting vendor's filed financials…",
   "Scoring the room in their margins, cash and terms…",
   "Costing the gap against your annual volume…",
 ];
@@ -394,8 +394,6 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
   const [leversFor, setLeversFor] = useState<Entity | null>(null);
   const items = useMemo(() => allMarket(), []);
 
-  // Walk the progress steps, then reveal. Cleaned up on unmount so a mid-run
-  // navigation can't leave timers firing into a dead component.
   useEffect(() => {
     if (phase !== "running") return;
     const per = 1200;
@@ -404,25 +402,60 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
     return () => { timers.forEach(clearTimeout); clearTimeout(done); };
   }, [phase]);
 
-  const setRate = (i: number, v: number) =>
-    setLines((ls) => ls.map((l, j) => (j === i ? { ...l, rate: Math.max(0, Math.round(v)) } : l)));
+  const entOf = (name: string) =>
+    all.find((e) => l3Norm(e.brand) === l3Norm(name) || (e.folder || "").toLowerCase() === name.toLowerCase())
+    || all.find((e) => l3Norm(e.brand).includes(l3Norm(name)) || l3Norm(name).includes(l3Norm(e.brand)) || (!!e.legalName && l3Norm(e.legalName).includes(l3Norm(name))));
+  const marketFor = (item: string) =>
+    marketOf(item)
+    || items.find((m) => l3Norm(m.item) === l3Norm(item))
+    || items.find((m) => item && (l3Norm(m.item).includes(l3Norm(item)) || l3Norm(item).includes(l3Norm(m.item))));
+
+  const setRate = (li: number, qi: number, v: number) =>
+    setLines((ls) => ls.map((l, i) => i !== li ? l : { ...l, quotes: l.quotes.map((q, j) => j === qi ? { ...q, rate: Math.max(0, Math.round(v)) } : q) }));
+  const addQuote = (li: number, supplier: string) =>
+    setLines((ls) => ls.map((l, i) => i !== li || !supplier || l.quotes.some((q) => q.supplier === supplier)
+      ? l : { ...l, quotes: [...l.quotes, { supplier, rate: l.quotes[0]?.rate ?? 0 }] }));
+  const dropQuote = (li: number, qi: number) =>
+    setLines((ls) => ls.map((l, i) => i !== li ? l : { ...l, quotes: l.quotes.filter((_, j) => j !== qi) }));
+
+  // Who else could quote this material: the vendors we track, plus the
+  // alternatives already researched for that item on IndiaMART / TradeIndia.
+  const candidatesFor = (l: L3Line) => {
+    const mk = marketFor(l.item);
+    const names = new Set<string>();
+    (mk?.alternatives ?? []).forEach((a) => a.name && names.add(a.name));
+    all.filter((e) => e.category === "RM Vendor" || e.category === "PM Vendor").forEach((e) => names.add(e.brand));
+    l.quotes.forEach((q) => names.delete(q.supplier));
+    return [...names].sort((a, b) => a.localeCompare(b));
+  };
 
   const rows = useMemo(() => lines.map((l) => {
-    const mk = marketOf(l.item)
-      || items.find((m) => l3Norm(m.item) === l3Norm(l.item))
-      || items.find((m) => l.item && (l3Norm(m.item).includes(l3Norm(l.item)) || l3Norm(l.item).includes(l3Norm(m.item))));
-    const band = l3Band(mk?.priceINRPerKg);
-    const ent = all.find((e) => l3Norm(e.brand) === l3Norm(l.supplier) || (e.folder || "").toLowerCase() === l.supplier.toLowerCase())
-      || all.find((e) => l3Norm(e.brand).includes(l3Norm(l.supplier)) || l3Norm(l.supplier).includes(l3Norm(e.brand)) || (!!e.legalName && l3Norm(e.legalName).includes(l3Norm(l.supplier))));
-    const health = ent ? supplierHealth(ent.cin) : null;
-    const gap = band ? l.rate - band.mid : null;         // +ve = above the market midpoint
+    const band = l3Band(marketFor(l.item)?.priceINRPerKg);
+    const quotes = l.quotes.map((q) => {
+      const ent = entOf(q.supplier);
+      return { ...q, ent, health: ent ? supplierHealth(ent.cin) : null };
+    });
+    const incumbent = quotes[0];
+    const alts = quotes.slice(1);
+    const best = alts.length ? alts.reduce((b, q) => (q.rate < b.rate ? q : b)) : null;
+    // Benchmark = the cheapest thing actually available: a real competing quote,
+    // or the open-market midpoint when nobody else has quoted.
+    const cands: { rate: number; basis: "quote" | "market" }[] = [];
+    if (best) cands.push({ rate: best.rate, basis: "quote" });
+    if (band) cands.push({ rate: band.mid, basis: "market" });
+    const bench = cands.length ? cands.reduce((a, c) => (c.rate < a.rate ? c : a)) : null;
+    const gap = bench ? incumbent.rate - bench.rate : null;
     const savingRs = gap != null && gap > 0 ? gap * l.qtyKg : 0;
-    return { ...l, band, ent, health, gap, savingRs };
+    // A cheaper quote from a financially weaker vendor is not a free win.
+    const riskySwitch = !!(best && bench?.basis === "quote" && best.health != null
+      && (best.health < 50 || (incumbent.health != null && best.health < incumbent.health - 10)));
+    return { ...l, band, quotes, incumbent, alts, best, bench, gap, savingRs, riskySwitch };
   }), [lines, all, items]);
 
   const totalRs = rows.reduce((s, r) => s + r.savingRs, 0);
-  const priced = rows.filter((r) => r.band);
-  const overCount = priced.filter((r) => (r.gap ?? 0) > 0).length;
+  const benched = rows.filter((r) => r.bench);
+  const overCount = benched.filter((r) => (r.gap ?? 0) > 0).length;
+  const quoteWins = rows.filter((r) => r.bench?.basis === "quote" && r.savingRs > 0).length;
   const month = new Date().toLocaleDateString("en-IN", { month: "long", year: "numeric" });
   const hdot = (h: number) => (h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700");
 
@@ -432,39 +465,55 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="min-w-0">
             <div className="text-xl font-bold">💰 Rate benchmark</div>
-            <div className="mt-1 max-w-2xl text-sm text-white/80">Enter what you pay per kg. We check it against the open market <em>and</em> that supplier's own financials.</div>
+            <div className="mt-1 max-w-2xl text-sm text-white/80">Enter every vendor's quote per material. Each is checked against the open market <em>and</em> that vendor's own financial health.</div>
           </div>
           {phase === "done" && (
             <div className="shrink-0 rounded-2xl bg-white/12 px-5 py-3 text-right ring-1 ring-white/25">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-teal-50">Potential annual saving</div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-teal-50">Best achievable saving</div>
               <div className="text-3xl font-bold tabular-nums">{l3Money(totalRs)}</div>
-              <div className="text-xs text-white/75">{overCount} of {priced.length} lines above market · as of {month}</div>
+              <div className="text-xs text-white/75">{overCount} of {benched.length} lines beatable{quoteWins ? ` · ${quoteWins} on a live quote` : ""} · as of {month}</div>
             </div>
           )}
         </div>
       </div>
 
-      {/* ---- rate card: one row per material, a stepper on each ---- */}
-      <Card title="Your rate card" sub="tap − / + to adjust by ₹10, or type the rate directly" accent="#0891b2">
-        <div className="grid gap-2.5 md:grid-cols-2">
-          {lines.map((l, i) => (
-            <div key={l.item} className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
-              <div className="min-w-0 flex-1">
+      {/* ---- rate card: one block per material, one row per quoting vendor ---- */}
+      <Card title="Your rate card" sub="the first vendor on each line is your incumbent · add competing quotes to compare them" accent="#0891b2">
+        <div className="grid gap-3 lg:grid-cols-2">
+          {lines.map((l, li) => (
+            <div key={l.item} className="rounded-xl bg-slate-50 p-3.5 ring-1 ring-slate-200">
+              <div className="mb-2 flex items-baseline justify-between gap-2">
                 <div className="truncate text-[15px] font-bold text-slate-900" title={l.item}>{l.item}</div>
-                <div className="truncate text-xs text-slate-500">{l.supplier} · {l.qtyKg.toLocaleString("en-IN")} kg/yr</div>
+                <div className="shrink-0 text-xs text-slate-500">{l.qtyKg.toLocaleString("en-IN")} kg/yr</div>
               </div>
-              <div className="flex shrink-0 items-center gap-1.5">
-                <button onClick={() => setRate(i, l.rate - 10)} aria-label={`Reduce ${l.item} by 10`}
-                  className="h-9 w-9 rounded-lg bg-white text-lg font-bold text-slate-600 ring-1 ring-slate-300 transition hover:bg-rose-50 hover:text-rose-600 hover:ring-rose-300">−</button>
-                <div className="flex items-center rounded-lg bg-white px-2 ring-1 ring-slate-300 focus-within:ring-2 focus-within:ring-teal-400">
-                  <span className="text-sm text-slate-400">₹</span>
-                  <input type="number" value={l.rate} onChange={(e) => setRate(i, Number(e.target.value))}
-                    className="w-20 bg-transparent py-1.5 text-right text-[15px] font-bold tabular-nums text-slate-900 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none" />
-                  <span className="pl-1 text-xs text-slate-400">/kg</span>
-                </div>
-                <button onClick={() => setRate(i, l.rate + 10)} aria-label={`Increase ${l.item} by 10`}
-                  className="h-9 w-9 rounded-lg bg-white text-lg font-bold text-slate-600 ring-1 ring-slate-300 transition hover:bg-emerald-50 hover:text-emerald-600 hover:ring-emerald-300">+</button>
+              <div className="space-y-1.5">
+                {l.quotes.map((q, qi) => (
+                  <div key={q.supplier} className="flex items-center gap-2">
+                    <span className={`min-w-0 flex-1 truncate text-sm ${qi === 0 ? "font-semibold text-slate-800" : "text-slate-600"}`} title={q.supplier}>
+                      {qi === 0 && <span className="mr-1 rounded bg-teal-100 px-1.5 py-0.5 text-[10px] font-bold uppercase text-teal-700">current</span>}
+                      {q.supplier}
+                    </span>
+                    <div className="flex shrink-0 items-center gap-1">
+                      <button onClick={() => setRate(li, qi, q.rate - 10)} aria-label={`Reduce ${q.supplier} by 10`}
+                        className="h-8 w-8 rounded-lg bg-white text-lg font-bold text-slate-600 ring-1 ring-slate-300 transition hover:bg-rose-50 hover:text-rose-600">−</button>
+                      <div className="flex items-center rounded-lg bg-white px-1.5 ring-1 ring-slate-300 focus-within:ring-2 focus-within:ring-teal-400">
+                        <span className="text-xs text-slate-400">₹</span>
+                        <input type="number" value={q.rate} onChange={(e) => setRate(li, qi, Number(e.target.value))}
+                          className="w-[4.5rem] bg-transparent py-1.5 text-right text-sm font-bold tabular-nums text-slate-900 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none" />
+                      </div>
+                      <button onClick={() => setRate(li, qi, q.rate + 10)} aria-label={`Increase ${q.supplier} by 10`}
+                        className="h-8 w-8 rounded-lg bg-white text-lg font-bold text-slate-600 ring-1 ring-slate-300 transition hover:bg-emerald-50 hover:text-emerald-600">+</button>
+                      <button onClick={() => qi > 0 && dropQuote(li, qi)} disabled={qi === 0} aria-label={`Remove ${q.supplier}`}
+                        className="h-8 w-7 rounded-lg text-sm text-slate-400 transition enabled:hover:bg-rose-50 enabled:hover:text-rose-600 disabled:opacity-0">✕</button>
+                    </div>
+                  </div>
+                ))}
               </div>
+              <select value="" onChange={(e) => { addQuote(li, e.target.value); e.currentTarget.selectedIndex = 0; }}
+                className="mt-2 w-full rounded-lg bg-white px-2.5 py-1.5 text-xs text-slate-600 ring-1 ring-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
+                <option value="">+ Add a competing quote…</option>
+                {candidatesFor(l).map((n) => <option key={n} value={n}>{n}</option>)}
+              </select>
             </div>
           ))}
         </div>
@@ -473,13 +522,12 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
             className="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-5 py-2.5 text-[15px] font-bold text-white shadow-sm transition hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-60">
             {phase === "running" ? "Calculating…" : phase === "done" ? "↻ Recalculate" : "Calculate savings →"}
           </button>
-          {phase === "done" && <span className="text-sm text-slate-500">Change any rate above and recalculate.</span>}
+          {phase === "done" && <span className="text-sm text-slate-500">Add a quote or change a rate, then recalculate.</span>}
         </div>
       </Card>
 
-      {/* ---- progress: names a real step of the engine at each tick ---- */}
       {phase === "running" && (
-        <Card title="Benchmarking your rates" sub="checking each line against the market and the supplier's filings" accent="#0d9488">
+        <Card title="Benchmarking your rates" sub="checking every quote against the market and the vendor's filings" accent="#0d9488">
           <div className="py-2">
             <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
               <div className="h-2 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 transition-all duration-700 ease-out"
@@ -490,8 +538,7 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
                 <li key={t} className={`flex items-center gap-2.5 text-sm transition-colors ${i < step ? "text-slate-400" : i === step ? "font-semibold text-slate-800" : "text-slate-300"}`}>
                   <span className={`grid h-5 w-5 shrink-0 place-items-center rounded-full text-[11px] ${i < step ? "bg-emerald-100 text-emerald-600" : i === step ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-400"}`}>
                     {i < step ? "✓" : i + 1}
-                  </span>
-                  {t}
+                  </span>{t}
                 </li>
               ))}
             </ul>
@@ -499,13 +546,12 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
         </Card>
       )}
 
-      {/* ---- results ---- */}
       {phase === "done" && (
-        <Card title="Where you stand" sub="your rate vs the market midpoint · green = at or under market · red = overpaying" accent="#0d9488">
+        <Card title="Where you stand" sub="your incumbent's rate vs the best alternative — a live quote where you have one, the market midpoint otherwise" accent="#0d9488">
           <div className="overflow-x-auto">
-            <table className={`${TBL} min-w-[900px]`}>
+            <table className={`${TBL} min-w-[1020px]`}>
               <thead><tr className={THEAD}>
-                <Th>Ingredient</Th><Th>Supplier</Th><Th right>Your ₹/kg</Th><Th right>Market band</Th><Th right>Gap</Th><Th right>Saving/yr</Th><Th center>Their room</Th>
+                <Th>Ingredient</Th><Th>Current vendor</Th><Th right>Your ₹/kg</Th><Th>Best alternative</Th><Th right>Market band</Th><Th right>Gap</Th><Th right>Saving/yr</Th><Th center>Their room</Th>
               </tr></thead>
               <tbody>
                 {rows.map((r) => {
@@ -514,30 +560,43 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
                     <tr key={r.item} className="border-t border-slate-100 align-middle hover:bg-slate-50/60">
                       <td className="px-4 py-3.5">
                         <div className="font-bold leading-snug text-slate-900">{r.item}</div>
-                        {!r.band && <div className="text-xs font-medium text-amber-600">no market band on file</div>}
+                        <div className="text-xs text-slate-400">{r.qtyKg.toLocaleString("en-IN")} kg/yr · {r.quotes.length} quote{r.quotes.length > 1 ? "s" : ""}</div>
                       </td>
                       <td className="px-4 py-3.5">
-                        {r.ent ? (
-                          <button onClick={() => onSelect(r.ent!)} className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline">
-                            <span className="mt-0.5 shrink-0">{catEmoji(r.ent.category)}</span>
-                            <span className="leading-snug">{fullName(r.ent.legalName, r.ent.brand)}
-                              {r.health != null && <span className={`ml-1 rounded px-1.5 align-middle text-[11px] font-extrabold ${hdot(r.health)}`}>{r.health}</span>}
+                        {r.incumbent.ent ? (
+                          <button onClick={() => onSelect(r.incumbent.ent!)} className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline">
+                            <span className="mt-0.5 shrink-0">{catEmoji(r.incumbent.ent.category)}</span>
+                            <span className="leading-snug">{fullName(r.incumbent.ent.legalName, r.incumbent.ent.brand)}
+                              {r.incumbent.health != null && <span className={`ml-1 rounded px-1.5 align-middle text-[11px] font-extrabold ${hdot(r.incumbent.health)}`}>{r.incumbent.health}</span>}
                             </span>
                           </button>
-                        ) : <span className="text-slate-500">{r.supplier}</span>}
+                        ) : <span className="text-slate-500">{r.incumbent.supplier}</span>}
                       </td>
-                      <td className={`${TDNUM} font-bold text-slate-900`}>₹{r.rate.toLocaleString("en-IN")}</td>
+                      <td className={`${TDNUM} font-bold text-slate-900`}>₹{r.incumbent.rate.toLocaleString("en-IN")}</td>
+                      <td className="px-4 py-3.5">
+                        {r.best ? (
+                          <div className="leading-snug">
+                            <span className="font-semibold text-slate-800">{r.best.supplier}</span>
+                            {r.best.health != null && <span className={`ml-1 rounded px-1.5 align-middle text-[11px] font-extrabold ${hdot(r.best.health)}`}>{r.best.health}</span>}
+                            <div className={`text-xs font-bold tabular-nums ${r.best.rate < r.incumbent.rate ? "text-emerald-600" : "text-slate-400"}`}>₹{r.best.rate.toLocaleString("en-IN")}/kg</div>
+                            {r.riskySwitch && <div className="text-[11px] font-medium text-amber-600" title="The cheaper vendor scores worse on financial health — a price win that could cost you continuity.">⚠ cheaper but financially weaker</div>}
+                          </div>
+                        ) : <span className="text-xs text-slate-400">no competing quote</span>}
+                      </td>
                       <td className={`${TDNUM} text-slate-500`}>{r.band ? (r.band.min === r.band.max ? `₹${r.band.min}` : `₹${r.band.min}–${r.band.max}`) : "—"}</td>
                       <td className={`${TDNUM} font-bold ${r.gap == null ? "text-slate-400" : isOver ? "text-rose-600" : "text-emerald-600"}`}>{r.gap == null ? "—" : `${isOver ? "+" : ""}₹${Math.round(r.gap).toLocaleString("en-IN")}`}</td>
-                      <td className={`${TDNUM} font-bold ${r.savingRs > 0 ? "text-rose-600" : "text-slate-400"}`}>{r.savingRs > 0 ? l3Money(r.savingRs) : "—"}</td>
-                      <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={r.ent} onOpen={setLeversFor} /></td>
+                      <td className={`${TDNUM} font-bold ${r.savingRs > 0 ? "text-rose-600" : "text-slate-400"}`}>
+                        {r.savingRs > 0 ? l3Money(r.savingRs) : "—"}
+                        {r.savingRs > 0 && <div className="text-[10px] font-medium uppercase tracking-wide text-slate-400">vs {r.bench?.basis === "quote" ? "quote" : "market"}</div>}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={r.incumbent.ent} onOpen={setLeversFor} /></td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
           </div>
-          <p className="mt-2 px-1 text-xs text-slate-400">Saving/yr = (your rate − market midpoint) × yearly kg.</p>
+          <p className="mt-2 px-1 text-xs text-slate-400">Saving/yr = (your rate − the cheapest alternative available) × yearly kg. A live competing quote is used when you have one; otherwise the open-market midpoint stands in.</p>
         </Card>
       )}
 
@@ -720,22 +779,29 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
   const pmVendorCount = useMemo(() => all.filter((e) => e.category === "PM Vendor").length, [all]);
   const [leversFor, setLeversFor] = useState<Entity | null>(null);
 
+  // Rows we can actually analyse lead; the ones with nothing to show (an
+  // unregistered trader, or a vendor we never pulled) collapse behind a toggle
+  // so the table reads as findings rather than as a field of dashes.
   const Section = ({ title, emoji, accent, itemHead, rows, poolNote }: {
     title: string; emoji: string; accent: string; itemHead?: string;
     rows: { item?: string; folder: string }[]; poolNote: string;
-  }) => (
-    <Card title={`${emoji} ${title}`} sub={poolNote} accent={accent}>
-      <div className="overflow-x-auto">
-        <table className={`${TBL} min-w-[820px]`}>
-          <thead>
-            <tr className={THEAD}>
-              {itemHead && <Th>{itemHead}</Th>}<Th>{itemHead ? "Current vendor" : "Company"}</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th center>Levers</Th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map(({ item, folder }) => {
-              const e = byFolder.get(folder);
-              return (
+  }) => {
+    const [showThin, setShowThin] = useState(false);
+    const withEnt = rows.map((r) => ({ ...r, e: byFolder.get(r.folder) }));
+    const rich = withEnt.filter((r) => r.e && revOf(r.e) != null);
+    const thin = withEnt.filter((r) => !(r.e && revOf(r.e) != null));
+    const shown = showThin ? [...rich, ...thin] : rich;
+    return (
+      <Card title={`${emoji} ${title}`} sub={poolNote} accent={accent}>
+        <div className="overflow-x-auto">
+          <table className={`${TBL} min-w-[820px]`}>
+            <thead>
+              <tr className={THEAD}>
+                {itemHead && <Th>{itemHead}</Th>}<Th>{itemHead ? "Current vendor" : "Company"}</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th center>Levers</Th>
+              </tr>
+            </thead>
+            <tbody>
+              {shown.map(({ item, folder, e }) => (
                 <tr key={item ?? folder} onClick={() => e && onSelect(e)} className={`border-t border-slate-100 transition ${e ? "cursor-pointer hover:bg-teal-50/50" : ""}`}>
                   {itemHead && <td className="max-w-[280px] px-4 py-3.5"><div className="truncate font-semibold text-slate-900" title={item}>{item}</div></td>}
                   <td className="min-w-[240px] px-4 py-3.5">{e ? <span className="flex items-start gap-1.5 font-semibold text-slate-900"><span className="shrink-0 leading-relaxed">{catEmoji(e.category)}</span><span className="leading-snug">{fullName(e.legalName, e.brand)}</span></span> : <span className="text-slate-400">not mapped</span>}</td>
@@ -744,13 +810,21 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
                   <td className={`${TDNUM} text-slate-600`}>{e ? fmtPct(supRoce(e)) : "—"}</td>
                   <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={e} onOpen={setLeversFor} /></td>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </Card>
-  );
+              ))}
+              {shown.length === 0 && <tr><td colSpan={itemHead ? 6 : 5} className="px-4 py-8 text-center text-slate-400">Nothing with financials in this group yet.</td></tr>}
+            </tbody>
+          </table>
+        </div>
+        {thin.length > 0 && (
+          <button onClick={() => setShowThin((s) => !s)}
+            className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-600 ring-1 ring-slate-200 transition hover:ring-slate-300">
+            <span className="font-bold text-teal-600">{showThin ? "–" : "+"}</span>
+            {showThin ? `Hide ${thin.length} without financials` : `Show ${thin.length} more without financials`}
+          </button>
+        )}
+      </Card>
+    );
+  };
 
   const mfRows = useMemo(() => all.filter((e) => e.category === "Manufacturer").sort((a, b) => (revOf(b) ?? -1) - (revOf(a) ?? -1)).map((e) => ({ folder: e.folder })), [all]);
 
