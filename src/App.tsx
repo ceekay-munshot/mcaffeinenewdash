@@ -18,7 +18,7 @@ import { newsOf, type SupplierNews, type Signal, type NewsItem } from "./news";
 import { allMarket, marketOf, marketOfFolder, pmCategoryOf, CONC_META, LEV_META, type MarketEntry, type Concentration } from "./market";
 import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
-  supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
+  supDSO, supDPO, supRoce, supCurrent, supDebtEq, supIntCov,
 } from "./lib/insights";
 import DeepDive, { hasDeepDive, probeLevers, supplierHealth, ProbeCompare, enrichedCount } from "./DeepDive";
 
@@ -65,7 +65,6 @@ const CAT_META: Record<string, { emoji: string; color: string }> = {
   Manufacturer: { emoji: "🏭", color: CATEGORY_COLOR.Manufacturer },
 };
 const catEmoji = (cat: string) => CAT_META[cat]?.emoji ?? "🏢";
-const catColor = (cat: string) => CAT_META[cat]?.color ?? "#94a3b8";
 
 /* --------------------------------------------------------------------- shell */
 
@@ -440,7 +439,7 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
                 </tbody>
               </table>
             </div>
-            <p className="mt-2 px-1 text-[11px] leading-relaxed text-slate-400">"Market band" = open-market ₹/kg (IndiaMART research). "Saving/yr" = (your rate − market midpoint) × yearly kg, when above market. "Their room" is the top opportunity lever from that supplier's own Probe42 financials — click a supplier to open its full deep-dive.</p>
+            <p className="mt-2 px-1 text-[11px] text-slate-400">Saving/yr = (your rate − market midpoint) × yearly kg. Click a supplier for its full deep-dive.</p>
           </Card>
         </div>
       </div>
@@ -552,7 +551,7 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
         </Card>
       )}
       {total === 0 && <div className="rounded-2xl bg-white p-12 text-center text-sm text-slate-400 ring-1 ring-slate-200">No supplier news on file yet.</div>}
-      <p className="px-1 text-[11px] leading-relaxed text-slate-400">Gathered from the open web · a supplier typically surfaces only a handful of items in six months, so a short list is normal. Suppliers with no public footprint don't appear here — their leverage lives in the financials. Click any name to open its full deep-dive.</p>
+      <p className="px-1 text-[11px] text-slate-400">Gathered from the open web. Suppliers with no public footprint don't appear here — their leverage lives in the financials.</p>
     </div>
   );
 }
@@ -565,10 +564,14 @@ function SupplierView() {
   const { open: openSupplier, back } = useProfileNav(selected, setSelected);
 
   const stats = useMemo(() => {
-    const withFin = all.filter((e) => revOf(e) != null).length;
     const revCr = all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0);
-    const opps = all.reduce((s, e) => s + supplierInsights(e).filter((i) => i.tone === "opportunity").length, 0);
-    return { tracked: all.length, withFin, revCr, opps };
+    // Count levers from the same engine the board and the modal use, so the three
+    // never disagree (this headline used to run on the older insight pass alone).
+    const opps = all.reduce((s, e) => {
+      const p = probeLevers(e.cin);
+      return s + (p.length ? p.filter((l) => l.tone === "opportunity").length : supplierInsights(e).filter((i) => i.tone === "opportunity").length);
+    }, 0);
+    return { tracked: all.length, deep: enrichedCount(all), revCr, opps };
   }, [all]);
 
   // One view, not three: a supplier we hold a Probe42 report for opens straight
@@ -585,7 +588,7 @@ function SupplierView() {
         tint="from-[#0f766e] to-[#0891b2]"
         stats={[
           { label: "Suppliers", value: String(stats.tracked) },
-          { label: "With financials", value: `${stats.withFin}` },
+          { label: "Full reports pulled", value: `${stats.deep} of ${stats.tracked}` },
           { label: "Spend in view", value: crStr(stats.revCr) },
           { label: "Levers found", value: String(stats.opps) },
         ]} />
@@ -664,9 +667,6 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
 
   return (
     <div className="space-y-4">
-      <div className="rounded-2xl bg-teal-50/60 p-4 text-sm leading-relaxed text-teal-900 ring-1 ring-teal-100">
-        Everything mcAFFEINE sources, in three groups — <b>raw materials</b> &amp; their vendors, the <b>manufacturers</b> who make the products, and <b>packaging</b> &amp; its vendors — each with the vendor's financials &amp; levers. Click any row for the full company view.
-      </div>
       <Section title="Raw materials" emoji="🧪" accent="#0d9488" itemHead="Raw material"
         rows={RM_SUPPLY} poolNote={`${RM_SUPPLY.length} key ingredients · ${rmVendorCount} RM vendors tracked`} />
       <Section title="Manufacturers — who make our products" emoji="🏭" accent="#7c3aed"
@@ -808,7 +808,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
             </tbody>
           </table>
         </div>
-        <p className="mt-2 px-1 text-[11px] leading-relaxed text-slate-400">"Market ₹/kg" is the open-market band for this material (IndiaMART) — the going rate, shown for reference, not each seller's individual quote. Exact per-vendor quotes come back on an RFQ.</p>
+        <p className="mt-2 px-1 text-[11px] text-slate-400">Market ₹/kg is the open-market band for this material, not a per-seller quote.</p>
       </Card>
 
       {currentVendor && (
@@ -950,7 +950,14 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                       <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600" title={`${m.indiaBand} sellers in India · ${m.indiaSuppliers.join(" · ")}`}>🇮🇳 {m.indiaBand}</span>
                       {m.priceINRPerKg && !m.priceINRPerKg.includes("not found") && <span title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")} className="inline-flex items-center gap-1 rounded-md bg-orange-50 px-1.5 py-0.5 text-[11px] font-medium text-orange-700 ring-1 ring-orange-200">💰 {m.priceINRPerKg}</span>}
                     </div>
-                    <div className="mt-2 truncate text-[11px] text-slate-400" title={v.label}>{m.side === "rm" ? "Vendor" : "We buy from"}: <span className="text-slate-600">{v.label}</span></div>
+                    {/* the teal dot marks a vendor we hold a full Probe42 report
+                        for, so it's obvious at a glance which names are analysable
+                        and which are open-market traders with no filings. */}
+                    <div className="mt-2 flex items-center gap-1 text-[11px] text-slate-400" title={v.e && hasDeepDive(v.e.cin) ? `${v.label} — full financials on file` : v.label}>
+                      <span className="shrink-0">{m.side === "rm" ? "Vendor" : "We buy from"}:</span>
+                      <span className="truncate text-slate-600">{v.label}</span>
+                      {v.e && hasDeepDive(v.e.cin) && <span className="shrink-0 text-teal-500" title="full financials on file">●</span>}
+                    </div>
                   </div>
                 );
               })}
@@ -958,7 +965,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
           </div>
         );
       })}
-      <p className="text-[11px] text-slate-400">Open-web research, not a census · dot = confidence · click any card for its price, financials & full negotiation analysis.</p>
+      <p className="text-[11px] text-slate-400">Open-web research, not a census · <span className="text-teal-500">●</span> = full financials on file · click any card for the full analysis.</p>
     </div>
   );
 }
@@ -1241,22 +1248,93 @@ const LEVER_TAG: Record<string, { emoji: string; short: string }> = {
 // The supplier board holds two views of the same vendor set — a scannable table
 // and the benchmark charts — behind one compact toggle, so it's one tab, not two.
 function BoardTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const [mode, setMode] = useState<"table" | "charts">("table");
-  const opts: { key: "table" | "charts"; label: string; emoji: string }[] = [
-    { key: "table", label: "Table", emoji: "📇" },
-    { key: "charts", label: "Charts", emoji: "📊" },
-  ];
+  return <SupplierBoard all={all} onSelect={onSelect} />;
+}
+
+/* ---- Levers modal ---------------------------------------------------------
+   The board used to inline a few lever chips per row, which (a) made the table a
+   wall of text and (b) drew on the older light-weight insight pass, so the rich
+   Probe42 lever engine never showed up there. Now the row carries one button and
+   the full set opens centred, grouped by tone, with the evidence behind each. */
+const LEV_TONE_ORDER = ["opportunity", "watch", "risk"] as const;
+const LEV_TONE_PLURAL: Record<InsightTone, string> = { opportunity: "opportunities", watch: "to watch", risk: "risks" };
+function LeversModal({ e, onClose, onOpenProfile }: { e: Entity; onClose: () => void; onOpenProfile: () => void }) {
+  useEffect(() => {
+    const onKey = (ev: KeyboardEvent) => { if (ev.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+
+  const probe = probeLevers(e.cin);
+  // Suppliers without a paid Probe report still get the lighter insight pass, so
+  // the button never opens an empty box.
+  const levers = probe.length
+    ? probe.map((l) => ({ tone: l.tone as InsightTone, strength: l.strength, title: l.title, detail: l.detail, evidence: l.evidence ?? [] }))
+    : supplierInsights(e).map((i) => ({ tone: i.tone, strength: 2, title: i.title, detail: i.detail, evidence: [] as { label: string; value: string }[] }));
+  const health = supplierHealth(e.cin);
+  const counts = LEV_TONE_ORDER.map((t) => ({ t, n: levers.filter((l) => l.tone === t).length }));
+
   return (
-    <div className="space-y-4">
-      <div className="inline-flex gap-1 rounded-xl bg-slate-100 p-1 ring-1 ring-slate-200">
-        {opts.map((o) => (
-          <button key={o.key} onClick={() => setMode(o.key)}
-            className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition ${mode === o.key ? "bg-white text-teal-700 shadow-sm" : "text-slate-500 hover:text-slate-800"}`}>
-            <span>{o.emoji}</span>{o.label}
-          </button>
-        ))}
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-900/50 p-4 backdrop-blur-sm sm:items-center" onClick={onClose}>
+      <div className="my-auto w-full max-w-3xl rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200" onClick={(ev) => ev.stopPropagation()}>
+        <div className="flex items-start justify-between gap-4 border-b border-slate-200 px-6 py-4">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <h2 className="truncate text-lg font-bold leading-tight text-slate-900">{fullName(e.legalName, e.brand)}</h2>
+              {health != null && <span className={`shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold ${health >= 65 ? "bg-emerald-100 text-emerald-700" : health >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700"}`}>{health}/100</span>}
+            </div>
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
+              {counts.filter((c) => c.n).map(({ t, n }) => (
+                <span key={t} className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold ring-1 ${TONE_META[t].bg} ${TONE_META[t].text} ${TONE_META[t].ring}`}>{TONE_META[t].emoji} {n} {n === 1 ? TONE_META[t].label.toLowerCase() : LEV_TONE_PLURAL[t]}</span>
+              ))}
+              {!probe.length && <span className="text-slate-400">no full Probe42 report yet — headline read only</span>}
+            </div>
+          </div>
+          <button onClick={onClose} aria-label="Close" className="shrink-0 rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">✕</button>
+        </div>
+
+        <div className="max-h-[65vh] space-y-4 overflow-y-auto px-6 py-4">
+          {levers.length === 0 && <p className="py-10 text-center text-sm text-slate-400">No standout lever — this reads as a healthy, fairly-priced vendor.</p>}
+          {LEV_TONE_ORDER.map((tone) => {
+            const group = levers.filter((l) => l.tone === tone).sort((a, b) => b.strength - a.strength);
+            if (!group.length) return null;
+            const m = TONE_META[tone];
+            return (
+              <div key={tone}>
+                <h3 className={`mb-2 text-xs font-bold uppercase tracking-wider ${m.text}`}>{m.emoji} {m.label}</h3>
+                <div className="space-y-2">
+                  {group.map((l, i) => (
+                    <div key={i} className={`rounded-xl p-3.5 ring-1 ${m.bg} ${m.ring}`}>
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="text-sm font-bold leading-snug text-slate-900">{l.title}</div>
+                        <span className="mt-1 flex shrink-0 gap-0.5" title={`strength ${l.strength}/3`}>
+                          {[1, 2, 3].map((s) => <span key={s} className={`h-1.5 w-1.5 rounded-full ${s <= l.strength ? m.dot : "bg-slate-300"}`} />)}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-600">{l.detail}</p>
+                      {l.evidence.length > 0 && (
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {l.evidence.map((ev, j) => (
+                            <span key={j} className="inline-flex items-center gap-1 rounded-md bg-white/80 px-2 py-0.5 text-[11px] ring-1 ring-slate-200">
+                              <span className="text-slate-500">{ev.label}</span><span className="font-mono font-semibold text-slate-800">{ev.value}</span>
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="flex items-center justify-between gap-3 border-t border-slate-200 px-6 py-3">
+          <span className="text-[11px] text-slate-400">Generated from this supplier's own filings — every lever traces to a number above.</span>
+          <button onClick={onOpenProfile} className="shrink-0 rounded-lg bg-teal-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">Open full deep-dive →</button>
+        </div>
       </div>
-      {mode === "table" ? <SupplierBoard all={all} onSelect={onSelect} /> : <BenchmarkView all={all} onSelect={onSelect} />}
     </div>
   );
 }
@@ -1272,7 +1350,16 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
   const [showAll, setShowAll] = useState(false);
   const TOP = 10;
 
-  const enriched = useMemo(() => all.map((e) => ({ e, ins: supplierInsights(e), levers: leverTagsOf(supplierInsights(e)) })), [all]);
+  const [leversFor, setLeversFor] = useState<Entity | null>(null);
+  // Lever count comes from the full Probe42 engine where we hold a report, and
+  // falls back to the lighter insight pass otherwise — so the board's count and
+  // the modal always agree.
+  const enriched = useMemo(() => all.map((e) => {
+    const p = probeLevers(e.cin);
+    const n = p.length ? p.length : supplierInsights(e).length;
+    const opps = p.length ? p.filter((l) => l.tone === "opportunity").length : supplierInsights(e).filter((i) => i.tone === "opportunity").length;
+    return { e, n, opps, deep: p.length > 0 };
+  }), [all]);
   const filtered = useMemo(() => {
     let r = enriched;
     if (cat !== "All") r = r.filter((x) => x.e.category === cat);
@@ -1292,7 +1379,7 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
         case "revenue": return (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1);
         case "ebitda": return (ebitdaMarginOf(b.e) ?? -1) - (ebitdaMarginOf(a.e) ?? -1);
         case "dso": return (supDSO(a.e) ?? 1e9) - (supDSO(b.e) ?? 1e9);
-        default: return b.levers.length - a.levers.length || (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1);
+        default: return b.n - a.n || (revOf(b.e) ?? -1) - (revOf(a.e) ?? -1);
       }
     });
   }, [filtered, sort]);
@@ -1325,11 +1412,11 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
         <table className="w-full min-w-[880px] border-collapse text-sm">
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
-              <Th>Supplier</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th>Negotiation levers</Th>
+              <Th>Supplier</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th center>Levers</Th>
             </tr>
           </thead>
           <tbody>
-            {[...(showAll ? active : active.slice(0, TOP)), ...(showLimited ? others : [])].map(({ e, levers }) => (
+            {[...(showAll ? active : active.slice(0, TOP)), ...(showLimited ? others : [])].map(({ e, n, opps, deep }) => (
               <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
                 <td className="min-w-[240px] px-4 py-3.5">
                   <div className="flex items-start gap-2 font-semibold leading-snug text-slate-900"><span className="shrink-0 leading-relaxed">{catEmoji(e.category)}</span><span>{fullName(e.legalName, e.brand)}</span></div>
@@ -1339,15 +1426,15 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
                 <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(supRoce(e))}</td>
                 <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDSO(e))}</td>
                 <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDPO(e))}</td>
-                <td className="px-4 py-3.5">
-                  {levers.length === 0 ? (
-                    <span className="text-xs text-slate-400">No clear lever — healthy vendor</span>
-                  ) : (
-                    <div className="flex flex-wrap gap-1">
-                      {levers.map(({ short, emoji, detail }) => (
-                        <span key={short} title={detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>
-                      ))}
-                    </div>
+                <td className="whitespace-nowrap px-4 py-3.5 text-center">
+                  {n === 0 ? <span className="text-xs text-slate-300">—</span> : (
+                    <button
+                      onClick={(ev) => { ev.stopPropagation(); setLeversFor(e); }}
+                      title={deep ? `${n} levers from the full Probe42 filings` : `${n} headline reads — no full report yet`}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1.5 text-xs font-semibold text-teal-700 ring-1 ring-teal-200 transition hover:bg-teal-50 hover:ring-teal-300">
+                      💡 Check levers
+                      <span className={`rounded px-1.5 text-[11px] font-bold ${opps ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-500"}`}>{n}</span>
+                    </button>
                   )}
                 </td>
               </tr>
@@ -1363,6 +1450,8 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
           {showAll ? `Show top ${TOP} only` : `Show ${active.length - TOP} more suppliers`}
         </button>
       )}
+
+      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
     </div>
   );
 }
@@ -1384,93 +1473,7 @@ function leverTagsOf(ins: Insight[]) {
 
 /* -------- Suppliers · Benchmark tab -------- */
 
-type MetricKey = "revenue" | "ebitda" | "roce" | "dso" | "dpo" | "ccc";
-const SUP_METRICS: { key: MetricKey; label: string; emoji: string; get: (e: Entity) => number | null; unit: (v: number) => string; note: string }[] = [
-  { key: "revenue", label: "Revenue", emoji: "💵", get: (e) => toCrore(revOf(e)), unit: (v) => (v >= 1000 ? `₹${(v / 1000).toFixed(1)}k Cr` : `₹${Math.round(v)} Cr`), note: "Bigger vendors — where most of the spend sits." },
-  { key: "ebitda", label: "EBITDA margin", emoji: "💰", get: (e) => ebitdaMarginOf(e), unit: (v) => `${Math.round(v)}%`, note: "Fatter margin = more cushion in their pricing to negotiate on." },
-  { key: "roce", label: "Return on capital", emoji: "⚙️", get: (e) => supRoce(e), unit: (v) => `${Math.round(v)}%`, note: "How efficiently they turn capital into profit — high = a strong, healthy vendor." },
-  { key: "dso", label: "Collects in (DSO)", emoji: "📥", get: (e) => supDSO(e), unit: (v) => `${Math.round(v)} d`, note: "How fast they collect from customers. Low = healthy cash, so we can push our payment terms out." },
-  { key: "dpo", label: "Pays suppliers in (DPO)", emoji: "📤", get: (e) => supDPO(e), unit: (v) => `${Math.round(v)} d`, note: "How long they take to pay their suppliers. High = they already stretch terms, so asking the same of them is credible." },
-  { key: "ccc", label: "Cash cycle", emoji: "🔄", get: (e) => supCCC(e), unit: (v) => `${Math.round(v)} d`, note: "Days cash is tied up. Long = they're cash-hungry and will value an early-payment discount." },
-];
 const SUP_CATS = ["All", "RM Vendor", "PM Vendor", "Manufacturer"] as const;
-
-function BenchmarkView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const [metric, setMetric] = useState<MetricKey>("revenue");
-  const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
-  const m = SUP_METRICS.find((x) => x.key === metric)!;
-  const pool = useMemo(() => (cat === "All" ? all : all.filter((e) => e.category === cat)), [all, cat]);
-  const byName = useMemo(() => new Map(all.map((e) => [e.brand, e])), [all]);
-
-  const bars: Slice[] = useMemo(
-    () => pool.map((e) => ({ e, v: m.get(e) })).filter((x): x is { e: Entity; v: number } => x.v != null)
-      .sort((a, b) => b.v - a.v).slice(0, 16)
-      .map(({ e, v }) => ({ label: e.brand, value: Math.round(v * 10) / 10, color: catColor(e.category), sub: e.category })),
-    [pool, m]
-  );
-  const payTerms = useMemo(
-    () => pool.map((e) => ({ e, dso: supDSO(e), dpo: supDPO(e) }))
-      .filter((x): x is { e: Entity; dso: number; dpo: number } => x.dso != null && x.dpo != null)
-      .sort((a, b) => a.dso - b.dso),
-    [pool]
-  );
-  const payMax = Math.max(1, ...payTerms.flatMap((p) => [p.dso, p.dpo]));
-
-  return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-3">
-        <Dropdown label="Compare on" value={metric} onChange={setMetric} options={SUP_METRICS.map((x) => ({ key: x.key, label: x.label, emoji: x.emoji }))} />
-        <Dropdown label="Category" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c === "All" ? "All categories" : c, emoji: c === "All" ? undefined : catEmoji(c) }))} />
-      </div>
-
-      <Card title={`${m.emoji} ${m.label} — every supplier ranked`} sub={m.note} accent="#0d9488">
-        {bars.length === 0 ? <div className="py-8 text-center text-sm text-slate-400">No suppliers with this metric yet.</div>
-          : <HBars data={bars} valueLabel={m.unit} onBar={(l) => byName.get(l) && onSelect(byName.get(l)!)} />}
-        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5">
-          {Object.keys(CAT_META).map((c) => (
-            <span key={c} className="flex items-center gap-1.5 text-xs text-slate-500"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: catColor(c) }} />{catEmoji(c)} {c}</span>
-          ))}
-        </div>
-      </Card>
-
-      <Card title="💸 Payment-terms map — who we can push"
-        sub="Teal = days to collect · Amber = days to pay. Short collect + long pay = they run on other people's cash, so pushing our terms out is realistic."
-        accent="#0d9488">
-        {payTerms.length === 0 ? <div className="py-8 text-center text-sm text-slate-400">No suppliers with both collection & payment days yet.</div> : (
-          <div className="grid grid-cols-1 gap-x-8 gap-y-3 lg:grid-cols-2">
-            {payTerms.map(({ e, dso, dpo }) => (
-              <button key={e.folder} onClick={() => onSelect(e)} className="group grid grid-cols-[minmax(0,8rem)_1fr] items-center gap-3 text-left">
-                <div className="min-w-0">
-                  <div className="truncate text-sm font-medium text-slate-700 group-hover:text-slate-900">{e.brand}</div>
-                  <div className="text-[11px] text-slate-400">{catEmoji(e.category)} {e.category}</div>
-                </div>
-                <div className="space-y-1">
-                  <TermBar value={dso} max={payMax} color="#0d9488" label={`collects ${Math.round(dso)}d`} />
-                  <TermBar value={dpo} max={payMax} color="#f59e0b" label={`pays ${Math.round(dpo)}d`} />
-                </div>
-              </button>
-            ))}
-          </div>
-        )}
-        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-slate-500">
-          <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-teal-600" /> Collects from customers (DSO)</span>
-          <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-amber-500" /> Pays its suppliers (DPO)</span>
-        </div>
-      </Card>
-    </div>
-  );
-}
-
-function TermBar({ value, max, color, label }: { value: number; max: number; color: string; label: string }) {
-  return (
-    <div className="group relative flex items-center gap-2" title={label}>
-      <div className="h-3 flex-1 rounded-full bg-slate-100">
-        <div className="h-3 rounded-full transition-[filter] group-hover:brightness-95" style={{ width: `${Math.max(4, (value / max) * 100)}%`, background: `linear-gradient(90deg, ${color}, ${color}cc)` }} />
-      </div>
-      <span className="w-20 shrink-0 text-[11px] text-slate-500">{label}</span>
-    </div>
-  );
-}
 
 /* ------------------------------------------------------ P2 Competitor view */
 
@@ -2155,8 +2158,8 @@ function ResearchBody({ r }: { r: ResearchData }) {
 
 /* -------------------------------------------------------- small primitives */
 
-function Th({ children, right }: { children: React.ReactNode; right?: boolean }) {
-  return <th className={`px-4 py-3 font-bold ${right ? "text-right" : "text-left"}`}>{children}</th>;
+function Th({ children, right, center }: { children: React.ReactNode; right?: boolean; center?: boolean }) {
+  return <th className={`px-4 py-3 font-bold ${center ? "text-center" : right ? "text-right" : "text-left"}`}>{children}</th>;
 }
 function Pill({ children, cls, dot }: { children: React.ReactNode; cls: string; dot?: string }) {
   return <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium ring-1 ${cls}`}>{dot && <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />}{children}</span>;

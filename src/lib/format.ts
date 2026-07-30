@@ -38,6 +38,13 @@ export function fmtDate(iso: string | null): string {
   return Number.isNaN(d.getTime()) ? iso : d.toISOString().slice(0, 10);
 }
 
+// Registry strings arrive inconsistently cased ("THANE", "Jigani", "VASAI EAST",
+// and folder slugs like "kayceeenterprise"). Normalise so the UI reads as prose,
+// not as a database dump.
+export function titleCase(s: string): string {
+  return s.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 // Registry legal names are ALL-CAPS ("VALUETREE INGREDIENTS PRIVATE LIMITED").
 // Title-case them, but keep the brand's own casing as the prefix so the reader
 // sees one clean full name ("ValueTree Ingredients Private Limited") — never the
@@ -49,7 +56,13 @@ export function fullName(legalName: string | null | undefined, brand: string): s
     .replace(/\bLIM(?:ITD|TED|ITE)\b/i, "LIMITED") // fix known registry typos of "LIMITED"
     .replace(/\s+/g, " ")
     .trim();
-  if (!clean) return brand;
+  // No legal name on file (open-market traders with no CIN). Their "brand" is the
+  // folder slug — capitalise it so the UI never shows a raw lowercase id.
+  if (!clean) return brand === brand.toLowerCase() ? titleCase(brand) : brand;
+  // Probe sometimes returns a stub legal name that the brand already contains in
+  // full ("EPL" vs "EPL Limited"). Title-casing the stub would mangle an acronym
+  // into "Epl", so keep the richer brand string as-is.
+  if (brand && brand.toLowerCase().startsWith(clean.toLowerCase())) return brand;
   const tc = clean.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase()).replace(/\bLlp\b/g, "LLP");
   // Preserve the brand's own casing as the prefix ONLY when it's intentional
   // mixed-case ("ValueTree", "EPL") — not an all-lowercase folder slug ("kapco",

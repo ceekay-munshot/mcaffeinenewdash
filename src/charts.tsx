@@ -15,6 +15,10 @@ export interface Slice {
 const lighten = (hex: string, a = "cc") => `${hex}${a}`;
 
 // Round "nice" axis ticks spanning [min,max] — gives a clean Y scale + gridlines.
+// The range MUST fully contain [min,max]: the axis top is rounded *up* and the
+// bottom *down* to a step boundary. (Stopping the loop at `max` used to leave the
+// top tick below the real maximum, so a peak — e.g. a financing-cashflow spike —
+// drew above the plot and got clipped.)
 function niceTicks(min: number, max: number, count = 4): number[] {
   if (!(max > min)) { max = min + 1; min -= 1; }
   const step0 = (max - min) / count;
@@ -22,9 +26,21 @@ function niceTicks(min: number, max: number, count = 4): number[] {
   const norm = step0 / mag;
   const step = (norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10) * mag;
   const lo = Math.floor(min / step) * step;
+  const hi = Math.ceil(max / step) * step;
   const ticks: number[] = [];
-  for (let v = lo; v <= max + step * 1e-6; v += step) ticks.push(Math.round(v * 1e6) / 1e6);
+  for (let v = lo; v <= hi + step * 1e-6; v += step) ticks.push(Math.round(v * 1e6) / 1e6);
   return ticks;
+}
+
+// Axis gutter — the Y-label column. Declared once so the plot area and the X-axis
+// label row can never drift apart (they used to be w-14 vs ml-11 = 12px off).
+const AXIS_W = "w-14";
+
+// With many points (24 months of headcount) every label collides and truncates to
+// "JU…". Show a strided subset instead — first, last, and every Nth — so every
+// label that *is* shown is fully legible.
+function labelStride(n: number, maxLabels = 12) {
+  return n <= maxLabels ? 1 : Math.ceil(n / maxLabels);
 }
 
 // styled hover tooltip (shows on hover of a `group` parent)
@@ -32,6 +48,29 @@ function Tip({ children, className = "" }: { children: React.ReactNode; classNam
   return (
     <div className={`pointer-events-none absolute z-30 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-lg ring-1 ring-black/5 transition-opacity duration-150 group-hover:opacity-100 ${className}`}>
       {children}
+    </div>
+  );
+}
+
+// The hover card every chart shares: dark glass panel, a colour chip per series
+// so the row you're reading ties back to the line/bar, and the number set in the
+// series colour so the value pops instead of sitting in flat grey-on-white.
+function ChartTip({ title, rows, className = "", style }: {
+  title: string;
+  rows: { color: string; name?: string; value: string }[];
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <div style={style} className={`pointer-events-none absolute z-30 min-w-[6rem] rounded-xl bg-slate-900/95 px-3 py-2 shadow-xl ring-1 ring-white/15 backdrop-blur ${className}`}>
+      <div className="mb-1 text-[11px] font-bold uppercase tracking-wide text-slate-300">{title}</div>
+      {rows.map((r, i) => (
+        <div key={i} className="flex items-center gap-2 whitespace-nowrap py-px">
+          <span className="h-2.5 w-2.5 shrink-0 rounded-[3px] ring-1 ring-white/30" style={{ background: r.color }} />
+          {r.name && <span className="text-[11px] text-slate-300">{r.name}</span>}
+          <span className="ml-auto pl-3 font-mono text-[12px] font-bold" style={{ color: r.color }}>{r.value}</span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -124,7 +163,7 @@ export function HBars({
         <div
           key={d.label}
           onClick={onBar ? () => onBar(d.label) : undefined}
-          className={`group relative grid grid-cols-[minmax(0,9rem)_1fr_auto] items-center gap-3 text-sm ${onBar ? "cursor-pointer" : ""}`}
+          className={`group relative grid grid-cols-[minmax(0,12rem)_1fr_auto] items-center gap-3 text-sm ${onBar ? "cursor-pointer" : ""}`}
         >
           <div className="min-w-0 group-hover:text-slate-900">
             <div className="truncate text-slate-600" title={d.label}>{d.label}</div>
@@ -162,41 +201,50 @@ export function Columns({
   const yPct = (v: number) => (1 - (v - lo) / range) * 100;
   const zeroPct = yPct(0);
   const showLbl = data.length <= 10;
+  const stride = labelStride(data.length);
   return (
     <div>
       <div className="flex" style={{ height }}>
-        <div className="relative w-14 shrink-0">
-          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] text-slate-400" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
+        <div className={`relative ${AXIS_W} shrink-0`}>
+          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] font-medium text-slate-500" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
         </div>
         <div className="relative flex-1">
-          {ticks.map((t) => <div key={t} className={`absolute inset-x-0 border-t ${t === 0 ? "border-slate-300" : "border-slate-100"}`} style={{ top: `${yPct(t)}%` }} />)}
+          {ticks.map((t) => <div key={t} className={`absolute inset-x-0 border-t ${t === 0 ? "border-slate-300" : "border-dashed border-slate-200/80"}`} style={{ top: `${yPct(t)}%` }} />)}
           <div className="absolute inset-0 flex items-stretch gap-1.5">
             {data.map((d, i) => {
               const hPct = (Math.abs(d.value) / range) * 100;
               const topPct = d.value >= 0 ? zeroPct - hPct : zeroPct;
+              const on = hi === i;
               return (
                 <div key={d.label} className="group relative flex-1" onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(null)}>
                   <div
-                    className="anim-grow-y absolute inset-x-0 rounded-md transition-[filter] group-hover:brightness-95"
-                    style={{ top: `${topPct}%`, height: `${Math.max(hPct, 1)}%`, background: `linear-gradient(180deg, ${lighten(d.color, "e6")}, ${d.color})`, transformOrigin: d.value >= 0 ? "bottom" : "top" }}
+                    className="anim-grow-y absolute inset-x-0 rounded-md transition-all duration-150"
+                    style={{ top: `${topPct}%`, height: `${Math.max(hPct, 1)}%`, background: `linear-gradient(180deg, ${lighten(d.color, "e6")}, ${d.color})`, transformOrigin: d.value >= 0 ? "bottom" : "top", boxShadow: on ? `0 4px 14px ${d.color}66` : `0 1px 3px ${d.color}22`, filter: on ? "saturate(1.25)" : undefined }}
                   />
                   {showLbl && (
                     <div
-                      className={`absolute inset-x-0 text-center text-[10px] font-semibold transition-opacity ${hi === i ? "opacity-0" : ""} ${d.value >= 0 ? "text-slate-600" : "text-white"}`}
+                      className={`absolute inset-x-0 text-center text-[10px] font-semibold transition-opacity ${on ? "opacity-0" : ""} ${d.value >= 0 ? "text-slate-600" : "text-white"}`}
                       style={d.value >= 0 ? { top: `calc(${topPct}% - 14px)` } : { top: `calc(${topPct}% + 3px)` }}
                     >
                       {valueLabel(d.value)}
                     </div>
                   )}
-                  {hi === i && <div className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-1 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium text-white shadow-lg">{d.label}: {valueLabel(d.value)}</div>}
+                  {on && <ChartTip className="bottom-full left-1/2 mb-2 -translate-x-1/2" title={d.label} rows={[{ color: d.color, value: valueLabel(d.value) }]} />}
                 </div>
               );
             })}
           </div>
         </div>
       </div>
-      <div className="ml-11 flex gap-1.5">
-        {data.map((d, i) => (<div key={d.label} className={`flex-1 truncate text-center text-[10px] ${hi === i ? "font-semibold text-slate-600" : "text-slate-400"}`}>{d.label}</div>))}
+      <div className="flex">
+        <div className={`${AXIS_W} shrink-0`} />
+        <div className="flex flex-1 gap-1.5 pt-1.5">
+          {data.map((d, i) => (
+            <div key={d.label} className={`min-w-0 flex-1 text-center text-[10px] leading-tight ${hi === i ? "font-bold text-slate-700" : "text-slate-500"}`}>
+              {i % stride === 0 || i === data.length - 1 ? <span className="whitespace-nowrap">{d.label}</span> : ""}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -230,49 +278,82 @@ function LineBase({ xLabels, series, valueLabel, height, area }: {
     return d.trim();
   };
   const single = series.length === 1;
-  const gid = "ag" + series[0].color.replace("#", "");
+  const uid = series.map((s) => s.color.replace("#", "")).join("");
   const nonNull = series[0].points.map((v, i) => (v != null ? i : -1)).filter((i) => i >= 0);
   const firstI = nonNull[0] ?? 0, lastI = nonNull[nonNull.length - 1] ?? n - 1;
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
     setHi(Math.max(0, Math.min(n - 1, Math.round(((e.clientX - r.left) / r.width) * (n - 1)))));
   };
+  // Long labels ("APR-24") need more room than short ones ("FY25"), so allow fewer.
+  const stride = labelStride(n, Math.max(...xLabels.map((l) => l.length)) > 5 ? 8 : 12);
+  // The tooltip flips to whichever side has room, so it never runs off the card.
   const leftAnchor = hi != null && hi < n / 2;
   return (
     <div>
       <div className="flex" style={{ height }}>
-        <div className="relative w-14 shrink-0">
-          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] text-slate-400" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
+        <div className={`relative ${AXIS_W} shrink-0`}>
+          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] font-medium text-slate-500" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
         </div>
-        <div className="relative flex-1" onMouseMove={onMove} onMouseLeave={() => setHi(null)}>
-          {ticks.map((t) => <div key={t} className="absolute inset-x-0 border-t border-slate-100" style={{ top: `${yPct(t)}%` }} />)}
-          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
-            {single && <defs><linearGradient id={gid} x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={series[0].color} stopOpacity="0.28" /><stop offset="100%" stopColor={series[0].color} stopOpacity="0.02" /></linearGradient></defs>}
-            {area && single && <path d={`${pathFor(series[0].points)} L${xPct(lastI).toFixed(2)} 100 L${xPct(firstI).toFixed(2)} 100 Z`} fill={`url(#${gid})`} className="anim-fade" />}
-            {series.map((s, si) => <path key={si} d={pathFor(s.points)} fill="none" stroke={s.color} strokeWidth="2.25" vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" className="anim-fade" />)}
+        <div className="relative flex-1 cursor-crosshair" onMouseMove={onMove} onMouseLeave={() => setHi(null)}>
+          {ticks.map((t) => <div key={t} className={`absolute inset-x-0 border-t ${t === 0 ? "border-slate-300" : "border-dashed border-slate-200/80"}`} style={{ top: `${yPct(t)}%` }} />)}
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full overflow-visible">
+            <defs>
+              {series.map((s, si) => (
+                <linearGradient key={si} id={`ln${uid}${si}`} x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor={s.color} stopOpacity="0.65" />
+                  <stop offset="100%" stopColor={s.color} stopOpacity="1" />
+                </linearGradient>
+              ))}
+              {single && (
+                <linearGradient id={`ar${uid}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor={series[0].color} stopOpacity="0.38" />
+                  <stop offset="100%" stopColor={series[0].color} stopOpacity="0.02" />
+                </linearGradient>
+              )}
+            </defs>
+            {area && single && <path d={`${pathFor(series[0].points)} L${xPct(lastI).toFixed(2)} 100 L${xPct(firstI).toFixed(2)} 100 Z`} fill={`url(#ar${uid})`} className="anim-fade" />}
+            {series.map((s, si) => (
+              <path key={si} d={pathFor(s.points)} fill="none" stroke={`url(#ln${uid}${si})`} strokeWidth="2.6" vectorEffect="non-scaling-stroke"
+                strokeLinejoin="round" strokeLinecap="round" className="anim-fade"
+                style={{ filter: `drop-shadow(0 2px 5px ${s.color}59)`, opacity: hi != null ? 0.95 : 1 }} />
+            ))}
           </svg>
-          {hi != null && <div className="pointer-events-none absolute inset-y-0 w-px bg-slate-300" style={{ left: `${xPct(hi)}%` }} />}
-          {hi != null && series.map((s, si) => { const v = s.points[hi]; return v == null ? null : <div key={si} className="pointer-events-none absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow" style={{ left: `${xPct(hi)}%`, top: `${yPct(v)}%`, background: s.color }} />; })}
+          {/* resting dots — a bare line reads as dead; the markers show real readings */}
+          {single && series[0].points.map((v, i) => v == null ? null : (
+            <span key={i} className="pointer-events-none absolute h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ left: `${xPct(i)}%`, top: `${yPct(v)}%`, background: series[0].color, opacity: hi === i ? 0 : 0.55 }} />
+          ))}
+          {hi != null && <div className="pointer-events-none absolute inset-y-0 w-px bg-gradient-to-b from-transparent via-slate-400 to-transparent" style={{ left: `${xPct(hi)}%` }} />}
+          {hi != null && series.map((s, si) => { const v = s.points[hi]; return v == null ? null : (
+            <span key={si} className="pointer-events-none absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white" style={{ left: `${xPct(hi)}%`, top: `${yPct(v)}%`, background: s.color, boxShadow: `0 0 0 3px ${s.color}33, 0 2px 6px ${s.color}80` }} />
+          ); })}
           {hi != null && (
-            <div className="pointer-events-none absolute top-1 z-30 rounded-lg bg-slate-900/95 px-2.5 py-1.5 text-[11px] shadow-lg" style={leftAnchor ? { left: `${xPct(hi)}%`, marginLeft: 8 } : { right: `${100 - xPct(hi)}%`, marginRight: 8 }}>
-              <div className="mb-0.5 font-semibold text-white">{xLabels[hi]}</div>
-              {series.map((s, si) => { const v = s.points[hi]; return v == null ? null : (
-                <div key={si} className="flex items-center gap-1.5 whitespace-nowrap">
-                  {!single && <span className="h-2 w-2 rounded-sm" style={{ background: s.color }} />}
-                  {!single && <span className="text-slate-300">{s.name}</span>}
-                  <span className={`font-mono font-semibold text-white ${single ? "" : "ml-auto pl-2"}`}>{valueLabel(v)}</span>
-                </div>
-              ); })}
-            </div>
+            <ChartTip
+              className="top-1"
+              style={leftAnchor ? { left: `${xPct(hi)}%`, marginLeft: 10 } : { right: `${100 - xPct(hi)}%`, marginRight: 10 }}
+              title={xLabels[hi]}
+              rows={series.filter((s) => s.points[hi] != null).map((s) => ({ color: s.color, name: single ? undefined : s.name, value: valueLabel(s.points[hi] as number) }))}
+            />
           )}
         </div>
       </div>
-      <div className="ml-11 flex">
-        {xLabels.map((l, i) => <span key={i} className={`flex-1 truncate text-center text-[10px] ${hi === i ? "font-semibold text-slate-600" : "text-slate-400"}`}>{l}</span>)}
+      {/* X labels are pinned to each point's true x-position (they used to sit in
+          equal flex slots, which drifts off the points on a line chart). */}
+      <div className="flex">
+        <div className={`${AXIS_W} shrink-0`} />
+        <div className="relative h-4 flex-1">
+          {/* anchored from the right so the newest reading always gets a label and
+              the spacing stays even — forcing the last one on top of a strided
+              neighbour is what made "JAN-26" and "MAR-26" collide. */}
+          {xLabels.map((l, i) => (n - 1 - i) % stride === 0 && (
+            <span key={i} className={`absolute top-1 whitespace-nowrap text-[10px] leading-none ${hi === i ? "font-bold text-slate-700" : "text-slate-500"}`}
+              style={{ left: `${xPct(i)}%`, transform: i === 0 ? "translateX(0)" : i === n - 1 ? "translateX(-100%)" : "translateX(-50%)" }}>{l}</span>
+          ))}
+        </div>
       </div>
       {!single && (
-        <div className="ml-11 mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1.5">
-          {series.map((s) => <span key={s.name} className="flex items-center gap-1.5 text-xs font-medium text-slate-600"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: s.color }} />{s.name}</span>)}
+        <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1.5">
+          {series.map((s) => <span key={s.name} className="flex items-center gap-1.5 text-xs font-semibold text-slate-600"><span className="h-2.5 w-2.5 rounded-[3px]" style={{ background: s.color, boxShadow: `0 1px 4px ${s.color}66` }} />{s.name}</span>)}
         </div>
       )}
     </div>

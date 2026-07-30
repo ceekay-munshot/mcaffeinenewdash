@@ -5,7 +5,7 @@ import { Fragment, useMemo, useState } from "react";
 import type { Entity } from "./types";
 import { AreaLine, HBars, Donut, MultiLine, Card, type Slice } from "./charts";
 import { TEAL } from "./lib/palette";
-import { fullName } from "./lib/format";
+import { fullName, titleCase } from "./lib/format";
 import { newsOf, type SupplierNews } from "./news";
 import DETAIL from "@data/clean/probe-detail.json";
 import ENTITIES from "@data/clean/entities.json";
@@ -114,7 +114,6 @@ export default function DeepDive({ entity, onClose, supplies }: { entity: Entity
   if (!d) return null;
   const L = d.latest;
   const opps = d.levers.filter((l) => l.tone === "opportunity").length;
-  const cautions = d.levers.length - opps;
   const news = newsOf(entity.folder);
   const newsCount = news ? news.news.length + news.signals.length : 0;
   // #2 — where this supplier stands vs the others we track in its category
@@ -127,20 +126,26 @@ export default function DeepDive({ entity, onClose, supplies }: { entity: Entity
       {/* header */}
       <div className="sticky top-0 z-10 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className="mx-auto max-w-[1680px] px-4 py-3 sm:px-6">
-          <div className="flex items-center justify-between gap-4">
+          {/* Identity line: the name is the headline, then only what a buyer needs
+              to place the company — where it is, and what it sells us. The CIN,
+              the "Probe42 · N-yr filings" badge, the listing status and the
+              former-names trail all moved to the About tab; they were noise here. */}
+          <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="truncate text-lg font-bold text-slate-900" title={fullName(d.legalName, entity.brand)}>{fullName(d.legalName, entity.brand)}</span>
-                <span className="shrink-0 rounded-full bg-teal-50 px-2 py-0.5 text-[11px] font-semibold text-teal-700 ring-1 ring-teal-200">Probe42 · {d.yearsCovered ?? d.fin.length}-yr filings</span>
-                {supplies && supplies.length > 0 && <span className="shrink-0 rounded-full bg-teal-400/20 px-2 py-0.5 text-[11px] font-medium text-teal-800 ring-1 ring-teal-300/50" title={`Supplies mcAFFEINE: ${supplies.join(", ")}`}>🧬 Supplies: {supplies.slice(0, 2).join(", ")}{supplies.length > 2 ? ` +${supplies.length - 2}` : ""}</span>}
-                {d.classification && <span className="hidden shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-500 sm:inline">{d.status}</span>}
+              <h1 className="truncate text-2xl font-bold leading-tight tracking-tight text-slate-900" title={fullName(d.legalName, entity.brand)}>{fullName(d.legalName, entity.brand)}</h1>
+              <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-slate-500">
+                {d.city && <span className="inline-flex items-center gap-1">📍 {titleCase(d.city)}</span>}
+                {supplies && supplies.length > 0 && (
+                  <span className="inline-flex min-w-0 items-center gap-1" title={supplies.join(", ")}>
+                    <span className="text-slate-300">·</span> supplies <span className="truncate font-medium text-slate-700">{supplies[0]}{supplies.length > 1 ? ` +${supplies.length - 1} more` : ""}</span>
+                  </span>
+                )}
               </div>
-              <div className="truncate text-xs text-slate-500">{entity.cin}{d.city ? ` · ${d.city}` : ""}{d.incorporation ? ` · inc. ${d.incorporation.slice(0, 4)}` : ""}{d.nameHistory?.length ? <span className="text-slate-400"> · formerly {d.nameHistory.slice(0, 2).join(", ")}</span> : null}</div>
             </div>
             <button onClick={onClose} className="shrink-0 rounded-lg bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700">← Back</button>
           </div>
           {/* KPI strip */}
-          <div className="mt-3 grid grid-cols-3 gap-2 md:grid-cols-6">
+          <div className="mt-4 grid grid-cols-3 gap-2 md:grid-cols-6">
             <Kpi label={`Revenue ${L.year ?? ""}`} value={cr(n(L.revenue))} tone="ink" />
             <Kpi label="EBITDA margin" value={pct(n(L.ebitdaMargin))} tone="indigo" />
             <Kpi label="RoCE" value={pct(n(L.roce))} tone="teal" />
@@ -161,7 +166,7 @@ export default function DeepDive({ entity, onClose, supplies }: { entity: Entity
       </div>
 
       <div className="mx-auto max-w-[1680px] px-4 py-6 sm:px-6">
-        {tab === "levers" && <LeversTab d={d} opps={opps} cautions={cautions} onGoto={(t) => setTab(t as TabKey)} alt={alt} />}
+        {tab === "levers" && <LeversTab d={d} opps={opps} onGoto={(t) => setTab(t as TabKey)} alt={alt} />}
         {tab === "financials" && <FinancialsTab d={d} />}
         {tab === "peers" && <PeersTab d={d} />}
         {tab === "owners" && <OwnersTab d={d} />}
@@ -169,7 +174,7 @@ export default function DeepDive({ entity, onClose, supplies }: { entity: Entity
         {tab === "news" && <NewsTab news={news} brand={entity.brand} />}
         {tab === "about" && <AboutTab d={d} />}
         <p className="mt-5 text-xs text-slate-400">
-          Source: Probe42 comprehensive filings (MCA){d.lastUpdated ? ` · data as of ${d.lastUpdated.slice(0, 10)}` : ""} · {d.yearsCovered ?? d.fin.length} years of accounts. Every panel is drawn from one already-paid report — no extra credits.
+          Source: MCA filings via Probe42{d.lastUpdated ? ` · as of ${d.lastUpdated.slice(0, 10)}` : ""} · {d.yearsCovered ?? d.fin.length} years of accounts.
         </p>
       </div>
     </div>
@@ -205,8 +210,10 @@ function AlternativesCard({ alt }: { alt: AltInfo }) {
     </div>
   );
 }
-function LeversTab({ d, opps, cautions, onGoto, alt }: { d: Detail; opps: number; cautions: number; onGoto: (t: string) => void; alt: AltInfo }) {
+function LeversTab({ d, opps, onGoto, alt }: { d: Detail; opps: number; onGoto: (t: string) => void; alt: AltInfo }) {
   const [open, setOpen] = useState<string | null>(null);
+  const watches = d.levers.filter((l) => l.tone === "watch").length;
+  const risks = d.levers.filter((l) => l.tone === "risk").length;
   const groups: { tone: Lever["tone"]; title: string; ring: string; bg: string; text: string; emoji: string }[] = [
     { tone: "opportunity", title: "Plays for us", ring: "ring-emerald-200", bg: "bg-emerald-50", text: "text-emerald-800", emoji: "✅" },
     { tone: "watch", title: "Worth watching", ring: "ring-amber-200", bg: "bg-amber-50", text: "text-amber-800", emoji: "👀" },
@@ -216,7 +223,14 @@ function LeversTab({ d, opps, cautions, onGoto, alt }: { d: Detail; opps: number
     <div>
       <div className="mb-4 rounded-2xl bg-gradient-to-r from-teal-600 to-cyan-600 p-4 text-white shadow-sm">
         <div className="text-xs font-semibold uppercase tracking-wide text-teal-100">Negotiation-lever engine</div>
-        <div className="mt-0.5 text-lg font-semibold">{opps} play{opps !== 1 ? "s" : ""} in our favour · {cautions} to watch — read straight off {d.yearsCovered}&nbsp;years of their filings.</div>
+        {/* split the non-opportunity levers the same way the columns below do —
+            lumping watch + risk into one "to watch" number contradicted them. */}
+        <div className="mt-0.5 text-lg font-semibold">
+          {opps} play{opps !== 1 ? "s" : ""} in our favour
+          {watches > 0 && <> · {watches} to watch</>}
+          {risks > 0 && <> · {risks} risk{risks !== 1 ? "s" : ""}</>}
+          <span className="font-normal text-teal-100/90"> — read straight off {d.yearsCovered}&nbsp;years of their filings.</span>
+        </div>
         <div className="mt-1 text-xs text-teal-100/90">Click any lever to see the exact numbers behind it.</div>
       </div>
       <AlternativesCard alt={alt} />
@@ -476,15 +490,18 @@ function FinancialsTab({ d }: { d: Detail }) {
     <div className="space-y-4">
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="lg:col-span-2"><TrendExplorer fin={d.fin} empByFy={empByFy} /></div>
-        <Card title="Financial-health score" sub="Probe42 · out of 10" accent={C.emerald}>
-          <HBars valueLabel={(v) => `${v}/10`} data={[["Growth", d.score.growth], ["Profitability", d.score.profitability], ["Liquidity", d.score.liquidity], ["Solvency", d.score.solvency], ["Efficiency", d.score.efficiency]].map<Slice>(([k, v]) => ({ label: k as string, value: (v as number) ?? 0, color: ((v as number) ?? 0) >= 7 ? C.emerald : ((v as number) ?? 0) >= 4 ? C.amber : C.rose }))} />
+        {/* self-start: this column is shorter than the explorer beside it, so let it
+            end where its content ends instead of stretching into dead white space. */}
+        <div className="flex flex-col gap-4 self-start">
+          <Card title="Financial-health score" sub="Probe42 · out of 10" accent={C.emerald}>
+            <HBars valueLabel={(v) => `${v}/10`} data={[["Growth", d.score.growth], ["Profitability", d.score.profitability], ["Liquidity", d.score.liquidity], ["Solvency", d.score.solvency], ["Efficiency", d.score.efficiency]].map<Slice>(([k, v]) => ({ label: k as string, value: (v as number) ?? 0, color: ((v as number) ?? 0) >= 7 ? C.emerald : ((v as number) ?? 0) >= 4 ? C.amber : C.rose }))} />
+          </Card>
           {monthly.length > 1 && (
-            <div className="mt-4">
-              <div className="mb-1 text-xs font-semibold text-slate-500">Headcount · last {monthly.length} months (EPFO)</div>
-              <AreaLine data={monthly.map<Slice>((m) => ({ label: m.month, value: m.count, color: TEAL }))} color={TEAL} valueLabel={(v) => `${Math.round(v)}`} height={130} />
-            </div>
+            <Card title="Headcount" sub={`last ${monthly.length} months · EPFO filings`} accent={C.teal}>
+              <AreaLine data={monthly.map<Slice>((m) => ({ label: m.month, value: m.count, color: TEAL }))} color={TEAL} valueLabel={(v) => `${Math.round(v)}`} height={150} />
+            </Card>
           )}
-        </Card>
+        </div>
       </div>
       {d.advanced && <HealthPanel a={d.advanced} />}
       <div className="grid gap-4 lg:grid-cols-2">
@@ -632,10 +649,14 @@ function FinTable({ fin }: { fin: FinRow[] }) {
 
 /* ==================================================================== PEERS */
 function PeersTab({ d }: { d: Detail }) {
-  const peerBars = d.peers.named.map<Slice>((p) => ({ label: p.name, value: p.revenueCr, color: p.isSelf ? TEAL : "#cbd5e1" }));
+  // Registry peer names are ALL-CAPS; title-case them so they read like the rest
+  // of the app instead of shouting inside a truncated bar label.
+  const peerBars = d.peers.named.map<Slice>((p) => ({ label: titleCase(p.name), value: p.revenueCr, color: p.isSelf ? TEAL : "#cbd5e1" }));
   const rows: [string, string, boolean][] = [["ebitdaMargin", "EBITDA margin", true], ["netMargin", "Net margin", true], ["roce", "RoCE", true], ["roe", "RoE", true], ["debtorDays", "Collection days", false], ["payableDays", "Payment days", false], ["cashConversion", "Cash cycle", false], ["debtEquity", "Debt / equity", false]];
   return (
-    <div className="grid gap-4 lg:grid-cols-2">
+    // items-start: the peer bar list is shorter than the ratio panel beside it, so
+    // don't stretch it into a card with a tall empty tail.
+    <div className="grid items-start gap-4 lg:grid-cols-2">
       <Card title="Peers by revenue" sub={`${d.peers.segment ?? "closest peers"} · ${d.peers.sampleSize ?? d.peers.named.length} in Probe's set · ₹ crore`} accent={TEAL}>
         <HBars data={peerBars} valueLabel={(v) => `₹${Math.round(v)} Cr`} />
       </Card>
@@ -694,8 +715,28 @@ function PeerGapTrend({ benchmarks }: { benchmarks: Detail["peers"]["benchmarks"
 }
 
 /* ================================================================== OWNERS */
+// The registry lists one row per appointment, so a person who is both Managing
+// Director and CEO appeared twice with identical numbers. Collapse to one row per
+// person and join their roles.
+function mergeDirectors(list: Detail["directors"]): Detail["directors"] {
+  const by = new Map<string, Detail["directors"][number]>();
+  for (const p of list) {
+    const key = p.name.trim().toLowerCase();
+    const seen = by.get(key);
+    if (!seen) { by.set(key, { ...p }); continue; }
+    const roles = new Set([seen.designation, p.designation].filter(Boolean) as string[]);
+    seen.designation = [...roles].join(" · ");
+    seen.since = seen.since ?? p.since;
+    seen.age = seen.age || p.age;
+    seen.ownPct = seen.ownPct ?? p.ownPct;
+    if (p.otherCount > seen.otherCount) { seen.otherCount = p.otherCount; seen.others = p.others; }
+  }
+  return [...by.values()];
+}
+
 function OwnersTab({ d }: { d: Detail }) {
-  const shares = d.shareholders.map<Slice>((s, i) => ({ label: s.name, value: s.pct, color: SH_COLORS[i % SH_COLORS.length], sub: s.type }));
+  const people = mergeDirectors(d.directors);
+  const shares = d.shareholders.map<Slice>((s, i) => ({ label: titleCase(s.name), value: s.pct, color: SH_COLORS[i % SH_COLORS.length], sub: s.type }));
   const grp = (["holding", "subsidiaries", "associates", "jointVentures"] as const).map((k) => ({ k, items: d.group[k] ?? [] })).filter((g) => g.items.length);
   // Probe's promoter/public split is unreliable for wholly-owned subsidiaries
   // (it can report >100%). Only show it when it's sane; else fall back to a count.
@@ -704,12 +745,12 @@ function OwnersTab({ d }: { d: Detail }) {
     ? `promoter ${valid(d.ownership.promoterPct) ? pct(d.ownership.promoterPct) : "—"} · public ${valid(d.ownership.publicPct) ? pct(d.ownership.publicPct) : "—"}`
     : `${d.shareholders.length} holder${d.shareholders.length === 1 ? "" : "s"} on file`;
   return (
-    <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+    <div className="grid items-start gap-4 lg:grid-cols-2 xl:grid-cols-3">
       <Card title="Shareholding (>5%)" sub={ownSub} accent={C.indigo}>
         {shares.length ? <Donut data={shares} centerValue={`${shares.length}`} centerLabel="holders" unit="%" /> : <Empty t="No disclosed holders >5%." />}
       </Card>
-      <Card title="Who runs it — board & overboarding" sub={`${d.directors.length} director${d.directors.length === 1 ? "" : "s"} · how many other live companies each also sits on`} accent={C.violet} className="xl:col-span-2">
-        {d.directors.length ? (
+      <Card title="Who runs it — board & overboarding" sub={`${people.length} on the board · how many other live companies each also sits on`} accent={C.violet} className="xl:col-span-2">
+        {people.length ? (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[560px] border-collapse text-sm">
               <thead>
@@ -720,17 +761,17 @@ function OwnersTab({ d }: { d: Detail }) {
                 </tr>
               </thead>
               <tbody>
-                {[...d.directors].sort((a, b) => b.otherCount - a.otherCount).map((p, i) => {
+                {[...people].sort((a, b) => b.otherCount - a.otherCount).map((p, i) => {
                   const tone = p.otherCount >= 6 ? "bg-rose-100 text-rose-700" : p.otherCount >= 3 ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-500";
                   return (
                     <tr key={i} className="border-t border-slate-100 hover:bg-slate-50/70">
-                      <td className="px-3 py-2 font-semibold text-slate-800">{p.name}</td>
+                      <td className="px-3 py-2 font-semibold text-slate-800">{titleCase(p.name)}</td>
                       <td className="px-3 py-2 text-slate-600">{p.designation ?? "Director"}</td>
                       <td className="px-3 py-2 text-center font-mono text-slate-500">{p.since ?? "—"}</td>
-                      <td className="px-3 py-2 text-center font-mono text-slate-500">{p.age ?? "—"}</td>
+                      <td className="px-3 py-2 text-center font-mono text-slate-500">{p.age ? p.age : "—"}</td>
                       <td className={`px-3 py-2 text-center font-mono ${p.ownPct ? "font-semibold text-teal-700" : "text-slate-400"}`}>{p.ownPct != null ? `${p.ownPct}%` : "—"}</td>
                       <td className="px-3 py-2 text-center"><span className={`inline-block min-w-[1.75rem] rounded-full px-2 py-0.5 text-xs font-bold ${tone}`}>{p.otherCount}</span></td>
-                      <td className="px-3 py-2 text-xs text-slate-500">{p.others.length ? <span title={p.others.join(", ")}>{p.others.slice(0, 3).join(", ")}{p.otherCount > 3 ? ` +${p.otherCount - 3} more` : ""}</span> : <span className="text-slate-300">—</span>}</td>
+                      <td className="px-3 py-2 text-xs text-slate-500">{p.others.length ? <span title={p.others.map(titleCase).join(", ")}>{p.others.slice(0, 3).map(titleCase).join(", ")}{p.otherCount > 3 ? ` +${p.otherCount - 3} more` : ""}</span> : <span className="text-slate-300">—</span>}</td>
                     </tr>
                   );
                 })}
@@ -785,8 +826,20 @@ function CreditRatingCard({ rt }: { rt: Detail["creditRating"] }) {
       </div>
       <div className="mt-2.5 flex flex-wrap gap-1.5">{chips.filter(([, on]) => on).map(([label, , t]) => <span key={label} className={`rounded-md px-1.5 py-0.5 text-[11px] font-semibold ring-1 ${cTone[t]}`}>{label}</span>)}</div>
       {rt.facilities.length > 0 && (
+        // Each facility carries the agency's full outlook string ("AA- (Under
+        // Rating Watch with Developing Implications)"). Repeating it on every line
+        // both overflowed the card and said the same thing six times — the outlook
+        // is already on the grade above, so show just the code and the amount.
         <ul className="mt-3 space-y-1 border-t border-slate-100 pt-2 text-xs">
-          {rt.facilities.map((f, i) => <li key={i} className="flex items-center justify-between gap-2"><span className="truncate text-slate-600">{f.loan ?? "Facility"}</span><span className="shrink-0 font-mono text-slate-500">{f.rating}{f.amountCr != null ? ` · ₹${f.amountCr} Cr` : ""}</span></li>)}
+          {rt.facilities.map((f, i) => (
+            <li key={i} className="flex items-center justify-between gap-2" title={`${f.loan ?? "Facility"} — ${f.rating}`}>
+              <span className="truncate text-slate-600">{f.loan || `Facility ${i + 1}`}</span>
+              <span className="shrink-0 font-mono text-slate-500">
+                <span className="font-semibold text-slate-700">{(f.rating ?? "").replace(/\s*\([^)]*\)/g, "").trim() || "—"}</span>
+                {f.amountCr != null ? ` · ₹${f.amountCr} Cr` : ""}
+              </span>
+            </li>
+          ))}
         </ul>
       )}
     </Card>
@@ -798,9 +851,12 @@ function RiskTab({ d }: { d: Detail }) {
       <CreditRatingCard rt={d.creditRating} />
       <Card title="Compliance flags" sub="statutory & bureau signals" accent={C.rose}>
         <div className="flex flex-wrap gap-2">
-          <Flag on={d.flags.gstDelay} label="GST filing delay" /><Flag on={d.flags.epfDelay} label="EPF payment delay" />
-          <Flag on={d.flags.bureauDefaults} label="Bureau default" /><Flag on={d.flags.pendingCases} label="Pending case" />
-          <Flag on={d.flags.severeCases} label="Severe case" /><Flag on={d.flags.struckOff} label="Struck off" />
+          <Flag on={d.flags.gstDelay} bad="GST filing delays" good="GST filed on time" />
+          <Flag on={d.flags.epfDelay} bad="EPF payment delays" good="EPF paid on time" />
+          <Flag on={d.flags.bureauDefaults} bad="Bureau default" good="No bureau default" />
+          <Flag on={d.flags.pendingCases} bad="Pending cases" good="No pending case" />
+          <Flag on={d.flags.severeCases} bad="Severe cases" good="No severe case" />
+          <Flag on={d.flags.struckOff} bad="Struck off" good="Active on register" />
         </div>
         <dl className="mt-3 space-y-1.5 text-sm">
           <Row k="GST registrations" v={`${d.gst.total} · ${d.gst.onTime} filing regularly`} />
@@ -811,17 +867,22 @@ function RiskTab({ d }: { d: Detail }) {
       </Card>
       <Card title="Secured lenders" sub={d.charges.count ? `${d.charges.count} open charge${d.charges.count > 1 ? "s" : ""} · ${cr(d.charges.sumCr)}${d.charges.everCreated ? ` · ${d.charges.everCreated} filed / ${d.charges.satisfied ?? 0} cleared over time` : ""}` : (d.charges.everCreated ? `no open charges · ${d.charges.everCreated} filed & ${d.charges.satisfied ?? 0} cleared over time` : "no secured borrowing on record")} accent={C.amber}>
         {d.charges.list.length ? (
-          <ul className="space-y-1.5 text-sm">{d.charges.list.map((c, i) => <li key={i} className="flex items-center justify-between gap-3 border-b border-slate-100 pb-1.5"><span className="min-w-0"><span className="block truncate text-slate-800">{c.holder}</span><span className="text-[11px] text-slate-400">{c.date} · {c.type}</span></span><span className="shrink-0 font-mono text-slate-600">{cr(c.amountCr)}</span></li>)}</ul>
+          <ul className="space-y-1.5 text-sm">{d.charges.list.map((c, i) => <li key={i} className="flex items-center justify-between gap-3 border-b border-slate-100 pb-1.5"><span className="min-w-0"><span className="block truncate text-slate-800">{titleCase(c.holder)}</span><span className="text-[11px] text-slate-400">{c.date} · {c.type}</span></span><span className="shrink-0 font-mono text-slate-600">{cr(c.amountCr)}</span></li>)}</ul>
         ) : <Empty t="Unsecured — no lender charges filed." />}
       </Card>
       <Card title="Pays its own suppliers?" sub="MSME dues left unpaid past 45 days (MCA MSME-1)" accent={C.amber}>
         {d.paymentBehaviour.hasData ? (
           <div className="space-y-2 text-sm">
+            {/* when the latest period IS the worst on record, one row says it —
+                printing both produced two identical lines. */}
             <dl className="space-y-1.5">
               <Row k={`Overdue now${d.paymentBehaviour.latestPeriod ? ` (${d.paymentBehaviour.latestPeriod})` : ""}`} v={lk(d.paymentBehaviour.latestDueLakh)} />
-              <Row k={`Worst period${d.paymentBehaviour.worstPeriod ? ` (${d.paymentBehaviour.worstPeriod})` : ""}`} v={lk(d.paymentBehaviour.worstLakh)} />
+              {!(d.paymentBehaviour.latestPeriod === d.paymentBehaviour.worstPeriod && d.paymentBehaviour.latestDueLakh === d.paymentBehaviour.worstLakh) && (
+                <Row k={`Worst period${d.paymentBehaviour.worstPeriod ? ` (${d.paymentBehaviour.worstPeriod})` : ""}`} v={lk(d.paymentBehaviour.worstLakh)} />
+              )}
             </dl>
-            {d.paymentBehaviour.delayedSuppliers.length > 0 && <div className="text-xs text-slate-500">Recently kept waiting: {d.paymentBehaviour.delayedSuppliers.join(", ")}</div>}
+            {d.paymentBehaviour.latestPeriod === d.paymentBehaviour.worstPeriod && <p className="text-xs text-slate-400">This is also the worst period on record.</p>}
+            {d.paymentBehaviour.delayedSuppliers.length > 0 && <div className="text-xs text-slate-500">Recently kept waiting: {d.paymentBehaviour.delayedSuppliers.map((s) => titleCase(s)).join(", ")}</div>}
           </div>
         ) : <div className="rounded-lg bg-emerald-50 px-2.5 py-2 text-sm text-emerald-800 ring-1 ring-emerald-100">✓ No overdue MSME dues reported — pays its small suppliers on time.</div>}
       </Card>
@@ -869,13 +930,17 @@ function AboutTab({ d }: { d: Detail }) {
         {d.description ? <p className="text-sm leading-relaxed text-slate-600">{d.description}</p> : <Empty t="No description on file." />}
         {d.activities.length > 0 && <div className="mt-3 space-y-1">{d.activities.map((a, i) => <div key={i} className="flex justify-between gap-3 text-sm"><span className="text-slate-600">{a.desc}</span>{a.pct != null && <span className="shrink-0 font-mono text-slate-400">{a.pct}% of turnover</span>}</div>)}</div>}
       </Card>
+      {/* The header used to carry the CIN, listing status and former-name trail.
+          They belong here, where someone actually looking them up will find them. */}
       <Card title="Registry" sub="MCA basics" accent="#334155">
         <dl className="space-y-1.5 text-sm">
+          {d.cin && <Row k="CIN" v={d.cin} />}
           <Row k="Type" v={d.classification ?? "—"} /><Row k="Status" v={d.status ?? "—"} />
           <Row k="Incorporated" v={d.incorporation ?? "—"} /><Row k="Paid-up capital" v={cr(d.paidUpCr)} /><Row k="Authorised capital" v={cr(d.authorizedCr)} />
           <Row k="Last AGM" v={d.lastAgm ?? "—"} /><Row k="Last filing" v={d.lastFiling ?? "—"} />
           {d.website && <Row k="Website" v={d.website.replace(/^https?:\/\//, "")} />}
-          <Row k="Registered" v={[d.city, d.state].filter(Boolean).join(", ") || "—"} />
+          <Row k="Registered" v={[d.city && titleCase(d.city), d.state && titleCase(d.state)].filter(Boolean).join(", ") || "—"} />
+          {d.nameHistory?.length ? <Row k="Formerly" v={d.nameHistory.join(", ")} /> : null}
         </dl>
       </Card>
     </div>
@@ -1013,8 +1078,10 @@ function Versus({ label, self, median, unit, higherSelfBetter }: { label: string
     </div>
   );
 }
-function Flag({ on, label }: { on: boolean; label: string }) {
-  return <span className={`rounded-full px-2 py-0.5 text-xs font-medium ring-1 ${on ? "bg-rose-50 text-rose-700 ring-rose-200" : "bg-emerald-50 text-emerald-700 ring-emerald-200"}`}>{on ? "⚠ " : "✓ "}{label}</span>;
+// The label follows the state. A green tick beside "GST filing delay" read as
+// "yes, delayed" — the opposite of what it meant.
+function Flag({ on, bad, good }: { on: boolean; bad: string; good: string }) {
+  return <span className={`rounded-full px-2 py-0.5 text-xs font-medium ring-1 ${on ? "bg-rose-50 text-rose-700 ring-rose-200" : "bg-emerald-50 text-emerald-700 ring-emerald-200"}`}>{on ? `⚠ ${bad}` : `✓ ${good}`}</span>;
 }
 function Row({ k, v }: { k: string; v: string }) {
   return <div className="flex justify-between gap-4 border-b border-slate-100 pb-1.5"><dt className="text-slate-500">{k}</dt><dd className="text-right text-slate-800">{v}</dd></div>;
