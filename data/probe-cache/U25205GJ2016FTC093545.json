@@ -1,0 +1,4882 @@
+{
+  "metadata": {
+    "api_version": "1.3",
+    "last_updated": "2025-12-27",
+    "identifier_changed": false
+  },
+  "data": {
+    "company": {
+      "cin": "U25205GJ2016FTC093545",
+      "legal_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+      "efiling_status": "Active",
+      "incorporation_date": "2016-08-31",
+      "paid_up_capital": 1250000000,
+      "sum_of_charges": 0,
+      "authorized_capital": 1250000000,
+      "active_compliance": "ACTIVE compliant",
+      "cirp_status": null,
+      "lei": {
+        "number": "6488ERBH435Z0N59H208",
+        "status": "ISSUED",
+        "registration_date": "2025-04-15",
+        "last_updated_date": "2026-04-14",
+        "next_renewal_date": "2027-04-15"
+      },
+      "registered_address": {
+        "full_address": "PE 99, 100, 105, 106, Sanand- II, Vill - Bol,   Industrial Estate, GIDC,Sanand, Ahmedabad, Gujarat - 382170",
+        "address_line1": "PE 99, 100, 105, 106, Sanand- II, Vill - Bol,   Industrial Estate, GIDC,",
+        "address_line2": null,
+        "city": "Sanand",
+        "pincode": "382170",
+        "state": "Gujarat"
+      },
+      "business_address": {
+        "address_line1": "PE-99, 100, 105 & 106, Industrial Estate, Sanand-II,",
+        "address_line2": "Village-Bol, GIDC, Sanand",
+        "city": "Ahmedabad",
+        "pincode": 382170,
+        "state": "GUJARAT"
+      },
+      "pan": "AAFCT9033N",
+      "website": "https://www.takemotopkg.com",
+      "classification": "Private Limited Foreign Company Incorporated in India",
+      "status": "Unlisted",
+      "next_cin": null,
+      "last_agm_date": "2025-06-20",
+      "last_filing_date": "2024-12-31",
+      "email": "shashank.shukla@takemotoindia.com"
+    },
+    "description": {
+      "desc_thousand_char": "Takemoto Yohki India Private Limited (TYIPL), as per annual filings, is engaged in the business of manufacturers, importers, exporters, wholesale traders, and dealers of plastics and rubber components. The company has completed the setup of its manufacturing facility at Sanand, Gujarat. The company was incorporated in 2016 and has its registered office located in Sanand, Gujarat."
+    },
+    "name_history": [],
+    "authorized_signatories": [
+      {
+        "pan": "ANHPM7182M",
+        "din": "03537936",
+        "name": "MITALEE KAUSHAL",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Female",
+        "date_of_birth": "1984-01-09",
+        "age": 42,
+        "date_of_appointment": "2016-08-31",
+        "date_of_appointment_for_current_designation": "2016-08-31",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2016-08-31",
+            "filing_date": null
+          }
+        ]
+      },
+      {
+        "pan": null,
+        "din": "07172231",
+        "name": "EMIKO TAKEMOTO",
+        "designation": "Director",
+        "din_status": "Deactivated due to non-filing of DIR-3 KYC",
+        "gender": "Female",
+        "date_of_birth": "1975-08-21",
+        "age": 51,
+        "date_of_appointment": "2016-08-31",
+        "date_of_appointment_for_current_designation": "2016-08-31",
+        "date_of_cessation": null,
+        "nationality": "Japan",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2016-08-31",
+            "filing_date": null
+          }
+        ]
+      },
+      {
+        "pan": null,
+        "din": "07172225",
+        "name": "TAKUYA TODA",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1965-08-11",
+        "age": 61,
+        "date_of_appointment": "2016-08-31",
+        "date_of_appointment_for_current_designation": "2016-08-31",
+        "date_of_cessation": "2025-06-21",
+        "nationality": "Japan",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2016-08-31",
+            "filing_date": null
+          }
+        ]
+      },
+      {
+        "pan": "AEYPF1372E",
+        "din": "07678402",
+        "name": "TAKAHIRO FUKAZAWA",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1970-05-23",
+        "age": 56,
+        "date_of_appointment": "2016-12-22",
+        "date_of_appointment_for_current_designation": "2017-06-22",
+        "date_of_cessation": null,
+        "nationality": "Japan",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2017-06-22",
+            "filing_date": null
+          },
+          {
+            "event": null,
+            "designation_after_event": "Additional Director",
+            "event_date": "2016-12-22",
+            "filing_date": null
+          }
+        ]
+      },
+      {
+        "pan": "AADPN7141E",
+        "din": "08004175",
+        "name": "SREE HARI RAMACHANDRAN NAIR",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1973-08-05",
+        "age": 53,
+        "date_of_appointment": "2017-12-08",
+        "date_of_appointment_for_current_designation": "2018-03-15",
+        "date_of_cessation": "2020-09-07",
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2018-03-15",
+            "filing_date": null
+          },
+          {
+            "event": null,
+            "designation_after_event": "Additional Director",
+            "event_date": "2017-12-08",
+            "filing_date": null
+          }
+        ]
+      },
+      {
+        "pan": null,
+        "din": null,
+        "name": "SURBHI JAIN",
+        "designation": "Company Secretary",
+        "din_status": null,
+        "gender": "Male",
+        "date_of_birth": "1993-03-18",
+        "age": 33,
+        "date_of_appointment": null,
+        "date_of_appointment_for_current_designation": "2017-05-22",
+        "date_of_cessation": null,
+        "nationality": null,
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": []
+      },
+      {
+        "pan": null,
+        "din": "11162995",
+        "name": "TAKAAKI KATO",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1968-07-28",
+        "age": 58,
+        "date_of_appointment": "2025-06-20",
+        "date_of_appointment_for_current_designation": "2025-06-20",
+        "date_of_cessation": null,
+        "nationality": "Japan",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2025-06-20",
+            "filing_date": null
+          }
+        ]
+      }
+    ],
+    "director_network": [
+      {
+        "name": "MITALEE KAUSHAL",
+        "pan": "ANHPM7182M",
+        "din": "03537936",
+        "network": {
+          "companies": [
+            {
+              "cin": "U31903KA2009PTC049929",
+              "legal_name": "TVM SIGNALLING AND TRANSPORTATION SYSTEMS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2009-05-25",
+              "paid_up_capital": 27726390,
+              "sum_of_charges": 201500000,
+              "city": "BANGALORE",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2015-08-26",
+              "date_of_appointment_for_current_designation": "2015-08-26",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U52100DL2011PTC223256",
+              "legal_name": "IN FLIGHT SERVICES WORLDWIDE INDIA PRIVA TE LIMITED",
+              "company_status": "STRIKE OFF",
+              "incorporation_date": "2011-08-04",
+              "paid_up_capital": 100000,
+              "sum_of_charges": 0,
+              "city": "New Delhi",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2011-08-04",
+              "date_of_appointment_for_current_designation": "2011-08-04",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U31900DL2013FTC247121",
+              "legal_name": "KYOSAN INDIA PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2013-01-07",
+              "paid_up_capital": 350000000,
+              "sum_of_charges": 0,
+              "city": "New Delhi",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2015-06-05",
+              "date_of_appointment_for_current_designation": "2015-06-05",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U70200DL2015PTC286008",
+              "legal_name": "HERITAGE MAX REALTECH PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2015-10-05",
+              "paid_up_capital": 1100000000,
+              "sum_of_charges": 0,
+              "city": "New Delhi",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2016-05-30",
+              "date_of_appointment_for_current_designation": "2016-11-22",
+              "date_of_cessation": "2018-04-12"
+            },
+            {
+              "cin": "U25205GJ2016FTC093545",
+              "legal_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2016-08-31",
+              "paid_up_capital": 1250000000,
+              "sum_of_charges": 0,
+              "city": "Sanand",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2016-08-31",
+              "date_of_appointment_for_current_designation": "2016-08-31",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U24290GJ2017FTC095927",
+              "legal_name": "MORESCO HM&LUB INDIA PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2017-02-23",
+              "paid_up_capital": 800000000,
+              "sum_of_charges": 0,
+              "city": "Ahmedabad",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2017-02-23",
+              "date_of_appointment_for_current_designation": "2017-02-23",
+              "date_of_cessation": "2019-11-01"
+            },
+            {
+              "cin": "U28999GJ2017FTC095781",
+              "legal_name": "TOPRE INDIA PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2017-02-14",
+              "paid_up_capital": 2730582000,
+              "sum_of_charges": 0,
+              "city": "Ahmedabad",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2017-02-14",
+              "date_of_appointment_for_current_designation": "2017-02-14",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U51909DL2017FTC314589",
+              "legal_name": "FUJIREBIO INDIA PRIVATE LIMITED",
+              "company_status": "UNDER LIQUIDATION",
+              "incorporation_date": "2017-03-16",
+              "paid_up_capital": 424500000,
+              "sum_of_charges": 0,
+              "city": "NEW DELHI",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2017-03-16",
+              "date_of_appointment_for_current_designation": "2017-03-16",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U74140DL2014FTC320857",
+              "legal_name": "ICHISHIN INDIA CONSULTANT PRIVATE LIMITED",
+              "company_status": "DORMANT UNDER SECTION 455",
+              "incorporation_date": "2014-06-05",
+              "paid_up_capital": 19045400,
+              "sum_of_charges": 0,
+              "city": "New Delhi",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2017-12-14",
+              "date_of_appointment_for_current_designation": "2018-09-29",
+              "date_of_cessation": "2019-01-03"
+            },
+            {
+              "cin": "U70200UP2012PTC242093",
+              "legal_name": "ASHIANA LANDCRAFT REALTY PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2012-02-06",
+              "paid_up_capital": 110000000,
+              "sum_of_charges": 6500000000,
+              "city": "Noida",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2017-12-11",
+              "date_of_appointment_for_current_designation": "2017-12-11",
+              "date_of_cessation": "2018-12-26"
+            }
+          ],
+          "llps": []
+        }
+      },
+      {
+        "name": "TAKUYA TODA",
+        "pan": null,
+        "din": "07172225",
+        "network": {
+          "companies": [
+            {
+              "cin": "U25205GJ2016FTC093545",
+              "legal_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2016-08-31",
+              "paid_up_capital": 1250000000,
+              "sum_of_charges": 0,
+              "city": "Sanand",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2016-08-31",
+              "date_of_appointment_for_current_designation": "2016-08-31",
+              "date_of_cessation": "2025-06-21"
+            }
+          ],
+          "llps": []
+        }
+      },
+      {
+        "name": "EMIKO TAKEMOTO",
+        "pan": null,
+        "din": "07172231",
+        "network": {
+          "companies": [
+            {
+              "cin": "U25205GJ2016FTC093545",
+              "legal_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2016-08-31",
+              "paid_up_capital": 1250000000,
+              "sum_of_charges": 0,
+              "city": "Sanand",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2016-08-31",
+              "date_of_appointment_for_current_designation": "2016-08-31",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": []
+        }
+      },
+      {
+        "name": "TAKAHIRO FUKAZAWA",
+        "pan": "AEYPF1372E",
+        "din": "07678402",
+        "network": {
+          "companies": [
+            {
+              "cin": "U25205GJ2016FTC093545",
+              "legal_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2016-08-31",
+              "paid_up_capital": 1250000000,
+              "sum_of_charges": 0,
+              "city": "Sanand",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2016-12-22",
+              "date_of_appointment_for_current_designation": "2017-06-22",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": []
+        }
+      },
+      {
+        "name": "SREE HARI RAMACHANDRAN NAIR",
+        "pan": "AADPN7141E",
+        "din": "08004175",
+        "network": {
+          "companies": [
+            {
+              "cin": "U25205GJ2016FTC093545",
+              "legal_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2016-08-31",
+              "paid_up_capital": 1250000000,
+              "sum_of_charges": 0,
+              "city": "Sanand",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2017-12-08",
+              "date_of_appointment_for_current_designation": "2018-03-15",
+              "date_of_cessation": "2020-09-07"
+            }
+          ],
+          "llps": [
+            {
+              "llpin": "AAV-0656",
+              "legal_name": "MAH PACKAGING LLP",
+              "status": "ACTIVE",
+              "incorporation_date": "2020-12-14",
+              "total_obligation_of_contribution": 10000,
+              "sum_of_charges": 0,
+              "city": "Noida",
+              "cirp_status": null,
+              "designation": "Designated Partner",
+              "date_of_appointment": null,
+              "date_of_appointment_for_current_designation": "2020-12-14",
+              "date_of_cessation": null
+            }
+          ]
+        }
+      },
+      {
+        "name": "TAKAAKI KATO",
+        "pan": null,
+        "din": "11162995",
+        "network": {
+          "companies": [
+            {
+              "cin": "U25205GJ2016FTC093545",
+              "legal_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2016-08-31",
+              "paid_up_capital": 1250000000,
+              "sum_of_charges": 0,
+              "city": "Sanand",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2025-06-20",
+              "date_of_appointment_for_current_designation": "2025-06-20",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": []
+        }
+      }
+    ],
+    "contact_details": {
+      "email": [
+        {
+          "emailId": "shashank.shukla@takemotoindia.com",
+          "status": null
+        }
+      ],
+      "phone": [
+        {
+          "phoneNumber": "07961913202",
+          "status": null
+        },
+        {
+          "phoneNumber": "01145123232",
+          "status": null
+        },
+        {
+          "phoneNumber": "07961913200",
+          "status": null
+        }
+      ]
+    },
+    "open_charges": [],
+    "open_charges_latest_event": [],
+    "charge_sequence": [],
+    "financials": [
+      {
+        "year": "2024-12-31",
+        "nature": "STANDALONE",
+        "stated_on": "2024-12-31",
+        "filing_type": "XBRL",
+        "start_date": "2024-01-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 27.55,
+          "gross_profit_margin": 60.47,
+          "net_margin": -6.95,
+          "ebitda_margin": 7.38,
+          "return_on_equity": -2.83,
+          "return_on_capital_employed": -2.7,
+          "debt_ratio": 0.02,
+          "debt_by_equity": 0.02,
+          "interest_coverage_ratio": -36.18,
+          "current_ratio": 4.22,
+          "quick_ratio": 3.55,
+          "inventory_by_sales_days": 32.16,
+          "debtors_by_sales_days": 70.48,
+          "payables_by_sales_days": 15.93,
+          "cash_conversion_cycle": 86.71,
+          "sales_by_net_fixed_assets": 0.5
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 606056056.88,
+            "producing_properties": null,
+            "intangible_assets": 533765.03,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 16863145.03,
+            "intangible_assets_under_development": null,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 388034.67,
+            "other_noncurrent_assets": 5659921,
+            "current_investments": 0,
+            "inventories": 26826747.35,
+            "trade_receivables": 58795959,
+            "cash_and_bank_balances": 23947778.64,
+            "short_term_loans_and_advances": 58717928.01,
+            "other_current_assets": 503400.47,
+            "given_assets_total": 798292736.08
+          },
+          "liabilities": {
+            "share_capital": 1250000000,
+            "reserves_and_surplus": -503666992.84,
+            "money_received_against_share_warrants": null,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 6552452,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 5396060,
+            "short_term_borrowings": 10691271.21,
+            "trade_payables": 13290966.5,
+            "other_current_liabilities": 15674765.21,
+            "short_term_provisions": 354214,
+            "given_liabilities_total": 798292736.08
+          },
+          "subTotals": {
+            "total_equity": 746333007.16,
+            "total_non_current_liabilities": 11948512,
+            "total_current_liabilities": 40011216.92,
+            "net_fixed_assets": 606589821.91,
+            "total_current_assets": 168791813.47,
+            "capital_wip": 16863145.03,
+            "total_debt": 17243723.21,
+            "total_other_non_current_assets": 6047955.67
+          },
+          "metadata": {
+            "doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/b97a8085dea76f7f94993e7f27483e86v1.pdf",
+            "xml_to_pdf_converted_doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/b97a8085dea76f7f94993e7f27483e86v1_551625286-U25205GJ2016FTC093545-FS-2024-4.pdf"
+          },
+          "notes": {
+            "gross_fixed_assets": 850943729,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 304490236.12,
+            "total_cost_of_materials_consumed": 115457019.33,
+            "total_purchases_of_stock_in_trade": 7905893.45,
+            "total_changes_in_inventories_or_finished_goods": -3007672.95,
+            "total_employee_benefit_expense": 49028578.04,
+            "total_other_expenses": 112624280.04,
+            "operating_profit": 22482138.21,
+            "other_income": 6984283.02,
+            "depreciation": 50045651.44,
+            "profit_before_interest_and_tax": -20579230.21,
+            "interest": 568752,
+            "profit_before_tax_and_exceptional_items_before_tax": -21147982.21,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -21147982.21,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": -21147982.21,
+            "profit_from_discontinuing_operation_after_tax": null,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -21147982.21
+          },
+          "subTotals": {
+            "total_operating_cost": 282008097.91
+          },
+          "revenue_breakup": {
+            "revenue_from_operations": null,
+            "revenue_from_interest": null,
+            "revenue_from_other_financial_services": null,
+            "revenue_from_sale_of_products": 303301664.22,
+            "revenue_from_sale_of_services": 1188571.9,
+            "other_operating_revenues": null,
+            "excise_duty": null,
+            "service_tax_collected": null,
+            "other_duties_taxes_collected": null
+          },
+          "depreciation_breakup": {
+            "depreciation": 49872709.12,
+            "amortisation": 172942.32,
+            "depletion": 0
+          },
+          "metadata": {
+            "docId": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/b97a8085dea76f7f94993e7f27483e86v1.pdf",
+            "xml_to_pdf_converted_doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/b97a8085dea76f7f94993e7f27483e86v1_551625286-U25205GJ2016FTC093545-FS-2024-4.pdf"
+          }
+        },
+        "cash_flow": {
+          "profit_before_tax": -21147982.21,
+          "adjustment_for_finance_cost_and_depreciation": 49552337.44,
+          "adjustment_for_current_and_non_current_assets": -21265711.02,
+          "adjustment_for_current_and_non_current_liabilities": -2972402.18,
+          "other_adjustments_in_operating_activities": 0,
+          "cash_flows_from_used_in_operating_activities": 4166242.03,
+          "cash_outflow_from_purchase_of_assets": 42284688,
+          "cash_inflow_from_sale_of_assets": null,
+          "income_from_assets": 1261147.47,
+          "other_adjustments_in_investing_activities": 7096903,
+          "cash_flows_from_used_in_investing_activities": -33926637.53,
+          "cash_outflow_from_repayment_of_capital_and_borrowings": 13067251.81,
+          "cash_inflow_from_raisng_capital_and_borrowings": 0,
+          "interest_and_dividends_paid": 767833.41,
+          "other_adjustments_in_financing_activities": 0,
+          "cash_flows_from_used_in_financing_activities": -13835085.22,
+          "incr_decr_in_cash_cash_equv_before_effect_of_excg_rate_changes": -43595480.72,
+          "adjustments_to_cash_and_cash_equivalents": null,
+          "incr_decr_in_cash_cash_equv": -43595480.72,
+          "cash_flow_statement_at_end_of_period": 23947778.64
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 561977,
+          "insurance_expenses": 1703525.93,
+          "power_and_fuel": 35046481.06
+        },
+        "auditor": {
+          "auditor_name": "MARUTI GARG",
+          "auditor_firm_name": "KUMAR SINGHAL & CO",
+          "pan": "AAFFK6495G",
+          "membership_number": "412103",
+          "firm_registration_number": "018086N",
+          "address": "1ST FLOOR, THE GREAT EASTERN CENTRE, NEHRU PLACE, NEW DELHI-110019"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2023-12-31",
+        "nature": "STANDALONE",
+        "stated_on": "2024-12-31",
+        "filing_type": "XBRL",
+        "start_date": "2023-01-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 50.12,
+          "gross_profit_margin": 57.59,
+          "net_margin": -21.33,
+          "ebitda_margin": -0.76,
+          "return_on_equity": -6.63,
+          "return_on_capital_employed": -5.07,
+          "debt_ratio": 0.04,
+          "debt_by_equity": 0.04,
+          "interest_coverage_ratio": -3.87,
+          "current_ratio": 4.28,
+          "quick_ratio": 3.79,
+          "inventory_by_sales_days": 34.54,
+          "debtors_by_sales_days": 63.16,
+          "payables_by_sales_days": 26.2,
+          "cash_conversion_cycle": 71.5,
+          "sales_by_net_fixed_assets": 0.39
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 610694030,
+            "producing_properties": null,
+            "intangible_assets": 706707.35,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 19813193,
+            "intangible_assets_under_development": null,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 259926,
+            "other_noncurrent_assets": 5659921,
+            "current_investments": 0,
+            "inventories": 22588601,
+            "trade_receivables": 41307973,
+            "cash_and_bank_balances": 67543259,
+            "short_term_loans_and_advances": 65942939,
+            "other_current_assets": 963822,
+            "given_assets_total": 835480371.35
+          },
+          "liabilities": {
+            "share_capital": 1250000000,
+            "reserves_and_surplus": -482519010.63,
+            "money_received_against_share_warrants": null,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 16025607,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 5595107,
+            "short_term_borrowings": 14285367.09,
+            "trade_payables": 17137248.89,
+            "other_current_liabilities": 14787308,
+            "short_term_provisions": 168744,
+            "given_liabilities_total": 835480371.35
+          },
+          "subTotals": {
+            "total_equity": 767480989.37,
+            "total_non_current_liabilities": 21620714,
+            "total_current_liabilities": 46378667.98,
+            "net_fixed_assets": 611400737.35,
+            "total_current_assets": 198346594,
+            "capital_wip": 19813193,
+            "total_debt": 30310974.09,
+            "total_other_non_current_assets": 5919847
+          },
+          "metadata": {
+            "doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/b97a8085dea76f7f94993e7f27483e86v1.pdf",
+            "xml_to_pdf_converted_doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/b97a8085dea76f7f94993e7f27483e86v1_551625286-U25205GJ2016FTC093545-FS-2024-4.pdf"
+          },
+          "notes": {
+            "gross_fixed_assets": 805708993,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 238723320,
+            "total_cost_of_materials_consumed": 88946473,
+            "total_purchases_of_stock_in_trade": 10251711,
+            "total_changes_in_inventories_or_finished_goods": 2032553,
+            "total_employee_benefit_expense": 45021866,
+            "total_other_expenses": 94275550,
+            "operating_profit": -1804833,
+            "other_income": 5826080,
+            "depreciation": 44479223.95,
+            "profit_before_interest_and_tax": -40457976.95,
+            "interest": 10453948,
+            "profit_before_tax_and_exceptional_items_before_tax": -50911924.95,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -50911924.95,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": -50911924.95,
+            "profit_from_discontinuing_operation_after_tax": null,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -50911924.95
+          },
+          "subTotals": {
+            "total_operating_cost": 240528153
+          },
+          "revenue_breakup": {
+            "revenue_from_operations": null,
+            "revenue_from_interest": null,
+            "revenue_from_other_financial_services": null,
+            "revenue_from_sale_of_products": 238723320,
+            "revenue_from_sale_of_services": 0,
+            "other_operating_revenues": null,
+            "excise_duty": null,
+            "service_tax_collected": null,
+            "other_duties_taxes_collected": null
+          },
+          "depreciation_breakup": {
+            "depreciation": 44335173.95,
+            "amortisation": 144050,
+            "depletion": 0
+          },
+          "metadata": {
+            "docId": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/b97a8085dea76f7f94993e7f27483e86v1.pdf",
+            "xml_to_pdf_converted_doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/b97a8085dea76f7f94993e7f27483e86v1_551625286-U25205GJ2016FTC093545-FS-2024-4.pdf"
+          }
+        },
+        "cash_flow": {
+          "profit_before_tax": -50911924.95,
+          "adjustment_for_finance_cost_and_depreciation": 54581344,
+          "adjustment_for_current_and_non_current_assets": -14785338,
+          "adjustment_for_current_and_non_current_liabilities": 7518512,
+          "other_adjustments_in_operating_activities": 0,
+          "cash_flows_from_used_in_operating_activities": -3597406.95,
+          "cash_outflow_from_purchase_of_assets": 85922550,
+          "cash_inflow_from_sale_of_assets": null,
+          "income_from_assets": 351827,
+          "other_adjustments_in_investing_activities": 3055001,
+          "cash_flows_from_used_in_investing_activities": -82515722,
+          "cash_outflow_from_repayment_of_capital_and_borrowings": 326831449,
+          "cash_inflow_from_raisng_capital_and_borrowings": 330000000,
+          "interest_and_dividends_paid": 10453948,
+          "other_adjustments_in_financing_activities": 0,
+          "cash_flows_from_used_in_financing_activities": -7285397,
+          "incr_decr_in_cash_cash_equv_before_effect_of_excg_rate_changes": -93398525.95,
+          "adjustments_to_cash_and_cash_equivalents": null,
+          "incr_decr_in_cash_cash_equv": -93398525.95,
+          "cash_flow_statement_at_end_of_period": 67543259
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 626660,
+          "insurance_expenses": 1808866,
+          "power_and_fuel": 27385197
+        },
+        "auditor": {
+          "auditor_name": "MARUTI GARG",
+          "auditor_firm_name": "KUMAR SINGHAL & CO",
+          "pan": "AAFFK6495G",
+          "membership_number": "412103",
+          "firm_registration_number": "018086N",
+          "address": "1ST FLOOR, THE GREAT EASTERN CENTRE, NEHRU PLACE, NEW DELHI-110019"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2022-12-31",
+        "nature": "STANDALONE",
+        "stated_on": "2023-12-31",
+        "filing_type": "XBRL",
+        "start_date": "2022-01-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 79.03,
+          "gross_profit_margin": 61.21,
+          "net_margin": -41.02,
+          "ebitda_margin": -5,
+          "return_on_equity": -13.36,
+          "return_on_capital_employed": -5.3,
+          "debt_ratio": 0.41,
+          "debt_by_equity": 0.73,
+          "interest_coverage_ratio": -2.2,
+          "current_ratio": 0.75,
+          "quick_ratio": 0.68,
+          "inventory_by_sales_days": 57.48,
+          "debtors_by_sales_days": 55.66,
+          "payables_by_sales_days": 20.47,
+          "cash_conversion_cycle": 92.67,
+          "sales_by_net_fixed_assets": 0.27
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 577916509.95,
+            "producing_properties": null,
+            "intangible_assets": 759257.35,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 11094837.08,
+            "intangible_assets_under_development": null,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 499038,
+            "other_noncurrent_assets": 5760721,
+            "current_investments": 0,
+            "inventories": 25042831,
+            "trade_receivables": 24249726.11,
+            "cash_and_bank_balances": 160941783.64,
+            "short_term_loans_and_advances": 68658028,
+            "other_current_assets": 782501,
+            "given_assets_total": 875705233.13
+          },
+          "liabilities": {
+            "share_capital": 920000000,
+            "reserves_and_surplus": -431607085.68,
+            "money_received_against_share_warrants": null,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 11420698.62,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 3948408,
+            "short_term_borrowings": 345721724.96,
+            "trade_payables": 8919949.33,
+            "other_current_liabilities": 17201360.9,
+            "short_term_provisions": 100177,
+            "given_liabilities_total": 875705233.13
+          },
+          "subTotals": {
+            "total_equity": 488392914.32,
+            "total_non_current_liabilities": 15369106.62,
+            "total_current_liabilities": 371943212.19,
+            "net_fixed_assets": 578675767.3,
+            "total_current_assets": 279674869.75,
+            "capital_wip": 11094837.08,
+            "total_debt": 357142423.58,
+            "total_other_non_current_assets": 6259759
+          },
+          "metadata": {
+            "doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/be7656c905661cae7e34b1d46118c171v1.pdf",
+            "xml_to_pdf_converted_doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/be7656c905661cae7e34b1d46118c171v1_U25205GJ2016FTC093545-FS-2022-2023-1.pdf"
+          },
+          "notes": {
+            "gross_fixed_assets": 728504799,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 159024408.37,
+            "total_cost_of_materials_consumed": 60925977.94,
+            "total_purchases_of_stock_in_trade": 6754086.64,
+            "total_changes_in_inventories_or_finished_goods": -5991218.99,
+            "total_employee_benefit_expense": 38585619.1,
+            "total_other_expenses": 66693538.22,
+            "operating_profit": -7943594.54,
+            "other_income": 3050063.56,
+            "depreciation": 39937435.7,
+            "profit_before_interest_and_tax": -44830966.68,
+            "interest": 20399815,
+            "profit_before_tax_and_exceptional_items_before_tax": -65230781.68,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -65230781.68,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": -65230781.68,
+            "profit_from_discontinuing_operation_after_tax": null,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -65230781.68
+          },
+          "subTotals": {
+            "total_operating_cost": 166968002.91
+          },
+          "revenue_breakup": {
+            "revenue_from_operations": null,
+            "revenue_from_interest": null,
+            "revenue_from_other_financial_services": null,
+            "revenue_from_sale_of_products": 159024408.37,
+            "revenue_from_sale_of_services": 0,
+            "other_operating_revenues": null,
+            "excise_duty": null,
+            "service_tax_collected": null,
+            "other_duties_taxes_collected": null
+          },
+          "depreciation_breakup": {
+            "depreciation": 39798690.05,
+            "amortisation": 138745.65,
+            "depletion": 0
+          },
+          "metadata": {
+            "docId": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/be7656c905661cae7e34b1d46118c171v1.pdf",
+            "xml_to_pdf_converted_doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/be7656c905661cae7e34b1d46118c171v1_U25205GJ2016FTC093545-FS-2022-2023-1.pdf"
+          }
+        },
+        "cash_flow": {
+          "profit_before_tax": -65230781.68,
+          "adjustment_for_finance_cost_and_depreciation": 59856419.7,
+          "adjustment_for_current_and_non_current_assets": -13922044.64,
+          "adjustment_for_current_and_non_current_liabilities": 2367157.12,
+          "other_adjustments_in_operating_activities": 0,
+          "cash_flows_from_used_in_operating_activities": -16929249.5,
+          "cash_outflow_from_purchase_of_assets": 34722976,
+          "cash_inflow_from_sale_of_assets": null,
+          "income_from_assets": 480831,
+          "other_adjustments_in_investing_activities": -481881.38,
+          "cash_flows_from_used_in_investing_activities": -34724026.38,
+          "cash_outflow_from_repayment_of_capital_and_borrowings": 3059476.68,
+          "cash_inflow_from_raisng_capital_and_borrowings": 120000000,
+          "interest_and_dividends_paid": 20399815,
+          "other_adjustments_in_financing_activities": 0,
+          "cash_flows_from_used_in_financing_activities": 96540708.32,
+          "incr_decr_in_cash_cash_equv_before_effect_of_excg_rate_changes": 44887432.44,
+          "adjustments_to_cash_and_cash_equivalents": null,
+          "incr_decr_in_cash_cash_equv": 44887432.44,
+          "cash_flow_statement_at_end_of_period": 160941783.64
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 400000,
+          "insurance_expenses": 1538076,
+          "power_and_fuel": 19090499.67
+        },
+        "auditor": {
+          "auditor_name": "MARUTI GARG",
+          "auditor_firm_name": "KUMAR SINGHAL & CO",
+          "pan": "AAFFK6495G",
+          "membership_number": "412103",
+          "firm_registration_number": "018086N",
+          "address": "1ST FLOOR, THE GREAT EASTERN CENTRE, NEHRU PLACE, NEW DELHI-110019"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2021-12-31",
+        "nature": "STANDALONE",
+        "stated_on": "2022-12-31",
+        "filing_type": "XBRL",
+        "start_date": "2021-01-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 76.06,
+          "gross_profit_margin": 45.01,
+          "net_margin": -97.67,
+          "ebitda_margin": -47.18,
+          "return_on_equity": -20.01,
+          "return_on_capital_employed": -8.41,
+          "debt_ratio": 0.44,
+          "debt_by_equity": 0.83,
+          "interest_coverage_ratio": -3.34,
+          "current_ratio": 3.95,
+          "quick_ratio": 3.57,
+          "inventory_by_sales_days": 61.15,
+          "debtors_by_sales_days": 86.25,
+          "payables_by_sales_days": 36.56,
+          "cash_conversion_cycle": 110.84,
+          "sales_by_net_fixed_assets": 0.15
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 588778850,
+            "producing_properties": null,
+            "intangible_assets": 817503,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 5388712,
+            "intangible_assets_under_development": null,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 67536660.35,
+            "other_noncurrent_assets": 5412721,
+            "current_investments": 0,
+            "inventories": 14881689,
+            "trade_receivables": 20989189,
+            "cash_and_bank_balances": 116054351,
+            "short_term_loans_and_advances": 1486525,
+            "other_current_assets": 282134,
+            "given_assets_total": 821628334.35
+          },
+          "liabilities": {
+            "share_capital": 800000000,
+            "reserves_and_surplus": -366376304,
+            "money_received_against_share_warrants": null,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 345672774,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 3434171,
+            "short_term_borrowings": 14529126.35,
+            "trade_payables": 8897994,
+            "other_current_liabilities": 15406398,
+            "short_term_provisions": 64175,
+            "given_liabilities_total": 821628334.35
+          },
+          "subTotals": {
+            "total_equity": 433623696,
+            "total_non_current_liabilities": 349106945,
+            "total_current_liabilities": 38897693.35,
+            "net_fixed_assets": 589596353,
+            "total_current_assets": 153693888,
+            "capital_wip": 5388712,
+            "total_debt": 360201900.35,
+            "total_other_non_current_assets": 72949381.35
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 699487949,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 88827725,
+            "total_cost_of_materials_consumed": 39865419,
+            "total_purchases_of_stock_in_trade": 12072785,
+            "total_changes_in_inventories_or_finished_goods": -3087483,
+            "total_employee_benefit_expense": 31623245.57,
+            "total_other_expenses": 50262417.02,
+            "operating_profit": -41908658.59,
+            "other_income": 12515662.59,
+            "depreciation": 37374885,
+            "profit_before_interest_and_tax": -66767881,
+            "interest": 19989016,
+            "profit_before_tax_and_exceptional_items_before_tax": -86756897,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -86756897,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": -86756897,
+            "profit_from_discontinuing_operation_after_tax": null,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -86756897
+          },
+          "subTotals": {
+            "total_operating_cost": 130736383.59
+          },
+          "revenue_breakup": {
+            "revenue_from_operations": null,
+            "revenue_from_interest": null,
+            "revenue_from_other_financial_services": null,
+            "revenue_from_sale_of_products": 88827725,
+            "revenue_from_sale_of_services": 0,
+            "other_operating_revenues": null,
+            "excise_duty": null,
+            "service_tax_collected": null,
+            "other_duties_taxes_collected": null
+          },
+          "depreciation_breakup": {
+            "depreciation": 37256883,
+            "amortisation": 118002,
+            "depletion": 0
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": {
+          "profit_before_tax": -86756897,
+          "adjustment_for_finance_cost_and_depreciation": 56484927,
+          "adjustment_for_current_and_non_current_assets": -7238464,
+          "adjustment_for_current_and_non_current_liabilities": 1518255,
+          "other_adjustments_in_operating_activities": 0,
+          "cash_flows_from_used_in_operating_activities": -35992179,
+          "cash_outflow_from_purchase_of_assets": 13642321,
+          "cash_inflow_from_sale_of_assets": null,
+          "income_from_assets": 878975,
+          "other_adjustments_in_investing_activities": 0,
+          "cash_flows_from_used_in_investing_activities": -12763346,
+          "cash_outflow_from_repayment_of_capital_and_borrowings": 0,
+          "cash_inflow_from_raisng_capital_and_borrowings": 176082940,
+          "interest_and_dividends_paid": 19989016,
+          "other_adjustments_in_financing_activities": 0,
+          "cash_flows_from_used_in_financing_activities": 156093924,
+          "incr_decr_in_cash_cash_equv_before_effect_of_excg_rate_changes": 107338399,
+          "adjustments_to_cash_and_cash_equivalents": null,
+          "incr_decr_in_cash_cash_equv": 107338399,
+          "cash_flow_statement_at_end_of_period": 116054351
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 307500,
+          "insurance_expenses": 1563656,
+          "power_and_fuel": 12804938
+        },
+        "auditor": {
+          "auditor_name": "MARUTI GARG",
+          "auditor_firm_name": "KUMAR SINGHAL & CO",
+          "pan": "AAFFK6495G",
+          "membership_number": "412103",
+          "firm_registration_number": "018086N",
+          "address": "1ST FLOOR, THE GREAT EASTERN CENTRE, NEHRU PLACE, NEW DELHI-110019"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2020-12-31",
+        "nature": "STANDALONE",
+        "stated_on": "2021-12-31",
+        "filing_type": "XBRL",
+        "start_date": "2020-01-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 219.64,
+          "gross_profit_margin": 57.11,
+          "net_margin": -201.57,
+          "ebitda_margin": -112.56,
+          "return_on_equity": -24.19,
+          "return_on_capital_employed": -12.59,
+          "debt_ratio": 0.37,
+          "debt_by_equity": 0.64,
+          "interest_coverage_ratio": -5.87,
+          "current_ratio": 1.01,
+          "quick_ratio": 0.69,
+          "inventory_by_sales_days": 87.61,
+          "debtors_by_sales_days": 111.28,
+          "payables_by_sales_days": 89.71,
+          "cash_conversion_cycle": 109.18,
+          "sales_by_net_fixed_assets": 0.08
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 597310905,
+            "producing_properties": null,
+            "intangible_assets": 935505,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 20471218,
+            "intangible_assets_under_development": null,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 74075427,
+            "other_noncurrent_assets": null,
+            "current_investments": 0,
+            "inventories": 12110141,
+            "trade_receivables": 15382258,
+            "cash_and_bank_balances": 8715952,
+            "short_term_loans_and_advances": 1770451,
+            "other_current_assets": 12178,
+            "given_assets_total": 730784035
+          },
+          "liabilities": {
+            "share_capital": 700000000,
+            "reserves_and_surplus": -279619407,
+            "money_received_against_share_warrants": null,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 269589834,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 3074481,
+            "short_term_borrowings": 0,
+            "trade_payables": 12399752,
+            "other_current_liabilities": 25291900,
+            "short_term_provisions": 47475,
+            "given_liabilities_total": 730784035
+          },
+          "subTotals": {
+            "total_equity": 420380593,
+            "total_non_current_liabilities": 272664315,
+            "total_current_liabilities": 37739127,
+            "net_fixed_assets": 598246410,
+            "total_current_assets": 37990980,
+            "capital_wip": 20471218,
+            "total_debt": 269589834,
+            "total_other_non_current_assets": 74075427
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 670763121,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 50451896,
+            "total_cost_of_materials_consumed": 21829192,
+            "total_purchases_of_stock_in_trade": 3519511,
+            "total_changes_in_inventories_or_finished_goods": -3707544,
+            "total_employee_benefit_expense": 40556644,
+            "total_other_expenses": 45042649,
+            "operating_profit": -56788556,
+            "other_income": 3183070,
+            "depreciation": 33283444,
+            "profit_before_interest_and_tax": -86888930,
+            "interest": 14808718,
+            "profit_before_tax_and_exceptional_items_before_tax": -101697648,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -101697648,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": -101697648,
+            "profit_from_discontinuing_operation_after_tax": null,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -101697648
+          },
+          "subTotals": {
+            "total_operating_cost": 107240452
+          },
+          "revenue_breakup": {
+            "revenue_from_operations": null,
+            "revenue_from_interest": null,
+            "revenue_from_other_financial_services": null,
+            "revenue_from_sale_of_products": 50451896,
+            "revenue_from_sale_of_services": 0,
+            "other_operating_revenues": null,
+            "excise_duty": null,
+            "service_tax_collected": null,
+            "other_duties_taxes_collected": null
+          },
+          "depreciation_breakup": {
+            "depreciation": 33165119,
+            "amortisation": 118325,
+            "depletion": 0
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": {
+          "profit_before_tax": -101697648,
+          "adjustment_for_finance_cost_and_depreciation": 46085673,
+          "adjustment_for_current_and_non_current_assets": -24243488,
+          "adjustment_for_current_and_non_current_liabilities": 10773104,
+          "other_adjustments_in_operating_activities": 0,
+          "cash_flows_from_used_in_operating_activities": -69082359,
+          "cash_outflow_from_purchase_of_assets": 65336552,
+          "cash_inflow_from_sale_of_assets": null,
+          "income_from_assets": 2006490,
+          "other_adjustments_in_investing_activities": 0,
+          "cash_flows_from_used_in_investing_activities": -63330062,
+          "cash_outflow_from_repayment_of_capital_and_borrowings": null,
+          "cash_inflow_from_raisng_capital_and_borrowings": 57036131,
+          "interest_and_dividends_paid": 14808718,
+          "other_adjustments_in_financing_activities": 0,
+          "cash_flows_from_used_in_financing_activities": 42227413,
+          "incr_decr_in_cash_cash_equv_before_effect_of_excg_rate_changes": -90185008,
+          "adjustments_to_cash_and_cash_equivalents": null,
+          "incr_decr_in_cash_cash_equv": -90185008,
+          "cash_flow_statement_at_end_of_period": 8715952
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 8221061,
+          "payment_to_auditors": 213200,
+          "insurance_expenses": 1575789,
+          "power_and_fuel": 11629302
+        },
+        "auditor": {
+          "auditor_name": "MARUTI GARG",
+          "auditor_firm_name": "KUMAR SINGHAL & CO",
+          "pan": "AAFFK6495G",
+          "membership_number": "412103",
+          "firm_registration_number": "018086N",
+          "address": "1ST FLOOR, THE GREAT EASTERN CENTRE, NEHRU PLACE, NEW DELHI-110019"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2019-12-31",
+        "nature": "STANDALONE",
+        "stated_on": "2020-12-31",
+        "filing_type": "XBRL",
+        "start_date": "2019-01-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 977.23,
+          "gross_profit_margin": 41.47,
+          "net_margin": -637.01,
+          "ebitda_margin": -421.85,
+          "return_on_equity": -19.26,
+          "return_on_capital_employed": -11.71,
+          "debt_ratio": 0.28,
+          "debt_by_equity": 0.41,
+          "interest_coverage_ratio": -5.95,
+          "current_ratio": 4.23,
+          "quick_ratio": 4.02,
+          "inventory_by_sales_days": 132.66,
+          "debtors_by_sales_days": 63.38,
+          "payables_by_sales_days": 305.88,
+          "cash_conversion_cycle": -109.84,
+          "sales_by_net_fixed_assets": 0.03
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 570443324,
+            "producing_properties": null,
+            "intangible_assets": 1053830,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 15167367,
+            "intangible_assets_under_development": null,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 63424284,
+            "other_noncurrent_assets": null,
+            "current_investments": 0,
+            "inventories": 5736765,
+            "trade_receivables": 2740792,
+            "cash_and_bank_balances": 98900960,
+            "short_term_loans_and_advances": 3939461,
+            "other_current_assets": 3265665,
+            "given_assets_total": 764672448
+          },
+          "liabilities": {
+            "share_capital": 700000000,
+            "reserves_and_surplus": -177921759,
+            "money_received_against_share_warrants": null,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 212553704,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 2949499,
+            "short_term_borrowings": 0,
+            "trade_payables": 13227145,
+            "other_current_liabilities": 13804269,
+            "short_term_provisions": 59590,
+            "given_liabilities_total": 764672448
+          },
+          "subTotals": {
+            "total_equity": 522078241,
+            "total_non_current_liabilities": 215503203,
+            "total_current_liabilities": 27091004,
+            "net_fixed_assets": 571497154,
+            "total_current_assets": 114583643,
+            "capital_wip": 15167367,
+            "total_debt": 212553704,
+            "total_other_non_current_assets": 63424284
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 610730421,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 15783743,
+            "total_cost_of_materials_consumed": 5858198,
+            "total_purchases_of_stock_in_trade": 3836830,
+            "total_changes_in_inventories_or_finished_goods": -457257,
+            "total_employee_benefit_expense": 37610397,
+            "total_other_expenses": 35519146,
+            "operating_profit": -66583571,
+            "other_income": 8118042,
+            "depreciation": 27553641,
+            "profit_before_interest_and_tax": -86019170,
+            "interest": 14461991,
+            "profit_before_tax_and_exceptional_items_before_tax": -100481161,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -100481161,
+            "income_tax": 63325,
+            "profit_for_period_from_continuing_operations": -100544486,
+            "profit_from_discontinuing_operation_after_tax": null,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -100544486
+          },
+          "subTotals": {
+            "total_operating_cost": 82367314
+          },
+          "revenue_breakup": {
+            "revenue_from_operations": null,
+            "revenue_from_interest": null,
+            "revenue_from_other_financial_services": null,
+            "revenue_from_sale_of_products": 15783743,
+            "revenue_from_sale_of_services": 0,
+            "other_operating_revenues": null,
+            "excise_duty": null,
+            "service_tax_collected": null,
+            "other_duties_taxes_collected": null
+          },
+          "depreciation_breakup": {
+            "depreciation": 27442459,
+            "amortisation": 111182,
+            "depletion": 0
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": {
+          "profit_before_tax": -100481161,
+          "adjustment_for_finance_cost_and_depreciation": 35619800,
+          "adjustment_for_current_and_non_current_assets": -11148892,
+          "adjustment_for_current_and_non_current_liabilities": -12300671,
+          "other_adjustments_in_operating_activities": -63325,
+          "cash_flows_from_used_in_operating_activities": -88374249,
+          "cash_outflow_from_purchase_of_assets": 91668279,
+          "cash_inflow_from_sale_of_assets": null,
+          "income_from_assets": 6395832,
+          "other_adjustments_in_investing_activities": 0,
+          "cash_flows_from_used_in_investing_activities": -85272447,
+          "cash_outflow_from_repayment_of_capital_and_borrowings": null,
+          "cash_inflow_from_raisng_capital_and_borrowings": 167336771,
+          "interest_and_dividends_paid": 14461991,
+          "other_adjustments_in_financing_activities": 0,
+          "cash_flows_from_used_in_financing_activities": 152874780,
+          "incr_decr_in_cash_cash_equv_before_effect_of_excg_rate_changes": -20771916,
+          "adjustments_to_cash_and_cash_equivalents": null,
+          "incr_decr_in_cash_cash_equv": -20771916,
+          "cash_flow_statement_at_end_of_period": 98900960
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 8000004,
+          "payment_to_auditors": 188983,
+          "insurance_expenses": 905559,
+          "power_and_fuel": 6036897
+        },
+        "auditor": {
+          "auditor_name": "MARUTI GARG",
+          "auditor_firm_name": "KUMAR SINGHAL & CO",
+          "pan": "AAFFK6495G",
+          "membership_number": "412103",
+          "firm_registration_number": "018086N",
+          "address": "1ST FLOOR, THE GREAT EASTERN CENTRE, NEHRU PLACE, NEW DELHI-110019"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2018-12-31",
+        "nature": "STANDALONE",
+        "stated_on": "2019-12-31",
+        "filing_type": "XBRL",
+        "start_date": "2018-01-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": 45.54,
+          "net_margin": -4060.46,
+          "ebitda_margin": -3608.99,
+          "return_on_equity": -12.59,
+          "return_on_capital_employed": -7.79,
+          "debt_ratio": 0.28,
+          "debt_by_equity": 0.42,
+          "interest_coverage_ratio": -8.2,
+          "current_ratio": 4.15,
+          "quick_ratio": 4.09,
+          "inventory_by_sales_days": 462.95,
+          "debtors_by_sales_days": 79.92,
+          "payables_by_sales_days": 6375.75,
+          "cash_conversion_cycle": -5832.88,
+          "sales_by_net_fixed_assets": 0
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 518588225,
+            "producing_properties": null,
+            "intangible_assets": 1093012,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 2868645,
+            "intangible_assets_under_development": null,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 41779220,
+            "other_noncurrent_assets": null,
+            "current_investments": 0,
+            "inventories": 1858412,
+            "trade_receivables": 320829,
+            "cash_and_bank_balances": 119672876,
+            "short_term_loans_and_advances": 19253650,
+            "other_current_assets": 4745963,
+            "given_assets_total": 710180832
+          },
+          "liabilities": {
+            "share_capital": 550000000,
+            "reserves_and_surplus": -77377273,
+            "money_received_against_share_warrants": null,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 200000000,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 2384919,
+            "short_term_borrowings": 0,
+            "trade_payables": 25594225,
+            "other_current_liabilities": 9554633,
+            "short_term_provisions": 24328,
+            "given_liabilities_total": 710180832
+          },
+          "subTotals": {
+            "total_equity": 472622727,
+            "total_non_current_liabilities": 202384919,
+            "total_current_liabilities": 35173186,
+            "net_fixed_assets": 519681237,
+            "total_current_assets": 145851730,
+            "capital_wip": 2868645,
+            "total_debt": 200000000,
+            "total_other_non_current_assets": 41779220
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 531312227,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 1465222,
+            "total_cost_of_materials_consumed": 1067905,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": -269925,
+            "total_employee_benefit_expense": 33599588,
+            "total_other_expenses": 19947301,
+            "operating_profit": -52879647,
+            "other_income": 10664652,
+            "depreciation": 10200602,
+            "profit_before_interest_and_tax": -52415597,
+            "interest": 6394519,
+            "profit_before_tax_and_exceptional_items_before_tax": -58810116,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -58810116,
+            "income_tax": 684643,
+            "profit_for_period_from_continuing_operations": -59494759,
+            "profit_from_discontinuing_operation_after_tax": null,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -59494759
+          },
+          "subTotals": {
+            "total_operating_cost": 54344869
+          },
+          "revenue_breakup": {
+            "revenue_from_operations": null,
+            "revenue_from_interest": null,
+            "revenue_from_other_financial_services": null,
+            "revenue_from_sale_of_products": 1465222,
+            "revenue_from_sale_of_services": 0,
+            "other_operating_revenues": null,
+            "excise_duty": null,
+            "service_tax_collected": null,
+            "other_duties_taxes_collected": null
+          },
+          "depreciation_breakup": {
+            "depreciation": 10136050,
+            "amortisation": 64552,
+            "depletion": 0
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": {
+          "profit_before_tax": -58810116,
+          "adjustment_for_finance_cost_and_depreciation": 6150397,
+          "adjustment_for_current_and_non_current_assets": -17292907,
+          "adjustment_for_current_and_non_current_liabilities": 31078014,
+          "other_adjustments_in_operating_activities": -2020284,
+          "cash_flows_from_used_in_operating_activities": -40894896,
+          "cash_outflow_from_purchase_of_assets": 259148107,
+          "cash_inflow_from_sale_of_assets": null,
+          "income_from_assets": 4050205,
+          "other_adjustments_in_investing_activities": 0,
+          "cash_flows_from_used_in_investing_activities": -255097902,
+          "cash_outflow_from_repayment_of_capital_and_borrowings": null,
+          "cash_inflow_from_raisng_capital_and_borrowings": 250000000,
+          "interest_and_dividends_paid": 0,
+          "other_adjustments_in_financing_activities": 0,
+          "cash_flows_from_used_in_financing_activities": 250000000,
+          "incr_decr_in_cash_cash_equv_before_effect_of_excg_rate_changes": -45992798,
+          "adjustments_to_cash_and_cash_equivalents": null,
+          "incr_decr_in_cash_cash_equv": -45992798,
+          "cash_flow_statement_at_end_of_period": 119672876
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 8273548,
+          "payment_to_auditors": 172814,
+          "insurance_expenses": 596616,
+          "power_and_fuel": 1747189
+        },
+        "auditor": {
+          "auditor_name": "MARUTI GARG",
+          "auditor_firm_name": "KUMAR SINGHAL & CO",
+          "pan": "AAFFK6495G",
+          "membership_number": "412103",
+          "firm_registration_number": "018086N",
+          "address": "1ST FLOOR, THE GREAT EASTERN CENTRE, NEHRU PLACE, NEW DELHI-110019"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2017-12-31",
+        "nature": "STANDALONE",
+        "stated_on": "2018-12-31",
+        "filing_type": "XBRL",
+        "start_date": "2017-01-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": null,
+          "net_margin": null,
+          "ebitda_margin": null,
+          "return_on_equity": -6.31,
+          "return_on_capital_employed": -3.51,
+          "debt_ratio": 0.41,
+          "debt_by_equity": 0.71,
+          "interest_coverage_ratio": -844.92,
+          "current_ratio": 30.61,
+          "quick_ratio": 30.61,
+          "inventory_by_sales_days": null,
+          "debtors_by_sales_days": null,
+          "payables_by_sales_days": null,
+          "cash_conversion_cycle": null,
+          "sales_by_net_fixed_assets": 0
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 92349810,
+            "producing_properties": null,
+            "intangible_assets": 288334,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 181008430,
+            "intangible_assets_under_development": null,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 724500,
+            "other_noncurrent_assets": null,
+            "current_investments": 0,
+            "inventories": 0,
+            "trade_receivables": 0,
+            "cash_and_bank_balances": 165665676,
+            "short_term_loans_and_advances": 48487501,
+            "other_current_assets": 609043,
+            "given_assets_total": 489133294
+          },
+          "liabilities": {
+            "share_capital": 300000000,
+            "reserves_and_surplus": -17882514,
+            "money_received_against_share_warrants": null,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 200000000,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 0,
+            "trade_payables": 0,
+            "other_current_liabilities": 6480091,
+            "short_term_provisions": 535717,
+            "given_liabilities_total": 489133294
+          },
+          "subTotals": {
+            "total_equity": 282117486,
+            "total_non_current_liabilities": 200000000,
+            "total_current_liabilities": 7015808,
+            "net_fixed_assets": 92638144,
+            "total_current_assets": 214762220,
+            "capital_wip": 181008430,
+            "total_debt": 200000000,
+            "total_other_non_current_assets": 724500
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 92803191,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 0,
+            "total_cost_of_materials_consumed": 0,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 0,
+            "total_employee_benefit_expense": 6383223,
+            "total_other_expenses": 13457515,
+            "operating_profit": -19840738,
+            "other_income": 3052100,
+            "depreciation": 157098,
+            "profit_before_interest_and_tax": -16945736,
+            "interest": 20056,
+            "profit_before_tax_and_exceptional_items_before_tax": -16965792,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -16965792,
+            "income_tax": 840930,
+            "profit_for_period_from_continuing_operations": -17806722,
+            "profit_from_discontinuing_operation_after_tax": null,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -17806722
+          },
+          "subTotals": {
+            "total_operating_cost": 19840738
+          },
+          "revenue_breakup": {
+            "revenue_from_operations": null,
+            "revenue_from_interest": null,
+            "revenue_from_other_financial_services": null,
+            "revenue_from_sale_of_products": 0,
+            "revenue_from_sale_of_services": 0,
+            "other_operating_revenues": null,
+            "excise_duty": null,
+            "service_tax_collected": null,
+            "other_duties_taxes_collected": null
+          },
+          "depreciation_breakup": {
+            "depreciation": 144524,
+            "amortisation": 12574,
+            "depletion": 0
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": {
+          "profit_before_tax": -16965792,
+          "adjustment_for_finance_cost_and_depreciation": -2895003,
+          "adjustment_for_current_and_non_current_assets": -49277222,
+          "adjustment_for_current_and_non_current_liabilities": 6101525,
+          "other_adjustments_in_operating_activities": 2211170,
+          "cash_flows_from_used_in_operating_activities": -60825322,
+          "cash_outflow_from_purchase_of_assets": 273203392,
+          "cash_inflow_from_sale_of_assets": null,
+          "income_from_assets": null,
+          "other_adjustments_in_investing_activities": 0,
+          "cash_flows_from_used_in_investing_activities": -273203392,
+          "cash_outflow_from_repayment_of_capital_and_borrowings": null,
+          "cash_inflow_from_raisng_capital_and_borrowings": 490000000,
+          "interest_and_dividends_paid": null,
+          "other_adjustments_in_financing_activities": 0,
+          "cash_flows_from_used_in_financing_activities": 490000000,
+          "incr_decr_in_cash_cash_equv_before_effect_of_excg_rate_changes": 155971286,
+          "adjustments_to_cash_and_cash_equivalents": null,
+          "incr_decr_in_cash_cash_equv": 155971286,
+          "cash_flow_statement_at_end_of_period": 165665676
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 185800,
+          "insurance_expenses": 158960,
+          "power_and_fuel": 16633
+        },
+        "auditor": {
+          "auditor_name": "MARUTI GARG",
+          "auditor_firm_name": "KUMAR SINGHAL & CO",
+          "pan": "AAFFK6495G",
+          "membership_number": "412103",
+          "firm_registration_number": "018086N",
+          "address": "1ST FLOOR, THE GREAT EASTERN CENTRE, NEHRU PLACE, NEW DELHI-110019"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2016-12-31",
+        "nature": "STANDALONE",
+        "stated_on": "2017-12-31",
+        "filing_type": "XBRL",
+        "start_date": "2016-08-31",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": null,
+          "net_margin": null,
+          "ebitda_margin": null,
+          "return_on_equity": -0.76,
+          "return_on_capital_employed": -0.76,
+          "debt_ratio": 0,
+          "debt_by_equity": 0,
+          "interest_coverage_ratio": null,
+          "current_ratio": 25.63,
+          "quick_ratio": 25.63,
+          "inventory_by_sales_days": null,
+          "debtors_by_sales_days": null,
+          "payables_by_sales_days": null,
+          "cash_conversion_cycle": null,
+          "sales_by_net_fixed_assets": 0
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 291550,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 308730,
+            "intangible_assets_under_development": null,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": null,
+            "current_investments": 0,
+            "inventories": 0,
+            "trade_receivables": 0,
+            "cash_and_bank_balances": 9694390,
+            "short_term_loans_and_advances": 8105,
+            "other_current_assets": 0,
+            "given_assets_total": 10302775
+          },
+          "liabilities": {
+            "share_capital": 10000000,
+            "reserves_and_surplus": -75792,
+            "money_received_against_share_warrants": null,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 0,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 0,
+            "trade_payables": 0,
+            "other_current_liabilities": 378567,
+            "short_term_provisions": 0,
+            "given_liabilities_total": 10302775
+          },
+          "subTotals": {
+            "total_equity": 9924208,
+            "total_non_current_liabilities": 0,
+            "total_current_liabilities": 378567,
+            "net_fixed_assets": 291550,
+            "total_current_assets": 9702495,
+            "capital_wip": 308730,
+            "total_debt": 0,
+            "total_other_non_current_assets": 0
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 299499,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 0,
+            "total_cost_of_materials_consumed": 0,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 0,
+            "total_employee_benefit_expense": 3088,
+            "total_other_expenses": 64755,
+            "operating_profit": -67843,
+            "other_income": 0,
+            "depreciation": 7949,
+            "profit_before_interest_and_tax": -75792,
+            "interest": 0,
+            "profit_before_tax_and_exceptional_items_before_tax": -75792,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -75792,
+            "income_tax": 0,
+            "profit_for_period_from_continuing_operations": -75792,
+            "profit_from_discontinuing_operation_after_tax": null,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -75792
+          },
+          "subTotals": {
+            "total_operating_cost": 67843
+          },
+          "revenue_breakup": {
+            "revenue_from_operations": null,
+            "revenue_from_interest": null,
+            "revenue_from_other_financial_services": null,
+            "revenue_from_sale_of_products": 0,
+            "revenue_from_sale_of_services": 0,
+            "other_operating_revenues": null,
+            "excise_duty": null,
+            "service_tax_collected": null,
+            "other_duties_taxes_collected": null
+          },
+          "depreciation_breakup": {
+            "depreciation": 7949,
+            "amortisation": 0,
+            "depletion": 0
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": {
+          "profit_before_tax": -75792,
+          "adjustment_for_finance_cost_and_depreciation": 7948,
+          "adjustment_for_current_and_non_current_assets": -8105,
+          "adjustment_for_current_and_non_current_liabilities": 378567,
+          "other_adjustments_in_operating_activities": 0,
+          "cash_flows_from_used_in_operating_activities": 302618,
+          "cash_outflow_from_purchase_of_assets": 608228,
+          "cash_inflow_from_sale_of_assets": null,
+          "income_from_assets": null,
+          "other_adjustments_in_investing_activities": 0,
+          "cash_flows_from_used_in_investing_activities": -608228,
+          "cash_outflow_from_repayment_of_capital_and_borrowings": null,
+          "cash_inflow_from_raisng_capital_and_borrowings": 10000000,
+          "interest_and_dividends_paid": null,
+          "other_adjustments_in_financing_activities": 0,
+          "cash_flows_from_used_in_financing_activities": 10000000,
+          "incr_decr_in_cash_cash_equv_before_effect_of_excg_rate_changes": 9694390,
+          "adjustments_to_cash_and_cash_equivalents": null,
+          "incr_decr_in_cash_cash_equv": 9694390,
+          "cash_flow_statement_at_end_of_period": 9694390
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 34500,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "MARUTI GARG",
+          "auditor_firm_name": "KUMAR SINGHAL & CO",
+          "pan": "AAFFK6495G",
+          "membership_number": "412103",
+          "firm_registration_number": "018086N",
+          "address": "1st Floor, The Great Eastern Centre, 70, Nehru Place, Behind IFCI Tower, New Delhi DL IN 110019"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      }
+    ],
+    "nbfc_financials": [],
+    "financial_parameters": [
+      {
+        "year": "2024",
+        "nature": "STANDALONE",
+        "earning_fc": 2021661.4,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 11404455,
+        "employee_benefit_expense": 49028578.04,
+        "number_of_employees": 52,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 850943729,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2023",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 387603763,
+        "employee_benefit_expense": 45021866,
+        "number_of_employees": 55,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 805708993,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2022",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 156007549,
+        "employee_benefit_expense": 38585619.1,
+        "number_of_employees": 42,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 728504799,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2021",
+        "nature": "STANDALONE",
+        "earning_fc": 352940,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 216348637,
+        "employee_benefit_expense": 31623246,
+        "number_of_employees": 43,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 699487949,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2020",
+        "nature": "STANDALONE",
+        "earning_fc": 476662,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 103471009,
+        "employee_benefit_expense": 40556644,
+        "number_of_employees": 40,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 670763121,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2019",
+        "nature": "STANDALONE",
+        "earning_fc": 1034961,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 206803721,
+        "employee_benefit_expense": 37610397,
+        "number_of_employees": 26,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 610730421,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2018",
+        "nature": "STANDALONE",
+        "earning_fc": 1265222,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 26129771,
+        "employee_benefit_expense": 33599588,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 531312227,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2017",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 6383223,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 92803191,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2016",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 44334,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 0,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 299499,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      }
+    ],
+    "industry_segments": [
+      {
+        "industry": "Manufacturing",
+        "segments": [
+          "Plastic based Products",
+          "Rubber based Products"
+        ]
+      }
+    ],
+    "principal_business_activities": [
+      {
+        "year": "2024",
+        "main_activity_group_code": "C",
+        "main_activity_group_description": "Manufacturing",
+        "business_activity_code": "22",
+        "business_activity_description": "Manufacture of rubber and plastics products",
+        "percentage_of_turnover": 100
+      }
+    ],
+    "related_party_transactions": [
+      {
+        "financial_year": "2024-12-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": [
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Expense",
+            "amount": 6344851
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 568752
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 2735057
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 1413282
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 91252
+          }
+        ]
+      },
+      {
+        "financial_year": "2023-12-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": [
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Expense",
+            "amount": 5922198
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 10453948
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 23415822
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 1389968
+          }
+        ]
+      },
+      {
+        "financial_year": "2022-12-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": [
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Expense",
+            "amount": 2144089
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 20399815
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 11472854
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 31349
+          }
+        ]
+      },
+      {
+        "financial_year": "2021-12-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": [
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Expense",
+            "amount": 142770
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 19989016
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 14204254
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 133360
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Revenue",
+            "amount": 170040
+          },
+          {
+            "name": "Takemoto Netherland B.V.",
+            "legal_name": "Takemoto Netherland B.V.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Expense",
+            "amount": 1262100
+          },
+          {
+            "name": "Takemoto Netherland B.V.",
+            "legal_name": "Takemoto Netherland B.V.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Revenue",
+            "amount": 264197
+          },
+          {
+            "name": "Takemoto Packaging (Thailand) Co.,Ltd",
+            "legal_name": "Takemoto Packaging (Thailand) Co.,Ltd",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Revenue",
+            "amount": 182900
+          }
+        ]
+      },
+      {
+        "financial_year": "2020-12-31",
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "Sree Hari Ramachandran Nair",
+            "legal_name": "Sree Hari Ramachandran Nair",
+            "relationship": "Key Management Personnel and Their Relatives",
+            "type_of_transaction": "Expense",
+            "amount": "****",
+            "din": "08004175"
+          }
+        ],
+        "others": [
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Expense",
+            "amount": 7520775
+          },
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Revenue",
+            "amount": 476662
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 16000524
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 21251987
+          }
+        ]
+      },
+      {
+        "financial_year": "2019-12-31",
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "Sree Hari Ramachandran Nair",
+            "legal_name": "Sree Hari Ramachandran Nair",
+            "relationship": "Key Management Personnel and Their Relatives",
+            "type_of_transaction": "Expense",
+            "amount": "****",
+            "din": "08004175"
+          }
+        ],
+        "others": [
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Expense",
+            "amount": 11460588
+          },
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Revenue",
+            "amount": 173817
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 15884391
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 20423775
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Revenue",
+            "amount": 721638
+          },
+          {
+            "name": "Takemoto Netherland B.V.",
+            "legal_name": "Takemoto Netherland B.V.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Revenue",
+            "amount": 128933
+          },
+          {
+            "name": "Takemoto Packaging (Thailand) Co.,Ltd",
+            "legal_name": "Takemoto Packaging (Thailand) Co.,Ltd",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Revenue",
+            "amount": 10575
+          }
+        ]
+      },
+      {
+        "financial_year": "2018-12-31",
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "Sree Hari Ramachandran Nair",
+            "legal_name": "Sree Hari Ramachandran Nair",
+            "relationship": "Key Management Personnel and Their Relatives",
+            "type_of_transaction": "Expense",
+            "amount": "****",
+            "din": "08004175"
+          }
+        ],
+        "others": [
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Expense",
+            "amount": 561655
+          },
+          {
+            "name": "Shanghai Takemoto Packages Co. Ltd.",
+            "legal_name": "Shanghai Takemoto Packages Co. Ltd.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Revenue",
+            "amount": 330580
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 15747945
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 843056
+          },
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Revenue",
+            "amount": 693431
+          },
+          {
+            "name": "Takemoto Netherland B.V.",
+            "legal_name": "Takemoto Netherland B.V.",
+            "relationship": "Companies KMP or Their Relatives have Significant Influence",
+            "type_of_transaction": "Revenue",
+            "amount": 241211
+          }
+        ]
+      },
+      {
+        "financial_year": "2017-12-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": [
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "legal_name": "TAKEMOTO YOHKI CO. LTD.",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 4010959
+          }
+        ]
+      },
+      {
+        "financial_year": "2016-12-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      }
+    ],
+    "establishments_registered_with_epfo": [
+      {
+        "establishment_id": "GJAHD1716565000",
+        "establishment_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+        "working_status": "LIVE ESTABLISHMENT",
+        "principal_business_activities": "PLASTICS PRODUCTS",
+        "date_of_setup": "2016-08-31",
+        "address": "PLOT NO PE-99,100,105,106 G.I.D.C, BOL,SANAND,GUJARAT,382110,India",
+        "city": "SANAND",
+        "exemption_status_edli": "UNEXEMPTED",
+        "exemption_status_pension": "UNEXEMPTED",
+        "exemption_status_pf": "UNEXEMPTED",
+        "latest_wage_month": "MAR-26",
+        "latest_date_of_credit": null,
+        "no_of_employees": 64,
+        "amount": 460316,
+        "payment_timeliness": "Payment After Due Date in last 12 Months.",
+        "filing_details": [
+          {
+            "wage_month": "MAR-26",
+            "trrn": "2604180152856",
+            "date_of_credit": "2026-04-09",
+            "payment_due_date": "2026-04-15",
+            "no_of_employees": 64,
+            "amount": 460316,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "FEB-26",
+            "trrn": "2603180123943",
+            "date_of_credit": "2026-03-09",
+            "payment_due_date": "2026-03-15",
+            "no_of_employees": 61,
+            "amount": 454441,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JAN-26",
+            "trrn": "2602180098200",
+            "date_of_credit": "2026-02-09",
+            "payment_due_date": "2026-02-15",
+            "no_of_employees": 55,
+            "amount": 375714,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "DEC-25",
+            "trrn": "2601180078472",
+            "date_of_credit": "2026-01-12",
+            "payment_due_date": "2026-01-15",
+            "no_of_employees": 55,
+            "amount": 377347,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "NOV-25",
+            "trrn": "2512180050360",
+            "date_of_credit": "2025-12-09",
+            "payment_due_date": "2025-12-15",
+            "no_of_employees": 53,
+            "amount": 370664,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "OCT-25",
+            "trrn": "2511180028917",
+            "date_of_credit": "2025-11-11",
+            "payment_due_date": "2025-11-15",
+            "no_of_employees": 52,
+            "amount": 367358,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "SEP-25",
+            "trrn": "2510180016304",
+            "date_of_credit": "2025-10-27",
+            "payment_due_date": "2025-10-15",
+            "no_of_employees": 53,
+            "amount": 400566,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "AUG-25",
+            "trrn": "1802509004426",
+            "date_of_credit": "2025-09-09",
+            "payment_due_date": "2025-09-15",
+            "no_of_employees": 49,
+            "amount": 387005,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUL-25",
+            "trrn": "1802508009715",
+            "date_of_credit": "2025-08-12",
+            "payment_due_date": "2025-08-15",
+            "no_of_employees": 51,
+            "amount": 388752,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUN-25",
+            "trrn": "1802507005036",
+            "date_of_credit": "2025-07-10",
+            "payment_due_date": "2025-07-15",
+            "no_of_employees": 50,
+            "amount": 385798,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAY-25",
+            "trrn": "1802506002877",
+            "date_of_credit": "2025-06-12",
+            "payment_due_date": "2025-06-15",
+            "no_of_employees": 48,
+            "amount": 383544,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "APR-25",
+            "trrn": "1802505004915",
+            "date_of_credit": "2025-05-12",
+            "payment_due_date": "2025-05-15",
+            "no_of_employees": 50,
+            "amount": 388212,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAR-25",
+            "trrn": "1802504010099",
+            "date_of_credit": "2025-04-10",
+            "payment_due_date": "2025-04-15",
+            "no_of_employees": 50,
+            "amount": 389806,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "FEB-25",
+            "trrn": "1802503005455",
+            "date_of_credit": "2025-03-13",
+            "payment_due_date": "2025-03-15",
+            "no_of_employees": 49,
+            "amount": 391359,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JAN-25",
+            "trrn": "1802503005466",
+            "date_of_credit": "2025-03-13",
+            "payment_due_date": "2025-02-15",
+            "no_of_employees": 38,
+            "amount": 47743,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "JAN-25",
+            "trrn": "1802502003657",
+            "date_of_credit": "2025-02-06",
+            "payment_due_date": "2025-02-15",
+            "no_of_employees": 49,
+            "amount": 345800,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "DEC-24",
+            "trrn": "1802501008787",
+            "date_of_credit": "2025-01-10",
+            "payment_due_date": "2025-01-15",
+            "no_of_employees": 49,
+            "amount": 344639,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "NOV-24",
+            "trrn": "1802412004988",
+            "date_of_credit": "2024-12-10",
+            "payment_due_date": "2024-12-15",
+            "no_of_employees": 52,
+            "amount": 397269,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "OCT-24",
+            "trrn": "1802411002216",
+            "date_of_credit": "2024-11-09",
+            "payment_due_date": "2024-11-15",
+            "no_of_employees": 53,
+            "amount": 413312,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "SEP-24",
+            "trrn": "1802411002230",
+            "date_of_credit": "2024-11-09",
+            "payment_due_date": "2024-10-15",
+            "no_of_employees": 1,
+            "amount": 202,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "SEP-24",
+            "trrn": "1802410008681",
+            "date_of_credit": "2024-10-10",
+            "payment_due_date": "2024-10-15",
+            "no_of_employees": 54,
+            "amount": 413728,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "AUG-24",
+            "trrn": "1802411002235",
+            "date_of_credit": "2024-11-09",
+            "payment_due_date": "2024-09-15",
+            "no_of_employees": 1,
+            "amount": 468,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "AUG-24",
+            "trrn": "1802409003361",
+            "date_of_credit": "2024-09-10",
+            "payment_due_date": "2024-09-15",
+            "no_of_employees": 51,
+            "amount": 408892,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUL-24",
+            "trrn": "1802408006137",
+            "date_of_credit": "2024-08-07",
+            "payment_due_date": "2024-08-15",
+            "no_of_employees": 50,
+            "amount": 406102,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUN-24",
+            "trrn": "1802407005984",
+            "date_of_credit": "2024-07-09",
+            "payment_due_date": "2024-07-15",
+            "no_of_employees": 51,
+            "amount": 426126,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAY-24",
+            "trrn": "1802407005996",
+            "date_of_credit": "2024-07-09",
+            "payment_due_date": "2024-06-15",
+            "no_of_employees": 1,
+            "amount": 252,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "MAY-24",
+            "trrn": "1802406003163",
+            "date_of_credit": "2024-06-06",
+            "payment_due_date": "2024-06-15",
+            "no_of_employees": 51,
+            "amount": 420577,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "APR-24",
+            "trrn": "1802405008871",
+            "date_of_credit": "2024-05-10",
+            "payment_due_date": "2024-05-15",
+            "no_of_employees": 50,
+            "amount": 421424,
+            "payment_timeliness": "Paid on Time"
+          }
+        ]
+      }
+    ],
+    "shareholdings": [
+      {
+        "shareholders": "promoter",
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "category": "equity",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 125000000,
+        "body_corporate_held_percentage_of_shares": 100,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 125000000,
+        "total_percentage_of_shares": 100
+      },
+      {
+        "shareholders": "promoter",
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "category": "preference",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      },
+      {
+        "shareholders": "public",
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "category": "equity",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      },
+      {
+        "shareholders": "public",
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "category": "preference",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      }
+    ],
+    "shareholdings_more_than_five_percent": [
+      {
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": [
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD.",
+            "shareholding_percentage": 100,
+            "no_of_shares": 124999999
+          }
+        ],
+        "financial_year": "2024-12-31"
+      },
+      {
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": [
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD., JAPAN",
+            "shareholding_percentage": 99.99,
+            "no_of_shares": null
+          }
+        ],
+        "financial_year": "2023-12-31"
+      },
+      {
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": [
+          {
+            "name": "TAKEMOTO YOHKI CO. LTD., JAPAN",
+            "shareholding_percentage": 99.99,
+            "no_of_shares": null
+          }
+        ],
+        "financial_year": "2022-12-31"
+      }
+    ],
+    "shareholdings_summary": [
+      {
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "total_equity_shares": 125000000,
+        "total_preference_shares": 0,
+        "promoter": 2,
+        "public": null,
+        "total": 2,
+        "metadata": {
+          "doc_id": "532/U25205GJ2016FTC093545/mca/AnnualReturnsEform/00a033fd922277a3e370480f8c650813v1.pdf",
+          "xml_to_pdf_converted_doc_id": null
+        }
+      }
+    ],
+    "director_shareholdings": [
+      {
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "din_pan": "07172231",
+        "full_name": "EMIKO TAKEMOTO",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 0,
+        "percentage_holding": 0
+      },
+      {
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "din_pan": "07172225",
+        "full_name": "TAKUYA TODA",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 0,
+        "percentage_holding": 0
+      },
+      {
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "din_pan": "07678402",
+        "full_name": "TAKAHIRO FUKAZAWA",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 0,
+        "percentage_holding": 0
+      },
+      {
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "din_pan": "03537936",
+        "full_name": "MITALEE KAUSHAL",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 0,
+        "percentage_holding": 0
+      },
+      {
+        "year": "2024",
+        "financial_year": "2024-12-31",
+        "din_pan": "ARDPJ6676K",
+        "full_name": "SURBHI JAIN",
+        "designation": "Company Secretary",
+        "date_of_cessation": null,
+        "no_of_shares": 0,
+        "percentage_holding": 0
+      }
+    ],
+    "bifr_history": [],
+    "cdr_history": [],
+    "defaulter_list": [],
+    "legal_history": [
+      {
+        "petitioner": "Self",
+        "respondent": null,
+        "court": "National Company Law Tribunal",
+        "date": "2017-02-27",
+        "case_status": "Disposed",
+        "case_number": "CP No.18/2(41)/NCLT/AHM/2017",
+        "case_type": "Cases for Consolidation of Corporate affairs",
+        "case_category": "Corporate Disputes",
+        "severity": "medium"
+      }
+    ],
+    "credit_ratings": [],
+    "credit_rating_rationale": [],
+    "unaccepted_rating": null,
+    "holding_entities": {
+      "financial_year": "2024",
+      "company": [],
+      "llp": [],
+      "others": [
+        {
+          "legal_name": "Takemoto Yohki Co. Ltd., Japan",
+          "share_holding_percentage": 99.99
+        }
+      ]
+    },
+    "subsidiary_entities": null,
+    "associate_entities": null,
+    "joint_ventures": null,
+    "securities_allotment": [
+      {
+        "allotment_type": "Other than cash",
+        "allotment_date": "2023-06-29",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 330000000,
+        "number_of_securities_allotted": 33000000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      },
+      {
+        "allotment_type": "Cash",
+        "allotment_date": "2022-12-23",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 120000000,
+        "number_of_securities_allotted": 12000000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      },
+      {
+        "allotment_type": "Cash",
+        "allotment_date": "2021-12-22",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 100000000,
+        "number_of_securities_allotted": 10000000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      },
+      {
+        "allotment_type": "Cash",
+        "allotment_date": "2019-06-14",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 150000000,
+        "number_of_securities_allotted": 15000000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      },
+      {
+        "allotment_type": "Cash",
+        "allotment_date": "2018-01-17",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 250000000,
+        "number_of_securities_allotted": 25000000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      },
+      {
+        "allotment_type": "Cash",
+        "allotment_date": "2017-10-18",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 200000000,
+        "number_of_securities_allotted": 20000000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      },
+      {
+        "allotment_type": "Cash",
+        "allotment_date": "2017-02-02",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 90000000,
+        "number_of_securities_allotted": 9000000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      }
+    ],
+    "peer_comparison": [
+      {
+        "bizIndustry": "Manufacturing",
+        "bizSegment": "Plastics and Resins",
+        "refYear": "2024",
+        "peers": [
+          {
+            "cin": "U74110GJ2015PTC082347",
+            "legalName": "HAMLAI INDUSTRIES PRIVATE LIMITED",
+            "revenue": 304707041,
+            "city": "AHMEDABAD"
+          },
+          {
+            "cin": "U24134MH1992PTC068637",
+            "legalName": "AASU PLASTICS PVT.LTD.",
+            "revenue": 304537663,
+            "city": "MUMBAI"
+          },
+          {
+            "cin": "U25205GJ2016FTC093545",
+            "legalName": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+            "revenue": 304490236.12,
+            "city": "Ahmedabad"
+          },
+          {
+            "cin": "U36900WB2001PLC093062",
+            "legalName": "ESSEL KITCHENWARE LIMITED",
+            "revenue": 304226840,
+            "city": "KOLKATA"
+          },
+          {
+            "cin": "U25203PN2016PTC157980",
+            "legalName": "VEM TOOLING (INDIA) PRIVATE LIMITED",
+            "revenue": 302261107,
+            "city": "PUNE"
+          }
+        ],
+        "benchMarks": [
+          {
+            "year": "2024",
+            "no_of_peers_in_sample": 30,
+            "revenue": 30.45,
+            "revenue_growth": 27.55,
+            "net_margin": -6.95,
+            "ebitda_margin": 7.38,
+            "return_on_equity": -2.83,
+            "sales_by_net_fixed_assets": 0.5,
+            "inventory_holding_period": 32.16,
+            "debtor_days_outstanding": 70.48,
+            "trade_payable_days": 15.93,
+            "cash_conversion_cycle": 86.71000000000001,
+            "debt_by_equity": 0.02,
+            "gross_profit_margin": 60.47,
+            "return_on_capital_employed": -2.7,
+            "interest_coverage_ratio": -36.18,
+            "debt_ratio": 0.02,
+            "current_ratio": 4.22,
+            "quick_ratio": 3.55,
+            "median_revenue": 30.6,
+            "median_revenue_growth": 19.61,
+            "median_net_margin": 1.625,
+            "median_ebitda_margin": 5.775,
+            "median_return_on_equity": 10.865,
+            "median_sales_by_net_fixed_assets": 5.78,
+            "median_inventory_holding_period": 32.129999999999995,
+            "median_debtor_days_outstanding": 50.44,
+            "median_trade_payable_days": 34.7,
+            "median_cash_conversion_cycle": 63.555,
+            "median_debt_by_equity": 0.78,
+            "median_gross_profit_margin": 22.2,
+            "median_return_on_capital_employed": 10.61,
+            "median_interest_coverage_ratio": 2.3499999999999996,
+            "median_debt_ratio": 0.29500000000000004,
+            "median_current_ratio": 1.3250000000000002,
+            "median_quick_ratio": 0.895
+          },
+          {
+            "year": "2023",
+            "no_of_peers_in_sample": 29,
+            "revenue": 23.87,
+            "revenue_growth": 50.12,
+            "net_margin": -21.33,
+            "ebitda_margin": -0.76,
+            "return_on_equity": -6.63,
+            "sales_by_net_fixed_assets": 0.39,
+            "inventory_holding_period": 34.54,
+            "debtor_days_outstanding": 63.16,
+            "trade_payable_days": 26.2,
+            "cash_conversion_cycle": 71.49999999999999,
+            "debt_by_equity": 0.04,
+            "gross_profit_margin": 57.59,
+            "return_on_capital_employed": -5.07,
+            "interest_coverage_ratio": -3.87,
+            "debt_ratio": 0.04,
+            "current_ratio": 4.28,
+            "quick_ratio": 3.79,
+            "median_revenue": 25.24,
+            "median_revenue_growth": 10.7,
+            "median_net_margin": 1.59,
+            "median_ebitda_margin": 4.03,
+            "median_return_on_equity": 6.98,
+            "median_sales_by_net_fixed_assets": 5.49,
+            "median_inventory_holding_period": 45.61,
+            "median_debtor_days_outstanding": 60.68,
+            "median_trade_payable_days": 35.77,
+            "median_cash_conversion_cycle": 81.78999999999999,
+            "median_debt_by_equity": 0.75,
+            "median_gross_profit_margin": 22.52,
+            "median_return_on_capital_employed": 9.25,
+            "median_interest_coverage_ratio": 2.46,
+            "median_debt_ratio": 0.33,
+            "median_current_ratio": 1.23,
+            "median_quick_ratio": 0.76
+          },
+          {
+            "year": "2022",
+            "no_of_peers_in_sample": 28,
+            "revenue": 15.9,
+            "revenue_growth": 79.03,
+            "net_margin": -41.02,
+            "ebitda_margin": -5,
+            "return_on_equity": -13.36,
+            "sales_by_net_fixed_assets": 0.27,
+            "inventory_holding_period": 57.48,
+            "debtor_days_outstanding": 55.66,
+            "trade_payable_days": 20.47,
+            "cash_conversion_cycle": 92.66999999999999,
+            "debt_by_equity": 0.73,
+            "gross_profit_margin": 61.21,
+            "return_on_capital_employed": -5.3,
+            "interest_coverage_ratio": -2.2,
+            "debt_ratio": 0.41,
+            "current_ratio": 0.75,
+            "quick_ratio": 0.68,
+            "median_revenue": 25.4,
+            "median_revenue_growth": 33.43,
+            "median_net_margin": 1.555,
+            "median_ebitda_margin": 5.23,
+            "median_return_on_equity": 9.43,
+            "median_sales_by_net_fixed_assets": 6.16,
+            "median_inventory_holding_period": 40.095,
+            "median_debtor_days_outstanding": 70.31,
+            "median_trade_payable_days": 29.61,
+            "median_cash_conversion_cycle": 82.275,
+            "median_debt_by_equity": 0.93,
+            "median_gross_profit_margin": 21.12,
+            "median_return_on_capital_employed": 9.23,
+            "median_interest_coverage_ratio": 2.4450000000000003,
+            "median_debt_ratio": 0.36,
+            "median_current_ratio": 1.33,
+            "median_quick_ratio": 0.89
+          },
+          {
+            "year": "2021",
+            "no_of_peers_in_sample": 27,
+            "revenue": 8.88,
+            "revenue_growth": 76.06,
+            "net_margin": -97.67,
+            "ebitda_margin": -47.18,
+            "return_on_equity": -20.01,
+            "sales_by_net_fixed_assets": 0.15,
+            "inventory_holding_period": 61.15,
+            "debtor_days_outstanding": 86.25,
+            "trade_payable_days": 36.56,
+            "cash_conversion_cycle": 110.84,
+            "debt_by_equity": 0.83,
+            "gross_profit_margin": 45.01,
+            "return_on_capital_employed": -8.41,
+            "interest_coverage_ratio": -3.34,
+            "debt_ratio": 0.44,
+            "current_ratio": 3.95,
+            "quick_ratio": 3.57,
+            "median_revenue": 21.77,
+            "median_revenue_growth": 4.49,
+            "median_net_margin": 1.18,
+            "median_ebitda_margin": 5.97,
+            "median_return_on_equity": 7.365,
+            "median_sales_by_net_fixed_assets": 5.515000000000001,
+            "median_inventory_holding_period": 42.41,
+            "median_debtor_days_outstanding": 79.13,
+            "median_trade_payable_days": 37.96,
+            "median_cash_conversion_cycle": 68.41999999999999,
+            "median_debt_by_equity": 0.85,
+            "median_gross_profit_margin": 23.939999999999998,
+            "median_return_on_capital_employed": 7.775,
+            "median_interest_coverage_ratio": 2.295,
+            "median_debt_ratio": 0.34,
+            "median_current_ratio": 1.32,
+            "median_quick_ratio": 1.04
+          }
+        ]
+      },
+      {
+        "bizIndustry": "Manufacturing",
+        "bizSegment": "Rubber",
+        "refYear": "2024",
+        "peers": [
+          {
+            "cin": "U25000KA1995PTC019408",
+            "legalName": "UTTAM RUBBERS PRIVATE LIMITED",
+            "revenue": 306547000,
+            "city": "MYSORE"
+          },
+          {
+            "cin": "U24134MH1992PTC068637",
+            "legalName": "AASU PLASTICS PVT.LTD.",
+            "revenue": 304537663,
+            "city": "MUMBAI"
+          },
+          {
+            "cin": "U25205GJ2016FTC093545",
+            "legalName": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+            "revenue": 304490236.12,
+            "city": "Ahmedabad"
+          },
+          {
+            "cin": "U25209HR2020PTC086465",
+            "legalName": "KALIVAHAN RUBBER PRIVATE LIMITED",
+            "revenue": 303761566,
+            "city": "SONIPAT"
+          },
+          {
+            "cin": "U25199TN1998PTC040489",
+            "legalName": "TAYLOR RUBBER PRIVATE LIMITED",
+            "revenue": 300597845,
+            "city": "CHENNAI"
+          }
+        ],
+        "benchMarks": [
+          {
+            "year": "2024",
+            "no_of_peers_in_sample": 30,
+            "revenue": 30.45,
+            "revenue_growth": 27.55,
+            "net_margin": -6.95,
+            "ebitda_margin": 7.38,
+            "return_on_equity": -2.83,
+            "sales_by_net_fixed_assets": 0.5,
+            "inventory_holding_period": 32.16,
+            "debtor_days_outstanding": 70.48,
+            "trade_payable_days": 15.93,
+            "cash_conversion_cycle": 86.71000000000001,
+            "debt_by_equity": 0.02,
+            "gross_profit_margin": 60.47,
+            "return_on_capital_employed": -2.7,
+            "interest_coverage_ratio": -36.18,
+            "debt_ratio": 0.02,
+            "current_ratio": 4.22,
+            "quick_ratio": 3.55,
+            "median_revenue": 30.04,
+            "median_revenue_growth": 13.24,
+            "median_net_margin": 1.06,
+            "median_ebitda_margin": 6.57,
+            "median_return_on_equity": 10.13,
+            "median_sales_by_net_fixed_assets": 5.32,
+            "median_inventory_holding_period": 34.365,
+            "median_debtor_days_outstanding": 50.71,
+            "median_trade_payable_days": 36.685,
+            "median_cash_conversion_cycle": 56.715,
+            "median_debt_by_equity": 1.09,
+            "median_gross_profit_margin": 31.64,
+            "median_return_on_capital_employed": 9.75,
+            "median_interest_coverage_ratio": 2.13,
+            "median_debt_ratio": 0.315,
+            "median_current_ratio": 1.62,
+            "median_quick_ratio": 1.025
+          },
+          {
+            "year": "2023",
+            "no_of_peers_in_sample": 29,
+            "revenue": 23.87,
+            "revenue_growth": 50.12,
+            "net_margin": -21.33,
+            "ebitda_margin": -0.76,
+            "return_on_equity": -6.63,
+            "sales_by_net_fixed_assets": 0.39,
+            "inventory_holding_period": 34.54,
+            "debtor_days_outstanding": 63.16,
+            "trade_payable_days": 26.2,
+            "cash_conversion_cycle": 71.49999999999999,
+            "debt_by_equity": 0.04,
+            "gross_profit_margin": 57.59,
+            "return_on_capital_employed": -5.07,
+            "interest_coverage_ratio": -3.87,
+            "debt_ratio": 0.04,
+            "current_ratio": 4.28,
+            "quick_ratio": 3.79,
+            "median_revenue": 27.09,
+            "median_revenue_growth": 26.895,
+            "median_net_margin": 1.11,
+            "median_ebitda_margin": 5.65,
+            "median_return_on_equity": 10.07,
+            "median_sales_by_net_fixed_assets": 4.31,
+            "median_inventory_holding_period": 43.09,
+            "median_debtor_days_outstanding": 63.16,
+            "median_trade_payable_days": 39.41,
+            "median_cash_conversion_cycle": 61.16,
+            "median_debt_by_equity": 1.21,
+            "median_gross_profit_margin": 29.095,
+            "median_return_on_capital_employed": 9.58,
+            "median_interest_coverage_ratio": 1.8599999999999999,
+            "median_debt_ratio": 0.32,
+            "median_current_ratio": 1.8,
+            "median_quick_ratio": 1.23
+          },
+          {
+            "year": "2022",
+            "no_of_peers_in_sample": 28,
+            "revenue": 15.9,
+            "revenue_growth": 79.03,
+            "net_margin": -41.02,
+            "ebitda_margin": -5,
+            "return_on_equity": -13.36,
+            "sales_by_net_fixed_assets": 0.27,
+            "inventory_holding_period": 57.48,
+            "debtor_days_outstanding": 55.66,
+            "trade_payable_days": 20.47,
+            "cash_conversion_cycle": 92.66999999999999,
+            "debt_by_equity": 0.73,
+            "gross_profit_margin": 61.21,
+            "return_on_capital_employed": -5.3,
+            "interest_coverage_ratio": -2.2,
+            "debt_ratio": 0.41,
+            "current_ratio": 0.75,
+            "quick_ratio": 0.68,
+            "median_revenue": 22.52,
+            "median_revenue_growth": 29.625,
+            "median_net_margin": 1.065,
+            "median_ebitda_margin": 6.380000000000001,
+            "median_return_on_equity": 8.78,
+            "median_sales_by_net_fixed_assets": 4.734999999999999,
+            "median_inventory_holding_period": 51.3,
+            "median_debtor_days_outstanding": 66.61,
+            "median_trade_payable_days": 46.54,
+            "median_cash_conversion_cycle": 55.58,
+            "median_debt_by_equity": 1.04,
+            "median_gross_profit_margin": 29.67,
+            "median_return_on_capital_employed": 9.71,
+            "median_interest_coverage_ratio": 1.65,
+            "median_debt_ratio": 0.32,
+            "median_current_ratio": 1.625,
+            "median_quick_ratio": 1.06
+          },
+          {
+            "year": "2021",
+            "no_of_peers_in_sample": 26,
+            "revenue": 8.88,
+            "revenue_growth": 76.06,
+            "net_margin": -97.67,
+            "ebitda_margin": -47.18,
+            "return_on_equity": -20.01,
+            "sales_by_net_fixed_assets": 0.15,
+            "inventory_holding_period": 61.15,
+            "debtor_days_outstanding": 86.25,
+            "trade_payable_days": 36.56,
+            "cash_conversion_cycle": 110.84,
+            "debt_by_equity": 0.83,
+            "gross_profit_margin": 45.01,
+            "return_on_capital_employed": -8.41,
+            "interest_coverage_ratio": -3.34,
+            "debt_ratio": 0.44,
+            "current_ratio": 3.95,
+            "quick_ratio": 3.57,
+            "median_revenue": 17.76,
+            "median_revenue_growth": 30.169999999999998,
+            "median_net_margin": 1.76,
+            "median_ebitda_margin": 7.04,
+            "median_return_on_equity": 8.525,
+            "median_sales_by_net_fixed_assets": 4.76,
+            "median_inventory_holding_period": 40.620000000000005,
+            "median_debtor_days_outstanding": 82.19,
+            "median_trade_payable_days": 55.754999999999995,
+            "median_cash_conversion_cycle": 49.85000000000001,
+            "median_debt_by_equity": 0.83,
+            "median_gross_profit_margin": 31.86,
+            "median_return_on_capital_employed": 11.33,
+            "median_interest_coverage_ratio": 2.53,
+            "median_debt_ratio": 0.3,
+            "median_current_ratio": 1.46,
+            "median_quick_ratio": 1.21
+          }
+        ]
+      }
+    ],
+    "gst_details": [
+      {
+        "gstin": "07AAFCT9033N1ZU",
+        "status": "Active",
+        "company_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+        "trade_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+        "state": "Delhi",
+        "state_jurisdiction": "Ward 64",
+        "centre_jurisdiction": "RANGE - 105",
+        "date_of_registration": "2023-05-04",
+        "taxpayer_type": "Input Service Distributor (ISD)",
+        "nature_of_business_activities": "Recipient of Goods or Services",
+        "filing_timeliness": "Filed on Time",
+        "filings": [
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-12-12",
+            "filing_due_date": null,
+            "financial_year": "2025-2026",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-11-11",
+            "filing_due_date": null,
+            "financial_year": "2025-2026",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-10-12",
+            "filing_due_date": null,
+            "financial_year": "2025-2026",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-09-11",
+            "filing_due_date": null,
+            "financial_year": "2025-2026",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-08-12",
+            "filing_due_date": null,
+            "financial_year": "2025-2026",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-07-11",
+            "filing_due_date": null,
+            "financial_year": "2025-2026",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-06-12",
+            "filing_due_date": null,
+            "financial_year": "2025-2026",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-05-10",
+            "filing_due_date": null,
+            "financial_year": "2025-2026",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-04-11",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-03-11",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-03-11",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-03-11",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-03-11",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2025-03-11",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-10-13",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-09-11",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-08-10",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-07-11",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-06-12",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-05-14",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-04-13",
+            "filing_due_date": null,
+            "financial_year": "2023-2024",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-03-13",
+            "filing_due_date": null,
+            "financial_year": "2023-2024",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-02-13",
+            "filing_due_date": null,
+            "financial_year": "2023-2024",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR6",
+            "date_of_filing": "2024-01-13",
+            "filing_due_date": null,
+            "financial_year": "2023-2024",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          }
+        ]
+      },
+      {
+        "gstin": "24AAFCT9033N1ZY",
+        "status": "Active",
+        "company_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+        "trade_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+        "state": "Gujarat",
+        "state_jurisdiction": "Ghatak 11 (Ahmedabad)",
+        "centre_jurisdiction": "RANGE V",
+        "date_of_registration": "2017-07-01",
+        "taxpayer_type": "Regular",
+        "nature_of_business_activities": "Export | Factory / Manufacturing | Import | Wholesale Business",
+        "filing_timeliness": "Filed on Time",
+        "filings": [
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-12-20",
+            "filing_due_date": "2025-12-20",
+            "financial_year": "2025-2026",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-12-06",
+            "filing_due_date": "2025-12-11",
+            "financial_year": "2025-2026",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-11-20",
+            "filing_due_date": "2025-11-20",
+            "financial_year": "2025-2026",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-11-10",
+            "filing_due_date": "2025-11-11",
+            "financial_year": "2025-2026",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-10-18",
+            "filing_due_date": "2025-10-25",
+            "financial_year": "2025-2026",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-10-07",
+            "filing_due_date": "2025-10-11",
+            "financial_year": "2025-2026",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-09-18",
+            "filing_due_date": "2025-09-20",
+            "financial_year": "2025-2026",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-09-08",
+            "filing_due_date": "2025-09-11",
+            "financial_year": "2025-2026",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-08-19",
+            "filing_due_date": "2025-08-20",
+            "financial_year": "2025-2026",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-08-08",
+            "filing_due_date": "2025-08-11",
+            "financial_year": "2025-2026",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-07-18",
+            "filing_due_date": "2025-07-20",
+            "financial_year": "2025-2026",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-07-09",
+            "filing_due_date": "2025-07-11",
+            "financial_year": "2025-2026",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-06-18",
+            "filing_due_date": "2025-06-20",
+            "financial_year": "2025-2026",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-06-10",
+            "filing_due_date": "2025-06-11",
+            "financial_year": "2025-2026",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-05-17",
+            "filing_due_date": "2025-05-20",
+            "financial_year": "2025-2026",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-05-09",
+            "filing_due_date": "2025-05-11",
+            "financial_year": "2025-2026",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-04-18",
+            "filing_due_date": "2025-04-20",
+            "financial_year": "2024-2025",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-04-09",
+            "filing_due_date": "2025-04-11",
+            "financial_year": "2024-2025",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-03-17",
+            "filing_due_date": "2025-03-20",
+            "financial_year": "2024-2025",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-03-08",
+            "filing_due_date": "2025-03-11",
+            "financial_year": "2024-2025",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-02-18",
+            "filing_due_date": "2025-02-20",
+            "financial_year": "2024-2025",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-02-08",
+            "filing_due_date": "2025-02-11",
+            "financial_year": "2024-2025",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-01-17",
+            "filing_due_date": "2025-01-22",
+            "financial_year": "2024-2025",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-01-11",
+            "filing_due_date": "2025-01-13",
+            "financial_year": "2024-2025",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-12-18",
+            "filing_due_date": "2024-12-20",
+            "financial_year": "2024-2025",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-12-10",
+            "filing_due_date": "2024-12-11",
+            "financial_year": "2024-2025",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-11-16",
+            "filing_due_date": "2024-11-20",
+            "financial_year": "2024-2025",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-11-08",
+            "filing_due_date": "2024-11-11",
+            "financial_year": "2024-2025",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-10-18",
+            "filing_due_date": "2024-10-20",
+            "financial_year": "2024-2025",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-10-08",
+            "filing_due_date": "2024-10-11",
+            "financial_year": "2024-2025",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-09-18",
+            "filing_due_date": "2024-09-20",
+            "financial_year": "2024-2025",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-09-10",
+            "filing_due_date": "2024-09-11",
+            "financial_year": "2024-2025",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-08-20",
+            "filing_due_date": "2024-08-20",
+            "financial_year": "2024-2025",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-08-07",
+            "filing_due_date": "2024-08-11",
+            "financial_year": "2024-2025",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-07-20",
+            "filing_due_date": "2024-07-20",
+            "financial_year": "2024-2025",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-07-06",
+            "filing_due_date": "2024-07-11",
+            "financial_year": "2024-2025",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-06-18",
+            "filing_due_date": "2024-06-20",
+            "financial_year": "2024-2025",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-06-08",
+            "filing_due_date": "2024-06-11",
+            "financial_year": "2024-2025",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-05-18",
+            "filing_due_date": "2024-05-20",
+            "financial_year": "2024-2025",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-05-10",
+            "filing_due_date": "2024-05-11",
+            "financial_year": "2024-2025",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-04-20",
+            "filing_due_date": "2024-04-20",
+            "financial_year": "2023-2024",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-04-11",
+            "filing_due_date": "2024-04-11",
+            "financial_year": "2023-2024",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-03-20",
+            "filing_due_date": "2024-03-20",
+            "financial_year": "2023-2024",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-03-07",
+            "filing_due_date": "2024-03-11",
+            "financial_year": "2023-2024",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-02-20",
+            "filing_due_date": "2024-02-20",
+            "financial_year": "2023-2024",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-02-07",
+            "filing_due_date": "2024-02-11",
+            "financial_year": "2023-2024",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-01-20",
+            "filing_due_date": "2024-01-20",
+            "financial_year": "2023-2024",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-01-10",
+            "filing_due_date": "2024-01-11",
+            "financial_year": "2023-2024",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR9",
+            "date_of_filing": "2024-12-30",
+            "filing_due_date": null,
+            "financial_year": "2023-2024",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR9C",
+            "date_of_filing": "2024-12-30",
+            "filing_due_date": null,
+            "financial_year": "2023-2024",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          }
+        ]
+      },
+      {
+        "gstin": "09AAFCT9033N1ZQ",
+        "status": "Cancelled",
+        "company_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+        "trade_name": "TAKEMOTO YOHKI INDIA PRIVATE LIMITED",
+        "state": "Uttar Pradesh",
+        "state_jurisdiction": "Meerut Sector-1",
+        "centre_jurisdiction": "RANGE - 9",
+        "date_of_registration": "2018-03-24",
+        "taxpayer_type": "Regular",
+        "nature_of_business_activities": "Supplier of Services",
+        "filing_timeliness": null,
+        "filings": [
+          {
+            "return_type": "GSTR10",
+            "date_of_filing": "2023-05-12",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR9",
+            "date_of_filing": "2022-03-15",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR9C",
+            "date_of_filing": "2022-03-15",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR9",
+            "date_of_filing": "2022-03-14",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-10-20",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2020-10-09",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2020-09-10",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-09-10",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2020-08-10",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-08-10",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-07-15",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2020-07-09",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2020-06-26",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2020-06-26",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-06-26",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-06-26",
+            "filing_due_date": null,
+            "financial_year": "2020-2021",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2020-05-23",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-05-23",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-03-20",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-02-18",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2020-01-22",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2020-01-18",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-12-20",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-11-16",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2019-10-14",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-10-14",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-09-18",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-08-12",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2019-07-16",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-07-16",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-06-17",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-05-14",
+            "filing_due_date": null,
+            "financial_year": "2019-2020",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2019-04-17",
+            "filing_due_date": null,
+            "financial_year": "2018-2019",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-04-17",
+            "filing_due_date": null,
+            "financial_year": "2018-2019",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-03-16",
+            "filing_due_date": null,
+            "financial_year": "2018-2019",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-02-19",
+            "filing_due_date": null,
+            "financial_year": "2018-2019",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2019-01-14",
+            "filing_due_date": null,
+            "financial_year": "2018-2019",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2019-01-14",
+            "filing_due_date": null,
+            "financial_year": "2018-2019",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2018-12-18",
+            "filing_due_date": null,
+            "financial_year": "2018-2019",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2018-11-15",
+            "filing_due_date": null,
+            "financial_year": "2018-2019",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          }
+        ]
+      }
+    ],
+    "struckoff248_details": {
+      "struck_off_status": "As per our records, this corporate name was never removed under section 248(5) by ROC",
+      "restored_status": null
+    },
+    "msme_supplier_payment_delays": {
+      "trend": [
+        {
+          "period": "October 2022 to March 2023",
+          "amount": 303622
+        },
+        {
+          "period": "April 2023 to September 2023",
+          "amount": 3033513
+        },
+        {
+          "period": "October 2023 to March 2024",
+          "amount": 1028874
+        },
+        {
+          "period": "April 2024 to September 2024",
+          "amount": 2363104
+        },
+        {
+          "period": "October 2024 to March 2025",
+          "amount": 976278
+        },
+        {
+          "period": "April 2025 to September 2025",
+          "amount": 720468
+        }
+      ],
+      "delays_for_period": {
+        "latest_period": "April 2025 to September 2025",
+        "total_amount_due_for_period": 720468,
+        "delays": [
+          {
+            "supplier_name": "ACCURAT E TOOLS- Vasai",
+            "supplier_pan": "AAJPU3269J",
+            "amount_due": 37168,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "Bhavna Roadway s -MH",
+            "supplier_pan": "AADFB5223B",
+            "amount_due": 1077,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "CENTRAL MACHIN ERY & PLASTIC PRODUC TS",
+            "supplier_pan": "AAAFC5338D",
+            "amount_due": 485810,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "MANISH SERVICES ",
+            "supplier_pan": "ANUPN1201D",
+            "amount_due": 58113,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "PRASAD KOCH TECHNIK PVT. LTD.",
+            "supplier_pan": "AAACP6751G",
+            "amount_due": 101200,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "Safe Cargo Carrier- GJ",
+            "supplier_pan": "ADXPT6007C",
+            "amount_due": 4650,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "SHANTI ENTERPR ISE",
+            "supplier_pan": "CKMPM3752P",
+            "amount_due": 32450,
+            "amount_due_from_date": null
+          }
+        ]
+      }
+    },
+    "legal_cases_of_financial_disputes": [],
+    "probe_financial_score": {
+      "overall_financial_score": 4,
+      "growth_score": 4,
+      "profitability_score": 3,
+      "liquidity_score": 5,
+      "solvency_score": 4,
+      "efficiency_score": 4
+    },
+    "key_indicators": {
+      "revenue": "Between 5 and 50 cr.",
+      "profit": "Loss Making",
+      "employee_count": "Upto 100",
+      "pending_cases_filed_against_this_corporate": false,
+      "bureau_defaults": false,
+      "gst_filing_delay": false,
+      "epf_payment_delay": true,
+      "severe_pending_cases_filed_against_this_corporate": false,
+      "credit_rating": null
+    },
+    "filing_dates": {
+      "aoc_4": {
+        "financial_year": "2024-12-31",
+        "filing_date": "2025-07-21"
+      },
+      "mgt_7": {
+        "financial_year": "2024-12-31",
+        "filing_date": "2025-07-31"
+      }
+    }
+  }
+}

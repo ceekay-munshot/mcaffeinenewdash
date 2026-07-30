@@ -1,0 +1,3620 @@
+{
+  "metadata": {
+    "api_version": "1.3",
+    "last_updated": "2026-02-03",
+    "identifier_changed": false
+  },
+  "data": {
+    "company": {
+      "cin": "U22219MH2016PTC286774",
+      "legal_name": "CONTINUITY PRINTERS PRIVATE LIMITED",
+      "efiling_status": "Active",
+      "incorporation_date": "2016-10-13",
+      "paid_up_capital": 8000000,
+      "sum_of_charges": 238892648,
+      "authorized_capital": 10000000,
+      "active_compliance": "ACTIVE compliant",
+      "cirp_status": null,
+      "lei": {
+        "number": "335800ZGOVQATIYEAX42",
+        "status": "ISSUED",
+        "registration_date": "2018-06-14",
+        "last_updated_date": "2026-04-23",
+        "next_renewal_date": "2027-06-14"
+      },
+      "registered_address": {
+        "full_address": "Bldg. No. B1,Unit no.14,Bhumi World,   Village-Pimpals, NH-3, Taluka- Bhiwandi,Thane, Thane, Maharashtra - 421302",
+        "address_line1": "Bldg. No. B1,Unit no.14,Bhumi World,   Village-Pimpals, NH-3, Taluka- Bhiwandi,",
+        "address_line2": null,
+        "city": "Thane",
+        "pincode": "421302",
+        "state": "Maharashtra"
+      },
+      "business_address": {
+        "address_line1": "14, 15, 16-B-1, Bhumi World,",
+        "address_line2": "Mumbai-Nashik Highway, Pimpri Village, Bhiwandi-Thane",
+        "city": "Mumbai",
+        "pincode": 421302,
+        "state": "Maharashtra"
+      },
+      "pan": "AAGCC6725K",
+      "website": null,
+      "classification": "Private Limited Indian Non-Government Company",
+      "status": "Unlisted",
+      "next_cin": null,
+      "last_agm_date": "2025-09-30",
+      "last_filing_date": "2025-03-31",
+      "email": "cnp.mumbai@gmail.com"
+    },
+    "description": {
+      "desc_thousand_char": "Continuity Printers Private Limited (CPPL) is engaged in the business of manufacturing and supplying printing and packaging materials. It offers hang tags and printed labels, cartons, headers and inlay, and stickers, among others. The company was incorporated in 2016 and has its registered office located in Thane, Maharashtra.\n"
+    },
+    "name_history": [],
+    "authorized_signatories": [
+      {
+        "pan": "AXHPG1181G",
+        "din": "07255430",
+        "name": "ANIMESH MAHESH GAGGAR",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1992-11-13",
+        "age": 34,
+        "date_of_appointment": "2016-10-13",
+        "date_of_appointment_for_current_designation": "2016-10-13",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2016-10-13",
+            "filing_date": null
+          }
+        ]
+      },
+      {
+        "pan": "AAFPG2914C",
+        "din": "00477409",
+        "name": "ALKA MAHESH GAGGAR",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Female",
+        "date_of_birth": "1969-07-05",
+        "age": 57,
+        "date_of_appointment": "2016-10-13",
+        "date_of_appointment_for_current_designation": "2016-10-13",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2016-10-13",
+            "filing_date": null
+          }
+        ]
+      },
+      {
+        "pan": "AAEPG3524D",
+        "din": "00330217",
+        "name": "MAHESH GAGGAR",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1963-02-11",
+        "age": 63,
+        "date_of_appointment": "2016-10-13",
+        "date_of_appointment_for_current_designation": "2016-10-13",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2016-10-13",
+            "filing_date": null
+          }
+        ]
+      }
+    ],
+    "director_network": [
+      {
+        "name": "MAHESH GAGGAR",
+        "pan": "AAEPG3524D",
+        "din": "00330217",
+        "network": {
+          "companies": [
+            {
+              "cin": "U74899MH1995PTC175275",
+              "legal_name": "PROGRESSIVE COMTRADE PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "1995-01-18",
+              "paid_up_capital": 5897000,
+              "sum_of_charges": 0,
+              "city": "MUMBAI",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2003-12-29",
+              "date_of_appointment_for_current_designation": "2003-12-29",
+              "date_of_cessation": "2016-09-26"
+            },
+            {
+              "cin": "U74999MH1995PTC174315",
+              "legal_name": "PROGRESSIVE CURRENCY BAZAAR PRIVATE LIMITED",
+              "company_status": "AMALGAMATED",
+              "incorporation_date": "1995-01-18",
+              "paid_up_capital": 3168000,
+              "sum_of_charges": 0,
+              "city": "MUMBAI",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "1996-04-17",
+              "date_of_appointment_for_current_designation": "1996-04-17",
+              "date_of_cessation": "2017-03-21"
+            },
+            {
+              "cin": "U22210MH2005PTC150608",
+              "legal_name": "AMG PRINTERS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2005-01-13",
+              "paid_up_capital": 8750000,
+              "sum_of_charges": 0,
+              "city": "MUMBAI",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Additional Director",
+              "date_of_appointment": "2018-09-18",
+              "date_of_appointment_for_current_designation": "2018-09-18",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U67120MH1994PTC176096",
+              "legal_name": "PROGRESSIVE SHARE BROKERS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "1994-09-20",
+              "paid_up_capital": 10000000,
+              "sum_of_charges": 1450000000,
+              "city": "MUMBAI",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2003-01-15",
+              "date_of_appointment_for_current_designation": "2003-01-15",
+              "date_of_cessation": "2016-12-02"
+            },
+            {
+              "cin": "U22219MH2016PTC286774",
+              "legal_name": "CONTINUITY PRINTERS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2016-10-13",
+              "paid_up_capital": 8000000,
+              "sum_of_charges": 238892648,
+              "city": "Thane",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2016-10-13",
+              "date_of_appointment_for_current_designation": "2016-10-13",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U22200MH1971NPL015200",
+              "legal_name": "BOMBAY MASTER PRINTERS ASSOCIATION",
+              "company_status": "ACTIVE",
+              "incorporation_date": "1971-06-28",
+              "paid_up_capital": 0,
+              "sum_of_charges": 0,
+              "city": "MUMBAI",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2024-09-26",
+              "date_of_appointment_for_current_designation": "2024-09-26",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": []
+        }
+      },
+      {
+        "name": "ALKA MAHESH GAGGAR",
+        "pan": "AAFPG2914C",
+        "din": "00477409",
+        "network": {
+          "companies": [
+            {
+              "cin": "U67120MH1994PTC175789",
+              "legal_name": "LIMELIGHT SECURITIES PVT. LTD.",
+              "company_status": "AMALGAMATED",
+              "incorporation_date": "1994-09-30",
+              "paid_up_capital": 867000,
+              "sum_of_charges": 0,
+              "city": "MUMBAI",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "1996-04-17",
+              "date_of_appointment_for_current_designation": "1996-04-17",
+              "date_of_cessation": "2016-11-02"
+            },
+            {
+              "cin": "U22219MH2016PTC286774",
+              "legal_name": "CONTINUITY PRINTERS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2016-10-13",
+              "paid_up_capital": 8000000,
+              "sum_of_charges": 238892648,
+              "city": "Thane",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2016-10-13",
+              "date_of_appointment_for_current_designation": "2016-10-13",
+              "date_of_cessation": null
+            },
+            {
+              "cin": "U22210MH2005PTC150608",
+              "legal_name": "AMG PRINTERS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2005-01-13",
+              "paid_up_capital": 8750000,
+              "sum_of_charges": 0,
+              "city": "MUMBAI",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Additional Director",
+              "date_of_appointment": "2025-08-18",
+              "date_of_appointment_for_current_designation": "2025-08-18",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": []
+        }
+      },
+      {
+        "name": "ANIMESH MAHESH GAGGAR",
+        "pan": "AXHPG1181G",
+        "din": "07255430",
+        "network": {
+          "companies": [
+            {
+              "cin": "U22219MH2016PTC286774",
+              "legal_name": "CONTINUITY PRINTERS PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "2016-10-13",
+              "paid_up_capital": 8000000,
+              "sum_of_charges": 238892648,
+              "city": "Thane",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2016-10-13",
+              "date_of_appointment_for_current_designation": "2016-10-13",
+              "date_of_cessation": null
+            }
+          ],
+          "llps": [
+            {
+              "llpin": "AAE-6913",
+              "legal_name": "SPACE COW MERCHANDISE STORE LLP",
+              "status": "STRIKE OFF",
+              "incorporation_date": "2015-09-03",
+              "total_obligation_of_contribution": 100000,
+              "sum_of_charges": 0,
+              "city": "MUMBAI",
+              "cirp_status": null,
+              "designation": "Designated Partner",
+              "date_of_appointment": null,
+              "date_of_appointment_for_current_designation": "2015-09-03",
+              "date_of_cessation": null
+            }
+          ]
+        }
+      }
+    ],
+    "contact_details": {
+      "email": [
+        {
+          "emailId": "cnp.mumbai@gmail.com",
+          "status": null
+        }
+      ],
+      "phone": []
+    },
+    "open_charges": [
+      {
+        "id": 100515200,
+        "date": "2025-10-30",
+        "holder_name": "ICICI BANK LIMITED",
+        "amount": 62500000,
+        "type": "Modification"
+      },
+      {
+        "id": 101129081,
+        "date": "2025-06-24",
+        "holder_name": "ECOFY FINANCE PRIVATE LIMITED",
+        "amount": 614072,
+        "type": "Creation"
+      },
+      {
+        "id": 101079487,
+        "date": "2025-03-17",
+        "holder_name": "ECOFY FINANCE PRIVATE LIMITED",
+        "amount": 4273576,
+        "type": "Creation"
+      },
+      {
+        "id": 101006365,
+        "date": "2024-10-25",
+        "holder_name": "BANK OF MAHARASHTRA",
+        "amount": 120900000,
+        "type": "Creation"
+      },
+      {
+        "id": 100872610,
+        "date": "2024-02-22",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 5605000,
+        "type": "Creation"
+      },
+      {
+        "id": 100515198,
+        "date": "2021-10-08",
+        "holder_name": "ICICI BANK LIMITED",
+        "amount": 45000000,
+        "type": "Creation"
+      }
+    ],
+    "open_charges_latest_event": [
+      {
+        "id": 101129081,
+        "date": "2025-06-24",
+        "holder_name": "ECOFY FINANCE PRIVATE LIMITED",
+        "amount": 614072,
+        "type": "Creation",
+        "property_type": "Movable property - Equipment and Machinery Others (machinery spares, tools, fixtures and all other movables more are particularly described in the Deed)",
+        "number_of_chargeholder": 1,
+        "instrument_description": "Deed of Hypothecation executed on 24th June 2025",
+        "filing_date": "2025-07-24",
+        "rate_of_interest": "13.99%",
+        "terms_of_payment": "Repayable in 60 number of equal instalment",
+        "property_particulars": "An exclusive charge by way of hypothecation over the Installed Asset including all machinery, machinery spares, tools, fixtures and all other movables whether affixed to the Installed Assets at present or in the future and shall include any modifications/alterations done to the Installed Assets and any part thereof and including such other asset stipulated as security in the Sanction Letter.",
+        "extent_and_operation": "An exclusive charge by way of hypothecation over the Installed Asset including all machinery, machinery spares, tools, fixtures and all other movables whether affixed to the Installed Assets at present or in the future and shall include any modifications/alterations done to the Installed Assets and any part thereof and including such other asset stipulated as security in the Sanction Letter.",
+        "other_terms": "Name of Co borrower 1. Mr. Mahesh Gaggar 2. Ms. Alka Mahesh Gaggar 3. Mr. Animesh Mahesh Gaggar",
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 101079487,
+        "date": "2025-03-17",
+        "holder_name": "ECOFY FINANCE PRIVATE LIMITED",
+        "amount": 4273576,
+        "type": "Creation",
+        "property_type": "Movable property - Equipment and Machinery Others (machinery spares, tools, fixtures and all other movables whether affixed to the Installed Asset)",
+        "number_of_chargeholder": 1,
+        "instrument_description": "Deed of hypothecation executed on 17th March 2025",
+        "filing_date": "2025-04-10",
+        "rate_of_interest": "13.99%",
+        "terms_of_payment": "Repayable in 60 number of equal installments",
+        "property_particulars": "An exclusive charge by way of hypothecation over the Installed Asset including all machinery , machinery spares, tools, fixtures and all other movables whether affixed to the Installed Assets at present or in the future and shall include any modifications/alterations done to the Installed Assets and any part thereof and including such other asset stipulated as security in the sanction letter.",
+        "extent_and_operation": "An exclusive charge by way of hypothecation over the Installed Asset including all machinery , machinery spares, tools, fixtures and all other movables whether affixed to the Installed Assets at present or in the future and shall include any modifications/alterations done to the Installed Assets and any part thereof and including such other asset stipulated as security in the sanction letter.",
+        "other_terms": "Name of Co-borrowers 1. Mr. Mahesh Gaggar 2. Ms. Alka Gaggar 3. Mr. Animesh Gaggar",
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 101006365,
+        "date": "2024-10-25",
+        "holder_name": "BANK OF MAHARASHTRA",
+        "amount": 120900000,
+        "type": "Creation",
+        "property_type": "Immovable property or any interest therein - Commercial",
+        "number_of_chargeholder": 1,
+        "instrument_description": "Term loan 1 for purchase of commercial premises along with civil work under MAHA MSME PROJECT LOAN SCHEME amounting to Rs. 6.99 Cr and Term Loan 2 for purchase of Machineries under general MSME Term loan scheme of Rs. 5.10 Cr totalling to Rs. 12.09 Cr .",
+        "filing_date": "2024-11-26",
+        "rate_of_interest": "9.60%",
+        "terms_of_payment": "AS PER AGREEMENT",
+        "property_particulars": "TL1- 6.99 crore charge on property (Unit No 11,12 Ground Floor Unit No 111,112 1st Floor, Floor and 211,212 on 2nd Floor building No B/1 situated on New S No 88/4(Old S No 176/4), New S No 88/5(Old S No 176/4), New S No 88/5( Old S No 176/5) New S No 88/6 (Old SNo 176/6) Village Pimplas Tal Bhiwandi) Total amount 12.09 crore- (TL1- 6.99 cr TL2- 5.10cr) charge on property Commercial Property situated at Unit No 14,15 and 16 Ground Floor Unit No 114,115,116 1st Floor and 214,215,216 on 2nd Floor Building No B/1 situated on New S No 88/4(Old S No176/4), New S No 88/5(Old S No 176/5) new S No 88/6(Old S No 176/6) Village Pimplas Tal Bhiwandi",
+        "extent_and_operation": "AS PER AGREEMENT",
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 100872610,
+        "date": "2024-02-22",
+        "holder_name": "SMALL INDUSTRIES DEVELOPMENT BANK OF INDIA",
+        "amount": 5605000,
+        "type": "Creation",
+        "property_type": "Movable property - Equipment and Machinery",
+        "number_of_chargeholder": 1,
+        "instrument_description": "TERM LOAN CUM HYPOTHECATION AGREEMENT",
+        "filing_date": "2024-02-27",
+        "rate_of_interest": "8.8%",
+        "terms_of_payment": "MONTHLY",
+        "property_particulars": "MOVABLE ASSETS",
+        "extent_and_operation": "AS PER AGREEMENT",
+        "other_terms": "AS PER AGREEMENT",
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      },
+      {
+        "id": 100515200,
+        "date": "2025-10-30",
+        "holder_name": "ICICI BANK LIMITED",
+        "amount": 62500000,
+        "type": "Modification",
+        "property_type": null,
+        "number_of_chargeholder": null,
+        "instrument_description": null,
+        "filing_date": null,
+        "rate_of_interest": null,
+        "terms_of_payment": null,
+        "property_particulars": null,
+        "extent_and_operation": null,
+        "other_terms": null,
+        "modification_particulars": null,
+        "joint_holding": null,
+        "consortium_holding": null
+      },
+      {
+        "id": 100515198,
+        "date": "2021-10-08",
+        "holder_name": "ICICI BANK LIMITED",
+        "amount": 45000000,
+        "type": "Creation",
+        "property_type": "Movable property (not being pledge)",
+        "number_of_chargeholder": 1,
+        "instrument_description": "Deed of Hypothecation Executed on October 08, 2021 to secure Rupee term loan facility amount Rs.45.0 Mn",
+        "filing_date": "2021-12-29",
+        "rate_of_interest": "Repo Rate is 4.00 and Spread is 3.90%",
+        "terms_of_payment": "As per sanction terms",
+        "property_particulars": "Exclusive Charge on Movable Fixed Assets of the borrower wherever situated on both present and future",
+        "extent_and_operation": "Exclusive Charge on Movable Fixed Assets of the borrower wherever situated on both present and future",
+        "other_terms": "",
+        "modification_particulars": null,
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      }
+    ],
+    "charge_sequence": [
+      {
+        "charge_id": 100515200,
+        "status": "Modification",
+        "date": "2024-12-31",
+        "amount": 55000000,
+        "holder_name": "ICICI BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Movable property - Equipment and Machinery,Movable property - Inventory (incl. Receivables),Book debts,Others (current asset)",
+        "filing_date": "2025-01-03",
+        "property_particulars": "Exclusive charge on the moveable property of the company both present and future and exclusive charge on the Current asset and receivable of the company both present and future."
+      },
+      {
+        "charge_id": 100515200,
+        "status": "Modification",
+        "date": "2024-10-21",
+        "amount": 40000000,
+        "holder_name": "ICICI BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Movable property - Equipment and Machinery,Movable property - Inventory (incl. Receivables),Movable property - Others,Book debts,Others (Current Assets)",
+        "filing_date": "2024-12-10",
+        "property_particulars": "Exclusive charge on Movable Properties of company both present and future. Exclusive charge on Current Assets and Receivables of company both present and future."
+      },
+      {
+        "charge_id": 100515200,
+        "status": "Modification",
+        "date": "2022-10-14",
+        "amount": 37500000,
+        "holder_name": "ICICI BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Movable property - Inventory,Movable property - Inventory (incl. Receivables),Book debts",
+        "filing_date": "2022-11-04",
+        "property_particulars": "Exclusive Charge on Entire Current assets of the borrower wherever situated on both present and future"
+      },
+      {
+        "charge_id": 100515200,
+        "status": "Creation",
+        "date": "2021-10-08",
+        "amount": 30000000,
+        "holder_name": "ICICI BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Book debts,Floating charge,Others (Current Assets)",
+        "filing_date": "2021-12-29",
+        "property_particulars": "Exclusive Charge on Entire Current assets of the borrower wherever situated on both present and future"
+      },
+      {
+        "charge_id": 100386794,
+        "status": "Satisfaction",
+        "date": "2021-03-16",
+        "amount": 113190000,
+        "holder_name": "ICICI BANK LIMITED",
+        "number_of_holder": null,
+        "property_type": null,
+        "filing_date": "2021-03-18",
+        "property_particulars": null
+      },
+      {
+        "charge_id": 100386794,
+        "status": "Creation",
+        "date": "2020-11-18",
+        "amount": 113190000,
+        "holder_name": "ICICI BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Book debts,Movable property (not being pledge),Floating charge,Others (Entire Current Asset)",
+        "filing_date": "2020-11-19",
+        "property_particulars": "Exclusive charge on the Entire Current asset of the Borrower wherever situated and Plant and Machinery."
+      },
+      {
+        "charge_id": 100276455,
+        "status": "Satisfaction",
+        "date": "2021-12-29",
+        "amount": 1335834,
+        "holder_name": "YES BANK LIMITED",
+        "number_of_holder": null,
+        "property_type": null,
+        "filing_date": "2021-12-31",
+        "property_particulars": null
+      },
+      {
+        "charge_id": 100276455,
+        "status": "Creation",
+        "date": "2019-04-30",
+        "amount": 1335834,
+        "holder_name": "YES BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Others (Printing equipment finance)",
+        "filing_date": "2019-06-07",
+        "property_particulars": "1 nos OF units CDB ANILOX COATING MODEL\r1 nos of units UV CURING SYSTEM"
+      },
+      {
+        "charge_id": 100183487,
+        "status": "Satisfaction",
+        "date": "2021-12-15",
+        "amount": 39330000,
+        "holder_name": "YES BANK LIMITED",
+        "number_of_holder": null,
+        "property_type": null,
+        "filing_date": "2021-12-19",
+        "property_particulars": null
+      },
+      {
+        "charge_id": 100183487,
+        "status": "Modification",
+        "date": "2021-06-16",
+        "amount": 39330000,
+        "holder_name": "YES BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Immovable property or any interest there in",
+        "filing_date": "2021-07-07",
+        "property_particulars": "Property situated at B1-14, 15, 16, 115, 116, 214, 215, 216, Bhumi World, Bhiwandi, Thane."
+      },
+      {
+        "charge_id": 100183487,
+        "status": "Modification",
+        "date": "2020-07-28",
+        "amount": 125000000,
+        "holder_name": "YES BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Immovable property or any interest there in",
+        "filing_date": "2020-09-11",
+        "property_particulars": "Property situated at B1-14, 15, 16, 115, 116, 214, 215, 216, Bhumi World, Bhiwandi, Thane."
+      },
+      {
+        "charge_id": 100183487,
+        "status": "Creation",
+        "date": "2018-03-13",
+        "amount": 105000000,
+        "holder_name": "YES BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Immovable property or any interest there in",
+        "filing_date": "2018-06-19",
+        "property_particulars": "Exclusive charge by way of equitable mortgage of Industrial Unit Nos. 14, 15 & 16 on Ground Floor, Unit Nos. 114, 115, 116 on 1st floor, Unit Nos. 214, 215 & 216 on 2nd floor, B-1 Building, Bhumi World, Village- Pimplas, Off. Nashik Mumbai Highway, Taluka Bhiwandi, District Thane 421 302, Maharashtra for credit facilities granted to M/s. Continuity Printers Private Limited – Rs. 87.5 MM and M/s. Continuity Printers: Rs. 17.50 MM."
+      },
+      {
+        "charge_id": 100183483,
+        "status": "Satisfaction",
+        "date": "2021-12-15",
+        "amount": 20000000,
+        "holder_name": "YES BANK LIMITED",
+        "number_of_holder": null,
+        "property_type": null,
+        "filing_date": "2021-12-19",
+        "property_particulars": null
+      },
+      {
+        "charge_id": 100183483,
+        "status": "Modification",
+        "date": "2020-11-11",
+        "amount": 20000000,
+        "holder_name": "YES BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Book debts,Movable property (not being pledge),Floating charge,Others (Current Assets & Movable Fixed Assets)",
+        "filing_date": "2020-11-13",
+        "property_particulars": "Exclusive charge by way of hypothecation on Company's  (i) Current Assets, (ii) Movable Fixed Assets, and (iii) Book Debts and Receivables both present and future."
+      },
+      {
+        "charge_id": 100183483,
+        "status": "Creation",
+        "date": "2018-01-06",
+        "amount": 15000000,
+        "holder_name": "YES BANK LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Book debts,Movable property (not being pledge),Floating charge,Others (Current Assets & Movable Fixed Assets)",
+        "filing_date": "2018-06-19",
+        "property_particulars": "Exclusive hypothecation charge on Current Assets and Movable Fixed Assets both present and future."
+      },
+      {
+        "charge_id": 100092584,
+        "status": "Satisfaction",
+        "date": "2018-02-07",
+        "amount": 55000000,
+        "holder_name": "INDIAN OVERSEAS BANK",
+        "number_of_holder": null,
+        "property_type": null,
+        "filing_date": "2018-03-08",
+        "property_particulars": null
+      },
+      {
+        "charge_id": 100092584,
+        "status": "Creation",
+        "date": "2017-01-31",
+        "amount": 55000000,
+        "holder_name": "INDIAN OVERSEAS BANK",
+        "number_of_holder": 1,
+        "property_type": "Immovable property or any interest there in,Book debts,Movable property (not being pledge),Others (STOCK AND PLANT AND MACHINERY)",
+        "filing_date": "2017-04-25",
+        "property_particulars": "As mentioned in the agreement"
+      }
+    ],
+    "financials": [
+      {
+        "year": "2025-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2025-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2024-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 28.79,
+          "gross_profit_margin": 30.99,
+          "net_margin": 3.49,
+          "ebitda_margin": 10.33,
+          "return_on_equity": 29.82,
+          "return_on_capital_employed": 8.53,
+          "debt_ratio": 0.7,
+          "debt_by_equity": 5.28,
+          "interest_coverage_ratio": 3.92,
+          "current_ratio": 0.71,
+          "quick_ratio": 0.56,
+          "inventory_by_sales_days": 29.19,
+          "debtors_by_sales_days": 79.06,
+          "payables_by_sales_days": 48.4,
+          "cash_conversion_cycle": 59.85,
+          "sales_by_net_fixed_assets": 3.62
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 113490195,
+            "producing_properties": null,
+            "intangible_assets": 703920,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 93189577,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 625311,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 3655567,
+            "current_investments": 0,
+            "inventories": 33089415,
+            "trade_receivables": 89624940,
+            "cash_and_bank_balances": 14103834,
+            "short_term_loans_and_advances": 612339,
+            "other_current_assets": 15920404,
+            "given_assets_total": 365015502
+          },
+          "liabilities": {
+            "share_capital": 8000000,
+            "reserves_and_surplus": 40436743,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 100287657,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 155316042,
+            "trade_payables": 54865953,
+            "other_current_liabilities": 5646591,
+            "short_term_provisions": 462516,
+            "given_liabilities_total": 365015502
+          },
+          "subTotals": {
+            "total_equity": 48436743,
+            "total_non_current_liabilities": 100287657,
+            "total_current_liabilities": 216291102,
+            "net_fixed_assets": 114194115,
+            "total_current_assets": 153350932,
+            "capital_wip": 93189577,
+            "total_debt": 255603699,
+            "total_other_non_current_assets": 4280878
+          },
+          "metadata": {
+            "doc_id": "928/U22219MH2016PTC286774/mca/AnnualReturnsEform/6329175b3eeee2cdb59e3756dd4238adv1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 207383692,
+            "trade_receivable_exceeding_six_months": null
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 413788573,
+            "total_cost_of_materials_consumed": 262267819,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 23293683,
+            "total_employee_benefit_expense": 47712764,
+            "total_other_expenses": 37767847,
+            "operating_profit": 42746460,
+            "other_income": 220203,
+            "depreciation": 17031775,
+            "profit_before_interest_and_tax": 25934888,
+            "interest": 6618758,
+            "profit_before_tax_and_exceptional_items_before_tax": 19316130,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": 19316130,
+            "income_tax": 4869902,
+            "profit_for_period_from_continuing_operations": 14446228,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 14446228
+          },
+          "subTotals": {
+            "total_operating_cost": 371042113
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 413788573,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 17031775
+          },
+          "metadata": {
+            "docId": "928/U22219MH2016PTC286774/mca/AnnualReturnsEform/6329175b3eeee2cdb59e3756dd4238adv1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "RAHUL MAHESH SARDA",
+          "auditor_firm_name": "S I G M A C & CO",
+          "pan": "AAFFM1481Q",
+          "membership_number": "135501",
+          "firm_registration_number": "116351W",
+          "address": "204, Kalpataru Plaza, Chincholi Bunder Road, Off S.V. Road, Malad (West), Maharashtra India 400064"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2024-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2025-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2023-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 41.47,
+          "gross_profit_margin": 40.81,
+          "net_margin": 4.28,
+          "ebitda_margin": 12.14,
+          "return_on_equity": 51.91,
+          "return_on_capital_employed": 12.88,
+          "debt_ratio": 0.69,
+          "debt_by_equity": 5.36,
+          "interest_coverage_ratio": 3.36,
+          "current_ratio": 0.72,
+          "quick_ratio": 0.58,
+          "inventory_by_sales_days": 21.32,
+          "debtors_by_sales_days": 80.88,
+          "payables_by_sales_days": 35.26,
+          "cash_conversion_cycle": 66.94,
+          "sales_by_net_fixed_assets": 3.09
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 103458082,
+            "producing_properties": null,
+            "intangible_assets": 571241,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 1425184,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 3821679,
+            "current_investments": 0,
+            "inventories": 18768095,
+            "trade_receivables": 71189353,
+            "cash_and_bank_balances": 5366836,
+            "short_term_loans_and_advances": 825301,
+            "other_current_assets": 1454374,
+            "given_assets_total": 206880145
+          },
+          "liabilities": {
+            "share_capital": 500000,
+            "reserves_and_surplus": 25990515,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 44091254,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 97953847,
+            "trade_payables": 31040651,
+            "other_current_liabilities": 6878798,
+            "short_term_provisions": 425080,
+            "given_liabilities_total": 206880145
+          },
+          "subTotals": {
+            "total_equity": 26490515,
+            "total_non_current_liabilities": 44091254,
+            "total_current_liabilities": 136298376,
+            "net_fixed_assets": 104029323,
+            "total_current_assets": 97603959,
+            "capital_wip": 0,
+            "total_debt": 142045101,
+            "total_other_non_current_assets": 5246863
+          },
+          "metadata": {
+            "doc_id": "928/U22219MH2016PTC286774/mca/AnnualReturnsEform/6329175b3eeee2cdb59e3756dd4238adv1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 188960256.88,
+            "trade_receivable_exceeding_six_months": 2779867
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 321284895,
+            "total_cost_of_materials_consumed": 185976236,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 4182160,
+            "total_employee_benefit_expense": 39032851,
+            "total_other_expenses": 53098859,
+            "operating_profit": 38994789,
+            "other_income": 123344,
+            "depreciation": 17403903,
+            "profit_before_interest_and_tax": 21714230,
+            "interest": 6453840,
+            "profit_before_tax_and_exceptional_items_before_tax": 15260390,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": 15260390,
+            "income_tax": 1508381,
+            "profit_for_period_from_continuing_operations": 13752009,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 13752009
+          },
+          "subTotals": {
+            "total_operating_cost": 282290106
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 321284895,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 17403903
+          },
+          "metadata": {
+            "docId": "928/U22219MH2016PTC286774/mca/AnnualReturnsEform/6329175b3eeee2cdb59e3756dd4238adv1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "RAHUL MAHESH SARDA",
+          "auditor_firm_name": "S I G M A C & CO",
+          "pan": "AAFFM1481Q",
+          "membership_number": "135501",
+          "firm_registration_number": "116351W",
+          "address": "204, Kalpataru Plaza, Chincholi Bunder Road, Off S.V. Road, Malad (West), MUMBAI MH INDIA 400064"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2023-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2024-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2022-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": -2.35,
+          "gross_profit_margin": 41.75,
+          "net_margin": -5.31,
+          "ebitda_margin": 6.08,
+          "return_on_equity": -94.71,
+          "return_on_capital_employed": -3.82,
+          "debt_ratio": 0.77,
+          "debt_by_equity": 11.84,
+          "interest_coverage_ratio": -0.93,
+          "current_ratio": 0.62,
+          "quick_ratio": 0.43,
+          "inventory_by_sales_days": 41.8,
+          "debtors_by_sales_days": 83.22,
+          "payables_by_sales_days": 41.73,
+          "cash_conversion_cycle": 83.29,
+          "sales_by_net_fixed_assets": 2.05
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 110829731,
+            "producing_properties": null,
+            "intangible_assets": 19890,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 34971,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 232408,
+            "other_noncurrent_assets": 1973110,
+            "current_investments": 0,
+            "inventories": 26008402,
+            "trade_receivables": 51778918,
+            "cash_and_bank_balances": 4141700,
+            "short_term_loans_and_advances": 894179,
+            "other_current_assets": 716633,
+            "given_assets_total": 196629942
+          },
+          "liabilities": {
+            "share_capital": 500000,
+            "reserves_and_surplus": 12238506,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 49107222,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 101703927,
+            "trade_payables": 25967314,
+            "other_current_liabilities": 7112973,
+            "short_term_provisions": 0,
+            "given_liabilities_total": 196629942
+          },
+          "subTotals": {
+            "total_equity": 12738506,
+            "total_non_current_liabilities": 49107222,
+            "total_current_liabilities": 134784214,
+            "net_fixed_assets": 110849621,
+            "total_current_assets": 83539832,
+            "capital_wip": 0,
+            "total_debt": 150811149,
+            "total_other_non_current_assets": 2240489
+          },
+          "metadata": {
+            "doc_id": "928/U22219MH2016PTC286774/mca/AnnualReturnsEform/59676c7a629c8aaf2e0362eddf9e3c25v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 110849621,
+            "trade_receivable_exceeding_six_months": 2030298
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 227109559,
+            "total_cost_of_materials_consumed": 139404153,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": -7114002,
+            "total_employee_benefit_expense": 34106911,
+            "total_other_expenses": 46900109,
+            "operating_profit": 13812388,
+            "other_income": 119611,
+            "depreciation": 20185810,
+            "profit_before_interest_and_tax": -6253811,
+            "interest": 6713734,
+            "profit_before_tax_and_exceptional_items_before_tax": -12967545,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -12967545,
+            "income_tax": -902715,
+            "profit_for_period_from_continuing_operations": -12064830,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -12064830
+          },
+          "subTotals": {
+            "total_operating_cost": 213297171
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 227109559,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 20185810
+          },
+          "metadata": {
+            "docId": "928/U22219MH2016PTC286774/mca/AnnualReturnsEform/59676c7a629c8aaf2e0362eddf9e3c25v1.pdf",
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "RAHUL MAHESH SARDA",
+          "auditor_firm_name": "S I G M A C & CO",
+          "pan": "AAFFM1481Q",
+          "membership_number": "135501",
+          "firm_registration_number": "116351W",
+          "address": "204, Kalpataru Plaza, Chincholi Bunder Road, Off S.V. Road, Malad (West), MUMBAI MH INDIA 400064"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2022-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2023-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2021-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 58.35,
+          "gross_profit_margin": 45,
+          "net_margin": 6.03,
+          "ebitda_margin": 14.75,
+          "return_on_equity": 56.53,
+          "return_on_capital_employed": 12.6,
+          "debt_ratio": 0.73,
+          "debt_by_equity": 6.14,
+          "interest_coverage_ratio": 6.44,
+          "current_ratio": 0.57,
+          "quick_ratio": 0.44,
+          "inventory_by_sales_days": 27.54,
+          "debtors_by_sales_days": 85.76,
+          "payables_by_sales_days": 39.39,
+          "cash_conversion_cycle": 73.91,
+          "sales_by_net_fixed_assets": 1.8
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 129392170,
+            "producing_properties": null,
+            "intangible_assets": 26258,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 824852,
+            "other_noncurrent_assets": 1994742,
+            "current_investments": 0,
+            "inventories": 17551612,
+            "trade_receivables": 54645464,
+            "cash_and_bank_balances": 1302430,
+            "short_term_loans_and_advances": 331558,
+            "other_current_assets": 3076248,
+            "given_assets_total": 209145334
+          },
+          "liabilities": {
+            "share_capital": 500000,
+            "reserves_and_surplus": 24303337,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 49077859,
+            "deferred_tax_liabilities_net": 867744,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 103218602,
+            "trade_payables": 25097879,
+            "other_current_liabilities": 6079913,
+            "short_term_provisions": 0,
+            "given_liabilities_total": 209145334
+          },
+          "subTotals": {
+            "total_equity": 24803337,
+            "total_non_current_liabilities": 49945603,
+            "total_current_liabilities": 134396394,
+            "net_fixed_assets": 129418428,
+            "total_current_assets": 76907312,
+            "capital_wip": 0,
+            "total_debt": 152296461,
+            "total_other_non_current_assets": 2819594
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 129418428,
+            "trade_receivable_exceeding_six_months": 914110
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 232583911,
+            "total_cost_of_materials_consumed": 123403650,
+            "total_purchases_of_stock_in_trade": 2348178,
+            "total_changes_in_inventories_or_finished_goods": 2169687,
+            "total_employee_benefit_expense": 31979800,
+            "total_other_expenses": 38385614,
+            "operating_profit": 34296982,
+            "other_income": 756141,
+            "depreciation": 12735264,
+            "profit_before_interest_and_tax": 22317859,
+            "interest": 3462945,
+            "profit_before_tax_and_exceptional_items_before_tax": 18854914,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": 18854914,
+            "income_tax": 4832376,
+            "profit_for_period_from_continuing_operations": 14022538,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 14022538
+          },
+          "subTotals": {
+            "total_operating_cost": 198286929
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 232583911,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 12735264
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "RAHUL MAHESH SARDA",
+          "auditor_firm_name": "S I G M A C & CO",
+          "pan": "AAFFM1481Q",
+          "membership_number": "135501",
+          "firm_registration_number": "116351W",
+          "address": "204, Kalpataru Plaza, Chincholi Bunder Road, Off S.V. Road, Malad (West), MUMBA MH INDIA 400064"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2021-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2022-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2020-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 29.25,
+          "gross_profit_margin": 46.15,
+          "net_margin": 3.44,
+          "ebitda_margin": 17.18,
+          "return_on_equity": 44.84,
+          "return_on_capital_employed": 16.12,
+          "debt_ratio": 0.7,
+          "debt_by_equity": 8.73,
+          "interest_coverage_ratio": 1.62,
+          "current_ratio": 0.54,
+          "quick_ratio": 0.45,
+          "inventory_by_sales_days": 30.01,
+          "debtors_by_sales_days": 132.35,
+          "payables_by_sales_days": 53,
+          "cash_conversion_cycle": 109.36,
+          "sales_by_net_fixed_assets": 2.08
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 70714943,
+            "producing_properties": null,
+            "intangible_assets": 32644,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 1615000,
+            "current_investments": 0,
+            "inventories": 12075989,
+            "trade_receivables": 53258284,
+            "cash_and_bank_balances": 1527656,
+            "short_term_loans_and_advances": 176612,
+            "other_current_assets": 765947,
+            "given_assets_total": 140167075
+          },
+          "liabilities": {
+            "share_capital": 500000,
+            "reserves_and_surplus": 10780801,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 3754264,
+            "deferred_tax_liabilities_net": 655924,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 94686785,
+            "trade_payables": 21327660,
+            "other_current_liabilities": 7925984,
+            "short_term_provisions": 535657,
+            "given_liabilities_total": 140167075
+          },
+          "subTotals": {
+            "total_equity": 11280801,
+            "total_non_current_liabilities": 4410188,
+            "total_current_liabilities": 124476086,
+            "net_fixed_assets": 70747587,
+            "total_current_assets": 67804488,
+            "capital_wip": 0,
+            "total_debt": 98441049,
+            "total_other_non_current_assets": 1615000
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 105594988,
+            "trade_receivable_exceeding_six_months": 1995543
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 146881802,
+            "total_cost_of_materials_consumed": 74374541,
+            "total_purchases_of_stock_in_trade": 881185,
+            "total_changes_in_inventories_or_finished_goods": 3832822,
+            "total_employee_benefit_expense": 19256142,
+            "total_other_expenses": 23296491,
+            "operating_profit": 25240621,
+            "other_income": 1431121,
+            "depreciation": 8980188,
+            "profit_before_interest_and_tax": 17691554,
+            "interest": 10904068,
+            "profit_before_tax_and_exceptional_items_before_tax": 6787486,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": 6787486,
+            "income_tax": 1729383,
+            "profit_for_period_from_continuing_operations": 5058103,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 5058103
+          },
+          "subTotals": {
+            "total_operating_cost": 121641181
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 145605545,
+            "sale_of_goods_traded_domestic": 1276257,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 8980188
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "AJAY KAILASHCHANDRA DAGA",
+          "auditor_firm_name": "D A T A & CO",
+          "pan": "AAAFK7563L",
+          "membership_number": "044162",
+          "firm_registration_number": "105013W",
+          "address": "A-102, Hill View CHS Ltd, J P Road, Near Navrang Cinema, Andheri West Mumbai MH INDIA 400058"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2020-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2021-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2019-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 4.38,
+          "gross_profit_margin": 58.24,
+          "net_margin": 1.01,
+          "ebitda_margin": 19.95,
+          "return_on_equity": 20.13,
+          "return_on_capital_employed": 10.4,
+          "debt_ratio": 0.73,
+          "debt_by_equity": 17.57,
+          "interest_coverage_ratio": 1.17,
+          "current_ratio": 0.95,
+          "quick_ratio": 0.7,
+          "inventory_by_sales_days": 51.56,
+          "debtors_by_sales_days": 123.88,
+          "payables_by_sales_days": 56.12,
+          "cash_conversion_cycle": 119.32,
+          "sales_by_net_fixed_assets": 1.49
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 76365331,
+            "producing_properties": null,
+            "intangible_assets": 39030,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 1285824,
+            "other_noncurrent_assets": 0,
+            "current_investments": 0,
+            "inventories": 16053294,
+            "trade_receivables": 38569386,
+            "cash_and_bank_balances": 5329216,
+            "short_term_loans_and_advances": 181095,
+            "other_current_assets": 576277,
+            "given_assets_total": 138399453
+          },
+          "liabilities": {
+            "share_capital": 500000,
+            "reserves_and_surplus": 5222698,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 68046696,
+            "deferred_tax_liabilities_net": 614126,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 32499558,
+            "trade_payables": 17473917,
+            "other_current_liabilities": 13834177,
+            "short_term_provisions": 208281,
+            "given_liabilities_total": 138399453
+          },
+          "subTotals": {
+            "total_equity": 5722698,
+            "total_non_current_liabilities": 68660822,
+            "total_current_liabilities": 64015933,
+            "net_fixed_assets": 76404361,
+            "total_current_assets": 60709268,
+            "capital_wip": 0,
+            "total_debt": 100546254,
+            "total_other_non_current_assets": 1285824
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 102271574,
+            "trade_receivable_exceeding_six_months": 1412551
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 113642799,
+            "total_cost_of_materials_consumed": 53362789,
+            "total_purchases_of_stock_in_trade": 1396294,
+            "total_changes_in_inventories_or_finished_goods": -7300329,
+            "total_employee_benefit_expense": 20460135,
+            "total_other_expenses": 23054953,
+            "operating_profit": 22668957,
+            "other_income": 945900,
+            "depreciation": 12559740,
+            "profit_before_interest_and_tax": 11055117,
+            "interest": 9434657,
+            "profit_before_tax_and_exceptional_items_before_tax": 1620460,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": 1620460,
+            "income_tax": 468417,
+            "profit_for_period_from_continuing_operations": 1152043,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 1152043
+          },
+          "subTotals": {
+            "total_operating_cost": 90973842
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 112253620,
+            "sale_of_goods_traded_domestic": 1389179,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 12559740
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 10210528
+        },
+        "auditor": {
+          "auditor_name": "AJAY KAILASHCHANDRA DAGA",
+          "auditor_firm_name": "D A T A & CO",
+          "pan": "AAAFK7563L",
+          "membership_number": "044162",
+          "firm_registration_number": "105013W",
+          "address": "A-102, Hill View CHS Ltd, J P Road, Near Navrang Cinema, Andheri West Mumbai MH INDIA 400058"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2019-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2020-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2018-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 1314.22,
+          "gross_profit_margin": 54.81,
+          "net_margin": 4.94,
+          "ebitda_margin": 24,
+          "return_on_equity": 117.72,
+          "return_on_capital_employed": 13.79,
+          "debt_ratio": 0.74,
+          "debt_by_equity": 21.55,
+          "interest_coverage_ratio": 1.62,
+          "current_ratio": 0.83,
+          "quick_ratio": 0.7,
+          "inventory_by_sales_days": 24.19,
+          "debtors_by_sales_days": 126.76,
+          "payables_by_sales_days": 58.46,
+          "cash_conversion_cycle": 92.49,
+          "sales_by_net_fixed_assets": 1.28
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 84876553,
+            "producing_properties": null,
+            "intangible_assets": 45416,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 2257174,
+            "other_noncurrent_assets": 175000,
+            "current_investments": 0,
+            "inventories": 7214880,
+            "trade_receivables": 37812804,
+            "cash_and_bank_balances": 213588,
+            "short_term_loans_and_advances": 125925,
+            "other_current_assets": 276928,
+            "given_assets_total": 132998268
+          },
+          "liabilities": {
+            "share_capital": 500000,
+            "reserves_and_surplus": 4070655,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 72122100,
+            "deferred_tax_liabilities_net": 1156785,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 26361795,
+            "trade_payables": 17439410,
+            "other_current_liabilities": 10288783,
+            "short_term_provisions": 1058740,
+            "given_liabilities_total": 132998268
+          },
+          "subTotals": {
+            "total_equity": 4570655,
+            "total_non_current_liabilities": 73278885,
+            "total_current_liabilities": 55148728,
+            "net_fixed_assets": 84921969,
+            "total_current_assets": 45644125,
+            "capital_wip": 0,
+            "total_debt": 98483895,
+            "total_other_non_current_assets": 2432174
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 98229442,
+            "trade_receivable_exceeding_six_months": 37812804
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 108877970,
+            "total_cost_of_materials_consumed": 47319455,
+            "total_purchases_of_stock_in_trade": 3779733,
+            "total_changes_in_inventories_or_finished_goods": -1901622,
+            "total_employee_benefit_expense": 15116996,
+            "total_other_expenses": 18437380,
+            "operating_profit": 26126028,
+            "other_income": 758988,
+            "depreciation": 12672197,
+            "profit_before_interest_and_tax": 14212819,
+            "interest": 8763778,
+            "profit_before_tax_and_exceptional_items_before_tax": 5449041,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": 5449041,
+            "income_tax": 68365,
+            "profit_for_period_from_continuing_operations": 5380676,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": 5380676
+          },
+          "subTotals": {
+            "total_operating_cost": 82751942
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 103171492,
+            "sale_of_goods_traded_domestic": 5706478,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 12672197
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 8043037
+        },
+        "auditor": {
+          "auditor_name": "AJAY KAILASHCHANDRA DAGA",
+          "auditor_firm_name": "D A T A & CO",
+          "pan": "AAAFK7563L",
+          "membership_number": "044162",
+          "firm_registration_number": "105013W",
+          "address": "A-401, Pearl Arcade, Opp P K Jewellers, Dawood Baug Lane,Off J.P. Road, Andheri (W) Mumbai MH IN 400058"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2018-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2019-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2017-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": 65.11,
+          "net_margin": -14.51,
+          "ebitda_margin": 25.01,
+          "return_on_equity": null,
+          "return_on_capital_employed": 1.7,
+          "debt_ratio": 0.83,
+          "debt_by_equity": null,
+          "interest_coverage_ratio": 1.31,
+          "current_ratio": 0.36,
+          "quick_ratio": 0.28,
+          "inventory_by_sales_days": 129.36,
+          "debtors_by_sales_days": 388.35,
+          "payables_by_sales_days": 275.69,
+          "cash_conversion_cycle": 242.02,
+          "sales_by_net_fixed_assets": 0.08
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 92388409,
+            "producing_properties": null,
+            "intangible_assets": 51803,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 0,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 0,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 5746717,
+            "other_noncurrent_assets": 0,
+            "current_investments": 0,
+            "inventories": 2728491,
+            "trade_receivables": 8191293,
+            "cash_and_bank_balances": 159410,
+            "short_term_loans_and_advances": 38000,
+            "other_current_assets": 405293,
+            "given_assets_total": 109709416
+          },
+          "liabilities": {
+            "share_capital": 500000,
+            "reserves_and_surplus": -1310021,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 77125148,
+            "deferred_tax_liabilities_net": 1417615,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 14302639,
+            "trade_payables": 5814941,
+            "other_current_liabilities": 11803100,
+            "short_term_provisions": 55994,
+            "given_liabilities_total": 109709416
+          },
+          "subTotals": {
+            "total_equity": -810021,
+            "total_non_current_liabilities": 78542763,
+            "total_current_liabilities": 31976674,
+            "net_fixed_assets": 92440212,
+            "total_current_assets": 11522487,
+            "capital_wip": 0,
+            "total_debt": 91427787,
+            "total_other_non_current_assets": 5746717
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 93075488,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 7698778,
+            "total_cost_of_materials_consumed": 4364787,
+            "total_purchases_of_stock_in_trade": 677841,
+            "total_changes_in_inventories_or_finished_goods": -2356891,
+            "total_employee_benefit_expense": 1745648,
+            "total_other_expenses": 1341839,
+            "operating_profit": 1925554,
+            "other_income": 250500,
+            "depreciation": 635276,
+            "profit_before_interest_and_tax": 1540778,
+            "interest": 1180145,
+            "profit_before_tax_and_exceptional_items_before_tax": 360633,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": 360633,
+            "income_tax": 1477986,
+            "profit_for_period_from_continuing_operations": -1117353,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -1117353
+          },
+          "subTotals": {
+            "total_operating_cost": 5773224
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 7698778,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 635276
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 646475
+        },
+        "auditor": {
+          "auditor_name": "AJAY KAILASHCHANDRA DAGA",
+          "auditor_firm_name": "D A T A & CO",
+          "pan": "AAAFK7563L",
+          "membership_number": "044162",
+          "firm_registration_number": "105013W",
+          "address": "A-401, Pearl Arcade, Opp P K Jewellers, Dawood Baug Lane,Off J.P. Road, Andheri (W) Mumbai MH IN 400058"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      },
+      {
+        "year": "2017-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2018-03-31",
+        "filing_type": "E_FORM",
+        "start_date": "2016-10-13",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": null,
+          "gross_profit_margin": null,
+          "net_margin": null,
+          "ebitda_margin": null,
+          "return_on_equity": -62.69,
+          "return_on_capital_employed": -0.58,
+          "debt_ratio": 0.87,
+          "debt_by_equity": 140.47,
+          "interest_coverage_ratio": -283.31,
+          "current_ratio": 0,
+          "quick_ratio": 0,
+          "inventory_by_sales_days": null,
+          "debtors_by_sales_days": null,
+          "payables_by_sales_days": null,
+          "cash_conversion_cycle": null,
+          "sales_by_net_fixed_assets": null
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 0,
+            "producing_properties": null,
+            "intangible_assets": 0,
+            "preproducing_properties": null,
+            "tangible_assets_capital_work_in_progress": 49635600,
+            "intangible_assets_under_development": 0,
+            "noncurrent_investments": 0,
+            "deferred_tax_assets_net": 60371,
+            "foreign_curr_monetary_item_trans_diff_asset_account": null,
+            "long_term_loans_and_advances": 0,
+            "other_noncurrent_assets": 0,
+            "current_investments": 0,
+            "inventories": 0,
+            "trade_receivables": 0,
+            "cash_and_bank_balances": 66092,
+            "short_term_loans_and_advances": 0,
+            "other_current_assets": 0,
+            "given_assets_total": 49762063
+          },
+          "liabilities": {
+            "share_capital": 500000,
+            "reserves_and_surplus": -192669,
+            "money_received_against_share_warrants": 0,
+            "share_application_money_pending_allotment": 0,
+            "deferred_government_grants": null,
+            "minority_interest": null,
+            "long_term_borrowings": 20486110,
+            "deferred_tax_liabilities_net": 0,
+            "foreign_curr_monetary_item_trans_diff_liability_account": null,
+            "other_long_term_liabilities": 0,
+            "long_term_provisions": 0,
+            "short_term_borrowings": 22683700,
+            "trade_payables": 0,
+            "other_current_liabilities": 6284922,
+            "short_term_provisions": 0,
+            "given_liabilities_total": 49762063
+          },
+          "subTotals": {
+            "total_equity": 307331,
+            "total_non_current_liabilities": 20486110,
+            "total_current_liabilities": 28968622,
+            "net_fixed_assets": 0,
+            "total_current_assets": 66092,
+            "capital_wip": 49635600,
+            "total_debt": 43169810,
+            "total_other_non_current_assets": 60371
+          },
+          "metadata": {
+            "doc_id": null,
+            "xml_to_pdf_converted_doc_id": null
+          },
+          "notes": {
+            "gross_fixed_assets": 49635600,
+            "trade_receivable_exceeding_six_months": 0
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 0,
+            "total_cost_of_materials_consumed": 0,
+            "total_purchases_of_stock_in_trade": 0,
+            "total_changes_in_inventories_or_finished_goods": 0,
+            "total_employee_benefit_expense": 0,
+            "total_other_expenses": 252150,
+            "operating_profit": -252150,
+            "other_income": 0,
+            "depreciation": 0,
+            "profit_before_interest_and_tax": -252150,
+            "interest": 890,
+            "profit_before_tax_and_exceptional_items_before_tax": -253040,
+            "exceptional_items_before_tax": 0,
+            "profit_before_tax": -253040,
+            "income_tax": -60371,
+            "profit_for_period_from_continuing_operations": -192669,
+            "profit_from_discontinuing_operation_after_tax": 0,
+            "minority_interest_and_profit_from_associates_and_joint_ventures": null,
+            "profit_after_tax": -192669
+          },
+          "subTotals": {
+            "total_operating_cost": 252150
+          },
+          "revenue_breakup": {
+            "sale_of_goods_manufactured_domestic": 0,
+            "sale_of_goods_traded_domestic": 0,
+            "sale_or_supply_of_services_domestic": 0,
+            "sale_of_goods_manufactured_export": 0,
+            "sale_of_goods_traded_export": 0,
+            "sale_or_supply_of_services_export": 0
+          },
+          "depreciation_breakup": {
+            "depreciation_and_amortization": 0
+          },
+          "metadata": {
+            "docId": null,
+            "xml_to_pdf_converted_doc_id": null
+          }
+        },
+        "cash_flow": null,
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 0,
+          "insurance_expenses": 0,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "AJAY KAILASHCHANDRA DAGA",
+          "auditor_firm_name": "D A T A & CO",
+          "pan": "AAAFK7563L",
+          "membership_number": "044162",
+          "firm_registration_number": "105013W",
+          "address": "401-A, Pearl Arcade,Opposite P.K Jewellers Dawood Baug Lane, Off J.P. Road, Andheri (West) Mumbai Maharashtra India 400058"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      }
+    ],
+    "nbfc_financials": [],
+    "financial_parameters": [
+      {
+        "year": "2025",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 47712764,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": null,
+        "gross_fixed_assets": 207383692,
+        "trade_receivable_exceeding_six_months": null,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2024",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 39032851,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 188960256.88,
+        "trade_receivable_exceeding_six_months": 2779867,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2023",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 34106911,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 110849621,
+        "trade_receivable_exceeding_six_months": 2030298,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2022",
+        "nature": "STANDALONE",
+        "earning_fc": 12262393,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 31979800,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 129418428,
+        "trade_receivable_exceeding_six_months": 914110,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2021",
+        "nature": "STANDALONE",
+        "earning_fc": 20451753,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 19256142,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 105594988,
+        "trade_receivable_exceeding_six_months": 1995543,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2020",
+        "nature": "STANDALONE",
+        "earning_fc": 10424057,
+        "expenditure_fc": 219054,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 20460135,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 102271574,
+        "trade_receivable_exceeding_six_months": 1412551,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2019",
+        "nature": "STANDALONE",
+        "earning_fc": 14744469,
+        "expenditure_fc": 176994,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 15116996,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 98229442,
+        "trade_receivable_exceeding_six_months": 37812804,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2018",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 1745648,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 93075488,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      },
+      {
+        "year": "2017",
+        "nature": "STANDALONE",
+        "earning_fc": 0,
+        "expenditure_fc": 0,
+        "transaction_related_parties_as_18": 0,
+        "employee_benefit_expense": 0,
+        "number_of_employees": null,
+        "prescribed_csr_expenditure": null,
+        "total_amount_csr_spent_for_financial_year": 0,
+        "gross_fixed_assets": 49635600,
+        "trade_receivable_exceeding_six_months": 0,
+        "proposed_dividend": "No"
+      }
+    ],
+    "industry_segments": [
+      {
+        "industry": "Packaging",
+        "segments": [
+          "Industrial Packaging"
+        ]
+      }
+    ],
+    "principal_business_activities": [
+      {
+        "year": "2025",
+        "main_activity_group_code": "G",
+        "main_activity_group_description": "Wholesale and retail trade; repair of motor vehicles and motorcycles",
+        "business_activity_code": "47",
+        "business_activity_description": "Retail trade, except of motor vehicles and motorcycles",
+        "percentage_of_turnover": 100
+      }
+    ],
+    "related_party_transactions": [
+      {
+        "financial_year": "2025-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2024-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2023-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2022-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2021-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2020-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2019-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2018-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      },
+      {
+        "financial_year": "2017-03-31",
+        "company": [],
+        "llp": [],
+        "individual": [],
+        "others": []
+      }
+    ],
+    "establishments_registered_with_epfo": [
+      {
+        "establishment_id": "THTHA1701288000",
+        "establishment_name": "CONTINUITY PRINTERS PRIVATE LIMITED",
+        "working_status": "LIVE ESTABLISHMENT",
+        "principal_business_activities": "PRINTING",
+        "date_of_setup": "2016-10-13",
+        "address": "SURVEY NO. 88/4,5,6 BLDG NO G-B 1 UNIT NO.14-16,114-116 BHUMI WORLD,BHIWANDI,MAHARASHTRA,421302,India",
+        "city": "BHIWANDI",
+        "exemption_status_edli": "UNEXEMPTED",
+        "exemption_status_pension": "UNEXEMPTED",
+        "exemption_status_pf": "UNEXEMPTED",
+        "latest_wage_month": "MAR-26",
+        "latest_date_of_credit": null,
+        "no_of_employees": 170,
+        "amount": 538696,
+        "payment_timeliness": "Payment After Due Date in last 12 Months.",
+        "filing_details": [
+          {
+            "wage_month": "MAR-26",
+            "trrn": "2604318175514",
+            "date_of_credit": "2026-04-15",
+            "payment_due_date": "2026-04-15",
+            "no_of_employees": 3,
+            "amount": 4208,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAR-26",
+            "trrn": "2604318175445",
+            "date_of_credit": "2026-04-15",
+            "payment_due_date": "2026-04-15",
+            "no_of_employees": 167,
+            "amount": 534488,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "FEB-26",
+            "trrn": "2603318136689",
+            "date_of_credit": "2026-03-13",
+            "payment_due_date": "2026-03-15",
+            "no_of_employees": 167,
+            "amount": 542290,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JAN-26",
+            "trrn": "2602318116025",
+            "date_of_credit": "2026-02-14",
+            "payment_due_date": "2026-02-15",
+            "no_of_employees": 162,
+            "amount": 545879,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "DEC-25",
+            "trrn": "2601318087980",
+            "date_of_credit": "2026-01-14",
+            "payment_due_date": "2026-01-15",
+            "no_of_employees": 154,
+            "amount": 518868,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "NOV-25",
+            "trrn": "2601318095770",
+            "date_of_credit": "2026-01-28",
+            "payment_due_date": "2025-12-15",
+            "no_of_employees": 1,
+            "amount": 2558,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "NOV-25",
+            "trrn": "2512318063351",
+            "date_of_credit": "2025-12-13",
+            "payment_due_date": "2025-12-15",
+            "no_of_employees": 146,
+            "amount": 498073,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "OCT-25",
+            "trrn": "2601318095767",
+            "date_of_credit": "2026-01-28",
+            "payment_due_date": "2025-11-15",
+            "no_of_employees": 1,
+            "amount": 2945,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "OCT-25",
+            "trrn": "2511318043703",
+            "date_of_credit": "2025-11-15",
+            "payment_due_date": "2025-11-15",
+            "no_of_employees": 1,
+            "amount": 3750,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "OCT-25",
+            "trrn": "2511318041869",
+            "date_of_credit": "2025-11-15",
+            "payment_due_date": "2025-11-15",
+            "no_of_employees": 144,
+            "amount": 495158,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "SEP-25",
+            "trrn": "2601318095575",
+            "date_of_credit": "2026-01-28",
+            "payment_due_date": "2025-10-15",
+            "no_of_employees": 1,
+            "amount": 2867,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "SEP-25",
+            "trrn": "2511318046089",
+            "date_of_credit": "2025-11-26",
+            "payment_due_date": "2025-10-15",
+            "no_of_employees": 1,
+            "amount": 3877,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "SEP-25",
+            "trrn": "2510318009130",
+            "date_of_credit": "2025-10-14",
+            "payment_due_date": "2025-10-15",
+            "no_of_employees": 148,
+            "amount": 501767,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "AUG-25",
+            "trrn": "2511318045967",
+            "date_of_credit": "2025-11-26",
+            "payment_due_date": "2025-09-15",
+            "no_of_employees": 1,
+            "amount": 4401,
+            "payment_timeliness": "Payment After Due Date"
+          },
+          {
+            "wage_month": "AUG-25",
+            "trrn": "3182509006813",
+            "date_of_credit": "2025-09-13",
+            "payment_due_date": "2025-09-15",
+            "no_of_employees": 138,
+            "amount": 475014,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUL-25",
+            "trrn": "3182508011162",
+            "date_of_credit": "2025-08-12",
+            "payment_due_date": "2025-08-15",
+            "no_of_employees": 140,
+            "amount": 488313,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUN-25",
+            "trrn": "3182507013888",
+            "date_of_credit": "2025-07-14",
+            "payment_due_date": "2025-07-15",
+            "no_of_employees": 142,
+            "amount": 484351,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAY-25",
+            "trrn": "3182506008469",
+            "date_of_credit": "2025-06-13",
+            "payment_due_date": "2025-06-15",
+            "no_of_employees": 139,
+            "amount": 463191,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "APR-25",
+            "trrn": "3182505010239",
+            "date_of_credit": "2025-05-12",
+            "payment_due_date": "2025-05-15",
+            "no_of_employees": 136,
+            "amount": 465349,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAR-25",
+            "trrn": "3182504009031",
+            "date_of_credit": "2025-04-15",
+            "payment_due_date": "2025-04-15",
+            "no_of_employees": 131,
+            "amount": 444909,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "FEB-25",
+            "trrn": "3182503014656",
+            "date_of_credit": "2025-03-13",
+            "payment_due_date": "2025-03-15",
+            "no_of_employees": 131,
+            "amount": 442407,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JAN-25",
+            "trrn": "3182502012775",
+            "date_of_credit": "2025-02-14",
+            "payment_due_date": "2025-02-15",
+            "no_of_employees": 133,
+            "amount": 449691,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "DEC-24",
+            "trrn": "3182501012408",
+            "date_of_credit": "2025-01-15",
+            "payment_due_date": "2025-01-15",
+            "no_of_employees": 121,
+            "amount": 400647,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "NOV-24",
+            "trrn": "3182412010631",
+            "date_of_credit": "2024-12-15",
+            "payment_due_date": "2024-12-15",
+            "no_of_employees": 114,
+            "amount": 373821,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "OCT-24",
+            "trrn": "3182411013845",
+            "date_of_credit": "2024-11-13",
+            "payment_due_date": "2024-11-15",
+            "no_of_employees": 109,
+            "amount": 373455,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "SEP-24",
+            "trrn": "3182410010874",
+            "date_of_credit": "2024-10-11",
+            "payment_due_date": "2024-10-15",
+            "no_of_employees": 108,
+            "amount": 361886,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "AUG-24",
+            "trrn": "3182409008027",
+            "date_of_credit": "2024-09-10",
+            "payment_due_date": "2024-09-15",
+            "no_of_employees": 108,
+            "amount": 369597,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUL-24",
+            "trrn": "3182408013559",
+            "date_of_credit": "2024-08-12",
+            "payment_due_date": "2024-08-15",
+            "no_of_employees": 107,
+            "amount": 360688,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "JUN-24",
+            "trrn": "3182407008884",
+            "date_of_credit": "2024-07-10",
+            "payment_due_date": "2024-07-15",
+            "no_of_employees": 102,
+            "amount": 350149,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "MAY-24",
+            "trrn": "3182406012645",
+            "date_of_credit": "2024-06-12",
+            "payment_due_date": "2024-06-15",
+            "no_of_employees": 100,
+            "amount": 329192,
+            "payment_timeliness": "Paid on Time"
+          },
+          {
+            "wage_month": "APR-24",
+            "trrn": "3182405006446",
+            "date_of_credit": "2024-05-10",
+            "payment_due_date": "2024-05-15",
+            "no_of_employees": 100,
+            "amount": 328525,
+            "payment_timeliness": "Paid on Time"
+          }
+        ]
+      }
+    ],
+    "shareholdings": [
+      {
+        "shareholders": "promoter",
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "category": "equity",
+        "indian_held_no_of_shares": 600000,
+        "indian_held_percentage_of_shares": 75,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 600000,
+        "total_percentage_of_shares": 75
+      },
+      {
+        "shareholders": "promoter",
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "category": "preference",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      },
+      {
+        "shareholders": "public",
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "category": "equity",
+        "indian_held_no_of_shares": 200000,
+        "indian_held_percentage_of_shares": 25,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 200000,
+        "total_percentage_of_shares": 25
+      },
+      {
+        "shareholders": "public",
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "category": "preference",
+        "indian_held_no_of_shares": 0,
+        "indian_held_percentage_of_shares": 0,
+        "nri_held_no_of_shares": 0,
+        "nri_held_percentage_of_shares": 0,
+        "foreign_held_other_than_nri_no_of_shares": 0,
+        "foreign_held_other_than_nri_percentage_of_shares": 0,
+        "central_government_held_no_of_shares": 0,
+        "central_government_held_percentage_of_shares": 0,
+        "state_government_held_no_of_shares": 0,
+        "state_government_held_percentage_of_shares": 0,
+        "government_company_held_no_shares": 0,
+        "government_company_held_percentage_of_shares": 0,
+        "insurance_company_held_no_of_shares": 0,
+        "insurance_company_held_percentage_of_shares": 0,
+        "bank_held_no_of_shares": 0,
+        "bank_held_percentage_of_shares": 0,
+        "financial_institutions_held_no_of_shares": 0,
+        "financial_institutions_held_percentage_of_shares": 0,
+        "financial_institutions_investors_held_no_of_shares": 0,
+        "financial_institutions_investors_held_percentage_of_shares": 0,
+        "mutual_funds_held_no_of_shares": 0,
+        "mutual_funds_held_percentage_of_shares": 0,
+        "venture_capital_held_no_of_shares": 0,
+        "venture_capital_held_percentage_of_shares": 0,
+        "body_corporate_held_no_of_shares": 0,
+        "body_corporate_held_percentage_of_shares": 0,
+        "others_held_no_of_shares": 0,
+        "others_held_percentage_of_shares": 0,
+        "total_no_of_shares": 0,
+        "total_percentage_of_shares": 0
+      }
+    ],
+    "shareholdings_more_than_five_percent": [
+      {
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "ALKA MAHESH GAGGAR",
+            "shareholding_percentage": 25,
+            "no_of_shares": 200000
+          },
+          {
+            "name": "ANIMESH MAHESH GAGGAR",
+            "shareholding_percentage": 25,
+            "no_of_shares": 200000
+          },
+          {
+            "name": "MAHESH GAGGAR",
+            "shareholding_percentage": 50,
+            "no_of_shares": 400000
+          }
+        ],
+        "others": [],
+        "financial_year": "2025-03-31"
+      },
+      {
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "ALKA MAHESH GAGGAR",
+            "shareholding_percentage": 25,
+            "no_of_shares": 12500
+          },
+          {
+            "name": "ANIMESH MAHESH GAGGAR",
+            "shareholding_percentage": 25,
+            "no_of_shares": 12500
+          },
+          {
+            "name": "MAHESH GAGGAR",
+            "shareholding_percentage": 50,
+            "no_of_shares": 25000
+          }
+        ],
+        "others": [],
+        "financial_year": "2024-03-31"
+      },
+      {
+        "company": [],
+        "llp": [],
+        "individual": [
+          {
+            "name": "ALKA MAHESH GAGGAR",
+            "shareholding_percentage": 25,
+            "no_of_shares": 12500
+          },
+          {
+            "name": "ANIMESH MAHESH GAGGAR",
+            "shareholding_percentage": 25,
+            "no_of_shares": 12500
+          },
+          {
+            "name": "MAHESH GAGGAR",
+            "shareholding_percentage": 50,
+            "no_of_shares": 25000
+          }
+        ],
+        "others": [],
+        "financial_year": "2023-03-31"
+      }
+    ],
+    "shareholdings_summary": [
+      {
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "total_equity_shares": 800000,
+        "total_preference_shares": 0,
+        "promoter": 2,
+        "public": 1,
+        "total": 3,
+        "metadata": {
+          "doc_id": "928/U22219MH2016PTC286774/mca/AnnualReturnsEform/453cba0e15279be71f0a79bd92c137c8v1.pdf",
+          "xml_to_pdf_converted_doc_id": null
+        }
+      }
+    ],
+    "director_shareholdings": [
+      {
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "din_pan": "00330217",
+        "full_name": "MAHESH GAGGAR",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 400000,
+        "percentage_holding": 50
+      },
+      {
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "din_pan": "07255430",
+        "full_name": "ANIMESH MAHESH GAGGAR",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 200000,
+        "percentage_holding": 25
+      },
+      {
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "din_pan": "00477409",
+        "full_name": "ALKA MAHESH GAGGAR",
+        "designation": "Director",
+        "date_of_cessation": null,
+        "no_of_shares": 200000,
+        "percentage_holding": 25
+      }
+    ],
+    "bifr_history": [],
+    "cdr_history": [],
+    "defaulter_list": [],
+    "legal_history": [],
+    "credit_ratings": [],
+    "credit_rating_rationale": [],
+    "unaccepted_rating": null,
+    "holding_entities": null,
+    "subsidiary_entities": null,
+    "associate_entities": null,
+    "joint_ventures": null,
+    "securities_allotment": [
+      {
+        "allotment_type": "Other than cash",
+        "allotment_date": "2025-03-03",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 7500000,
+        "number_of_securities_allotted": 750000,
+        "nominal_amount_per_security": 10,
+        "premium_amount_per_security": 0
+      }
+    ],
+    "peer_comparison": [
+      {
+        "bizIndustry": "Packaging",
+        "bizSegment": "Industrial Packaging",
+        "refYear": "2025",
+        "peers": [
+          {
+            "cin": "U25199RJ2011PTC035003",
+            "legalName": "JAGANNATH INDUSTRIES PRIVATE LIMITED",
+            "revenue": 421077172,
+            "city": "JAIPUR"
+          },
+          {
+            "cin": "U74950KL1991PLC006224",
+            "legalName": "MAS PACK LIMITED",
+            "revenue": 418436900,
+            "city": "ALAPPUZHA"
+          },
+          {
+            "cin": "U22219MH2016PTC286774",
+            "legalName": "CONTINUITY PRINTERS PRIVATE LIMITED",
+            "revenue": 413788573,
+            "city": "Mumbai"
+          },
+          {
+            "cin": "U24295GA1988PLC000921",
+            "legalName": "CG ADHESIVE PRODUCTS LIMITED",
+            "revenue": 413333000,
+            "city": "GOA NORTH"
+          },
+          {
+            "cin": "U74999PN2012PTC142906",
+            "legalName": "GULMOHAR PACK-TECH INDIA PRIVATE LIMITED",
+            "revenue": 413048180,
+            "city": "PUNE"
+          }
+        ],
+        "benchMarks": [
+          {
+            "year": "2025",
+            "no_of_peers_in_sample": 30,
+            "revenue": 41.38,
+            "revenue_growth": 28.79,
+            "net_margin": 3.49,
+            "ebitda_margin": 10.33,
+            "return_on_equity": 29.82,
+            "sales_by_net_fixed_assets": 3.62,
+            "inventory_holding_period": 29.19,
+            "debtor_days_outstanding": 79.06,
+            "trade_payable_days": 48.4,
+            "cash_conversion_cycle": 59.85,
+            "debt_by_equity": 5.28,
+            "gross_profit_margin": 30.99,
+            "return_on_capital_employed": 8.53,
+            "interest_coverage_ratio": 3.92,
+            "debt_ratio": 0.7,
+            "current_ratio": 0.71,
+            "quick_ratio": 0.56,
+            "median_revenue": 40.78,
+            "median_revenue_growth": 11.975,
+            "median_net_margin": 3.175,
+            "median_ebitda_margin": 7.035,
+            "median_return_on_equity": 16.42,
+            "median_sales_by_net_fixed_assets": 6.68,
+            "median_inventory_holding_period": 39.045,
+            "median_debtor_days_outstanding": 62.86,
+            "median_trade_payable_days": 40.32,
+            "median_cash_conversion_cycle": 71.62,
+            "median_debt_by_equity": 0.72,
+            "median_gross_profit_margin": 24.630000000000003,
+            "median_return_on_capital_employed": 13.85,
+            "median_interest_coverage_ratio": 3.455,
+            "median_debt_ratio": 0.33,
+            "median_current_ratio": 1.55,
+            "median_quick_ratio": 1.08
+          },
+          {
+            "year": "2024",
+            "no_of_peers_in_sample": 30,
+            "revenue": 32.13,
+            "revenue_growth": 41.47,
+            "net_margin": 4.28,
+            "ebitda_margin": 12.14,
+            "return_on_equity": 51.91,
+            "sales_by_net_fixed_assets": 3.09,
+            "inventory_holding_period": 21.32,
+            "debtor_days_outstanding": 80.88,
+            "trade_payable_days": 35.26,
+            "cash_conversion_cycle": 66.94,
+            "debt_by_equity": 5.36,
+            "gross_profit_margin": 40.81,
+            "return_on_capital_employed": 12.88,
+            "interest_coverage_ratio": 3.36,
+            "debt_ratio": 0.69,
+            "current_ratio": 0.72,
+            "quick_ratio": 0.58,
+            "median_revenue": 38.26,
+            "median_revenue_growth": 5.87,
+            "median_net_margin": 2.4,
+            "median_ebitda_margin": 6.87,
+            "median_return_on_equity": 17.09,
+            "median_sales_by_net_fixed_assets": 7.34,
+            "median_inventory_holding_period": 36.82,
+            "median_debtor_days_outstanding": 55.370000000000005,
+            "median_trade_payable_days": 34.82,
+            "median_cash_conversion_cycle": 57.11,
+            "median_debt_by_equity": 1.03,
+            "median_gross_profit_margin": 25.325,
+            "median_return_on_capital_employed": 13.79,
+            "median_interest_coverage_ratio": 3.54,
+            "median_debt_ratio": 0.35,
+            "median_current_ratio": 1.7,
+            "median_quick_ratio": 1.21
+          },
+          {
+            "year": "2023",
+            "no_of_peers_in_sample": 29,
+            "revenue": 22.71,
+            "revenue_growth": -2.35,
+            "net_margin": -5.31,
+            "ebitda_margin": 6.08,
+            "return_on_equity": -94.71,
+            "sales_by_net_fixed_assets": 2.05,
+            "inventory_holding_period": 41.8,
+            "debtor_days_outstanding": 83.22,
+            "trade_payable_days": 41.73,
+            "cash_conversion_cycle": 83.28999999999999,
+            "debt_by_equity": 11.84,
+            "gross_profit_margin": 41.75,
+            "return_on_capital_employed": -3.82,
+            "interest_coverage_ratio": -0.93,
+            "debt_ratio": 0.77,
+            "current_ratio": 0.62,
+            "quick_ratio": 0.43,
+            "median_revenue": 35.58,
+            "median_revenue_growth": 18,
+            "median_net_margin": 1.76,
+            "median_ebitda_margin": 7.69,
+            "median_return_on_equity": 11.655,
+            "median_sales_by_net_fixed_assets": 6.18,
+            "median_inventory_holding_period": 39.42,
+            "median_debtor_days_outstanding": 68.57,
+            "median_trade_payable_days": 50.89,
+            "median_cash_conversion_cycle": 61.2,
+            "median_debt_by_equity": 0.615,
+            "median_gross_profit_margin": 22.23,
+            "median_return_on_capital_employed": 11.85,
+            "median_interest_coverage_ratio": 1.87,
+            "median_debt_ratio": 0.28,
+            "median_current_ratio": 1.4,
+            "median_quick_ratio": 0.98
+          },
+          {
+            "year": "2022",
+            "no_of_peers_in_sample": 27,
+            "revenue": 23.26,
+            "revenue_growth": 58.35,
+            "net_margin": 6.03,
+            "ebitda_margin": 14.75,
+            "return_on_equity": 56.53,
+            "sales_by_net_fixed_assets": 1.8,
+            "inventory_holding_period": 27.54,
+            "debtor_days_outstanding": 85.76,
+            "trade_payable_days": 39.39,
+            "cash_conversion_cycle": 73.91000000000001,
+            "debt_by_equity": 6.14,
+            "gross_profit_margin": 45,
+            "return_on_capital_employed": 12.6,
+            "interest_coverage_ratio": 6.44,
+            "debt_ratio": 0.73,
+            "current_ratio": 0.57,
+            "quick_ratio": 0.44,
+            "median_revenue": 32.23,
+            "median_revenue_growth": 25.89,
+            "median_net_margin": 1.98,
+            "median_ebitda_margin": 5.65,
+            "median_return_on_equity": 12.13,
+            "median_sales_by_net_fixed_assets": 6.78,
+            "median_inventory_holding_period": 34.8,
+            "median_debtor_days_outstanding": 64.22,
+            "median_trade_payable_days": 54,
+            "median_cash_conversion_cycle": 59.849999999999966,
+            "median_debt_by_equity": 0.66,
+            "median_gross_profit_margin": 19.59,
+            "median_return_on_capital_employed": 10.61,
+            "median_interest_coverage_ratio": 2.86,
+            "median_debt_ratio": 0.33,
+            "median_current_ratio": 1.51,
+            "median_quick_ratio": 1.07
+          }
+        ]
+      }
+    ],
+    "gst_details": [
+      {
+        "gstin": "27AAGCC6725K1ZD",
+        "status": "Active",
+        "company_name": "CONTINUITY PRINTERS PRIVATE LIMITED",
+        "trade_name": "M/s CONTINUITY PRINTERS PRIVATE LIMITED",
+        "state": "Maharashtra",
+        "state_jurisdiction": "BHIWANDI_601",
+        "centre_jurisdiction": "RANGE-I",
+        "date_of_registration": "2017-07-01",
+        "taxpayer_type": "Regular",
+        "nature_of_business_activities": "Export | Factory / Manufacturing | Office / Sale Office | Retail Business | Warehouse / Depot | Wholesale Business | Works Contract | Others",
+        "filing_timeliness": "Filed on Time",
+        "filings": [
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2026-01-20",
+            "filing_due_date": "2026-01-20",
+            "financial_year": "2025-2026",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2026-01-09",
+            "filing_due_date": "2026-01-11",
+            "financial_year": "2025-2026",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-12-19",
+            "filing_due_date": "2025-12-20",
+            "financial_year": "2025-2026",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-12-11",
+            "filing_due_date": "2025-12-11",
+            "financial_year": "2025-2026",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-11-19",
+            "filing_due_date": "2025-11-20",
+            "financial_year": "2025-2026",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-11-11",
+            "filing_due_date": "2025-11-11",
+            "financial_year": "2025-2026",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-10-20",
+            "filing_due_date": "2025-10-25",
+            "financial_year": "2025-2026",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-10-10",
+            "filing_due_date": "2025-10-11",
+            "financial_year": "2025-2026",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-09-19",
+            "filing_due_date": "2025-09-20",
+            "financial_year": "2025-2026",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-09-10",
+            "filing_due_date": "2025-09-11",
+            "financial_year": "2025-2026",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-08-20",
+            "filing_due_date": "2025-08-20",
+            "financial_year": "2025-2026",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-08-11",
+            "filing_due_date": "2025-08-11",
+            "financial_year": "2025-2026",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-07-19",
+            "filing_due_date": "2025-07-20",
+            "financial_year": "2025-2026",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-07-09",
+            "filing_due_date": "2025-07-11",
+            "financial_year": "2025-2026",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-06-20",
+            "filing_due_date": "2025-06-20",
+            "financial_year": "2025-2026",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-06-10",
+            "filing_due_date": "2025-06-11",
+            "financial_year": "2025-2026",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-05-20",
+            "filing_due_date": "2025-05-20",
+            "financial_year": "2025-2026",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-05-09",
+            "filing_due_date": "2025-05-11",
+            "financial_year": "2025-2026",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-04-19",
+            "filing_due_date": "2025-04-20",
+            "financial_year": "2024-2025",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-04-10",
+            "filing_due_date": "2025-04-11",
+            "financial_year": "2024-2025",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-03-20",
+            "filing_due_date": "2025-03-20",
+            "financial_year": "2024-2025",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-03-07",
+            "filing_due_date": "2025-03-11",
+            "financial_year": "2024-2025",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-02-20",
+            "filing_due_date": "2025-02-20",
+            "financial_year": "2024-2025",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-02-06",
+            "filing_due_date": "2025-02-11",
+            "financial_year": "2024-2025",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2025-01-23",
+            "filing_due_date": "2025-01-22",
+            "financial_year": "2024-2025",
+            "tax_period": "December",
+            "status": "Delayed",
+            "filing_timeliness": "Filed After Due Date"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2025-01-06",
+            "filing_due_date": "2025-01-13",
+            "financial_year": "2024-2025",
+            "tax_period": "December",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-12-20",
+            "filing_due_date": "2024-12-20",
+            "financial_year": "2024-2025",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-12-06",
+            "filing_due_date": "2024-12-11",
+            "financial_year": "2024-2025",
+            "tax_period": "November",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-11-20",
+            "filing_due_date": "2024-11-20",
+            "financial_year": "2024-2025",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-11-08",
+            "filing_due_date": "2024-11-11",
+            "financial_year": "2024-2025",
+            "tax_period": "October",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-10-19",
+            "filing_due_date": "2024-10-20",
+            "financial_year": "2024-2025",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-10-08",
+            "filing_due_date": "2024-10-11",
+            "financial_year": "2024-2025",
+            "tax_period": "September",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-09-19",
+            "filing_due_date": "2024-09-20",
+            "financial_year": "2024-2025",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-09-09",
+            "filing_due_date": "2024-09-11",
+            "financial_year": "2024-2025",
+            "tax_period": "August",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-08-20",
+            "filing_due_date": "2024-08-20",
+            "financial_year": "2024-2025",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-08-09",
+            "filing_due_date": "2024-08-11",
+            "financial_year": "2024-2025",
+            "tax_period": "July",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-07-20",
+            "filing_due_date": "2024-07-20",
+            "financial_year": "2024-2025",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-07-09",
+            "filing_due_date": "2024-07-11",
+            "financial_year": "2024-2025",
+            "tax_period": "June",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-06-19",
+            "filing_due_date": "2024-06-20",
+            "financial_year": "2024-2025",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-06-06",
+            "filing_due_date": "2024-06-11",
+            "financial_year": "2024-2025",
+            "tax_period": "May",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-05-20",
+            "filing_due_date": "2024-05-20",
+            "financial_year": "2024-2025",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-05-06",
+            "filing_due_date": "2024-05-11",
+            "financial_year": "2024-2025",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-04-18",
+            "filing_due_date": "2024-04-20",
+            "financial_year": "2023-2024",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-04-08",
+            "filing_due_date": "2024-04-11",
+            "financial_year": "2023-2024",
+            "tax_period": "March",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-03-19",
+            "filing_due_date": "2024-03-20",
+            "financial_year": "2023-2024",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-03-05",
+            "filing_due_date": "2024-03-11",
+            "financial_year": "2023-2024",
+            "tax_period": "February",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2024-02-17",
+            "filing_due_date": "2024-02-20",
+            "financial_year": "2023-2024",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR1",
+            "date_of_filing": "2024-02-10",
+            "filing_due_date": "2024-02-11",
+            "financial_year": "2023-2024",
+            "tax_period": "January",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          },
+          {
+            "return_type": "GSTR9",
+            "date_of_filing": "2025-12-26",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR9C",
+            "date_of_filing": "2025-12-26",
+            "filing_due_date": null,
+            "financial_year": "2024-2025",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR9",
+            "date_of_filing": "2024-12-23",
+            "filing_due_date": null,
+            "financial_year": "2023-2024",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          },
+          {
+            "return_type": "GSTR9C",
+            "date_of_filing": "2024-12-23",
+            "filing_due_date": null,
+            "financial_year": "2023-2024",
+            "tax_period": "Annual",
+            "status": "Filed",
+            "filing_timeliness": "Filed"
+          }
+        ]
+      }
+    ],
+    "struckoff248_details": {
+      "struck_off_status": "As per our records, this corporate name was never removed under section 248(5) by ROC",
+      "restored_status": null
+    },
+    "msme_supplier_payment_delays": {
+      "trend": [
+        {
+          "period": "October 2021 to March 2022",
+          "amount": 498896
+        },
+        {
+          "period": "April 2022 to September 2022",
+          "amount": 6871877
+        },
+        {
+          "period": "October 2022 to March 2023",
+          "amount": 4303720
+        },
+        {
+          "period": "April 2023 to September 2023",
+          "amount": 3773089
+        },
+        {
+          "period": "April 2025 to September 2025",
+          "amount": 2661841
+        }
+      ],
+      "delays_for_period": {
+        "latest_period": "April 2025 to September 2025",
+        "total_amount_due_for_period": 2661841,
+        "delays": [
+          {
+            "supplier_name": "ADARSH PAPER MART",
+            "supplier_pan": "ABYFA0088M",
+            "amount_due": 234518,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "AUM ENTERPR ISES",
+            "supplier_pan": "ABUFA0198E",
+            "amount_due": 126679,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "STOOSA",
+            "supplier_pan": "AAAPI3275M",
+            "amount_due": 115442,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "ASHOK PUNCH ARTS PVT LTD",
+            "supplier_pan": "AAOCA0511H",
+            "amount_due": 65163,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "SAMBHA V PAPERS LLP",
+            "supplier_pan": "AETFS8756G",
+            "amount_due": 849581,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "KANAN GRAPHIC S PVT LTD",
+            "supplier_pan": "AABCK5850G",
+            "amount_due": 178534,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "SIA POLYFIL MS LLP",
+            "supplier_pan": "ACHFS6307F",
+            "amount_due": 827498,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "DESFOR M LLP",
+            "supplier_pan": "AASFD7008B",
+            "amount_due": 222673,
+            "amount_due_from_date": null
+          },
+          {
+            "supplier_name": "SUPER SERVICES",
+            "supplier_pan": "AEAFS8209R",
+            "amount_due": 41753,
+            "amount_due_from_date": null
+          }
+        ]
+      }
+    },
+    "legal_cases_of_financial_disputes": [],
+    "probe_financial_score": {
+      "overall_financial_score": 4,
+      "growth_score": 5,
+      "profitability_score": 4,
+      "liquidity_score": 2,
+      "solvency_score": 3,
+      "efficiency_score": 5
+    },
+    "key_indicators": {
+      "revenue": "Between 5 and 50 cr.",
+      "profit": "Between 1 and 5 cr.",
+      "employee_count": "Between 101 and 500",
+      "pending_cases_filed_against_this_corporate": false,
+      "bureau_defaults": false,
+      "gst_filing_delay": false,
+      "epf_payment_delay": true,
+      "severe_pending_cases_filed_against_this_corporate": false,
+      "credit_rating": null
+    },
+    "filing_dates": {
+      "aoc_4": {
+        "financial_year": "2025-03-31",
+        "filing_date": "2025-11-15"
+      },
+      "mgt_7": {
+        "financial_year": "2025-03-31",
+        "filing_date": "2025-11-17"
+      }
+    }
+  }
+}

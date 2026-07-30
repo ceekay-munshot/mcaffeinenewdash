@@ -8343,6 +8343,20 @@
           "Pilgrim",
           "Mamaearth"
         ]
+      },
+      "probe": {
+        "receivableDays": 10.51,
+        "payableDays": 29.02,
+        "cashConversionCycleDays": -10.62,
+        "roce": 22.23,
+        "roe": 97.59,
+        "ebitdaMargin": 5.69,
+        "netMargin": 2.61,
+        "peerMedianPayableDays": 49.82,
+        "peerMedianReceivableDays": 49.379999999999995,
+        "creditRating": null,
+        "profitabilityScore": 5,
+        "fetchedAt": "2026-07-30T19:59:26.804Z"
       }
     },
     {
@@ -9329,6 +9343,20 @@
           "founders": []
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 52.86,
+        "payableDays": 118.47,
+        "cashConversionCycleDays": 27.71,
+        "roce": 1.32,
+        "roe": 94.2,
+        "ebitdaMargin": 15.18,
+        "netMargin": -6.41,
+        "peerMedianPayableDays": 49.435,
+        "peerMedianReceivableDays": 65.97999999999999,
+        "creditRating": null,
+        "profitabilityScore": 3,
+        "fetchedAt": "2026-07-30T19:59:28.095Z"
       }
     },
     {
@@ -11961,6 +11989,20 @@
           ]
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 79.06,
+        "payableDays": 48.4,
+        "cashConversionCycleDays": 59.85,
+        "roce": 8.53,
+        "roe": 29.82,
+        "ebitdaMargin": 10.33,
+        "netMargin": 3.49,
+        "peerMedianPayableDays": 40.32,
+        "peerMedianReceivableDays": 62.86,
+        "creditRating": null,
+        "profitabilityScore": 4,
+        "fetchedAt": "2026-07-30T19:59:29.611Z"
       }
     },
     {
@@ -13348,6 +13390,20 @@
           "founders": []
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 89.04,
+        "payableDays": 40.31,
+        "cashConversionCycleDays": 57.93,
+        "roce": 7.24,
+        "roe": 4.91,
+        "ebitdaMargin": 8.64,
+        "netMargin": 1.55,
+        "peerMedianPayableDays": 41.005,
+        "peerMedianReceivableDays": 61.535,
+        "creditRating": "B (Stable/Issuer Not Cooperating/Revised from B+)",
+        "profitabilityScore": 3,
+        "fetchedAt": "2026-07-30T19:59:31.146Z"
       }
     },
     {
@@ -14707,6 +14763,20 @@
           "founders": []
         },
         "competitors": []
+      },
+      "probe": {
+        "receivableDays": 70.48,
+        "payableDays": 15.93,
+        "cashConversionCycleDays": 86.71,
+        "roce": -2.7,
+        "roe": -2.83,
+        "ebitdaMargin": 7.38,
+        "netMargin": -6.95,
+        "peerMedianPayableDays": 34.7,
+        "peerMedianReceivableDays": 50.44,
+        "creditRating": null,
+        "profitabilityScore": 3,
+        "fetchedAt": "2026-07-30T19:59:32.832Z"
       }
     },
     {
@@ -16946,5 +17016,5 @@
       }
     }
   ],
-  "probeEnrichedCount": 19
+  "probeEnrichedCount": 24
 }
