@@ -5,6 +5,16 @@
 import { useState } from "react";
 import { INK } from "./lib/palette";
 
+/* ---- Table kit — ONE look for every table in the dashboard ------------------
+   Rules, applied everywhere: the header row is larger than the body, bold,
+   coloured and set on a tinted band; body text sits at a comfortable reading
+   size; figures use tabular-nums in the normal sans face. (Numbers used to be
+   set in a typewriter mono, which read as code rather than as money.) */
+export const TBL = "w-full border-collapse text-[15px] text-slate-700";
+export const THEAD = "border-b-2 border-teal-200/70 bg-teal-50/70 text-left text-[13px] font-extrabold uppercase tracking-wide text-teal-800";
+export const TD = "px-4 py-3.5 align-middle";
+export const TDNUM = "whitespace-nowrap px-4 py-3.5 text-right tabular-nums";
+
 export interface Slice {
   label: string;
   value: number;

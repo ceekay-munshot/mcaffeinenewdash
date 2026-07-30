@@ -3,7 +3,7 @@
 // The lever engine's output leads; every historical number is a trend.
 import { Fragment, useMemo, useState } from "react";
 import type { Entity } from "./types";
-import { AreaLine, HBars, Donut, MultiLine, Card, type Slice } from "./charts";
+import { AreaLine, HBars, Donut, MultiLine, Card, TBL, THEAD, type Slice } from "./charts";
 import { TEAL } from "./lib/palette";
 import { fullName, titleCase } from "./lib/format";
 import { newsOf, type SupplierNews } from "./news";
@@ -677,7 +677,7 @@ function FinTable({ fin }: { fin: FinRow[] }) {
   };
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[760px] border-collapse text-sm">
+      <table className={`${TBL} min-w-[760px]`}>
         <thead>
           <tr className="text-left">
             <th className="sticky left-0 z-10 bg-white px-3 py-2 text-xs font-bold uppercase tracking-wider text-slate-500">Metric</th>
@@ -691,7 +691,7 @@ function FinTable({ fin }: { fin: FinRow[] }) {
               {sec.rows.map((r) => (
                 <tr key={r.label} className="border-t border-slate-100 hover:bg-slate-50/70">
                   <td className={`sticky left-0 z-10 bg-white px-3 py-1.5 ${r.indent ? "pl-6 font-normal text-slate-500" : "font-semibold text-slate-700"}`}>{r.label}</td>
-                  {fin.map((f, i) => { const m = move(r, i); return <td key={f.fy} className={`whitespace-nowrap px-3 py-1.5 text-right font-mono tabular-nums ${m.cls}`}>{r.fmt(r.get(f))}<span className="text-[9px]">{m.arrow}</span></td>; })}
+                  {fin.map((f, i) => { const m = move(r, i); return <td key={f.fy} className={`whitespace-nowrap px-3 py-1.5 text-right tabular-nums font-medium ${m.cls}`}>{r.fmt(r.get(f))}<span className="text-[9px]">{m.arrow}</span></td>; })}
                 </tr>
               ))}
             </Fragment>
@@ -812,9 +812,9 @@ function OwnersTab({ d }: { d: Detail }) {
       <Card title="Who runs it — board & overboarding" sub={`${people.length} on the board · how many other live companies each also sits on`} accent={C.violet} className="xl:col-span-2">
         {people.length ? (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[560px] border-collapse text-sm">
+            <table className={`${TBL} min-w-[560px]`}>
               <thead>
-                <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-500">
+                <tr className={THEAD}>
                   <th className="px-3 py-2">Director</th><th className="px-3 py-2">Role</th>
                   <th className="px-3 py-2 text-center">Since</th><th className="px-3 py-2 text-center">Age</th>
                   <th className="px-3 py-2 text-center">Owns</th><th className="px-3 py-2 text-center">Other boards</th><th className="px-3 py-2">Also sits on</th>
@@ -827,9 +827,9 @@ function OwnersTab({ d }: { d: Detail }) {
                     <tr key={i} className="border-t border-slate-100 hover:bg-slate-50/70">
                       <td className="px-3 py-2 font-semibold text-slate-800">{titleCase(p.name)}</td>
                       <td className="px-3 py-2 text-slate-600">{p.designation ?? "Director"}</td>
-                      <td className="px-3 py-2 text-center font-mono text-slate-500">{p.since ?? "—"}</td>
-                      <td className="px-3 py-2 text-center font-mono text-slate-500">{p.age ? p.age : "—"}</td>
-                      <td className={`px-3 py-2 text-center font-mono ${p.ownPct ? "font-semibold text-teal-700" : "text-slate-400"}`}>{p.ownPct != null ? `${p.ownPct}%` : "—"}</td>
+                      <td className="px-3 py-2 text-center tabular-nums text-slate-500">{p.since ?? "—"}</td>
+                      <td className="px-3 py-2 text-center tabular-nums text-slate-500">{p.age ? p.age : "—"}</td>
+                      <td className={`px-3 py-2 text-center tabular-nums ${p.ownPct ? "font-semibold text-teal-700" : "text-slate-400"}`}>{p.ownPct != null ? `${p.ownPct}%` : "—"}</td>
                       <td className="px-3 py-2 text-center"><span className={`inline-block min-w-[1.75rem] rounded-full px-2 py-0.5 text-xs font-bold ${tone}`}>{p.otherCount}</span></td>
                       <td className="px-3 py-2 text-xs text-slate-500">{p.others.length ? <span title={p.others.map(titleCase).join(", ")}>{p.others.slice(0, 3).map(titleCase).join(", ")}{p.otherCount > 3 ? ` +${p.otherCount - 3} more` : ""}</span> : <span className="text-slate-300">—</span>}</td>
                     </tr>
@@ -964,14 +964,14 @@ function RiskTab({ d }: { d: Detail }) {
       <Card title={`Litigation — ${d.legal.count} case${d.legal.count !== 1 ? "s" : ""} on record`} sub={`${d.legal.high} high-severity · ${d.legal.against} filed against them`} accent={C.rose} className="lg:col-span-2 xl:col-span-3">
         {d.legal.list.length ? (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[720px] border-collapse text-sm">
-              <thead><tr className="border-b border-slate-200 text-left text-xs font-bold uppercase tracking-wider text-slate-500"><th className="px-3 py-2">Severity</th><th className="px-3 py-2">Counterparty</th><th className="px-3 py-2">Court</th><th className="px-3 py-2">Type</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Date</th></tr></thead>
+            <table className={`${TBL} min-w-[720px]`}>
+              <thead><tr className={THEAD}><th className="px-3 py-2">Severity</th><th className="px-3 py-2">Counterparty</th><th className="px-3 py-2">Court</th><th className="px-3 py-2">Type</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Date</th></tr></thead>
               <tbody>{d.legal.list.map((c, i) => (
                 <tr key={i} className="border-t border-slate-100">
                   <td className="px-3 py-1.5"><span className={`rounded-md px-1.5 py-0.5 text-xs font-medium ${c.severity === "high" ? "bg-rose-100 text-rose-700" : c.severity === "medium" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-600"}`}>{c.severity}</span></td>
                   <td className="max-w-[220px] truncate px-3 py-1.5 text-slate-700" title={c.counterparty}>{c.counterparty || "—"}</td>
                   <td className="max-w-[200px] truncate px-3 py-1.5 text-slate-500" title={c.court}>{c.court}</td>
-                  <td className="px-3 py-1.5 text-slate-500">{c.type}</td><td className="px-3 py-1.5 text-slate-500">{c.status}</td><td className="whitespace-nowrap px-3 py-1.5 font-mono text-slate-500">{c.date}</td>
+                  <td className="px-3 py-1.5 text-slate-500">{c.type}</td><td className="px-3 py-1.5 text-slate-500">{c.status}</td><td className="whitespace-nowrap px-3 py-1.5 tabular-nums text-slate-500">{c.date}</td>
                 </tr>
               ))}</tbody>
             </table>
@@ -1078,13 +1078,13 @@ export function ProbeCompare({ entities }: { entities: { cin?: string | null; br
       </div>
       <Card title="Side by side" sub="latest year · green = best of the group" accent={TEAL}>
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[560px] border-collapse text-sm">
+          <table className={`${TBL} min-w-[560px]`}>
             <thead><tr className="border-b border-slate-200 text-left"><th className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-slate-500">Metric</th>{cos.map((c, i) => <th key={i} className="px-3 py-2 text-right" title={fullName(c.d.legalName, c.brand)}><span className="inline-flex items-center gap-1.5 font-semibold text-slate-800"><span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: col(i) }} />{c.brand}</span></th>)}</tr></thead>
             <tbody>
               {rows.map((r) => { const bi = bestIdx(r); return (
                 <tr key={r.label} className="border-t border-slate-100">
                   <td className="px-3 py-1.5 font-medium text-slate-600">{r.label}</td>
-                  {cos.map((c, i) => <td key={i} className={`px-3 py-1.5 text-right font-mono tabular-nums ${i === bi ? "rounded bg-emerald-50 font-bold text-emerald-700" : "text-slate-800"}`}>{r.fmt(r.get(c.d))}</td>)}
+                  {cos.map((c, i) => <td key={i} className={`px-3 py-1.5 text-right tabular-nums font-medium ${i === bi ? "rounded bg-emerald-50 font-bold text-emerald-700" : "text-slate-800"}`}>{r.fmt(r.get(c.d))}</td>)}
                 </tr>
               ); })}
             </tbody>

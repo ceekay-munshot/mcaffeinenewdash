@@ -11,7 +11,7 @@ import {
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore, fullName } from "./lib/format";
 import { negotiationRoom } from "./lib/health";
 import { CATEGORY_COLOR } from "./lib/palette";
-import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, type Slice } from "./charts";
+import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, TBL, THEAD, TDNUM, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import { RM_SUPPLY, PM_SUPPLY, suppliedItems } from "./supply";
 import { newsOf, type SupplierNews, type Signal, type NewsItem } from "./news";
@@ -354,16 +354,19 @@ const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
 ];
 
 /* ---- L3 · mcAFFEINE's own rates vs the market band + the supplier's room ----
-   Paste a simple supplier-wise list. Each line is matched to (a) the open-market
-   price band we hold and (b) that supplier's financial health + top lever, so you
-   see where you're overpaying AND how much room their own numbers give you. Live:
-   edit the list, everything recomputes. Ships with dummy values for the demo. */
-const L3_SAMPLE = `Uvinul MC 80, ValueTree, 780, 4000
-Cetiol C5, Northern Aromatics, 1650, 5000
-Tinosorb A2B, Yasham, 3400, 800
-Cosroma EAA, Ark Chemicals, 17500, 400
-Repoly 100, Caldic, 300, 12000
-Niacinamide, nirmaancosmetic, 950, 3000`;
+   The buyer types one number per line they buy — nothing else. Each rate is
+   checked against (a) the open-market band we hold for that material and (b) the
+   supplier's own financial room, so the output is both "you're overpaying" and
+   "here's the leverage to fix it". Ships pre-filled for the demo. */
+type L3Line = { item: string; supplier: string; rate: number; qtyKg: number };
+const L3_LINES: L3Line[] = [
+  { item: "Uvinul MC 80", supplier: "ValueTree", rate: 780, qtyKg: 4000 },
+  { item: "Cetiol C5", supplier: "Northern Aromatics", rate: 1650, qtyKg: 5000 },
+  { item: "Tinosorb A2B", supplier: "Yasham", rate: 3400, qtyKg: 800 },
+  { item: "Cosroma EAA", supplier: "Ark Chemicals", rate: 17500, qtyKg: 400 },
+  { item: "Repoly 100", supplier: "Caldic", rate: 300, qtyKg: 12000 },
+  { item: "Niacinamide", supplier: "nirmaancosmetic", rate: 950, qtyKg: 3000 },
+];
 function l3Band(s?: string): { min: number; max: number; mid: number } | null {
   if (!s || /not found/i.test(s)) return null;
   const nums = (s.replace(/,/g, "").match(/\d+(?:\.\d+)?/g) || []).map(Number);
@@ -373,76 +376,172 @@ function l3Band(s?: string): { min: number; max: number; mid: number } | null {
 }
 const l3Norm = (s: string) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 const l3Money = (rs: number) => (rs >= 1e7 ? `₹${(rs / 1e7).toFixed(2)} Cr` : `₹${(rs / 1e5).toFixed(1)} L`);
+
+// The steps the progress panel walks through. Purely presentational, but each
+// line names something the engine genuinely does, so the wait explains itself.
+const L3_STEPS = [
+  "Reading your rate card…",
+  "Matching each material to its open-market band…",
+  "Pulling each supplier's latest filed financials…",
+  "Scoring the room in their margins, cash and terms…",
+  "Costing the gap against your annual volume…",
+];
+
 function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const [text, setText] = useState(L3_SAMPLE);
+  const [lines, setLines] = useState<L3Line[]>(L3_LINES);
+  const [phase, setPhase] = useState<"input" | "running" | "done">("input");
+  const [step, setStep] = useState(0);
+  const [leversFor, setLeversFor] = useState<Entity | null>(null);
   const items = useMemo(() => allMarket(), []);
-  const rows = useMemo(() => text.split("\n").map((l) => l.trim()).filter(Boolean).map((line) => {
-    const [item = "", supplier = "", rateS = "", qtyS = ""] = line.split(",").map((x) => x.trim());
-    const rate = Number(rateS.replace(/[^0-9.]/g, "")) || null;
-    const qty = Number(qtyS.replace(/[^0-9.]/g, "")) || null;
-    const mk = marketOf(item) || items.find((m) => l3Norm(m.item) === l3Norm(item)) || items.find((m) => item && (l3Norm(m.item).includes(l3Norm(item)) || l3Norm(item).includes(l3Norm(m.item))));
+
+  // Walk the progress steps, then reveal. Cleaned up on unmount so a mid-run
+  // navigation can't leave timers firing into a dead component.
+  useEffect(() => {
+    if (phase !== "running") return;
+    const per = 1200;
+    const timers = L3_STEPS.map((_, i) => window.setTimeout(() => setStep(i), i * per));
+    const done = window.setTimeout(() => setPhase("done"), L3_STEPS.length * per + 600);
+    return () => { timers.forEach(clearTimeout); clearTimeout(done); };
+  }, [phase]);
+
+  const setRate = (i: number, v: number) =>
+    setLines((ls) => ls.map((l, j) => (j === i ? { ...l, rate: Math.max(0, Math.round(v)) } : l)));
+
+  const rows = useMemo(() => lines.map((l) => {
+    const mk = marketOf(l.item)
+      || items.find((m) => l3Norm(m.item) === l3Norm(l.item))
+      || items.find((m) => l.item && (l3Norm(m.item).includes(l3Norm(l.item)) || l3Norm(l.item).includes(l3Norm(m.item))));
     const band = l3Band(mk?.priceINRPerKg);
-    const ent = supplier ? (all.find((e) => l3Norm(e.brand) === l3Norm(supplier) || (e.folder || "").toLowerCase() === supplier.toLowerCase()) || all.find((e) => l3Norm(e.brand).includes(l3Norm(supplier)) || l3Norm(supplier).includes(l3Norm(e.brand)) || (!!e.legalName && l3Norm(e.legalName).includes(l3Norm(supplier))))) : undefined;
+    const ent = all.find((e) => l3Norm(e.brand) === l3Norm(l.supplier) || (e.folder || "").toLowerCase() === l.supplier.toLowerCase())
+      || all.find((e) => l3Norm(e.brand).includes(l3Norm(l.supplier)) || l3Norm(l.supplier).includes(l3Norm(e.brand)) || (!!e.legalName && l3Norm(e.legalName).includes(l3Norm(l.supplier))));
     const health = ent ? supplierHealth(ent.cin) : null;
-    const topOpp = ent ? probeLevers(ent.cin).find((l) => l.tone === "opportunity") : undefined;
-    const gap = band && rate != null ? rate - band.mid : null; // +ve = above the market midpoint
-    const savingRs = gap != null && gap > 0 && qty ? gap * qty : 0;
-    return { item, supplier, rate, qty, band, ent, health, topOpp, gap, savingRs };
-  }), [text, all, items]);
+    const gap = band ? l.rate - band.mid : null;         // +ve = above the market midpoint
+    const savingRs = gap != null && gap > 0 ? gap * l.qtyKg : 0;
+    return { ...l, band, ent, health, gap, savingRs };
+  }), [lines, all, items]);
+
   const totalRs = rows.reduce((s, r) => s + r.savingRs, 0);
-  const priced = rows.filter((r) => r.band && r.rate != null);
+  const priced = rows.filter((r) => r.band);
   const overCount = priced.filter((r) => (r.gap ?? 0) > 0).length;
   const month = new Date().toLocaleDateString("en-IN", { month: "long", year: "numeric" });
   const hdot = (h: number) => (h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700");
+
   return (
     <div className="space-y-4">
       <div className="rounded-3xl bg-gradient-to-br from-[#0b3b39] via-[#0d9488] to-[#0891b2] p-5 text-white shadow-lg">
-        <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="min-w-0">
-            <div className="text-lg font-bold">💰 Rate benchmark — your price vs the market & the supplier's room</div>
-            <div className="mt-1 max-w-2xl text-sm text-white/80">Drop in what you actually pay. Each line is checked against the open-market band <em>and</em> that supplier's own financials — so you see where you're overpaying and how much give their numbers hand you.</div>
+            <div className="text-xl font-bold">💰 Rate benchmark</div>
+            <div className="mt-1 max-w-2xl text-sm text-white/80">Enter what you pay per kg. We check it against the open market <em>and</em> that supplier's own financials.</div>
           </div>
-          <div className="shrink-0 rounded-2xl bg-white/12 px-4 py-2.5 text-right ring-1 ring-white/20">
-            <div className="text-[10px] font-medium uppercase tracking-wide text-teal-50">Potential annual saving</div>
-            <div className="text-2xl font-bold tabular-nums">{l3Money(totalRs)}</div>
-            <div className="text-[11px] text-white/70">{overCount} of {priced.length} lines above market</div>
-          </div>
-        </div>
-      </div>
-      <div className="grid gap-4 lg:grid-cols-3">
-        <Card title="Your rates" sub={`sample data · as of ${month} — swap in live numbers`} accent="#0891b2">
-          <textarea value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} rows={9} className="w-full resize-y rounded-lg bg-slate-50 p-2.5 font-mono text-xs text-slate-800 ring-1 ring-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-400" />
-          <p className="mt-2 text-[11px] leading-relaxed text-slate-400">One line per buy: <span className="font-mono text-slate-500">ingredient, supplier, your ₹/kg, yearly kg</span>. Edit above — the table recomputes instantly.</p>
-        </Card>
-        <div className="lg:col-span-2">
-          <Card title="Where you stand" sub="your rate vs the market midpoint · green = at/under market · red = overpaying" accent="#0d9488">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[840px] border-collapse text-sm">
-                <thead><tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-600">
-                  <Th>Ingredient</Th><Th>Supplier</Th><Th right>Your ₹/kg</Th><Th right>Market band</Th><Th right>Gap</Th><Th right>Saving/yr</Th><Th>Their room (from their financials)</Th>
-                </tr></thead>
-                <tbody>
-                  {rows.map((r, i) => {
-                    const isOver = (r.gap ?? 0) > 0;
-                    return (
-                      <tr key={i} className="border-t border-slate-100 align-top hover:bg-slate-50/60">
-                        <td className="px-4 py-2.5 font-semibold leading-snug text-slate-900">{r.item || "—"}{!r.band && <div className="text-[10px] font-normal text-amber-600">no market band on file</div>}</td>
-                        <td className="px-4 py-2.5">{r.ent ? <button onClick={() => onSelect(r.ent!)} className="inline-flex items-start gap-1.5 text-left font-medium text-teal-700 hover:underline"><span className="mt-0.5 shrink-0">{catEmoji(r.ent.category)}</span><span className="leading-snug">{fullName(r.ent.legalName, r.ent.brand)}{r.health != null && <span className={`ml-1 rounded px-1.5 align-middle text-[10px] font-bold ${hdot(r.health)}`}>{r.health}</span>}</span></button> : <span className="text-slate-500">{r.supplier || "—"}</span>}</td>
-                        <td className="whitespace-nowrap px-4 py-2.5 text-right font-mono text-slate-900">{r.rate != null ? `₹${r.rate}` : "—"}</td>
-                        <td className="whitespace-nowrap px-4 py-2.5 text-right font-mono text-slate-500">{r.band ? (r.band.min === r.band.max ? `₹${r.band.min}` : `₹${r.band.min}–${r.band.max}`) : "—"}</td>
-                        <td className={`whitespace-nowrap px-4 py-2.5 text-right font-mono font-semibold ${r.gap == null ? "text-slate-400" : isOver ? "text-rose-600" : "text-emerald-600"}`}>{r.gap == null ? "—" : `${isOver ? "+" : ""}₹${Math.round(r.gap)}`}</td>
-                        <td className={`whitespace-nowrap px-4 py-2.5 text-right font-mono font-semibold ${r.savingRs > 0 ? "text-rose-600" : "text-slate-400"}`}>{r.savingRs > 0 ? l3Money(r.savingRs) : "—"}</td>
-                        <td className="px-4 py-2.5 text-xs text-slate-500">{r.topOpp ? <span title={r.topOpp.detail}>💡 {r.topOpp.title}</span> : r.ent ? <span className="text-slate-400">healthy — no obvious lever</span> : <span className="text-slate-400">not a tracked supplier</span>}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+          {phase === "done" && (
+            <div className="shrink-0 rounded-2xl bg-white/12 px-5 py-3 text-right ring-1 ring-white/25">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-teal-50">Potential annual saving</div>
+              <div className="text-3xl font-bold tabular-nums">{l3Money(totalRs)}</div>
+              <div className="text-xs text-white/75">{overCount} of {priced.length} lines above market · as of {month}</div>
             </div>
-            <p className="mt-2 px-1 text-[11px] text-slate-400">Saving/yr = (your rate − market midpoint) × yearly kg. Click a supplier for its full deep-dive.</p>
-          </Card>
+          )}
         </div>
       </div>
+
+      {/* ---- rate card: one row per material, a stepper on each ---- */}
+      <Card title="Your rate card" sub="tap − / + to adjust by ₹10, or type the rate directly" accent="#0891b2">
+        <div className="grid gap-2.5 md:grid-cols-2">
+          {lines.map((l, i) => (
+            <div key={l.item} className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-[15px] font-bold text-slate-900" title={l.item}>{l.item}</div>
+                <div className="truncate text-xs text-slate-500">{l.supplier} · {l.qtyKg.toLocaleString("en-IN")} kg/yr</div>
+              </div>
+              <div className="flex shrink-0 items-center gap-1.5">
+                <button onClick={() => setRate(i, l.rate - 10)} aria-label={`Reduce ${l.item} by 10`}
+                  className="h-9 w-9 rounded-lg bg-white text-lg font-bold text-slate-600 ring-1 ring-slate-300 transition hover:bg-rose-50 hover:text-rose-600 hover:ring-rose-300">−</button>
+                <div className="flex items-center rounded-lg bg-white px-2 ring-1 ring-slate-300 focus-within:ring-2 focus-within:ring-teal-400">
+                  <span className="text-sm text-slate-400">₹</span>
+                  <input type="number" value={l.rate} onChange={(e) => setRate(i, Number(e.target.value))}
+                    className="w-20 bg-transparent py-1.5 text-right text-[15px] font-bold tabular-nums text-slate-900 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none" />
+                  <span className="pl-1 text-xs text-slate-400">/kg</span>
+                </div>
+                <button onClick={() => setRate(i, l.rate + 10)} aria-label={`Increase ${l.item} by 10`}
+                  className="h-9 w-9 rounded-lg bg-white text-lg font-bold text-slate-600 ring-1 ring-slate-300 transition hover:bg-emerald-50 hover:text-emerald-600 hover:ring-emerald-300">+</button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <button onClick={() => { setStep(0); setPhase("running"); }} disabled={phase === "running"}
+            className="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-5 py-2.5 text-[15px] font-bold text-white shadow-sm transition hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-60">
+            {phase === "running" ? "Calculating…" : phase === "done" ? "↻ Recalculate" : "Calculate savings →"}
+          </button>
+          {phase === "done" && <span className="text-sm text-slate-500">Change any rate above and recalculate.</span>}
+        </div>
+      </Card>
+
+      {/* ---- progress: names a real step of the engine at each tick ---- */}
+      {phase === "running" && (
+        <Card title="Benchmarking your rates" sub="checking each line against the market and the supplier's filings" accent="#0d9488">
+          <div className="py-2">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
+              <div className="h-2 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 transition-all duration-700 ease-out"
+                style={{ width: `${((step + 1) / L3_STEPS.length) * 100}%` }} />
+            </div>
+            <ul className="mt-4 space-y-2">
+              {L3_STEPS.map((t, i) => (
+                <li key={t} className={`flex items-center gap-2.5 text-sm transition-colors ${i < step ? "text-slate-400" : i === step ? "font-semibold text-slate-800" : "text-slate-300"}`}>
+                  <span className={`grid h-5 w-5 shrink-0 place-items-center rounded-full text-[11px] ${i < step ? "bg-emerald-100 text-emerald-600" : i === step ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-400"}`}>
+                    {i < step ? "✓" : i + 1}
+                  </span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Card>
+      )}
+
+      {/* ---- results ---- */}
+      {phase === "done" && (
+        <Card title="Where you stand" sub="your rate vs the market midpoint · green = at or under market · red = overpaying" accent="#0d9488">
+          <div className="overflow-x-auto">
+            <table className={`${TBL} min-w-[900px]`}>
+              <thead><tr className={THEAD}>
+                <Th>Ingredient</Th><Th>Supplier</Th><Th right>Your ₹/kg</Th><Th right>Market band</Th><Th right>Gap</Th><Th right>Saving/yr</Th><Th center>Their room</Th>
+              </tr></thead>
+              <tbody>
+                {rows.map((r) => {
+                  const isOver = (r.gap ?? 0) > 0;
+                  return (
+                    <tr key={r.item} className="border-t border-slate-100 align-middle hover:bg-slate-50/60">
+                      <td className="px-4 py-3.5">
+                        <div className="font-bold leading-snug text-slate-900">{r.item}</div>
+                        {!r.band && <div className="text-xs font-medium text-amber-600">no market band on file</div>}
+                      </td>
+                      <td className="px-4 py-3.5">
+                        {r.ent ? (
+                          <button onClick={() => onSelect(r.ent!)} className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline">
+                            <span className="mt-0.5 shrink-0">{catEmoji(r.ent.category)}</span>
+                            <span className="leading-snug">{fullName(r.ent.legalName, r.ent.brand)}
+                              {r.health != null && <span className={`ml-1 rounded px-1.5 align-middle text-[11px] font-extrabold ${hdot(r.health)}`}>{r.health}</span>}
+                            </span>
+                          </button>
+                        ) : <span className="text-slate-500">{r.supplier}</span>}
+                      </td>
+                      <td className={`${TDNUM} font-bold text-slate-900`}>₹{r.rate.toLocaleString("en-IN")}</td>
+                      <td className={`${TDNUM} text-slate-500`}>{r.band ? (r.band.min === r.band.max ? `₹${r.band.min}` : `₹${r.band.min}–${r.band.max}`) : "—"}</td>
+                      <td className={`${TDNUM} font-bold ${r.gap == null ? "text-slate-400" : isOver ? "text-rose-600" : "text-emerald-600"}`}>{r.gap == null ? "—" : `${isOver ? "+" : ""}₹${Math.round(r.gap).toLocaleString("en-IN")}`}</td>
+                      <td className={`${TDNUM} font-bold ${r.savingRs > 0 ? "text-rose-600" : "text-slate-400"}`}>{r.savingRs > 0 ? l3Money(r.savingRs) : "—"}</td>
+                      <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={r.ent} onOpen={setLeversFor} /></td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 px-1 text-xs text-slate-400">Saving/yr = (your rate − market midpoint) × yearly kg.</p>
+        </Card>
+      )}
+
+      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
     </div>
   );
 }
@@ -619,6 +718,7 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const rmVendorCount = useMemo(() => all.filter((e) => e.category === "RM Vendor").length, [all]);
   const pmVendorCount = useMemo(() => all.filter((e) => e.category === "PM Vendor").length, [all]);
+  const [leversFor, setLeversFor] = useState<Entity | null>(null);
 
   const Section = ({ title, emoji, accent, itemHead, rows, poolNote }: {
     title: string; emoji: string; accent: string; itemHead?: string;
@@ -626,34 +726,23 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
   }) => (
     <Card title={`${emoji} ${title}`} sub={poolNote} accent={accent}>
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[820px] border-collapse text-sm">
+        <table className={`${TBL} min-w-[820px]`}>
           <thead>
-            <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
-              {itemHead && <Th>{itemHead}</Th>}<Th>{itemHead ? "Current vendor" : "Company"}</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th>Negotiation levers</Th>
+            <tr className={THEAD}>
+              {itemHead && <Th>{itemHead}</Th>}<Th>{itemHead ? "Current vendor" : "Company"}</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th center>Levers</Th>
             </tr>
           </thead>
           <tbody>
             {rows.map(({ item, folder }) => {
               const e = byFolder.get(folder);
-              const ins = e ? supplierInsights(e) : [];
-              const levers = leverTagsOf(ins);
-              // don't show only "negotiate" chips for a weakening vendor — flag caution too
-              const caution = ins.find((i) => i.title === "Protect the relationship") ?? ins.find((i) => i.tone === "risk");
               return (
                 <tr key={item ?? folder} onClick={() => e && onSelect(e)} className={`border-t border-slate-100 transition ${e ? "cursor-pointer hover:bg-teal-50/50" : ""}`}>
                   {itemHead && <td className="max-w-[280px] px-4 py-3.5"><div className="truncate font-semibold text-slate-900" title={item}>{item}</div></td>}
-                  <td className="min-w-[240px] px-4 py-3.5">{e ? <span className="flex items-start gap-1.5 font-medium text-slate-800"><span className="shrink-0 leading-relaxed">{catEmoji(e.category)}</span><span className="leading-snug">{fullName(e.legalName, e.brand)}</span></span> : <span className="text-slate-400">—</span>}</td>
-                  <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-900">{e ? fmtCrore(revOf(e)) : "—"}</td>
-                  <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{e ? fmtPct(ebitdaMarginOf(e)) : "—"}</td>
-                  <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{e ? fmtPct(supRoce(e)) : "—"}</td>
-                  <td className="px-4 py-3.5">
-                    {!caution && levers.length === 0 ? <span className="text-xs text-slate-400">—</span> : (
-                      <div className="flex flex-wrap gap-1">
-                        {caution && <span title={caution.detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-rose-50 px-1.5 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200">{caution.icon} {caution.title === "Protect the relationship" ? "Protect" : "Caution"}</span>}
-                        {levers.map(({ short, emoji, detail }) => <span key={short} title={detail} className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>)}
-                      </div>
-                    )}
-                  </td>
+                  <td className="min-w-[240px] px-4 py-3.5">{e ? <span className="flex items-start gap-1.5 font-semibold text-slate-900"><span className="shrink-0 leading-relaxed">{catEmoji(e.category)}</span><span className="leading-snug">{fullName(e.legalName, e.brand)}</span></span> : <span className="text-slate-400">not mapped</span>}</td>
+                  <td className={`${TDNUM} font-semibold text-slate-900`}>{e ? fmtCrore(revOf(e)) : "—"}</td>
+                  <td className={`${TDNUM} text-slate-600`}>{e ? fmtPct(ebitdaMarginOf(e)) : "—"}</td>
+                  <td className={`${TDNUM} text-slate-600`}>{e ? fmtPct(supRoce(e)) : "—"}</td>
+                  <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={e} onOpen={setLeversFor} /></td>
                 </tr>
               );
             })}
@@ -673,6 +762,7 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
         rows={mfRows} poolNote={`${mfRows.length} contract manufacturers tracked`} />
       <Section title="Packaging" emoji="📦" accent="#2a78d6" itemHead="Packaging item"
         rows={PM_SUPPLY} poolNote={`${PM_SUPPLY.length} key packaging items · ${pmVendorCount} PM vendors tracked`} />
+      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
     </div>
   );
 }
@@ -771,9 +861,9 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
 
       <Card title={`① Suppliers who sell ${entry.item}  ·  ② the price each offers`} sub={alts.length ? `Our current vendor vs ${alts.length} alternatives found on IndiaMART / TradeIndia — click a vendor for its full profile` : "Our current vendor for this item"} accent="#0d9488">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[880px] border-collapse text-sm">
+          <table className={`${TBL} min-w-[880px]`}>
             <thead>
-              <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
+              <tr className={THEAD}>
                 <Th>Supplier</Th><Th>Role</Th><Th>Location</Th><Th right>Market ₹/kg</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th>Note</Th>
               </tr>
             </thead>
@@ -783,10 +873,10 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
                   <td className="px-4 py-3 font-semibold leading-snug text-slate-900">⭐ {fullName(currentVendor.legalName, currentVendor.brand)}</td>
                   <td className="px-4 py-3"><span className="inline-flex rounded-md bg-teal-100 px-1.5 py-0.5 text-xs font-medium text-teal-800">Our vendor</span></td>
                   <td className="px-4 py-3 text-slate-500">{loc(currentVendor)}</td>
-                  <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-orange-700">{hasPrice ? entry.priceINRPerKg : "—"}</td>
-                  <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(currentVendor))}</td>
-                  <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(ebitdaMarginOf(currentVendor))}</td>
-                  <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtPct(supRoce(currentVendor))}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-orange-700">{hasPrice ? entry.priceINRPerKg : "—"}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-900">{fmtCrore(revOf(currentVendor))}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-600">{fmtPct(ebitdaMarginOf(currentVendor))}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-600">{fmtPct(supRoce(currentVendor))}</td>
                   <td className="px-4 py-3 text-xs text-slate-400">click for full profile →</td>
                 </tr>
               )}
@@ -797,10 +887,10 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
                     <td className="px-4 py-3 font-medium text-slate-800">{a.name}</td>
                     <td className="px-4 py-3"><span className="inline-flex rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600">Alternative</span></td>
                     <td className="px-4 py-3 text-slate-500">{a.location || "—"}</td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-orange-600">{hasPrice ? entry.priceINRPerKg : "—"}</td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{a.revenueCr != null ? crStr(a.revenueCr) : "—"}</td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{a.ebitdaPct != null ? `${a.ebitdaPct}%` : a.cin ? <span className="text-amber-600" title="Private company — pull via Tracxn/Probe using the CIN in the Note column">Tracxn</span> : "—"}</td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{a.rocePct != null ? `${a.rocePct}%` : "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-orange-600">{hasPrice ? entry.priceINRPerKg : "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-900">{a.revenueCr != null ? crStr(a.revenueCr) : "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-600">{a.ebitdaPct != null ? `${a.ebitdaPct}%` : a.cin ? <span className="text-amber-600" title="Private company — pull via Tracxn/Probe using the CIN in the Note column">Tracxn</span> : "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-600">{a.rocePct != null ? `${a.rocePct}%` : "—"}</td>
                     <td className="px-4 py-3 text-xs text-slate-400">{[a.note, a.cin].filter(Boolean).join(" · ") || "—"}</td>
                   </tr>
                 );
@@ -1175,8 +1265,8 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
       {selected.some((e) => suppliedItems(e.folder).length > 0) && (
         <Card title="🏷️ What they supply us & the market price" sub="the ingredient(s) each one provides to mcAFFEINE and its going open-market rate — IndiaMART band, not a per-vendor quote" accent="#eda100">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[620px] border-collapse text-sm">
-              <thead><tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700"><Th>Supplier</Th><Th>Supplies to us</Th><Th right>Market ₹/kg</Th><Th>Who holds the pricing power</Th></tr></thead>
+            <table className={`${TBL} min-w-[620px]`}>
+              <thead><tr className={THEAD}><Th>Supplier</Th><Th>Supplies to us</Th><Th right>Market ₹/kg</Th><Th>Who holds the pricing power</Th></tr></thead>
               <tbody>
                 {selected.flatMap((e, i) => {
                   const items = suppliedItems(e.folder);
@@ -1189,7 +1279,7 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
                       <tr key={e.folder + it} className="border-t border-slate-100">
                         {j === 0 && <td rowSpan={items.length} className="px-4 py-2 align-top font-semibold leading-snug text-slate-900"><span className="inline-flex items-start gap-1.5"><span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{fullName(e.legalName, e.brand)}</span></td>}
                         <td className="px-4 py-2 text-slate-700">{it}</td>
-                        <td className="whitespace-nowrap px-4 py-2 text-right font-mono text-orange-700">{hasP ? mk!.priceINRPerKg : "—"}</td>
+                        <td className="whitespace-nowrap px-4 py-2 text-right tabular-nums text-orange-700">{hasP ? mk!.priceINRPerKg : "—"}</td>
                         <td className="px-4 py-2 text-xs text-slate-500">{lev ? `${lev.emoji} ${lev.label}` : "—"}</td>
                       </tr>
                     );
@@ -1256,6 +1346,31 @@ function BoardTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => v
    wall of text and (b) drew on the older light-weight insight pass, so the rich
    Probe42 lever engine never showed up there. Now the row carries one button and
    the full set opens centred, grouped by tone, with the evidence behind each. */
+// The ONE way a lever count is rendered in any table. Every list — the board,
+// the supply chain, an ingredient's vendors — uses this, so the counts can never
+// drift apart again and none of them can fall back to the older insight pass.
+// When a supplier has no analysable data it says *why*, instead of a bare dash.
+export function LeverCell({ e, onOpen }: { e: Entity | undefined; onOpen: (e: Entity) => void }) {
+  if (!e) return <span className="text-sm text-slate-300">—</span>;
+  const deep = probeLevers(e.cin);
+  const n = deep.length || supplierInsights(e).length;
+  if (n === 0) {
+    return <span className="whitespace-nowrap rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-500"
+      title={e.cin ? "We hold a CIN for this vendor but haven't pulled its Probe42 report yet" : "Open-market trader with no company registration — no filings exist to analyse"}>
+      {e.cin ? "report not pulled" : "no filings"}
+    </span>;
+  }
+  const opps = (deep.length ? deep.filter((l) => l.tone === "opportunity") : supplierInsights(e).filter((i) => i.tone === "opportunity")).length;
+  return (
+    <button onClick={(ev) => { ev.stopPropagation(); onOpen(e); }}
+      title={deep.length ? `${n} levers from the full Probe42 filings` : `${n} headline reads — no full report yet`}
+      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-white px-2.5 py-1.5 text-xs font-bold text-teal-700 ring-1 ring-teal-200 transition hover:bg-teal-50 hover:ring-teal-300">
+      💡 Check levers
+      <span className={`rounded px-1.5 text-[11px] font-extrabold ${opps ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-500"}`}>{n}</span>
+    </button>
+  );
+}
+
 const LEV_TONE_ORDER = ["opportunity", "watch", "risk"] as const;
 const LEV_TONE_PLURAL: Record<InsightTone, string> = { opportunity: "opportunities", watch: "to watch", risk: "risks" };
 function LeversModal({ e, onClose, onOpenProfile }: { e: Entity; onClose: () => void; onOpenProfile: () => void }) {
@@ -1409,34 +1524,24 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
       </div>
 
       <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-        <table className="w-full min-w-[880px] border-collapse text-sm">
+        <table className={`${TBL} min-w-[880px]`}>
           <thead>
-            <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-700">
+            <tr className={THEAD}>
               <Th>Supplier</Th><Th right>Revenue</Th><Th right>EBITDA</Th><Th right>RoCE</Th><Th right>Collects</Th><Th right>Pays</Th><Th center>Levers</Th>
             </tr>
           </thead>
           <tbody>
-            {[...(showAll ? active : active.slice(0, TOP)), ...(showLimited ? others : [])].map(({ e, n, opps, deep }) => (
+            {[...(showAll ? active : active.slice(0, TOP)), ...(showLimited ? others : [])].map(({ e }) => (
               <tr key={e.category + e.folder} onClick={() => onSelect(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
                 <td className="min-w-[240px] px-4 py-3.5">
                   <div className="flex items-start gap-2 font-semibold leading-snug text-slate-900"><span className="shrink-0 leading-relaxed">{catEmoji(e.category)}</span><span>{fullName(e.legalName, e.brand)}</span></div>
                 </td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-900">{fmtCrore(revOf(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-600">{fmtPct(supRoce(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDSO(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-right font-mono tabular-nums text-slate-500">{fmtDays(supDPO(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-center">
-                  {n === 0 ? <span className="text-xs text-slate-300">—</span> : (
-                    <button
-                      onClick={(ev) => { ev.stopPropagation(); setLeversFor(e); }}
-                      title={deep ? `${n} levers from the full Probe42 filings` : `${n} headline reads — no full report yet`}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1.5 text-xs font-semibold text-teal-700 ring-1 ring-teal-200 transition hover:bg-teal-50 hover:ring-teal-300">
-                      💡 Check levers
-                      <span className={`rounded px-1.5 text-[11px] font-bold ${opps ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-500"}`}>{n}</span>
-                    </button>
-                  )}
-                </td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right tabular-nums font-medium text-slate-900">{fmtCrore(revOf(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right tabular-nums font-medium text-slate-600">{fmtPct(ebitdaMarginOf(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right tabular-nums font-medium text-slate-600">{fmtPct(supRoce(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right tabular-nums font-medium text-slate-500">{fmtDays(supDSO(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-right tabular-nums font-medium text-slate-500">{fmtDays(supDPO(e))}</td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={e} onOpen={setLeversFor} /></td>
               </tr>
             ))}
             {active.length === 0 && !showLimited && <tr><td colSpan={7} className="px-4 py-10 text-center text-slate-400">No suppliers match this filter.</td></tr>}
@@ -1529,7 +1634,7 @@ function CompetitorView() {
             <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search…" className="w-56 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-violet-400" />
           </div>
           <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-            <table className="w-full min-w-[980px] border-collapse text-sm">
+            <table className={`${TBL} min-w-[980px]`}>
               <thead>
                 <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500"><Th>Brand</Th><Th>Categories</Th><Th right>Revenue</Th><Th right>Funding</Th><Th>Stage</Th><Th>Latest deal / event</Th></tr>
               </thead>
@@ -1538,8 +1643,8 @@ function CompetitorView() {
                   <tr key={e.cin || e.brand} onClick={() => openCompetitor(e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-violet-50/40">
                     <td className="px-4 py-3"><div className="font-medium leading-snug text-slate-900">{fullName(e.legalName, e.brand)}</div>{e.parent && <div className="truncate text-xs text-slate-400">↳ {e.parent}</div>}</td>
                     <td className="px-4 py-3"><div className="flex flex-wrap gap-1">{e.categories.map((c) => <span key={c} className="rounded-md px-1.5 py-0.5 text-xs font-medium" style={{ background: `${CAT5_COLOR[c] ?? "#94a3b8"}18`, color: CAT5_COLOR[c] ?? "#64748b" }}>{c}</span>)}</div></td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{fmtCrore(revOf(e))}</td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{fmtUSD(e.competitor?.fundingUSD ?? null)}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-900">{fmtCrore(revOf(e))}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-600">{fmtUSD(e.competitor?.fundingUSD ?? null)}</td>
                     <td className="whitespace-nowrap px-4 py-3 text-slate-600">{e.competitor?.stage ?? "—"}</td>
                     <td className="max-w-[260px] px-4 py-3 text-slate-600"><span className="line-clamp-1">{e.competitor?.materialEvent ?? "—"}</span></td>
                   </tr>
@@ -1694,7 +1799,7 @@ function DeliveryView() {
 
         <Card title="🏁 Partner scorecard" sub="latest-year financials · click a partner for its full 5-year profile" accent="#0369a1">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[720px] border-collapse text-sm">
+            <table className={`${TBL} min-w-[720px]`}>
               <thead>
                 <tr className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
                   <Th>Partner</Th><Th>Status</Th><Th right>Revenue</Th><Th right>Net profit</Th><Th right>EBITDA %</Th><Th right>Collects</Th><Th>Health</Th>
@@ -1705,10 +1810,10 @@ function DeliveryView() {
                   <tr key={r.e.folder} onClick={() => openPartner(r.e)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
                     <td className="px-4 py-3"><div className="font-medium leading-snug text-slate-900">{fullName(r.e.legalName, r.e.brand)}</div></td>
                     <td className="px-4 py-3">{r.listed ? <Pill cls="text-emerald-700 bg-emerald-50 ring-emerald-200">Listed</Pill> : <Pill cls="text-slate-600 bg-slate-100 ring-slate-200">Private</Pill>}</td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-900">{crStr(r.rev)}</td>
-                    <td className={`whitespace-nowrap px-4 py-3 text-right font-mono ${r.net >= 0 ? "text-emerald-600" : "text-rose-600"}`}>{r.net >= 0 ? "+" : "−"}{crStr(Math.abs(r.net))}</td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-600">{r.margin != null ? `${Math.round(r.margin)}%` : "—"}</td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-slate-500">{r.dso != null ? `${Math.round(r.dso)} d` : "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-900">{crStr(r.rev)}</td>
+                    <td className={`whitespace-nowrap px-4 py-3 text-right tabular-nums ${r.net >= 0 ? "text-emerald-600" : "text-rose-600"}`}>{r.net >= 0 ? "+" : "−"}{crStr(Math.abs(r.net))}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-600">{r.margin != null ? `${Math.round(r.margin)}%` : "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right tabular-nums text-slate-500">{r.dso != null ? `${Math.round(r.dso)} d` : "—"}</td>
                     <td className="px-4 py-3">{r.net >= 0
                       ? <span className="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">Profitable</span>
                       : <span className="inline-flex rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-rose-200">Loss-making</span>}</td>
@@ -2159,7 +2264,7 @@ function ResearchBody({ r }: { r: ResearchData }) {
 /* -------------------------------------------------------- small primitives */
 
 function Th({ children, right, center }: { children: React.ReactNode; right?: boolean; center?: boolean }) {
-  return <th className={`px-4 py-3 font-bold ${center ? "text-center" : right ? "text-right" : "text-left"}`}>{children}</th>;
+  return <th className={`px-4 py-3 ${center ? "text-center" : right ? "text-right" : "text-left"}`}>{children}</th>;
 }
 function Pill({ children, cls, dot }: { children: React.ReactNode; cls: string; dot?: string }) {
   return <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium ring-1 ${cls}`}>{dot && <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />}{children}</span>;
