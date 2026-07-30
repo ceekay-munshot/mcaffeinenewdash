@@ -126,7 +126,7 @@ function build(raw, entity) {
 
   // peers — every benchmark year, self vs peer median across the key ratios
   const pc0 = d.peer_comparison?.[0] ?? {};
-  const bmKeys = [["revenueGrowth", "revenue_growth"], ["ebitdaMargin", "ebitda_margin"], ["netMargin", "net_margin"], ["roce", "return_on_capital_employed"], ["roe", "return_on_equity"], ["debtorDays", "debtor_days_outstanding"], ["payableDays", "trade_payable_days"], ["cashConversion", "cash_conversion_cycle"], ["debtEquity", "debt_by_equity"], ["currentRatio", "current_ratio"], ["grossMargin", "gross_profit_margin"]];
+  const bmKeys = [["revenueGrowth", "revenue_growth"], ["ebitdaMargin", "ebitda_margin"], ["netMargin", "net_margin"], ["roce", "return_on_capital_employed"], ["roe", "return_on_equity"], ["debtorDays", "debtor_days_outstanding"], ["payableDays", "trade_payable_days"], ["cashConversion", "cash_conversion_cycle"], ["debtEquity", "debt_by_equity"], ["currentRatio", "current_ratio"], ["grossMargin", "gross_profit_margin"], ["inventoryDays", "inventory_holding_period"]];
   const benchmarks = (pc0.benchMarks ?? []).map((b) => {
     const self = {}, median = {};
     for (const [k, src] of bmKeys) { self[k] = round(b[src], 2); median[k] = round(b["median_" + src], 2); }
@@ -237,6 +237,9 @@ function build(raw, entity) {
     creditRating = {
       agency: batch[0].rating_agency ? String(batch[0].rating_agency).toUpperCase() : null,
       date: latestDate, grade, gradeText: batch[0].rating ?? null, ratedAmountCr: cr(batch.reduce((s, r) => s + (num(r.amount) ?? 0), 0)),
+      // the agency's forward view (Stable / Positive / Negative) — a Negative
+      // outlook is a downgrade warning the grade alone doesn't show.
+      outlook: [...new Set(batch.flatMap((r) => (r.rating_details ?? []).map((x) => x.outlook)).filter(Boolean))][0] ?? null,
       facilities: batch.slice(0, 6).map((r) => ({ loan: r.type_of_loan, rating: r.rating, amountCr: cr(r.amount) })),
       flags: {
         inc: crAll.some((r) => /not cooperating/i.test(txt(r))),
@@ -260,6 +263,108 @@ function build(raw, entity) {
   const arRow = fpRaw.find((p) => num(p.trade_receivable_exceeding_six_months) != null) ?? null;
   const agedReceivables = arRow ? { fy: fy(arRow.year), amountCr: cr(arRow.trade_receivable_exceeding_six_months) } : null;
 
+  // ---- auditor: who signs the accounts, and did the firm change? -------------
+  // A mid-stream auditor swap is a classic governance signal, and an adverse
+  // remark is a hard red flag on the numbers we're basing every lever on.
+  const audRows = fin.length ? [] : [];
+  const auditors = (d.financials ?? []).map((f) => ({
+    fy: fy(f.year),
+    firm: f.auditor?.auditor_firm_name ? clean(f.auditor.auditor_firm_name) : null,
+    name: f.auditor?.auditor_name ? clean(f.auditor.auditor_name) : null,
+    adverse: f.auditor_comments?.report_has_adverse_remarks === true,
+  })).filter((a) => a.firm || a.name);
+  const audFirms = [...new Set(auditors.map((a) => a.firm).filter(Boolean))];
+  const adverseYears = auditors.filter((a) => a.adverse).map((a) => a.fy);
+  // Recency matters: a single adverse remark from eight years ago is history, a
+  // remark in the latest filed year (or a repeated pattern) is a live problem.
+  // Treating both the same would overstate the risk.
+  const recentFys = auditors.slice(0, 2).map((a) => a.fy);
+  const auditor = auditors.length ? {
+    current: auditors[0].firm ?? auditors[0].name,
+    signedBy: auditors[0].name,
+    changes: Math.max(0, audFirms.length - 1),
+    firms: audFirms.slice(0, 4),
+    anyAdverse: adverseYears.length > 0,
+    adverseYears,
+    adverseRecent: adverseYears.some((y) => recentFys.includes(y)),
+    adverseSustained: adverseYears.length >= 3,
+    latestFy: auditors[0].fy,
+  } : null;
+  void audRows;
+
+  // ---- revenue mix: manufactured vs traded vs services, domestic vs export ---
+  // Structurally decisive for a price conversation: a trader marks up someone
+  // else's goods (thin, little to give), a manufacturer owns its conversion
+  // margin (real room). Export share tells us how much demand sits outside India.
+  const rb = latestFin.pnl?.revenue_breakup ?? {};
+  const rbNum = (k) => num(rb[k]) ?? 0;
+  const mfg = rbNum("sale_of_goods_manufactured_domestic") + rbNum("sale_of_goods_manufactured_export") + rbNum("revenue_from_sale_of_products");
+  const trade = rbNum("sale_of_goods_traded_domestic") + rbNum("sale_of_goods_traded_export");
+  const svc = rbNum("sale_or_supply_of_services_domestic") + rbNum("sale_or_supply_of_services_export") + rbNum("revenue_from_sale_of_services");
+  const exportRs = rbNum("sale_of_goods_manufactured_export") + rbNum("sale_of_goods_traded_export") + rbNum("sale_or_supply_of_services_export");
+  const rbTotal = mfg + trade + svc;
+  const revenueMix = rbTotal > 0 ? {
+    fy: fy(latestFin.year),
+    manufacturedCr: cr(mfg), tradedCr: cr(trade), servicesCr: cr(svc),
+    manufacturedPct: round((mfg / rbTotal) * 100, 1), tradedPct: round((trade / rbTotal) * 100, 1), servicesPct: round((svc / rbTotal) * 100, 1),
+    exportCr: cr(exportRs), exportPct: round((exportRs / rbTotal) * 100, 1),
+    // what the business mostly is — drives the "how much margin can they give" read
+    kind: mfg >= trade && mfg >= svc ? "manufacturer" : trade >= svc ? "trader" : "services",
+  } : null;
+
+  // ---- what the registry says they actually do ------------------------------
+  const activityGroup = (d.principal_business_activities ?? []).map((a) => a.main_activity_group_description).filter(Boolean)[0] ?? null;
+  const gstNature = [...new Set((d.gst_details ?? []).flatMap((g) => String(g.nature_of_business_activities ?? "").split("|").map((s) => s.trim()).filter(Boolean)))];
+
+  // ---- cash leaving the business to its owners / managers --------------------
+  const mgrRemRs = num(latestFin.pnl_key_schedule?.managerial_remuneration) ?? 0;
+  const patRs = num(latestFin.pnl?.lineItems?.profit_after_tax) ?? null;
+  const managerialPay = mgrRemRs > 0 ? {
+    fy: fy(latestFin.year), amountCr: cr(mgrRemRs),
+    pctOfProfit: patRs && patRs > 0 ? round((mgrRemRs / patRs) * 100, 1) : null,
+  } : null;
+  const proposedDividend = (fpRaw ?? []).some((p) => p.proposed_dividend && !/^no$/i.test(String(p.proposed_dividend)));
+
+  // ---- what their borrowed money actually costs ------------------------------
+  // Charge filings carry the rate on secured facilities. Many are free text
+  // ("as per bank tariff"), so only take a clean percentage, and ignore absurd
+  // values. This is the ceiling on what an early-payment discount is worth to
+  // them: money we release early saves them exactly this rate.
+  const chargeEvents = [...(d.open_charges_latest_event ?? []), ...(d.open_charges ?? [])];
+  const rates = chargeEvents
+    .map((e) => String(e.rate_of_interest ?? ""))
+    .filter((s) => /^\s*\d{1,2}(\.\d+)?\s*%?\s*$/.test(s))
+    .map((s) => num(s.replace("%", "").trim()))
+    .filter((v) => v != null && v > 1 && v <= 30);
+  const borrowingCost = rates.length ? { ratePct: round(Math.max(...rates), 2) } : null;
+
+  // ---- energy intensity ------------------------------------------------------
+  const powerRs = num(latestFin.pnl_key_schedule?.power_and_fuel) ?? 0;
+  const revRs = num(latestFin.pnl?.lineItems?.net_revenue) ?? null;
+  const powerCost = powerRs > 0 ? {
+    fy: fy(latestFin.year), amountCr: cr(powerRs),
+    pctOfRevenue: revRs && revRs > 0 ? round((powerRs / revRs) * 100, 1) : null,
+  } : null;
+
+  // ---- how worn is the plant? ------------------------------------------------
+  // Net ÷ gross fixed assets says how much life is left in the asset base. A
+  // heavily written-down plant means replacement capex is coming, which changes
+  // what a long contract is worth to them.
+  const grossFa = num(latestFin.bs?.notes?.gross_fixed_assets) ?? num((fpRaw ?? [])[0]?.gross_fixed_assets) ?? null;
+  const netFa = num(latestFin.bs?.subTotals?.net_fixed_assets) ?? null;
+  const assetAge = grossFa && grossFa > 0 && netFa != null ? {
+    fy: fy(latestFin.year), grossCr: cr(grossFa), netCr: cr(netFa),
+    depreciatedPct: round((1 - netFa / grossFa) * 100, 1),
+  } : null;
+
+  // ---- capacity being built right now ---------------------------------------
+  const wipRs = num(latestFin.bs?.subTotals?.capital_wip) ?? 0;
+  const nfaRs = num(latestFin.bs?.subTotals?.net_fixed_assets) ?? null;
+  const capexWip = wipRs > 0 ? {
+    fy: fy(latestFin.year), amountCr: cr(wipRs),
+    pctOfFixedAssets: nfaRs && nfaRs > 0 ? round((wipRs / nfaRs) * 100, 1) : null,
+  } : null;
+
   const detail = {
     // identity
     cin: co.cin ?? null, legalName: displayLegalName(co.legal_name, entity), description: (d.description?.desc_thousand_char ?? "").slice(0, 600) || null,
@@ -274,6 +379,7 @@ function build(raw, entity) {
     bands: { revenue: ki.revenue ?? null, profit: ki.profit ?? null, employees: ki.employee_count ?? null },
     flags: { gstDelay: !!ki.gst_filing_delay, epfDelay: !!ki.epf_payment_delay, bureauDefaults: !!ki.bureau_defaults, pendingCases: !!ki.pending_cases_filed_against_this_corporate, severeCases: !!ki.severe_pending_cases_filed_against_this_corporate, struckOff: /struck/i.test(d.struckoff248_details?.struck_off_status ?? "") },
     creditRating, nameHistory, forex, agedReceivables,
+    auditor, revenueMix, activityGroup, gstNature, managerialPay, proposedDividend, capexWip, borrowingCost, powerCost, assetAge,
     // latest snapshot
     latest: { year: fy(latestFin.year), ...L, ...r0 },
     // the full stories
@@ -612,6 +718,105 @@ function buildLevers(x) {
     add("watch", 1, "Aged receivables piling up",
       `₹${x.agedReceivables.amountCr} Cr of receivables are over six months old — cash stuck, a sign of collection strain. A cash-tight supplier is more open to early-pay-for-discount.`,
       [ev("Receivables >6m", `₹${x.agedReceivables.amountCr} Cr`, "risk")]);
+
+  // --- what kind of business are we actually negotiating with? ---
+  // A trader marks up someone else's goods: the markup IS their whole margin, so
+  // pushing hard risks the relationship. A manufacturer owns its conversion
+  // margin, which is where the real, defensible room lives.
+  const rm = x.revenueMix;
+  if (rm) {
+    if (rm.kind === "trader" && rm.tradedPct >= 60)
+      add("watch", 2, "They're a trader, not a maker",
+        `${rm.tradedPct}% of revenue is bought-in goods resold, not manufactured. Their margin is the markup on someone else's price, so there's less to concede than the headline suggests — push them to disclose the landed cost and negotiate the markup, or go upstream to the actual maker.`,
+        [ev("Traded", `${rm.tradedPct}%`), ev("Manufactured", `${rm.manufacturedPct}%`)]);
+    else if (rm.kind === "manufacturer" && rm.manufacturedPct >= 70 && (x.latest.grossMargin ?? 0) > 0)
+      add("opportunity", 2, "They own their conversion margin",
+        `${rm.manufacturedPct}% of revenue is goods they manufacture themselves, on a ${x.latest.grossMargin}% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.`,
+        [ev("Manufactured", `${rm.manufacturedPct}%`), ev("Gross margin", `${x.latest.grossMargin}%`)]);
+    // Export share cuts both ways — hedge against us, but also a rupee tailwind.
+    if (rm.exportPct >= 25)
+      add("watch", 2, "A quarter-plus of demand is export",
+        `${rm.exportPct}% of sales (₹${rm.exportCr} Cr) go abroad. They're not dependent on Indian buyers, which weakens our volume threat — but export revenue also earns them foreign currency, so a weak rupee is already lifting their realisations. Argue that the rupee gain should show up in our price.`,
+        [ev("Export share", `${rm.exportPct}%`), ev("Export revenue", `₹${rm.exportCr} Cr`)]);
+  }
+
+  // --- inventory: cash sitting on their floor ---
+  const inv = { self: x.vsMedian.self.inventoryDays, median: x.vsMedian.median.inventoryDays };
+  if (inv.self != null && inv.median != null && inv.self >= inv.median * 1.4 && inv.self >= 45)
+    add("opportunity", 2, "Stock is sitting far longer than peers",
+      `They hold inventory ${inv.self} days vs a peer norm of ${inv.median} — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.`,
+      [ev("Inventory days", `${inv.self} d`), ev("Peer norm", `${inv.median} d`)]);
+
+  // --- money leaving for the owners while they hold price ---
+  const mp = x.managerialPay;
+  if (mp && mp.pctOfProfit != null && mp.pctOfProfit >= 25)
+    add("opportunity", 2, "Owner pay is a big slice of profit",
+      `Managerial remuneration of ₹${mp.amountCr} Cr is ${mp.pctOfProfit}% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a "we have no margin" claim with scepticism.`,
+      [ev("Managerial pay", `₹${mp.amountCr} Cr`), ev("Of profit after tax", `${mp.pctOfProfit}%`)]);
+  if (x.proposedDividend && (x.latest.netMargin ?? 0) > 0)
+    add("opportunity", 1, "Paying dividends out",
+      `They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.`,
+      [ev("Proposed dividend", "yes")]);
+
+  // --- capacity under construction: the classic future-margin chain ---
+  // Money is in the ground, the asset isn't earning yet, and it will need volume
+  // to pay back. That combination is at its most negotiable right now.
+  const wip = x.capexWip;
+  if (wip && wip.pctOfFixedAssets != null && wip.pctOfFixedAssets >= 15)
+    add("opportunity", 3, "Building capacity they'll need to fill",
+      `₹${wip.amountCr} Cr sits in capital work-in-progress — ${wip.pctOfFixedAssets}% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.`,
+      [ev("Capital WIP", `₹${wip.amountCr} Cr`), ev("Of fixed assets", `${wip.pctOfFixedAssets}%`)]);
+
+  // --- what their money costs: the price of an early-payment discount ---
+  // If they borrow at 14%, thirty days of early cash is worth ~1.2% to them —
+  // that is a real, arithmetic ceiling on the discount we can ask for, not a
+  // guess. Cheap borrowers simply won't trade much for early cash.
+  const bc = x.borrowingCost;
+  if (bc?.ratePct != null && bc.ratePct >= 11) {
+    const perMonth = Math.round((bc.ratePct / 12) * 100) / 100;
+    add("opportunity", 3, "Their borrowed money is expensive",
+      `Their secured facilities carry ${bc.ratePct}% interest. Every month we pay early effectively lends them cash at that rate — worth about ${perMonth}% a month to them. That sets a defensible number for an early-payment discount: ask for ~${perMonth}% for 30 days, ~${Math.round(perMonth * 2 * 100) / 100}% for 60, and it still leaves them better off than their bank.`,
+      [ev("Interest on secured debt", `${bc.ratePct}%`, "risk"), ev("Worth per month early", `~${perMonth}%`)]);
+  } else if (bc?.ratePct != null && bc.ratePct <= 8.5) {
+    add("watch", 1, "They borrow cheaply",
+      `Secured facilities at just ${bc.ratePct}% — bank funding is cheap for them, so early payment buys us very little. Push on unit price and volume terms instead of payment timing.`,
+      [ev("Interest on secured debt", `${bc.ratePct}%`)]);
+  }
+
+  // --- energy intensity: whose cost shock is it? ---
+  const pw = x.powerCost;
+  if (pw?.pctOfRevenue != null && pw.pctOfRevenue >= 4)
+    add("watch", 1, "Energy-heavy cost base",
+      `Power and fuel run ₹${pw.amountCr} Cr, ${pw.pctOfRevenue}% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.`,
+      [ev("Power & fuel", `₹${pw.amountCr} Cr`), ev("Of revenue", `${pw.pctOfRevenue}%`)]);
+
+  // --- how much life is left in the plant ---
+  const aa = x.assetAge;
+  if (aa?.depreciatedPct != null && aa.depreciatedPct >= 70)
+    add("opportunity", 2, "Their plant is largely written down",
+      `${aa.depreciatedPct}% of the gross asset base is already depreciated (₹${aa.netCr} Cr left of ₹${aa.grossCr} Cr). Two things follow: the depreciation charge dragging on their reported profit is mostly historic, so cash generation is better than the P&L suggests — and replacement capex is coming, which makes committed volume from us worth more than a few rupees on unit price.`,
+      [ev("Depreciated", `${aa.depreciatedPct}%`), ev("Net / gross fixed assets", `₹${aa.netCr} / ₹${aa.grossCr} Cr`)]);
+
+  // --- who signs the accounts ---
+  const au = x.auditor;
+  if (au?.anyAdverse && (au.adverseRecent || au.adverseSustained))
+    add("risk", 3, "Auditor keeps raising adverse remarks",
+      `Their auditor filed adverse remarks in ${au.adverseYears.join(", ")}${au.adverseSustained ? ` — ${au.adverseYears.length} years of them` : ` (including the latest filed year)`}. Every number in this analysis rests on those accounts, so treat the financials as unreliable until clarified and diligence hard before committing volume.`,
+      [ev("Adverse years", au.adverseYears.join(", "), "risk"), ev("Latest filed", au.latestFy ?? "—", "risk")]);
+  else if (au?.anyAdverse)
+    add("watch", 1, "Auditor raised adverse remarks in the past",
+      `There were adverse auditor remarks in ${au.adverseYears.join(", ")}, but not in the recent filed years (latest ${au.latestFy}). Reads as a resolved historical issue rather than a live one — worth one question, not a red flag.`,
+      [ev("Adverse years", au.adverseYears.join(", ")), ev("Latest filed", au.latestFy ?? "—")]);
+  else if (au && au.changes >= 2)
+    add("watch", 2, "Auditor has changed repeatedly",
+      `${au.changes} auditor changes across the filed years (${au.firms.join(" → ")}). Frequent rotation isn't proof of anything on its own, but it's a governance signal worth a question before leaning on their reported numbers.`,
+      [ev("Auditor changes", String(au.changes)), ev("Current", au.current ?? "—")]);
+
+  // --- the agency's forward view ---
+  if (rt?.outlook && /negative/i.test(rt.outlook))
+    add("watch", 2, "Rating outlook is negative",
+      `${rt.agency ?? "Their agency"} has them on a Negative outlook at ${rt.grade ?? rt.gradeText} — the agency expects deterioration, which the grade alone doesn't show. Expect cash discipline and more willingness to trade price for certainty; keep a backup qualified.`,
+      [ev("Outlook", rt.outlook, "risk"), ev("Grade", rt.grade ?? "—", "risk")]);
 
   // sort: opportunities first, then watch, then risk; strongest first
   const toneRank = { opportunity: 0, watch: 1, risk: 2 };

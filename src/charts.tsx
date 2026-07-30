@@ -286,7 +286,8 @@ function LineBase({ xLabels, series, valueLabel, height, area }: {
     setHi(Math.max(0, Math.min(n - 1, Math.round(((e.clientX - r.left) / r.width) * (n - 1)))));
   };
   // Long labels ("APR-24") need more room than short ones ("FY25"), so allow fewer.
-  const stride = labelStride(n, Math.max(...xLabels.map((l) => l.length)) > 5 ? 8 : 12);
+  // Six keeps them clear even in a narrow side-column card.
+  const stride = labelStride(n, Math.max(...xLabels.map((l) => l.length)) > 5 ? 6 : 12);
   // The tooltip flips to whichever side has room, so it never runs off the card.
   const leftAnchor = hi != null && hi < n / 2;
   return (

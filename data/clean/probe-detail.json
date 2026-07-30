@@ -53,6 +53,7 @@
       "grade": "AA",
       "gradeText": "AA+ (Under Rating Watch with Developing Implications)",
       "ratedAmountCr": 695,
+      "outlook": null,
       "facilities": [
         {
           "loan": "Long Term Bank Facilities",
@@ -91,6 +92,58 @@
     "agedReceivables": {
       "fy": "FY16",
       "amountCr": 0.9
+    },
+    "auditor": {
+      "current": "WALKER CHANDIOK & CO LLP",
+      "signedBy": "RAKESH RAMAWATAR AGARWAL",
+      "changes": 2,
+      "firms": [
+        "WALKER CHANDIOK & CO LLP",
+        "FORD RHODES PARKS & CO LLP",
+        "M G B & CO LLP"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": null,
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Export",
+      "Factory / Manufacturing",
+      "Import",
+      "Recipient of Goods or Services",
+      "Supplier of Services",
+      "Service Provision",
+      "Leasing Business",
+      "Office / Sale Office",
+      "Retail Business",
+      "Warehouse / Depot",
+      "Bonded Warehouse",
+      "Works Contract"
+    ],
+    "managerialPay": null,
+    "proposedDividend": true,
+    "capexWip": {
+      "fy": "FY25",
+      "amountCr": 28,
+      "pctOfFixedAssets": 4.2
+    },
+    "borrowingCost": {
+      "ratePct": 8.65
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 56.6,
+      "pctOfRevenue": 4.3
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 1498.7,
+      "netCr": 669.4,
+      "depreciatedPct": 55.3
     },
     "latest": {
       "year": "FY25",
@@ -987,7 +1040,8 @@
             "cashConversion": 61.93,
             "debtEquity": 0.23,
             "currentRatio": 1.27,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 40.14
           },
           "median": {
             "revenueGrowth": 13.34,
@@ -1000,7 +1054,8 @@
             "cashConversion": 83.91,
             "debtEquity": 0.56,
             "currentRatio": 1.33,
-            "grossMargin": 38.53
+            "grossMargin": 38.53,
+            "inventoryDays": 53.39
           }
         },
         {
@@ -1017,7 +1072,8 @@
             "cashConversion": 73.46,
             "debtEquity": 0.2,
             "currentRatio": 1.63,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 43.04
           },
           "median": {
             "revenueGrowth": 0.83,
@@ -1030,7 +1086,8 @@
             "cashConversion": 78.97,
             "debtEquity": 0.57,
             "currentRatio": 1.48,
-            "grossMargin": 39.17
+            "grossMargin": 39.17,
+            "inventoryDays": 50.19
           }
         },
         {
@@ -1047,7 +1104,8 @@
             "cashConversion": 66.02,
             "debtEquity": 0.2,
             "currentRatio": 1.55,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 37.3
           },
           "median": {
             "revenueGrowth": 26.55,
@@ -1060,7 +1118,8 @@
             "cashConversion": 64.21,
             "debtEquity": 0.65,
             "currentRatio": 1.57,
-            "grossMargin": 36.2
+            "grossMargin": 36.2,
+            "inventoryDays": 42.37
           }
         },
         {
@@ -1077,7 +1136,8 @@
             "cashConversion": 81.59,
             "debtEquity": 0.28,
             "currentRatio": 1.53,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 42.54
           },
           "median": {
             "revenueGrowth": 37.1,
@@ -1090,7 +1150,8 @@
             "cashConversion": 84.75,
             "debtEquity": 0.55,
             "currentRatio": 1.6,
-            "grossMargin": 31.97
+            "grossMargin": 31.97,
+            "inventoryDays": 58.28
           }
         }
       ]
@@ -1107,7 +1168,8 @@
         "cashConversion": 61.93,
         "debtEquity": 0.23,
         "currentRatio": 1.27,
-        "grossMargin": null
+        "grossMargin": null,
+        "inventoryDays": 40.14
       },
       "median": {
         "revenueGrowth": 13.34,
@@ -1120,7 +1182,8 @@
         "cashConversion": 83.91,
         "debtEquity": 0.56,
         "currentRatio": 1.33,
-        "grossMargin": 38.53
+        "grossMargin": 38.53,
+        "inventoryDays": 53.39
       }
     },
     "ownership": {
@@ -2200,6 +2263,37 @@
         ]
       },
       {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "title": "Auditor has changed repeatedly",
+        "detail": "2 auditor changes across the filed years (WALKER CHANDIOK & CO LLP → FORD RHODES PARKS & CO LLP → M G B & CO LLP). Frequent rotation isn't proof of anything on its own, but it's a governance signal worth a question before leaning on their reported numbers.",
+        "evidence": [
+          {
+            "label": "Auditor changes",
+            "value": "2",
+            "tab": "financials"
+          },
+          {
+            "label": "Current",
+            "value": "WALKER CHANDIOK & CO LLP",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
         "tone": "watch",
         "strength": 1,
         "title": "Pays its own small vendors late",
@@ -2253,6 +2347,24 @@
             "label": "Agency",
             "value": "CARE",
             "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Energy-heavy cost base",
+        "detail": "Power and fuel run ₹56.6 Cr, 4.3% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
+        "evidence": [
+          {
+            "label": "Power & fuel",
+            "value": "₹56.6 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of revenue",
+            "value": "4.3%",
+            "tab": "financials"
           }
         ]
       },
@@ -2334,6 +2446,43 @@
     "agedReceivables": {
       "fy": "FY20",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "G BASU & CO",
+      "signedBy": "LAHIRI SUBROTO",
+      "changes": 1,
+      "firms": [
+        "G BASU & CO",
+        "BANSAL & CO LLP"
+      ],
+      "anyAdverse": true,
+      "adverseYears": [
+        "FY21"
+      ],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": null,
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Recipient of Goods or Services"
+    ],
+    "managerialPay": null,
+    "proposedDividend": true,
+    "capexWip": null,
+    "borrowingCost": null,
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 0.5,
+      "pctOfRevenue": 0.2
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 39.1,
+      "netCr": 23.3,
+      "depreciatedPct": 40.4
     },
     "latest": {
       "year": "FY25",
@@ -3235,7 +3384,8 @@
             "cashConversion": 96.34,
             "debtEquity": 0,
             "currentRatio": 19.8,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 50.49
           },
           "median": {
             "revenueGrowth": 15.64,
@@ -3248,7 +3398,8 @@
             "cashConversion": 72.31,
             "debtEquity": 0.4,
             "currentRatio": 1.59,
-            "grossMargin": 33.14
+            "grossMargin": 33.14,
+            "inventoryDays": 51.36
           }
         },
         {
@@ -3265,7 +3416,8 @@
             "cashConversion": 71.84,
             "debtEquity": 0,
             "currentRatio": 18.25,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 36.8
           },
           "median": {
             "revenueGrowth": 5.76,
@@ -3278,7 +3430,8 @@
             "cashConversion": 69.21,
             "debtEquity": 0.53,
             "currentRatio": 1.83,
-            "grossMargin": 35.42
+            "grossMargin": 35.42,
+            "inventoryDays": 54.58
           }
         },
         {
@@ -3295,7 +3448,8 @@
             "cashConversion": 82.16,
             "debtEquity": 0,
             "currentRatio": 15.14,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 64.31
           },
           "median": {
             "revenueGrowth": 16.91,
@@ -3308,7 +3462,8 @@
             "cashConversion": 71.53,
             "debtEquity": 0.59,
             "currentRatio": 1.7,
-            "grossMargin": 33.48
+            "grossMargin": 33.48,
+            "inventoryDays": 56.02
           }
         },
         {
@@ -3325,7 +3480,8 @@
             "cashConversion": 90.45,
             "debtEquity": 0,
             "currentRatio": 14.5,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 57.42
           },
           "median": {
             "revenueGrowth": 12.82,
@@ -3338,7 +3494,8 @@
             "cashConversion": 91.38,
             "debtEquity": 0.73,
             "currentRatio": 1.54,
-            "grossMargin": 30.12
+            "grossMargin": 30.12,
+            "inventoryDays": 53.56
           }
         }
       ]
@@ -3355,7 +3512,8 @@
         "cashConversion": 96.34,
         "debtEquity": 0,
         "currentRatio": 19.8,
-        "grossMargin": null
+        "grossMargin": null,
+        "inventoryDays": 50.49
       },
       "median": {
         "revenueGrowth": 15.64,
@@ -3368,7 +3526,8 @@
         "cashConversion": 72.31,
         "debtEquity": 0.4,
         "currentRatio": 1.59,
-        "grossMargin": 33.14
+        "grossMargin": 33.14,
+        "inventoryDays": 51.36
       }
     },
     "ownership": {
@@ -4060,6 +4219,19 @@
         ]
       },
       {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
         "tone": "watch",
         "strength": 2,
         "title": "Their suppliers are squeezing them (paying faster)",
@@ -4095,6 +4267,24 @@
             "label": "Cases on file",
             "value": "19",
             "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Auditor raised adverse remarks in the past",
+        "detail": "There were adverse auditor remarks in FY21, but not in the recent filed years (latest FY25). Reads as a resolved historical issue rather than a live one — worth one question, not a red flag.",
+        "evidence": [
+          {
+            "label": "Adverse years",
+            "value": "FY21",
+            "tab": "financials"
+          },
+          {
+            "label": "Latest filed",
+            "value": "FY25",
+            "tab": "financials"
           }
         ]
       }
@@ -4161,6 +4351,51 @@
     "agedReceivables": {
       "fy": "FY17",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "B S R AND CO",
+      "signedBy": "LODHA VIPIN",
+      "changes": 1,
+      "firms": [
+        "B S R AND CO",
+        "DELOITTE HASKINS & SELLS LLP"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": null,
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Warehouse / Depot",
+      "Input Service Distributor (ISD)",
+      "Office / Sale Office",
+      "Recipient of Goods or Services",
+      "Others"
+    ],
+    "managerialPay": null,
+    "proposedDividend": true,
+    "capexWip": {
+      "fy": "FY25",
+      "amountCr": 16.7,
+      "pctOfFixedAssets": 3.8
+    },
+    "borrowingCost": {
+      "ratePct": 7.4
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 14.1,
+      "pctOfRevenue": 0.5
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 734.7,
+      "netCr": 438.3,
+      "depreciatedPct": 40.4
     },
     "latest": {
       "year": "FY25",
@@ -5057,7 +5292,8 @@
             "cashConversion": 62.02,
             "debtEquity": 0.1,
             "currentRatio": 1.76,
-            "grossMargin": 30.02
+            "grossMargin": 30.02,
+            "inventoryDays": 70.35
           },
           "median": {
             "revenueGrowth": 18.21,
@@ -5070,7 +5306,8 @@
             "cashConversion": 90.06,
             "debtEquity": 0.42,
             "currentRatio": 1.62,
-            "grossMargin": 21.06
+            "grossMargin": 21.06,
+            "inventoryDays": 75.62
           }
         },
         {
@@ -5087,7 +5324,8 @@
             "cashConversion": 67.74,
             "debtEquity": 0.11,
             "currentRatio": 1.93,
-            "grossMargin": 32.7
+            "grossMargin": 32.7,
+            "inventoryDays": 68.1
           },
           "median": {
             "revenueGrowth": 8.64,
@@ -5100,7 +5338,8 @@
             "cashConversion": 96.98,
             "debtEquity": 0.33,
             "currentRatio": 1.8,
-            "grossMargin": 20.8
+            "grossMargin": 20.8,
+            "inventoryDays": 79.62
           }
         },
         {
@@ -5117,7 +5356,8 @@
             "cashConversion": 72.31,
             "debtEquity": 0.12,
             "currentRatio": 1.38,
-            "grossMargin": 28.06
+            "grossMargin": 28.06,
+            "inventoryDays": 70.56
           },
           "median": {
             "revenueGrowth": 7.65,
@@ -5130,7 +5370,8 @@
             "cashConversion": 87.74,
             "debtEquity": 0.43,
             "currentRatio": 1.55,
-            "grossMargin": 17.67
+            "grossMargin": 17.67,
+            "inventoryDays": 85.49
           }
         },
         {
@@ -5147,7 +5388,8 @@
             "cashConversion": 67.64,
             "debtEquity": 0.53,
             "currentRatio": 0.98,
-            "grossMargin": 34.48
+            "grossMargin": 34.48,
+            "inventoryDays": 83.96
           },
           "median": {
             "revenueGrowth": 21.23,
@@ -5160,7 +5402,8 @@
             "cashConversion": 92.05,
             "debtEquity": 0.54,
             "currentRatio": 1.52,
-            "grossMargin": 16.01
+            "grossMargin": 16.01,
+            "inventoryDays": 79.44
           }
         }
       ]
@@ -5177,7 +5420,8 @@
         "cashConversion": 62.02,
         "debtEquity": 0.1,
         "currentRatio": 1.76,
-        "grossMargin": 30.02
+        "grossMargin": 30.02,
+        "inventoryDays": 70.35
       },
       "median": {
         "revenueGrowth": 18.21,
@@ -5190,7 +5434,8 @@
         "cashConversion": 90.06,
         "debtEquity": 0.42,
         "currentRatio": 1.62,
-        "grossMargin": 21.06
+        "grossMargin": 21.06,
+        "inventoryDays": 75.62
       }
     },
     "ownership": {
@@ -5902,6 +6147,19 @@
         ]
       },
       {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
         "tone": "watch",
         "strength": 1,
         "title": "Pays its own small vendors late",
@@ -5924,6 +6182,19 @@
             "label": "Filing flags",
             "value": "EPF",
             "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "They borrow cheaply",
+        "detail": "Secured facilities at just 7.4% — bank funding is cheap for them, so early payment buys us very little. Push on unit price and volume terms instead of payment timing.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "7.4%",
+            "tab": "financials"
           }
         ]
       },
@@ -6005,6 +6276,60 @@
     "agedReceivables": {
       "fy": "FY24",
       "amountCr": 0.3
+    },
+    "auditor": {
+      "current": "S I G M A C & CO",
+      "signedBy": "RAHUL MAHESH SARDA",
+      "changes": 1,
+      "firms": [
+        "S I G M A C & CO",
+        "D A T A & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 0,
+      "tradedCr": 0,
+      "servicesCr": 41.4,
+      "manufacturedPct": 0,
+      "tradedPct": 0,
+      "servicesPct": 100,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "services"
+    },
+    "activityGroup": "Wholesale and retail trade; repair of motor vehicles and motorcycles",
+    "gstNature": [
+      "Export",
+      "Factory / Manufacturing",
+      "Office / Sale Office",
+      "Retail Business",
+      "Warehouse / Depot",
+      "Wholesale Business",
+      "Works Contract",
+      "Others"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": {
+      "fy": "FY25",
+      "amountCr": 9.3,
+      "pctOfFixedAssets": 81.6
+    },
+    "borrowingCost": {
+      "ratePct": 13.99
+    },
+    "powerCost": null,
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 20.7,
+      "netCr": 11.4,
+      "depreciatedPct": 44.9
     },
     "latest": {
       "year": "FY25",
@@ -6733,7 +7058,8 @@
             "cashConversion": 59.85,
             "debtEquity": 5.28,
             "currentRatio": 0.71,
-            "grossMargin": 30.99
+            "grossMargin": 30.99,
+            "inventoryDays": 29.19
           },
           "median": {
             "revenueGrowth": 11.98,
@@ -6746,7 +7072,8 @@
             "cashConversion": 71.62,
             "debtEquity": 0.72,
             "currentRatio": 1.55,
-            "grossMargin": 24.63
+            "grossMargin": 24.63,
+            "inventoryDays": 39.05
           }
         },
         {
@@ -6763,7 +7090,8 @@
             "cashConversion": 66.94,
             "debtEquity": 5.36,
             "currentRatio": 0.72,
-            "grossMargin": 40.81
+            "grossMargin": 40.81,
+            "inventoryDays": 21.32
           },
           "median": {
             "revenueGrowth": 5.87,
@@ -6776,7 +7104,8 @@
             "cashConversion": 57.11,
             "debtEquity": 1.03,
             "currentRatio": 1.7,
-            "grossMargin": 25.33
+            "grossMargin": 25.33,
+            "inventoryDays": 36.82
           }
         },
         {
@@ -6793,7 +7122,8 @@
             "cashConversion": 83.29,
             "debtEquity": 11.84,
             "currentRatio": 0.62,
-            "grossMargin": 41.75
+            "grossMargin": 41.75,
+            "inventoryDays": 41.8
           },
           "median": {
             "revenueGrowth": 18,
@@ -6806,7 +7136,8 @@
             "cashConversion": 61.2,
             "debtEquity": 0.62,
             "currentRatio": 1.4,
-            "grossMargin": 22.23
+            "grossMargin": 22.23,
+            "inventoryDays": 39.42
           }
         },
         {
@@ -6823,7 +7154,8 @@
             "cashConversion": 73.91,
             "debtEquity": 6.14,
             "currentRatio": 0.57,
-            "grossMargin": 45
+            "grossMargin": 45,
+            "inventoryDays": 27.54
           },
           "median": {
             "revenueGrowth": 25.89,
@@ -6836,7 +7168,8 @@
             "cashConversion": 59.85,
             "debtEquity": 0.66,
             "currentRatio": 1.51,
-            "grossMargin": 19.59
+            "grossMargin": 19.59,
+            "inventoryDays": 34.8
           }
         }
       ]
@@ -6853,7 +7186,8 @@
         "cashConversion": 59.85,
         "debtEquity": 5.28,
         "currentRatio": 0.71,
-        "grossMargin": 30.99
+        "grossMargin": 30.99,
+        "inventoryDays": 29.19
       },
       "median": {
         "revenueGrowth": 11.98,
@@ -6866,7 +7200,8 @@
         "cashConversion": 71.62,
         "debtEquity": 0.72,
         "currentRatio": 1.55,
-        "grossMargin": 24.63
+        "grossMargin": 24.63,
+        "inventoryDays": 39.05
       }
     },
     "ownership": {
@@ -7283,6 +7618,42 @@
     "levers": [
       {
         "tone": "opportunity",
+        "strength": 3,
+        "title": "Building capacity they'll need to fill",
+        "detail": "₹9.3 Cr sits in capital work-in-progress — 81.6% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
+        "evidence": [
+          {
+            "label": "Capital WIP",
+            "value": "₹9.3 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of fixed assets",
+            "value": "81.6%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 3,
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 13.99% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.17% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.17% for 30 days, ~2.34% for 60, and it still leaves them better off than their bank.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "13.99%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1.17%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "title": "Fatter margins than its peers",
         "detail": "EBITDA margin 10.3% vs the peer median 7.04% — about 3.3pp of extra cushion baked into their pricing. There's room to push on price.",
@@ -7489,6 +7860,7 @@
       "grade": null,
       "gradeText": "SME 1",
       "ratedAmountCr": 0,
+      "outlook": null,
       "facilities": [
         {
           "loan": null,
@@ -7514,6 +7886,54 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "PRAKASH MADLECHA & CO",
+      "signedBy": "PRAKASH MADLECHA",
+      "changes": 0,
+      "firms": [
+        "PRAKASH MADLECHA & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 260,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Wholesale and retail trade; repair of motor vehicles and motorcycles",
+    "gstNature": [
+      "Export",
+      "Retail Business",
+      "Warehouse / Depot",
+      "Wholesale Business",
+      "Recipient of Goods or Services"
+    ],
+    "managerialPay": {
+      "fy": "FY25",
+      "amountCr": 4,
+      "pctOfProfit": 33.2
+    },
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": null,
+    "powerCost": null,
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 5.4,
+      "netCr": 2.9,
+      "depreciatedPct": 46.1
     },
     "latest": {
       "year": "FY25",
@@ -8423,7 +8843,8 @@
             "cashConversion": 84,
             "debtEquity": 0,
             "currentRatio": 1.63,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 22.62
           },
           "median": {
             "revenueGrowth": 13.24,
@@ -8436,7 +8857,8 @@
             "cashConversion": 36.14,
             "debtEquity": 0.23,
             "currentRatio": 1.72,
-            "grossMargin": 5.27
+            "grossMargin": 5.27,
+            "inventoryDays": 19.33
           }
         },
         {
@@ -8453,7 +8875,8 @@
             "cashConversion": 42.03,
             "debtEquity": 0,
             "currentRatio": 1.95,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 38.03
           },
           "median": {
             "revenueGrowth": -0.28,
@@ -8466,7 +8889,8 @@
             "cashConversion": 41.15,
             "debtEquity": 0.17,
             "currentRatio": 1.9,
-            "grossMargin": 5.74
+            "grossMargin": 5.74,
+            "inventoryDays": 19.02
           }
         },
         {
@@ -8483,7 +8907,8 @@
             "cashConversion": 52.59,
             "debtEquity": 0,
             "currentRatio": 2.35,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 33.8
           },
           "median": {
             "revenueGrowth": 19.17,
@@ -8496,7 +8921,8 @@
             "cashConversion": 36.02,
             "debtEquity": 0.38,
             "currentRatio": 1.68,
-            "grossMargin": 5.98
+            "grossMargin": 5.98,
+            "inventoryDays": 18.31
           }
         },
         {
@@ -8513,7 +8939,8 @@
             "cashConversion": 58.72,
             "debtEquity": 0.01,
             "currentRatio": 1.67,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 45.78
           },
           "median": {
             "revenueGrowth": 41.83,
@@ -8526,7 +8953,8 @@
             "cashConversion": 39.91,
             "debtEquity": 0.19,
             "currentRatio": 1.63,
-            "grossMargin": 8.64
+            "grossMargin": 8.64,
+            "inventoryDays": 22.71
           }
         }
       ]
@@ -8543,7 +8971,8 @@
         "cashConversion": 84,
         "debtEquity": 0,
         "currentRatio": 1.63,
-        "grossMargin": null
+        "grossMargin": null,
+        "inventoryDays": 22.62
       },
       "median": {
         "revenueGrowth": 13.24,
@@ -8556,7 +8985,8 @@
         "cashConversion": 36.14,
         "debtEquity": 0.23,
         "currentRatio": 1.72,
-        "grossMargin": 5.27
+        "grossMargin": 5.27,
+        "inventoryDays": 19.33
       }
     },
     "ownership": {
@@ -9205,6 +9635,24 @@
       },
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "Owner pay is a big slice of profit",
+        "detail": "Managerial remuneration of ₹4 Cr is 33.2% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
+        "evidence": [
+          {
+            "label": "Managerial pay",
+            "value": "₹4 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of profit after tax",
+            "value": "33.2%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "They're funding their own customers",
         "detail": "Collection days rose 84 → 147 — cash is increasingly stuck in receivables. That pressure is our early-pay leverage.",
@@ -9432,6 +9880,54 @@
     "agedReceivables": {
       "fy": "FY22",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "PRICE WATERHOUSE CHARTERED ACCOUN",
+      "signedBy": "Master Khushnam Hoshang",
+      "changes": 0,
+      "firms": [
+        "PRICE WATERHOUSE CHARTERED ACCOUN"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": null,
+    "activityGroup": "Wholesale and retail trade; repair of motor vehicles and motorcycles",
+    "gstNature": [
+      "Export",
+      "Import",
+      "Office / Sale Office",
+      "Recipient of Goods or Services",
+      "Service Provision",
+      "Supplier of Services",
+      "Warehouse / Depot",
+      "Wholesale Business",
+      "Factory / Manufacturing",
+      "Others"
+    ],
+    "managerialPay": null,
+    "proposedDividend": true,
+    "capexWip": {
+      "fy": "FY25",
+      "amountCr": 0.1,
+      "pctOfFixedAssets": 0.1
+    },
+    "borrowingCost": {
+      "ratePct": 12
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 0.4,
+      "pctOfRevenue": 0.1
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 116.4,
+      "netCr": 93.7,
+      "depreciatedPct": 19.5
     },
     "latest": {
       "year": "FY25",
@@ -10341,7 +10837,8 @@
             "cashConversion": 97.67,
             "debtEquity": 0,
             "currentRatio": 2.73,
-            "grossMargin": 25.94
+            "grossMargin": 25.94,
+            "inventoryDays": 71.92
           },
           "median": {
             "revenueGrowth": 12.3,
@@ -10354,7 +10851,8 @@
             "cashConversion": 32.61,
             "debtEquity": 0.35,
             "currentRatio": 1.82,
-            "grossMargin": 6.01
+            "grossMargin": 6.01,
+            "inventoryDays": 23.92
           }
         },
         {
@@ -10371,7 +10869,8 @@
             "cashConversion": 92.82,
             "debtEquity": 0,
             "currentRatio": 3.09,
-            "grossMargin": 25.94
+            "grossMargin": 25.94,
+            "inventoryDays": 76.78
           },
           "median": {
             "revenueGrowth": 3.69,
@@ -10384,7 +10883,8 @@
             "cashConversion": 31.95,
             "debtEquity": 0.32,
             "currentRatio": 1.72,
-            "grossMargin": 6.32
+            "grossMargin": 6.32,
+            "inventoryDays": 21.78
           }
         },
         {
@@ -10401,7 +10901,8 @@
             "cashConversion": 88.76,
             "debtEquity": 0,
             "currentRatio": 3.58,
-            "grossMargin": 25.88
+            "grossMargin": 25.88,
+            "inventoryDays": 73.01
           },
           "median": {
             "revenueGrowth": 15.75,
@@ -10414,7 +10915,8 @@
             "cashConversion": 27.4,
             "debtEquity": 0.39,
             "currentRatio": 1.79,
-            "grossMargin": 6.02
+            "grossMargin": 6.02,
+            "inventoryDays": 16.63
           }
         },
         {
@@ -10431,7 +10933,8 @@
             "cashConversion": 95.68,
             "debtEquity": 0,
             "currentRatio": 3.02,
-            "grossMargin": 26.03
+            "grossMargin": 26.03,
+            "inventoryDays": 86.75
           },
           "median": {
             "revenueGrowth": 49.61,
@@ -10444,7 +10947,8 @@
             "cashConversion": 27.01,
             "debtEquity": 0.37,
             "currentRatio": 1.77,
-            "grossMargin": 7.32
+            "grossMargin": 7.32,
+            "inventoryDays": 13.89
           }
         }
       ]
@@ -10461,7 +10965,8 @@
         "cashConversion": 97.67,
         "debtEquity": 0,
         "currentRatio": 2.73,
-        "grossMargin": 25.94
+        "grossMargin": 25.94,
+        "inventoryDays": 71.92
       },
       "median": {
         "revenueGrowth": 12.3,
@@ -10474,7 +10979,8 @@
         "cashConversion": 32.61,
         "debtEquity": 0.35,
         "currentRatio": 1.82,
-        "grossMargin": 6.01
+        "grossMargin": 6.01,
+        "inventoryDays": 23.92
       }
     },
     "ownership": {
@@ -11005,6 +11511,24 @@
       },
       {
         "tone": "opportunity",
+        "strength": 3,
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 12% interest. Every month we pay early effectively lends them cash at that rate — worth about 1% a month to them. That sets a defensible number for an early-payment discount: ask for ~1% for 30 days, ~2% for 60, and it still leaves them better off than their bank.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "12%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "title": "Returns come from fat margins, not leverage",
         "detail": "DuPont: RoE 17.1% is driven by a 8.4% net margin on a near-unleveraged balance sheet (equity multiplier 1.4×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
@@ -11046,6 +11570,24 @@
       },
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 71.92 days vs a peer norm of 23.92 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "71.92 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "23.92 d",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
@@ -11053,6 +11595,19 @@
           {
             "label": "Debt / equity",
             "value": "0",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
             "tab": "financials"
           }
         ]
@@ -11156,6 +11711,59 @@
     "agedReceivables": {
       "fy": "FY24",
       "amountCr": 2.1
+    },
+    "auditor": {
+      "current": "S I G M A C & CO",
+      "signedBy": "SANDEEP BANSHILAL MAHESHWARI",
+      "changes": 1,
+      "firms": [
+        "S I G M A C & CO",
+        "GORADIYA & ASSOCIATES"
+      ],
+      "anyAdverse": true,
+      "adverseYears": [
+        "FY17"
+      ],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY24"
+    },
+    "revenueMix": {
+      "fy": "FY24",
+      "manufacturedCr": 62.1,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Import",
+      "Retail Business",
+      "Warehouse / Depot",
+      "Wholesale Business"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": {
+      "fy": "FY24",
+      "amountCr": 2.8,
+      "pctOfFixedAssets": 22.1
+    },
+    "borrowingCost": {
+      "ratePct": 9.55
+    },
+    "powerCost": null,
+    "assetAge": {
+      "fy": "FY24",
+      "grossCr": 18.4,
+      "netCr": 12.6,
+      "depreciatedPct": 31.7
     },
     "latest": {
       "year": "FY24",
@@ -11996,7 +12604,8 @@
             "cashConversion": 81.73,
             "debtEquity": 1.15,
             "currentRatio": 1.84,
-            "grossMargin": 45.88
+            "grossMargin": 45.88,
+            "inventoryDays": 36.94
           },
           "median": {
             "revenueGrowth": 17.83,
@@ -12009,7 +12618,8 @@
             "cashConversion": 44.44,
             "debtEquity": 0.43,
             "currentRatio": 1.66,
-            "grossMargin": 35.84
+            "grossMargin": 35.84,
+            "inventoryDays": 28.36
           }
         },
         {
@@ -12026,7 +12636,8 @@
             "cashConversion": 77.43,
             "debtEquity": 1.64,
             "currentRatio": 1.93,
-            "grossMargin": 34.15
+            "grossMargin": 34.15,
+            "inventoryDays": 31.8
           },
           "median": {
             "revenueGrowth": 26.14,
@@ -12039,7 +12650,8 @@
             "cashConversion": 37.68,
             "debtEquity": 0.37,
             "currentRatio": 1.68,
-            "grossMargin": 34.74
+            "grossMargin": 34.74,
+            "inventoryDays": 35.17
           }
         },
         {
@@ -12056,7 +12668,8 @@
             "cashConversion": 50.34,
             "debtEquity": 1.39,
             "currentRatio": 2.07,
-            "grossMargin": 41.01
+            "grossMargin": 41.01,
+            "inventoryDays": 41.96
           },
           "median": {
             "revenueGrowth": 17.49,
@@ -12069,7 +12682,8 @@
             "cashConversion": 55.18,
             "debtEquity": 0.52,
             "currentRatio": 1.78,
-            "grossMargin": 39.83
+            "grossMargin": 39.83,
+            "inventoryDays": 42.4
           }
         },
         {
@@ -12086,7 +12700,8 @@
             "cashConversion": 14.74,
             "debtEquity": 0.93,
             "currentRatio": 0.92,
-            "grossMargin": 43.74
+            "grossMargin": 43.74,
+            "inventoryDays": 14.2
           },
           "median": {
             "revenueGrowth": 14,
@@ -12099,7 +12714,8 @@
             "cashConversion": 45.37,
             "debtEquity": 0.62,
             "currentRatio": 1.57,
-            "grossMargin": 43.61
+            "grossMargin": 43.61,
+            "inventoryDays": 42.61
           }
         }
       ]
@@ -12116,7 +12732,8 @@
         "cashConversion": 81.73,
         "debtEquity": 1.15,
         "currentRatio": 1.84,
-        "grossMargin": 45.88
+        "grossMargin": 45.88,
+        "inventoryDays": 36.94
       },
       "median": {
         "revenueGrowth": 17.83,
@@ -12129,7 +12746,8 @@
         "cashConversion": 44.44,
         "debtEquity": 0.43,
         "currentRatio": 1.66,
-        "grossMargin": 35.84
+        "grossMargin": 35.84,
+        "inventoryDays": 28.36
       }
     },
     "ownership": {
@@ -12589,6 +13207,24 @@
       },
       {
         "tone": "opportunity",
+        "strength": 3,
+        "title": "Building capacity they'll need to fill",
+        "detail": "₹2.8 Cr sits in capital work-in-progress — 22.1% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
+        "evidence": [
+          {
+            "label": "Capital WIP",
+            "value": "₹2.8 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of fixed assets",
+            "value": "22.1%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 8.5% → 14.8% — profit is expanding, so they can absorb a better price for us.",
@@ -12615,6 +13251,24 @@
             "label": "Peer median",
             "value": "16.84%",
             "tab": "peers"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "They own their conversion margin",
+        "detail": "100% of revenue is goods they manufacture themselves, on a 45.9% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
+        "evidence": [
+          {
+            "label": "Manufactured",
+            "value": "100%",
+            "tab": "financials"
+          },
+          {
+            "label": "Gross margin",
+            "value": "45.9%",
+            "tab": "financials"
           }
         ]
       },
@@ -12672,6 +13326,24 @@
             "label": "Filing flags",
             "value": "GST + EPF",
             "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Auditor raised adverse remarks in the past",
+        "detail": "There were adverse auditor remarks in FY17, but not in the recent filed years (latest FY24). Reads as a resolved historical issue rather than a live one — worth one question, not a red flag.",
+        "evidence": [
+          {
+            "label": "Adverse years",
+            "value": "FY17",
+            "tab": "financials"
+          },
+          {
+            "label": "Latest filed",
+            "value": "FY24",
+            "tab": "financials"
           }
         ]
       }
@@ -12735,6 +13407,61 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "SHETH & ASSOCIATES",
+      "signedBy": "MITALI MUKESH SHETH",
+      "changes": 0,
+      "firms": [
+        "SHETH & ASSOCIATES"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 205.3,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Office / Sale Office",
+      "Supplier of Services",
+      "Factory / Manufacturing",
+      "Recipient of Goods or Services",
+      "Warehouse / Depot",
+      "Others"
+    ],
+    "managerialPay": {
+      "fy": "FY25",
+      "amountCr": 5.4,
+      "pctOfProfit": 27.5
+    },
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": {
+      "ratePct": 9.5
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 3.2,
+      "pctOfRevenue": 1.6
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 112.3,
+      "netCr": 67,
+      "depreciatedPct": 40.3
     },
     "latest": {
       "year": "FY25",
@@ -13527,7 +14254,8 @@
             "cashConversion": 47.14,
             "debtEquity": 0.08,
             "currentRatio": 1.57,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 42.28
           },
           "median": {
             "revenueGrowth": 13.03,
@@ -13540,7 +14268,8 @@
             "cashConversion": 68.69,
             "debtEquity": 0.31,
             "currentRatio": 1.44,
-            "grossMargin": 35.83
+            "grossMargin": 35.83,
+            "inventoryDays": 49.47
           }
         },
         {
@@ -13557,7 +14286,8 @@
             "cashConversion": 47.72,
             "debtEquity": 0.18,
             "currentRatio": 1.42,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 44.54
           },
           "median": {
             "revenueGrowth": 15.58,
@@ -13570,7 +14300,8 @@
             "cashConversion": 70.72,
             "debtEquity": 0.4,
             "currentRatio": 1.53,
-            "grossMargin": 41.05
+            "grossMargin": 41.05,
+            "inventoryDays": 46.82
           }
         },
         {
@@ -13587,7 +14318,8 @@
             "cashConversion": 58.37,
             "debtEquity": 0.32,
             "currentRatio": 1.18,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 43.54
           },
           "median": {
             "revenueGrowth": 21.82,
@@ -13600,7 +14332,8 @@
             "cashConversion": 74.37,
             "debtEquity": 0.5,
             "currentRatio": 1.37,
-            "grossMargin": 39.94
+            "grossMargin": 39.94,
+            "inventoryDays": 47.58
           }
         },
         {
@@ -13617,7 +14350,8 @@
             "cashConversion": 55.31,
             "debtEquity": 0.51,
             "currentRatio": 1.13,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 51.28
           },
           "median": {
             "revenueGrowth": 21.71,
@@ -13630,7 +14364,8 @@
             "cashConversion": 82.43,
             "debtEquity": 0.46,
             "currentRatio": 1.37,
-            "grossMargin": 52.66
+            "grossMargin": 52.66,
+            "inventoryDays": 56.03
           }
         }
       ]
@@ -13647,7 +14382,8 @@
         "cashConversion": 47.14,
         "debtEquity": 0.08,
         "currentRatio": 1.57,
-        "grossMargin": null
+        "grossMargin": null,
+        "inventoryDays": 42.28
       },
       "median": {
         "revenueGrowth": 13.03,
@@ -13660,7 +14396,8 @@
         "cashConversion": 68.69,
         "debtEquity": 0.31,
         "currentRatio": 1.44,
-        "grossMargin": 35.83
+        "grossMargin": 35.83,
+        "inventoryDays": 49.47
       }
     },
     "ownership": {
@@ -14353,6 +15090,24 @@
       },
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "Owner pay is a big slice of profit",
+        "detail": "Managerial remuneration of ₹5.4 Cr is 27.5% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
+        "evidence": [
+          {
+            "label": "Managerial pay",
+            "value": "₹5.4 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of profit after tax",
+            "value": "27.5%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "Collects its cash quickly",
         "detail": "Gets paid in 43 days (peers 86.54) — a healthy cash position, so we can push to extend our own terms.",
@@ -14495,6 +15250,7 @@
       "grade": "B",
       "gradeText": "B (Stable/Issuer Not Cooperating/Downgraded from B+)",
       "ratedAmountCr": 17,
+      "outlook": "Stable",
       "facilities": [
         {
           "loan": "Long Term Bank Facilities",
@@ -14533,6 +15289,63 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "NAIR & NAIR ASSOCIATES",
+      "signedBy": "VINOD NAIR",
+      "changes": 0,
+      "firms": [
+        "NAIR & NAIR ASSOCIATES"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 86,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Warehouse / Depot",
+      "Others",
+      "Retail Business"
+    ],
+    "managerialPay": {
+      "fy": "FY25",
+      "amountCr": 0.1,
+      "pctOfProfit": 7.1
+    },
+    "proposedDividend": false,
+    "capexWip": {
+      "fy": "FY25",
+      "amountCr": 3.3,
+      "pctOfFixedAssets": 25.7
+    },
+    "borrowingCost": {
+      "ratePct": 9
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 0.1,
+      "pctOfRevenue": 0.2
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 25.9,
+      "netCr": 12.7,
+      "depreciatedPct": 51.2
     },
     "latest": {
       "year": "FY25",
@@ -15442,7 +16255,8 @@
             "cashConversion": 24.38,
             "debtEquity": 0.68,
             "currentRatio": 0.83,
-            "grossMargin": 17.67
+            "grossMargin": 17.67,
+            "inventoryDays": 30.43
           },
           "median": {
             "revenueGrowth": -0.17,
@@ -15455,7 +16269,8 @@
             "cashConversion": 30.18,
             "debtEquity": 0.99,
             "currentRatio": 1.29,
-            "grossMargin": 21.95
+            "grossMargin": 21.95,
+            "inventoryDays": 31.98
           }
         },
         {
@@ -15472,7 +16287,8 @@
             "cashConversion": 29.09,
             "debtEquity": 1.13,
             "currentRatio": 0.91,
-            "grossMargin": 15.98
+            "grossMargin": 15.98,
+            "inventoryDays": 35.32
           },
           "median": {
             "revenueGrowth": 9.73,
@@ -15485,7 +16301,8 @@
             "cashConversion": 41,
             "debtEquity": 1.4,
             "currentRatio": 1.41,
-            "grossMargin": 19.84
+            "grossMargin": 19.84,
+            "inventoryDays": 35.32
           }
         },
         {
@@ -15502,7 +16319,8 @@
             "cashConversion": 20.8,
             "debtEquity": 1.17,
             "currentRatio": 1.38,
-            "grossMargin": 13.01
+            "grossMargin": 13.01,
+            "inventoryDays": 31.17
           },
           "median": {
             "revenueGrowth": 38.56,
@@ -15515,7 +16333,8 @@
             "cashConversion": 34.47,
             "debtEquity": 1.38,
             "currentRatio": 1.5,
-            "grossMargin": 20.99
+            "grossMargin": 20.99,
+            "inventoryDays": 40.53
           }
         },
         {
@@ -15532,7 +16351,8 @@
             "cashConversion": 38.63,
             "debtEquity": 1.32,
             "currentRatio": 1.38,
-            "grossMargin": 15.44
+            "grossMargin": 15.44,
+            "inventoryDays": 58.18
           },
           "median": {
             "revenueGrowth": 7.95,
@@ -15545,7 +16365,8 @@
             "cashConversion": 49.64,
             "debtEquity": 1.32,
             "currentRatio": 1.71,
-            "grossMargin": 20.41
+            "grossMargin": 20.41,
+            "inventoryDays": 38.8
           }
         }
       ]
@@ -15562,7 +16383,8 @@
         "cashConversion": 24.38,
         "debtEquity": 0.68,
         "currentRatio": 0.83,
-        "grossMargin": 17.67
+        "grossMargin": 17.67,
+        "inventoryDays": 30.43
       },
       "median": {
         "revenueGrowth": -0.17,
@@ -15575,7 +16397,8 @@
         "cashConversion": 30.18,
         "debtEquity": 0.99,
         "currentRatio": 1.29,
-        "grossMargin": 21.95
+        "grossMargin": 21.95,
+        "inventoryDays": 31.98
       }
     },
     "ownership": {
@@ -16099,6 +16922,24 @@
     "levers": [
       {
         "tone": "opportunity",
+        "strength": 3,
+        "title": "Building capacity they'll need to fill",
+        "detail": "₹3.3 Cr sits in capital work-in-progress — 25.7% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
+        "evidence": [
+          {
+            "label": "Capital WIP",
+            "value": "₹3.3 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of fixed assets",
+            "value": "25.7%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 2.1% → 4.2% — profit is expanding, so they can absorb a better price for us.",
@@ -16155,6 +16996,24 @@
           {
             "label": "Revenue",
             "value": "₹106 Cr → ₹86 Cr",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "They own their conversion margin",
+        "detail": "100% of revenue is goods they manufacture themselves, on a 17.7% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
+        "evidence": [
+          {
+            "label": "Manufactured",
+            "value": "100%",
+            "tab": "financials"
+          },
+          {
+            "label": "Gross margin",
+            "value": "17.7%",
             "tab": "financials"
           }
         ]
@@ -16335,6 +17194,54 @@
     "agedReceivables": {
       "fy": "FY24",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "NIKHIL S KATRODIYA & CO",
+      "signedBy": "NIKHIL SURESHBHAI KATRODIYA",
+      "changes": 0,
+      "firms": [
+        "NIKHIL S KATRODIYA & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY24"
+    },
+    "revenueMix": {
+      "fy": "FY24",
+      "manufacturedCr": 16.6,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Trade",
+    "gstNature": [
+      "Office / Sale Office",
+      "Retail Business",
+      "Warehouse / Depot"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": {
+      "ratePct": 10.15
+    },
+    "powerCost": {
+      "fy": "FY24",
+      "amountCr": 0.3,
+      "pctOfRevenue": 1.5
+    },
+    "assetAge": {
+      "fy": "FY24",
+      "grossCr": 19.4,
+      "netCr": 17,
+      "depreciatedPct": 12.1
     },
     "latest": {
       "year": "FY24",
@@ -16727,7 +17634,8 @@
             "cashConversion": 27.71,
             "debtEquity": null,
             "currentRatio": 0.56,
-            "grossMargin": 26.05
+            "grossMargin": 26.05,
+            "inventoryDays": 93.32
           },
           "median": {
             "revenueGrowth": 23.96,
@@ -16740,7 +17648,8 @@
             "cashConversion": 44.16,
             "debtEquity": 0.24,
             "currentRatio": 1.79,
-            "grossMargin": 48.98
+            "grossMargin": 48.98,
+            "inventoryDays": 40.33
           }
         },
         {
@@ -16757,7 +17666,8 @@
             "cashConversion": 41.81,
             "debtEquity": null,
             "currentRatio": 0.65,
-            "grossMargin": 7.39
+            "grossMargin": 7.39,
+            "inventoryDays": 116.59
           },
           "median": {
             "revenueGrowth": 5.28,
@@ -16770,7 +17680,8 @@
             "cashConversion": 53.32,
             "debtEquity": 0.2,
             "currentRatio": 1.78,
-            "grossMargin": 47.41
+            "grossMargin": 47.41,
+            "inventoryDays": 27.4
           }
         },
         {
@@ -16787,7 +17698,8 @@
             "cashConversion": -87.26,
             "debtEquity": null,
             "currentRatio": 0.35,
-            "grossMargin": 6.28
+            "grossMargin": 6.28,
+            "inventoryDays": 0
           },
           "median": {
             "revenueGrowth": 30.89,
@@ -16800,7 +17712,8 @@
             "cashConversion": 42.52,
             "debtEquity": 0.52,
             "currentRatio": 1.76,
-            "grossMargin": 48.09
+            "grossMargin": 48.09,
+            "inventoryDays": 24.56
           }
         }
       ]
@@ -16817,7 +17730,8 @@
         "cashConversion": 27.71,
         "debtEquity": null,
         "currentRatio": 0.56,
-        "grossMargin": 26.05
+        "grossMargin": 26.05,
+        "inventoryDays": 93.32
       },
       "median": {
         "revenueGrowth": 23.96,
@@ -16830,7 +17744,8 @@
         "cashConversion": 44.16,
         "debtEquity": 0.24,
         "currentRatio": 1.79,
-        "grossMargin": 48.98
+        "grossMargin": 48.98,
+        "inventoryDays": 40.33
       }
     },
     "ownership": {
@@ -17187,6 +18102,42 @@
       },
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "They own their conversion margin",
+        "detail": "100% of revenue is goods they manufacture themselves, on a 26.1% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
+        "evidence": [
+          {
+            "label": "Manufactured",
+            "value": "100%",
+            "tab": "financials"
+          },
+          {
+            "label": "Gross margin",
+            "value": "26.1%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 93.32 days vs a peer norm of 40.33 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "93.32 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "40.33 d",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "Collects its cash quickly",
         "detail": "Gets paid in 53 days (peers 65.98) — a healthy cash position, so we can push to extend our own terms.",
@@ -17347,6 +18298,7 @@
       "grade": "B",
       "gradeText": "B (Stable/Issuer Not Cooperating/Revised from B+)",
       "ratedAmountCr": 5.1,
+      "outlook": "Stable",
       "facilities": [
         {
           "loan": "Cash Credit",
@@ -17379,6 +18331,51 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 0.9
+    },
+    "auditor": {
+      "current": "H TIWARI & CO",
+      "signedBy": "HEMANT TIWARI",
+      "changes": 1,
+      "firms": [
+        "H TIWARI & CO",
+        "SUDHIR R GUPTA & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 21.6,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Retail Business",
+      "Wholesale Business"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": {
+      "ratePct": 9.2
+    },
+    "powerCost": null,
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 19.3,
+      "netCr": 6.8,
+      "depreciatedPct": 64.6
     },
     "latest": {
       "year": "FY25",
@@ -18275,7 +19272,8 @@
             "cashConversion": 57.93,
             "debtEquity": 1.19,
             "currentRatio": 1.63,
-            "grossMargin": 38.81
+            "grossMargin": 38.81,
+            "inventoryDays": 9.2
           },
           "median": {
             "revenueGrowth": 24.76,
@@ -18288,7 +19286,8 @@
             "cashConversion": 67.8,
             "debtEquity": 2.2,
             "currentRatio": 1.15,
-            "grossMargin": 27.53
+            "grossMargin": 27.53,
+            "inventoryDays": 40.97
           }
         },
         {
@@ -18305,7 +19304,8 @@
             "cashConversion": 74.56,
             "debtEquity": 1.03,
             "currentRatio": 1.72,
-            "grossMargin": 39.5
+            "grossMargin": 39.5,
+            "inventoryDays": 36.78
           },
           "median": {
             "revenueGrowth": 7.78,
@@ -18318,7 +19318,8 @@
             "cashConversion": 71.18,
             "debtEquity": 1.53,
             "currentRatio": 1.34,
-            "grossMargin": 29.32
+            "grossMargin": 29.32,
+            "inventoryDays": 46.89
           }
         },
         {
@@ -18335,7 +19336,8 @@
             "cashConversion": 125.63,
             "debtEquity": 0.91,
             "currentRatio": 2.28,
-            "grossMargin": 37.13
+            "grossMargin": 37.13,
+            "inventoryDays": 95.1
           },
           "median": {
             "revenueGrowth": 23.81,
@@ -18348,7 +19350,8 @@
             "cashConversion": 70.09,
             "debtEquity": 1.13,
             "currentRatio": 1.26,
-            "grossMargin": 25.12
+            "grossMargin": 25.12,
+            "inventoryDays": 56.91
           }
         },
         {
@@ -18365,7 +19368,8 @@
             "cashConversion": 210.06,
             "debtEquity": 1.02,
             "currentRatio": 2.56,
-            "grossMargin": 46.22
+            "grossMargin": 46.22,
+            "inventoryDays": 190.98
           },
           "median": {
             "revenueGrowth": 15.45,
@@ -18378,7 +19382,8 @@
             "cashConversion": 90.57,
             "debtEquity": 1.02,
             "currentRatio": 1.41,
-            "grossMargin": 30.89
+            "grossMargin": 30.89,
+            "inventoryDays": 58.57
           }
         }
       ]
@@ -18395,7 +19400,8 @@
         "cashConversion": 57.93,
         "debtEquity": 1.19,
         "currentRatio": 1.63,
-        "grossMargin": 38.81
+        "grossMargin": 38.81,
+        "inventoryDays": 9.2
       },
       "median": {
         "revenueGrowth": 24.76,
@@ -18408,7 +19414,8 @@
         "cashConversion": 67.8,
         "debtEquity": 2.2,
         "currentRatio": 1.15,
-        "grossMargin": 27.53
+        "grossMargin": 27.53,
+        "inventoryDays": 40.97
       }
     },
     "ownership": {
@@ -18988,6 +19995,24 @@
     "levers": [
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "They own their conversion margin",
+        "detail": "100% of revenue is goods they manufacture themselves, on a 38.8% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
+        "evidence": [
+          {
+            "label": "Manufactured",
+            "value": "100%",
+            "tab": "financials"
+          },
+          {
+            "label": "Gross margin",
+            "value": "38.8%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹15 Cr → ₹22 Cr, with operating leverage 1.42× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
@@ -19165,6 +20190,41 @@
     "agedReceivables": {
       "fy": "FY23",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "A A G & CO",
+      "signedBy": "ANUJ KUMAR MITTAL",
+      "changes": 0,
+      "firms": [
+        "A A G & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY23"
+    },
+    "revenueMix": null,
+    "activityGroup": null,
+    "gstNature": [
+      "Factory / Manufacturing"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": {
+      "fy": "FY23",
+      "amountCr": 1.1,
+      "pctOfFixedAssets": 940.8
+    },
+    "borrowingCost": {
+      "ratePct": 8.4
+    },
+    "powerCost": null,
+    "assetAge": {
+      "fy": "FY23",
+      "grossCr": 1.2,
+      "netCr": 0.1,
+      "depreciatedPct": 90.4
     },
     "latest": {
       "year": "FY23",
@@ -19628,6 +20688,24 @@
     "levers": [
       {
         "tone": "opportunity",
+        "strength": 3,
+        "title": "Building capacity they'll need to fill",
+        "detail": "₹1.1 Cr sits in capital work-in-progress — 940.8% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
+        "evidence": [
+          {
+            "label": "Capital WIP",
+            "value": "₹1.1 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of fixed assets",
+            "value": "940.8%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "title": "Fundamentals are weakening (F-score low)",
         "detail": "Piotroski F-score 2/9 — deteriorating across profitability/leverage/efficiency checks. A weakening supplier is likelier to concede on price to keep our volume — but line up a backup.",
@@ -19635,6 +20713,24 @@
           {
             "label": "Piotroski F-score",
             "value": "2/9",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Their plant is largely written down",
+        "detail": "90.4% of the gross asset base is already depreciated (₹0.1 Cr left of ₹1.2 Cr). Two things follow: the depreciation charge dragging on their reported profit is mostly historic, so cash generation is better than the P&L suggests — and replacement capex is coming, which makes committed volume from us worth more than a few rupees on unit price.",
+        "evidence": [
+          {
+            "label": "Depreciated",
+            "value": "90.4%",
+            "tab": "financials"
+          },
+          {
+            "label": "Net / gross fixed assets",
+            "value": "₹0.1 / ₹1.2 Cr",
             "tab": "financials"
           }
         ]
@@ -19649,6 +20745,19 @@
             "label": "Filing flags",
             "value": "GST",
             "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "They borrow cheaply",
+        "detail": "Secured facilities at just 8.4% — bank funding is cheap for them, so early payment buys us very little. Push on unit price and volume terms instead of payment timing.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "8.4%",
+            "tab": "financials"
           }
         ]
       }
@@ -19712,6 +20821,66 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 37.3
+    },
+    "auditor": {
+      "current": "VISHNU SHARMA & CO",
+      "signedBy": "VISHNU SHARMA",
+      "changes": 1,
+      "firms": [
+        "VISHNU SHARMA & CO",
+        "B N LAHOTI & ASSOCIATES"
+      ],
+      "anyAdverse": true,
+      "adverseYears": [
+        "FY22"
+      ],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 164.3,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Bonded Warehouse",
+      "Export",
+      "Factory / Manufacturing",
+      "Import",
+      "Office / Sale Office",
+      "Warehouse / Depot",
+      "Wholesale Business",
+      "Works Contract"
+    ],
+    "managerialPay": {
+      "fy": "FY25",
+      "amountCr": 0.7,
+      "pctOfProfit": 7.3
+    },
+    "proposedDividend": false,
+    "capexWip": {
+      "fy": "FY25",
+      "amountCr": 3.7,
+      "pctOfFixedAssets": 15.9
+    },
+    "borrowingCost": {
+      "ratePct": 10.15
+    },
+    "powerCost": null,
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 45.4,
+      "netCr": 23.4,
+      "depreciatedPct": 48.4
     },
     "latest": {
       "year": "FY25",
@@ -20625,7 +21794,8 @@
             "cashConversion": 60.35,
             "debtEquity": 1.12,
             "currentRatio": 1.47,
-            "grossMargin": 26.12
+            "grossMargin": 26.12,
+            "inventoryDays": 32.67
           },
           "median": {
             "revenueGrowth": 7.45,
@@ -20638,7 +21808,8 @@
             "cashConversion": 62.99,
             "debtEquity": 0.72,
             "currentRatio": 1.48,
-            "grossMargin": 36.61
+            "grossMargin": 36.61,
+            "inventoryDays": 37.26
           }
         },
         {
@@ -20655,7 +21826,8 @@
             "cashConversion": 52.35,
             "debtEquity": 0.77,
             "currentRatio": 1.52,
-            "grossMargin": 23.74
+            "grossMargin": 23.74,
+            "inventoryDays": 28.65
           },
           "median": {
             "revenueGrowth": -0.28,
@@ -20668,7 +21840,8 @@
             "cashConversion": 57.21,
             "debtEquity": 0.55,
             "currentRatio": 1.49,
-            "grossMargin": 37.56
+            "grossMargin": 37.56,
+            "inventoryDays": 36.8
           }
         },
         {
@@ -20685,7 +21858,8 @@
             "cashConversion": 42.76,
             "debtEquity": 1.07,
             "currentRatio": 1.42,
-            "grossMargin": 19.82
+            "grossMargin": 19.82,
+            "inventoryDays": 24.81
           },
           "median": {
             "revenueGrowth": 28.79,
@@ -20698,7 +21872,8 @@
             "cashConversion": 66.29,
             "debtEquity": 0.67,
             "currentRatio": 1.52,
-            "grossMargin": 36.32
+            "grossMargin": 36.32,
+            "inventoryDays": 29.84
           }
         },
         {
@@ -20715,7 +21890,8 @@
             "cashConversion": 27.89,
             "debtEquity": 0.79,
             "currentRatio": 1.24,
-            "grossMargin": 18.97
+            "grossMargin": 18.97,
+            "inventoryDays": 19.88
           },
           "median": {
             "revenueGrowth": 43.94,
@@ -20728,7 +21904,8 @@
             "cashConversion": 86.44,
             "debtEquity": 0.65,
             "currentRatio": 1.52,
-            "grossMargin": 34.63
+            "grossMargin": 34.63,
+            "inventoryDays": 37.14
           }
         }
       ]
@@ -20745,7 +21922,8 @@
         "cashConversion": 60.35,
         "debtEquity": 1.12,
         "currentRatio": 1.47,
-        "grossMargin": 26.12
+        "grossMargin": 26.12,
+        "inventoryDays": 32.67
       },
       "median": {
         "revenueGrowth": 7.45,
@@ -20758,7 +21936,8 @@
         "cashConversion": 62.99,
         "debtEquity": 0.72,
         "currentRatio": 1.48,
-        "grossMargin": 36.61
+        "grossMargin": 36.61,
+        "inventoryDays": 37.26
       }
     },
     "ownership": {
@@ -21284,6 +22463,24 @@
     "levers": [
       {
         "tone": "opportunity",
+        "strength": 3,
+        "title": "Building capacity they'll need to fill",
+        "detail": "₹3.7 Cr sits in capital work-in-progress — 15.9% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
+        "evidence": [
+          {
+            "label": "Capital WIP",
+            "value": "₹3.7 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of fixed assets",
+            "value": "15.9%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 8.8% → 12.6% — profit is expanding, so they can absorb a better price for us.",
@@ -21340,6 +22537,24 @@
           {
             "label": "Cash cycle",
             "value": "-12 → 60 d",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "They own their conversion margin",
+        "detail": "100% of revenue is goods they manufacture themselves, on a 26.1% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
+        "evidence": [
+          {
+            "label": "Manufactured",
+            "value": "100%",
+            "tab": "financials"
+          },
+          {
+            "label": "Gross margin",
+            "value": "26.1%",
             "tab": "financials"
           }
         ]
@@ -21439,6 +22654,24 @@
             "tab": "risk"
           }
         ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Auditor raised adverse remarks in the past",
+        "detail": "There were adverse auditor remarks in FY22, but not in the recent filed years (latest FY25). Reads as a resolved historical issue rather than a live one — worth one question, not a red flag.",
+        "evidence": [
+          {
+            "label": "Adverse years",
+            "value": "FY22",
+            "tab": "financials"
+          },
+          {
+            "label": "Latest filed",
+            "value": "FY25",
+            "tab": "financials"
+          }
+        ]
       }
     ]
   },
@@ -21501,6 +22734,59 @@
     "agedReceivables": {
       "fy": "FY24",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "KUMAR SINGHAL & CO",
+      "signedBy": "MARUTI GARG",
+      "changes": 0,
+      "firms": [
+        "KUMAR SINGHAL & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY24"
+    },
+    "revenueMix": {
+      "fy": "FY24",
+      "manufacturedCr": 30.3,
+      "tradedCr": 0,
+      "servicesCr": 0.1,
+      "manufacturedPct": 99.6,
+      "tradedPct": 0,
+      "servicesPct": 0.4,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Recipient of Goods or Services",
+      "Export",
+      "Factory / Manufacturing",
+      "Import",
+      "Wholesale Business",
+      "Supplier of Services"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": {
+      "fy": "FY24",
+      "amountCr": 1.7,
+      "pctOfFixedAssets": 2.8
+    },
+    "borrowingCost": null,
+    "powerCost": {
+      "fy": "FY24",
+      "amountCr": 3.5,
+      "pctOfRevenue": 11.5
+    },
+    "assetAge": {
+      "fy": "FY24",
+      "grossCr": 85.1,
+      "netCr": 60.7,
+      "depreciatedPct": 28.7
     },
     "latest": {
       "year": "FY24",
@@ -22254,7 +23540,8 @@
             "cashConversion": 86.71,
             "debtEquity": 0.02,
             "currentRatio": 4.22,
-            "grossMargin": 60.47
+            "grossMargin": 60.47,
+            "inventoryDays": 32.16
           },
           "median": {
             "revenueGrowth": 19.61,
@@ -22267,7 +23554,8 @@
             "cashConversion": 63.56,
             "debtEquity": 0.78,
             "currentRatio": 1.33,
-            "grossMargin": 22.2
+            "grossMargin": 22.2,
+            "inventoryDays": 32.13
           }
         },
         {
@@ -22284,7 +23572,8 @@
             "cashConversion": 71.5,
             "debtEquity": 0.04,
             "currentRatio": 4.28,
-            "grossMargin": 57.59
+            "grossMargin": 57.59,
+            "inventoryDays": 34.54
           },
           "median": {
             "revenueGrowth": 10.7,
@@ -22297,7 +23586,8 @@
             "cashConversion": 81.79,
             "debtEquity": 0.75,
             "currentRatio": 1.23,
-            "grossMargin": 22.52
+            "grossMargin": 22.52,
+            "inventoryDays": 45.61
           }
         },
         {
@@ -22314,7 +23604,8 @@
             "cashConversion": 92.67,
             "debtEquity": 0.73,
             "currentRatio": 0.75,
-            "grossMargin": 61.21
+            "grossMargin": 61.21,
+            "inventoryDays": 57.48
           },
           "median": {
             "revenueGrowth": 33.43,
@@ -22327,7 +23618,8 @@
             "cashConversion": 82.28,
             "debtEquity": 0.93,
             "currentRatio": 1.33,
-            "grossMargin": 21.12
+            "grossMargin": 21.12,
+            "inventoryDays": 40.1
           }
         },
         {
@@ -22344,7 +23636,8 @@
             "cashConversion": 110.84,
             "debtEquity": 0.83,
             "currentRatio": 3.95,
-            "grossMargin": 45.01
+            "grossMargin": 45.01,
+            "inventoryDays": 61.15
           },
           "median": {
             "revenueGrowth": 4.49,
@@ -22357,7 +23650,8 @@
             "cashConversion": 68.42,
             "debtEquity": 0.85,
             "currentRatio": 1.32,
-            "grossMargin": 23.94
+            "grossMargin": 23.94,
+            "inventoryDays": 42.41
           }
         }
       ]
@@ -22374,7 +23668,8 @@
         "cashConversion": 86.71,
         "debtEquity": 0.02,
         "currentRatio": 4.22,
-        "grossMargin": 60.47
+        "grossMargin": 60.47,
+        "inventoryDays": 32.16
       },
       "median": {
         "revenueGrowth": 19.61,
@@ -22387,7 +23682,8 @@
         "cashConversion": 63.56,
         "debtEquity": 0.78,
         "currentRatio": 1.33,
-        "grossMargin": 22.2
+        "grossMargin": 22.2,
+        "inventoryDays": 32.13
       }
     },
     "ownership": {
@@ -22890,6 +24186,24 @@
       },
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "They own their conversion margin",
+        "detail": "99.6% of revenue is goods they manufacture themselves, on a 60.5% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
+        "evidence": [
+          {
+            "label": "Manufactured",
+            "value": "99.6%",
+            "tab": "financials"
+          },
+          {
+            "label": "Gross margin",
+            "value": "60.5%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "Strong cash generation",
         "detail": "Generated ₹0 Cr of operating cash (above net profit ₹2 Cr) — comfortably cash-positive, so they don't need to claw margin from us. Push on price, not terms.",
@@ -22990,6 +24304,24 @@
         ]
       },
       {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Energy-heavy cost base",
+        "detail": "Power and fuel run ₹3.5 Cr, 11.5% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
+        "evidence": [
+          {
+            "label": "Power & fuel",
+            "value": "₹3.5 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of revenue",
+            "value": "11.5%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
         "tone": "risk",
         "strength": 2,
         "title": "Barely covers its interest bill",
@@ -23062,6 +24394,57 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "D C PARIKH & CO",
+      "signedBy": "PARIKH DHANANJAY CHANDRAKANT",
+      "changes": 0,
+      "firms": [
+        "D C PARIKH & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 61.5,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0.8,
+      "exportPct": 1.3,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Supplier of Services"
+    ],
+    "managerialPay": {
+      "fy": "FY25",
+      "amountCr": 0.9,
+      "pctOfProfit": 53.9
+    },
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": {
+      "ratePct": 9.5
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 4.1,
+      "pctOfRevenue": 6.6
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 12.3,
+      "netCr": 12.3,
+      "depreciatedPct": 0
     },
     "latest": {
       "year": "FY25",
@@ -23566,7 +24949,8 @@
             "cashConversion": 35.69,
             "debtEquity": 1.82,
             "currentRatio": 1.3,
-            "grossMargin": 40.04
+            "grossMargin": 40.04,
+            "inventoryDays": 14.37
           },
           "median": {
             "revenueGrowth": 16.18,
@@ -23579,7 +24963,8 @@
             "cashConversion": 69.43,
             "debtEquity": 0.78,
             "currentRatio": 1.52,
-            "grossMargin": 31.84
+            "grossMargin": 31.84,
+            "inventoryDays": 32.53
           }
         },
         {
@@ -23596,7 +24981,8 @@
             "cashConversion": 24.42,
             "debtEquity": 2.15,
             "currentRatio": 1.08,
-            "grossMargin": 43.48
+            "grossMargin": 43.48,
+            "inventoryDays": 14.18
           },
           "median": {
             "revenueGrowth": 6.27,
@@ -23609,7 +24995,8 @@
             "cashConversion": 73.42,
             "debtEquity": 0.96,
             "currentRatio": 1.58,
-            "grossMargin": 31.74
+            "grossMargin": 31.74,
+            "inventoryDays": 28.97
           }
         },
         {
@@ -23626,7 +25013,8 @@
             "cashConversion": 26.73,
             "debtEquity": 2.56,
             "currentRatio": 1.35,
-            "grossMargin": 37.98
+            "grossMargin": 37.98,
+            "inventoryDays": 12.79
           },
           "median": {
             "revenueGrowth": 15.99,
@@ -23639,7 +25027,8 @@
             "cashConversion": 60.6,
             "debtEquity": 0.9,
             "currentRatio": 1.59,
-            "grossMargin": 31.19
+            "grossMargin": 31.19,
+            "inventoryDays": 31.68
           }
         }
       ]
@@ -23656,7 +25045,8 @@
         "cashConversion": 35.69,
         "debtEquity": 1.82,
         "currentRatio": 1.3,
-        "grossMargin": 40.04
+        "grossMargin": 40.04,
+        "inventoryDays": 14.37
       },
       "median": {
         "revenueGrowth": 16.18,
@@ -23669,7 +25059,8 @@
         "cashConversion": 69.43,
         "debtEquity": 0.78,
         "currentRatio": 1.52,
-        "grossMargin": 31.84
+        "grossMargin": 31.84,
+        "inventoryDays": 32.53
       }
     },
     "ownership": {
@@ -23991,6 +25382,42 @@
       },
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "They own their conversion margin",
+        "detail": "100% of revenue is goods they manufacture themselves, on a 40% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
+        "evidence": [
+          {
+            "label": "Manufactured",
+            "value": "100%",
+            "tab": "financials"
+          },
+          {
+            "label": "Gross margin",
+            "value": "40%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Owner pay is a big slice of profit",
+        "detail": "Managerial remuneration of ₹0.9 Cr is 53.9% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
+        "evidence": [
+          {
+            "label": "Managerial pay",
+            "value": "₹0.9 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of profit after tax",
+            "value": "53.9%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "Collects its cash quickly",
         "detail": "Gets paid in 46 days (peers 52.31) — a healthy cash position, so we can push to extend our own terms.",
@@ -24017,6 +25444,24 @@
             "label": "Filing flags",
             "value": "GST",
             "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Energy-heavy cost base",
+        "detail": "Power and fuel run ₹4.1 Cr, 6.6% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
+        "evidence": [
+          {
+            "label": "Power & fuel",
+            "value": "₹4.1 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of revenue",
+            "value": "6.6%",
+            "tab": "financials"
           }
         ]
       },
@@ -24117,6 +25562,7 @@
       "grade": "C",
       "gradeText": "A4 (Issuer Not Cooperating/Reaffirmed)",
       "ratedAmountCr": 33.3,
+      "outlook": null,
       "facilities": [
         {
           "loan": "Bank Guarantee/Bank Loan Rating",
@@ -24171,6 +25617,68 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 36.1
+    },
+    "auditor": {
+      "current": "RAKESH AYUSH & CO",
+      "signedBy": "RAKESH JAIN",
+      "changes": 2,
+      "firms": [
+        "RAKESH AYUSH & CO",
+        "I P MEHTA & COMPANY",
+        "JAIN & HINDOCHA"
+      ],
+      "anyAdverse": true,
+      "adverseYears": [
+        "FY24",
+        "FY23",
+        "FY21",
+        "FY20",
+        "FY19",
+        "FY18",
+        "FY17",
+        "FY16"
+      ],
+      "adverseRecent": true,
+      "adverseSustained": true,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 434.3,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Recipient of Goods or Services"
+    ],
+    "managerialPay": {
+      "fy": "FY25",
+      "amountCr": 2.9,
+      "pctOfProfit": 11.4
+    },
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": {
+      "ratePct": 12.75
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 75.9,
+      "pctOfRevenue": 17.2
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 158.2,
+      "netCr": 86.5,
+      "depreciatedPct": 45.3
     },
     "latest": {
       "year": "FY25",
@@ -25092,7 +26600,8 @@
             "cashConversion": 121.66,
             "debtEquity": 0.56,
             "currentRatio": 1.58,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 42.87
           },
           "median": {
             "revenueGrowth": 8.59,
@@ -25105,7 +26614,8 @@
             "cashConversion": 80.07,
             "debtEquity": 0.56,
             "currentRatio": 1.4,
-            "grossMargin": 36.46
+            "grossMargin": 36.46,
+            "inventoryDays": 54.15
           }
         },
         {
@@ -25122,7 +26632,8 @@
             "cashConversion": 93.63,
             "debtEquity": 0.58,
             "currentRatio": 1.49,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 38.37
           },
           "median": {
             "revenueGrowth": -2.57,
@@ -25135,7 +26646,8 @@
             "cashConversion": 77.57,
             "debtEquity": 0.57,
             "currentRatio": 1.47,
-            "grossMargin": 35.36
+            "grossMargin": 35.36,
+            "inventoryDays": 52.22
           }
         },
         {
@@ -25152,7 +26664,8 @@
             "cashConversion": 87.91,
             "debtEquity": 0.72,
             "currentRatio": 1.4,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 44.43
           },
           "median": {
             "revenueGrowth": 22.4,
@@ -25165,7 +26678,8 @@
             "cashConversion": 59.29,
             "debtEquity": 0.69,
             "currentRatio": 1.52,
-            "grossMargin": 32.88
+            "grossMargin": 32.88,
+            "inventoryDays": 42.37
           }
         },
         {
@@ -25182,7 +26696,8 @@
             "cashConversion": 129.05,
             "debtEquity": 0.51,
             "currentRatio": 1.66,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 53.76
           },
           "median": {
             "revenueGrowth": 37.1,
@@ -25195,7 +26710,8 @@
             "cashConversion": 77.23,
             "debtEquity": 0.55,
             "currentRatio": 1.59,
-            "grossMargin": 29.14
+            "grossMargin": 29.14,
+            "inventoryDays": 54.78
           }
         }
       ]
@@ -25212,7 +26728,8 @@
         "cashConversion": 121.66,
         "debtEquity": 0.56,
         "currentRatio": 1.58,
-        "grossMargin": null
+        "grossMargin": null,
+        "inventoryDays": 42.87
       },
       "median": {
         "revenueGrowth": 8.59,
@@ -25225,7 +26742,8 @@
         "cashConversion": 80.07,
         "debtEquity": 0.56,
         "currentRatio": 1.4,
-        "grossMargin": 36.46
+        "grossMargin": 36.46,
+        "inventoryDays": 54.15
       }
     },
     "ownership": {
@@ -25830,6 +27348,24 @@
     "levers": [
       {
         "tone": "opportunity",
+        "strength": 3,
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 12.75% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.06% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.06% for 30 days, ~2.12% for 60, and it still leaves them better off than their bank.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "12.75%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1.06%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 5.1% → 10.8% — profit is expanding, so they can absorb a better price for us.",
@@ -25971,6 +27507,42 @@
         ]
       },
       {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Energy-heavy cost base",
+        "detail": "Power and fuel run ₹75.9 Cr, 17.2% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
+        "evidence": [
+          {
+            "label": "Power & fuel",
+            "value": "₹75.9 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of revenue",
+            "value": "17.2%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "risk",
+        "strength": 3,
+        "title": "Auditor keeps raising adverse remarks",
+        "detail": "Their auditor filed adverse remarks in FY24, FY23, FY21, FY20, FY19, FY18, FY17, FY16 — 8 years of them. Every number in this analysis rests on those accounts, so treat the financials as unreliable until clarified and diligence hard before committing volume.",
+        "evidence": [
+          {
+            "label": "Adverse years",
+            "value": "FY24, FY23, FY21, FY20, FY19, FY18, FY17, FY16",
+            "tab": "risk"
+          },
+          {
+            "label": "Latest filed",
+            "value": "FY25",
+            "tab": "risk"
+          }
+        ]
+      },
+      {
         "tone": "risk",
         "strength": 2,
         "title": "Rating flagged 'Issuer Not Cooperating'",
@@ -26048,6 +27620,66 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "P T R G & ASSOCIATES",
+      "signedBy": "ROHIT JAIN",
+      "changes": 1,
+      "firms": [
+        "P T R G & ASSOCIATES",
+        "RAJ KUMAR SHARMA & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 309.6,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Warehouse / Depot",
+      "Export",
+      "Import",
+      "Retail Business",
+      "Wholesale Business",
+      "Recipient of Goods or Services",
+      "Supplier of Services",
+      "Bonded Warehouse",
+      "Office / Sale Office"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": {
+      "fy": "FY25",
+      "amountCr": 1.9,
+      "pctOfFixedAssets": 6.7
+    },
+    "borrowingCost": {
+      "ratePct": 9
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 1.8,
+      "pctOfRevenue": 0.6
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 44.9,
+      "netCr": 28.1,
+      "depreciatedPct": 37.4
     },
     "latest": {
       "year": "FY25",
@@ -27623,6 +29255,24 @@
       },
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "They own their conversion margin",
+        "detail": "100% of revenue is goods they manufacture themselves, on a 24.9% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
+        "evidence": [
+          {
+            "label": "Manufactured",
+            "value": "100%",
+            "tab": "financials"
+          },
+          {
+            "label": "Gross margin",
+            "value": "24.9%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "Free cash flow is negative — they're cash-hungry",
         "detail": "Despite ₹20 Cr of net profit, free cash flow is −₹1 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
@@ -27791,6 +29441,7 @@
       "grade": "BB",
       "gradeText": "Withdrawn (A4+/Issuer Not Cooperating)",
       "ratedAmountCr": 15,
+      "outlook": null,
       "facilities": [
         {
           "loan": "Bank Guarantee",
@@ -27834,6 +29485,51 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "N R AGRAWAL & CO",
+      "signedBy": "NISCHAL NANDKISHOR AGRAWAL",
+      "changes": 0,
+      "firms": [
+        "N R AGRAWAL & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 230.3,
+      "tradedCr": 0,
+      "servicesCr": 3.2,
+      "manufacturedPct": 98.6,
+      "tradedPct": 0,
+      "servicesPct": 1.4,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Trade",
+    "gstNature": [
+      "Warehouse / Depot",
+      "Others"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": null,
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 0.2,
+      "pctOfRevenue": 0.1
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 3.8,
+      "netCr": 0.6,
+      "depreciatedPct": 85.3
     },
     "latest": {
       "year": "FY25",
@@ -28747,7 +30443,8 @@
             "cashConversion": 85.52,
             "debtEquity": 0,
             "currentRatio": 3.09,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 72.95
           },
           "median": {
             "revenueGrowth": 12.76,
@@ -28760,7 +30457,8 @@
             "cashConversion": 40.67,
             "debtEquity": 0.65,
             "currentRatio": 1.6,
-            "grossMargin": 7.66
+            "grossMargin": 7.66,
+            "inventoryDays": 12.36
           }
         },
         {
@@ -28777,7 +30475,8 @@
             "cashConversion": 60.69,
             "debtEquity": 0,
             "currentRatio": 3.22,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 56.71
           },
           "median": {
             "revenueGrowth": 10.51,
@@ -28790,7 +30489,8 @@
             "cashConversion": 41.08,
             "debtEquity": 0.56,
             "currentRatio": 1.58,
-            "grossMargin": 7.05
+            "grossMargin": 7.05,
+            "inventoryDays": 11.48
           }
         },
         {
@@ -28807,7 +30507,8 @@
             "cashConversion": 50.44,
             "debtEquity": 0,
             "currentRatio": 4,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 33.25
           },
           "median": {
             "revenueGrowth": 28.11,
@@ -28820,7 +30521,8 @@
             "cashConversion": 36.16,
             "debtEquity": 0.48,
             "currentRatio": 1.36,
-            "grossMargin": 6.93
+            "grossMargin": 6.93,
+            "inventoryDays": 12.86
           }
         },
         {
@@ -28837,7 +30539,8 @@
             "cashConversion": 62.82,
             "debtEquity": 0,
             "currentRatio": 2.27,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 54.84
           },
           "median": {
             "revenueGrowth": 44.84,
@@ -28850,7 +30553,8 @@
             "cashConversion": 39.91,
             "debtEquity": 0.31,
             "currentRatio": 1.59,
-            "grossMargin": 10.02
+            "grossMargin": 10.02,
+            "inventoryDays": 15.99
           }
         }
       ]
@@ -28867,7 +30571,8 @@
         "cashConversion": 85.52,
         "debtEquity": 0,
         "currentRatio": 3.09,
-        "grossMargin": null
+        "grossMargin": null,
+        "inventoryDays": 72.95
       },
       "median": {
         "revenueGrowth": 12.76,
@@ -28880,7 +30585,8 @@
         "cashConversion": 40.67,
         "debtEquity": 0.65,
         "currentRatio": 1.6,
-        "grossMargin": 7.66
+        "grossMargin": 7.66,
+        "inventoryDays": 12.36
       }
     },
     "ownership": {
@@ -29520,6 +31226,42 @@
       },
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 72.95 days vs a peer norm of 12.36 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "72.95 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "12.36 d",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Their plant is largely written down",
+        "detail": "85.3% of the gross asset base is already depreciated (₹0.6 Cr left of ₹3.8 Cr). Two things follow: the depreciation charge dragging on their reported profit is mostly historic, so cash generation is better than the P&L suggests — and replacement capex is coming, which makes committed volume from us worth more than a few rupees on unit price.",
+        "evidence": [
+          {
+            "label": "Depreciated",
+            "value": "85.3%",
+            "tab": "financials"
+          },
+          {
+            "label": "Net / gross fixed assets",
+            "value": "₹0.6 / ₹3.8 Cr",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "Inventory is piling up",
         "detail": "Inventory days rose 47 → 73 — stock is building faster than it sells. Overstocked suppliers move on price to clear volume.",
@@ -29688,6 +31430,65 @@
     "agedReceivables": {
       "fy": "FY24",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "JATIN SARBJOT & COMPANY",
+      "signedBy": "JATIN GUPTA",
+      "changes": 1,
+      "firms": [
+        "JATIN SARBJOT & COMPANY",
+        "RAJAT CHHABRA & ASSOCIATES"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY24"
+    },
+    "revenueMix": {
+      "fy": "FY24",
+      "manufacturedCr": 15.5,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Trade",
+    "gstNature": [
+      "Bonded Warehouse",
+      "Export",
+      "Factory / Manufacturing",
+      "Import",
+      "Office / Sale Office",
+      "Recipient of Goods or Services",
+      "Retail Business",
+      "Supplier of Services",
+      "Wholesale Business"
+    ],
+    "managerialPay": {
+      "fy": "FY24",
+      "amountCr": 0.2,
+      "pctOfProfit": 54.7
+    },
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": {
+      "ratePct": 13.55
+    },
+    "powerCost": {
+      "fy": "FY24",
+      "amountCr": 0.2,
+      "pctOfRevenue": 1
+    },
+    "assetAge": {
+      "fy": "FY24",
+      "grossCr": 1.8,
+      "netCr": 1.6,
+      "depreciatedPct": 10.6
     },
     "latest": {
       "year": "FY24",
@@ -30248,7 +32049,8 @@
             "cashConversion": -10.62,
             "debtEquity": 6.66,
             "currentRatio": 0.99,
-            "grossMargin": 35.53
+            "grossMargin": 35.53,
+            "inventoryDays": 7.89
           },
           "median": {
             "revenueGrowth": 13.77,
@@ -30261,7 +32063,8 @@
             "cashConversion": 64.73,
             "debtEquity": 0.94,
             "currentRatio": 1.53,
-            "grossMargin": 41.64
+            "grossMargin": 41.64,
+            "inventoryDays": 53.83
           }
         },
         {
@@ -30278,7 +32081,8 @@
             "cashConversion": -33.48,
             "debtEquity": 15.19,
             "currentRatio": 0.75,
-            "grossMargin": 36.77
+            "grossMargin": 36.77,
+            "inventoryDays": 43.54
           },
           "median": {
             "revenueGrowth": 18.84,
@@ -30291,7 +32095,8 @@
             "cashConversion": 64.08,
             "debtEquity": 0.85,
             "currentRatio": 1.4,
-            "grossMargin": 39.83
+            "grossMargin": 39.83,
+            "inventoryDays": 54.58
           }
         },
         {
@@ -30308,7 +32113,8 @@
             "cashConversion": 77.25,
             "debtEquity": 0,
             "currentRatio": 0.62,
-            "grossMargin": 45.53
+            "grossMargin": 45.53,
+            "inventoryDays": 34.29
           },
           "median": {
             "revenueGrowth": 31.31,
@@ -30321,7 +32127,8 @@
             "cashConversion": 33.8,
             "debtEquity": 0.56,
             "currentRatio": 1.23,
-            "grossMargin": 42.44
+            "grossMargin": 42.44,
+            "inventoryDays": 41.58
           }
         },
         {
@@ -30338,7 +32145,8 @@
             "cashConversion": -63.99,
             "debtEquity": null,
             "currentRatio": 0.59,
-            "grossMargin": 44.05
+            "grossMargin": 44.05,
+            "inventoryDays": 100.39
           },
           "median": {
             "revenueGrowth": 16.86,
@@ -30351,7 +32159,8 @@
             "cashConversion": 35.88,
             "debtEquity": 0.81,
             "currentRatio": 1.37,
-            "grossMargin": 37.36
+            "grossMargin": 37.36,
+            "inventoryDays": 52.03
           }
         }
       ]
@@ -30368,7 +32177,8 @@
         "cashConversion": -10.62,
         "debtEquity": 6.66,
         "currentRatio": 0.99,
-        "grossMargin": 35.53
+        "grossMargin": 35.53,
+        "inventoryDays": 7.89
       },
       "median": {
         "revenueGrowth": 13.77,
@@ -30381,7 +32191,8 @@
         "cashConversion": 64.73,
         "debtEquity": 0.94,
         "currentRatio": 1.53,
-        "grossMargin": 41.64
+        "grossMargin": 41.64,
+        "inventoryDays": 53.83
       }
     },
     "ownership": {
@@ -30680,6 +32491,24 @@
     "levers": [
       {
         "tone": "opportunity",
+        "strength": 3,
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 13.55% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.13% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.13% for 30 days, ~2.26% for 60, and it still leaves them better off than their bank.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "13.55%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1.13%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 3.8% → 5.7% — profit is expanding, so they can absorb a better price for us.",
@@ -30718,6 +32547,42 @@
           {
             "label": "Cash cycle",
             "value": "-69 → -11 d",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "They own their conversion margin",
+        "detail": "100% of revenue is goods they manufacture themselves, on a 35.5% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
+        "evidence": [
+          {
+            "label": "Manufactured",
+            "value": "100%",
+            "tab": "financials"
+          },
+          {
+            "label": "Gross margin",
+            "value": "35.5%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Owner pay is a big slice of profit",
+        "detail": "Managerial remuneration of ₹0.2 Cr is 54.7% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
+        "evidence": [
+          {
+            "label": "Managerial pay",
+            "value": "₹0.2 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of profit after tax",
+            "value": "54.7%",
             "tab": "financials"
           }
         ]
@@ -30912,6 +32777,7 @@
       "grade": "AA",
       "gradeText": "AA- (Under Rating Watch with Developing Implications)",
       "ratedAmountCr": 1486,
+      "outlook": null,
       "facilities": [
         {
           "loan": "Cash Credit",
@@ -30965,6 +32831,60 @@
     "agedReceivables": {
       "fy": "FY17",
       "amountCr": 171.7
+    },
+    "auditor": {
+      "current": "DELOITTE HASKINS & SELLS",
+      "signedBy": "PARIKH MONISHA MADANMOHAN",
+      "changes": 2,
+      "firms": [
+        "DELOITTE HASKINS & SELLS",
+        "PABOLU & CO",
+        "SINGHVI DEV & UNNI"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": null,
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Warehouse / Depot",
+      "Export",
+      "Import",
+      "Recipient of Goods or Services",
+      "Supplier of Services",
+      "Office / Sale Office",
+      "Others",
+      "Retail Business",
+      "Wholesale Business"
+    ],
+    "managerialPay": {
+      "fy": "FY25",
+      "amountCr": 85.1,
+      "pctOfProfit": 34.4
+    },
+    "proposedDividend": true,
+    "capexWip": {
+      "fy": "FY25",
+      "amountCr": 40.6,
+      "pctOfFixedAssets": 2.5
+    },
+    "borrowingCost": {
+      "ratePct": 8.55
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 128.2,
+      "pctOfRevenue": 5
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 2711.5,
+      "netCr": 1622.2,
+      "depreciatedPct": 40.2
     },
     "latest": {
       "year": "FY25",
@@ -31861,7 +33781,8 @@
             "cashConversion": 78.05,
             "debtEquity": 0.7,
             "currentRatio": 0.98,
-            "grossMargin": 41.91
+            "grossMargin": 41.91,
+            "inventoryDays": 75.77
           },
           "median": {
             "revenueGrowth": 14.12,
@@ -31874,7 +33795,8 @@
             "cashConversion": 80.07,
             "debtEquity": 0.53,
             "currentRatio": 1.3,
-            "grossMargin": 40.11
+            "grossMargin": 40.11,
+            "inventoryDays": 53.39
           }
         },
         {
@@ -31891,7 +33813,8 @@
             "cashConversion": 65.25,
             "debtEquity": 0.75,
             "currentRatio": 1.06,
-            "grossMargin": 41.58
+            "grossMargin": 41.58,
+            "inventoryDays": 60.96
           },
           "median": {
             "revenueGrowth": 3.18,
@@ -31904,7 +33827,8 @@
             "cashConversion": 77.44,
             "debtEquity": 0.57,
             "currentRatio": 1.47,
-            "grossMargin": 41.45
+            "grossMargin": 41.45,
+            "inventoryDays": 50.19
           }
         },
         {
@@ -31921,7 +33845,8 @@
             "cashConversion": 68.18,
             "debtEquity": 0.85,
             "currentRatio": 1.11,
-            "grossMargin": 36.5
+            "grossMargin": 36.5,
+            "inventoryDays": 61.34
           },
           "median": {
             "revenueGrowth": 35.53,
@@ -31934,7 +33859,8 @@
             "cashConversion": 65.84,
             "debtEquity": 0.65,
             "currentRatio": 1.55,
-            "grossMargin": 36.92
+            "grossMargin": 36.92,
+            "inventoryDays": 42.37
           }
         },
         {
@@ -31951,7 +33877,8 @@
             "cashConversion": 86.92,
             "debtEquity": 0.73,
             "currentRatio": 1.05,
-            "grossMargin": 40.51
+            "grossMargin": 40.51,
+            "inventoryDays": 87.35
           },
           "median": {
             "revenueGrowth": 36.03,
@@ -31964,7 +33891,8 @@
             "cashConversion": 85.7,
             "debtEquity": 0.55,
             "currentRatio": 1.72,
-            "grossMargin": 35.74
+            "grossMargin": 35.74,
+            "inventoryDays": 58.28
           }
         }
       ]
@@ -31981,7 +33909,8 @@
         "cashConversion": 78.05,
         "debtEquity": 0.7,
         "currentRatio": 0.98,
-        "grossMargin": 41.91
+        "grossMargin": 41.91,
+        "inventoryDays": 75.77
       },
       "median": {
         "revenueGrowth": 14.12,
@@ -31994,7 +33923,8 @@
         "cashConversion": 80.07,
         "debtEquity": 0.53,
         "currentRatio": 1.3,
-        "grossMargin": 40.11
+        "grossMargin": 40.11,
+        "inventoryDays": 53.39
       }
     },
     "ownership": {
@@ -32920,6 +34850,42 @@
       },
       {
         "tone": "opportunity",
+        "strength": 2,
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 75.77 days vs a peer norm of 53.39 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "75.77 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "53.39 d",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Owner pay is a big slice of profit",
+        "detail": "Managerial remuneration of ₹85.1 Cr is 34.4% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
+        "evidence": [
+          {
+            "label": "Managerial pay",
+            "value": "₹85.1 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of profit after tax",
+            "value": "34.4%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 1,
         "title": "Thin liquidity — early pay is valuable to them",
         "detail": "Current ratio 0.98 (quick 0.55) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
@@ -32968,6 +34934,37 @@
           {
             "label": "Net profit",
             "value": "₹248 Cr",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "title": "Auditor has changed repeatedly",
+        "detail": "2 auditor changes across the filed years (DELOITTE HASKINS & SELLS → PABOLU & CO → SINGHVI DEV & UNNI). Frequent rotation isn't proof of anything on its own, but it's a governance signal worth a question before leaning on their reported numbers.",
+        "evidence": [
+          {
+            "label": "Auditor changes",
+            "value": "2",
+            "tab": "financials"
+          },
+          {
+            "label": "Current",
+            "value": "DELOITTE HASKINS & SELLS",
             "tab": "financials"
           }
         ]
@@ -33026,6 +35023,24 @@
             "label": "Agency",
             "value": "CRISIL",
             "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Energy-heavy cost base",
+        "detail": "Power and fuel run ₹128.2 Cr, 5% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
+        "evidence": [
+          {
+            "label": "Power & fuel",
+            "value": "₹128.2 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of revenue",
+            "value": "5%",
+            "tab": "financials"
           }
         ]
       },
@@ -33122,6 +35137,43 @@
     "agedReceivables": {
       "fy": "FY23",
       "amountCr": 40.2
+    },
+    "auditor": {
+      "current": "M S K A & ASSOCIATES",
+      "signedBy": "AMRISH ANUP VAIDYA",
+      "changes": 1,
+      "firms": [
+        "M S K A & ASSOCIATES",
+        "SANDEEP KABRA & ASSOCIATES"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": null,
+    "activityGroup": "Wholesale and retail trade; repair of motor vehicles and motorcycles",
+    "gstNature": [
+      "Others",
+      "Office / Sale Office",
+      "Recipient of Goods or Services",
+      "Retail Business",
+      "Warehouse / Depot",
+      "Wholesale Business"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": {
+      "ratePct": 12
+    },
+    "powerCost": null,
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 8,
+      "netCr": 4.4,
+      "depreciatedPct": 44.9
     },
     "latest": {
       "year": "FY25",
@@ -33979,7 +36031,8 @@
             "cashConversion": 64.13,
             "debtEquity": 0.13,
             "currentRatio": 2.47,
-            "grossMargin": 11.48
+            "grossMargin": 11.48,
+            "inventoryDays": 54.43
           },
           "median": {
             "revenueGrowth": 11.58,
@@ -33992,7 +36045,8 @@
             "cashConversion": 22.91,
             "debtEquity": 0.34,
             "currentRatio": 1.68,
-            "grossMargin": 6.53
+            "grossMargin": 6.53,
+            "inventoryDays": 26.61
           }
         },
         {
@@ -34009,7 +36063,8 @@
             "cashConversion": 66.81,
             "debtEquity": 0.55,
             "currentRatio": 1.67,
-            "grossMargin": 10.35
+            "grossMargin": 10.35,
+            "inventoryDays": 74.96
           },
           "median": {
             "revenueGrowth": 1.82,
@@ -34022,7 +36077,8 @@
             "cashConversion": 27.63,
             "debtEquity": 0.38,
             "currentRatio": 1.66,
-            "grossMargin": 7
+            "grossMargin": 7,
+            "inventoryDays": 25.69
           }
         },
         {
@@ -34039,7 +36095,8 @@
             "cashConversion": 72.17,
             "debtEquity": 0.62,
             "currentRatio": 1.67,
-            "grossMargin": 11.94
+            "grossMargin": 11.94,
+            "inventoryDays": 63.11
           },
           "median": {
             "revenueGrowth": 19.36,
@@ -34052,7 +36109,8 @@
             "cashConversion": 23.85,
             "debtEquity": 0.44,
             "currentRatio": 1.66,
-            "grossMargin": 6.18
+            "grossMargin": 6.18,
+            "inventoryDays": 24.68
           }
         },
         {
@@ -34069,7 +36127,8 @@
             "cashConversion": 69.39,
             "debtEquity": 0.53,
             "currentRatio": 2.34,
-            "grossMargin": 9.88
+            "grossMargin": 9.88,
+            "inventoryDays": 78.06
           },
           "median": {
             "revenueGrowth": 55.14,
@@ -34082,7 +36141,8 @@
             "cashConversion": 27.01,
             "debtEquity": 0.53,
             "currentRatio": 1.67,
-            "grossMargin": 8.01
+            "grossMargin": 8.01,
+            "inventoryDays": 17.1
           }
         }
       ]
@@ -34099,7 +36159,8 @@
         "cashConversion": 64.13,
         "debtEquity": 0.13,
         "currentRatio": 2.47,
-        "grossMargin": 11.48
+        "grossMargin": 11.48,
+        "inventoryDays": 54.43
       },
       "median": {
         "revenueGrowth": 11.58,
@@ -34112,7 +36173,8 @@
         "cashConversion": 22.91,
         "debtEquity": 0.34,
         "currentRatio": 1.68,
-        "grossMargin": 6.53
+        "grossMargin": 6.53,
+        "inventoryDays": 26.61
       }
     },
     "ownership": {
@@ -34621,6 +36683,24 @@
       },
       {
         "tone": "opportunity",
+        "strength": 3,
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 12% interest. Every month we pay early effectively lends them cash at that rate — worth about 1% a month to them. That sets a defensible number for an early-payment discount: ask for ~1% for 30 days, ~2% for 60, and it still leaves them better off than their bank.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "12%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1%",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "title": "Fatter margins than its peers",
         "detail": "EBITDA margin 8.4% vs the peer median 2.09% — about 6.3pp of extra cushion baked into their pricing. There's room to push on price.",
@@ -34664,6 +36744,24 @@
           {
             "label": "Cash cycle",
             "value": "9 → 64 d",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 54.43 days vs a peer norm of 26.61 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "54.43 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "26.61 d",
             "tab": "financials"
           }
         ]
@@ -34829,6 +36927,61 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 3.4
+    },
+    "auditor": {
+      "current": "BAJAJ VERMA & CO",
+      "signedBy": "ANURADHA VERMA",
+      "changes": 0,
+      "firms": [
+        "BAJAJ VERMA & CO"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 171.3,
+      "tradedCr": 0,
+      "servicesCr": 0.3,
+      "manufacturedPct": 99.8,
+      "tradedPct": 0,
+      "servicesPct": 0.2,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Recipient of Goods or Services",
+      "Service Provision",
+      "Warehouse / Depot",
+      "Others",
+      "Supplier of Services"
+    ],
+    "managerialPay": null,
+    "proposedDividend": true,
+    "capexWip": {
+      "fy": "FY25",
+      "amountCr": 2.2,
+      "pctOfFixedAssets": 6.9
+    },
+    "borrowingCost": {
+      "ratePct": 7.75
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 1.7,
+      "pctOfRevenue": 1
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 50.6,
+      "netCr": 32.4,
+      "depreciatedPct": 36
     },
     "latest": {
       "year": "FY25",
@@ -35750,7 +37903,8 @@
             "cashConversion": 59.02,
             "debtEquity": 0,
             "currentRatio": 1.32,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 72.01
           },
           "median": {
             "revenueGrowth": 17.84,
@@ -35763,7 +37917,8 @@
             "cashConversion": 95.97,
             "debtEquity": 0.74,
             "currentRatio": 1.62,
-            "grossMargin": 18.07
+            "grossMargin": 18.07,
+            "inventoryDays": 73.23
           }
         },
         {
@@ -35780,7 +37935,8 @@
             "cashConversion": 66.59,
             "debtEquity": 0,
             "currentRatio": 2.07,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 53.84
           },
           "median": {
             "revenueGrowth": 10.68,
@@ -35793,7 +37949,8 @@
             "cashConversion": 104.42,
             "debtEquity": 0.46,
             "currentRatio": 1.78,
-            "grossMargin": 16.8
+            "grossMargin": 16.8,
+            "inventoryDays": 68.47
           }
         },
         {
@@ -35810,7 +37967,8 @@
             "cashConversion": 40.56,
             "debtEquity": 0,
             "currentRatio": 1.41,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 30.35
           },
           "median": {
             "revenueGrowth": 12.81,
@@ -35823,7 +37981,8 @@
             "cashConversion": 98.26,
             "debtEquity": 0.6,
             "currentRatio": 1.65,
-            "grossMargin": 30.3
+            "grossMargin": 30.3,
+            "inventoryDays": 65.47
           }
         },
         {
@@ -35840,7 +37999,8 @@
             "cashConversion": 37.97,
             "debtEquity": 0,
             "currentRatio": 1.65,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 15.95
           },
           "median": {
             "revenueGrowth": 9.59,
@@ -35853,7 +38013,8 @@
             "cashConversion": 90.98,
             "debtEquity": 0.54,
             "currentRatio": 1.68,
-            "grossMargin": 31.91
+            "grossMargin": 31.91,
+            "inventoryDays": 69.75
           }
         }
       ]
@@ -35870,7 +38031,8 @@
         "cashConversion": 59.02,
         "debtEquity": 0,
         "currentRatio": 1.32,
-        "grossMargin": null
+        "grossMargin": null,
+        "inventoryDays": 72.01
       },
       "median": {
         "revenueGrowth": 17.84,
@@ -35883,7 +38045,8 @@
         "cashConversion": 95.97,
         "debtEquity": 0.74,
         "currentRatio": 1.62,
-        "grossMargin": 18.07
+        "grossMargin": 18.07,
+        "inventoryDays": 73.23
       }
     },
     "ownership": {
@@ -36507,6 +38670,19 @@
         ]
       },
       {
+        "tone": "opportunity",
+        "strength": 1,
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ]
+      },
+      {
         "tone": "watch",
         "strength": 1,
         "title": "Margins are compressing",
@@ -36555,6 +38731,19 @@
             "label": "Filing flags",
             "value": "EPF",
             "tab": "risk"
+          }
+        ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "They borrow cheaply",
+        "detail": "Secured facilities at just 7.75% — bank funding is cheap for them, so early payment buys us very little. Push on unit price and volume terms instead of payment timing.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "7.75%",
+            "tab": "financials"
           }
         ]
       }
@@ -36614,6 +38803,7 @@
       "grade": "BBB",
       "gradeText": "Withdrawn (BBB-/Stable)",
       "ratedAmountCr": 25.5,
+      "outlook": null,
       "facilities": [
         {
           "loan": "Cash Credit (Long Term Fund Based)",
@@ -36651,6 +38841,58 @@
     "agedReceivables": {
       "fy": "FY25",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "J B & ASSOCIATES",
+      "signedBy": "AGARWAL JAY BHAGWAN",
+      "changes": 0,
+      "firms": [
+        "J B & ASSOCIATES"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": {
+      "fy": "FY25",
+      "manufacturedCr": 100.4,
+      "tradedCr": 0,
+      "servicesCr": 0,
+      "manufacturedPct": 100,
+      "tradedPct": 0,
+      "servicesPct": 0,
+      "exportCr": 0,
+      "exportPct": 0,
+      "kind": "manufacturer"
+    },
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Factory / Manufacturing",
+      "Office / Sale Office",
+      "Recipient of Goods or Services"
+    ],
+    "managerialPay": {
+      "fy": "FY25",
+      "amountCr": 1.7,
+      "pctOfProfit": 19.4
+    },
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": {
+      "ratePct": 9.45
+    },
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 4,
+      "pctOfRevenue": 4
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 145.9,
+      "netCr": 62.8,
+      "depreciatedPct": 57
     },
     "latest": {
       "year": "FY25",
@@ -37572,7 +39814,8 @@
             "cashConversion": 57.34,
             "debtEquity": 0.22,
             "currentRatio": 1.09,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 13.13
           },
           "median": {
             "revenueGrowth": 10.51,
@@ -37585,7 +39828,8 @@
             "cashConversion": 79.91,
             "debtEquity": 1.16,
             "currentRatio": 1.29,
-            "grossMargin": 26.46
+            "grossMargin": 26.46,
+            "inventoryDays": 42.03
           }
         },
         {
@@ -37602,7 +39846,8 @@
             "cashConversion": 56.28,
             "debtEquity": 0.21,
             "currentRatio": 1.21,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 14.22
           },
           "median": {
             "revenueGrowth": 8.39,
@@ -37615,7 +39860,8 @@
             "cashConversion": 76.46,
             "debtEquity": 1.14,
             "currentRatio": 1.23,
-            "grossMargin": 25.81
+            "grossMargin": 25.81,
+            "inventoryDays": 47.03
           }
         },
         {
@@ -37632,7 +39878,8 @@
             "cashConversion": 76.01,
             "debtEquity": 0.63,
             "currentRatio": 1.15,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 20.48
           },
           "median": {
             "revenueGrowth": 33.05,
@@ -37645,7 +39892,8 @@
             "cashConversion": 70.57,
             "debtEquity": 1.92,
             "currentRatio": 1.21,
-            "grossMargin": 24.15
+            "grossMargin": 24.15,
+            "inventoryDays": 40.19
           }
         },
         {
@@ -37662,7 +39910,8 @@
             "cashConversion": 69.17,
             "debtEquity": 0.62,
             "currentRatio": 1.05,
-            "grossMargin": null
+            "grossMargin": null,
+            "inventoryDays": 22.5
           },
           "median": {
             "revenueGrowth": 38.78,
@@ -37675,7 +39924,8 @@
             "cashConversion": 73.91,
             "debtEquity": 2.17,
             "currentRatio": 1.29,
-            "grossMargin": 28.7
+            "grossMargin": 28.7,
+            "inventoryDays": 45.86
           }
         }
       ]
@@ -37692,7 +39942,8 @@
         "cashConversion": 57.34,
         "debtEquity": 0.22,
         "currentRatio": 1.09,
-        "grossMargin": null
+        "grossMargin": null,
+        "inventoryDays": 13.13
       },
       "median": {
         "revenueGrowth": 10.51,
@@ -37705,7 +39956,8 @@
         "cashConversion": 79.91,
         "debtEquity": 1.16,
         "currentRatio": 1.29,
-        "grossMargin": 26.46
+        "grossMargin": 26.46,
+        "inventoryDays": 42.03
       }
     },
     "ownership": {
@@ -38451,6 +40703,24 @@
             "tab": "risk"
           }
         ]
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "title": "Energy-heavy cost base",
+        "detail": "Power and fuel run ₹4 Cr, 4% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
+        "evidence": [
+          {
+            "label": "Power & fuel",
+            "value": "₹4 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of revenue",
+            "value": "4%",
+            "tab": "financials"
+          }
+        ]
       }
     ]
   },
@@ -38512,6 +40782,45 @@
     "agedReceivables": {
       "fy": "FY20",
       "amountCr": 0
+    },
+    "auditor": {
+      "current": "SANJEEV BHARGAVA & ASSOCIATES",
+      "signedBy": "SANJEEV BHARGAVA",
+      "changes": 0,
+      "firms": [
+        "SANJEEV BHARGAVA & ASSOCIATES"
+      ],
+      "anyAdverse": false,
+      "adverseYears": [],
+      "adverseRecent": false,
+      "adverseSustained": false,
+      "latestFy": "FY25"
+    },
+    "revenueMix": null,
+    "activityGroup": "Manufacturing",
+    "gstNature": [
+      "Office / Sale Office",
+      "Retail Business",
+      "Warehouse / Depot",
+      "Wholesale Business",
+      "Factory / Manufacturing",
+      "Recipient of Goods or Services",
+      "Supplier of Services"
+    ],
+    "managerialPay": null,
+    "proposedDividend": false,
+    "capexWip": null,
+    "borrowingCost": null,
+    "powerCost": {
+      "fy": "FY25",
+      "amountCr": 0.8,
+      "pctOfRevenue": 2
+    },
+    "assetAge": {
+      "fy": "FY25",
+      "grossCr": 21.2,
+      "netCr": 7.4,
+      "depreciatedPct": 65.4
     },
     "latest": {
       "year": "FY25",
@@ -39189,7 +41498,8 @@
             "cashConversion": 106.93,
             "debtEquity": null,
             "currentRatio": 1.32,
-            "grossMargin": 23.13
+            "grossMargin": 23.13,
+            "inventoryDays": 116.74
           },
           "median": {
             "revenueGrowth": 15.46,
@@ -39202,7 +41512,8 @@
             "cashConversion": 61.72,
             "debtEquity": 0.6,
             "currentRatio": 1.65,
-            "grossMargin": 24.59
+            "grossMargin": 24.59,
+            "inventoryDays": 39.98
           }
         },
         {
@@ -39219,7 +41530,8 @@
             "cashConversion": 106.27,
             "debtEquity": null,
             "currentRatio": 1.64,
-            "grossMargin": 21.48
+            "grossMargin": 21.48,
+            "inventoryDays": 122.21
           },
           "median": {
             "revenueGrowth": 28.64,
@@ -39232,7 +41544,8 @@
             "cashConversion": 63.2,
             "debtEquity": 0.53,
             "currentRatio": 1.62,
-            "grossMargin": 25.09
+            "grossMargin": 25.09,
+            "inventoryDays": 42.52
           }
         },
         {
@@ -39249,7 +41562,8 @@
             "cashConversion": 87.98,
             "debtEquity": null,
             "currentRatio": 3.47,
-            "grossMargin": 17.36
+            "grossMargin": 17.36,
+            "inventoryDays": 78.74
           },
           "median": {
             "revenueGrowth": 18.48,
@@ -39262,7 +41576,8 @@
             "cashConversion": 62.84,
             "debtEquity": 1.02,
             "currentRatio": 2.25,
-            "grossMargin": 26.97
+            "grossMargin": 26.97,
+            "inventoryDays": 40.33
           }
         },
         {
@@ -39279,7 +41594,8 @@
             "cashConversion": 2.93,
             "debtEquity": null,
             "currentRatio": 0.67,
-            "grossMargin": 27.09
+            "grossMargin": 27.09,
+            "inventoryDays": 441.05
           },
           "median": {
             "revenueGrowth": 40.95,
@@ -39292,7 +41608,8 @@
             "cashConversion": 61.81,
             "debtEquity": 0.37,
             "currentRatio": 2.15,
-            "grossMargin": 27.91
+            "grossMargin": 27.91,
+            "inventoryDays": 44.75
           }
         }
       ]
@@ -39309,7 +41626,8 @@
         "cashConversion": 106.93,
         "debtEquity": null,
         "currentRatio": 1.32,
-        "grossMargin": 23.13
+        "grossMargin": 23.13,
+        "inventoryDays": 116.74
       },
       "median": {
         "revenueGrowth": 15.46,
@@ -39322,7 +41640,8 @@
         "cashConversion": 61.72,
         "debtEquity": 0.6,
         "currentRatio": 1.65,
-        "grossMargin": 24.59
+        "grossMargin": 24.59,
+        "inventoryDays": 39.98
       }
     },
     "ownership": {
@@ -39770,6 +42089,24 @@
             "label": "Peer median",
             "value": "61.72 d",
             "tab": "peers"
+          }
+        ]
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 116.74 days vs a peer norm of 39.98 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "116.74 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "39.98 d",
+            "tab": "financials"
           }
         ]
       },

@@ -34,10 +34,20 @@ interface Detail {
   lastUpdated: string | null; yearsCovered: number | null;
   score: Record<string, number | null>; bands: { revenue: string | null; profit: string | null; employees: string | null };
   flags: Record<string, boolean>;
-  creditRating: { agency: string | null; date: string | null; grade: string | null; gradeText: string | null; ratedAmountCr: number | null; facilities: { loan: string | null; rating: string | null; amountCr: number | null }[]; flags: Record<string, boolean> } | null;
+  creditRating: { agency: string | null; date: string | null; grade: string | null; gradeText: string | null; ratedAmountCr: number | null; outlook?: string | null; facilities: { loan: string | null; rating: string | null; amountCr: number | null }[]; flags: Record<string, boolean> } | null;
   nameHistory: string[];
   forex: { fy: string; earnCr: number | null; spendCr: number | null } | null;
   agedReceivables: { fy: string; amountCr: number | null } | null;
+  auditor: { current: string | null; signedBy: string | null; changes: number; firms: string[]; anyAdverse: boolean; adverseYears: string[]; adverseRecent: boolean; adverseSustained: boolean; latestFy: string | null } | null;
+  revenueMix: { fy: string; manufacturedCr: number | null; tradedCr: number | null; servicesCr: number | null; manufacturedPct: number | null; tradedPct: number | null; servicesPct: number | null; exportCr: number | null; exportPct: number | null; kind: string } | null;
+  activityGroup: string | null;
+  gstNature: string[];
+  managerialPay: { fy: string; amountCr: number | null; pctOfProfit: number | null } | null;
+  proposedDividend: boolean;
+  capexWip: { fy: string; amountCr: number | null; pctOfFixedAssets: number | null } | null;
+  borrowingCost: { ratePct: number | null } | null;
+  powerCost: { fy: string; amountCr: number | null; pctOfRevenue: number | null } | null;
+  assetAge: { fy: string; grossCr: number | null; netCr: number | null; depreciatedPct: number | null } | null;
   latest: Record<string, number | string | null>;
   fin: FinRow[];
   employees: { latest: number | null; yearly: { fy: string; count: number }[]; monthly: { month: string; count: number; onTime: boolean }[] };
@@ -517,10 +527,60 @@ function FinancialsTab({ d }: { d: Detail }) {
             ]} />
         </Card>
       </div>
+      {(d.revenueMix || d.capexWip || d.managerialPay || d.assetAge || d.powerCost) && <RevenueMixCard d={d} />}
       <Card title="Full financials — every line, every year" sub="income statement · balance sheet · cash flow · ratios — straight from MCA filings · scroll →" accent="#334155">
         <FinTable fin={d.fin} />
       </Card>
     </div>
+  );
+}
+
+// What the revenue actually IS — manufactured vs bought-in vs services, and how
+// much sits abroad. This decides how much price room exists at all: a trader can
+// only give away its markup, a maker owns the whole conversion spread. Sits
+// alongside the cash signals that change the same conversation.
+function RevenueMixCard({ d }: { d: Detail }) {
+  const m = d.revenueMix;
+  const parts = m ? ([
+    { k: "Manufactured", v: m.manufacturedPct ?? 0, cr: m.manufacturedCr, c: C.emerald },
+    { k: "Bought in & resold", v: m.tradedPct ?? 0, cr: m.tradedCr, c: C.amber },
+    { k: "Services", v: m.servicesPct ?? 0, cr: m.servicesCr, c: C.sky },
+  ].filter((p) => p.v > 0)) : [];
+  const chips: [string, string, string][] = [];
+  if (m && (m.exportPct ?? 0) > 0) chips.push(["Export share", `${m.exportPct}%`, `₹${m.exportCr} Cr sold abroad — demand that doesn't depend on Indian buyers`]);
+  if (d.capexWip) chips.push(["Capacity being built", `₹${d.capexWip.amountCr} Cr`, `${d.capexWip.pctOfFixedAssets}% of fixed assets is paid-for capacity not yet producing — they'll need volume to absorb it`]);
+  if (d.managerialPay) chips.push(["Owner pay", `₹${d.managerialPay.amountCr} Cr`, d.managerialPay.pctOfProfit != null ? `${d.managerialPay.pctOfProfit}% of profit after tax is taken out as managerial remuneration` : "managerial remuneration"]);
+  if (d.proposedDividend) chips.push(["Dividend", "proposed", "cash being distributed to shareholders rather than retained"]);
+  if (d.assetAge?.depreciatedPct != null) chips.push(["Plant depreciated", `${d.assetAge.depreciatedPct}%`, `₹${d.assetAge.netCr} Cr left of a ₹${d.assetAge.grossCr} Cr gross asset base — how much life is still in the plant`]);
+  if (d.powerCost?.pctOfRevenue != null) chips.push(["Power & fuel", `${d.powerCost.pctOfRevenue}% of revenue`, `₹${d.powerCost.amountCr} Cr — how exposed they are to tariff moves`]);
+  return (
+    <Card title="What they actually sell — and where the cash goes" sub={`${m ? m.fy + " revenue split · " : ""}a maker owns its conversion margin; a reseller only owns the markup`} accent={C.emerald}>
+      {parts.length > 0 && (
+        <>
+          <div className="flex h-5 w-full overflow-hidden rounded-full">
+            {parts.map((p) => <div key={p.k} className="h-5" style={{ width: `${p.v}%`, background: p.c }} title={`${p.k}: ${p.v}%`} />)}
+          </div>
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
+            {parts.map((p) => (
+              <span key={p.k} className="flex items-center gap-1.5 text-sm text-slate-600">
+                <span className="h-2.5 w-2.5 rounded-[3px]" style={{ background: p.c }} />
+                {p.k} <span className="font-mono font-semibold text-slate-900">{p.v}%</span>
+                {p.cr != null && <span className="font-mono text-xs text-slate-400">₹{p.cr} Cr</span>}
+              </span>
+            ))}
+          </div>
+        </>
+      )}
+      {chips.length > 0 && (
+        <div className={`flex flex-wrap gap-2 ${parts.length ? "mt-4 border-t border-slate-100 pt-3" : ""}`}>
+          {chips.map(([k, v, hint]) => (
+            <span key={k} title={hint} className="inline-flex items-center gap-1.5 rounded-lg bg-slate-50 px-2.5 py-1.5 text-xs ring-1 ring-slate-200">
+              <span className="text-slate-500">{k}</span><span className="font-mono font-bold text-slate-800">{v}</span>
+            </span>
+          ))}
+        </div>
+      )}
+    </Card>
   );
 }
 
@@ -652,7 +712,7 @@ function PeersTab({ d }: { d: Detail }) {
   // Registry peer names are ALL-CAPS; title-case them so they read like the rest
   // of the app instead of shouting inside a truncated bar label.
   const peerBars = d.peers.named.map<Slice>((p) => ({ label: titleCase(p.name), value: p.revenueCr, color: p.isSelf ? TEAL : "#cbd5e1" }));
-  const rows: [string, string, boolean][] = [["ebitdaMargin", "EBITDA margin", true], ["netMargin", "Net margin", true], ["roce", "RoCE", true], ["roe", "RoE", true], ["debtorDays", "Collection days", false], ["payableDays", "Payment days", false], ["cashConversion", "Cash cycle", false], ["debtEquity", "Debt / equity", false]];
+  const rows: [string, string, boolean][] = [["ebitdaMargin", "EBITDA margin", true], ["netMargin", "Net margin", true], ["roce", "RoCE", true], ["roe", "RoE", true], ["debtorDays", "Collection days", false], ["payableDays", "Payment days", false], ["cashConversion", "Cash cycle", false], ["debtEquity", "Debt / equity", false], ["inventoryDays", "Inventory days", false]];
   return (
     // items-start: the peer bar list is shorter than the ratio panel beside it, so
     // don't stretch it into a card with a tall empty tail.
@@ -822,7 +882,7 @@ function CreditRatingCard({ rt }: { rt: Detail["creditRating"] }) {
     <Card title="Credit rating" sub={`${rt.agency ?? "Agency"}${rt.date ? ` · as of ${rt.date}` : ""}`} accent={bad ? C.rose : C.emerald}>
       <div className="flex items-center gap-3">
         <span className={`rounded-lg px-3 py-1.5 text-lg font-bold ring-1 ${gradeTone}`}>{rt.grade ?? "—"}</span>
-        <div className="min-w-0 text-xs text-slate-500"><span className="block truncate text-slate-600">{rt.gradeText}</span>{rt.ratedAmountCr != null && <span>₹{rt.ratedAmountCr} Cr of facilities rated</span>}</div>
+        <div className="min-w-0 text-xs text-slate-500"><span className="block truncate text-slate-600">{rt.gradeText}</span>{rt.ratedAmountCr != null && <span>₹{rt.ratedAmountCr} Cr of facilities rated</span>}{rt.outlook && <span className={`ml-1 font-semibold ${/negative/i.test(rt.outlook) ? "text-rose-600" : /positive/i.test(rt.outlook) ? "text-emerald-600" : "text-slate-500"}`}>· {rt.outlook} outlook</span>}</div>
       </div>
       <div className="mt-2.5 flex flex-wrap gap-1.5">{chips.filter(([, on]) => on).map(([label, , t]) => <span key={label} className={`rounded-md px-1.5 py-0.5 text-[11px] font-semibold ring-1 ${cTone[t]}`}>{label}</span>)}</div>
       {rt.facilities.length > 0 && (
@@ -926,8 +986,13 @@ function RiskTab({ d }: { d: Detail }) {
 function AboutTab({ d }: { d: Detail }) {
   return (
     <div className="grid gap-4 lg:grid-cols-3">
-      <Card title="What they do" sub={[...new Set([d.industry, d.segment, ...(d.segments ?? [])].filter(Boolean))].join(" · ") || "business profile"} accent={TEAL} className="lg:col-span-2">
+      <Card title="What they do" sub={[...new Set([d.industry, d.segment, ...(d.segments ?? []), d.activityGroup].filter(Boolean))].join(" · ") || "business profile"} accent={TEAL} className="lg:col-span-2">
         {d.description ? <p className="text-sm leading-relaxed text-slate-600">{d.description}</p> : <Empty t="No description on file." />}
+        {d.gstNature?.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {d.gstNature.map((t) => <span key={t} className="rounded-md bg-teal-50 px-2 py-0.5 text-[11px] font-medium text-teal-800 ring-1 ring-teal-100">{t}</span>)}
+          </div>
+        )}
         {d.activities.length > 0 && <div className="mt-3 space-y-1">{d.activities.map((a, i) => <div key={i} className="flex justify-between gap-3 text-sm"><span className="text-slate-600">{a.desc}</span>{a.pct != null && <span className="shrink-0 font-mono text-slate-400">{a.pct}% of turnover</span>}</div>)}</div>}
       </Card>
       {/* The header used to carry the CIN, listing status and former-name trail.
@@ -941,7 +1006,15 @@ function AboutTab({ d }: { d: Detail }) {
           {d.website && <Row k="Website" v={d.website.replace(/^https?:\/\//, "")} />}
           <Row k="Registered" v={[d.city && titleCase(d.city), d.state && titleCase(d.state)].filter(Boolean).join(", ") || "—"} />
           {d.nameHistory?.length ? <Row k="Formerly" v={d.nameHistory.join(", ")} /> : null}
+          {d.auditor?.current && <Row k="Auditor" v={titleCase(d.auditor.current)} />}
+          {d.auditor && d.auditor.changes > 0 && <Row k="Auditor changes" v={`${d.auditor.changes} across ${d.yearsCovered} filed years`} />}
         </dl>
+        {d.auditor?.anyAdverse && (
+          <p className={`mt-2 rounded-lg px-2.5 py-2 text-xs ring-1 ${d.auditor.adverseRecent || d.auditor.adverseSustained ? "bg-rose-50 text-rose-800 ring-rose-200" : "bg-amber-50 text-amber-800 ring-amber-200"}`}>
+            {d.auditor.adverseRecent || d.auditor.adverseSustained ? "⚠" : "•"} Adverse auditor remarks in {d.auditor.adverseYears.join(", ")}
+            {!(d.auditor.adverseRecent || d.auditor.adverseSustained) && ` — none since; latest filed year is ${d.auditor.latestFy}.`}
+          </p>
+        )}
       </Card>
     </div>
   );
