@@ -83,6 +83,8 @@ const ALL_ENRICHED: EnrichedRef[] = ((ENTITIES as { entities: { cin: string | nu
 export function hasDeepDive(cin?: string | null): boolean { return !!(cin && DETAILS[cin]); }
 /** The lever-engine output for a company (empty if no Probe42 report). */
 export function probeLevers(cin?: string | null): Lever[] { return (cin && DETAILS[cin]?.levers) || []; }
+/** Blended 0-100 financial-health score for an enriched supplier (null if not enriched). */
+export function supplierHealth(cin?: string | null): number | null { return cin && DETAILS[cin] ? healthScore(DETAILS[cin]) : null; }
 export type ProbeLever = Lever;
 
 /* ---- palette + formatters ---- */

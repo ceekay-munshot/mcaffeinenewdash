@@ -20,7 +20,7 @@ import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supCCC, supRoce, supCurrent, supDebtEq, supIntCov,
 } from "./lib/insights";
-import DeepDive, { hasDeepDive, probeLevers, ProbeCompare, enrichedCount } from "./DeepDive";
+import DeepDive, { hasDeepDive, probeLevers, supplierHealth, ProbeCompare, enrichedCount } from "./DeepDive";
 
 /* -------------------------------------------------- data accessors / helpers */
 
@@ -345,12 +345,107 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "market" | "supply";
+type SupTab = "board" | "market" | "supply" | "rates";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "board", label: "Suppliers", emoji: "🏭" },
   { key: "market", label: "Ingredients", emoji: "🧪" },
   { key: "supply", label: "Supply chain", emoji: "🧬" },
+  { key: "rates", label: "Rate benchmark", emoji: "💰" },
 ];
+
+/* ---- L3 · mcAFFEINE's own rates vs the market band + the supplier's room ----
+   Paste a simple supplier-wise list. Each line is matched to (a) the open-market
+   price band we hold and (b) that supplier's financial health + top lever, so you
+   see where you're overpaying AND how much room their own numbers give you. Live:
+   edit the list, everything recomputes. Ships with dummy values for the demo. */
+const L3_SAMPLE = `Uvinul MC 80, ValueTree, 780, 4000
+Cetiol C5, Northern Aromatics, 1650, 5000
+Tinosorb A2B, Yasham, 3400, 800
+Cosroma EAA, Ark Chemicals, 17500, 400
+Repoly 100, Caldic, 300, 12000
+Niacinamide, nirmaancosmetic, 950, 3000`;
+function l3Band(s?: string): { min: number; max: number; mid: number } | null {
+  if (!s || /not found/i.test(s)) return null;
+  const nums = (s.replace(/,/g, "").match(/\d+(?:\.\d+)?/g) || []).map(Number);
+  if (!nums.length) return null;
+  const min = Math.min(...nums), max = Math.max(...nums);
+  return { min, max, mid: Math.round((min + max) / 2) };
+}
+const l3Norm = (s: string) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+const l3Money = (rs: number) => (rs >= 1e7 ? `₹${(rs / 1e7).toFixed(2)} Cr` : `₹${(rs / 1e5).toFixed(1)} L`);
+function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const [text, setText] = useState(L3_SAMPLE);
+  const items = useMemo(() => allMarket(), []);
+  const rows = useMemo(() => text.split("\n").map((l) => l.trim()).filter(Boolean).map((line) => {
+    const [item = "", supplier = "", rateS = "", qtyS = ""] = line.split(",").map((x) => x.trim());
+    const rate = Number(rateS.replace(/[^0-9.]/g, "")) || null;
+    const qty = Number(qtyS.replace(/[^0-9.]/g, "")) || null;
+    const mk = marketOf(item) || items.find((m) => l3Norm(m.item) === l3Norm(item)) || items.find((m) => item && (l3Norm(m.item).includes(l3Norm(item)) || l3Norm(item).includes(l3Norm(m.item))));
+    const band = l3Band(mk?.priceINRPerKg);
+    const ent = supplier ? (all.find((e) => l3Norm(e.brand) === l3Norm(supplier) || (e.folder || "").toLowerCase() === supplier.toLowerCase()) || all.find((e) => l3Norm(e.brand).includes(l3Norm(supplier)) || l3Norm(supplier).includes(l3Norm(e.brand)) || (!!e.legalName && l3Norm(e.legalName).includes(l3Norm(supplier))))) : undefined;
+    const health = ent ? supplierHealth(ent.cin) : null;
+    const topOpp = ent ? probeLevers(ent.cin).find((l) => l.tone === "opportunity") : undefined;
+    const gap = band && rate != null ? rate - band.mid : null; // +ve = above the market midpoint
+    const savingRs = gap != null && gap > 0 && qty ? gap * qty : 0;
+    return { item, supplier, rate, qty, band, ent, health, topOpp, gap, savingRs };
+  }), [text, all, items]);
+  const totalRs = rows.reduce((s, r) => s + r.savingRs, 0);
+  const priced = rows.filter((r) => r.band && r.rate != null);
+  const overCount = priced.filter((r) => (r.gap ?? 0) > 0).length;
+  const month = new Date().toLocaleDateString("en-IN", { month: "long", year: "numeric" });
+  const hdot = (h: number) => (h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700");
+  return (
+    <div className="space-y-4">
+      <div className="rounded-3xl bg-gradient-to-br from-[#0b3b39] via-[#0d9488] to-[#0891b2] p-5 text-white shadow-lg">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="min-w-0">
+            <div className="text-lg font-bold">💰 Rate benchmark — your price vs the market & the supplier's room</div>
+            <div className="mt-1 max-w-2xl text-sm text-white/80">Drop in what you actually pay. Each line is checked against the open-market band <em>and</em> that supplier's own financials — so you see where you're overpaying and how much give their numbers hand you.</div>
+          </div>
+          <div className="shrink-0 rounded-2xl bg-white/12 px-4 py-2.5 text-right ring-1 ring-white/20">
+            <div className="text-[10px] font-medium uppercase tracking-wide text-teal-50">Potential annual saving</div>
+            <div className="text-2xl font-bold tabular-nums">{l3Money(totalRs)}</div>
+            <div className="text-[11px] text-white/70">{overCount} of {priced.length} lines above market</div>
+          </div>
+        </div>
+      </div>
+      <div className="grid gap-4 lg:grid-cols-3">
+        <Card title="Your rates" sub={`sample data · as of ${month} — swap in live numbers`} accent="#0891b2">
+          <textarea value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} rows={9} className="w-full resize-y rounded-lg bg-slate-50 p-2.5 font-mono text-xs text-slate-800 ring-1 ring-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-400" />
+          <p className="mt-2 text-[11px] leading-relaxed text-slate-400">One line per buy: <span className="font-mono text-slate-500">ingredient, supplier, your ₹/kg, yearly kg</span>. Edit above — the table recomputes instantly.</p>
+        </Card>
+        <div className="lg:col-span-2">
+          <Card title="Where you stand" sub="your rate vs the market midpoint · green = at/under market · red = overpaying" accent="#0d9488">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[840px] border-collapse text-sm">
+                <thead><tr className="border-b border-slate-200 bg-slate-50 text-left text-xs font-bold uppercase tracking-wider text-slate-600">
+                  <Th>Ingredient</Th><Th>Supplier</Th><Th right>Your ₹/kg</Th><Th right>Market band</Th><Th right>Gap</Th><Th right>Saving/yr</Th><Th>Their room (from their financials)</Th>
+                </tr></thead>
+                <tbody>
+                  {rows.map((r, i) => {
+                    const isOver = (r.gap ?? 0) > 0;
+                    return (
+                      <tr key={i} className="border-t border-slate-100 align-top hover:bg-slate-50/60">
+                        <td className="px-4 py-2.5 font-semibold leading-snug text-slate-900">{r.item || "—"}{!r.band && <div className="text-[10px] font-normal text-amber-600">no market band on file</div>}</td>
+                        <td className="px-4 py-2.5">{r.ent ? <button onClick={() => onSelect(r.ent!)} className="inline-flex items-start gap-1.5 text-left font-medium text-teal-700 hover:underline"><span className="mt-0.5 shrink-0">{catEmoji(r.ent.category)}</span><span className="leading-snug">{fullName(r.ent.legalName, r.ent.brand)}{r.health != null && <span className={`ml-1 rounded px-1.5 align-middle text-[10px] font-bold ${hdot(r.health)}`}>{r.health}</span>}</span></button> : <span className="text-slate-500">{r.supplier || "—"}</span>}</td>
+                        <td className="whitespace-nowrap px-4 py-2.5 text-right font-mono text-slate-900">{r.rate != null ? `₹${r.rate}` : "—"}</td>
+                        <td className="whitespace-nowrap px-4 py-2.5 text-right font-mono text-slate-500">{r.band ? (r.band.min === r.band.max ? `₹${r.band.min}` : `₹${r.band.min}–${r.band.max}`) : "—"}</td>
+                        <td className={`whitespace-nowrap px-4 py-2.5 text-right font-mono font-semibold ${r.gap == null ? "text-slate-400" : isOver ? "text-rose-600" : "text-emerald-600"}`}>{r.gap == null ? "—" : `${isOver ? "+" : ""}₹${Math.round(r.gap)}`}</td>
+                        <td className={`whitespace-nowrap px-4 py-2.5 text-right font-mono font-semibold ${r.savingRs > 0 ? "text-rose-600" : "text-slate-400"}`}>{r.savingRs > 0 ? l3Money(r.savingRs) : "—"}</td>
+                        <td className="px-4 py-2.5 text-xs text-slate-500">{r.topOpp ? <span title={r.topOpp.detail}>💡 {r.topOpp.title}</span> : r.ent ? <span className="text-slate-400">healthy — no obvious lever</span> : <span className="text-slate-400">not a tracked supplier</span>}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-2 px-1 text-[11px] leading-relaxed text-slate-400">"Market band" = open-market ₹/kg (IndiaMART research). "Saving/yr" = (your rate − market midpoint) × yearly kg, when above market. "Their room" is the top opportunity lever from that supplier's own Probe42 financials — click a supplier to open its full deep-dive.</p>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function SupplierView() {
   const all = useMemo(() => supplyEntities(), []);
@@ -395,6 +490,7 @@ function SupplierView() {
           {tab === "board" && <BoardTab all={all} onSelect={openSupplier} />}
           {tab === "market" && <MarketStructureView all={all} onSelect={openSupplier} />}
           {tab === "supply" && <SupplyChainView all={all} onSelect={openSupplier} />}
+          {tab === "rates" && <L3RateBench all={all} onSelect={openSupplier} />}
         </>
       )}
     </main>
