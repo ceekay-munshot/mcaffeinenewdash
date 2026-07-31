@@ -620,110 +620,128 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
   );
 }
 
-/* ---- Consolidated newsroom — every tracked supplier's news in one front page.
-   Signals that move a negotiation (ownership changes, capex) lead; dated press
-   follows newest-first; softer market-position notes sit at the bottom. Each name
-   opens its deep-dive, each headline links out. Reads the same news.json the
-   per-supplier News tab uses — one source of truth. */
+/* ---- Consolidated newsroom — ONE block per supplier ------------------------
+   The old layout had three sections (signals, dated headlines, market notes) and
+   every one of them narrated the same events: Manjushree's PAG sale appeared
+   four times, EPL's Blackstone exit twice. Structuring it per-supplier makes
+   that impossible — each company says its piece once, the sources become link
+   chips rather than repeated paragraphs, and the read is the negotiation
+   consequence rather than a retelling of the headline. */
 const NEWS_LEAD = new Set(["Ownership change", "Capex / expansion"]);
 const NEWS_SIG: Record<string, { emoji: string; border: string; chip: string }> = {
   "Ownership change": { emoji: "🔀", border: "border-indigo-400", chip: "bg-indigo-100 text-indigo-700" },
   "Capex / expansion": { emoji: "🏗️", border: "border-emerald-400", chip: "bg-emerald-100 text-emerald-700" },
   "Market position": { emoji: "📊", border: "border-slate-300", chip: "bg-slate-100 text-slate-600" },
 };
+// The research lines read "<what happened> — <what it means for us>", sometimes
+// with the split at a full stop instead of a dash. Lead with the fact and set the
+// consequence under it. If neither split gives a short enough headline, render the
+// whole thing as body text — a long line in bold is the heaviest thing on a page.
+function splitRead(s: string): { fact: string; read: string } {
+  const tries = [s.match(/^(.+?)\s+[—–-]\s+(.*)$/s), s.match(/^(.+?[.!?])\s+(.*)$/s)];
+  for (const m of tries) {
+    if (m && m[1].trim().length <= 110) return { fact: m[1].trim(), read: m[2].trim() };
+  }
+  return { fact: "", read: s };
+}
+
 function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const { leads, notes, items, covered } = useMemo(() => {
-    const leads: { e: Entity; s: Signal }[] = [];
-    const notes: { e: Entity; s: Signal }[] = [];
-    const items: { e: Entity; it: NewsItem }[] = [];
-    const seen = new Set<string>();
+  const [showQuiet, setShowQuiet] = useState(false);
+  const { lead, quiet, storyCount } = useMemo(() => {
+    const lead: { e: Entity; sig: Signal; items: NewsItem[] }[] = [];
+    const quiet: { e: Entity; sig: Signal; items: NewsItem[] }[] = [];
+    let storyCount = 0;
     for (const e of all) {
       const n = newsOf(e.folder);
       if (!n) continue;
-      seen.add(e.folder);
-      for (const s of n.signals) (NEWS_LEAD.has(s.type) ? leads : notes).push({ e, s });
-      for (const it of n.news) items.push({ e, it });
+      const items = [...n.news].sort((a, b) => b.date.localeCompare(a.date));
+      storyCount += n.signals.length + items.length;
+      // One entry per supplier, led by its most consequential signal.
+      const sigs = [...n.signals].sort((a, b) => Number(NEWS_LEAD.has(b.type)) - Number(NEWS_LEAD.has(a.type)));
+      const sig = sigs[0];
+      if (!sig) continue;
+      (NEWS_LEAD.has(sig.type) ? lead : quiet).push({ e, sig, items });
     }
-    items.sort((a, b) => b.it.date.localeCompare(a.it.date));
-    leads.sort((a, b) => (a.s.type === "Ownership change" ? 0 : 1) - (b.s.type === "Ownership change" ? 0 : 1));
-    return { leads, notes, items, covered: seen.size };
+    return { lead, quiet, storyCount };
   }, [all]);
+
   const month = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
-  const total = leads.length + notes.length + items.length;
-  const NameBtn = ({ e }: { e: Entity }) => (
-    <button onClick={() => onSelect(e)} className="inline-flex items-start gap-1 text-left text-sm font-semibold leading-snug text-teal-700 hover:underline"><span className="shrink-0">{catEmoji(e.category)}</span>{fullName(e.legalName, e.brand)}</button>
-  );
-  const Src = ({ url, source }: { url?: string; source?: string }) => !source ? null : url
-    ? <a href={url} target="_blank" rel="noreferrer" className="text-[11px] font-medium text-slate-400 hover:text-teal-600">{source} ↗</a>
-    : <span className="text-[11px] font-medium text-slate-400">{source}</span>;
+  const covered = lead.length + quiet.length;
+
+  const Block = ({ e, sig, items }: { e: Entity; sig: Signal; items: NewsItem[] }) => {
+    const st = NEWS_SIG[sig.type] ?? NEWS_SIG["Market position"];
+    const { fact, read } = splitRead(sig.oneLine);
+    // The signal already carries its own source; only add links that differ.
+    const links = [
+      ...(sig.url ? [{ label: sig.source || "source", url: sig.url, date: "" }] : []),
+      ...items.filter((i) => i.url && i.url !== sig.url).map((i) => ({ label: i.source || "source", url: i.url, date: i.date })),
+    ];
+    return (
+      <div className={`rounded-2xl border-l-4 ${st.border} bg-white p-4 shadow-sm ring-1 ring-slate-200/70`}>
+        <div className="flex items-start justify-between gap-3">
+          <button onClick={() => onSelect(e)} className="min-w-0 text-left">
+            <span className="flex items-start gap-1.5 font-bold leading-snug text-slate-900 hover:text-teal-700 hover:underline">
+              <span className="mt-0.5 shrink-0">{catEmoji(e.category)}</span>{fullName(e.legalName, e.brand)}
+            </span>
+          </button>
+          <span className={`shrink-0 rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${st.chip}`}>{st.emoji} {sig.type}</span>
+        </div>
+        {fact && <p className="mt-1.5 text-[15px] font-semibold leading-snug text-slate-800">{fact}</p>}
+        {read && <p className={`text-sm leading-relaxed text-slate-600 ${fact ? "mt-1" : "mt-1.5"}`}>{read}</p>}
+        {links.length > 0 && (
+          <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+            {links.slice(0, 4).map((l, i) => (
+              <a key={i} href={l.url} target="_blank" rel="noreferrer" className="text-[11px] font-medium text-slate-400 transition hover:text-teal-600">
+                {l.date && <span className="mr-1 font-mono">{l.date}</span>}{l.label} ↗
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-4">
       <div className="rounded-3xl bg-gradient-to-br from-[#0b3b39] via-[#0d9488] to-[#0891b2] p-5 text-white shadow-lg">
-        <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="min-w-0">
-            <div className="text-lg font-bold">📰 Supplier newsroom — everything, in one place</div>
-            <div className="mt-1 max-w-2xl text-sm text-white/80">Ownership moves, expansions and press across every tracked supplier — newest first. Each headline links to its source; each name opens its deep-dive.</div>
+            <div className="text-xl font-bold">📰 Supplier newsroom</div>
+            <div className="mt-1 max-w-2xl text-sm text-white/80">What changed at each supplier, and what it does to your leverage.</div>
           </div>
-          <div className="shrink-0 rounded-2xl bg-white/12 px-4 py-2.5 text-right ring-1 ring-white/20">
-            <div className="text-[10px] font-medium uppercase tracking-wide text-teal-50">Stories on file</div>
-            <div className="text-2xl font-bold tabular-nums">{total}</div>
-            <div className="text-[11px] text-white/70">across {covered} suppliers · as of {month}</div>
+          <div className="shrink-0 rounded-2xl bg-white/12 px-5 py-3 text-right ring-1 ring-white/25">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-teal-50">Suppliers with news</div>
+            <div className="text-3xl font-bold tabular-nums">{covered}</div>
+            <div className="text-xs text-white/75">{storyCount} sources · as of {month}</div>
           </div>
         </div>
       </div>
-      {leads.length > 0 && (
+
+      {lead.length > 0 && (
         <div>
           <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">🔔 Moves that change your leverage</h3>
-          <div className="grid gap-3 md:grid-cols-2">
-            {leads.map(({ e, s }, i) => {
-              const st = NEWS_SIG[s.type] ?? NEWS_SIG["Market position"];
-              return (
-                <div key={i} className={`rounded-2xl border-l-4 ${st.border} bg-white p-4 shadow-sm ring-1 ring-slate-200/70`}>
-                  <div className="flex items-center justify-between gap-2">
-                    <NameBtn e={e} />
-                    <span className={`shrink-0 rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${st.chip}`}>{st.emoji} {s.type}</span>
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-700">{s.oneLine}</p>
-                  <div className="mt-2"><Src url={s.url} source={s.source} /></div>
-                </div>
-              );
-            })}
+          <div className="grid gap-3 lg:grid-cols-2">
+            {lead.map((b) => <Block key={b.e.folder} {...b} />)}
           </div>
         </div>
       )}
-      {items.length > 0 && (
-        <Card title="🗞 Latest headlines" sub="dated press across all suppliers · newest first" accent="#0891b2">
-          <div className="grid gap-x-8 lg:grid-cols-2">
-            {items.map(({ e, it }, i) => (
-              <div key={i} className="border-b border-slate-100 py-3">
-                <div className="mb-1 flex items-center gap-2">
-                  <span className="shrink-0 rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-slate-500">{it.date}</span>
-                  <NameBtn e={e} />
-                </div>
-                {it.url
-                  ? <a href={it.url} target="_blank" rel="noreferrer" className="text-sm font-bold leading-snug text-slate-900 hover:text-teal-700 hover:underline">{it.title}</a>
-                  : <span className="text-sm font-bold leading-snug text-slate-900">{it.title}</span>}
-                <p className="mt-0.5 text-xs leading-relaxed text-slate-600">{it.oneLine}</p>
-                <div className="mt-1"><Src url={it.url} source={it.source} /></div>
-              </div>
-            ))}
-          </div>
-        </Card>
+
+      {quiet.length > 0 && (
+        <div>
+          <button onClick={() => setShowQuiet((v) => !v)}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-600 ring-1 ring-slate-200 transition hover:ring-slate-300">
+            <span className="font-bold text-teal-600">{showQuiet ? "–" : "+"}</span>
+            {showQuiet ? "Hide" : "Show"} {quiet.length} quieter suppliers — market position, no hard news
+          </button>
+          {showQuiet && (
+            <div className="mt-3 grid gap-3 lg:grid-cols-2">
+              {quiet.map((b) => <Block key={b.e.folder} {...b} />)}
+            </div>
+          )}
+        </div>
       )}
-      {notes.length > 0 && (
-        <Card title="📊 Where they sit in the market" sub="positioning notes for the quieter suppliers — no hard press, but useful context" accent="#64748b">
-          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {notes.map(({ e, s }, i) => (
-              <div key={i} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200/70">
-                <NameBtn e={e} />
-                <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{s.oneLine}</p>
-                <div className="mt-1"><Src url={s.url} source={s.source} /></div>
-              </div>
-            ))}
-          </div>
-        </Card>
-      )}
-      {total === 0 && <div className="rounded-2xl bg-white p-12 text-center text-sm text-slate-400 ring-1 ring-slate-200">No supplier news on file yet.</div>}
+
+      {covered === 0 && <div className="rounded-2xl bg-white p-12 text-center text-sm text-slate-400 ring-1 ring-slate-200">No supplier news on file yet.</div>}
       <p className="px-1 text-[11px] text-slate-400">Gathered from the open web. Suppliers with no public footprint don't appear here — their leverage lives in the financials.</p>
     </div>
   );
