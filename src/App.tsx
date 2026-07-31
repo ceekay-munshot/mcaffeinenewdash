@@ -793,6 +793,14 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
   const rmVendorCount = useMemo(() => all.filter((e) => e.category === "RM Vendor").length, [all]);
   const pmVendorCount = useMemo(() => all.filter((e) => e.category === "PM Vendor").length, [all]);
   const [leversFor, setLeversFor] = useState<Entity | null>(null);
+  const [openItem, setOpenItem] = useState<string | null>(null);
+
+  // A supply-chain row names a specific SKU ("300ml HDPE 2337C Vacation Bottle");
+  // the market research is held per category, so resolve through pmCategoryOf.
+  const marketFor = (item?: string): MarketEntry | undefined => {
+    if (!item) return undefined;
+    return marketOf(item) ?? allMarket().find((m) => m.item === pmCategoryOf(item));
+  };
 
   // Rows we can actually analyse lead; the ones with nothing to show (an
   // unregistered trader, or a vendor we never pulled) collapse behind a toggle
@@ -816,16 +824,32 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
               </tr>
             </thead>
             <tbody>
-              {shown.map(({ item, folder, e }) => (
-                <tr key={item ?? folder} onClick={() => e && onSelect(e)} className={`border-t border-slate-100 transition ${e ? "cursor-pointer hover:bg-teal-50/50" : ""}`}>
-                  {itemHead && <td className="max-w-[280px] px-4 py-3.5"><div className="truncate font-semibold text-slate-900" title={item}>{item}</div></td>}
-                  <td className="min-w-[240px] px-4 py-3.5">{e ? <span className="flex items-start gap-1.5 font-semibold text-slate-900"><span className="shrink-0 leading-relaxed">{catEmoji(e.category)}</span><span className="leading-snug">{fullName(e.legalName, e.brand)}</span></span> : <span className="text-slate-400">not mapped</span>}</td>
+              {shown.map(({ item, folder, e }) => {
+                const hasItemPage = !!marketFor(item);
+                return (
+                <tr key={item ?? folder} className="border-t border-slate-100 transition hover:bg-teal-50/40">
+                  {/* the material opens its ingredient breakdown; the vendor opens
+                      its deep-dive — two different destinations, so the row itself
+                      is no longer a single ambiguous click target. */}
+                  {itemHead && (
+                    <td className="max-w-[280px] px-4 py-3.5">
+                      {hasItemPage ? (
+                        <button onClick={() => setOpenItem(item!)} className="w-full truncate text-left font-bold text-slate-900 hover:text-teal-700 hover:underline" title={`${item} — open ingredient breakdown`}>{item}</button>
+                      ) : <div className="truncate font-bold text-slate-900" title={item}>{item}</div>}
+                    </td>
+                  )}
+                  <td className="min-w-[240px] px-4 py-3.5">{e ? (
+                    <button onClick={() => onSelect(e)} className="flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline" title={`${e.brand} — open deep-dive`}>
+                      <span className="mt-0.5 shrink-0">{catEmoji(e.category)}</span><span className="leading-snug">{fullName(e.legalName, e.brand)}</span>
+                    </button>
+                  ) : <span className="text-slate-400">not mapped</span>}</td>
                   <td className={`${TDNUM} font-semibold text-slate-900`}>{e ? fmtCrore(revOf(e)) : "—"}</td>
                   <td className={`${TDNUM} text-slate-600`}>{e ? fmtPct(ebitdaMarginOf(e)) : "—"}</td>
                   <td className={`${TDNUM} text-slate-600`}>{e ? fmtPct(supRoce(e)) : "—"}</td>
                   <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={e} onOpen={setLeversFor} /></td>
                 </tr>
-              ))}
+                );
+              })}
               {shown.length === 0 && <tr><td colSpan={itemHead ? 6 : 5} className="px-4 py-8 text-center text-slate-400">Nothing with financials in this group yet.</td></tr>}
             </tbody>
           </table>
@@ -842,6 +866,16 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
   };
 
   const mfRows = useMemo(() => all.filter((e) => e.category === "Manufacturer").sort((a, b) => (revOf(b) ?? -1) - (revOf(a) ?? -1)).map((e) => ({ folder: e.folder })), [all]);
+
+  // Clicking a material opens the same ingredient breakdown as the Ingredients tab.
+  if (openItem) {
+    const entry = marketFor(openItem);
+    if (entry) {
+      const row = [...RM_SUPPLY, ...PM_SUPPLY].find((r) => r.item === openItem && r.folder);
+      return <IngredientDetail entry={entry} currentVendor={row ? byFolder.get(row.folder) : undefined}
+        all={all} onBack={() => setOpenItem(null)} onSelectVendor={onSelect} backLabel="supply chain" />;
+    }
+  }
 
   return (
     <div className="space-y-4">
@@ -995,7 +1029,6 @@ function BestPlacedCard({ entry, all, incumbentFolder, onSelect }: {
 // suppliers exist — and does that hand the leverage to us (a crowded commodity)
 // or to them (a sole-source proprietary molecule)? Laid out as a leverage map so
 // you see at a glance which buys we control vs which control us.
-const CONF_DOT: Record<string, string> = { high: "bg-emerald-400", medium: "bg-amber-400", low: "bg-slate-300" };
 
 // Click a raw material → this page: every supplier that sells it (our current
 // vendor + the IndiaMART/TradeIndia alternatives) with price context and their
@@ -1164,6 +1197,15 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
     return c;
   }, [entries]);
   const cols: Concentration[] = ["sole", "concentrated", "competitive"];
+  const [group, setGroup] = useState<"all" | Concentration>("all");
+  const [leversFor, setLeversFor] = useState<Entity | null>(null);
+  // Hardest-to-negotiate first: sole-source at the top, commodities last.
+  const RANK: Record<Concentration, number> = { sole: 0, concentrated: 1, competitive: 2 };
+  const shown = useMemo(
+    () => entries.filter((m) => group === "all" || m.concentration === group)
+      .sort((a, b) => RANK[a.concentration] - RANK[b.concentration] || a.item.localeCompare(b.item)),
+    [entries, group]
+  );
 
   // Drilled into one ingredient → show its suppliers / prices / levers page.
   if (openItem) {
@@ -1174,8 +1216,12 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <Dropdown label="Show" value={side} onChange={(v) => setSide(v as "rm" | "pm")}
-          options={[{ key: "rm", label: `Raw materials (${allMarket().filter((m) => m.side === "rm").length})`, emoji: "🧪" }, { key: "pm", label: `Packaging (${allMarket().filter((m) => m.side === "pm").length})`, emoji: "📦" }]} />
+        <div className="flex flex-wrap items-center gap-4">
+          <Dropdown label="Show" value={side} onChange={(v) => { setSide(v as "rm" | "pm"); setGroup("all"); }}
+            options={[{ key: "rm", label: `Raw materials (${allMarket().filter((m) => m.side === "rm").length})`, emoji: "🧪" }, { key: "pm", label: `Packaging (${allMarket().filter((m) => m.side === "pm").length})`, emoji: "📦" }]} />
+          <Dropdown label="Pricing power" value={group} onChange={setGroup}
+            options={[{ key: "all" as const, label: `All (${entries.length})` }, ...cols.filter((c) => counts[c] > 0).map((c) => ({ key: c, label: `${CONC_META[c].label} (${counts[c]})`, emoji: CONC_META[c].emoji }))]} />
+        </div>
         <span className="text-sm text-slate-500">Who holds the pricing power on each {side === "rm" ? "ingredient" : "packaging category"} we buy</span>
       </div>
 
@@ -1195,54 +1241,57 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
         </div>
       </Card>
 
-      {/* leverage map: compact cards grouped by concentration, each group spanning
-          the full width so the sparse groups don't leave a tall empty column. The
-          per-item analysis lives one click deeper (drill-down), keeping this a
-          fast, scannable board rather than a wall of prose. */}
-      {cols.map((c) => {
-        const meta = CONC_META[c];
-        const items = entries.filter((m) => m.concentration === c);
-        if (items.length === 0) return null;
-        return (
-          <div key={c}>
-            <div className="mb-2 flex items-center gap-2 px-0.5">
-              <span className={`text-sm font-bold ${meta.text}`}>{meta.emoji} {meta.label}</span>
-              <span className={`rounded-full ${meta.bg} px-2 py-0.5 text-xs font-semibold ${meta.text} ring-1 ${meta.ring}`}>{items.length}</span>
-            </div>
-            <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {items.map((m) => {
-                const v = vendorFor(m);
+      {/* One table, filtered by a dropdown — the card grid scattered the same
+          six facts across four rows of chips per item, which read as clutter.
+          Rows sort hardest-to-negotiate first so the problem buys sit on top. */}
+      <Card title={side === "rm" ? "🧪 Every ingredient we buy" : "📦 Every packaging category we buy"}
+        sub="click a row for the full ingredient analysis · click a vendor for its deep-dive" accent="#0d9488">
+        <div className="overflow-x-auto">
+          <table className={`${TBL} min-w-[940px]`}>
+            <thead><tr className={THEAD}>
+              <Th>{side === "rm" ? "Ingredient" : "Packaging category"}</Th>
+              <Th>Pricing power</Th><Th center>Sellers in India</Th><Th right>Market ₹/kg</Th>
+              <Th>Current vendor</Th><Th center>Levers</Th>
+            </tr></thead>
+            <tbody>
+              {shown.map((m) => {
+                const meta = CONC_META[m.concentration];
                 const lev = LEV_META[m.leverage];
+                const v = vendorFor(m);
+                const hasP = m.priceINRPerKg && !m.priceINRPerKg.includes("not found");
                 return (
-                  <div key={m.item} onClick={() => setOpenItem(m.item)} className="cursor-pointer rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200/70 transition hover:-translate-y-0.5 hover:shadow-md hover:ring-teal-300" style={{ borderLeft: `3px solid ${meta.color}` }}>
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="min-w-0">
-                        <div className="truncate font-semibold text-slate-900" title={m.item}>{m.item}</div>
-                        {m.inci && <div className="truncate text-[11px] text-slate-500" title={m.inci}>{m.inci}</div>}
-                      </div>
-                      <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${CONF_DOT[m.confidence] ?? CONF_DOT.low}`} title={`${m.confidence} confidence`} />
-                    </div>
-                    <div className="mt-2 flex flex-wrap items-center gap-1.5">
-                      <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-medium ${meta.bg} ${meta.text} ring-1 ${meta.ring}`}>{lev.emoji} {lev.label}</span>
-                      <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600" title={`${m.indiaBand} sellers in India · ${m.indiaSuppliers.join(" · ")}`}>🇮🇳 {m.indiaBand}</span>
-                      {m.priceINRPerKg && !m.priceINRPerKg.includes("not found") && <span title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")} className="inline-flex items-center gap-1 rounded-md bg-orange-50 px-1.5 py-0.5 text-[11px] font-medium text-orange-700 ring-1 ring-orange-200">💰 {m.priceINRPerKg}</span>}
-                    </div>
-                    {/* the teal dot marks a vendor we hold a full Probe42 report
-                        for, so it's obvious at a glance which names are analysable
-                        and which are open-market traders with no filings. */}
-                    <div className="mt-2 flex items-center gap-1 text-[11px] text-slate-400" title={v.e && hasDeepDive(v.e.cin) ? `${v.label} — full financials on file` : v.label}>
-                      <span className="shrink-0">{m.side === "rm" ? "Vendor" : "We buy from"}:</span>
-                      <span className="truncate text-slate-600">{v.label}</span>
-                      {v.e && hasDeepDive(v.e.cin) && <span className="shrink-0 text-teal-500" title="full financials on file">●</span>}
-                    </div>
-                  </div>
+                  <tr key={m.item} onClick={() => setOpenItem(m.item)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
+                    <td className="max-w-[300px] px-4 py-3.5">
+                      <div className="font-bold leading-snug text-slate-900">{m.item}</div>
+                      {m.inci && <div className="truncate text-xs text-slate-500" title={m.inci}>{m.inci}</div>}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-3.5">
+                      <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-semibold ${meta.bg} ${meta.text} ring-1 ${meta.ring}`} title={meta.blurb}>{meta.emoji} {meta.label}</span>
+                      <div className="mt-0.5 text-xs text-slate-500">{lev.emoji} {lev.label}</div>
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-3.5 text-center text-slate-600" title={m.indiaSuppliers.join(" · ")}>🇮🇳 {m.indiaBand}</td>
+                    <td className={`${TDNUM} ${hasP ? "font-semibold text-orange-700" : "text-slate-400"}`} title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")}>{hasP ? m.priceINRPerKg : "—"}</td>
+                    <td className="min-w-[220px] px-4 py-3.5">
+                      {v.e ? (
+                        <button onClick={(ev) => { ev.stopPropagation(); onSelect(v.e!); }}
+                          className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline" title={`${v.label} — open deep-dive`}>
+                          <span className="mt-0.5 shrink-0">{catEmoji(v.e.category)}</span>
+                          <span className="leading-snug">{v.label}</span>
+                        </button>
+                      ) : <span className="text-slate-400">{v.label}</span>}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={v.e} onOpen={setLeversFor} /></td>
+                  </tr>
                 );
               })}
-            </div>
-          </div>
-        );
-      })}
-      <p className="text-[11px] text-slate-400">Open-web research, not a census · <span className="text-teal-500">●</span> = full financials on file · click any card for the full analysis.</p>
+              {shown.length === 0 && <tr><td colSpan={6} className="px-4 py-10 text-center text-slate-400">Nothing in this group.</td></tr>}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+
+      <p className="text-[11px] text-slate-400">Open-web research, not a census · click a row for the full ingredient analysis.</p>
+      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
     </div>
   );
 }
