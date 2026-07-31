@@ -34,3 +34,20 @@ export const COVERAGE_META: Record<Entity["coverage"], { label: string; cls: str
   partial: { label: "Partial", cls: "text-amber-700 bg-amber-50 ring-amber-200" },
   not_found: { label: "Not found", cls: "text-rose-700 bg-rose-50 ring-rose-200" },
 };
+
+/* ---- health-score bands ----------------------------------------------------
+   One set of cut-offs for the whole dashboard. Six screens had grown their own
+   copy at 65/50 while the Overview banded at 55/45, so a supplier scoring 58
+   read "Strong" green on the landing page and amber on the next one. The score's
+   own neutral baseline is 50, which is what 55/45 is anchored to. Lives here
+   rather than in App.tsx because DeepDive needs it too, and DeepDive is imported
+   by App — the other direction is a cycle. */
+export const HEALTH_CUT = { strong: 55, ok: 45 } as const;
+
+export const healthChip = (h: number) =>
+  h >= HEALTH_CUT.strong ? "bg-emerald-100 text-emerald-700"
+    : h >= HEALTH_CUT.ok ? "bg-amber-100 text-amber-700"
+      : "bg-rose-100 text-rose-700";
+
+export const healthDot = (h: number) =>
+  h >= HEALTH_CUT.strong ? "bg-emerald-500" : h >= HEALTH_CUT.ok ? "bg-amber-500" : "bg-rose-500";

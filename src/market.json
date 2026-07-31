@@ -404,19 +404,7 @@
   "priceINRPerKg": "₹14,000–17,800/kg",
   "priceNote": "realistic cosmetic grade; ₹99/₹1,500 = bait",
   "priceSource": "IndiaMART listings, Jul 2026",
-  "alternatives": [
-   {
-    "name": "Imported",
-    "location": "",
-    "note": "",
-    "revenueCr": null,
-    "ebitdaPct": null,
-    "rocePct": null,
-    "cin": null,
-    "source": null,
-    "folder": null
-   }
-  ]
+  "alternatives": []
  },
  {
   "item": "Radia 7730",

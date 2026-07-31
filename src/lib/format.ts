@@ -45,6 +45,21 @@ export function titleCase(s: string): string {
   return s.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+// A name for chips and dense lists, where the full legal name is noise: the
+// company as a buyer would say it. Some brands carry the incorporation suffix
+// ("Manjushree Technopack Limited", "PRISHA TUBES PRIVATE LIMITED") and sat
+// beside bare ones like "ValueTree" in the same row of chips.
+export function shortName(brand: string): string {
+  const s = brand
+    .replace(/[\s,]*\b(private|pvt\.?|public|limited|ltd\.?|llp|inc\.?|corp\.?)\b\.?/gi, "")
+    .replace(/\s+/g, " ")
+    .replace(/[\s&,-]+$/, "")
+    .trim();
+  if (!s) return brand;
+  // Registry all-caps reads as shouting next to normal-cased brands.
+  return s === s.toUpperCase() && s.length > 4 ? titleCase(s) : s;
+}
+
 // Registry legal names are ALL-CAPS ("VALUETREE INGREDIENTS PRIVATE LIMITED").
 // Title-case them, but keep the brand's own casing as the prefix so the reader
 // sees one clean full name ("ValueTree Ingredients Private Limited") — never the
@@ -61,8 +76,11 @@ export function fullName(legalName: string | null | undefined, brand: string): s
   if (!clean) return brand === brand.toLowerCase() ? titleCase(brand) : brand;
   // Probe sometimes returns a stub legal name that the brand already contains in
   // full ("EPL" vs "EPL Limited"). Title-casing the stub would mangle an acronym
-  // into "Epl", so keep the richer brand string as-is.
-  if (brand && brand.toLowerCase().startsWith(clean.toLowerCase())) return brand;
+  // into "Epl", so keep the richer brand string as-is — unless the brand is
+  // itself a registry all-caps string ("PRISHA TUBES PRIVATE LIMITED"), which
+  // shouted next to every title-cased name around it.
+  if (brand && brand.toLowerCase().startsWith(clean.toLowerCase()))
+    return brand === brand.toUpperCase() && /\s/.test(brand) ? titleCase(brand) : brand;
   const tc = clean.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase()).replace(/\bLlp\b/g, "LLP");
   // Preserve the brand's own casing as the prefix ONLY when it's intentional
   // mixed-case ("ValueTree", "EPL") — not an all-lowercase folder slug ("kapco",

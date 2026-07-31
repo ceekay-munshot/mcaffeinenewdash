@@ -438,7 +438,11 @@ function advanced(x) {
     const ocf = num(f.cf.operating), icf = num(f.cf.investing);
     const mat = (num(f.materialCost) ?? 0) + (num(f.purchases) ?? 0);
     const emp = num(f.employeeCost) ?? 0, oth = num(f.otherExpense) ?? 0, dep = num(f.depreciation) ?? 0;
-    const netMargin = rev ? pat / rev : null, assetTurn = ta ? rev / ta : null, equityMult = eq ? ta / eq : null;
+    // DuPont is only defined on positive net worth. With negative equity the
+    // multiplier goes negative, and a loss-making company then multiplies two
+    // negatives into a healthy-looking positive RoE — Arovea showed +100% while
+    // insolvent. Below zero the decomposition means nothing, so don't publish one.
+    const netMargin = rev ? pat / rev : null, assetTurn = ta ? rev / ta : null, equityMult = eq && eq > 0 ? ta / eq : null;
     return {
       fy: f.fy, ta,
       // DuPont pieces (ratios, not %)
@@ -472,7 +476,7 @@ function advanced(x) {
   }
 
   // Altman Z''-score (private / emerging-market form) — distress predictor
-  let z = null, zZone = null;
+  let z = null, zZone = null, zNote = null;
   if (A && A.ta) {
     const totLiab = A.ta - (A._raw.eq ?? 0);
     // X4 (equity ÷ liabilities) is unbounded, so a near-debt-free company sends
@@ -484,6 +488,12 @@ function advanced(x) {
     const X4 = Math.min(totLiab > 0 ? (A._raw.eq ?? 0) / totLiab : 0, 5);
     z = round(3.25 + 6.56 * X1 + 3.26 * X2 + 6.72 * X3 + 1.05 * X4, 2);
     zZone = z >= 2.6 ? "safe" : z >= 1.1 ? "grey" : "distress";
+    // The Z'' form carries a 3.25 intercept, which is enough to float a company
+    // with negative net worth into the "safe" band on working capital alone —
+    // Ananya Herbal scored 3.94 "safe" on equity of −₹8 Cr. Liabilities above
+    // assets is the textbook definition of balance-sheet insolvency, so it
+    // overrides the arithmetic rather than being averaged into it.
+    if ((A._raw.eq ?? 0) < 0) { zZone = "distress"; zNote = "liabilities exceed assets — negative net worth overrides the score"; }
   }
 
   // Operating leverage over the last 3 filed years: %Δ EBIT ÷ %Δ revenue (>1 = leverage working)
@@ -500,7 +510,7 @@ function advanced(x) {
   const dupont = A ? { netMargin: A.netMargin != null ? round(A.netMargin * 100, 1) : null, assetTurn: A.assetTurn != null ? round(A.assetTurn, 2) : null, equityMult: A.equityMult != null ? round(A.equityMult, 2) : null, roe: A.roe, taxBurden: A.taxBurden, intBurden: A.intBurden, opMargin: A.opMargin } : null;
   // strip the private _raw before returning
   const clean = perYear.map(({ _raw, ...keep }) => keep);
-  return { perYear: clean, fscore, fChecks, z, zZone, opLeverage, dupont, fcfLatest: A?.fcf ?? null, accrualsLatest: A?.accruals ?? null };
+  return { perYear: clean, fscore, fChecks, z, zZone, zNote, opLeverage, dupont, fcfLatest: A?.fcf ?? null, accrualsLatest: A?.accruals ?? null };
 }
 
 /* ------------------------------------------------------- negotiation-lever engine
@@ -520,7 +530,15 @@ function buildLevers(x) {
   const ev = (label, value, tab = "financials") => ({ label, value, tab });
   // insight = what we DO about it (the card header); title = the observation
   // behind it ("why"). The client asked for the action to lead, not the finding.
-  const add = (tone, strength, insight, title, detail, evidence) => out.push({ tone, strength, insight, title, detail, evidence: (evidence ?? []).filter(Boolean) });
+  // The signature widened from 5 args to 6 when `insight` was introduced, and two
+  // detectors written afterwards kept the old shape — every argument landed one
+  // slot early, so the card rendered the observation as the action and handed the
+  // expander an evidence array where prose belongs. Cheap to assert, so assert.
+  const add = (tone, strength, insight, title, detail, evidence) => {
+    if (typeof insight !== "string" || typeof title !== "string" || typeof detail !== "string")
+      throw new Error(`lever add() called with the old 5-arg signature: ${JSON.stringify([tone, strength, insight]).slice(0, 120)}`);
+    out.push({ tone, strength, insight, title, detail, evidence: (evidence ?? []).filter(Boolean) });
+  };
   const l = x.latest, med = x.vsMedian.median, fin = x.fin, a = x.advanced ?? {}, py = a.perYear ?? [];
   const gap = (self, m) => (self != null && m != null ? round(self - m, 1) : null);
   const rs = (v) => (v == null ? "—" : `₹${Math.round(Math.abs(v))} Cr`);
@@ -529,7 +547,7 @@ function buildLevers(x) {
 
   /* ===== A. MARGIN & COST STRUCTURE ===== */
   const emGap = gap(l.ebitdaMargin, med.ebitdaMargin);
-  if (emGap != null && emGap >= 3) add("opportunity", emGap >= 8 ? 3 : 2, "Fatter margins than its peers",
+  if (emGap != null && emGap >= 3) add("opportunity", emGap >= 8 ? 3 : 2, "Room to push on price", "Fatter margins than its peers",
     `EBITDA margin ${l.ebitdaMargin}% vs the peer median ${med.ebitdaMargin}% — about ${emGap}pp of extra cushion baked into their pricing. There's room to push on price.`,
     [ev("EBITDA margin", l.ebitdaMargin + "%"), ev("Peer median", med.ebitdaMargin + "%", "peers"), ev("Advantage", emGap + "pp", "peers")]);
   else if (emGap != null && emGap <= -3) add("watch", 1, "Push on terms, not on price", "Thinner margins than peers",
@@ -558,7 +576,7 @@ function buildLevers(x) {
 
   /* ===== B. RETURNS (DuPont) ===== */
   if (l.roce != null && (l.roce >= 25 || (med.roce != null && l.roce > med.roce * 1.3)))
-    add("opportunity", l.roce >= 35 ? 3 : 2, "Very profitable use of capital",
+    add("opportunity", l.roce >= 35 ? 3 : 2, "They can afford to share margin", "Very profitable use of capital",
       `RoCE ${l.roce}%${med.roce != null ? ` vs peers ${med.roce}%` : ""} — they earn well above the cost of capital; there's margin to share with us.`,
       [ev("RoCE", l.roce + "%"), med.roce != null ? ev("Peer median", med.roce + "%", "peers") : null]);
 
@@ -627,7 +645,11 @@ function buildLevers(x) {
   if (cfo != null && cfo < 0) add("risk", 2, "Secure supply before pressing on price", "Burning cash from operations",
     `Operating cash flow was −${rs(cfo)} last year — the core business consumed cash; watch supply continuity.`,
     [ev("Operating cash flow", `−${rs(cfo)}`)]);
-  else if (cfo != null && l.pat != null && cfo > l.pat * 1.2 && cfo > 0) add("opportunity", 1, "Push on price — they don't need our cash", "Strong cash generation",
+  // Gated on free cash flow too: operating cash above profit says the P&L is
+  // real, not that they're cash-rich. Manjushree throws off ₹300 Cr of operating
+  // cash and still runs negative after capex, so "they don't need our cash" sat
+  // on the same page as "they're cash-hungry". Below, the FCF lever gets it.
+  else if (cfo != null && l.pat != null && cfo > l.pat * 1.2 && cfo > 0 && (a.fcfLatest ?? 0) >= 0) add("opportunity", 1, "Push on price — they don't need our cash", "Strong cash generation",
     `Generated ${rs(cfo)} of operating cash (above net profit ${rs(l.pat)}) — comfortably cash-positive, so they don't need to claw margin from us. Push on price, not terms.`,
     [ev("Operating cash flow", rs(cfo)), ev("Net profit", rs(l.pat))]);
 

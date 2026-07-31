@@ -8,6 +8,7 @@
 // data we actually hold, with the exact numbers quoted so a negotiator can use it.
 
 import type { Entity } from "../types";
+import { probeDSO, probeDPO, probeCCC, probeEbitdaMargin, probeNetMargin, probeRoce, probeCurrentRatio, probeDebtEquity, probeIntCover } from "../probe";
 
 const ly = (e: Entity) => {
   const ys = e.profile?.years;
@@ -20,15 +21,18 @@ const fy = (e: Entity) => {
 
 // Metric accessors — prefer the multi-year PDF profile, then Probe42, then the
 // registry base. Used by both the insight rules and the benchmark charts.
-export const supDSO = (e: Entity) => ly(e)?.receivableDays ?? e.probe?.receivableDays ?? null;
-export const supDPO = (e: Entity) => ly(e)?.payableDays ?? e.probe?.payableDays ?? null;
-export const supCCC = (e: Entity) => ly(e)?.cashConversionDays ?? e.probe?.cashConversionCycleDays ?? null;
-export const supEbitda = (e: Entity) => e.financials.ebitdaMarginPct ?? ly(e)?.ebitdaMarginPct ?? null;
-export const supNet = (e: Entity) => e.financials.netMarginPct ?? ly(e)?.netMarginPct ?? null;
-export const supRoce = (e: Entity) => ly(e)?.rocePct ?? e.probe?.roce ?? null;
-export const supCurrent = (e: Entity) => ly(e)?.currentRatio ?? e.pdf?.currentRatio ?? null;
-export const supDebtEq = (e: Entity) => ly(e)?.debtToEquity ?? e.pdf?.debtToEquity ?? null;
-export const supIntCov = (e: Entity) => ly(e)?.interestCoverage ?? e.pdf?.interestCoverage ?? null;
+// Probe42's own MCA filing wins wherever we hold one, so the board, the charts
+// and the supplier's page cannot quote different numbers for one company — see
+// src/probe.ts for why the two sources diverge.
+export const supDSO = (e: Entity) => probeDSO(e) ?? ly(e)?.receivableDays ?? e.probe?.receivableDays ?? null;
+export const supDPO = (e: Entity) => probeDPO(e) ?? ly(e)?.payableDays ?? e.probe?.payableDays ?? null;
+export const supCCC = (e: Entity) => probeCCC(e) ?? ly(e)?.cashConversionDays ?? e.probe?.cashConversionCycleDays ?? null;
+export const supEbitda = (e: Entity) => probeEbitdaMargin(e) ?? e.financials.ebitdaMarginPct ?? ly(e)?.ebitdaMarginPct ?? null;
+export const supNet = (e: Entity) => probeNetMargin(e) ?? e.financials.netMarginPct ?? ly(e)?.netMarginPct ?? null;
+export const supRoce = (e: Entity) => probeRoce(e) ?? ly(e)?.rocePct ?? e.probe?.roce ?? null;
+export const supCurrent = (e: Entity) => probeCurrentRatio(e) ?? ly(e)?.currentRatio ?? e.pdf?.currentRatio ?? null;
+export const supDebtEq = (e: Entity) => probeDebtEquity(e) ?? ly(e)?.debtToEquity ?? e.pdf?.debtToEquity ?? null;
+export const supIntCov = (e: Entity) => probeIntCover(e) ?? ly(e)?.interestCoverage ?? e.pdf?.interestCoverage ?? null;
 export const supRevChg = (e: Entity) => e.pdf?.revenueChangePct ?? null;
 
 export type InsightTone = "opportunity" | "risk" | "watch";

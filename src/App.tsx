@@ -8,8 +8,9 @@ import {
   type CompetitorRow,
   type ResearchData,
 } from "./types";
-import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore, fullName } from "./lib/format";
-import { negotiationRoom } from "./lib/health";
+import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore, fullName, shortName } from "./lib/format";
+import { negotiationRoom, healthChip } from "./lib/health";
+import { probeRevenueINR, probeEbitdaMargin, probeNetMargin } from "./probe";
 import { CATEGORY_COLOR } from "./lib/palette";
 import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, TBL, THEAD, TDNUM, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
@@ -38,14 +39,19 @@ const isParentBackedProfile = (e: Entity) => {
 };
 
 const profRevOf = (e: Entity) => (isParentBackedProfile(e) ? null : latestYear(e)?.revenueINR ?? null);
+// Probe42 first wherever we hold a report — see src/probe.ts. Without this the
+// board and the supplier's own page quote different numbers for the same
+// company, because Tracxn reports the group and Probe reports the legal entity.
 const revOf = (e: Entity) => {
+  const p = probeRevenueINR(e);
+  if (p != null) return p;
   const b = e.financials.revenueINR;
   return b != null && b > 0 ? b : profRevOf(e);
 };
 const ebitdaMarginOf = (e: Entity) =>
-  e.financials.ebitdaMarginPct ?? (isParentBackedProfile(e) ? null : latestYear(e)?.ebitdaMarginPct) ?? null;
+  probeEbitdaMargin(e) ?? e.financials.ebitdaMarginPct ?? (isParentBackedProfile(e) ? null : latestYear(e)?.ebitdaMarginPct) ?? null;
 const netMarginOf = (e: Entity) =>
-  e.financials.netMarginPct ?? (isParentBackedProfile(e) ? null : latestYear(e)?.netMarginPct) ?? null;
+  probeNetMargin(e) ?? e.financials.netMarginPct ?? (isParentBackedProfile(e) ? null : latestYear(e)?.netMarginPct) ?? null;
 
 function useProfileNav<T>(selected: T | null, setSelected: (v: T | null) => void) {
   const listScroll = useRef(0);
@@ -413,7 +419,7 @@ function QuotePicker({ tracked, market, onPick }: {
   }, [open]);
   const total = tracked.length + market.length;
   if (!total) return null;
-  const hcls = (h: number) => (h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700");
+  const hcls = healthChip;
   const Row = ({ label, emoji, health, onClick }: { label: string; emoji?: string; health?: number; onClick: () => void }) => (
     <button onClick={onClick} className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-sm transition hover:bg-teal-50">
       {emoji && <span className="shrink-0">{emoji}</span>}
@@ -534,7 +540,7 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
   const overCount = benched.filter((r) => (r.gap ?? 0) > 0).length;
   const quoteWins = rows.filter((r) => r.bench?.basis === "quote" && r.savingRs > 0).length;
   const month = new Date().toLocaleDateString("en-IN", { month: "long", year: "numeric" });
-  const hdot = (h: number) => (h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700");
+  const hdot = healthChip;
 
   return (
     <div className="space-y-4">
@@ -854,7 +860,10 @@ const HEALTH_BANDS = [
 
 // A "top 10" that lists the same finding four times wastes six slots. Cap each
 // distinct insight so the list shows ten different kinds of move, not ten rows.
-function diverseTop<T extends { l: { insight: string } }>(list: T[], n: number, perKind = 2): T[] {
+// perKind 1: with ~60 distinct insights across 24 suppliers there are plenty to
+// fill ten slots, so every row is a different kind of move. At 2 the list came
+// back in visible pairs, which reads as repetition however it is ranked.
+function diverseTop<T extends { l: { insight: string } }>(list: T[], n: number, perKind = 1): T[] {
   const seen = new Map<string, number>();
   const out: T[] = [];
   for (const x of list) {
@@ -901,7 +910,7 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
           <span className="mt-0.5 block text-xs text-slate-500">{l.title}</span>
           <span className="mt-1 flex items-center gap-1.5">
             <span className="text-xs font-semibold text-teal-700">{catEmoji(e.category)} {fullName(e.legalName, e.brand)}</span>
-            {h != null && <span className={`rounded px-1.5 text-[10px] font-extrabold ${h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700"}`}>{h}</span>}
+            {h != null && <span className={`rounded px-1.5 text-[10px] font-extrabold ${healthChip(h)}`}>{h}</span>}
           </span>
         </span>
       </button>
@@ -932,7 +941,7 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
                 {b.list.slice(0, 6).map(({ e, h }) => (
                   <button key={e.folder} onClick={() => onSelect(e)} title={`${fullName(e.legalName, e.brand)} · ${h}/100`}
                     className="rounded bg-white px-1.5 py-0.5 text-[11px] font-medium text-slate-600 ring-1 ring-slate-200 transition hover:text-teal-700 hover:ring-teal-300">
-                    {e.brand}
+                    {shortName(e.brand)}
                   </button>
                 ))}
                 {b.list.length > 6 && <span className="px-1 text-[11px] text-slate-400">+{b.list.length - 6}</span>}
@@ -996,7 +1005,10 @@ function SupplierView() {
         stats={[
           { label: "Suppliers", value: String(stats.tracked) },
           { label: "Full reports pulled", value: `${stats.deep} of ${stats.tracked}` },
-          { label: "Spend in view", value: crStr(stats.revCr) },
+          // Their turnover, not our spend — the same sum the competitor hero
+          // labels "Revenue in view". Calling it spend overstated what we buy by
+          // orders of magnitude, and it is the first number on the screen.
+          { label: "Vendor revenue in view", value: crStr(stats.revCr) },
           { label: "Levers found", value: String(stats.opps) },
         ]} />
       {compareMode ? (
@@ -1179,7 +1191,7 @@ function BestPlacedCard({ entry, all, incumbentFolder, onSelect }: {
   const inc = ranked.find((r) => r.incumbent);
   const sole = entry.concentration === "sole";
   const band = entry.priceINRPerKg && !entry.priceINRPerKg.includes("not found") ? entry.priceINRPerKg : null;
-  const hcls = (h: number) => (h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700");
+  const hcls = healthChip;
   // Only claim an upgrade when the gap is real and the incumbent isn't already top.
   const upgrade = !sole && inc && !best.incumbent && best.health >= inc.health + 8 ? best : null;
   return (
@@ -1277,7 +1289,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
         </div>
       </div>
 
-      <Card title={`① Suppliers who sell ${entry.item}  ·  ② the price each offers`} sub={alts.length ? `Our current vendor vs ${alts.length} alternatives found on IndiaMART / TradeIndia — click a vendor for its full profile` : "Our current vendor for this item"} accent="#0d9488">
+      <Card title={`① Suppliers who sell ${entry.item}  ·  ② the price each offers`} sub={alts.length ? `Our current vendor vs ${alts.length} ${alts.length === 1 ? "alternative" : "alternatives"} found on IndiaMART / TradeIndia — click a vendor for its full profile` : "Our current vendor for this item"} accent="#0d9488">
         <div className="overflow-x-auto">
           <table className={`${TBL} min-w-[880px]`}>
             <thead>
@@ -1436,7 +1448,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
       </div>
 
       {/* headline: how our buys split across the leverage spectrum */}
-      <Card title="🌐 Where the leverage sits" sub={`${entries.length} ${side === "rm" ? "key ingredients" : "packaging categories"} · left = they set the price, right = we do`} accent="#0d9488">
+      <Card title="🌐 Where the leverage sits" sub={`${entries.length} ${side === "rm" ? "key ingredients" : side === "pm" ? "packaging categories" : "ingredients & packaging categories"} · left = they set the price, right = we do`} accent="#0d9488">
         <div className="flex h-6 w-full overflow-hidden rounded-lg ring-1 ring-slate-200">
           {cols.map((c) => counts[c] > 0 && (
             <div key={c} title={`${counts[c]} ${CONC_META[c].label}`} className="flex items-center justify-center text-xs font-semibold text-white" style={{ width: `${(counts[c] / entries.length) * 100}%`, background: CONC_META[c].color }}>
@@ -1531,7 +1543,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                             <button onClick={() => onSelect(se)} className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline">
                               <span className="mt-0.5 shrink-0">{catEmoji(se.category)}</span><span className="leading-snug">{fullName(se.legalName, se.brand)}</span>
                             </button>
-                          ) : <span className="text-slate-400">{sk.brand ?? "not mapped"}</span>}
+                          ) : <span className="text-slate-400">{sk.brand || "not mapped"}</span>}
                         </td>
                         <td className="whitespace-nowrap px-4 py-2.5 text-center"><LeverCell e={se} onOpen={setLeversFor} /></td>
                       </tr>
@@ -1693,7 +1705,7 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
                 <label key={e.folder} className={`flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition ${on ? "bg-teal-50 ring-1 ring-teal-200" : disabled ? "cursor-not-allowed opacity-40" : "hover:bg-white"}`}>
                   <input type="checkbox" checked={on} disabled={disabled} onChange={() => toggle(e.folder)} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-400" />
                   <span className="shrink-0">{catEmoji(e.category)}</span>
-                  <span className="min-w-0 flex-1 truncate font-medium text-slate-800" title={fullName(e.legalName, e.brand)}>{e.brand}{hasDeepDive(e.cin) && <span className="ml-1 text-[10px] text-teal-600" title="full Probe42 report on file">●</span>}</span>
+                  <span className="min-w-0 flex-1 truncate font-medium text-slate-800" title={fullName(e.legalName, e.brand)}>{shortName(e.brand)}{hasDeepDive(e.cin) && <span className="ml-1 text-[10px] text-teal-600" title="full Probe42 report on file">●</span>}</span>
                   <span className="shrink-0 font-mono text-xs text-slate-400">{fmtCrore(revOf(e))}</span>
                 </label>
               );
@@ -1707,7 +1719,7 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
           <div className="mt-4 flex flex-wrap items-center gap-2">
             {selected.map((e, i) => (
               <span key={e.folder} className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>
-                {e.brand}<button onClick={() => toggle(e.folder)} className="opacity-80 transition hover:opacity-100">✕</button>
+                {shortName(e.brand)}<button onClick={() => toggle(e.folder)} className="opacity-80 transition hover:opacity-100">✕</button>
               </span>
             ))}
           </div>
@@ -1755,7 +1767,7 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Change selection</button>
-        <div className="flex flex-wrap gap-1.5">{selected.map((e, i) => <span key={e.folder} className="inline-flex rounded-full px-2 py-0.5 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>{e.brand}</span>)}</div>
+        <div className="flex flex-wrap gap-1.5">{selected.map((e, i) => <span key={e.folder} className="inline-flex rounded-full px-2 py-0.5 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>{shortName(e.brand)}</span>)}</div>
       </div>
 
       {selected.some((e) => suppliedItems(e.folder).length > 0) && (
@@ -1805,7 +1817,7 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
                 const lv = leverTagsOf(supplierInsights(e));
                 return (
                   <div key={e.folder} className="flex flex-wrap items-center gap-2">
-                    <span className="inline-flex min-w-[10rem] items-center gap-1.5 text-sm font-semibold text-slate-800"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{e.brand}</span>
+                    <span className="inline-flex min-w-[10rem] items-center gap-1.5 text-sm font-semibold text-slate-800"><span className="h-2.5 w-2.5 rounded-sm" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }} />{shortName(e.brand)}</span>
                     {lv.length ? lv.map(({ short, emoji, detail }) => <span key={short} title={detail} className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">{emoji} {short}</span>) : <span className="text-xs text-slate-400">No clear lever — healthy vendor</span>}
                   </div>
                 );
@@ -1893,7 +1905,7 @@ function LeversModal({ e, onClose, onOpenProfile }: { e: Entity; onClose: () => 
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <h2 className="truncate text-lg font-bold leading-tight text-slate-900">{fullName(e.legalName, e.brand)}</h2>
-              {health != null && <span className={`shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold ${health >= 65 ? "bg-emerald-100 text-emerald-700" : health >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700"}`}>{health}/100</span>}
+              {health != null && <span className={`shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold ${healthChip(health)}`}>{health}/100</span>}
             </div>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
               {counts.filter((c) => c.n).map(({ t, n }) => (

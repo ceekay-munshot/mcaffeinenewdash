@@ -5,6 +5,7 @@ import { Fragment, useMemo, useState } from "react";
 import type { Entity } from "./types";
 import { AreaLine, HBars, Donut, MultiLine, Card, TBL, THEAD, type Slice } from "./charts";
 import { TEAL } from "./lib/palette";
+import { healthDot } from "./lib/health";
 import { fullName, titleCase } from "./lib/format";
 import { newsOf, type SupplierNews } from "./news";
 import DETAIL from "@data/clean/probe-detail.json";
@@ -23,7 +24,7 @@ interface Lever { tone: "opportunity" | "watch" | "risk"; strength: number; insi
 interface CostMix { material: number | null; employee: number | null; other: number | null; deprec: number | null }
 interface AdvYear { fy: string; roe: number | null; netMargin: number | null; assetTurn: number | null; equityMult: number | null; taxBurden: number | null; intBurden: number | null; opMargin: number | null; fcf: number | null; accruals: number | null; workingCapital: number | null; costMix: CostMix | null }
 interface Advanced {
-  perYear: AdvYear[]; fscore: number | null; fChecks: { ok: boolean; label: string }[]; z: number | null; zZone: "safe" | "grey" | "distress" | null;
+  perYear: AdvYear[]; fscore: number | null; fChecks: { ok: boolean; label: string }[]; z: number | null; zZone: "safe" | "grey" | "distress" | null; zNote?: string | null;
   opLeverage: number | null; fcfLatest: number | null; accrualsLatest: number | null;
   dupont: { netMargin: number | null; assetTurn: number | null; equityMult: number | null; roe: number | null; taxBurden: number | null; intBurden: number | null; opMargin: number | null } | null;
 }
@@ -207,7 +208,7 @@ type AltInfo = { selfHealth: number; category: string; count: number; rank: numb
 function AlternativesCard({ alt }: { alt: AltInfo }) {
   if (alt.count < 2) return null; // need at least one category peer to compare
   const weak = alt.selfHealth < 55;
-  const dot = (h: number) => (h >= 65 ? "bg-emerald-500" : h >= 50 ? "bg-amber-500" : "bg-rose-500");
+  const dot = healthDot;
   return (
     <div className={`mb-4 rounded-2xl p-4 ring-1 ${weak ? "bg-rose-50 ring-rose-200" : "bg-slate-50 ring-slate-200"}`}>
       <div className="flex flex-wrap items-center gap-2">
@@ -468,8 +469,11 @@ function HealthPanel({ a }: { a: Advanced }) {
   // marker pinned to the far right and the gauge never moved. Runs 0-10 now:
   // distress <1.1, grey 1.1-2.6, safe above — band widths match those cut-offs.
   const Z_MAX = 10;
-  const zMark = a.z != null ? Math.max(2, Math.min(98, (Math.min(a.z, Z_MAX) / Z_MAX) * 100)) : null;
-  const zOver = a.z != null && a.z > Z_MAX;
+  // When negative net worth overrides the band, the raw score still plots inside
+  // the green stretch — a marker sitting in "safe" beside a red "Distress" label
+  // reads as a bug. Park it in the band the verdict actually claims.
+  const zMark = a.zNote ? 5.5 : a.z != null ? Math.max(2, Math.min(98, (Math.min(a.z, Z_MAX) / Z_MAX) * 100)) : null;
+  const zOver = a.z != null && a.z > Z_MAX && !a.zNote;
   const fCol = (a.fscore ?? 0) >= 7 ? "text-emerald-600" : (a.fscore ?? 0) >= 4 ? "text-amber-600" : "text-rose-600";
   return (
     <Card title="Financial-health X-ray" sub="DuPont · Piotroski · Altman-Z — analyst-grade signals computed from the filings, no extra data" accent={C.violet}>
@@ -508,6 +512,9 @@ function HealthPanel({ a }: { a: Advanced }) {
             {zMark != null && <div className="absolute top-1/2 h-4 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded bg-slate-900 ring-2 ring-white" style={{ left: `${zMark}%` }} />}
           </div>
           <div className="mt-1 flex justify-between text-[9px] text-slate-400"><span>distress</span><span>grey</span><span>{zOver ? `safe · ${Z_MAX}+` : "safe"}</span></div>
+          {/* When the zone was overridden the marker sits away from its band, so
+              say why rather than leave the two looking inconsistent. */}
+          {a.zNote && <div className="mt-1.5 rounded-lg bg-rose-50 px-2 py-1 text-[10px] font-semibold leading-snug text-rose-700 ring-1 ring-rose-200">⚠ {a.zNote}</div>}
           {/* "Safe" here answers one narrow question — can the balance sheet meet
               its obligations — and nothing about governance or how they trade.
               Without saying so, a green Z beside a weak health score reads as a
