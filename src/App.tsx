@@ -20,7 +20,7 @@ import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supRoce, supCurrent, supDebtEq, supIntCov,
 } from "./lib/insights";
-import DeepDive, { hasDeepDive, probeLevers, supplierHealth, ProbeCompare, enrichedCount } from "./DeepDive";
+import DeepDive, { hasDeepDive, probeLevers, supplierHealth, probeSegmentsOf, ProbeCompare, enrichedCount } from "./DeepDive";
 
 /* -------------------------------------------------- data accessors / helpers */
 
@@ -449,7 +449,16 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
     // A cheaper quote from a financially weaker vendor is not a free win.
     const riskySwitch = !!(best && bench?.basis === "quote" && best.health != null
       && (best.health < 50 || (incumbent.health != null && best.health < incumbent.health - 10)));
-    return { ...l, band, quotes, incumbent, alts, best, bench, gap, savingRs, riskySwitch };
+    // Who else could credibly quote this and is financially healthier than the
+    // incumbent — surfaced even when the buyer hasn't thought to ask them.
+    const mk = marketFor(l.item);
+    const quoted = new Set(l.quotes.map((q) => l3Norm(q.supplier)));
+    const ask = mk
+      ? bestPlacedFor(mk, all, incumbent.ent?.folder)
+        .filter((r) => !r.incumbent && !quoted.has(l3Norm(r.e.brand)) && r.health >= (incumbent.health ?? 0) + 8)
+        .slice(0, 2)
+      : [];
+    return { ...l, band, quotes, incumbent, alts, best, bench, gap, savingRs, riskySwitch, ask, sole: mk?.concentration === "sole" };
   }), [lines, all, items]);
 
   const totalRs = rows.reduce((s, r) => s + r.savingRs, 0);
@@ -582,6 +591,12 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
                             {r.riskySwitch && <div className="text-[11px] font-medium text-amber-600" title="The cheaper vendor scores worse on financial health — a price win that could cost you continuity.">⚠ cheaper but financially weaker</div>}
                           </div>
                         ) : <span className="text-xs text-slate-400">no competing quote</span>}
+                        {/* healthier vendors who could quote this but haven't been asked */}
+                        {r.ask.length > 0 && !r.sole && (
+                          <div className="mt-1.5 text-[11px] leading-snug text-violet-700" title="Financially healthier vendors whose filed segment covers this material — worth putting out for a quote.">
+                            ⭐ also ask: {r.ask.map((a) => `${a.e.brand} (${a.health})`).join(", ")}
+                          </div>
+                        )}
                       </td>
                       <td className={`${TDNUM} text-slate-500`}>{r.band ? (r.band.min === r.band.max ? `₹${r.band.min}` : `₹${r.band.min}–${r.band.max}`) : "—"}</td>
                       <td className={`${TDNUM} font-bold ${r.gap == null ? "text-slate-400" : isOver ? "text-rose-600" : "text-emerald-600"}`}>{r.gap == null ? "—" : `${isOver ? "+" : ""}₹${Math.round(r.gap).toLocaleString("en-IN")}`}</td>
@@ -879,6 +894,102 @@ function productTagsOf(e: Entity): string[] {
   return PRODUCT_TAGS.filter((t) => t.re.test(blob)).map((t) => t.key);
 }
 
+/* ---- Who is best placed to supply a given material? -------------------------
+   We only ever hold a financial score for ONE supplier per ingredient — the
+   incumbent — because the open-web alternatives are names without a CIN. So
+   ranking "the healthiest supplier of X" needs a capability test: which of the
+   vendors we DO score could credibly quote this material at all?
+
+   The Probe segment gives that honestly. A broad-line chemical distributor
+   ("Chemical Retailers and Distributors") can source essentially any cosmetic
+   active, so it is a genuine candidate for any raw material. A packaging vendor
+   is a candidate only where its segment matches the format we need. Everything
+   else is excluded rather than guessed at.
+
+   This answers "who should we ask?" — NOT "who is cheapest". Price only becomes
+   real once a quote is entered on the Rate benchmark tab, and the UI says so. */
+const PM_FORMAT: { re: RegExp; segs: string[] }[] = [
+  { re: /\bbottles?\b|\bjars?\b|\bcaps?\b|\bpumps?\b|closure|dispenser|\btubes?\b/i, segs: ["Bottles and Caps", "Plastic based Products", "Rubber based Products"] },
+  { re: /carton|\bboxes?\b|\blabels?\b|sticker|print/i, segs: ["Industrial Packaging"] },
+];
+function canSupply(entry: MarketEntry, d: { segments?: string[] } | undefined, isIncumbent: boolean): boolean {
+  if (isIncumbent) return true;                       // they already do supply it
+  const segs = d?.segments ?? [];
+  if (!segs.length) return false;
+  if (entry.side === "rm") return segs.includes("Chemical Retailers and Distributors");
+  const fmt = PM_FORMAT.find((f) => f.re.test(entry.item));
+  return !!fmt && segs.some((s) => fmt.segs.includes(s));
+}
+type BestPlaced = { e: Entity; health: number; incumbent: boolean; topLever?: { title: string; detail: string } };
+function bestPlacedFor(entry: MarketEntry, all: Entity[], incumbentFolder?: string): BestPlaced[] {
+  const cat = entry.side === "rm" ? "RM Vendor" : "PM Vendor";
+  return all
+    .filter((e) => e.category === cat && hasDeepDive(e.cin))
+    .map((e) => {
+      const inc = e.folder === incumbentFolder;
+      return { e, inc, d: probeSegmentsOf(e.cin) };
+    })
+    .filter(({ d, inc }) => canSupply(entry, d, inc))
+    .map(({ e, inc }) => {
+      const opp = probeLevers(e.cin).find((l) => l.tone === "opportunity");
+      return { e, health: supplierHealth(e.cin) ?? 0, incumbent: inc, topLever: opp && { title: opp.title, detail: opp.detail } };
+    })
+    .sort((a, b) => b.health - a.health);
+}
+
+function BestPlacedCard({ entry, all, incumbentFolder, onSelect }: {
+  entry: MarketEntry; all: Entity[]; incumbentFolder?: string; onSelect: (e: Entity) => void;
+}) {
+  const ranked = useMemo(() => bestPlacedFor(entry, all, incumbentFolder), [entry, all, incumbentFolder]);
+  if (ranked.length === 0) return null;
+  const best = ranked[0];
+  const inc = ranked.find((r) => r.incumbent);
+  const sole = entry.concentration === "sole";
+  const band = entry.priceINRPerKg && !entry.priceINRPerKg.includes("not found") ? entry.priceINRPerKg : null;
+  const hcls = (h: number) => (h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700");
+  // Only claim an upgrade when the gap is real and the incumbent isn't already top.
+  const upgrade = !sole && inc && !best.incumbent && best.health >= inc.health + 8 ? best : null;
+  return (
+    <Card
+      title="Who is best placed to supply this"
+      sub={`ranked on financial health, among the vendors we hold full filings for${band ? ` · open market ${band}` : ""}`}
+      accent="#7c3aed">
+      {sole ? (
+        <p className="mb-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800 ring-1 ring-amber-200">
+          🔒 Sole-source molecule — switching isn't realistic. Use this ranking to judge how secure the current source is, not to move the business.
+        </p>
+      ) : upgrade ? (
+        <p className="mb-3 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-900 ring-1 ring-emerald-200">
+          ✅ <b>{fullName(upgrade.e.legalName, upgrade.e.brand)}</b> is the healthiest vendor able to supply this — {upgrade.health}/100 against {inc!.health}/100 for our current source. Worth putting this material out to them for a quote.
+        </p>
+      ) : inc?.incumbent && best.incumbent ? (
+        <p className="mb-3 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-900 ring-1 ring-emerald-200">
+          ✅ Our current vendor is already the healthiest option we can score for this material.
+        </p>
+      ) : null}
+      <div className="space-y-2">
+        {ranked.map((r, i) => (
+          <button key={r.e.folder} onClick={() => onSelect(r.e)}
+            className="flex w-full items-center gap-3 rounded-xl bg-slate-50 p-3 text-left ring-1 ring-slate-200 transition hover:bg-white hover:ring-teal-300">
+            <span className="w-5 shrink-0 text-center text-sm font-bold text-slate-400">{i + 1}</span>
+            <span className="min-w-0 flex-1">
+              <span className="flex flex-wrap items-center gap-1.5">
+                <span className="font-bold text-slate-900">{fullName(r.e.legalName, r.e.brand)}</span>
+                {r.incumbent && <span className="rounded bg-teal-100 px-1.5 py-0.5 text-[10px] font-bold uppercase text-teal-700">current</span>}
+              </span>
+              {r.topLever && <span className="mt-0.5 block truncate text-xs text-slate-500" title={r.topLever.detail}>💡 {r.topLever.title}</span>}
+            </span>
+            <span className={`shrink-0 rounded-lg px-2.5 py-1 text-sm font-extrabold tabular-nums ${hcls(r.health)}`}>{r.health}</span>
+          </button>
+        ))}
+      </div>
+      <p className="mt-3 px-1 text-xs text-slate-400">
+        Capability is inferred from each vendor's filed business segment{entry.side === "rm" ? " — broad-line chemical distributors can source most actives" : " — matched to this packaging format"}. It answers <b>who to ask</b>, not who is cheapest; enter their quotes on the Rate benchmark tab to compare on price.
+      </p>
+    </Card>
+  );
+}
+
 /* ---------------------------------------------------------- L2 Market structure */
 // The "India Trade" / monopoly check: for each thing we buy, how many credible
 // suppliers exist — and does that hand the leverage to us (a crowded commodity)
@@ -974,6 +1085,8 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
         </div>
         <p className="mt-2 px-1 text-[11px] text-slate-400">Market ₹/kg is the open-market band for this material, not a per-seller quote.</p>
       </Card>
+
+      <BestPlacedCard entry={entry} all={all} incumbentFolder={currentVendor?.folder} onSelect={onSelectVendor} />
 
       {currentVendor && (
         <div className="grid gap-4 lg:grid-cols-3">

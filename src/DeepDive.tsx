@@ -95,6 +95,11 @@ export function hasDeepDive(cin?: string | null): boolean { return !!(cin && DET
 export function probeLevers(cin?: string | null): Lever[] { return (cin && DETAILS[cin]?.levers) || []; }
 /** Blended 0-100 financial-health score for an enriched supplier (null if not enriched). */
 export function supplierHealth(cin?: string | null): number | null { return cin && DETAILS[cin] ? healthScore(DETAILS[cin]) : null; }
+/** The Probe segments a supplier is filed under — the capability signal used to
+ *  work out which materials a vendor could credibly quote for. */
+export function probeSegmentsOf(cin?: string | null): { segments?: string[] } | undefined {
+  return cin && DETAILS[cin] ? { segments: DETAILS[cin].segments } : undefined;
+}
 export type ProbeLever = Lever;
 
 /* ---- palette + formatters ---- */
