@@ -877,7 +877,9 @@ function diverseTop<T extends { l: { insight: string }; e: { folder: string } }>
 }
 
 function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
-  const [leversFor, setLeversFor] = useState<Entity | null>(null);
+  // Remember which insight was clicked, not just whose it was, so the modal can
+  // open on that lever rather than at the top of the supplier's whole set.
+  const [leversFor, setLeversFor] = useState<{ e: Entity; focus: string } | null>(null);
 
   const { scored, tops, risks, avg, nOpp, nRisk } = useMemo(() => {
     const scored = all
@@ -903,7 +905,7 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
     const m = TONE_META[tone];
     const h = supplierHealth(e.cin);
     return (
-      <button onClick={() => setLeversFor(e)} className="group flex w-full items-stretch gap-3 py-2.5 text-left transition hover:bg-slate-50/80">
+      <button onClick={() => setLeversFor({ e, focus: l.insight })} className="group flex w-full items-stretch gap-3 py-2.5 text-left transition hover:bg-slate-50/80">
         {/* Strength as rail height, not as three segments — split into thirds it
             was invisible, and every row in a sorted list looked identical. */}
         <span className="relative flex w-1 shrink-0 justify-center" title={`strength ${l.strength} of 3`}>
@@ -951,7 +953,8 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
         </Card>
       </div>
 
-      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
+      {leversFor && <LeversModal e={leversFor.e} focus={leversFor.focus} onClose={() => setLeversFor(null)}
+        onOpenProfile={() => { const t = leversFor.e; setLeversFor(null); onSelect(t); }} />}
     </div>
   );
 }
@@ -1957,7 +1960,15 @@ export function LeverCell({ e, onOpen }: { e: Entity | undefined; onOpen: (e: En
 
 const LEV_TONE_ORDER = ["opportunity", "watch", "risk"] as const;
 const LEV_TONE_PLURAL: Record<InsightTone, string> = { opportunity: "opportunities", watch: "to watch", risk: "risks" };
-function LeversModal({ e, onClose, onOpenProfile }: { e: Entity; onClose: () => void; onOpenProfile: () => void }) {
+/* `focus` is the insight the reader actually clicked. Without it the modal opens
+   at the top of the supplier's whole lever set and they have to hunt for the row
+   they came from — fine on a vendor with three levers, useless on one with
+   seventeen. With it, that lever is scrolled to and ringed. */
+function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose: () => void; onOpenProfile: () => void; focus?: string }) {
+  const focusRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (focus && focusRef.current) focusRef.current.scrollIntoView({ block: "center" });
+  }, [focus]);
   useEffect(() => {
     const onKey = (ev: KeyboardEvent) => { if (ev.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
@@ -2003,8 +2014,11 @@ function LeversModal({ e, onClose, onOpenProfile }: { e: Entity; onClose: () => 
               <div key={tone}>
                 <h3 className={`mb-2 text-xs font-bold uppercase tracking-wider ${m.text}`}>{m.emoji} {m.label}</h3>
                 <div className="space-y-2">
-                  {group.map((l, i) => (
-                    <div key={i} className={`rounded-xl p-3.5 ring-1 ${m.bg} ${m.ring}`}>
+                  {group.map((l, i) => {
+                    const isFocus = !!focus && l.insight === focus;
+                    return (
+                    <div key={i} ref={isFocus ? focusRef : undefined}
+                      className={`rounded-xl p-3.5 ${m.bg} ${isFocus ? "ring-2 ring-teal-500 shadow-md" : `ring-1 ${m.ring}`}`}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="text-sm font-bold leading-snug text-slate-900">{l.insight}</div>
@@ -2025,7 +2039,8 @@ function LeversModal({ e, onClose, onOpenProfile }: { e: Entity; onClose: () => 
                         </div>
                       )}
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             );
