@@ -287,6 +287,17 @@ const folders = new Set(ENT.map((e) => e.folder));
 for (const m of MARKET) {
   const at = m.item;
   if (!["sole", "concentrated", "competitive"].includes(m.concentration)) fail("G", at, `concentration "${m.concentration}"`); else ok();
+  // kind and concentration are different vocabularies; the JSON is read through a
+  // cast, so TypeScript never sees a value that belongs to the other one.
+  if (!["proprietary", "semi", "commodity"].includes(m.kind)) fail("G", at, `kind "${m.kind}" is not an IngredientKind`); else ok();
+  if (!["sole", "few", "many"].includes(m.indiaBand)) fail("G", at, `indiaBand "${m.indiaBand}"`); else ok();
+  if (!["them", "balanced", "us"].includes(m.leverage)) fail("G", at, `leverage "${m.leverage}"`); else ok();
+  if (!["high", "medium", "low"].includes(m.confidence)) fail("G", at, `confidence "${m.confidence}"`); else ok();
+  // The tag and the band are two readings of the same question and must agree:
+  // "competitive" tells the buyer the leverage is ours, which a "few"-seller
+  // market does not support.
+  if (m.concentration === "competitive" && m.indiaBand === "sole") fail("G", at, `tagged competitive on a sole-seller band`); else ok();
+  if (m.concentration === "sole" && m.indiaBand !== "sole") fail("G", at, `tagged sole but band is "${m.indiaBand}"`); else ok();
   if (!m.side || !["rm", "pm"].includes(m.side)) fail("G", at, `side "${m.side}"`); else ok();
   // The tag and the evidence behind it have to agree — the client's reviewer
   // checks this one by hand, and a "competitive" item with one seller, or a

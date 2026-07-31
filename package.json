@@ -9,8 +9,9 @@
     "probe:enrich": "node scripts/probe/enrich.mjs",
     "probe:detail": "node scripts/probe/detail.mjs",
     "shelf:scrape": "node scripts/firecrawl/shelf.mjs",
+    "qc": "node scripts/qc.mjs",
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && node scripts/qc.mjs && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

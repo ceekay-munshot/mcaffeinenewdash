@@ -392,7 +392,7 @@
   "indiaSuppliers": [
    "Imported/distributed in India rather than domestically synthesized; sourced via Chinese makers and Indian cosmetic-ingredient traders/importers"
   ],
-  "concentration": "competitive",
+  "concentration": "concentrated",
   "leverage": "balanced",
   "implication": "Buy the molecule, not the Cosroma badge - qualify two or three alternate 3-O-Ethyl Ascorbic Acid suppliers from China so you are not paying a brand premium for a widely-made derivative.",
   "sources": [
@@ -1159,7 +1159,7 @@
  {
   "item": "Plastic laminated / extruded tubes",
   "inci": null,
-  "kind": "concentrated",
+  "kind": "semi",
   "upstream": null,
   "indiaBand": "few",
   "indiaSuppliers": [
@@ -1205,7 +1205,7 @@
  {
   "item": "Lotion / serum pumps & actuators",
   "inci": null,
-  "kind": "concentrated",
+  "kind": "semi",
   "upstream": null,
   "indiaBand": "few",
   "indiaSuppliers": [

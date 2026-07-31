@@ -813,13 +813,14 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
       {recentLead.length > 0 && (
         <div>
           <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">🔔 Last 6 months — moves that change your leverage</h3>
-          <div className="grid gap-3 lg:grid-cols-2">{recentLead.map((b) => <Block key={b.e.folder} {...b} />)}</div>
+          {/* A lone card in a two-column grid leaves half the row blank. */}
+          <div className={`grid gap-3 ${recentLead.length > 1 ? "lg:grid-cols-2" : ""}`}>{recentLead.map((b) => <Block key={b.e.folder} {...b} />)}</div>
         </div>
       )}
       {earlierLead.length > 0 && (
         <div>
           <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">🕑 Earlier — still shaping the relationship</h3>
-          <div className="grid gap-3 lg:grid-cols-2">{earlierLead.map((b) => <Block key={b.e.folder} {...b} />)}</div>
+          <div className={`grid gap-3 ${earlierLead.length > 1 ? "lg:grid-cols-2" : ""}`}>{earlierLead.map((b) => <Block key={b.e.folder} {...b} />)}</div>
         </div>
       )}
 
@@ -858,18 +859,22 @@ const HEALTH_BANDS = [
   { key: "weak", label: "Weak", hint: "under 45 — qualify a backup", cls: "bg-rose-500", chip: "bg-rose-100 text-rose-700", test: (h: number) => h < 45 },
 ];
 
-// A "top 10" that lists the same finding four times wastes six slots. Cap each
-// distinct insight so the list shows ten different kinds of move, not ten rows.
-// perKind 1: with ~60 distinct insights across 24 suppliers there are plenty to
-// fill ten slots, so every row is a different kind of move. At 2 the list came
-// back in visible pairs, which reads as repetition however it is ranked.
-function diverseTop<T extends { l: { insight: string } }>(list: T[], n: number, perKind = 1): T[] {
-  const seen = new Map<string, number>();
+/* A "top 10" that lists the same finding four times wastes six slots, so each
+   distinct insight appears once — with ~60 insights across 24 suppliers there
+   are plenty to fill ten rows. Capping only the insight wasn't enough: the
+   strongest supplier swept five of the ten with five different levers, which
+   reads as a page about one vendor rather than a view of the base. Two rows per
+   supplier keeps the ranking honest and the list varied. */
+function diverseTop<T extends { l: { insight: string }; e: { folder: string } }>(
+  list: T[], n: number, perKind = 1, perSupplier = 2,
+): T[] {
+  const byKind = new Map<string, number>(), bySup = new Map<string, number>();
   const out: T[] = [];
   for (const x of list) {
-    const c = seen.get(x.l.insight) ?? 0;
-    if (c >= perKind) continue;
-    seen.set(x.l.insight, c + 1);
+    if ((byKind.get(x.l.insight) ?? 0) >= perKind) continue;
+    if ((bySup.get(x.e.folder) ?? 0) >= perSupplier) continue;
+    byKind.set(x.l.insight, (byKind.get(x.l.insight) ?? 0) + 1);
+    bySup.set(x.e.folder, (bySup.get(x.e.folder) ?? 0) + 1);
     out.push(x);
     if (out.length === n) break;
   }
