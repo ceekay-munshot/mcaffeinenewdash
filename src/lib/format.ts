@@ -56,8 +56,10 @@ export function shortName(brand: string): string {
     .replace(/[\s&,-]+$/, "")
     .trim();
   if (!s) return brand;
-  // Registry all-caps reads as shouting next to normal-cased brands.
-  return s === s.toUpperCase() && s.length > 4 ? titleCase(s) : s;
+  // Registry all-caps reads as shouting next to normal-cased brands, and a
+  // lowercase folder slug ("arovea", "kapco") reads as a typo next to them.
+  if (s === s.toUpperCase() && s.length > 4) return titleCase(s);
+  return s === s.toLowerCase() ? titleCase(s) : s;
 }
 
 // Registry legal names are ALL-CAPS ("VALUETREE INGREDIENTS PRIVATE LIMITED").

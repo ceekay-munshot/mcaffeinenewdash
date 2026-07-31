@@ -9,7 +9,7 @@ import {
   type ResearchData,
 } from "./types";
 import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore, fullName, shortName } from "./lib/format";
-import { negotiationRoom, healthChip } from "./lib/health";
+import { negotiationRoom, healthChip, healthDot, HEALTH_CUT } from "./lib/health";
 import { probeRevenueINR, probeEbitdaMargin, probeNetMargin } from "./probe";
 import { CATEGORY_COLOR } from "./lib/palette";
 import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, TBL, THEAD, TDNUM, type Slice } from "./charts";
@@ -853,11 +853,6 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
    came from. Everything here is derived from the same health score and lever
    engine the rest of the dashboard uses, so nothing can disagree with a
    supplier's own page. */
-const HEALTH_BANDS = [
-  { key: "strong", label: "Strong", hint: "55+ — sound counterparties", cls: "bg-emerald-500", chip: "bg-emerald-100 text-emerald-700", test: (h: number) => h >= 55 },
-  { key: "ok", label: "Adequate", hint: "45–54 — watch, don't worry", cls: "bg-amber-400", chip: "bg-amber-100 text-amber-700", test: (h: number) => h >= 45 && h < 55 },
-  { key: "weak", label: "Weak", hint: "under 45 — qualify a backup", cls: "bg-rose-500", chip: "bg-rose-100 text-rose-700", test: (h: number) => h < 45 },
-];
 
 /* A "top 10" that lists the same finding four times wastes six slots, so each
    distinct insight appears once — with ~60 insights across 24 suppliers there
@@ -884,38 +879,45 @@ function diverseTop<T extends { l: { insight: string }; e: { folder: string } }>
 function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
   const [leversFor, setLeversFor] = useState<Entity | null>(null);
 
-  const { scored, bands, tops, risks, avg } = useMemo(() => {
+  const { scored, tops, risks, avg, nOpp, nRisk } = useMemo(() => {
     const scored = all
       .map((e) => ({ e, h: supplierHealth(e.cin) }))
       .filter((x): x is { e: Entity; h: number } => x.h != null)
       .sort((a, b) => b.h - a.h);
-    const bands = HEALTH_BANDS.map((b) => ({ ...b, list: scored.filter((x) => b.test(x.h)) }));
     const avg = scored.length ? Math.round(scored.reduce((s, x) => s + x.h, 0) / scored.length) : 0;
     // Rank every lever across every supplier: strength first, then the health of
     // the supplier it belongs to (a strong opening at a shaky vendor is worth
     // less than the same opening at a solid one, and vice versa for risk).
     const flat = all.flatMap((e) => probeLevers(e.cin).map((l) => ({ e, l, h: supplierHealth(e.cin) ?? 50 })));
-    const tops = diverseTop(flat.filter((x) => x.l.tone === "opportunity")
-      .sort((a, b) => b.l.strength - a.l.strength || b.h - a.h), 10);
-    const risks = diverseTop(flat.filter((x) => x.l.tone === "risk")
-      .sort((a, b) => b.l.strength - a.l.strength || a.h - b.h), 10);
-    return { scored, bands, tops, risks, avg };
+    const opp = flat.filter((x) => x.l.tone === "opportunity"), rk = flat.filter((x) => x.l.tone === "risk");
+    const tops = diverseTop([...opp].sort((a, b) => b.l.strength - a.l.strength || b.h - a.h), 10);
+    const risks = diverseTop([...rk].sort((a, b) => b.l.strength - a.l.strength || a.h - b.h), 10);
+    return { scored, tops, risks, avg, nOpp: opp.length, nRisk: rk.length };
   }, [all]);
 
+  /* One lever, as a line in a list rather than a box. Twenty tinted, ringed
+     cards gave every row the same weight and turned the page into wallpaper;
+     hairline rules and a strength rail carry the same information with a
+     fraction of the ink. */
   const Row = ({ e, l, tone }: { e: Entity; l: { insight: string; title: string; strength: number }; tone: "opportunity" | "risk" }) => {
     const m = TONE_META[tone];
     const h = supplierHealth(e.cin);
     return (
-      <button onClick={() => setLeversFor(e)} className={`flex w-full items-start gap-3 rounded-xl p-3 text-left ring-1 transition hover:brightness-[0.98] ${m.bg} ${m.ring}`}>
-        <span className="mt-0.5 flex shrink-0 gap-0.5" title={`strength ${l.strength}/3`}>
-          {[1, 2, 3].map((s) => <span key={s} className={`h-1.5 w-1.5 rounded-full ${s <= l.strength ? m.dot : "bg-slate-300"}`} />)}
+      <button onClick={() => setLeversFor(e)} className="group flex w-full items-stretch gap-3 py-2.5 text-left transition hover:bg-slate-50/80">
+        {/* Strength as rail height, not as three segments — split into thirds it
+            was invisible, and every row in a sorted list looked identical. */}
+        <span className="relative flex w-1 shrink-0 justify-center" title={`strength ${l.strength} of 3`}>
+          <span className="absolute inset-x-0 top-1/2 w-full -translate-y-1/2 rounded-full bg-slate-100" style={{ height: "100%" }} />
+          <span className={`absolute inset-x-0 top-1/2 w-full -translate-y-1/2 rounded-full ${m.dot}`} style={{ height: `${[34, 67, 100][l.strength - 1] ?? 34}%` }} />
         </span>
         <span className="min-w-0 flex-1">
-          <span className="block text-sm font-bold leading-snug text-slate-900">{l.insight}</span>
-          <span className="mt-0.5 block text-xs text-slate-500">{l.title}</span>
-          <span className="mt-1 flex items-center gap-1.5">
-            <span className="text-xs font-semibold text-teal-700">{catEmoji(e.category)} {fullName(e.legalName, e.brand)}</span>
-            {h != null && <span className={`rounded px-1.5 text-[10px] font-extrabold ${healthChip(h)}`}>{h}</span>}
+          <span className="block text-[15px] font-bold leading-snug text-slate-900 group-hover:text-teal-800">{l.insight}</span>
+          <span className="mt-0.5 flex flex-wrap items-baseline gap-x-1.5 text-xs leading-snug">
+            {/* Neutral, not teal: a green vendor name inside the risk column
+                fought the thing the column is for. */}
+            <span className="font-bold text-slate-700 group-hover:text-teal-700">{shortName(e.brand)}</span>
+            {h != null && <span className={`rounded px-1 text-[10px] font-extrabold tabular-nums ${healthChip(h)}`}>{h}</span>}
+            <span className="text-slate-500">{l.title}</span>
           </span>
         </span>
       </button>
@@ -924,48 +926,25 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
 
   return (
     <div className="space-y-4">
-      {/* score spread */}
-      <Card title="How healthy is the supply base?" sub={`${scored.length} suppliers scored on their own filings · average ${avg}/100`} accent="#0d9488">
-        <div className="flex h-7 w-full overflow-hidden rounded-lg ring-1 ring-slate-200">
-          {bands.map((b) => b.list.length > 0 && (
-            <div key={b.key} className={`flex items-center justify-center text-xs font-bold text-white ${b.cls}`}
-              style={{ width: `${(b.list.length / scored.length) * 100}%` }} title={`${b.list.length} ${b.label}`}>
-              {b.list.length}
-            </div>
-          ))}
-        </div>
-        <div className="mt-3 grid gap-3 sm:grid-cols-3">
-          {bands.map((b) => (
-            <div key={b.key} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
-              <div className="flex items-baseline gap-2">
-                <span className={`rounded px-1.5 py-0.5 text-xs font-bold ${b.chip}`}>{b.label}</span>
-                <span className="text-lg font-bold tabular-nums text-slate-900">{b.list.length}</span>
-              </div>
-              <div className="mt-0.5 text-[11px] text-slate-500">{b.hint}</div>
-              <div className="mt-1.5 flex flex-wrap gap-1">
-                {b.list.slice(0, 6).map(({ e, h }) => (
-                  <button key={e.folder} onClick={() => onSelect(e)} title={`${fullName(e.legalName, e.brand)} · ${h}/100`}
-                    className="rounded bg-white px-1.5 py-0.5 text-[11px] font-medium text-slate-600 ring-1 ring-slate-200 transition hover:text-teal-700 hover:ring-teal-300">
-                    {shortName(e.brand)}
-                  </button>
-                ))}
-                {b.list.length > 6 && <span className="px-1 text-[11px] text-slate-400">+{b.list.length - 6}</span>}
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* The spread, as one picture. It used to be drawn three times over — a
+          stacked bar, then three tiles repeating the same counts in the same
+          colours, then name chips that showed six of twenty-four. A dot per
+          supplier on a single scale says all of it at once, and shows the shape
+          the buckets hid: nothing we buy from scores above 70. */}
+      <Card title="How healthy is the supply base?" sub={`${scored.length} suppliers scored on their own filings · average ${avg}/100 · every dot is a vendor, further right is safer`} accent="#0d9488">
+        <HealthSpread scored={scored} onSelect={onSelect} />
       </Card>
 
       {/* the two lists he asked for */}
       <div className="grid items-start gap-4 lg:grid-cols-2">
-        <Card title="💡 Top 10 openings" sub="strongest negotiation levers across the base — click for the full set" accent="#059669">
-          <div className="space-y-2">
+        <Card title="💡 Top 10 openings" sub={`the 10 strongest of ${nOpp} found — tap a line for the numbers behind it`} accent="#059669">
+          <div className="divide-y divide-slate-100">
             {tops.map((x, i) => <Row key={i} e={x.e} l={x.l} tone="opportunity" />)}
             {tops.length === 0 && <p className="py-6 text-center text-sm text-slate-400">No opportunities scored yet.</p>}
           </div>
         </Card>
-        <Card title="🚩 Top 10 risks" sub="worst exposures, weakest suppliers first — click for the full set" accent="#e11d48">
-          <div className="space-y-2">
+        <Card title="🚩 Top 10 risks" sub={`the 10 worst of ${nRisk} found — weakest suppliers first`} accent="#e11d48">
+          <div className="divide-y divide-slate-100">
             {risks.map((x, i) => <Row key={i} e={x.e} l={x.l} tone="risk" />)}
             {risks.length === 0 && <p className="py-6 text-center text-sm text-slate-400">No risks flagged.</p>}
           </div>
@@ -973,6 +952,98 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
       </div>
 
       {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
+    </div>
+  );
+}
+
+/* Every scored supplier as one dot on a 0-100 scale, over the three health
+   zones. Dots that would land on top of each other stack upwards, so a cluster
+   reads as height — the shape of the base in one glance. */
+function HealthSpread({ scored, onSelect }: { scored: { e: Entity; h: number }[]; onSelect: (e: Entity) => void }) {
+  // Dots are sized in pixels but placed by percentage, so how many score-points
+  // it takes to clear a dot depends on how wide the card actually is. Measured
+  // rather than assumed: at 560px the fixed threshold let dots sit on top of
+  // each other and swallow the end labels.
+  const box = useRef<HTMLDivElement>(null);
+  const [w, setW] = useState(900);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => setW(entry.contentRect.width));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const DOT = Math.max(16, Math.min(24, Math.round(w / 42)));
+  // The axis stops a little past the best score instead of running to 100. On a
+  // 0-100 scale a third of the plot was empty, because no supplier we buy from
+  // scores above 68 — which is itself worth seeing, but not worth a third of the
+  // width. Zone edges stay at their true values, so nothing shifts meaning.
+  const best = Math.max(...scored.map((s) => s.h), HEALTH_CUT.strong);
+  const MAX = Math.min(100, Math.ceil((best + 8) / 5) * 5);
+  const x = (h: number) => (Math.max(0, Math.min(MAX, h)) / MAX) * 100;
+  const ZONES = [
+    { from: 0, to: HEALTH_CUT.ok, cls: "bg-rose-50", tone: "text-rose-500", label: `under ${HEALTH_CUT.ok} · qualify a backup` },
+    { from: HEALTH_CUT.ok, to: HEALTH_CUT.strong, cls: "bg-amber-50", tone: "text-amber-600", label: `${HEALTH_CUT.ok}–${HEALTH_CUT.strong - 1} · watch` },
+    { from: HEALTH_CUT.strong, to: MAX, cls: "bg-emerald-50", tone: "text-emerald-600", label: `${HEALTH_CUT.strong}+ · sound` },
+  ];
+  // Beeswarm, centred: walk left to right and offset a dot from the midline when
+  // it would touch one already placed, alternating above and below. Growing only
+  // upward left the whole top of the sparse red zone as an empty block.
+  // one dot's width, expressed in score-points
+  const near = ((DOT + 3) / Math.max(w, 1)) * MAX;
+  const placed: { e: Entity; h: number; row: number }[] = [];
+  for (const d of [...scored].sort((a, b) => a.h - b.h)) {
+    let k = 0, row = 0;
+    // 0, +1, -1, +2, -2 …
+    while (placed.some((p) => p.row === row && Math.abs(p.h - d.h) < near)) {
+      k++; row = k % 2 ? Math.ceil(k / 2) : -Math.ceil(k / 2);
+    }
+    placed.push({ ...d, row });
+  }
+  const reach = Math.max(...placed.map((p) => Math.abs(p.row)), 0);
+  const rows = reach * 2 + 1;
+  const GAP = 4, PAD = 8;
+  // The end labels need room beside their dot; below that they overlap the swarm.
+  const showEnds = w >= 700;
+  // Name the two ends: without them the reader has to hover to learn anything.
+  const lo = placed.reduce((a, b) => (b.h < a.h ? b : a));
+  const hi = placed.reduce((a, b) => (b.h > a.h ? b : a));
+  return (
+    <div>
+      <div ref={box} className="relative w-full overflow-hidden rounded-xl ring-1 ring-slate-200" style={{ height: rows * (DOT + GAP) + PAD * 2 }}>
+        <div className="absolute inset-0 flex">
+          {ZONES.map((z, i) => (
+            <div key={z.label} className={`${z.cls} ${i ? "border-l border-white/70" : ""}`} style={{ width: `${x(z.to) - x(z.from)}%` }} />
+          ))}
+        </div>
+        {placed.map(({ e, h, row }) => (
+          <button key={e.folder} onClick={() => onSelect(e)} title={`${fullName(e.legalName, e.brand)} · ${h}/100 — open profile`}
+            className={`absolute flex items-center justify-center rounded-full text-[10px] font-extrabold tabular-nums text-white shadow-sm ring-2 ring-white transition hover:z-10 hover:scale-125 ${healthDot(h)}`}
+            style={{ width: DOT, height: DOT, left: `calc(${x(h)}% - ${DOT / 2}px)`, top: `calc(50% + ${row * (DOT + GAP)}px - ${DOT / 2}px)` }}>
+            {h}
+          </button>
+        ))}
+        {/* Name the two ends so the plot says something without a hover. */}
+        {showEnds && [{ d: lo, side: "left" }, { d: hi, side: "right" }].map(({ d, side }) => (
+          <span key={side} className="absolute whitespace-nowrap text-[10px] font-bold text-slate-500"
+            style={{ left: `calc(${x(d.h)}% + ${side === "left" ? DOT / 2 + 5 : -(DOT / 2 + 5)}px)`, top: `calc(50% + ${d.row * (DOT + GAP)}px - 7px)`, transform: side === "right" ? "translateX(-100%)" : undefined }}>
+            {shortName(d.e.brand)}
+          </span>
+        ))}
+      </div>
+      {/* Captions get their own strip — inside the plot they collided with the
+          dots. The count lives here too, so the bands are stated once, not as a
+          row of tiles repeating what the dots already show. */}
+      <div className="relative mt-1.5 h-4">
+        {ZONES.map((z, i) => (
+          <span key={z.label} className={`absolute whitespace-nowrap text-[10px] font-semibold ${z.tone}`}
+            style={w >= 700
+              ? { left: `${(x(z.from) + x(z.to)) / 2}%`, transform: "translateX(-50%)" }
+              : i === 0 ? { left: 0 } : i === 1 ? { left: "50%", transform: "translateX(-50%)" } : { right: 0 }}>
+            <b className="text-xs">{scored.filter((s) => s.h >= z.from && s.h < z.to + (z.to === MAX ? 1 : 0)).length}</b> {z.label}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
