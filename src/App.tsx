@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import {
   DATA,
   supplyEntities,
@@ -348,11 +348,12 @@ function buildTrendMetrics(e: Entity): TrendMetric[] {
 
 /* --------------------------------------------------------- P0 Supplier view */
 
-type SupTab = "board" | "market" | "supply" | "rates" | "news";
+type SupTab = "overview" | "board" | "market" | "supply" | "rates" | "news";
 const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
-  { key: "board", label: "Suppliers", emoji: "🏭" },
+  { key: "overview", label: "Overview", emoji: "📌" },
+  { key: "board", label: "Suppliers", emoji: "🏢" },
   { key: "market", label: "Ingredients", emoji: "🧪" },
-  { key: "supply", label: "Supply chain", emoji: "🧬" },
+  { key: "supply", label: "Manufacturers", emoji: "🏭" },
   { key: "news", label: "Newsroom", emoji: "📰" },
   { key: "rates", label: "Rate benchmark", emoji: "💰" },
 ];
@@ -839,9 +840,132 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
   );
 }
 
+/* ---- Overview — the answer to "how is my supply base doing?" ----------------
+   Asked for on the client call: the score spread across the base, then the ten
+   biggest openings and the ten biggest risks, each tagged to the supplier it
+   came from. Everything here is derived from the same health score and lever
+   engine the rest of the dashboard uses, so nothing can disagree with a
+   supplier's own page. */
+const HEALTH_BANDS = [
+  { key: "strong", label: "Strong", hint: "55+ — sound counterparties", cls: "bg-emerald-500", chip: "bg-emerald-100 text-emerald-700", test: (h: number) => h >= 55 },
+  { key: "ok", label: "Adequate", hint: "45–54 — watch, don't worry", cls: "bg-amber-400", chip: "bg-amber-100 text-amber-700", test: (h: number) => h >= 45 && h < 55 },
+  { key: "weak", label: "Weak", hint: "under 45 — qualify a backup", cls: "bg-rose-500", chip: "bg-rose-100 text-rose-700", test: (h: number) => h < 45 },
+];
+
+// A "top 10" that lists the same finding four times wastes six slots. Cap each
+// distinct insight so the list shows ten different kinds of move, not ten rows.
+function diverseTop<T extends { l: { insight: string } }>(list: T[], n: number, perKind = 2): T[] {
+  const seen = new Map<string, number>();
+  const out: T[] = [];
+  for (const x of list) {
+    const c = seen.get(x.l.insight) ?? 0;
+    if (c >= perKind) continue;
+    seen.set(x.l.insight, c + 1);
+    out.push(x);
+    if (out.length === n) break;
+  }
+  return out;
+}
+
+function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+  const [leversFor, setLeversFor] = useState<Entity | null>(null);
+
+  const { scored, bands, tops, risks, avg } = useMemo(() => {
+    const scored = all
+      .map((e) => ({ e, h: supplierHealth(e.cin) }))
+      .filter((x): x is { e: Entity; h: number } => x.h != null)
+      .sort((a, b) => b.h - a.h);
+    const bands = HEALTH_BANDS.map((b) => ({ ...b, list: scored.filter((x) => b.test(x.h)) }));
+    const avg = scored.length ? Math.round(scored.reduce((s, x) => s + x.h, 0) / scored.length) : 0;
+    // Rank every lever across every supplier: strength first, then the health of
+    // the supplier it belongs to (a strong opening at a shaky vendor is worth
+    // less than the same opening at a solid one, and vice versa for risk).
+    const flat = all.flatMap((e) => probeLevers(e.cin).map((l) => ({ e, l, h: supplierHealth(e.cin) ?? 50 })));
+    const tops = diverseTop(flat.filter((x) => x.l.tone === "opportunity")
+      .sort((a, b) => b.l.strength - a.l.strength || b.h - a.h), 10);
+    const risks = diverseTop(flat.filter((x) => x.l.tone === "risk")
+      .sort((a, b) => b.l.strength - a.l.strength || a.h - b.h), 10);
+    return { scored, bands, tops, risks, avg };
+  }, [all]);
+
+  const Row = ({ e, l, tone }: { e: Entity; l: { insight: string; title: string; strength: number }; tone: "opportunity" | "risk" }) => {
+    const m = TONE_META[tone];
+    const h = supplierHealth(e.cin);
+    return (
+      <button onClick={() => setLeversFor(e)} className={`flex w-full items-start gap-3 rounded-xl p-3 text-left ring-1 transition hover:brightness-[0.98] ${m.bg} ${m.ring}`}>
+        <span className="mt-0.5 flex shrink-0 gap-0.5" title={`strength ${l.strength}/3`}>
+          {[1, 2, 3].map((s) => <span key={s} className={`h-1.5 w-1.5 rounded-full ${s <= l.strength ? m.dot : "bg-slate-300"}`} />)}
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-bold leading-snug text-slate-900">{l.insight}</span>
+          <span className="mt-0.5 block text-xs text-slate-500">{l.title}</span>
+          <span className="mt-1 flex items-center gap-1.5">
+            <span className="text-xs font-semibold text-teal-700">{catEmoji(e.category)} {fullName(e.legalName, e.brand)}</span>
+            {h != null && <span className={`rounded px-1.5 text-[10px] font-extrabold ${h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700"}`}>{h}</span>}
+          </span>
+        </span>
+      </button>
+    );
+  };
+
+  return (
+    <div className="space-y-4">
+      {/* score spread */}
+      <Card title="How healthy is the supply base?" sub={`${scored.length} suppliers scored on their own filings · average ${avg}/100`} accent="#0d9488">
+        <div className="flex h-7 w-full overflow-hidden rounded-lg ring-1 ring-slate-200">
+          {bands.map((b) => b.list.length > 0 && (
+            <div key={b.key} className={`flex items-center justify-center text-xs font-bold text-white ${b.cls}`}
+              style={{ width: `${(b.list.length / scored.length) * 100}%` }} title={`${b.list.length} ${b.label}`}>
+              {b.list.length}
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          {bands.map((b) => (
+            <div key={b.key} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
+              <div className="flex items-baseline gap-2">
+                <span className={`rounded px-1.5 py-0.5 text-xs font-bold ${b.chip}`}>{b.label}</span>
+                <span className="text-lg font-bold tabular-nums text-slate-900">{b.list.length}</span>
+              </div>
+              <div className="mt-0.5 text-[11px] text-slate-500">{b.hint}</div>
+              <div className="mt-1.5 flex flex-wrap gap-1">
+                {b.list.slice(0, 6).map(({ e, h }) => (
+                  <button key={e.folder} onClick={() => onSelect(e)} title={`${fullName(e.legalName, e.brand)} · ${h}/100`}
+                    className="rounded bg-white px-1.5 py-0.5 text-[11px] font-medium text-slate-600 ring-1 ring-slate-200 transition hover:text-teal-700 hover:ring-teal-300">
+                    {e.brand}
+                  </button>
+                ))}
+                {b.list.length > 6 && <span className="px-1 text-[11px] text-slate-400">+{b.list.length - 6}</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      {/* the two lists he asked for */}
+      <div className="grid items-start gap-4 lg:grid-cols-2">
+        <Card title="💡 Top 10 openings" sub="strongest negotiation levers across the base — click for the full set" accent="#059669">
+          <div className="space-y-2">
+            {tops.map((x, i) => <Row key={i} e={x.e} l={x.l} tone="opportunity" />)}
+            {tops.length === 0 && <p className="py-6 text-center text-sm text-slate-400">No opportunities scored yet.</p>}
+          </div>
+        </Card>
+        <Card title="🚩 Top 10 risks" sub="worst exposures, weakest suppliers first — click for the full set" accent="#e11d48">
+          <div className="space-y-2">
+            {risks.map((x, i) => <Row key={i} e={x.e} l={x.l} tone="risk" />)}
+            {risks.length === 0 && <p className="py-6 text-center text-sm text-slate-400">No risks flagged.</p>}
+          </div>
+        </Card>
+      </div>
+
+      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
+    </div>
+  );
+}
+
 function SupplierView() {
   const all = useMemo(() => supplyEntities(), []);
-  const [tab, setTab] = useState<SupTab>("board");
+  const [tab, setTab] = useState<SupTab>("overview");
   const [compareMode, setCompareMode] = useState(false);
   const [selected, setSelected] = useState<Entity | null>(null);
   const { open: openSupplier, back } = useProfileNav(selected, setSelected);
@@ -883,6 +1007,7 @@ function SupplierView() {
             <SubTabs tabs={SUP_TABS} value={tab} onChange={setTab} />
             <button onClick={() => setCompareMode(true)} className="inline-flex items-center gap-1.5 rounded-lg bg-teal-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">🆚 Compare suppliers</button>
           </div>
+          {tab === "overview" && <OverviewTab all={all} onSelect={openSupplier} />}
           {tab === "board" && <BoardTab all={all} onSelect={openSupplier} />}
           {tab === "market" && <MarketStructureView all={all} onSelect={openSupplier} />}
           {tab === "supply" && <SupplyChainView all={all} onSelect={openSupplier} />}
@@ -900,8 +1025,6 @@ function SupplierView() {
 // real product→components mapping); market depth per item is the Ingredients tab.
 function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
-  const rmVendorCount = useMemo(() => all.filter((e) => e.category === "RM Vendor").length, [all]);
-  const pmVendorCount = useMemo(() => all.filter((e) => e.category === "PM Vendor").length, [all]);
   const [leversFor, setLeversFor] = useState<Entity | null>(null);
   const [openItem, setOpenItem] = useState<string | null>(null);
 
@@ -989,12 +1112,11 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
 
   return (
     <div className="space-y-4">
-      <Section title="Raw materials" emoji="🧪" accent="#0d9488" itemHead="Raw material"
-        rows={RM_SUPPLY} poolNote={`${RM_SUPPLY.length} key ingredients · ${rmVendorCount} RM vendors tracked`} />
-      <Section title="Manufacturers — who make our products" emoji="🏭" accent="#7c3aed"
-        rows={mfRows} poolNote={`${mfRows.length} contract manufacturers tracked`} />
-      <Section title="Packaging" emoji="📦" accent="#2a78d6" itemHead="Packaging item"
-        rows={PM_SUPPLY} poolNote={`${PM_SUPPLY.length} key packaging items · ${pmVendorCount} PM vendors tracked`} />
+      {/* RM and PM moved into Ingredients as an expandable tree — showing them
+          here as well was the duplication the client spotted. This tab is now
+          only about who actually makes our products. */}
+      <Section title="Contract manufacturers — who makes our products" emoji="🏭" accent="#7c3aed"
+        rows={mfRows} poolNote={`${mfRows.length} manufacturers tracked · they buy from the RM & PM vendors in the Ingredients tab`} />
       {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
     </div>
   );
@@ -1254,8 +1376,15 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
 function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
   const [openItem, setOpenItem] = useState<string | null>(null);
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
-  const [side, setSide] = useState<"rm" | "pm">("rm");
-  const entries = useMemo(() => allMarket().filter((m) => m.side === side), [side]);
+  const [side, setSide] = useState<"rm" | "pm" | "all">("all");
+  const entries = useMemo(() => allMarket().filter((m) => side === "all" || m.side === side), [side]);
+  // A packaging row is a CATEGORY ("Bottles and Caps"); the SKUs we actually buy
+  // sit under it. Expanding a row reveals them with their own vendor and levers,
+  // which is what the supply-chain tab used to show separately.
+  const [openRow, setOpenRow] = useState<string | null>(null);
+  const skusFor = (m: MarketEntry) => m.side === "rm"
+    ? RM_SUPPLY.filter((r) => r.item === m.item)
+    : PM_SUPPLY.filter((r) => pmCategoryOf(r.item) === m.item);
 
   // Which vendor(s) supply this market item today, and the clickable entity.
   const vendorFor = (m: MarketEntry): { label: string; e?: Entity } => {
@@ -1295,12 +1424,15 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-4">
-          <Dropdown label="Show" value={side} onChange={(v) => { setSide(v as "rm" | "pm"); setGroup("all"); }}
-            options={[{ key: "rm", label: `Raw materials (${allMarket().filter((m) => m.side === "rm").length})`, emoji: "🧪" }, { key: "pm", label: `Packaging (${allMarket().filter((m) => m.side === "pm").length})`, emoji: "📦" }]} />
+          <Dropdown label="Show" value={side} onChange={(v) => { setSide(v as "rm" | "pm" | "all"); setGroup("all"); setOpenRow(null); }}
+            options={[
+              { key: "all", label: `All (${allMarket().length})`, emoji: "🗂" },
+              { key: "rm", label: `Raw materials (${allMarket().filter((m) => m.side === "rm").length})`, emoji: "🧪" },
+              { key: "pm", label: `Packaging (${allMarket().filter((m) => m.side === "pm").length})`, emoji: "📦" }]} />
           <Dropdown label="Pricing power" value={group} onChange={setGroup}
             options={[{ key: "all" as const, label: `All (${entries.length})` }, ...cols.filter((c) => counts[c] > 0).map((c) => ({ key: c, label: `${CONC_META[c].label} (${counts[c]})`, emoji: CONC_META[c].emoji }))]} />
         </div>
-        <span className="text-sm text-slate-500">Who holds the pricing power on each {side === "rm" ? "ingredient" : "packaging category"} we buy</span>
+        <span className="text-sm text-slate-500">Who holds the pricing power on each {side === "rm" ? "ingredient" : side === "pm" ? "packaging category" : "thing"} we buy</span>
       </div>
 
       {/* headline: how our buys split across the leverage spectrum */}
@@ -1322,12 +1454,12 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
       {/* One table, filtered by a dropdown — the card grid scattered the same
           six facts across four rows of chips per item, which read as clutter.
           Rows sort hardest-to-negotiate first so the problem buys sit on top. */}
-      <Card title={side === "rm" ? "🧪 Every ingredient we buy" : "📦 Every packaging category we buy"}
-        sub="click a row for the full ingredient analysis · click a vendor for its deep-dive" accent="#0d9488">
+      <Card title={side === "rm" ? "🧪 Every ingredient we buy" : side === "pm" ? "📦 Every packaging category we buy" : "🗂 Everything we buy"}
+        sub="expand a row for the items under it · open a row for the full analysis · click a vendor for its deep-dive" accent="#0d9488">
         <div className="overflow-x-auto">
           <table className={`${TBL} min-w-[940px]`}>
             <thead><tr className={THEAD}>
-              <Th>{side === "rm" ? "Ingredient" : "Packaging category"}</Th>
+              <Th>{side === "rm" ? "Ingredient" : side === "pm" ? "Packaging category" : "Ingredient / packaging category"}</Th>
               <Th>Pricing power</Th><Th center>Sellers in India</Th><Th right>Market ₹/kg</Th>
               <Th>Current vendor</Th><Th center>Levers</Th>
             </tr></thead>
@@ -1337,11 +1469,31 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                 const lev = LEV_META[m.leverage];
                 const v = vendorFor(m);
                 const hasP = m.priceINRPerKg && !m.priceINRPerKg.includes("not found");
+                const skus = skusFor(m);
+                // Only worth expanding when the row stands for several SKUs — a raw
+                // material is bought as itself, a packaging category is not.
+                const expandable = skus.length > 1 || (skus.length === 1 && skus[0].item !== m.item);
+                const isOpen = openRow === m.item;
+                const multiVendor = new Set(skus.map((k) => k.folder).filter(Boolean)).size > 1;
                 return (
-                  <tr key={m.item} onClick={() => setOpenItem(m.item)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
-                    <td className="max-w-[300px] px-4 py-3.5">
-                      <div className="font-bold leading-snug text-slate-900">{m.item}</div>
-                      {m.inci && <div className="truncate text-xs text-slate-500" title={m.inci}>{m.inci}</div>}
+                  <Fragment key={m.item}>
+                  <tr onClick={() => setOpenItem(m.item)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
+                    <td className="max-w-[320px] px-4 py-3.5">
+                      <div className="flex items-start gap-2">
+                        {expandable ? (
+                          <button onClick={(ev) => { ev.stopPropagation(); setOpenRow(isOpen ? null : m.item); }}
+                            title={isOpen ? "Collapse" : `Show the ${skus.length} items we buy in this category`}
+                            className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded text-[10px] font-bold transition ${isOpen ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-500 hover:bg-teal-100 hover:text-teal-700"}`}>{isOpen ? "−" : "+"}</button>
+                        ) : <span className="w-5 shrink-0" />}
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            <span className="font-bold leading-snug text-slate-900">{m.item}</span>
+                            {side === "all" && <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold uppercase ${m.side === "rm" ? "bg-teal-100 text-teal-700" : "bg-blue-100 text-blue-700"}`}>{m.side}</span>}
+                            {expandable && <span className="text-[11px] font-medium text-slate-400">{skus.length} item{skus.length > 1 ? "s" : ""}</span>}
+                          </div>
+                          {m.inci && <div className="truncate text-xs text-slate-500" title={m.inci}>{m.inci}</div>}
+                        </div>
+                      </div>
                     </td>
                     <td className="whitespace-nowrap px-4 py-3.5">
                       <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-semibold ${meta.bg} ${meta.text} ring-1 ${meta.ring}`} title={meta.blurb}>{meta.emoji} {meta.label}</span>
@@ -1358,8 +1510,34 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                         </button>
                       ) : <span className="text-slate-400">{v.label}</span>}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={v.e} onOpen={setLeversFor} /></td>
+                    <td className="whitespace-nowrap px-4 py-3.5 text-center">
+                      {multiVendor ? (
+                        <button onClick={(ev) => { ev.stopPropagation(); setOpenRow(isOpen ? null : m.item); }}
+                          title="This category has several vendors — levers are shown per vendor"
+                          className="whitespace-nowrap rounded-lg bg-white px-2.5 py-1.5 text-xs font-bold text-slate-500 ring-1 ring-slate-200 transition hover:text-teal-700 hover:ring-teal-300">
+                          per vendor {isOpen ? "▲" : "▾"}
+                        </button>
+                      ) : <LeverCell e={v.e} onOpen={setLeversFor} />}
+                    </td>
                   </tr>
+                  {isOpen && skus.map((sk) => {
+                    const se = sk.folder ? byFolder.get(sk.folder) : undefined;
+                    return (
+                      <tr key={m.item + sk.item} className="border-t border-slate-100 bg-slate-50/60 text-sm">
+                        <td className="px-4 py-2.5 pl-12 text-slate-700">↳ {sk.item}</td>
+                        <td className="px-4 py-2.5 text-xs text-slate-400" colSpan={3}>item we buy in this category</td>
+                        <td className="px-4 py-2.5">
+                          {se ? (
+                            <button onClick={() => onSelect(se)} className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline">
+                              <span className="mt-0.5 shrink-0">{catEmoji(se.category)}</span><span className="leading-snug">{fullName(se.legalName, se.brand)}</span>
+                            </button>
+                          ) : <span className="text-slate-400">{sk.brand ?? "not mapped"}</span>}
+                        </td>
+                        <td className="whitespace-nowrap px-4 py-2.5 text-center"><LeverCell e={se} onOpen={setLeversFor} /></td>
+                      </tr>
+                    );
+                  })}
+                  </Fragment>
                 );
               })}
               {shown.length === 0 && <tr><td colSpan={6} className="px-4 py-10 text-center text-slate-400">Nothing in this group.</td></tr>}
