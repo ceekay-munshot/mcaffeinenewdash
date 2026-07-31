@@ -475,7 +475,13 @@ function advanced(x) {
   let z = null, zZone = null;
   if (A && A.ta) {
     const totLiab = A.ta - (A._raw.eq ?? 0);
-    const X1 = A.workingCapital / A.ta, X2 = (A._raw.reserves ?? 0) / A.ta, X3 = (A._raw.ebit ?? 0) / A.ta, X4 = totLiab > 0 ? (A._raw.eq ?? 0) / totLiab : 0;
+    // X4 (equity ÷ liabilities) is unbounded, so a near-debt-free company sends
+    // the score to absurdity — Northern Aromatics carries equity 67× its
+    // liabilities, which alone contributed 70 of a 79 "Z-score". Past roughly
+    // 5× the ratio says nothing further about distress, so cap its contribution.
+    // Everything above the cap is equally "not going bankrupt for lack of equity".
+    const X1 = A.workingCapital / A.ta, X2 = (A._raw.reserves ?? 0) / A.ta, X3 = (A._raw.ebit ?? 0) / A.ta;
+    const X4 = Math.min(totLiab > 0 ? (A._raw.eq ?? 0) / totLiab : 0, 5);
     z = round(3.25 + 6.56 * X1 + 3.26 * X2 + 6.72 * X3 + 1.05 * X4, 2);
     zZone = z >= 2.6 ? "safe" : z >= 1.1 ? "grey" : "distress";
   }

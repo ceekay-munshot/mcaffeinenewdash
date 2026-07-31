@@ -1,4 +1,4 @@
-// Lightweight, dependency-free charts (simple + colorful, mcAFFEINE theme).
+// Lightweight, dependency-free charts (simple + colorful, mCaffeine theme).
 // A deliberate mix of easy-to-read forms — bars, donut, area, line, columns,
 // stacked meter — so no two cards look the same. No scatter/bubble.
 // Every chart has a styled hover tooltip and an entrance animation.

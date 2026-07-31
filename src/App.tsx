@@ -97,8 +97,7 @@ function Header({ module, setModule, generatedAt }: { module: Module; setModule:
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/15 text-xl ring-1 ring-white/25">☕</div>
           <div>
             <div className="flex items-baseline">
-              <span className="text-xl font-extrabold lowercase tracking-tight text-white">mc</span>
-              <span className="text-xl font-extrabold uppercase tracking-tight text-white">AFFEINE</span>
+              <span className="text-xl font-extrabold tracking-tight text-white">mCaffeine</span>
               <span className="ml-1 self-start text-[10px] font-bold text-teal-100">®</span>
             </div>
             <div className="text-[11px] font-medium uppercase tracking-[0.25em] text-teal-100/90">Supplier Intelligence</div>
@@ -358,7 +357,7 @@ const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "rates", label: "Rate benchmark", emoji: "💰" },
 ];
 
-/* ---- L3 · mcAFFEINE's own rates vs the market band, vendor by vendor --------
+/* ---- L3 · mCaffeine's own rates vs the market band, vendor by vendor --------
    Real buying isn't one price per material — it's several vendors quoting the
    same thing. So each line holds the incumbent's rate plus any competing quotes,
    and each quote is scored against (a) the open-market band we hold and (b) that
@@ -866,7 +865,7 @@ function SupplierView() {
   );
 }
 
-// Our supply chain, honestly: the three things mcAFFEINE sources — raw materials
+// Our supply chain, honestly: the three things mCaffeine sources — raw materials
 // (+ vendors), the manufacturers who make the products, and packaging (+ vendors),
 // each with financials & levers. No invented per-product chains (we don't hold the
 // real product→components mapping); market depth per item is the Ingredients tab.
@@ -992,6 +991,11 @@ const PM_FORMAT: { re: RegExp; segs: string[] }[] = [
 ];
 function canSupply(entry: MarketEntry, d: { segments?: string[] } | undefined, isIncumbent: boolean): boolean {
   if (isIncumbent) return true;                       // they already do supply it
+  // A patented molecule cannot be sourced from whoever happens to distribute
+  // chemicals — Tinosorb A2B is BASF-proprietary and single-sourced, so listing
+  // four distributors as "able to supply it" was wrong, and the contradiction
+  // against our own sole-source tag was the first thing a reviewer spotted.
+  if (entry.kind === "proprietary" || entry.concentration === "sole") return false;
   const segs = d?.segments ?? [];
   if (!segs.length) return false;
   if (entry.side === "rm") return segs.includes("Chemical Retailers and Distributors");
@@ -1034,7 +1038,8 @@ function BestPlacedCard({ entry, all, incumbentFolder, onSelect }: {
       accent="#7c3aed">
       {sole ? (
         <p className="mb-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800 ring-1 ring-amber-200">
-          🔒 Sole-source molecule — switching isn't realistic. Use this ranking to judge how secure the current source is, not to move the business.
+          🔒 {entry.kind === "proprietary" ? "Proprietary, single-sourced molecule" : "Sole-source molecule"}
+          {entry.upstream ? ` — originated by ${entry.upstream.split(" - ")[0]}.` : "."} No alternative can be qualified on capability alone, so there is nothing to rank against. The question here is how secure this source is, not who else to ask.
         </p>
       ) : upgrade ? (
         <p className="mb-3 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-900 ring-1 ring-emerald-200">
@@ -1547,7 +1552,7 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
       </div>
 
       {selected.some((e) => suppliedItems(e.folder).length > 0) && (
-        <Card title="🏷️ What they supply us & the market price" sub="the ingredient(s) each one provides to mcAFFEINE and its going open-market rate — IndiaMART band, not a per-vendor quote" accent="#eda100">
+        <Card title="🏷️ What they supply us & the market price" sub="the ingredient(s) each one provides to mCaffeine and its going open-market rate — IndiaMART band, not a per-vendor quote" accent="#eda100">
           <div className="overflow-x-auto">
             <table className={`${TBL} min-w-[620px]`}>
               <thead><tr className={THEAD}><Th>Supplier</Th><Th>Supplies to us</Th><Th right>Market ₹/kg</Th><Th>Who holds the pricing power</Th></tr></thead>
@@ -2134,7 +2139,7 @@ function DeliveryView() {
           );
         })()}
 
-        <Card title="🏦 The credit lever" sub="what this means for mcAFFEINE" accent="#0369a1">
+        <Card title="🏦 The credit lever" sub="what this means for mCaffeine" accent="#0369a1">
           <div className="grid gap-3 sm:grid-cols-3">
             {[
               { icon: "📥", t: "Collection days = your terms lever", d: `Partners collect from their clients in ${Math.min(...rows.map((r) => Math.round(r.dso ?? 999)))}–${Math.max(...rows.map((r) => Math.round(r.dso ?? 0)))} days. The longer they let clients pay, the more room to negotiate our own terms out.` },
@@ -2216,7 +2221,7 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
               <div className="text-2xl font-bold leading-tight tracking-tight">{fullName(e.legalName, e.brand)}</div>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 <span className="inline-flex items-center gap-1 rounded-full bg-white/12 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/20">{catEmoji(e.category)} {e.category}</span>
-                {suppliedItems(e.folder).length > 0 && <span className="inline-flex items-center gap-1 rounded-full bg-teal-400/25 px-2 py-0.5 text-xs font-medium text-teal-50 ring-1 ring-teal-200/40" title={`Supplies mcAFFEINE: ${suppliedItems(e.folder).join(", ")}`}>🧬 Supplies: {suppliedItems(e.folder).slice(0, 2).join(", ")}{suppliedItems(e.folder).length > 2 ? ` +${suppliedItems(e.folder).length - 2}` : ""}</span>}
+                {suppliedItems(e.folder).length > 0 && <span className="inline-flex items-center gap-1 rounded-full bg-teal-400/25 px-2 py-0.5 text-xs font-medium text-teal-50 ring-1 ring-teal-200/40" title={`Supplies mCaffeine: ${suppliedItems(e.folder).join(", ")}`}>🧬 Supplies: {suppliedItems(e.folder).slice(0, 2).join(", ")}{suppliedItems(e.folder).length > 2 ? ` +${suppliedItems(e.folder).length - 2}` : ""}</span>}
                 {kind !== "competitor" && room !== "Unknown" && <span className="rounded-full bg-white/12 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/20">Negotiation room: {room}</span>}
                 {e.pdf && (flags.length ? <span className="rounded-full bg-rose-500/25 px-2 py-0.5 text-xs font-medium text-rose-100 ring-1 ring-rose-300/30">🚩 {flags.length} risk flag{flags.length > 1 ? "s" : ""}</span> : <span className="rounded-full bg-emerald-500/25 px-2 py-0.5 text-xs font-medium text-emerald-100 ring-1 ring-emerald-300/30">✓ No risk flags</span>)}
               </div>

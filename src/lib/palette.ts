@@ -1,4 +1,4 @@
-// mcAFFEINE chart palette. Categorical set validated (CVD-safe) via the dataviz
+// mCaffeine chart palette. Categorical set validated (CVD-safe) via the dataviz
 // validator; amber carries direct value labels on every mark it fills.
 
 export const INK = { primary: "#0f172a", secondary: "#475569", muted: "#94a3b8" };

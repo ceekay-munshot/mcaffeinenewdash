@@ -1,5 +1,5 @@
 // Supplier-analysis insight engine. Turns the raw Tracxn / Probe42 numbers into
-// plain-English, actionable levers for mcAFFEINE's negotiators — the core purpose
+// plain-English, actionable levers for mCaffeine's negotiators — the core purpose
 // of the dashboard: "where can we push, and where's the risk?".
 //
 // The headline idea (from the client): a supplier that collects cash from its own

@@ -1,7 +1,7 @@
-// mcAFFEINE's real supply chain: which of our key raw materials / packaging
+// mCaffeine's real supply chain: which of our key raw materials / packaging
 // each tracked vendor actually supplies. Built from the client's key-ingredients
 // sheet (data/raw/masters/key_ingredients_manufacturers.json) joined to the
-// supplier records by folder. This is what makes the dashboard about mcAFFEINE's
+// supplier records by folder. This is what makes the dashboard about mCaffeine's
 // own supply base, not generic companies.
 import raw from "./supply.json";
 
@@ -19,7 +19,7 @@ export const PM_SUPPLY = SUPPLY.pm;
 export const MF_SUPPLY = SUPPLY.mf;
 export const SUPPLY_LINES = SUPPLY.lines;
 
-// folder -> the mcAFFEINE items this vendor supplies (raw materials + packaging)
+// folder -> the mCaffeine items this vendor supplies (raw materials + packaging)
 const byFolder = (() => {
   const m = new Map<string, { rm: string[]; pm: string[] }>();
   const add = (folder: string, item: string, key: "rm" | "pm") => {

@@ -448,7 +448,12 @@ function HealthPanel({ a }: { a: Advanced }) {
           : "Balanced mix of margin, efficiency and leverage."
     : "";
   const zColor = a.zZone === "distress" ? "#e11d48" : a.zZone === "grey" ? "#f59e0b" : "#059669";
-  const zMark = a.z != null ? Math.max(2, Math.min(98, (Math.min(a.z, 6) / 6) * 100)) : null; // clamp display 0–6
+  // The old scale topped out at 6, but most suppliers score above that, so every
+  // marker pinned to the far right and the gauge never moved. Runs 0-10 now:
+  // distress <1.1, grey 1.1-2.6, safe above — band widths match those cut-offs.
+  const Z_MAX = 10;
+  const zMark = a.z != null ? Math.max(2, Math.min(98, (Math.min(a.z, Z_MAX) / Z_MAX) * 100)) : null;
+  const zOver = a.z != null && a.z > Z_MAX;
   const fCol = (a.fscore ?? 0) >= 7 ? "text-emerald-600" : (a.fscore ?? 0) >= 4 ? "text-amber-600" : "text-rose-600";
   return (
     <Card title="Financial-health X-ray" sub="DuPont · Piotroski · Altman-Z — analyst-grade signals computed from the filings, no extra data" accent={C.violet}>
@@ -483,10 +488,19 @@ function HealthPanel({ a }: { a: Advanced }) {
         <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
           <div className="mb-2 flex items-center justify-between"><span className="text-[11px] font-bold uppercase tracking-wide text-slate-500">Altman-Z distress</span><span className="text-lg font-bold" style={{ color: zColor }}>{a.z ?? "—"} <span className="text-xs capitalize">{a.zZone ?? ""}</span></span></div>
           <div className="relative mt-1 h-2.5 w-full overflow-hidden rounded-full">
-            <div className="absolute inset-0 flex"><div className="bg-rose-300" style={{ width: "18%" }} /><div className="bg-amber-200" style={{ width: "25%" }} /><div className="bg-emerald-300" style={{ width: "57%" }} /></div>
+            <div className="absolute inset-0 flex"><div className="bg-rose-300" style={{ width: "11%" }} /><div className="bg-amber-200" style={{ width: "15%" }} /><div className="bg-emerald-300" style={{ width: "74%" }} /></div>
             {zMark != null && <div className="absolute top-1/2 h-4 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded bg-slate-900 ring-2 ring-white" style={{ left: `${zMark}%` }} />}
           </div>
-          <div className="mt-1 flex justify-between text-[9px] text-slate-400"><span>distress</span><span>grey</span><span>safe →</span></div>
+          <div className="mt-1 flex justify-between text-[9px] text-slate-400"><span>distress</span><span>grey</span><span>{zOver ? `safe · ${Z_MAX}+` : "safe"}</span></div>
+          {/* "Safe" here answers one narrow question — can the balance sheet meet
+              its obligations — and nothing about governance or how they trade.
+              Without saying so, a green Z beside a weak health score reads as a
+              contradiction rather than two different findings. */}
+          <p className="mt-2 text-[10px] leading-relaxed text-slate-500">
+            {a.zZone === "distress"
+              ? "Balance-sheet solvency is genuinely strained — treat continuity as a live risk."
+              : "Measures balance-sheet solvency only — how likely the company is to fail financially. It says nothing about governance, litigation or how they treat suppliers; read it next to the health score, not instead of it."}
+          </p>
           <div className="mt-3 grid grid-cols-3 gap-1.5 text-center">
             {[["Free cash flow", a.fcfLatest != null ? `₹${Math.round(a.fcfLatest)} Cr` : "—"], ["Op. leverage", a.opLeverage != null ? a.opLeverage + "×" : "—"], ["Accruals", a.accrualsLatest != null ? a.accrualsLatest + "%" : "—"]].map(([k, v]) => (
               <div key={k} className="rounded-lg bg-white p-1.5 ring-1 ring-slate-200"><div className="font-mono text-xs font-bold text-slate-800">{v}</div><div className="text-[9px] leading-tight text-slate-500">{k}</div></div>
