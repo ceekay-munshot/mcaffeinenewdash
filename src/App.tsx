@@ -1336,6 +1336,9 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
   const [picked, setPicked] = useState<string[]>([]);
   const [analysing, setAnalysing] = useState(false);
   const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
+  // A supplier with no filed numbers can only produce an empty column here, so
+  // the picker defaults to the ones a comparison can actually be built from.
+  const [depth, setDepth] = useState<"full" | "any" | "all">("full");
   const [query, setQuery] = useState("");
   const [ingredient, setIngredient] = useState<MarketEntry | null>(null);
 
@@ -1343,13 +1346,20 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
     const q = query.trim().toLowerCase();
     return all.filter((e) => {
       if (cat !== "All" && e.category !== cat) return false;
+      if (depth === "full" && !hasDeepDive(e.cin)) return false;
+      if (depth === "any" && revOf(e) == null) return false;
       if (q && !`${e.brand} ${e.legalName ?? ""}`.toLowerCase().includes(q)) return false;
       return true;
     }).sort((a, b) => (revOf(b) ?? -1) - (revOf(a) ?? -1));
-  }, [all, cat, query]);
+  }, [all, cat, depth, query]);
 
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const enriched = useMemo(() => all.filter((e) => hasDeepDive(e.cin)), [all]);
+  const depthCounts = useMemo(() => ({
+    full: enriched.length,
+    any: all.filter((e) => revOf(e) != null).length,
+    all: all.length,
+  }), [all, enriched]);
   const selected = picked.map((f) => byFolder.get(f)).filter((e): e is Entity => !!e);
   const full = picked.length >= CMP_MAX;
   const toggle = (f: string) => setPicked((p) => (p.includes(f) ? p.filter((x) => x !== f) : p.length >= CMP_MAX ? p : [...p, f]));
@@ -1372,7 +1382,10 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
 
       <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
         <div className="text-base font-semibold text-slate-900">🆚 Compare suppliers</div>
-        <div className="mt-0.5 text-sm text-slate-500">Tick up to {CMP_MAX} suppliers below, or start from a quick view.</div>
+        <div className="mt-0.5 text-sm text-slate-500">
+          Tick up to {CMP_MAX} suppliers below, or start from a quick view.
+          {depth !== "all" && <span className="text-slate-400"> Showing only suppliers with {depth === "full" ? "a full Probe42 report" : "filed financials"} — the rest have nothing to compare on.</span>}
+        </div>
 
         {/* default views / presets */}
         <div className="mt-3 flex flex-wrap gap-2">
@@ -1390,6 +1403,11 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
             the search box already do, and made this read as a form */}
         <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-4">
           <Dropdown label="Type" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c }))} />
+          <Dropdown label="Data" value={depth} onChange={setDepth} options={[
+            { key: "full" as const, label: `Full Probe42 report (${depthCounts.full})`, emoji: "📊" },
+            { key: "any" as const, label: `Any financials (${depthCounts.any})`, emoji: "📄" },
+            { key: "all" as const, label: `All suppliers (${depthCounts.all})`, emoji: "🗂" },
+          ]} />
           <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search suppliers…" className="w-52 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-teal-400" />
           <span className={`ml-auto text-sm ${full ? "font-semibold text-teal-700" : "text-slate-400"}`}>{picked.length}/{CMP_MAX} picked</span>
         </div>
