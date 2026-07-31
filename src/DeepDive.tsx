@@ -19,7 +19,7 @@ interface FinRow {
   bs: Record<string, number | null>; cf: Record<string, number | null>; r: Ratios;
 }
 interface Evidence { label: string; value: string; tab: string }
-interface Lever { tone: "opportunity" | "watch" | "risk"; strength: number; title: string; detail: string; evidence?: Evidence[] }
+interface Lever { tone: "opportunity" | "watch" | "risk"; strength: number; insight: string; title: string; detail: string; evidence?: Evidence[] }
 interface CostMix { material: number | null; employee: number | null; other: number | null; deprec: number | null }
 interface AdvYear { fy: string; roe: number | null; netMargin: number | null; assetTurn: number | null; equityMult: number | null; taxBurden: number | null; intBurden: number | null; opMargin: number | null; fcf: number | null; accruals: number | null; workingCapital: number | null; costMix: CostMix | null }
 interface Advanced {
@@ -227,6 +227,7 @@ function AlternativesCard({ alt }: { alt: AltInfo }) {
 }
 function LeversTab({ d, opps, onGoto, alt }: { d: Detail; opps: number; onGoto: (t: string) => void; alt: AltInfo }) {
   const [open, setOpen] = useState<string | null>(null);
+  const [filter, setFilter] = useState<Lever["tone"] | null>(null);
   const watches = d.levers.filter((l) => l.tone === "watch").length;
   const risks = d.levers.filter((l) => l.tone === "risk").length;
   const groups: { tone: Lever["tone"]; title: string; ring: string; bg: string; text: string; emoji: string }[] = [
@@ -240,17 +241,26 @@ function LeversTab({ d, opps, onGoto, alt }: { d: Detail; opps: number; onGoto: 
         <div className="text-xs font-semibold uppercase tracking-wide text-teal-100">Negotiation-lever engine</div>
         {/* split the non-opportunity levers the same way the columns below do —
             lumping watch + risk into one "to watch" number contradicted them. */}
-        <div className="mt-0.5 text-lg font-semibold">
-          {opps} play{opps !== 1 ? "s" : ""} in our favour
-          {watches > 0 && <> · {watches} to watch</>}
-          {risks > 0 && <> · {risks} risk{risks !== 1 ? "s" : ""}</>}
-          <span className="font-normal text-teal-100/90"> — read straight off {d.yearsCovered}&nbsp;years of their filings.</span>
+        <div className="mt-1.5 flex flex-wrap items-center gap-2">
+          {([["opportunity", opps, "plays in our favour"], ["watch", watches, "to watch"], ["risk", risks, "risks"]] as const)
+            .filter(([, n]) => n > 0)
+            .map(([t, n, label]) => {
+              const on = filter === t;
+              return (
+                <button key={t} onClick={() => setFilter(on ? null : t)}
+                  className={`rounded-xl px-3 py-1.5 text-left transition ${on ? "bg-white text-teal-800 shadow-sm" : "bg-white/15 text-white ring-1 ring-white/25 hover:bg-white/25"}`}>
+                  <span className="text-lg font-bold tabular-nums">{n}</span>
+                  <span className="ml-1.5 text-xs font-medium opacity-90">{label}</span>
+                </button>
+              );
+            })}
+          {filter && <button onClick={() => setFilter(null)} className="text-xs font-semibold text-teal-100 underline hover:text-white">show all</button>}
         </div>
-        <div className="mt-1 text-xs text-teal-100/90">Click any lever to see the exact numbers behind it.</div>
+        <div className="mt-2 text-xs text-teal-100/90">Read straight off {d.yearsCovered}&nbsp;years of their filings · tap a tile to filter, tap a lever for the numbers behind it.</div>
       </div>
       <AlternativesCard alt={alt} />
-      <div className="grid items-start gap-4 lg:grid-cols-3">
-        {groups.map((g) => {
+      <div className={`grid items-start gap-4 ${filter ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
+        {groups.filter((g) => !filter || g.tone === filter).map((g) => {
           const items = d.levers.filter((l) => l.tone === g.tone);
           return (
             <div key={g.tone}>
@@ -263,9 +273,15 @@ function LeversTab({ d, opps, onGoto, alt }: { d: Detail; opps: number; onGoto: 
                   const canOpen = true;
                   return (
                     <div key={i} className={`overflow-hidden rounded-xl ${g.bg} ring-1 ${g.ring} transition ${isOpen ? "shadow-md" : ""}`}>
-                      <button onClick={() => canOpen && setOpen(isOpen ? null : key)} className="flex w-full items-center justify-between gap-2 p-3 text-left hover:bg-white/40">
-                        <div className={`min-w-0 text-sm font-semibold leading-snug ${g.text}`}>{lv.title}</div>
-                        <div className="flex shrink-0 items-center gap-2">
+                      <button onClick={() => canOpen && setOpen(isOpen ? null : key)} className="flex w-full items-start justify-between gap-2 p-3 text-left hover:bg-white/40">
+                        <div className="min-w-0">
+                          <div className={`text-sm font-bold leading-snug ${g.text}`}>{lv.insight}</div>
+                          <div className="mt-1 inline-flex items-baseline gap-1.5 rounded-md bg-white/60 px-1.5 py-0.5 text-[11px] leading-snug ring-1 ring-white/80">
+                            <span className="shrink-0 font-bold uppercase tracking-wide text-slate-400">Why</span>
+                            <span className="text-slate-600">{lv.title}</span>
+                          </div>
+                        </div>
+                        <div className="mt-0.5 flex shrink-0 items-center gap-2">
                           <span className="text-xs" title={`strength ${lv.strength}/3`}>{"●".repeat(lv.strength)}<span className="text-slate-300">{"●".repeat(3 - lv.strength)}</span></span>
                           <span className="whitespace-nowrap text-[10px] font-semibold text-slate-400">{isOpen ? "▲" : "why? ▾"}</span>
                         </div>

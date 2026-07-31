@@ -708,25 +708,42 @@ function splitRead(s: string): { fact: string; read: string } {
   return { fact: "", read: s };
 }
 
+// Article dates arrive as "2025-11", "2024-01-10" or a bare "2024" — normalise to
+// YYYY-MM so they can be compared and bucketed. A bare year counts as January.
+const newsMonth = (d: string) => { const m = String(d ?? "").match(/^(\d{4})(?:-(\d{2}))?/); return m ? `${m[1]}-${m[2] ?? "01"}` : "0000-00"; };
+const monthsBack = (n: number) => { const d = new Date(); d.setMonth(d.getMonth() - n); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`; };
+const NEWS_CATS = ["All", "RM Vendor", "PM Vendor", "Manufacturer"] as const;
+
 function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
   const [showQuiet, setShowQuiet] = useState(false);
-  const { lead, quiet, storyCount } = useMemo(() => {
-    const lead: { e: Entity; sig: Signal; items: NewsItem[] }[] = [];
-    const quiet: { e: Entity; sig: Signal; items: NewsItem[] }[] = [];
-    let storyCount = 0;
+  const [cat, setCat] = useState<(typeof NEWS_CATS)[number]>("All");
+  // Anything older than 30 months is history, not news; within that, the last six
+  // months leads and the rest sits behind it.
+  const CUT = monthsBack(30), RECENT = monthsBack(6);
+  const { lead, quiet, storyCount, dropped } = useMemo(() => {
+    const lead: { e: Entity; sig: Signal; items: NewsItem[]; latest: string }[] = [];
+    const quiet: { e: Entity; sig: Signal; items: NewsItem[]; latest: string }[] = [];
+    let storyCount = 0, dropped = 0;
     for (const e of all) {
+      if (cat !== "All" && e.category !== cat) continue;
       const n = newsOf(e.folder);
       if (!n) continue;
-      const items = [...n.news].sort((a, b) => b.date.localeCompare(a.date));
+      const fresh = n.news.filter((i) => newsMonth(i.date) >= CUT);
+      dropped += n.news.length - fresh.length;
+      const items = [...fresh].sort((a, b) => newsMonth(b.date).localeCompare(newsMonth(a.date)));
       storyCount += n.signals.length + items.length;
-      // One entry per supplier, led by its most consequential signal.
       const sigs = [...n.signals].sort((a, b) => Number(NEWS_LEAD.has(b.type)) - Number(NEWS_LEAD.has(a.type)));
       const sig = sigs[0];
       if (!sig) continue;
-      (NEWS_LEAD.has(sig.type) ? lead : quiet).push({ e, sig, items });
+      const latest = items[0] ? newsMonth(items[0].date) : "0000-00";
+      (NEWS_LEAD.has(sig.type) ? lead : quiet).push({ e, sig, items, latest });
     }
-    return { lead, quiet, storyCount };
-  }, [all]);
+    lead.sort((a, b) => b.latest.localeCompare(a.latest));
+    quiet.sort((a, b) => b.latest.localeCompare(a.latest));
+    return { lead, quiet, storyCount, dropped };
+  }, [all, cat, CUT]);
+  const recentLead = lead.filter((b) => b.latest >= RECENT);
+  const earlierLead = lead.filter((b) => b.latest < RECENT);
 
   const month = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
   const covered = lead.length + quiet.length;
@@ -772,20 +789,30 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
             <div className="text-xl font-bold">📰 Supplier newsroom</div>
             <div className="mt-1 max-w-2xl text-sm text-white/80">What changed at each supplier, and what it does to your leverage.</div>
           </div>
-          <div className="shrink-0 rounded-2xl bg-white/12 px-5 py-3 text-right ring-1 ring-white/25">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-teal-50">Suppliers with news</div>
-            <div className="text-3xl font-bold tabular-nums">{covered}</div>
-            <div className="text-xs text-white/75">{storyCount} sources · as of {month}</div>
+          <div className="flex shrink-0 items-center gap-3">
+            <select value={cat} onChange={(e) => setCat(e.target.value as typeof cat)}
+              className="rounded-lg bg-white/15 px-3 py-2 text-sm font-semibold text-white outline-none ring-1 ring-white/25 [&>option]:text-slate-800">
+              {NEWS_CATS.map((c) => <option key={c} value={c}>{c === "All" ? "All suppliers" : c + "s"}</option>)}
+            </select>
+            <div className="rounded-2xl bg-white/12 px-5 py-3 text-right ring-1 ring-white/25">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-teal-50">Suppliers with news</div>
+              <div className="text-3xl font-bold tabular-nums">{covered}</div>
+              <div className="text-xs text-white/75">{storyCount} sources · as of {month}</div>
+            </div>
           </div>
         </div>
       </div>
 
-      {lead.length > 0 && (
+      {recentLead.length > 0 && (
         <div>
-          <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">🔔 Moves that change your leverage</h3>
-          <div className="grid gap-3 lg:grid-cols-2">
-            {lead.map((b) => <Block key={b.e.folder} {...b} />)}
-          </div>
+          <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">🔔 Last 6 months — moves that change your leverage</h3>
+          <div className="grid gap-3 lg:grid-cols-2">{recentLead.map((b) => <Block key={b.e.folder} {...b} />)}</div>
+        </div>
+      )}
+      {earlierLead.length > 0 && (
+        <div>
+          <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">🕑 Earlier — still shaping the relationship</h3>
+          <div className="grid gap-3 lg:grid-cols-2">{earlierLead.map((b) => <Block key={b.e.folder} {...b} />)}</div>
         </div>
       )}
 
@@ -805,7 +832,9 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
       )}
 
       {covered === 0 && <div className="rounded-2xl bg-white p-12 text-center text-sm text-slate-400 ring-1 ring-slate-200">No supplier news on file yet.</div>}
-      <p className="px-1 text-[11px] text-slate-400">Gathered from the open web. Suppliers with no public footprint don't appear here — their leverage lives in the financials.</p>
+      <p className="px-1 text-[11px] text-slate-400">
+        Gathered from the open web · last 30 months only{dropped > 0 ? ` (${dropped} older item${dropped > 1 ? "s" : ""} excluded)` : ""}. Suppliers with no public footprint don't appear here — their leverage lives in the financials.
+      </p>
     </div>
   );
 }
@@ -1674,8 +1703,8 @@ function LeversModal({ e, onClose, onOpenProfile }: { e: Entity; onClose: () => 
   // Suppliers without a paid Probe report still get the lighter insight pass, so
   // the button never opens an empty box.
   const levers = probe.length
-    ? probe.map((l) => ({ tone: l.tone as InsightTone, strength: l.strength, title: l.title, detail: l.detail, evidence: l.evidence ?? [] }))
-    : supplierInsights(e).map((i) => ({ tone: i.tone, strength: 2, title: i.title, detail: i.detail, evidence: [] as { label: string; value: string }[] }));
+    ? probe.map((l) => ({ tone: l.tone as InsightTone, strength: l.strength, insight: l.insight, title: l.title, detail: l.detail, evidence: l.evidence ?? [] }))
+    : supplierInsights(e).map((i) => ({ tone: i.tone, strength: 2, insight: i.title, title: "", detail: i.detail, evidence: [] as { label: string; value: string }[] }));
   const health = supplierHealth(e.cin);
   const counts = LEV_TONE_ORDER.map((t) => ({ t, n: levers.filter((l) => l.tone === t).length }));
 
@@ -1711,7 +1740,10 @@ function LeversModal({ e, onClose, onOpenProfile }: { e: Entity; onClose: () => 
                   {group.map((l, i) => (
                     <div key={i} className={`rounded-xl p-3.5 ring-1 ${m.bg} ${m.ring}`}>
                       <div className="flex items-start justify-between gap-3">
-                        <div className="text-sm font-bold leading-snug text-slate-900">{l.title}</div>
+                        <div className="min-w-0">
+                          <div className="text-sm font-bold leading-snug text-slate-900">{l.insight}</div>
+                          {l.title && <div className="mt-1 inline-flex items-baseline gap-1.5 rounded-md bg-white/70 px-1.5 py-0.5 text-[11px] leading-snug ring-1 ring-slate-200"><span className="font-bold uppercase tracking-wide text-slate-400">Why</span><span className="text-slate-600">{l.title}</span></div>}
+                        </div>
                         <span className="mt-1 flex shrink-0 gap-0.5" title={`strength ${l.strength}/3`}>
                           {[1, 2, 3].map((s) => <span key={s} className={`h-1.5 w-1.5 rounded-full ${s <= l.strength ? m.dot : "bg-slate-300"}`} />)}
                         </span>

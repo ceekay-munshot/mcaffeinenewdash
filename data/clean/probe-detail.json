@@ -2188,9 +2188,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 17.9% vs the peer median 11.97% — about 5.9pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 17.9% vs the peer median 11.97% — about 5.9pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "17.9%",
@@ -2206,11 +2206,13 @@
             "value": "5.9pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Real, structural room in the price",
         "title": "Returns come from fat margins, not leverage",
         "detail": "DuPont: RoE 20.4% is driven by a 15.9% net margin on a near-unleveraged balance sheet (equity multiplier 1.49×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
         "evidence": [
@@ -2234,6 +2236,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push on price — they don't need our cash",
         "title": "Strong cash generation",
         "detail": "Generated ₹265 Cr of operating cash (above net profit ₹210 Cr) — comfortably cash-positive, so they don't need to claw margin from us. Push on price, not terms.",
         "evidence": [
@@ -2252,6 +2255,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0.23 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -2265,6 +2269,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
         "title": "Paying dividends out",
         "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
         "evidence": [
@@ -2278,6 +2283,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Ask why before leaning on their reported numbers",
         "title": "Auditor has changed repeatedly",
         "detail": "2 auditor changes across the filed years (WALKER CHANDIOK & CO LLP → FORD RHODES PARKS & CO LLP → M G B & CO LLP). Frequent rotation isn't proof of anything on its own, but it's a governance signal worth a question before leaning on their reported numbers.",
         "evidence": [
@@ -2296,6 +2302,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst October 2024 to March 2025: ₹19.3 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -2309,6 +2316,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to stay tight on our terms",
         "title": "Chasing customers through the courts",
         "detail": "2 recovery/insolvency cases they've filed to collect from customers — their own receivables are turning bad, so expect them to stay tight on the terms they give us.",
         "evidence": [
@@ -2322,6 +2330,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -2335,6 +2344,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "They can hold price — push volume and service instead",
         "title": "Solid investment-grade credit",
         "detail": "CARE rates them AA — a financially sound, well-regarded supplier: reliable, but they can comfortably hold their price.",
         "evidence": [
@@ -2353,6 +2363,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix the energy component in the contract",
         "title": "Energy-heavy cost base",
         "detail": "Power and fuel run ₹56.6 Cr, 4.3% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
@@ -2371,6 +2382,7 @@
       {
         "tone": "risk",
         "strength": 3,
+        "insight": "Diligence the litigation before renewing",
         "title": "Serious legal cases pending",
         "detail": "7 high-severity court cases (of 169 total) — a real continuity/reputation risk worth diligence.",
         "evidence": [
@@ -4113,9 +4125,9 @@
       {
         "tone": "opportunity",
         "strength": 3,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 33.8% vs the peer median 8.35% — about 25.4pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 33.8% vs the peer median 8.35% — about 25.4pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "33.8%",
@@ -4131,11 +4143,13 @@
             "value": "25.4pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 30.9% → 33.8% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -4149,6 +4163,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Real, structural room in the price",
         "title": "Returns come from fat margins, not leverage",
         "detail": "DuPont: RoE 14.5% is driven by a 43.8% net margin on a near-unleveraged balance sheet (equity multiplier 1.01×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
         "evidence": [
@@ -4172,6 +4187,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Trade faster payment for a lower price",
         "title": "Cash is tied up for months",
         "detail": "Cash-conversion cycle 96 days (was 83) — a lot of working capital is locked up. An early-payment-for-discount offer will land well.",
         "evidence": [
@@ -4190,6 +4206,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -4203,6 +4220,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹237 Cr → ₹307 Cr, with operating leverage 2.11× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -4221,6 +4239,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
         "title": "Paying dividends out",
         "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
         "evidence": [
@@ -4234,6 +4253,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Offer early payment for a discount",
         "title": "Their suppliers are squeezing them (paying faster)",
         "detail": "Days-payable fell 30 → 11 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
         "evidence": [
@@ -4247,6 +4267,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Treat the reported profit with caution",
         "title": "Profit isn't turning into cash",
         "detail": "Reported profit runs well ahead of cash generated (accruals 9.3% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
         "evidence": [
@@ -4260,6 +4281,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth a look before renewal",
         "title": "Several court cases on record",
         "detail": "19 cases on file (10 filed against them) — mostly routine, but worth a glance.",
         "evidence": [
@@ -4273,6 +4295,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth one question, not a red flag",
         "title": "Auditor raised adverse remarks in the past",
         "detail": "There were adverse auditor remarks in FY21, but not in the recent filed years (latest FY25). Reads as a resolved historical issue rather than a live one — worth one question, not a red flag.",
         "evidence": [
@@ -6069,6 +6092,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 6.3% → 10.4% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -6082,6 +6106,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 89 days to pay vs a peer norm of 55 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -6100,6 +6125,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade committed volume for a better price",
         "title": "Free cash flow is negative — they're cash-hungry",
         "detail": "Despite ₹226 Cr of net profit, free cash flow is −₹57 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
@@ -6118,6 +6144,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0.1 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -6131,6 +6158,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹2214 Cr → ₹2972 Cr, with operating leverage 3.4× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -6149,6 +6177,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
         "title": "Paying dividends out",
         "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
         "evidence": [
@@ -6162,6 +6191,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst October 2024 to March 2025: ₹297.6 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -6175,6 +6205,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -6188,6 +6219,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Push unit price, not payment timing",
         "title": "They borrow cheaply",
         "detail": "Secured facilities at just 7.4% — bank funding is cheap for them, so early payment buys us very little. Push on unit price and volume terms instead of payment timing.",
         "evidence": [
@@ -6201,6 +6233,7 @@
       {
         "tone": "risk",
         "strength": 3,
+        "insight": "Diligence the litigation before renewing",
         "title": "Serious legal cases pending",
         "detail": "2 high-severity court cases (of 90 total) — a real continuity/reputation risk worth diligence.",
         "evidence": [
@@ -7619,6 +7652,7 @@
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Lock a multi-year price before the line starts",
         "title": "Building capacity they'll need to fill",
         "detail": "₹9.3 Cr sits in capital work-in-progress — 81.6% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
         "evidence": [
@@ -7637,6 +7671,7 @@
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
         "title": "Their borrowed money is expensive",
         "detail": "Their secured facilities carry 13.99% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.17% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.17% for 30 days, ~2.34% for 60, and it still leaves them better off than their bank.",
         "evidence": [
@@ -7655,9 +7690,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 10.3% vs the peer median 7.04% — about 3.3pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 10.3% vs the peer median 7.04% — about 3.3pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "10.3%",
@@ -7673,11 +7708,13 @@
             "value": "3.3pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 6.1% → 10.3% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -7691,6 +7728,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "They need the business — lean in",
         "title": "Fundamentals are weakening (F-score low)",
         "detail": "Piotroski F-score 2/9 — deteriorating across profitability/leverage/efficiency checks. A weakening supplier is likelier to concede on price to keep our volume — but line up a backup.",
         "evidence": [
@@ -7704,6 +7742,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Buy a discount with faster payment",
         "title": "Thin liquidity — early pay is valuable to them",
         "detail": "Current ratio 0.71 (quick 0.56) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
@@ -7722,6 +7761,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹23 Cr → ₹41 Cr, with operating leverage 6.47× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -7740,6 +7780,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst April 2022 to September 2022: ₹68.7 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -7753,6 +7794,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -7766,6 +7808,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't squeeze — continuity is the risk here",
         "title": "Their returns are debt-manufactured",
         "detail": "DuPont: RoE 29.2% is propped up by leverage (equity multiplier 7.6×), not operations (net margin only 3.4%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
         "evidence": [
@@ -7789,6 +7832,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Keep a second source qualified",
         "title": "Heavily leveraged",
         "detail": "Debt-to-equity 5.28, interest cover 3.9× — a stretched balance sheet; squeeze too hard and supply reliability is at risk.",
         "evidence": [
@@ -9564,9 +9608,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 4.9% vs the peer median 1.77% — about 3.1pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 4.9% vs the peer median 1.77% — about 3.1pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "4.9%",
@@ -9582,14 +9626,15 @@
             "value": "3.1pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 24.8% vs peers 13.3% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 24.8% vs peers 13.3% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "24.8%",
@@ -9600,11 +9645,13 @@
             "value": "13.3%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 86 days to pay vs a peer norm of 33.86 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -9623,6 +9670,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "They need the business — press on price and terms",
         "title": "Revenue is shrinking",
         "detail": "Revenue fell ₹374 Cr → ₹260 Cr — they need the business; lean in on price and terms.",
         "evidence": [
@@ -9636,6 +9684,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Treat a \"we have no margin\" claim with scepticism",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹4 Cr is 33.2% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -9654,6 +9703,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Use early payment as our lever",
         "title": "They're funding their own customers",
         "detail": "Collection days rose 84 → 147 — cash is increasingly stuck in receivables. That pressure is our early-pay leverage.",
         "evidence": [
@@ -9667,6 +9717,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade committed volume for a better price",
         "title": "Free cash flow is negative — they're cash-hungry",
         "detail": "Despite ₹12 Cr of net profit, free cash flow is −₹13 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
@@ -9685,6 +9736,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -9698,6 +9750,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect a price-rise request; pre-empt it",
         "title": "Margins are compressing",
         "detail": "EBITDA margin slipped 6.4% → 4.9% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
         "evidence": [
@@ -9711,6 +9764,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Treat the reported profit with caution",
         "title": "Profit isn't turning into cash",
         "detail": "Reported profit runs well ahead of cash generated (accruals 17.4% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
         "evidence": [
@@ -9724,6 +9778,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst October 2022 to March 2023: ₹937.3 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -9737,6 +9792,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -9750,6 +9806,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Check they can still service our volume",
         "title": "Cutting headcount",
         "detail": "Employees down ~43 → ~20 — a shrinking team can signal distress or restructuring.",
         "evidence": [
@@ -9763,6 +9820,7 @@
       {
         "tone": "risk",
         "strength": 3,
+        "insight": "Diligence the litigation before renewing",
         "title": "Serious legal cases pending",
         "detail": "3 high-severity court cases (of 9 total) — a real continuity/reputation risk worth diligence.",
         "evidence": [
@@ -9781,6 +9839,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't squeeze — continuity is the risk here",
         "title": "Their returns are debt-manufactured",
         "detail": "DuPont: RoE 18.6% is propped up by leverage (equity multiplier 2.5×), not operations (net margin only 4.6%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
         "evidence": [
@@ -9804,6 +9863,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Secure supply before pressing on price",
         "title": "Burning cash from operations",
         "detail": "Operating cash flow was −₹16 Cr last year — the core business consumed cash; watch supply continuity.",
         "evidence": [
@@ -11489,9 +11549,9 @@
       {
         "tone": "opportunity",
         "strength": 3,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 11.4% vs the peer median 2.26% — about 9.1pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 11.4% vs the peer median 2.26% — about 9.1pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "11.4%",
@@ -11507,11 +11567,13 @@
             "value": "9.1pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
         "title": "Their borrowed money is expensive",
         "detail": "Their secured facilities carry 12% interest. Every month we pay early effectively lends them cash at that rate — worth about 1% a month to them. That sets a defensible number for an early-payment discount: ask for ~1% for 30 days, ~2% for 60, and it still leaves them better off than their bank.",
         "evidence": [
@@ -11530,6 +11592,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Real, structural room in the price",
         "title": "Returns come from fat margins, not leverage",
         "detail": "DuPont: RoE 17.1% is driven by a 8.4% net margin on a near-unleveraged balance sheet (equity multiplier 1.4×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
         "evidence": [
@@ -11553,6 +11616,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Trade faster payment for a lower price",
         "title": "Cash is tied up for months",
         "detail": "Cash-conversion cycle 98 days (was 95) — a lot of working capital is locked up. An early-payment-for-discount offer will land well.",
         "evidence": [
@@ -11571,6 +11635,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
         "title": "Stock is sitting far longer than peers",
         "detail": "They hold inventory 71.92 days vs a peer norm of 23.92 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
         "evidence": [
@@ -11589,6 +11654,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -11602,6 +11668,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
         "title": "Paying dividends out",
         "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
         "evidence": [
@@ -11615,6 +11682,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect a price-rise request; pre-empt it",
         "title": "Margins are compressing",
         "detail": "EBITDA margin slipped 14.7% → 11.4% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
         "evidence": [
@@ -11628,6 +11696,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst October 2022 to March 2023: ₹23 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -11641,6 +11710,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth a look before renewal",
         "title": "Several court cases on record",
         "detail": "6 cases on file (2 filed against them) — mostly routine, but worth a glance.",
         "evidence": [
@@ -13185,9 +13255,9 @@
       {
         "tone": "opportunity",
         "strength": 3,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 14.8% vs the peer median 5.17% — about 9.6pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 14.8% vs the peer median 5.17% — about 9.6pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "14.8%",
@@ -13203,11 +13273,13 @@
             "value": "9.6pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Lock a multi-year price before the line starts",
         "title": "Building capacity they'll need to fill",
         "detail": "₹2.8 Cr sits in capital work-in-progress — 22.1% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
         "evidence": [
@@ -13226,6 +13298,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 8.5% → 14.8% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -13239,9 +13312,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 28.2% vs peers 16.84% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 28.2% vs peers 16.84% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "28.2%",
@@ -13252,11 +13325,13 @@
             "value": "16.84%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Structural room in the price, not just a markup",
         "title": "They own their conversion margin",
         "detail": "100% of revenue is goods they manufacture themselves, on a 45.9% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
@@ -13275,6 +13350,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹40 Cr → ₹62 Cr, with operating leverage 2.99× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -13293,6 +13369,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Offer early payment for a discount",
         "title": "Their suppliers are squeezing them (paying faster)",
         "detail": "Days-payable fell 58 → 24 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
         "evidence": [
@@ -13306,6 +13383,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst October 2022 to March 2023: ₹111.5 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -13319,6 +13397,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -13332,6 +13411,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth one question, not a red flag",
         "title": "Auditor raised adverse remarks in the past",
         "detail": "There were adverse auditor remarks in FY17, but not in the recent filed years (latest FY24). Reads as a resolved historical issue rather than a live one — worth one question, not a red flag.",
         "evidence": [
@@ -15050,9 +15130,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 15.5% vs the peer median 11.61% — about 3.9pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 15.5% vs the peer median 11.61% — about 3.9pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "15.5%",
@@ -15068,14 +15148,15 @@
             "value": "3.9pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 28.1% vs peers 16.28% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 28.1% vs peers 16.28% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "28.1%",
@@ -15086,11 +15167,13 @@
             "value": "16.28%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Treat a \"we have no margin\" claim with scepticism",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹5.4 Cr is 27.5% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -15109,6 +15192,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push our own payment terms out",
         "title": "Collects its cash quickly",
         "detail": "Gets paid in 43 days (peers 86.54) — a healthy cash position, so we can push to extend our own terms.",
         "evidence": [
@@ -15127,6 +15211,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0.08 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -15140,6 +15225,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹159 Cr → ₹205 Cr, with operating leverage 1.41× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -15158,6 +15244,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix a rupee price before they pass it through",
         "title": "Their input costs are climbing",
         "detail": "Material cost rose 51.1% → 64.2% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
@@ -15171,6 +15258,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst April 2023 to September 2023: ₹124.1 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -15184,6 +15272,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -16923,6 +17012,7 @@
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Lock a multi-year price before the line starts",
         "title": "Building capacity they'll need to fill",
         "detail": "₹3.3 Cr sits in capital work-in-progress — 25.7% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
         "evidence": [
@@ -16941,6 +17031,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 2.1% → 4.2% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -16954,9 +17045,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 16.5% vs peers 8.39% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 16.5% vs peers 8.39% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "16.5%",
@@ -16967,11 +17058,13 @@
             "value": "8.39%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 46 days to pay vs a peer norm of 25.56 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -16990,6 +17083,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "They need the business — press on price and terms",
         "title": "Revenue is shrinking",
         "detail": "Revenue fell ₹106 Cr → ₹86 Cr — they need the business; lean in on price and terms.",
         "evidence": [
@@ -17003,6 +17097,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Structural room in the price, not just a markup",
         "title": "They own their conversion margin",
         "detail": "100% of revenue is goods they manufacture themselves, on a 17.7% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
@@ -17021,6 +17116,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Buy a discount with faster payment",
         "title": "Thin liquidity — early pay is valuable to them",
         "detail": "Current ratio 0.83 (quick 0.48) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
@@ -17039,6 +17135,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push on price — they don't need our cash",
         "title": "Strong cash generation",
         "detail": "Generated ₹8 Cr of operating cash (above net profit ₹2 Cr) — comfortably cash-positive, so they don't need to claw margin from us. Push on price, not terms.",
         "evidence": [
@@ -17057,6 +17154,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Offer early payment for a discount",
         "title": "Their suppliers are squeezing them (paying faster)",
         "detail": "Days-payable fell 73 → 46 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
         "evidence": [
@@ -17070,6 +17168,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "A strengthening supplier will hold its price",
         "title": "Fundamentally strengthening (F-score high)",
         "detail": "Piotroski F-score 7/9 — improving on most fundamental checks (profitability, cash, efficiency). A healthy, strengthening supplier that wants to grow with us — good for a volume-commitment deal, though they can hold their price.",
         "evidence": [
@@ -17083,6 +17182,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -17096,6 +17196,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't squeeze — continuity is the risk here",
         "title": "Their returns are debt-manufactured",
         "detail": "DuPont: RoE 13.7% is propped up by leverage (equity multiplier 2.69×), not operations (net margin only 2%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
         "evidence": [
@@ -17119,6 +17220,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Push for transparency; keep a backup ready",
         "title": "Rating flagged 'Issuer Not Cooperating'",
         "detail": "CARE tags them \"Issuer Not Cooperating\", last around B — they stopped engaging their rating agency, often a stress or opacity signal. Push for transparency; keep a qualified backup.",
         "evidence": [
@@ -18013,9 +18115,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 15.2% vs the peer median 8.4% — about 6.8pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 15.2% vs the peer median 8.4% — about 6.8pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "15.2%",
@@ -18031,11 +18133,13 @@
             "value": "6.8pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed -17.9% → 15.2% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -18049,6 +18153,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Anchor on their COGS, not their net margin",
         "title": "Margin eaten by overhead, not input cost",
         "detail": "Gross margin is a healthy 26.1% — their raw-material economics are fine — but overhead (other expenses) climbed from 0% to 7.2% of sales. Overhead is semi-fixed and amortises as they scale, so their underlying unit economics already support a lower price. Anchor on their COGS, not the reported net margin.",
         "evidence": [
@@ -18072,6 +18177,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 118 days to pay vs a peer norm of 49.44 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -18090,6 +18196,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "They need the business — lean in",
         "title": "Fundamentals are weakening (F-score low)",
         "detail": "Piotroski F-score 3/9 — deteriorating across profitability/leverage/efficiency checks. A weakening supplier is likelier to concede on price to keep our volume — but line up a backup.",
         "evidence": [
@@ -18103,6 +18210,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Structural room in the price, not just a markup",
         "title": "They own their conversion margin",
         "detail": "100% of revenue is goods they manufacture themselves, on a 26.1% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
@@ -18121,6 +18229,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
         "title": "Stock is sitting far longer than peers",
         "detail": "They hold inventory 93.32 days vs a peer norm of 40.33 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
         "evidence": [
@@ -18139,6 +18248,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push our own payment terms out",
         "title": "Collects its cash quickly",
         "detail": "Gets paid in 53 days (peers 65.98) — a healthy cash position, so we can push to extend our own terms.",
         "evidence": [
@@ -18157,6 +18267,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Buy a discount with faster payment",
         "title": "Thin liquidity — early pay is valuable to them",
         "detail": "Current ratio 0.56 (quick 0.32) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
@@ -18175,6 +18286,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹0 Cr → ₹17 Cr — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -18193,6 +18305,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -18206,6 +18319,7 @@
       {
         "tone": "risk",
         "strength": 3,
+        "insight": "Qualify an alternative source now",
         "title": "Distress-zone balance sheet (Altman Z)",
         "detail": "Altman Z-score 0.65 puts them in the distress zone — elevated financial-failure risk. A real continuity concern: qualify a backup source now, and they may trade price for guaranteed, promptly-paid volume.",
         "evidence": [
@@ -18219,6 +18333,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't push to breaking point — qualify a backup",
         "title": "Barely covers its interest bill",
         "detail": "Interest cover only 0.2× — profit barely clears the interest. A cash-strained, rate-sensitive supplier; continuity risk if pushed.",
         "evidence": [
@@ -18232,6 +18347,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Diligence them before committing volume",
         "title": "Weak overall financial score",
         "detail": "Probe rates them 3/10 overall — financially fragile; keep a qualified backup source.",
         "evidence": [
@@ -19996,6 +20112,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Structural room in the price, not just a markup",
         "title": "They own their conversion margin",
         "detail": "100% of revenue is goods they manufacture themselves, on a 38.8% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
@@ -20014,6 +20131,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹15 Cr → ₹22 Cr, with operating leverage 1.42× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -20032,6 +20150,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Offer early payment for a discount",
         "title": "Their suppliers are squeezing them (paying faster)",
         "detail": "Days-payable fell 85 → 40 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
         "evidence": [
@@ -20045,6 +20164,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth a look before renewal",
         "title": "Several court cases on record",
         "detail": "21 cases on file (14 filed against them) — mostly routine, but worth a glance.",
         "evidence": [
@@ -20058,6 +20178,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -20071,6 +20192,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't squeeze — continuity is the risk here",
         "title": "Their returns are debt-manufactured",
         "detail": "DuPont: RoE 4.4% is propped up by leverage (equity multiplier 2.76×), not operations (net margin only 1.4%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
         "evidence": [
@@ -20094,6 +20216,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't push to breaking point — qualify a backup",
         "title": "Barely covers its interest bill",
         "detail": "Interest cover only 1.6× — profit barely clears the interest. A cash-strained, rate-sensitive supplier; continuity risk if pushed.",
         "evidence": [
@@ -20107,6 +20230,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Treat any advance payment with caution",
         "title": "Being pursued for financial defaults",
         "detail": "1 financial-dispute case where they're the defendant — someone is chasing them in court for money owed. A solvency / cash-flow red flag.",
         "evidence": [
@@ -20120,6 +20244,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Push for transparency; keep a backup ready",
         "title": "Rating flagged 'Issuer Not Cooperating'",
         "detail": "CRISIL tags them \"Issuer Not Cooperating\", last around B — they stopped engaging their rating agency, often a stress or opacity signal. Push for transparency; keep a qualified backup.",
         "evidence": [
@@ -20689,6 +20814,7 @@
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Lock a multi-year price before the line starts",
         "title": "Building capacity they'll need to fill",
         "detail": "₹1.1 Cr sits in capital work-in-progress — 940.8% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
         "evidence": [
@@ -20707,6 +20833,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "They need the business — lean in",
         "title": "Fundamentals are weakening (F-score low)",
         "detail": "Piotroski F-score 2/9 — deteriorating across profitability/leverage/efficiency checks. A weakening supplier is likelier to concede on price to keep our volume — but line up a backup.",
         "evidence": [
@@ -20720,6 +20847,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Committed volume beats a few rupees on unit price",
         "title": "Their plant is largely written down",
         "detail": "90.4% of the gross asset base is already depreciated (₹0.1 Cr left of ₹1.2 Cr). Two things follow: the depreciation charge dragging on their reported profit is mostly historic, so cash generation is better than the P&L suggests — and replacement capex is coming, which makes committed volume from us worth more than a few rupees on unit price.",
         "evidence": [
@@ -20738,6 +20866,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -20751,6 +20880,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Push unit price, not payment timing",
         "title": "They borrow cheaply",
         "detail": "Secured facilities at just 8.4% — bank funding is cheap for them, so early payment buys us very little. Push on unit price and volume terms instead of payment timing.",
         "evidence": [
@@ -22464,6 +22594,7 @@
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Lock a multi-year price before the line starts",
         "title": "Building capacity they'll need to fill",
         "detail": "₹3.7 Cr sits in capital work-in-progress — 15.9% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
         "evidence": [
@@ -22482,6 +22613,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 8.8% → 12.6% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -22495,9 +22627,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 23.2% vs peers 13.6% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 23.2% vs peers 13.6% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "23.2%",
@@ -22508,11 +22640,13 @@
             "value": "13.6%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 55 days to pay vs a peer norm of 20.83 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -22531,6 +22665,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Early payment is worth real money to them",
         "title": "Working capital is deteriorating",
         "detail": "Cash-conversion cycle stretched -12 → 60 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
@@ -22544,6 +22679,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Structural room in the price, not just a markup",
         "title": "They own their conversion margin",
         "detail": "100% of revenue is goods they manufacture themselves, on a 26.1% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
@@ -22562,6 +22698,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade committed volume for a better price",
         "title": "Free cash flow is negative — they're cash-hungry",
         "detail": "Despite ₹10 Cr of net profit, free cash flow is −₹18 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
@@ -22580,6 +22717,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade volume for a lower unit price",
         "title": "High operating leverage — hungry for volume",
         "detail": "Operating leverage 8.59× — each 1% of extra sales lifts profit about 8.59%. Incremental volume is very profitable to them, so they'll trade price for our order size.",
         "evidence": [
@@ -22593,6 +22731,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Offer early payment for a discount",
         "title": "Their suppliers are squeezing them (paying faster)",
         "detail": "Days-payable fell 80 → 55 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
         "evidence": [
@@ -22606,6 +22745,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix a rupee price before they pass it through",
         "title": "Their input costs are climbing",
         "detail": "Material cost rose 68.2% → 75.8% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
@@ -22619,6 +22759,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Treat the reported profit with caution",
         "title": "Profit isn't turning into cash",
         "detail": "Reported profit runs well ahead of cash generated (accruals 9.1% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
         "evidence": [
@@ -22632,6 +22773,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth a look before renewal",
         "title": "Several court cases on record",
         "detail": "7 cases on file (0 filed against them) — mostly routine, but worth a glance.",
         "evidence": [
@@ -22645,6 +22787,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Early payment should buy us a discount",
         "title": "Aged receivables piling up",
         "detail": "₹37.3 Cr of receivables are over six months old — cash stuck, a sign of collection strain. A cash-tight supplier is more open to early-pay-for-discount.",
         "evidence": [
@@ -22658,6 +22801,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth one question, not a red flag",
         "title": "Auditor raised adverse remarks in the past",
         "detail": "There were adverse auditor remarks in FY22, but not in the recent filed years (latest FY25). Reads as a resolved historical issue rather than a live one — worth one question, not a red flag.",
         "evidence": [
@@ -24161,6 +24305,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed -5% → 7.4% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -24174,6 +24319,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Early payment is worth real money to them",
         "title": "Working capital is deteriorating",
         "detail": "Cash-conversion cycle stretched -5833 → 87 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
@@ -24187,6 +24333,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Structural room in the price, not just a markup",
         "title": "They own their conversion margin",
         "detail": "99.6% of revenue is goods they manufacture themselves, on a 60.5% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
@@ -24205,6 +24352,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push on price — they don't need our cash",
         "title": "Strong cash generation",
         "detail": "Generated ₹0 Cr of operating cash (above net profit ₹2 Cr) — comfortably cash-positive, so they don't need to claw margin from us. Push on price, not terms.",
         "evidence": [
@@ -24223,6 +24371,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0.02 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -24236,6 +24385,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹16 Cr → ₹30 Cr — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -24254,6 +24404,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Offer early payment for a discount",
         "title": "Their suppliers are squeezing them (paying faster)",
         "detail": "Days-payable fell 306 → 16 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
         "evidence": [
@@ -24267,6 +24418,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "A strengthening supplier will hold its price",
         "title": "Fundamentally strengthening (F-score high)",
         "detail": "Piotroski F-score 7/9 — improving on most fundamental checks (profitability, cash, efficiency). A healthy, strengthening supplier that wants to grow with us — good for a volume-commitment deal, though they can hold their price.",
         "evidence": [
@@ -24280,6 +24432,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst April 2023 to September 2023: ₹30.3 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -24293,6 +24446,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -24306,6 +24460,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix the energy component in the contract",
         "title": "Energy-heavy cost base",
         "detail": "Power and fuel run ₹3.5 Cr, 11.5% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
@@ -24324,6 +24479,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't push to breaking point — qualify a backup",
         "title": "Barely covers its interest bill",
         "detail": "Interest cover only -36.2× — profit barely clears the interest. A cash-strained, rate-sensitive supplier; continuity risk if pushed.",
         "evidence": [
@@ -25365,9 +25521,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 16.7% vs peers 11.83% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 16.7% vs peers 11.83% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "16.7%",
@@ -25378,11 +25534,13 @@
             "value": "11.83%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Structural room in the price, not just a markup",
         "title": "They own their conversion margin",
         "detail": "100% of revenue is goods they manufacture themselves, on a 40% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
@@ -25401,6 +25559,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Treat a \"we have no margin\" claim with scepticism",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹0.9 Cr is 53.9% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -25419,6 +25578,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push our own payment terms out",
         "title": "Collects its cash quickly",
         "detail": "Gets paid in 46 days (peers 52.31) — a healthy cash position, so we can push to extend our own terms.",
         "evidence": [
@@ -25437,6 +25597,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -25450,6 +25611,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix the energy component in the contract",
         "title": "Energy-heavy cost base",
         "detail": "Power and fuel run ₹4.1 Cr, 6.6% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
@@ -25468,6 +25630,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't squeeze — continuity is the risk here",
         "title": "Their returns are debt-manufactured",
         "detail": "DuPont: RoE 22.4% is propped up by leverage (equity multiplier 3.66×), not operations (net margin only 2.8%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
         "evidence": [
@@ -25491,6 +25654,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Keep a second source qualified",
         "title": "Heavily leveraged",
         "detail": "Debt-to-equity 1.82, interest cover 2.7× — a stretched balance sheet; squeeze too hard and supply reliability is at risk.",
         "evidence": [
@@ -27349,6 +27513,7 @@
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
         "title": "Their borrowed money is expensive",
         "detail": "Their secured facilities carry 12.75% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.06% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.06% for 30 days, ~2.12% for 60, and it still leaves them better off than their bank.",
         "evidence": [
@@ -27367,6 +27532,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 5.1% → 10.8% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -27380,9 +27546,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 17.4% vs peers 12.85% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 17.4% vs peers 12.85% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "17.4%",
@@ -27393,11 +27559,13 @@
             "value": "12.85%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 75 days to pay vs a peer norm of 36.29 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -27416,6 +27584,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Trade faster payment for a lower price",
         "title": "Cash is tied up for months",
         "detail": "Cash-conversion cycle 122 days (was 96) — a lot of working capital is locked up. An early-payment-for-discount offer will land well.",
         "evidence": [
@@ -27434,6 +27603,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade committed volume for a better price",
         "title": "Free cash flow is negative — they're cash-hungry",
         "detail": "Despite ₹25 Cr of net profit, free cash flow is −₹3 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
@@ -27452,6 +27622,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹307 Cr → ₹440 Cr, with operating leverage 3.32× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -27470,6 +27641,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth a look before renewal",
         "title": "Several court cases on record",
         "detail": "82 cases on file (62 filed against them) — mostly routine, but worth a glance.",
         "evidence": [
@@ -27483,6 +27655,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -27496,6 +27669,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Check they can still service our volume",
         "title": "Cutting headcount",
         "detail": "Employees down ~500 → ~402 — a shrinking team can signal distress or restructuring.",
         "evidence": [
@@ -27509,6 +27683,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix the energy component in the contract",
         "title": "Energy-heavy cost base",
         "detail": "Power and fuel run ₹75.9 Cr, 17.2% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
@@ -27527,6 +27702,7 @@
       {
         "tone": "risk",
         "strength": 3,
+        "insight": "Treat the financials as unreliable until clarified",
         "title": "Auditor keeps raising adverse remarks",
         "detail": "Their auditor filed adverse remarks in FY24, FY23, FY21, FY20, FY19, FY18, FY17, FY16 — 8 years of them. Every number in this analysis rests on those accounts, so treat the financials as unreliable until clarified and diligence hard before committing volume.",
         "evidence": [
@@ -27545,6 +27721,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Push for transparency; keep a backup ready",
         "title": "Rating flagged 'Issuer Not Cooperating'",
         "detail": "ACUITE tags them \"Issuer Not Cooperating\", last around C — they stopped engaging their rating agency, often a stress or opacity signal. Push for transparency; keep a qualified backup.",
         "evidence": [
@@ -29217,6 +29394,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 6.1% → 8.8% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -29230,19 +29408,22 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 27.7% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 27.7% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "27.7%",
             "tab": "financials"
-          }
-        ]
+          },
+          null
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Early payment is worth real money to them",
         "title": "Working capital is deteriorating",
         "detail": "Cash-conversion cycle stretched 21 → 51 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
@@ -29256,6 +29437,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Structural room in the price, not just a markup",
         "title": "They own their conversion margin",
         "detail": "100% of revenue is goods they manufacture themselves, on a 24.9% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
@@ -29274,6 +29456,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade committed volume for a better price",
         "title": "Free cash flow is negative — they're cash-hungry",
         "detail": "Despite ₹20 Cr of net profit, free cash flow is −₹1 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
@@ -29292,6 +29475,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0.16 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -29305,6 +29489,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹199 Cr → ₹310 Cr, with operating leverage 2.65× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -29323,6 +29508,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix a rupee price before they pass it through",
         "title": "Their input costs are climbing",
         "detail": "Material cost rose 71.8% → 76.3% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
@@ -29336,6 +29522,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Treat the reported profit with caution",
         "title": "Profit isn't turning into cash",
         "detail": "Reported profit runs well ahead of cash generated (accruals 11.8% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
         "evidence": [
@@ -29349,6 +29536,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst April 2024 to September 2024: ₹137.5 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -29362,6 +29550,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth a look before renewal",
         "title": "Several court cases on record",
         "detail": "5 cases on file (2 filed against them) — mostly routine, but worth a glance.",
         "evidence": [
@@ -29375,6 +29564,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -31145,9 +31335,9 @@
       {
         "tone": "opportunity",
         "strength": 3,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 19% vs the peer median 1.73% — about 17.3pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 19% vs the peer median 1.73% — about 17.3pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "19%",
@@ -31163,14 +31353,15 @@
             "value": "17.3pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 3,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 46% vs peers 13.64% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 46% vs peers 13.64% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "46%",
@@ -31181,11 +31372,13 @@
             "value": "13.64%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Real, structural room in the price",
         "title": "Returns come from fat margins, not leverage",
         "detail": "DuPont: RoE 34% is driven by a 15.4% net margin on a near-unleveraged balance sheet (equity multiplier 1.45×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
         "evidence": [
@@ -31209,6 +31402,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 56 days to pay vs a peer norm of 31.7 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -31227,6 +31421,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
         "title": "Stock is sitting far longer than peers",
         "detail": "They hold inventory 72.95 days vs a peer norm of 12.36 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
         "evidence": [
@@ -31245,6 +31440,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Committed volume beats a few rupees on unit price",
         "title": "Their plant is largely written down",
         "detail": "85.3% of the gross asset base is already depreciated (₹0.6 Cr left of ₹3.8 Cr). Two things follow: the depreciation charge dragging on their reported profit is mostly historic, so cash generation is better than the P&L suggests — and replacement capex is coming, which makes committed volume from us worth more than a few rupees on unit price.",
         "evidence": [
@@ -31263,6 +31459,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Buy off their existing stock at a discount",
         "title": "Inventory is piling up",
         "detail": "Inventory days rose 47 → 73 — stock is building faster than it sells. Overstocked suppliers move on price to clear volume.",
         "evidence": [
@@ -31276,6 +31473,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -31289,6 +31487,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect a price-rise request; pre-empt it",
         "title": "Margins are compressing",
         "detail": "EBITDA margin slipped 20.5% → 19% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
         "evidence": [
@@ -31302,6 +31501,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix a rupee price before they pass it through",
         "title": "Their input costs are climbing",
         "detail": "Material cost rose 57% → 74.4% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
@@ -31315,6 +31515,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Treat the reported profit with caution",
         "title": "Profit isn't turning into cash",
         "detail": "Reported profit runs well ahead of cash generated (accruals 13.7% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
         "evidence": [
@@ -31328,6 +31529,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst April 2025 to September 2025: ₹16.6 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -31341,6 +31543,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth a look before renewal",
         "title": "Several court cases on record",
         "detail": "11 cases on file (0 filed against them) — mostly routine, but worth a glance.",
         "evidence": [
@@ -31354,6 +31557,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Push for transparency; keep a backup ready",
         "title": "Rating flagged 'Issuer Not Cooperating'",
         "detail": "CRISIL tags them \"Issuer Not Cooperating\", last around BB — they stopped engaging their rating agency, often a stress or opacity signal. Push for transparency; keep a qualified backup.",
         "evidence": [
@@ -32492,6 +32696,7 @@
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
         "title": "Their borrowed money is expensive",
         "detail": "Their secured facilities carry 13.55% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.13% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.13% for 30 days, ~2.26% for 60, and it still leaves them better off than their bank.",
         "evidence": [
@@ -32510,6 +32715,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 3.8% → 5.7% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -32523,9 +32729,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 22.2% vs peers 11.93% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 22.2% vs peers 11.93% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "22.2%",
@@ -32536,11 +32742,13 @@
             "value": "11.93%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Early payment is worth real money to them",
         "title": "Working capital is deteriorating",
         "detail": "Cash-conversion cycle stretched -69 → -11 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
@@ -32554,6 +32762,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Structural room in the price, not just a markup",
         "title": "They own their conversion margin",
         "detail": "100% of revenue is goods they manufacture themselves, on a 35.5% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
@@ -32572,6 +32781,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Treat a \"we have no margin\" claim with scepticism",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹0.2 Cr is 54.7% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -32590,6 +32800,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push our own payment terms out",
         "title": "Collects its cash quickly",
         "detail": "Gets paid in 11 days (peers 49.38) — a healthy cash position, so we can push to extend our own terms.",
         "evidence": [
@@ -32608,6 +32819,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Buy a discount with faster payment",
         "title": "Thin liquidity — early pay is valuable to them",
         "detail": "Current ratio 0.99 (quick 0.85) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
@@ -32626,6 +32838,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹4 Cr → ₹16 Cr, with operating leverage 1.88× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -32644,6 +32857,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Offer early payment for a discount",
         "title": "Their suppliers are squeezing them (paying faster)",
         "detail": "Days-payable fell 251 → 29 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
         "evidence": [
@@ -32657,6 +32871,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix a rupee price before they pass it through",
         "title": "Their input costs are climbing",
         "detail": "Material cost rose 0% → 64.5% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
@@ -32670,6 +32885,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -32683,6 +32899,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't squeeze — continuity is the risk here",
         "title": "Their returns are debt-manufactured",
         "detail": "DuPont: RoE 100% is propped up by leverage (equity multiplier 11.75×), not operations (net margin only 2.6%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
         "evidence": [
@@ -32706,6 +32923,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Keep a second source qualified",
         "title": "Heavily leveraged",
         "detail": "Debt-to-equity 6.66, interest cover 4.4× — a stretched balance sheet; squeeze too hard and supply reliability is at risk.",
         "evidence": [
@@ -34797,6 +35015,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 14% → 15.5% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -34810,6 +35029,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Anchor on their COGS, not their net margin",
         "title": "Margin eaten by overhead, not input cost",
         "detail": "Gross margin is a healthy 41.9% — their raw-material economics are fine — but overhead (other expenses) climbed from 12.2% to 15.2% of sales. Overhead is semi-fixed and amortises as they scale, so their underlying unit economics already support a lower price. Anchor on their COGS, not the reported net margin.",
         "evidence": [
@@ -34833,6 +35053,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 58 days to pay vs a peer norm of 39.67 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -34851,6 +35072,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
         "title": "Stock is sitting far longer than peers",
         "detail": "They hold inventory 75.77 days vs a peer norm of 53.39 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
         "evidence": [
@@ -34869,6 +35091,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Treat a \"we have no margin\" claim with scepticism",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹85.1 Cr is 34.4% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -34887,6 +35110,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Buy a discount with faster payment",
         "title": "Thin liquidity — early pay is valuable to them",
         "detail": "Current ratio 0.98 (quick 0.55) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
@@ -34905,6 +35129,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push on price — they don't need our cash",
         "title": "Strong cash generation",
         "detail": "Generated ₹344 Cr of operating cash (above net profit ₹248 Cr) — comfortably cash-positive, so they don't need to claw margin from us. Push on price, not terms.",
         "evidence": [
@@ -34923,6 +35148,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade committed volume for a better price",
         "title": "Free cash flow is negative — they're cash-hungry",
         "detail": "Despite ₹248 Cr of net profit, free cash flow is −₹394 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
@@ -34941,6 +35167,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
         "title": "Paying dividends out",
         "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
         "evidence": [
@@ -34954,6 +35181,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Ask why before leaning on their reported numbers",
         "title": "Auditor has changed repeatedly",
         "detail": "2 auditor changes across the filed years (DELOITTE HASKINS & SELLS → PABOLU & CO → SINGHVI DEV & UNNI). Frequent rotation isn't proof of anything on its own, but it's a governance signal worth a question before leaning on their reported numbers.",
         "evidence": [
@@ -34972,6 +35200,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst October 2025 to March 2026: ₹570.7 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -34985,6 +35214,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to stay tight on our terms",
         "title": "Chasing customers through the courts",
         "detail": "2 recovery/insolvency cases they've filed to collect from customers — their own receivables are turning bad, so expect them to stay tight on the terms they give us.",
         "evidence": [
@@ -34998,6 +35228,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -35011,6 +35242,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "They can hold price — push volume and service instead",
         "title": "Solid investment-grade credit",
         "detail": "CRISIL rates them AA — a financially sound, well-regarded supplier: reliable, but they can comfortably hold their price.",
         "evidence": [
@@ -35029,6 +35261,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix the energy component in the contract",
         "title": "Energy-heavy cost base",
         "detail": "Power and fuel run ₹128.2 Cr, 5% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
@@ -35047,6 +35280,7 @@
       {
         "tone": "risk",
         "strength": 3,
+        "insight": "Diligence the litigation before renewing",
         "title": "Serious legal cases pending",
         "detail": "13 high-severity court cases (of 101 total) — a real continuity/reputation risk worth diligence.",
         "evidence": [
@@ -35065,6 +35299,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't push to breaking point — qualify a backup",
         "title": "Barely covers its interest bill",
         "detail": "Interest cover only 1.7× — profit barely clears the interest. A cash-strained, rate-sensitive supplier; continuity risk if pushed.",
         "evidence": [
@@ -36666,9 +36901,9 @@
       {
         "tone": "opportunity",
         "strength": 3,
-        "title": "Very profitable use of capital",
-        "detail": "RoCE 38.2% vs peers 18.18% — they earn well above the cost of capital; there's margin to share with us.",
-        "evidence": [
+        "insight": "Very profitable use of capital",
+        "title": "RoCE 38.2% vs peers 18.18% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": [
           {
             "label": "RoCE",
             "value": "38.2%",
@@ -36679,11 +36914,13 @@
             "value": "18.18%",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
         "title": "Their borrowed money is expensive",
         "detail": "Their secured facilities carry 12% interest. Every month we pay early effectively lends them cash at that rate — worth about 1% a month to them. That sets a defensible number for an early-payment discount: ask for ~1% for 30 days, ~2% for 60, and it still leaves them better off than their bank.",
         "evidence": [
@@ -36702,9 +36939,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 8.4% vs the peer median 2.09% — about 6.3pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 8.4% vs the peer median 2.09% — about 6.3pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "8.4%",
@@ -36720,11 +36957,13 @@
             "value": "6.3pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed 6.7% → 8.4% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -36738,6 +36977,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Early payment is worth real money to them",
         "title": "Working capital is deteriorating",
         "detail": "Cash-conversion cycle stretched 9 → 64 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
@@ -36751,6 +36991,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
         "title": "Stock is sitting far longer than peers",
         "detail": "They hold inventory 54.43 days vs a peer norm of 26.61 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
         "evidence": [
@@ -36769,6 +37010,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push our own payment terms out",
         "title": "Collects its cash quickly",
         "detail": "Gets paid in 46 days (peers 54.08) — a healthy cash position, so we can push to extend our own terms.",
         "evidence": [
@@ -36787,6 +37029,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0.13 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -36800,6 +37043,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹440 Cr → ₹581 Cr, with operating leverage 2.18× (profit growing faster than sales) — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -36818,6 +37062,7 @@
       {
         "tone": "watch",
         "strength": 2,
+        "insight": "Offer early payment for a discount",
         "title": "Their suppliers are squeezing them (paying faster)",
         "detail": "Days-payable fell 55 → 37 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
         "evidence": [
@@ -36831,6 +37076,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "A strengthening supplier will hold its price",
         "title": "Fundamentally strengthening (F-score high)",
         "detail": "Piotroski F-score 8/9 — improving on most fundamental checks (profitability, cash, efficiency). A healthy, strengthening supplier that wants to grow with us — good for a volume-commitment deal, though they can hold their price.",
         "evidence": [
@@ -36844,6 +37090,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst April 2024 to September 2024: ₹72.8 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -36857,6 +37104,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -38584,6 +38832,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 92 days to pay vs a peer norm of 23.01 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -38602,6 +38851,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Early payment is worth real money to them",
         "title": "Working capital is deteriorating",
         "detail": "Cash-conversion cycle stretched -25 → 59 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
@@ -38615,6 +38865,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Use early payment as our lever",
         "title": "They're funding their own customers",
         "detail": "Collection days rose 58 → 79 — cash is increasingly stuck in receivables. That pressure is our early-pay leverage.",
         "evidence": [
@@ -38628,6 +38879,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Buy off their existing stock at a discount",
         "title": "Inventory is piling up",
         "detail": "Inventory days rose 10 → 72 — stock is building faster than it sells. Overstocked suppliers move on price to clear volume.",
         "evidence": [
@@ -38641,6 +38893,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade committed volume for a better price",
         "title": "Free cash flow is negative — they're cash-hungry",
         "detail": "Despite ₹9 Cr of net profit, free cash flow is −₹10 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
@@ -38659,6 +38912,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -38672,6 +38926,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
         "title": "Paying dividends out",
         "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
         "evidence": [
@@ -38685,6 +38940,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect a price-rise request; pre-empt it",
         "title": "Margins are compressing",
         "detail": "EBITDA margin slipped 7.1% → 4.5% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
         "evidence": [
@@ -38698,6 +38954,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst October 2023 to March 2024: ₹621.6 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -38711,6 +38968,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth a look before renewal",
         "title": "Several court cases on record",
         "detail": "5 cases on file (3 filed against them) — mostly routine, but worth a glance.",
         "evidence": [
@@ -38724,6 +38982,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -38737,6 +38996,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Push unit price, not payment timing",
         "title": "They borrow cheaply",
         "detail": "Secured facilities at just 7.75% — bank funding is cheap for them, so early payment buys us very little. Push on unit price and volume terms instead of payment timing.",
         "evidence": [
@@ -40599,9 +40859,9 @@
       {
         "tone": "opportunity",
         "strength": 3,
-        "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 20.6% vs the peer median 9.75% — about 10.9pp of extra cushion baked into their pricing. There's room to push on price.",
-        "evidence": [
+        "insight": "Fatter margins than its peers",
+        "title": "EBITDA margin 20.6% vs the peer median 9.75% — about 10.9pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": [
           {
             "label": "EBITDA margin",
             "value": "20.6%",
@@ -40617,11 +40877,13 @@
             "value": "10.9pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "evidence": []
       },
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Real, structural room in the price",
         "title": "Returns come from fat margins, not leverage",
         "detail": "DuPont: RoE 12.6% is driven by a 8.7% net margin on a near-unleveraged balance sheet (equity multiplier 1.57×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
         "evidence": [
@@ -40645,6 +40907,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Buy a discount with faster payment",
         "title": "Thin liquidity — early pay is valuable to them",
         "detail": "Current ratio 1.09 (quick 0.97) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
@@ -40663,6 +40926,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push on price — they don't need our cash",
         "title": "Strong cash generation",
         "detail": "Generated ₹20 Cr of operating cash (above net profit ₹9 Cr) — comfortably cash-positive, so they don't need to claw margin from us. Push on price, not terms.",
         "evidence": [
@@ -40681,6 +40945,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They can carry a longer credit period for us",
         "title": "Almost no debt",
         "detail": "Debt-to-equity just 0.22 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
@@ -40694,6 +40959,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Worth a look before renewal",
         "title": "Several court cases on record",
         "detail": "15 cases on file (12 filed against them) — mostly routine, but worth a glance.",
         "evidence": [
@@ -40707,6 +40973,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Fix the energy component in the contract",
         "title": "Energy-heavy cost base",
         "detail": "Power and fuel run ₹4 Cr, 4% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
@@ -42046,6 +42313,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
         "detail": "EBITDA margin climbed -14.2% → -1.5% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
@@ -42059,6 +42327,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
         "detail": "They take 101 days to pay vs a peer norm of 48.49 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
@@ -42077,6 +42346,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Trade faster payment for a lower price",
         "title": "Cash is tied up for months",
         "detail": "Cash-conversion cycle 107 days (was 261) — a lot of working capital is locked up. An early-payment-for-discount offer will land well.",
         "evidence": [
@@ -42095,6 +42365,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
         "title": "Stock is sitting far longer than peers",
         "detail": "They hold inventory 116.74 days vs a peer norm of 39.98 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
         "evidence": [
@@ -42113,6 +42384,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "They need the volume — trade it for price",
         "title": "Returns are trending down",
         "detail": "RoCE slid 6.6% → -7.8% over recent years — profitability pressure strengthens our case; they may concede on price to hold volume.",
         "evidence": [
@@ -42126,6 +42398,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Use early payment as our lever",
         "title": "They're funding their own customers",
         "detail": "Collection days rose 11 → 91 — cash is increasingly stuck in receivables. That pressure is our early-pay leverage.",
         "evidence": [
@@ -42139,6 +42412,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Push on price — they don't need our cash",
         "title": "Strong cash generation",
         "detail": "Generated ₹1 Cr of operating cash (above net profit ₹1 Cr) — comfortably cash-positive, so they don't need to claw margin from us. Push on price, not terms.",
         "evidence": [
@@ -42157,6 +42431,7 @@
       {
         "tone": "opportunity",
         "strength": 1,
+        "insight": "Trade our growth for their price",
         "title": "Growing fast — wants to keep us",
         "detail": "Revenue up ₹28 Cr → ₹42 Cr — a growing supplier that will fight to keep our volume.",
         "evidence": [
@@ -42175,6 +42450,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Push on terms, not on price",
         "title": "Thinner margins than peers",
         "detail": "EBITDA margin -1.5% is below the peer median 3.44% — less room; lean on input-cost transparency rather than a blunt cut.",
         "evidence": [
@@ -42193,6 +42469,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "Expect them to hold firm on terms",
         "title": "Pays its own small vendors late",
         "detail": "Delayed MSME dues (worst October 2024 to March 2025: ₹340.4 L) — a tight cash desk. They'll hold firm on terms, but that same cash need makes an early-pay discount attractive to them.",
         "evidence": [
@@ -42206,6 +42483,7 @@
       {
         "tone": "watch",
         "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
         "title": "Late on statutory filings",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
@@ -42219,6 +42497,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Don't push to breaking point — qualify a backup",
         "title": "Barely covers its interest bill",
         "detail": "Interest cover only -17.7× — profit barely clears the interest. A cash-strained, rate-sensitive supplier; continuity risk if pushed.",
         "evidence": [
@@ -42232,6 +42511,7 @@
       {
         "tone": "risk",
         "strength": 2,
+        "insight": "Diligence them before committing volume",
         "title": "Weak overall financial score",
         "detail": "Probe rates them 2/10 overall — financially fragile; keep a qualified backup source.",
         "evidence": [
