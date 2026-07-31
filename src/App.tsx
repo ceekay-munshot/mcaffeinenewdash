@@ -278,11 +278,16 @@ const PEER_METRICS: { key: string; label: string; emoji: string; get: (e: Entity
   { key: "dso", label: "Collection days", emoji: "⏱️", get: supDSO, unit: (v) => `${Math.round(v)} d`, higherBetter: false, note: "Days to collect from customers — fewer than peers means a healthier cash position." },
 ];
 
+// Is there anything to rank this company on? Checked by the caller so the card's
+// heading never renders above an empty box (PeerCompareCard returning null still
+// left the titled shell behind).
+function peerMetricsFor(e: Entity) {
+  return PEER_METRICS.filter((mm) => mm.get(e) != null && DATA.entities.filter((p) => p.category === e.category && mm.get(p) != null).length >= 3);
+}
+function hasPeerCompare(e: Entity) { return peerMetricsFor(e).length > 0; }
+
 function PeerCompareCard({ e }: { e: Entity }) {
-  const avail = useMemo(
-    () => PEER_METRICS.filter((mm) => mm.get(e) != null && DATA.entities.filter((p) => p.category === e.category && mm.get(p) != null).length >= 3),
-    [e],
-  );
+  const avail = useMemo(() => peerMetricsFor(e), [e]);
   const [k, setK] = useState(avail[0]?.key ?? "revenue");
   if (avail.length === 0) return null;
   const m = avail.find((x) => x.key === k) ?? avail[0];
@@ -908,44 +913,6 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
   );
 }
 
-// Product / material taxonomy for the "By product" view. Each tag matches the
-// supplier's free-text industry + research.products + overview, so we can group
-// vendors that offer the same thing — a ready shortlist of sourcing alternatives.
-type ProductGroup = "Finished product" | "Raw material" | "Packaging";
-const PRODUCT_TAGS: { key: string; label: string; emoji: string; group: ProductGroup; re: RegExp }[] = [
-  { key: "facewash", label: "Face wash / cleanser", emoji: "🧼", group: "Finished product", re: /face ?wash|facial cleanser|cleanser/ },
-  { key: "bodywash", label: "Body wash / shower gel", emoji: "🚿", group: "Finished product", re: /body ?wash|shower gel|bathing/ },
-  { key: "haircare", label: "Shampoo / conditioner", emoji: "🧴", group: "Finished product", re: /shampoo|conditioner/ },
-  { key: "hairoil", label: "Hair oil", emoji: "🛢️", group: "Finished product", re: /hair oil/ },
-  { key: "serum", label: "Serums", emoji: "💧", group: "Finished product", re: /\bserum/ },
-  { key: "cream", label: "Creams / lotions / moisturisers", emoji: "🧴", group: "Finished product", re: /\bcream|lotion|moisturi[sz]er/ },
-  { key: "sunscreen", label: "Sunscreen", emoji: "☀️", group: "Finished product", re: /sunscreen|sun care|\bspf\b/ },
-  { key: "mask", label: "Sheet masks / patches", emoji: "🎭", group: "Finished product", re: /sheet mask|face mask|hydrogel|\bpatch|nose strip|wax strip/ },
-  { key: "scrub", label: "Scrubs / exfoliants", emoji: "🧽", group: "Finished product", re: /scrub|exfoliat/ },
-  { key: "soap", label: "Soaps / bars", emoji: "🧼", group: "Finished product", re: /\bsoap/ },
-  { key: "lip", label: "Lip care", emoji: "💄", group: "Finished product", re: /lip balm|lip care|lipstick|\blip\b/ },
-  { key: "wipes", label: "Wipes", emoji: "🧻", group: "Finished product", re: /\bwipes?\b/ },
-  { key: "surfactant", label: "Surfactants", emoji: "🫧", group: "Raw material", re: /surfactant/ },
-  { key: "preservative", label: "Preservatives", emoji: "🧪", group: "Raw material", re: /preservative/ },
-  { key: "fragrance", label: "Fragrances / essential oils", emoji: "🌸", group: "Raw material", re: /fragrance|essential oil|\baroma|perfum/ },
-  { key: "actives", label: "Actives / botanical extracts", emoji: "🌿", group: "Raw material", re: /\bactives?\b|\bextract|botanical/ },
-  { key: "emulsifier", label: "Emulsifiers", emoji: "🧫", group: "Raw material", re: /emulsifier/ },
-  { key: "specialtychem", label: "Specialty chemicals / ingredients", emoji: "⚗️", group: "Raw material", re: /specialty chemical|fine chemical|specialty ingredient|cosmetic ingredient|chemical distribut/ },
-  { key: "tube", label: "Tubes", emoji: "📏", group: "Packaging", re: /\btubes?\b/ },
-  { key: "jar", label: "Jars", emoji: "🫙", group: "Packaging", re: /\bjars?\b/ },
-  { key: "bottle", label: "Bottles", emoji: "🍾", group: "Packaging", re: /\bbottles?\b/ },
-  { key: "closure", label: "Caps / pumps / closures", emoji: "🔩", group: "Packaging", re: /\bcaps?\b|closure|\bpumps?\b|dispenser/ },
-  { key: "printed", label: "Cartons / boxes / labels", emoji: "📦", group: "Packaging", re: /carton|\bboxes?\b|\blabels?\b|printing|printed pack/ },
-  { key: "pouch", label: "Pouches / sachets / films", emoji: "🥡", group: "Packaging", re: /pouch|sachet|\bfilms?\b|laminat/ },
-];
-
-function productTagsOf(e: Entity): string[] {
-  const r = e.research;
-  const blob = [e.industry ?? "", ...(r?.products ?? []), r?.overview ?? ""].join(" · ").toLowerCase();
-  if (!blob.trim()) return [];
-  return PRODUCT_TAGS.filter((t) => t.re.test(blob)).map((t) => t.key);
-}
-
 /* ---- Who is best placed to supply a given material? -------------------------
    We only ever hold a financial score for ONE supplier per ingredient — the
    incumbent — because the open-web alternatives are names without a CIN. So
@@ -1368,27 +1335,18 @@ function TrendCompare({ selected }: { selected: Entity[] }) {
 function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: Entity) => void; onClose: () => void }) {
   const [picked, setPicked] = useState<string[]>([]);
   const [analysing, setAnalysing] = useState(false);
-  const [prod, setProd] = useState("any");
   const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
   const [query, setQuery] = useState("");
   const [ingredient, setIngredient] = useState<MarketEntry | null>(null);
-
-  const avail = useMemo(() => {
-    const counts = new Map<string, number>();
-    PRODUCT_TAGS.forEach((t) => counts.set(t.key, 0));
-    all.forEach((e) => productTagsOf(e).forEach((k) => counts.set(k, (counts.get(k) ?? 0) + 1)));
-    return PRODUCT_TAGS.filter((t) => (counts.get(t.key) ?? 0) > 0);
-  }, [all]);
 
   const pool = useMemo(() => {
     const q = query.trim().toLowerCase();
     return all.filter((e) => {
       if (cat !== "All" && e.category !== cat) return false;
-      if (prod !== "any" && !productTagsOf(e).includes(prod)) return false;
       if (q && !`${e.brand} ${e.legalName ?? ""}`.toLowerCase().includes(q)) return false;
       return true;
     }).sort((a, b) => (revOf(b) ?? -1) - (revOf(a) ?? -1));
-  }, [all, cat, prod, query]);
+  }, [all, cat, query]);
 
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const enriched = useMemo(() => all.filter((e) => hasDeepDive(e.cin)), [all]);
@@ -1420,29 +1378,24 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
         <div className="mt-3 flex flex-wrap gap-2">
           {enriched.length >= 2 && <button onClick={() => launch(enriched)} className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110">✨ Our {enriched.length} deep-dive suppliers</button>}
           {(["Manufacturer", "RM Vendor", "PM Vendor"] as const).map((c) => topCat(c).length >= 2 ? <button key={c} onClick={() => launch(topCat(c))} className={presetCls}>{catEmoji(c)} Top {c}s</button> : null)}
-        </div>
-
-        {/* ingredient sellers — every seller of one ingredient (incl. IndiaMART alternatives) with price */}
-        <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-3">
-          <span className="text-sm font-medium text-slate-600">🧪 Or see one ingredient's sellers &amp; prices:</span>
           <select value="" onChange={(e) => { const entry = allMarket().find((m) => m.item === e.target.value); if (entry) setIngredient(entry); }}
-            className="min-w-[16rem] rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400">
+            className="rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 outline-none ring-1 ring-slate-200 focus:ring-teal-400">
             <option value="">Pick an ingredient…</option>
             <optgroup label="Raw materials">{allMarket().filter((m) => m.side === "rm").map((m) => <option key={m.item} value={m.item}>{m.item}</option>)}</optgroup>
             <optgroup label="Packaging">{allMarket().filter((m) => m.side === "pm").map((m) => <option key={m.item} value={m.item}>{m.item}</option>)}</optgroup>
           </select>
         </div>
 
-        {/* filters */}
-        <div className="mt-4 flex flex-wrap items-center gap-3">
-          <Dropdown label="Product" value={prod} onChange={setProd} options={[{ key: "any", label: "Any product" }, ...avail.map((t) => ({ key: t.key, label: t.label, emoji: t.emoji }))]} />
+        {/* one filter row — the product-taxonomy dropdown duplicated what Type and
+            the search box already do, and made this read as a form */}
+        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-4">
           <Dropdown label="Type" value={cat} onChange={setCat} options={SUP_CATS.map((c) => ({ key: c, label: c }))} />
           <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search suppliers…" className="w-52 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-800 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-teal-400" />
           <span className={`ml-auto text-sm ${full ? "font-semibold text-teal-700" : "text-slate-400"}`}>{picked.length}/{CMP_MAX} picked</span>
         </div>
 
         {/* checkbox grid */}
-        <div className="mt-3 max-h-72 overflow-y-auto rounded-xl bg-slate-50 p-2 ring-1 ring-slate-200">
+        <div className="mt-3 max-h-[26rem] overflow-y-auto rounded-xl bg-slate-50 p-2 ring-1 ring-slate-200">
           <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
             {pool.map((e) => {
               const on = picked.includes(e.folder);
@@ -2196,14 +2149,14 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-2.5">
+          {metrics.some((k) => k.value !== "—") && <div className="grid grid-cols-2 gap-2.5">
             {metrics.map((k) => (
               <div key={k.label} className="rounded-2xl bg-white/10 px-4 py-2.5 ring-1 ring-white/20">
                 <div className={`text-[10px] font-medium uppercase tracking-wide ${k.tint}`}>{k.label}</div>
                 <div className="text-lg font-bold tabular-nums">{k.value}</div>
               </div>
             ))}
-          </div>
+          </div>}
         </div>
       </div>
 
@@ -2218,7 +2171,16 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
       )}
 
       {parentGroup && <div className="mt-4 rounded-2xl bg-sky-50 p-4 text-sm text-sky-800 ring-1 ring-sky-200">ℹ️ {e.brand} has no standalone financials — the trends & numbers below are <span className="font-medium">{parentGroup}</span>'s consolidated group filing, not {e.brand} alone.</div>}
-      {noFinancials && <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm text-amber-800 ring-1 ring-amber-200">No financial data is available for this company in Tracxn — only the registry basics below.</div>}
+      {/* Say why there are no numbers: an unregistered trader has no filings to
+          find, which is different from a registered company we simply haven't
+          pulled. Blaming the data source read as a tooling failure. */}
+      {noFinancials && (
+        <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm text-amber-800 ring-1 ring-amber-200">
+          {e.cin
+            ? <>No filed accounts pulled for this vendor yet — what we know is below.</>
+            : <>No company registration on file for this vendor, so no published accounts exist to analyse. Their leverage is in the market structure below, not in their financials.</>}
+        </div>
+      )}
 
       <div className="mt-4 space-y-4">
         {trend.length > 0 && (
@@ -2230,19 +2192,19 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
           </Card>
         )}
         {cost && <Card title={cost.title} sub={cost.sub} accent="#0d9488">{cost.node}</Card>}
-        {kind === "supplier" && (
+        {kind === "supplier" && hasPeerCompare(e) && (
           <Card title="🏁 How it stacks up against peers" sub="ranked against the same-category vendors we track" accent="#6d28d9"><PeerCompareCard e={e} /></Card>
         )}
         {/* negotiation spine: fitness/risk, balance sheet, market leverage */}
         {spine.length > 0 && (
-          <div className="gap-4 [column-fill:balance] sm:columns-2 [&>*]:mb-4 [&>*]:break-inside-avoid">
+          <div className={`gap-4 [column-fill:balance] [&>*]:mb-4 [&>*]:break-inside-avoid ${spine.length > 1 ? "sm:columns-2" : ""}`}>
             {spine.map((c) => <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>)}
           </div>
         )}
         {/* registry & reference detail — one screen away, nothing dropped */}
         {rest.length > 0 && (
           <Expander count={rest.length} hint={restHint}>
-            <div className="gap-4 [column-fill:balance] sm:columns-2 [&>*]:mb-4 [&>*]:break-inside-avoid">
+            <div className={`gap-4 [column-fill:balance] [&>*]:mb-4 [&>*]:break-inside-avoid ${rest.length > 1 ? "sm:columns-2" : ""}`}>
               {rest.map((c) => <Card key={c.key} title={c.title} sub={c.sub} accent="#0d9488">{c.node}</Card>)}
             </div>
           </Expander>

@@ -87,6 +87,31 @@ function displayLegalName(probeName, entity) {
   return entity?.legalName ?? p; // renamed / holdco name → prefer our curated name
 }
 
+// Registry descriptions open with the filed legal name, which for a renamed or
+// holdco-owned company is a name nobody recognises ("Alternicq Limited (AL), as
+// per its credit ratings report…" for Manjushree). Say the name the rest of the
+// dashboard uses, and end on a full stop — a hard character cut left the text
+// hanging mid-word ("branches located in Amritsar, Badd").
+function tidyDescription(rawDesc, probeName, displayName) {
+  let t = String(rawDesc ?? "").replace(/\s+/g, " ").trim();
+  if (!t) return null;
+  if (probeName && displayName && probeName.toLowerCase() !== displayName.toLowerCase()) {
+    // registry names are ALL-CAPS; title-case so the sentence doesn't shout
+    const bare = displayName.replace(/\s+(private|limited|pvt\.?|ltd\.?)\b/gi, "").trim() || displayName;
+    const short = bare === bare.toUpperCase() ? bare.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase()) : bare;
+    const esc = probeName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    // drop the "(AL)" initialism that trails the old name, else it is orphaned
+    t = t.replace(new RegExp(`${esc}\\s*\\([A-Z]{1,5}\\)`, "gi"), short).replace(new RegExp(esc, "gi"), short);
+  }
+  const LIMIT = 520;
+  if (t.length > LIMIT) {
+    const cut = t.slice(0, LIMIT);
+    const stop = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? "));
+    t = stop > 160 ? cut.slice(0, stop + 1) : cut.replace(/\s+\S*$/, "") + "…";
+  }
+  return t;
+}
+
 function build(raw, entity) {
   const d = raw.data ?? raw;
   const finsRaw = d.financials ?? [];
@@ -367,7 +392,8 @@ function build(raw, entity) {
 
   const detail = {
     // identity
-    cin: co.cin ?? null, legalName: displayLegalName(co.legal_name, entity), description: (d.description?.desc_thousand_char ?? "").slice(0, 600) || null,
+    cin: co.cin ?? null, legalName: displayLegalName(co.legal_name, entity),
+    description: tidyDescription(d.description?.desc_thousand_char, co.legal_name, displayLegalName(co.legal_name, entity)),
     website: co.website ?? null, city: co.registered_address?.city ?? null, state: co.registered_address?.state ?? null,
     incorporation: co.incorporation_date ?? null, classification: co.classification ?? null, status: co.status ?? null,
     industry: pc0.bizIndustry ?? null, segment: pc0.bizSegment ?? null, segments: d.industry_segments?.[0]?.segments ?? [],

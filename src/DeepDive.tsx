@@ -259,23 +259,23 @@ function LeversTab({ d, opps, onGoto, alt }: { d: Detail; opps: number; onGoto: 
                 {items.length === 0 && <div className="rounded-xl bg-white p-3 text-sm text-slate-400 ring-1 ring-slate-200">None.</div>}
                 {items.map((lv, i) => {
                   const key = g.tone + i, isOpen = open === key, hasEv = (lv.evidence?.length ?? 0) > 0;
+                  // every lever has reasoning, so every lever is expandable now
+                  const canOpen = true;
                   return (
                     <div key={i} className={`overflow-hidden rounded-xl ${g.bg} ring-1 ${g.ring} transition ${isOpen ? "shadow-md" : ""}`}>
-                      <button onClick={() => hasEv && setOpen(isOpen ? null : key)} className={`flex w-full items-start justify-between gap-2 p-3.5 text-left ${hasEv ? "hover:bg-white/30" : "cursor-default"}`}>
-                        <div className="min-w-0">
-                          <div className={`text-sm font-semibold ${g.text}`}>{lv.title}</div>
-                          <p className="mt-1 text-xs leading-relaxed text-slate-600">{lv.detail}</p>
-                        </div>
-                        <div className="flex shrink-0 flex-col items-end gap-1">
+                      <button onClick={() => canOpen && setOpen(isOpen ? null : key)} className="flex w-full items-center justify-between gap-2 p-3 text-left hover:bg-white/40">
+                        <div className={`min-w-0 text-sm font-semibold leading-snug ${g.text}`}>{lv.title}</div>
+                        <div className="flex shrink-0 items-center gap-2">
                           <span className="text-xs" title={`strength ${lv.strength}/3`}>{"●".repeat(lv.strength)}<span className="text-slate-300">{"●".repeat(3 - lv.strength)}</span></span>
-                          {hasEv && <span className="whitespace-nowrap text-[10px] font-semibold text-slate-400">{isOpen ? "hide ▲" : "why? ▾"}</span>}
+                          <span className="whitespace-nowrap text-[10px] font-semibold text-slate-400">{isOpen ? "▲" : "why? ▾"}</span>
                         </div>
                       </button>
-                      {isOpen && hasEv && (
+                      {isOpen && (
                         <div className="border-t border-white/70 bg-white/60 px-3.5 py-2.5">
-                          <div className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">The numbers behind it — tap a source to open that tab</div>
+                          <p className="text-xs leading-relaxed text-slate-700">{lv.detail}</p>
+                          {hasEv && <div className="mb-1.5 mt-2.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">The numbers behind it — tap a source to open that tab</div>}
                           <div className="flex flex-wrap gap-1.5">
-                            {lv.evidence!.map((e, j) => {
+                            {(lv.evidence ?? []).map((e, j) => {
                               const tm = TAB_META[e.tab] ?? { name: e.tab, cls: "bg-slate-100 text-slate-600 hover:bg-slate-200" };
                               return (
                                 <span key={j} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2 py-1 text-xs ring-1 ring-slate-200">
@@ -988,11 +988,23 @@ function RiskTab({ d }: { d: Detail }) {
 }
 
 /* ================================================================== ABOUT */
+// A paragraph is the heaviest thing on a page; show the first two lines and let
+// the reader ask for the rest.
+function ReadMore({ text }: { text: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <p className={`text-sm leading-relaxed text-slate-600 ${open ? "" : "line-clamp-2"}`}>{text}</p>
+      <button onClick={() => setOpen((v) => !v)} className="mt-1 text-xs font-semibold text-teal-700 hover:underline">{open ? "Show less" : "Read more"}</button>
+    </div>
+  );
+}
+
 function AboutTab({ d }: { d: Detail }) {
   return (
-    <div className="grid gap-4 lg:grid-cols-3">
+    <div className="grid items-start gap-4 lg:grid-cols-3">
       <Card title="What they do" sub={[...new Set([d.industry, d.segment, ...(d.segments ?? []), d.activityGroup].filter(Boolean))].join(" · ") || "business profile"} accent={TEAL} className="lg:col-span-2">
-        {d.description ? <p className="text-sm leading-relaxed text-slate-600">{d.description}</p> : <Empty t="No description on file." />}
+        {d.description ? <ReadMore text={d.description} /> : <Empty t="No description on file." />}
         {d.gstNature?.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-1.5">
             {d.gstNature.map((t) => <span key={t} className="rounded-md bg-teal-50 px-2 py-0.5 text-[11px] font-medium text-teal-800 ring-1 ring-teal-100">{t}</span>)}
