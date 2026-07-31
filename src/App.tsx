@@ -21,7 +21,7 @@ import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supRoce, supCurrent, supDebtEq, supIntCov,
 } from "./lib/insights";
-import DeepDive, { hasDeepDive, probeLevers, supplierHealth, probeSegmentsOf, ProbeCompare, enrichedCount } from "./DeepDive";
+import DeepDive, { hasDeepDive, probeLevers, supplierHealth, probeSegmentsOf, ProbeCompare, enrichedCount, type TabKey as DeepTabKey } from "./DeepDive";
 
 /* -------------------------------------------------- data accessors / helpers */
 
@@ -453,7 +453,7 @@ function QuotePicker({ tracked, market, onPick }: {
   );
 }
 
-function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, tab?: DeepTabKey) => void }) {
   const [lines, setLines] = useState<L3Line[]>(L3_LINES);
   const [phase, setPhase] = useState<"input" | "running" | "done">("input");
   const [step, setStep] = useState(0);
@@ -685,7 +685,7 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
         </Card>
       )}
 
-      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
+      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor; setLeversFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }
@@ -876,7 +876,7 @@ function diverseTop<T extends { l: { insight: string }; e: { folder: string } }>
   return out;
 }
 
-function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, tab?: DeepTabKey) => void }) {
   // Remember which insight was clicked, not just whose it was, so the modal can
   // open on that lever rather than at the top of the supplier's whole set.
   const [leversFor, setLeversFor] = useState<{ e: Entity; focus: string } | null>(null);
@@ -954,7 +954,7 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
       </div>
 
       {leversFor && <LeversModal e={leversFor.e} focus={leversFor.focus} onClose={() => setLeversFor(null)}
-        onOpenProfile={() => { const t = leversFor.e; setLeversFor(null); onSelect(t); }} />}
+        onOpenProfile={(tab) => { const t = leversFor.e; setLeversFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }
@@ -1056,7 +1056,11 @@ function SupplierView() {
   const [tab, setTab] = useState<SupTab>("overview");
   const [compareMode, setCompareMode] = useState(false);
   const [selected, setSelected] = useState<Entity | null>(null);
-  const { open: openSupplier, back } = useProfileNav(selected, setSelected);
+  // Which deep-dive tab to land on. Set when the click carried a destination —
+  // an evidence chip pointing at Financials — and cleared for a plain open.
+  const [deepTab, setDeepTab] = useState<DeepTabKey | undefined>(undefined);
+  const { open: openProfile, back } = useProfileNav(selected, setSelected);
+  const openSupplier = (e: Entity, tab?: DeepTabKey) => { setDeepTab(tab); openProfile(e); };
 
   const stats = useMemo(() => {
     const revCr = all.reduce((s, e) => s + (toCrore(revOf(e)) ?? 0), 0);
@@ -1073,7 +1077,7 @@ function SupplierView() {
   // into the full tabbed deep-dive (no separate "open deep-dive" / "show full
   // detail" hops). Thin suppliers still get the lighter profile.
   if (selected) return hasDeepDive(selected.cin)
-    ? <DeepDive entity={selected} onClose={back} supplies={suppliedItems(selected.folder)} />
+    ? <DeepDive entity={selected} initialTab={deepTab} onClose={back} supplies={suppliedItems(selected.folder)} />
     : <CompanyPage entity={selected} onBack={back} kind="supplier" />;
 
   return (
@@ -1114,7 +1118,7 @@ function SupplierView() {
 // (+ vendors), the manufacturers who make the products, and packaging (+ vendors),
 // each with financials & levers. No invented per-product chains (we don't hold the
 // real product→components mapping); market depth per item is the Ingredients tab.
-function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, tab?: DeepTabKey) => void }) {
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const [leversFor, setLeversFor] = useState<Entity | null>(null);
   const [openItem, setOpenItem] = useState<string | null>(null);
@@ -1150,22 +1154,24 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
             <tbody>
               {shown.map(({ item, folder, e }) => {
                 const hasItemPage = !!marketFor(item);
+                // The row opens the vendor, the same as the supplier board —
+                // clicking a revenue cell used to do nothing at all. Where the
+                // row also names a material, that cell keeps its own
+                // destination and stops the click from bubbling.
                 return (
-                <tr key={item ?? folder} className="border-t border-slate-100 transition hover:bg-teal-50/40">
-                  {/* the material opens its ingredient breakdown; the vendor opens
-                      its deep-dive — two different destinations, so the row itself
-                      is no longer a single ambiguous click target. */}
+                <tr key={item ?? folder} onClick={() => e && onSelect(e)}
+                  className={`border-t border-slate-100 transition hover:bg-teal-50/40 ${e ? "cursor-pointer" : ""}`}>
                   {itemHead && (
                     <td className="max-w-[280px] px-4 py-3.5">
                       {hasItemPage ? (
-                        <button onClick={() => setOpenItem(item!)} className="w-full truncate text-left font-bold text-slate-900 hover:text-teal-700 hover:underline" title={`${item} — open ingredient breakdown`}>{item}</button>
+                        <button onClick={(ev) => { ev.stopPropagation(); setOpenItem(item!); }} className="w-full truncate text-left font-bold text-slate-900 hover:text-teal-700 hover:underline" title={`${item} — open ingredient breakdown`}>{item}</button>
                       ) : <div className="truncate font-bold text-slate-900" title={item}>{item}</div>}
                     </td>
                   )}
                   <td className="min-w-[240px] px-4 py-3.5">{e ? (
-                    <button onClick={() => onSelect(e)} className="flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline" title={`${e.brand} — open deep-dive`}>
+                    <span className="flex items-start gap-1.5 text-left font-semibold text-teal-700 group-hover:underline" title={`${e.brand} — open deep-dive`}>
                       <span className="mt-0.5 shrink-0">{catEmoji(e.category)}</span><span className="leading-snug">{fullName(e.legalName, e.brand)}</span>
-                    </button>
+                    </span>
                   ) : <span className="text-slate-400">not mapped</span>}</td>
                   <td className={`${TDNUM} font-semibold text-slate-900`}>{e ? fmtCrore(revOf(e)) : "—"}</td>
                   <td className={`${TDNUM} text-slate-600`}>{e ? fmtPct(ebitdaMarginOf(e)) : "—"}</td>
@@ -1208,7 +1214,7 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
           only about who actually makes our products. */}
       <Section title="Contract manufacturers — who makes our products" emoji="🏭" accent="#7c3aed"
         rows={mfRows} poolNote={`${mfRows.length} manufacturers tracked · they buy from the RM & PM vendors in the Ingredients tab`} />
-      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
+      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor; setLeversFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }
@@ -1464,7 +1470,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
   );
 }
 
-function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, tab?: DeepTabKey) => void }) {
   const [openItem, setOpenItem] = useState<string | null>(null);
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const [side, setSide] = useState<"rm" | "pm" | "all">("all");
@@ -1638,7 +1644,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
       </Card>
 
       <p className="text-[11px] text-slate-400">Open-web research, not a census · click a row for the full ingredient analysis.</p>
-      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
+      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor; setLeversFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }
@@ -1924,7 +1930,7 @@ const LEVER_TAG: Record<string, { emoji: string; short: string }> = {
 
 // The supplier board holds two views of the same vendor set — a scannable table
 // and the benchmark charts — behind one compact toggle, so it's one tab, not two.
-function BoardTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+function BoardTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, tab?: DeepTabKey) => void }) {
   return <SupplierBoard all={all} onSelect={onSelect} />;
 }
 
@@ -1960,11 +1966,20 @@ export function LeverCell({ e, onOpen }: { e: Entity | undefined; onOpen: (e: En
 
 const LEV_TONE_ORDER = ["opportunity", "watch", "risk"] as const;
 const LEV_TONE_PLURAL: Record<InsightTone, string> = { opportunity: "opportunities", watch: "to watch", risk: "risks" };
+// Where an evidence chip points. Mirrors TAB_META in DeepDive; a chip whose tab
+// isn't a real destination just renders as plain text rather than a dead link.
+const EV_TAB: Record<string, { name: string; cls: string }> = {
+  financials: { name: "Financials", cls: "bg-teal-100 text-teal-700" },
+  peers: { name: "Peers", cls: "bg-sky-100 text-sky-700" },
+  owners: { name: "Owners", cls: "bg-violet-100 text-violet-700" },
+  risk: { name: "Risk", cls: "bg-rose-100 text-rose-700" },
+};
+
 /* `focus` is the insight the reader actually clicked. Without it the modal opens
    at the top of the supplier's whole lever set and they have to hunt for the row
    they came from — fine on a vendor with three levers, useless on one with
    seventeen. With it, that lever is scrolled to and ringed. */
-function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose: () => void; onOpenProfile: () => void; focus?: string }) {
+function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose: () => void; onOpenProfile: (tab?: DeepTabKey) => void; focus?: string }) {
   const focusRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (focus && focusRef.current) focusRef.current.scrollIntoView({ block: "center" });
@@ -1981,7 +1996,7 @@ function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose:
   // the button never opens an empty box.
   const levers = probe.length
     ? probe.map((l) => ({ tone: l.tone as InsightTone, strength: l.strength, insight: l.insight, title: l.title, detail: l.detail, evidence: l.evidence ?? [] }))
-    : supplierInsights(e).map((i) => ({ tone: i.tone, strength: 2, insight: i.title, title: "", detail: i.detail, evidence: [] as { label: string; value: string }[] }));
+    : supplierInsights(e).map((i) => ({ tone: i.tone, strength: 2, insight: i.title, title: "", detail: i.detail, evidence: [] as { label: string; value: string; tab?: string }[] }));
   const health = supplierHealth(e.cin);
   const counts = LEV_TONE_ORDER.map((t) => ({ t, n: levers.filter((l) => l.tone === t).length }));
 
@@ -2031,11 +2046,24 @@ function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose:
                       <p className="mt-1 text-sm leading-relaxed text-slate-600">{l.detail}</p>
                       {l.evidence.length > 0 && (
                         <div className="mt-2 flex flex-wrap gap-1.5">
-                          {l.evidence.map((ev, j) => (
-                            <span key={j} className="inline-flex items-center gap-1 rounded-md bg-white/80 px-2 py-0.5 text-[11px] ring-1 ring-slate-200">
-                              <span className="text-slate-500">{ev.label}</span><span className="font-mono font-semibold text-slate-800">{ev.value}</span>
-                            </span>
-                          ))}
+                          {/* Each chip knows which tab proves it, so it opens
+                              there — the deep-dive's own chips already did this
+                              and the modal was dropping the destination. */}
+                          {l.evidence.map((ev, j) => {
+                            const dest = EV_TAB[ev.tab ?? ""];
+                            return dest ? (
+                              <button key={j} onClick={() => onOpenProfile(ev.tab as DeepTabKey)} title={`Open ${dest.name}`}
+                                className="group inline-flex items-center gap-1 rounded-md bg-white/80 px-2 py-0.5 text-[11px] ring-1 ring-slate-200 transition hover:ring-teal-400">
+                                <span className="text-slate-500">{ev.label}</span>
+                                <span className="font-mono font-semibold text-slate-800">{ev.value}</span>
+                                <span className={`rounded px-1 text-[9px] font-semibold ${dest.cls}`}>{dest.name} →</span>
+                              </button>
+                            ) : (
+                              <span key={j} className="inline-flex items-center gap-1 rounded-md bg-white/80 px-2 py-0.5 text-[11px] ring-1 ring-slate-200">
+                                <span className="text-slate-500">{ev.label}</span><span className="font-mono font-semibold text-slate-800">{ev.value}</span>
+                              </span>
+                            );
+                          })}
                         </div>
                       )}
                     </div>
@@ -2049,7 +2077,7 @@ function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose:
 
         <div className="flex items-center justify-between gap-3 border-t border-slate-200 px-6 py-3">
           <span className="text-[11px] text-slate-400">Generated from this supplier's own filings — every lever traces to a number above.</span>
-          <button onClick={onOpenProfile} className="shrink-0 rounded-lg bg-teal-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">Open full deep-dive →</button>
+          <button onClick={() => onOpenProfile()} className="shrink-0 rounded-lg bg-teal-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">Open full deep-dive →</button>
         </div>
       </div>
     </div>
@@ -2059,7 +2087,7 @@ function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose:
 // One dense analyst table: every supplier is a row, negotiation metrics are
 // columns, and the levers/risks become compact tags. Replaces the old wall of
 // look-alike cards — scannable and sortable in one view.
-function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
+function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, tab?: DeepTabKey) => void }) {
   const [cat, setCat] = useState<(typeof SUP_CATS)[number]>("All");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<"levers" | "revenue" | "ebitda" | "dso">("levers");
@@ -2158,7 +2186,7 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity)
         </button>
       )}
 
-      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={() => { const t = leversFor; setLeversFor(null); onSelect(t); }} />}
+      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor; setLeversFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }

@@ -122,11 +122,14 @@ const TABS = [
   { key: "news", label: "📰 News" },
   { key: "about", label: "ℹ️ About" },
 ] as const;
-type TabKey = (typeof TABS)[number]["key"];
+export type TabKey = (typeof TABS)[number]["key"];
 
-export default function DeepDive({ entity, onClose, supplies }: { entity: Entity; onClose: () => void; supplies?: string[] }) {
+// `initialTab` lets a caller land the reader where their click pointed — an
+// evidence chip that reads "Peer median 11.97%" should open the Peers tab, not
+// drop them on Levers to go find it.
+export default function DeepDive({ entity, onClose, supplies, initialTab }: { entity: Entity; onClose: () => void; supplies?: string[]; initialTab?: TabKey }) {
   const d = entity.cin ? DETAILS[entity.cin] : undefined;
-  const [tab, setTab] = useState<TabKey>("levers");
+  const [tab, setTab] = useState<TabKey>(initialTab ?? "levers");
   if (!d) return null;
   const L = d.latest;
   const opps = d.levers.filter((l) => l.tone === "opportunity").length;
