@@ -392,6 +392,61 @@ const L3_STEPS = [
   "Costing the gap against your annual volume…",
 ];
 
+/* A styled picker, not a native <select>. The browser dropdown rendered ~30
+   unsorted names as a full-height OS overlay across the page, mixing vendors we
+   score with open-market names we hold nothing on. This groups them, ranks the
+   scored ones by health, and stays inside the card. */
+function QuotePicker({ tracked, market, onPick }: {
+  tracked: { name: string; e: Entity; health: number }[];
+  market: string[];
+  onPick: (name: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const away = (ev: MouseEvent) => { if (box.current && !box.current.contains(ev.target as Node)) setOpen(false); };
+    const esc = (ev: KeyboardEvent) => { if (ev.key === "Escape") setOpen(false); };
+    document.addEventListener("mousedown", away);
+    window.addEventListener("keydown", esc);
+    return () => { document.removeEventListener("mousedown", away); window.removeEventListener("keydown", esc); };
+  }, [open]);
+  const total = tracked.length + market.length;
+  if (!total) return null;
+  const hcls = (h: number) => (h >= 65 ? "bg-emerald-100 text-emerald-700" : h >= 50 ? "bg-amber-100 text-amber-700" : "bg-rose-100 text-rose-700");
+  const Row = ({ label, emoji, health, onClick }: { label: string; emoji?: string; health?: number; onClick: () => void }) => (
+    <button onClick={onClick} className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-sm transition hover:bg-teal-50">
+      {emoji && <span className="shrink-0">{emoji}</span>}
+      <span className="min-w-0 flex-1 truncate text-slate-700">{label}</span>
+      {health != null && <span className={`shrink-0 rounded px-1.5 text-[11px] font-extrabold ${hcls(health)}`}>{health}</span>}
+    </button>
+  );
+  return (
+    <div ref={box} className="relative mt-2">
+      <button onClick={() => setOpen((v) => !v)}
+        className="w-full rounded-lg border border-dashed border-slate-300 px-2.5 py-1.5 text-left text-xs font-medium text-slate-500 transition hover:border-teal-400 hover:bg-teal-50/50 hover:text-teal-700">
+        + Add a competing quote
+      </button>
+      {open && (
+        <div className="absolute inset-x-0 top-full z-30 mt-1 max-h-64 overflow-y-auto rounded-xl bg-white p-1.5 shadow-xl ring-1 ring-slate-200">
+          {tracked.length > 0 && (
+            <>
+              <div className="px-2.5 pb-1 pt-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">Vendors we score · healthiest first</div>
+              {tracked.map((t) => <Row key={t.name} label={t.name} emoji={catEmoji(t.e.category)} health={t.health} onClick={() => { onPick(t.name); setOpen(false); }} />)}
+            </>
+          )}
+          {market.length > 0 && (
+            <>
+              <div className="px-2.5 pb-1 pt-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">Open-market sellers · no financials on file</div>
+              {market.map((n) => <Row key={n} label={n} onClick={() => { onPick(n); setOpen(false); }} />)}
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
   const [lines, setLines] = useState<L3Line[]>(L3_LINES);
   const [phase, setPhase] = useState<"input" | "running" | "done">("input");
@@ -425,13 +480,21 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
 
   // Who else could quote this material: the vendors we track, plus the
   // alternatives already researched for that item on IndiaMART / TradeIndia.
+  // Split the candidates rather than dumping ~30 names into one alphabetical
+  // list: the vendors we score (health known, ranked best-first) are a different
+  // proposition from open-market sellers we only have a name for.
   const candidatesFor = (l: L3Line) => {
     const mk = marketFor(l.item);
-    const names = new Set<string>();
-    (mk?.alternatives ?? []).forEach((a) => a.name && names.add(a.name));
-    all.filter((e) => e.category === "RM Vendor" || e.category === "PM Vendor").forEach((e) => names.add(e.brand));
-    l.quotes.forEach((q) => names.delete(q.supplier));
-    return [...names].sort((a, b) => a.localeCompare(b));
+    const taken = new Set(l.quotes.map((q) => l3Norm(q.supplier)));
+    const tracked = (mk ? bestPlacedFor(mk, all, entOf(l.quotes[0]?.supplier ?? "")?.folder) : [])
+      .filter((r) => !taken.has(l3Norm(r.e.brand)))
+      .map((r) => ({ name: r.e.brand, e: r.e, health: r.health }));
+    const trackedNames = new Set(tracked.map((t) => l3Norm(t.name)));
+    const market = (mk?.alternatives ?? [])
+      .map((a) => a.name)
+      .filter((n): n is string => !!n && !taken.has(l3Norm(n)) && !trackedNames.has(l3Norm(n)))
+      .sort((a, b) => a.localeCompare(b));
+    return { tracked, market };
   };
 
   const rows = useMemo(() => lines.map((l) => {
@@ -523,11 +586,7 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) =
                   </div>
                 ))}
               </div>
-              <select value="" onChange={(e) => { addQuote(li, e.target.value); e.currentTarget.selectedIndex = 0; }}
-                className="mt-2 w-full rounded-lg bg-white px-2.5 py-1.5 text-xs text-slate-600 ring-1 ring-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                <option value="">+ Add a competing quote…</option>
-                {candidatesFor(l).map((n) => <option key={n} value={n}>{n}</option>)}
-              </select>
+              <QuotePicker {...candidatesFor(l)} onPick={(n) => addQuote(li, n)} />
             </div>
           ))}
         </div>
