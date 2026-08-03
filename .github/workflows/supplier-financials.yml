@@ -29,7 +29,7 @@ jobs:
           # Claude-via-Bedrock path (see scripts/pdf/bedrock_financials.mjs). Only
           # takes effect if the LLM_PROVIDER repo/environment variable is set to
           # "claude" — defaults to the OpenAI path above otherwise.
-          LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
+          LLM_PROVIDER: ${{ vars.LLM_PROVIDER || 'claude' }}
           CLAUDE_BEDROCK_API_KEY: ${{ secrets.temp_claude_token }}
           BEDROCK_REGION: ${{ vars.BEDROCK_REGION }}
           BEDROCK_MODEL_ID: ${{ vars.BEDROCK_MODEL_ID }}
