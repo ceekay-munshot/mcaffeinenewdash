@@ -6,7 +6,7 @@ import type { Entity } from "./types";
 import { AreaLine, HBars, Donut, MultiLine, Card, TBL, THEAD, type Slice } from "./charts";
 import { TEAL } from "./lib/palette";
 import { healthDot } from "./lib/health";
-import { fullName, titleCase } from "./lib/format";
+import { fullName, titleCase, crore, fmtPct } from "./lib/format";
 import { newsOf, type SupplierNews } from "./news";
 import DETAIL from "@data/clean/probe-detail.json";
 import ENTITIES from "@data/clean/entities.json";
@@ -107,11 +107,16 @@ export type ProbeLever = Lever;
 const C = { teal: TEAL, indigo: "#6366f1", sky: "#0ea5e9", amber: "#f59e0b", rose: "#f43f5e", violet: "#8b5cf6", emerald: "#059669", slate: "#94a3b8" };
 const SH_COLORS = [C.teal, C.indigo, C.amber, C.sky, C.rose, C.violet, C.emerald];
 const n = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
-const cr = (v: number | null) => (v == null ? "—" : Math.abs(v) >= 1000 ? `₹${(v / 1000).toFixed(2)}k Cr` : `₹${v} Cr`);
-const pct = (v: number | null) => (v == null ? "—" : `${v}%`);
+// All money and percentages go through the shared formatters so the deep-dive
+// can't drift from the rest of the dashboard again. Ratios and multiples keep
+// two decimals: at one, a debt/equity of 0.78 and 0.85 read as the same number.
+const cr = (v: number | null) => crore(v);
+const pct = (v: number | null) => fmtPct(v);
 const days = (v: number | null) => (v == null ? "—" : `${Math.round(v)} d`);
-const xN = (v: number | null) => (v == null ? "—" : `${v}x`);
-const lk = (v: number | null) => (v == null ? "—" : v >= 100 ? `₹${(v / 100).toFixed(1)} Cr` : `₹${v} L`);
+const xN = (v: number | null) => (v == null ? "—" : `${v.toFixed(2)}x`);
+// Axis ticks only — round crore, no decimal, so the scale stays readable.
+const crTick = (v: number) => `₹${Math.round(v).toLocaleString("en-IN")} Cr`;
+const lk = (v: number | null) => (v == null || !Number.isFinite(v) ? "—" : v >= 100 ? crore(v / 100) : `₹${v.toFixed(1)} L`);
 
 const TABS = [
   { key: "levers", label: "💡 Levers" },
@@ -143,7 +148,10 @@ export default function DeepDive({ entity, onClose, supplies, initialTab }: { en
   return (
     <div className="fixed inset-0 z-40 overflow-y-auto bg-slate-100">
       {/* header */}
-      <div className="sticky top-0 z-10 border-b border-slate-200 bg-white/95 backdrop-blur">
+      {/* z-20, above the year table's sticky first column at z-10. At the same
+          level the column won on DOM order and painted the row labels straight
+          over the company name, the hero stats and the tab bar. */}
+      <div className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className="mx-auto max-w-[1680px] px-4 py-3 sm:px-6">
           {/* Identity line: the name is the headline, then only what a buyer needs
               to place the company — where it is, and what it sells us. The CIN,
@@ -325,7 +333,9 @@ function LeversTab({ d, opps, onGoto, alt }: { d: Detail; opps: number; onGoto: 
 // overlay them, instead of a wall of separate charts. Metrics are grouped by unit
 // so same-unit picks (all margins, all days, all ₹) share a clean axis.
 type Metric = { key: string; label: string; group: string; unit: string; color: string; get: (f: FinRow) => number | null };
-const UNIT_FMT: Record<string, (v: number) => string> = { "₹cr": (v) => `₹${Math.round(v)} Cr`, "%": (v) => `${v}%`, d: (v) => `${Math.round(v)} d`, ratio: (v) => v.toFixed(2), ppl: (v) => `${Math.round(v)}` };
+const UNIT_FMT: Record<string, (v: number) => string> = { "₹cr": (v) => crore(v), "%": (v) => fmtPct(v), d: (v) => `${Math.round(v)} d`, ratio: (v) => v.toFixed(2), ppl: (v) => `${Math.round(v)}` };
+// Tick counterparts — compact where the reading form carries a decimal.
+const UNIT_TICK: Record<string, (v: number) => string> = { "₹cr": crTick, "%": (v) => `${Math.round(v)}%`, d: (v) => `${Math.round(v)} d`, ratio: (v) => v.toFixed(2), ppl: (v) => `${Math.round(v)}` };
 const PAL = ["#0d9488", "#6366f1", "#0ea5e9", "#f59e0b", "#f43f5e", "#8b5cf6", "#059669", "#0891b2", "#e11d48", "#7c3aed"];
 const EXP_METRICS: Metric[] = [
   { key: "revenue", label: "Revenue", group: "Income (₹ cr)", unit: "₹cr", color: PAL[0], get: (f) => f.revenue },
@@ -363,6 +373,7 @@ function TrendExplorer({ fin, empByFy }: { fin: FinRow[]; empByFy: Map<string, n
   const chosen = metrics.filter((m) => sel.has(m.key));
   const units = new Set(chosen.map((m) => m.unit));
   const fmt = units.size === 1 ? (UNIT_FMT[[...units][0]] ?? ((v: number) => `${v}`)) : (v: number) => `${v}`;
+  const tick = units.size === 1 ? (UNIT_TICK[[...units][0]] ?? fmt) : fmt;
   const yrs = fin.map((f) => f.fy);
   const series = chosen.map((m) => ({ name: m.label, color: m.color, points: fin.map(m.get) }));
   const groups = [...new Set(metrics.map((m) => m.group))];
@@ -400,7 +411,7 @@ function TrendExplorer({ fin, empByFy }: { fin: FinRow[]; empByFy: Map<string, n
           ))}
         </div>
       </div>
-      {chosen.length ? <MultiLine xLabels={yrs} series={series} valueLabel={fmt} height={340} /> : <div className="py-16 text-center text-sm text-slate-400">Tick a metric above to plot it.</div>}
+      {chosen.length ? <MultiLine xLabels={yrs} series={series} valueLabel={fmt} tickLabel={tick} height={340} /> : <div className="py-16 text-center text-sm text-slate-400">Tick a metric above to plot it.</div>}
     </Card>
   );
 }
@@ -564,7 +575,7 @@ function FinancialsTab({ d }: { d: Detail }) {
           <CostMix fin={d.fin} />
         </Card>
         <Card title="Cash generation" sub="does the business actually throw off cash? · operating vs investing vs financing · ₹ crore" accent={C.sky}>
-          <MultiLine xLabels={d.fin.map((f) => f.fy)} valueLabel={(v) => `₹${Math.round(v)} Cr`} height={260}
+          <MultiLine xLabels={d.fin.map((f) => f.fy)} valueLabel={(v) => crore(v)} tickLabel={crTick} height={260}
             series={[
               { name: "Operating", color: C.emerald, points: d.fin.map((f) => n(f.cf.operating)) },
               { name: "Investing", color: C.sky, points: d.fin.map((f) => n(f.cf.investing)) },
@@ -763,7 +774,7 @@ function PeersTab({ d }: { d: Detail }) {
     // don't stretch it into a card with a tall empty tail.
     <div className="grid items-start gap-4 lg:grid-cols-2">
       <Card title="Peers by revenue" sub={`${d.peers.segment ?? "closest peers"} · ${d.peers.sampleSize ?? d.peers.named.length} in Probe's set · ₹ crore`} accent={TEAL}>
-        <HBars data={peerBars} valueLabel={(v) => `₹${Math.round(v)} Cr`} />
+        <HBars data={peerBars} valueLabel={(v) => crore(v)} />
       </Card>
       <Card title="This company vs the peer median" sub="latest year · green = the side that helps us" accent={C.sky}>
         <div className="space-y-2.5">
@@ -797,7 +808,7 @@ function PeerGapTrend({ benchmarks }: { benchmarks: Detail["peers"]["benchmarks"
   const [mk, setMk] = useState(METRICS[0]?.k ?? "ebitdaMargin");
   const met = METRICS.find((m) => m.k === mk) ?? METRICS[0];
   const asc = [...benchmarks].reverse(); // oldest → newest
-  const fmt = met.unit === "%" ? (v: number) => `${v}%` : met.unit === "d" ? (v: number) => `${Math.round(v)} d` : (v: number) => v.toFixed(2);
+  const fmt = met.unit === "%" ? (v: number) => `${v.toFixed(1)}%` : met.unit === "d" ? (v: number) => `${Math.round(v)} d` : (v: number) => v.toFixed(2);
   const self = asc.map((b) => n(b.self[mk]));
   const median = asc.map((b) => n(b.median[mk]));
   const lastSelf = [...self].reverse().find((v) => v != null) ?? null;
@@ -1112,10 +1123,10 @@ export function ProbeCompare({ entities }: { entities: { cin?: string | null; br
   };
 
   const TM = [
-    { key: "revenue", label: "Revenue", unit: (v: number) => `₹${Math.round(v)} Cr`, get: (f: FinRow) => f.revenue },
+    { key: "revenue", label: "Revenue", unit: (v: number) => crore(v), get: (f: FinRow) => f.revenue },
     { key: "ebitdaMargin", label: "EBITDA margin", unit: (v: number) => `${v}%`, get: (f: FinRow) => f.r.ebitdaMargin },
     { key: "roce", label: "RoCE", unit: (v: number) => `${v}%`, get: (f: FinRow) => f.r.roce },
-    { key: "pat", label: "Profit", unit: (v: number) => `₹${Math.round(v)} Cr`, get: (f: FinRow) => f.pat },
+    { key: "pat", label: "Profit", unit: (v: number) => crore(v), get: (f: FinRow) => f.pat },
   ];
   const tm = TM.find((x) => x.key === metric) ?? TM[0];
   const years = [...new Set(cos.flatMap((c) => c.d.fin.map((f) => f.fy)))].sort();
@@ -1195,15 +1206,18 @@ function Kpi({ label, value, tone }: { label: string; value: string | number; to
 function Versus({ label, self, median, unit, higherSelfBetter }: { label: string; self: number | null; median: number | null; unit: string; higherSelfBetter?: boolean }) {
   const max = Math.max(1, Math.abs(self ?? 0), Math.abs(median ?? 0));
   const better = self != null && median != null && (higherSelfBetter ? self >= median : self <= median);
+  // Probe stores these at two decimals; days round and ratios keep two, but a
+  // percentage here has to match the one-decimal rule the rest of the page uses.
+  const f = (v: number | null) => v == null ? "—" : unit === "d" ? `${Math.round(v)}` : unit === "%" ? v.toFixed(1) : v.toFixed(2);
   return (
     <div>
       <div className="mb-1 flex items-center justify-between text-xs">
         <span className="text-slate-600">{label}</span>
-        <span className={`font-mono font-semibold ${better ? "text-emerald-600" : "text-slate-500"}`}>{self ?? "—"}{unit} <span className="text-slate-400">vs {median ?? "—"}{unit}</span></span>
+        <span className={`font-mono font-semibold ${better ? "text-emerald-600" : "text-slate-500"}`}>{f(self)}{unit} <span className="text-slate-400">vs {f(median)}{unit}</span></span>
       </div>
       <div className="relative h-3 rounded-full bg-slate-100">
         <div className={`absolute inset-y-0 rounded-full ${better ? "bg-emerald-500" : "bg-teal-500"}`} style={{ width: `${(Math.abs(self ?? 0) / max) * 100}%` }} />
-        <div className="absolute inset-y-0 w-0.5 bg-slate-500" style={{ left: `${(Math.abs(median ?? 0) / max) * 100}%` }} title={`peer median ${median}${unit}`} />
+        <div className="absolute inset-y-0 w-0.5 bg-slate-500" style={{ left: `${(Math.abs(median ?? 0) / max) * 100}%` }} title={`peer median ${f(median)}${unit}`} />
       </div>
     </div>
   );

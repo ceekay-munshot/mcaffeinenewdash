@@ -4,16 +4,29 @@ export function toCrore(inr: number | null): number | null {
   return inr / 1e7;
 }
 
-export function fmtCrore(inr: number | null): string {
-  const cr = toCrore(inr);
-  if (cr == null) return "—";
-  if (cr >= 1000) return `₹${(cr / 1000).toFixed(2)}k Cr`;
-  if (cr >= 100) return `₹${cr.toFixed(0)} Cr`;
-  return `₹${cr.toFixed(1)} Cr`;
+/* The one money formatter. There were three, none of which pinned the decimals:
+   the deep-dive printed the raw float, so a summed row surfaced as
+   "₹525.3000000000001 Cr"; one rounded to whole crore above 100 and one didn't;
+   the thousands form ran at 2dp in two places and 1dp in a third. So the same
+   figure read three ways depending on the screen.
+
+   Now: always exactly one decimal, Indian digit grouping, no k-form. "₹2,570.0 Cr"
+   is a character wider than "₹2.57k Cr" and worth it — at 1dp the k-form collapsed
+   FY23's ₹2.10k and FY24's ₹2.12k into the same string, and at 2dp it disagreed
+   with every other number on the page. */
+export function crore(cr: number | null | undefined): string {
+  if (cr == null || !Number.isFinite(cr)) return "—";
+  return `₹${cr.toLocaleString("en-IN", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Cr`;
 }
 
-export function fmtPct(v: number | null): string {
-  return v == null ? "—" : `${v.toFixed(v < 10 ? 1 : 0)}%`;
+export function fmtCrore(inr: number | null): string {
+  return crore(toCrore(inr));
+}
+
+// Percentages get the same treatment — the ratio block was mixing "6%", "21%"
+// and "22.2%" in one column because the old rule dropped the decimal above 10.
+export function fmtPct(v: number | null | undefined): string {
+  return v == null || !Number.isFinite(v) ? "—" : `${v.toFixed(1)}%`;
 }
 
 export function fmtInt(v: number | null): string {

@@ -198,12 +198,18 @@ export function HBars({
 export function Columns({
   data,
   valueLabel,
+  tickLabel,
   height = 150,
 }: {
   data: Slice[];
   valueLabel: (v: number) => string;
+  // Axis ticks are scale markers, not readings. Money values carry a decimal so
+  // they match the tables; a tick reading "₹500.0 Cr" is just noise, so a chart
+  // can pass a compact form here and keep the two from fighting.
+  tickLabel?: (v: number) => string;
   height?: number;
 }) {
+  const tickFmt = tickLabel ?? valueLabel;
   const [hi, setHi] = useState<number | null>(null);
   const vals = data.map((d) => d.value);
   const ticks = niceTicks(Math.min(0, ...vals), Math.max(0, ...vals), 4);
@@ -216,7 +222,7 @@ export function Columns({
     <div>
       <div className="flex" style={{ height }}>
         <div className={`relative ${AXIS_W} shrink-0`}>
-          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] font-medium text-slate-500" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
+          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] font-medium text-slate-500" style={{ top: `${yPct(t)}%` }}>{tickFmt(t)}</span>)}
         </div>
         <div className="relative flex-1">
           {ticks.map((t) => <div key={t} className={`absolute inset-x-0 border-t ${t === 0 ? "border-slate-300" : "border-dashed border-slate-200/80"}`} style={{ top: `${yPct(t)}%` }} />)}
@@ -266,13 +272,15 @@ export function Columns({
 // and a crosshair hover — moving the mouse anywhere over the plot snaps to the
 // nearest point and shows a vertical guide + a tooltip listing every series'
 // value at that year. Big hit target, so hovering always works.
-function LineBase({ xLabels, series, valueLabel, height, area }: {
+function LineBase({ xLabels, series, valueLabel, tickLabel, height, area }: {
   xLabels: string[];
   series: { name: string; color: string; points: (number | null)[] }[];
   valueLabel: (v: number) => string;
+  tickLabel?: (v: number) => string;   // see Columns
   height: number;
   area?: boolean;
 }) {
+  const tickFmt = tickLabel ?? valueLabel;
   const [hi, setHi] = useState<number | null>(null);
   const n = xLabels.length;
   const allVals = series.flatMap((s) => s.points).filter((v): v is number => v != null);
@@ -304,7 +312,7 @@ function LineBase({ xLabels, series, valueLabel, height, area }: {
     <div>
       <div className="flex" style={{ height }}>
         <div className={`relative ${AXIS_W} shrink-0`}>
-          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] font-medium text-slate-500" style={{ top: `${yPct(t)}%` }}>{valueLabel(t)}</span>)}
+          {ticks.map((t) => <span key={t} className="absolute right-1.5 -translate-y-1/2 whitespace-nowrap font-mono text-[10px] font-medium text-slate-500" style={{ top: `${yPct(t)}%` }}>{tickFmt(t)}</span>)}
         </div>
         <div className="relative flex-1 cursor-crosshair" onMouseMove={onMove} onMouseLeave={() => setHi(null)}>
           {ticks.map((t) => <div key={t} className={`absolute inset-x-0 border-t ${t === 0 ? "border-slate-300" : "border-dashed border-slate-200/80"}`} style={{ top: `${yPct(t)}%` }} />)}
@@ -371,21 +379,22 @@ function LineBase({ xLabels, series, valueLabel, height, area }: {
   );
 }
 
-export function AreaLine({ data, color, valueLabel, height = 175, area = true }: {
-  data: Slice[]; color: string; valueLabel: (v: number) => string; height?: number; area?: boolean;
+export function AreaLine({ data, color, valueLabel, tickLabel, height = 175, area = true }: {
+  data: Slice[]; color: string; valueLabel: (v: number) => string; tickLabel?: (v: number) => string; height?: number; area?: boolean;
 }) {
-  return <LineBase xLabels={data.map((d) => d.label)} series={[{ name: "", color, points: data.map((d) => d.value) }]} valueLabel={valueLabel} height={height} area={area} />;
+  return <LineBase xLabels={data.map((d) => d.label)} series={[{ name: "", color, points: data.map((d) => d.value) }]} valueLabel={valueLabel} tickLabel={tickLabel} height={height} area={area} />;
 }
 
 /* ------------------------------------------ Multi-series line (compare) */
 // Several entities overlaid on one time axis — the comparison-trend chart.
-export function MultiLine({ xLabels, series, valueLabel, height = 300 }: {
+export function MultiLine({ xLabels, series, valueLabel, tickLabel, height = 300 }: {
   xLabels: string[];
   series: { name: string; color: string; points: (number | null)[] }[];
   valueLabel: (v: number) => string;
+  tickLabel?: (v: number) => string;
   height?: number;
 }) {
-  return <LineBase xLabels={xLabels} series={series} valueLabel={valueLabel} height={height} area={false} />;
+  return <LineBase xLabels={xLabels} series={series} valueLabel={valueLabel} tickLabel={tickLabel} height={height} area={false} />;
 }
 
 /* ------------------------------------------------------------- Radar */

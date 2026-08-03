@@ -8,7 +8,7 @@ import {
   type CompetitorRow,
   type ResearchData,
 } from "./types";
-import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore, fullName, shortName } from "./lib/format";
+import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore, fullName, shortName, crore } from "./lib/format";
 import { negotiationRoom, healthChip, healthDot, HEALTH_CUT } from "./lib/health";
 import { probeRevenueINR, probeEbitdaMargin, probeNetMargin } from "./probe";
 import { CATEGORY_COLOR } from "./lib/palette";
@@ -63,7 +63,8 @@ function useProfileNav<T>(selected: T | null, setSelected: (v: T | null) => void
   return { open, back };
 }
 
-const crStr = (cr: number) => `₹${cr >= 1000 ? (cr / 1000).toFixed(1) + "k" : cr.toFixed(0)} Cr`;
+// Hero stats read the same formatter as every table below them.
+const crStr = (cr: number) => crore(cr);
 
 const CAT_META: Record<string, { emoji: string; color: string }> = {
   "RM Vendor": { emoji: "🧪", color: CATEGORY_COLOR["RM Vendor"] },
