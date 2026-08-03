@@ -5,14 +5,19 @@
 //   OPENAI_API_KEY=... node scripts/pdf/llm_financials.mjs            # all (cached)
 //   OPENAI_API_KEY=... node scripts/pdf/llm_financials.mjs --only valuetree --refresh
 //
+// Set LLM_PROVIDER=claude (default: openai) to route extraction through Claude
+// on AWS Bedrock instead — see bedrock_financials.mjs for that path.
+//
 // Output: data/raw/masters/supplier_financials.json  {folder: {...profile}}
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { callBedrockFinancials } from "./bedrock_financials.mjs";
 
 const TEXT = "data/raw/masters/supplier_pdf_text.json";
 const OUT = "data/raw/masters/supplier_financials.json";
 const MODEL = process.env.OPENAI_MODEL || "gpt-4o";
 const KEY = process.env.OPENAI_API_KEY;
+const PROVIDER = (process.env.LLM_PROVIDER || "openai").toLowerCase();
 
 const args = process.argv.slice(2);
 const only = args.includes("--only") ? args[args.indexOf("--only") + 1] : null;
@@ -144,7 +149,11 @@ function shape(p) {
 }
 
 async function main() {
-  if (!KEY) throw new Error("OPENAI_API_KEY not set");
+  if (PROVIDER === "claude") {
+    if (!process.env.CLAUDE_BEDROCK_API_KEY) throw new Error("CLAUDE_BEDROCK_API_KEY not set");
+  } else if (!KEY) {
+    throw new Error("OPENAI_API_KEY not set");
+  }
   const texts = JSON.parse(readFileSync(TEXT, "utf8"));
   const out = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : {};
   let entries = Object.entries(texts);
@@ -153,7 +162,7 @@ async function main() {
   for (const [folder, text] of entries) {
     if (done >= limit) break;
     if (out[folder]?.years?.length && !refresh) continue;
-    const raw = await callLLM(folder, text);
+    const raw = PROVIDER === "claude" ? await callBedrockFinancials(folder, text, PROMPT) : await callLLM(folder, text);
     if (!raw) continue;
     const rec = shape(raw);
     if (!rec.years.length) { console.log(`  · ${folder}: no years parsed`); continue; }
