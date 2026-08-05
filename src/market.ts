@@ -84,10 +84,14 @@ export const marketOfFolder = (folder: string): MarketEntry[] => {
 };
 
 // Display metadata for the three concentration classes.
+// Plain words the client asked for, framed by what they mean for a negotiation
+// rather than by the market-structure term. "Sole-source / concentrated /
+// competitive" meant nothing to him; "they set the price / some room / we can
+// shop around" does. The actual seller count lives in its own column now.
 export const CONC_META: Record<Concentration, { label: string; blurb: string; color: string; bg: string; text: string; ring: string; emoji: string; pos: number }> = {
-  sole: { label: "Sole-source", blurb: "One originator — leverage sits with them", color: "#e11d48", bg: "bg-rose-50", text: "text-rose-700", ring: "ring-rose-200", emoji: "🔒", pos: 12 },
-  concentrated: { label: "Concentrated", blurb: "A handful of credible suppliers", color: "#d97706", bg: "bg-amber-50", text: "text-amber-700", ring: "ring-amber-200", emoji: "⚖️", pos: 50 },
-  competitive: { label: "Competitive", blurb: "Many makers — leverage is ours", color: "#059669", bg: "bg-emerald-50", text: "text-emerald-700", ring: "ring-emerald-200", emoji: "🔓", pos: 88 },
+  sole: { label: "They set the price", blurb: "only one real seller — little room to push", color: "#e11d48", bg: "bg-rose-50", text: "text-rose-700", ring: "ring-rose-200", emoji: "🔒", pos: 12 },
+  concentrated: { label: "Some room to push", blurb: "just a few sellers — worth negotiating", color: "#d97706", bg: "bg-amber-50", text: "text-amber-700", ring: "ring-amber-200", emoji: "⚖️", pos: 50 },
+  competitive: { label: "We can shop around", blurb: "many sellers — the leverage is ours", color: "#059669", bg: "bg-emerald-50", text: "text-emerald-700", ring: "ring-emerald-200", emoji: "🔓", pos: 88 },
 };
 
 export const LEV_META: Record<Leverage, { label: string; who: string; emoji: string }> = {

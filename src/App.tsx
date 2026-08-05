@@ -390,6 +390,15 @@ function l3Band(s?: string): { min: number; max: number; mid: number } | null {
   return { min, max, mid: Math.round((min + max) / 2) };
 }
 const l3Norm = (s: string) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+// How many sellers this item actually has in India — the real number the client
+// wanted instead of "sole / few / many". The wider of the named India sellers
+// and the researched alternatives (a sole-source item is 1); matches the breadth
+// the concentration tag is validated against in QC.
+const sellerCount = (m: MarketEntry): number | null => {
+  const a = m.indiaSuppliers?.length ?? 0, b = m.alternatives?.length ?? 0;
+  const n = Math.max(a, b);
+  return n > 0 ? n : m.concentration === "sole" ? 1 : null;
+};
 const l3Money = (rs: number) => (rs >= 1e7 ? `₹${(rs / 1e7).toFixed(2)} Cr` : `₹${(rs / 1e5).toFixed(1)} L`);
 const L3_STEPS = [
   "Reading your rate card…",
@@ -1361,7 +1370,6 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
 }) {
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
   const [deep, setDeep] = useState(false);
-  const lev = LEV_META[entry.leverage];
   const conc = CONC_META[entry.concentration];
   const alts = entry.alternatives ?? [];
   const ins = currentVendor ? supplierInsights(currentVendor) : [];
@@ -1384,12 +1392,24 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
           </div>
           <div className="flex flex-wrap gap-2">
             {hasPrice && <span className={`${chip} bg-orange-50 text-orange-700 ring-orange-200`}>💰 {entry.priceINRPerKg}</span>}
-            <span className={`${chip} bg-slate-50 text-slate-700 ring-slate-200`}>{lev.emoji} {lev.label}</span>
-            <span className={`${chip} bg-slate-50 text-slate-700 ring-slate-200`}>🇮🇳 {entry.indiaBand} sellers in India</span>
+            <span className={`${chip} ${conc.bg} ${conc.text} ${conc.ring.replace("ring-", "ring-")}`}>{conc.emoji} {conc.label}</span>
+            {sellerCount(entry) != null && <span className={`${chip} bg-slate-50 text-slate-700 ring-slate-200`}>🇮🇳 {sellerCount(entry)} {sellerCount(entry) === 1 ? "seller" : "sellers"} in India</span>}
           </div>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-slate-600">{entry.implication}</p>
         {entry.priceNote && <p className="mt-1.5 text-xs text-slate-400">Price: {entry.priceNote}{entry.priceSource ? ` · ${entry.priceSource}` : ""}</p>}
+        {/* Sources are clickable now — the client tried to click through to the
+            source here and nothing happened, because this page never rendered
+            the links (they only existed on the compact market card). */}
+        {entry.sources?.length > 0 && (
+          <div className="mt-2 flex flex-wrap items-center gap-1.5">
+            <span className="text-xs text-slate-400">Where this comes from:</span>
+            {entry.sources.map((s, i) => {
+              let host = s; try { host = new URL(s).hostname.replace(/^www\./, ""); } catch { /* keep raw */ }
+              return <a key={i} href={s} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-md bg-slate-50 px-2 py-0.5 text-xs font-medium text-teal-700 ring-1 ring-slate-200 hover:ring-teal-300">{host} ↗</a>;
+            })}
+          </div>
+        )}
         <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2 border-t border-slate-100 pt-3">
           {STEPS.map(([n, l], i) => (
             <span key={l} className="flex items-center gap-1.5">
@@ -1589,7 +1609,6 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
             <tbody>
               {shown.map((m) => {
                 const meta = CONC_META[m.concentration];
-                const lev = LEV_META[m.leverage];
                 const v = vendorFor(m);
                 const hasP = m.priceINRPerKg && !m.priceINRPerKg.includes("not found");
                 const skus = skusFor(m);
@@ -1619,10 +1638,16 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-4 py-3.5">
+                      {/* One plain label now — the old second line ("supplier holds
+                          the cards") said the same thing as the first in different
+                          words. */}
                       <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-semibold ${meta.bg} ${meta.text} ring-1 ${meta.ring}`} title={meta.blurb}>{meta.emoji} {meta.label}</span>
-                      <div className="mt-0.5 text-xs text-slate-500">{lev.emoji} {lev.label}</div>
                     </td>
-                    <td className="whitespace-nowrap px-4 py-3.5 text-center text-slate-600" title={m.indiaSuppliers.join(" · ")}>🇮🇳 {m.indiaBand}</td>
+                    {/* Actual number of sellers, not "sole / few / many" — the
+                        client's exact ask. Hover still lists who they are. */}
+                    <td className="whitespace-nowrap px-4 py-3.5 text-center text-slate-700" title={m.indiaSuppliers.join(" · ")}>
+                      {sellerCount(m) != null ? <><span className="font-bold">{sellerCount(m)}</span> <span className="text-xs text-slate-400">{sellerCount(m) === 1 ? "seller" : "sellers"}</span></> : <span className="text-slate-400">—</span>}
+                    </td>
                     <td className={`${TDNUM} ${hasP ? "font-semibold text-orange-700" : "text-slate-400"}`} title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")}>{hasP ? m.priceINRPerKg : "—"}</td>
                     <td className="min-w-[220px] px-4 py-3.5">
                       {v.e ? (
