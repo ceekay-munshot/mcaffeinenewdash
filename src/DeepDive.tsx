@@ -90,6 +90,25 @@ const ALL_ENRICHED: EnrichedRef[] = ((ENTITIES as { entities: { cin: string | nu
   .filter((e) => e.cin && DETAILS[e.cin])
   .map((e) => ({ cin: e.cin as string, brand: e.brand, legalName: e.legalName, category: e.category, health: healthScore(DETAILS[e.cin as string]) }));
 
+// Normalized names of every supplier we track, for spotting when a director's
+// OTHER board is itself one of our vendors — a genuine conflict/interlinkage.
+// Today no director sits across two of our suppliers, so this fires on nothing;
+// it's wired so it lights up the moment the data supports it.
+const trackedNorm = (s: string | null | undefined) => (s ?? "").toLowerCase().replace(/\b(private|pvt|public|limited|ltd|llp|india|the)\b/g, "").replace(/[^a-z0-9]/g, "");
+const TRACKED_CO = ALL_ENRICHED.map((e) => ({ cin: e.cin, brand: e.brand, n: trackedNorm(e.legalName || e.brand) })).filter((t) => t.n.length >= 6);
+/** If this "other board" name is itself a supplier we track (not the one we're
+ *  viewing), return it — a director sitting on two of our vendors is a conflict. */
+function trackedMatch(otherName: string, selfCin: string): { brand: string } | null {
+  const on = trackedNorm(otherName);
+  if (on.length < 7) return null;
+  const m = TRACKED_CO.find((t) => t.cin !== selfCin && (t.n === on || (t.n.length >= 8 && on.includes(t.n)) || (on.length >= 8 && t.n.includes(on))));
+  return m ? { brand: m.brand } : null;
+}
+/** A Google search that jumps straight to checking a person or company for any
+ *  reported nexus / dispute — the client's "google search kar dhund" made one click. */
+const nexusSearch = (name: string, context = "") =>
+  `https://www.google.com/search?q=${encodeURIComponent(`"${name}" ${context} director OR litigation OR dispute OR fraud`)}`;
+
 /** True when we hold a Probe42 comprehensive report for this company. */
 export function hasDeepDive(cin?: string | null): boolean { return !!(cin && DETAILS[cin]); }
 /** The lever-engine output for a company (empty if no Probe42 report). */
@@ -940,15 +959,15 @@ function OwnersTab({ d }: { d: Detail }) {
       <Card title="Shareholding (>5%)" sub={ownSub} accent={C.indigo}>
         {shares.length ? <Donut data={shares} centerValue={`${shares.length}`} centerLabel="holders" unit="%" /> : <Empty t="No disclosed holders >5%." />}
       </Card>
-      <Card title="Who runs it — board & overboarding" sub={`${people.length} on the board · how many other live companies each also sits on`} accent={C.violet} className="xl:col-span-2">
+      <Card title="Who runs it — board & other companies" sub={`${people.length} on the board · the other live companies each also runs, and whether that raises a flag`} accent={C.violet} className="xl:col-span-2">
         {people.length ? (
           <div className="overflow-x-auto">
-            <table className={`${TBL} min-w-[560px]`}>
+            <table className={`${TBL} min-w-[620px]`}>
               <thead>
                 <tr className={THEAD}>
                   <th className="px-3 py-2">Director</th><th className="px-3 py-2">Role</th>
                   <th className="px-3 py-2 text-center">Since</th><th className="px-3 py-2 text-center">Age</th>
-                  <th className="px-3 py-2 text-center">Owns</th><th className="px-3 py-2 text-center">Other boards</th><th className="px-3 py-2">Also sits on</th>
+                  <th className="px-3 py-2 text-center">Owns</th><th className="px-3 py-2 text-center">Other boards</th><th className="px-3 py-2">Also runs — click to investigate</th>
                 </tr>
               </thead>
               <tbody>
@@ -956,19 +975,41 @@ function OwnersTab({ d }: { d: Detail }) {
                   const tone = p.otherCount >= 6 ? "bg-rose-100 text-rose-700" : p.otherCount >= 3 ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-500";
                   return (
                     <tr key={i} className="border-t border-slate-100 hover:bg-slate-50/70">
-                      <td className="px-3 py-2 font-semibold text-slate-800">{titleCase(p.name)}</td>
+                      <td className="px-3 py-2">
+                        {/* Name links to a search — the "google and dig for a nexus"
+                            the client wanted, one click. */}
+                        <a href={nexusSearch(titleCase(p.name), d.legalName ? titleCase(d.legalName) : "")} target="_blank" rel="noopener noreferrer" className="font-semibold text-slate-800 hover:text-teal-700 hover:underline" title="Search the web for any conflict, dispute or nexus">{titleCase(p.name)} ↗</a>
+                      </td>
                       <td className="px-3 py-2 text-slate-600">{p.designation ?? "Director"}</td>
                       <td className="px-3 py-2 text-center tabular-nums text-slate-500">{p.since ?? "—"}</td>
                       <td className="px-3 py-2 text-center tabular-nums text-slate-500">{p.age ? p.age : "—"}</td>
                       <td className={`px-3 py-2 text-center tabular-nums ${p.ownPct ? "font-semibold text-teal-700" : "text-slate-400"}`}>{p.ownPct != null ? `${p.ownPct}%` : "—"}</td>
                       <td className="px-3 py-2 text-center"><span className={`inline-block min-w-[1.75rem] rounded-full px-2 py-0.5 text-xs font-bold ${tone}`}>{p.otherCount}</span></td>
-                      <td className="px-3 py-2 text-xs text-slate-500">{p.others.length ? <span title={p.others.map(titleCase).join(", ")}>{p.others.slice(0, 3).map(titleCase).join(", ")}{p.otherCount > 3 ? ` +${p.otherCount - 3} more` : ""}</span> : <span className="text-slate-300">—</span>}</td>
+                      <td className="px-3 py-2 text-xs">
+                        {p.others.length ? (
+                          <span className="flex flex-wrap gap-1">
+                            {p.others.slice(0, 4).map((o, j) => {
+                              const conflict = trackedMatch(o, d.cin ?? "");
+                              return (
+                                <a key={j} href={nexusSearch(titleCase(o))} target="_blank" rel="noopener noreferrer"
+                                  className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 ring-1 transition hover:ring-teal-300 ${conflict ? "bg-rose-50 text-rose-700 ring-rose-200 font-semibold" : "bg-slate-50 text-slate-600 ring-slate-200"}`}
+                                  title={conflict ? `⚠ Also on the board of ${conflict.brand}, a vendor we track — a conflict of interest` : "Search the web for this company"}>
+                                  {conflict && "⚠ "}{titleCase(o)} ↗
+                                </a>
+                              );
+                            })}
+                            {p.otherCount > 4 && <span className="px-1 text-slate-400">+{p.otherCount - 4} more</span>}
+                          </span>
+                        ) : <span className="text-slate-300">—</span>}
+                      </td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
-            <p className="mt-2 px-1 text-[11px] text-slate-400">"Other boards" = other live companies this person is a director of. <span className="font-medium text-amber-600">Amber 3–5</span> · <span className="font-medium text-rose-600">red 6+</span> = a stretched (overboarded) director — a governance signal worth a look.</p>
+            <p className="mt-2 px-1 text-[11px] leading-relaxed text-slate-400">
+              "Other boards" = other live companies this person also directs. <span className="font-medium text-amber-600">Amber 3–5</span> · <span className="font-medium text-rose-600">red 6+</span> = a stretched (overboarded) director. Click any name to search the web for a hidden link, dispute or conflict; a <span className="font-semibold text-rose-600">red company</span> is one of our own vendors — a direct conflict of interest.
+            </p>
           </div>
         ) : <Empty t="No current directors on file." />}
       </Card>
