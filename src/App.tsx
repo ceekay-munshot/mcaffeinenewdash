@@ -970,6 +970,7 @@ function HealthSpread({ scored, onSelect }: { scored: { e: Entity; h: number }[]
   // each other and swallow the end labels.
   const box = useRef<HTMLDivElement>(null);
   const [w, setW] = useState(900);
+  const [hover, setHover] = useState<string | null>(null);
   useEffect(() => {
     const el = box.current;
     if (!el) return;
@@ -977,6 +978,7 @@ function HealthSpread({ scored, onSelect }: { scored: { e: Entity; h: number }[]
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
+  const hoverEntry = hover ? scored.find((s) => s.e.folder === hover) ?? null : null;
   const DOT = Math.max(16, Math.min(24, Math.round(w / 42)));
   // The axis stops a little past the best score instead of running to 100. On a
   // 0-100 scale a third of the plot was empty, because no supplier we buy from
@@ -985,11 +987,14 @@ function HealthSpread({ scored, onSelect }: { scored: { e: Entity; h: number }[]
   const best = Math.max(...scored.map((s) => s.h), HEALTH_CUT.strong);
   const MAX = Math.min(100, Math.ceil((best + 8) / 5) * 5);
   const x = (h: number) => (Math.max(0, Math.min(MAX, h)) / MAX) * 100;
+  // The client's line: "68, 57 — what does that even mean?" So the plain word
+  // leads every band caption now, and the number sits behind it as the detail.
   const ZONES = [
-    { from: 0, to: HEALTH_CUT.ok, cls: "bg-rose-50", tone: "text-rose-500", label: `under ${HEALTH_CUT.ok} · qualify a backup` },
-    { from: HEALTH_CUT.ok, to: HEALTH_CUT.strong, cls: "bg-amber-50", tone: "text-amber-600", label: `${HEALTH_CUT.ok}–${HEALTH_CUT.strong - 1} · watch` },
-    { from: HEALTH_CUT.strong, to: MAX, cls: "bg-emerald-50", tone: "text-emerald-600", label: `${HEALTH_CUT.strong}+ · sound` },
+    { from: 0, to: HEALTH_CUT.ok, cls: "bg-rose-50", tone: "text-rose-600", label: `Weak · qualify a backup` },
+    { from: HEALTH_CUT.ok, to: HEALTH_CUT.strong, cls: "bg-amber-50", tone: "text-amber-600", label: `Adequate · keep an eye on` },
+    { from: HEALTH_CUT.strong, to: MAX, cls: "bg-emerald-50", tone: "text-emerald-600", label: `Strong · sound to deal with` },
   ];
+  const bandOf = (h: number) => (h >= HEALTH_CUT.strong ? "Strong" : h >= HEALTH_CUT.ok ? "Adequate" : "Weak");
   // Beeswarm, centred: walk left to right and offset a dot from the midline when
   // it would touch one already placed, alternating above and below. Growing only
   // upward left the whole top of the sparse red zone as an empty block.
@@ -1013,7 +1018,27 @@ function HealthSpread({ scored, onSelect }: { scored: { e: Entity; h: number }[]
   const lo = placed.reduce((a, b) => (b.h < a.h ? b : a));
   const hi = placed.reduce((a, b) => (b.h > a.h ? b : a));
   return (
-    <div>
+    <div className="relative">
+      {/* Hover a dot → who it is, in words, and why to care. Lives here, outside
+          the plot's overflow-hidden, so it isn't clipped; floats above the plot
+          at the hovered dot's x. The client's ask: the number alone is
+          meaningless, so lead with the plain band, then the facts a buyer uses. */}
+      {hoverEntry && (() => {
+        const { e, h } = hoverEntry;
+        const lv = probeLevers(e.cin);
+        const opp = lv.filter((l) => l.tone === "opportunity").length, rk = lv.filter((l) => l.tone === "risk").length;
+        return (
+          <div className="pointer-events-none absolute top-0 z-30 w-56 -translate-x-1/2 -translate-y-full rounded-xl bg-slate-900 p-2.5 text-white shadow-xl"
+            style={{ left: `${Math.min(86, Math.max(14, x(h)))}%` }}>
+            <div className="flex items-center gap-1.5 text-sm font-bold">{catEmoji(e.category)} {shortName(e.brand)}</div>
+            <div className="mt-1 flex items-center gap-1.5">
+              <span className={`rounded px-1.5 py-0.5 text-[10px] font-extrabold ${h >= HEALTH_CUT.strong ? "bg-emerald-500" : h >= HEALTH_CUT.ok ? "bg-amber-500" : "bg-rose-500"}`}>{bandOf(h)}</span>
+              <span className="text-[11px] text-slate-300">{h}/100 · {fmtCrore(revOf(e))}</span>
+            </div>
+            <div className="mt-1.5 text-[11px] text-slate-300">{opp} {opp === 1 ? "play" : "plays"} for us · {rk} {rk === 1 ? "risk" : "risks"} — click to open</div>
+          </div>
+        );
+      })()}
       <div ref={box} className="relative w-full overflow-hidden rounded-xl ring-1 ring-slate-200" style={{ height: rows * (DOT + GAP) + PAD * 2 }}>
         <div className="absolute inset-0 flex">
           {ZONES.map((z, i) => (
@@ -1021,8 +1046,8 @@ function HealthSpread({ scored, onSelect }: { scored: { e: Entity; h: number }[]
           ))}
         </div>
         {placed.map(({ e, h, row }) => (
-          <button key={e.folder} onClick={() => onSelect(e)} title={`${fullName(e.legalName, e.brand)} · ${h}/100 — open profile`}
-            className={`absolute flex items-center justify-center rounded-full text-[10px] font-extrabold tabular-nums text-white shadow-sm ring-2 ring-white transition hover:z-10 hover:scale-125 ${healthDot(h)}`}
+          <button key={e.folder} onClick={() => onSelect(e)} onMouseEnter={() => setHover(e.folder)} onMouseLeave={() => setHover(null)}
+            className={`absolute flex items-center justify-center rounded-full text-[10px] font-extrabold tabular-nums text-white shadow-sm ring-2 ring-white transition hover:z-20 hover:scale-125 ${healthDot(h)}`}
             style={{ width: DOT, height: DOT, left: `calc(${x(h)}% - ${DOT / 2}px)`, top: `calc(50% + ${row * (DOT + GAP)}px - ${DOT / 2}px)` }}>
             {h}
           </button>
@@ -2135,8 +2160,17 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity,
     <div className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap items-center gap-4">
+          {/* The count now matches what's actually on screen. It used to read
+              "All (44)" while the 14 data-thin vendors sat hidden behind the
+              checkbox — the client's exact catch. Each option counts only the
+              suppliers that show by default (those with analysable financials);
+              the "+ N limited-data" checkbox is what reveals the rest. */}
           <Dropdown label="Category" value={cat} onChange={setCat}
-            options={SUP_CATS.map((c) => ({ key: c, label: c === "All" ? `All (${all.length})` : `${c} (${all.filter((e) => e.category === c).length})`, emoji: c === "All" ? undefined : catEmoji(c) }))} />
+            options={SUP_CATS.map((c) => {
+              const inCat = c === "All" ? all : all.filter((e) => e.category === c);
+              const shown = inCat.filter((e) => showLimited || hasDepth(e)).length;
+              return { key: c, label: c === "All" ? `All (${shown})` : `${c} (${shown})`, emoji: c === "All" ? undefined : catEmoji(c) };
+            })} />
           {others.length > 0 && (
             <label className="inline-flex cursor-pointer items-center gap-2 whitespace-nowrap text-sm text-slate-600">
               <input type="checkbox" checked={showLimited} onChange={(e) => setShowLimited(e.target.checked)} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-400" />
