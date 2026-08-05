@@ -433,36 +433,43 @@ function NewsTab({ news, brand }: { news: SupplierNews | null; brand: string }) 
   );
   return (
     <div className="space-y-4">
+      {/* Lead read: what changed and why it matters to us, set apart as a proper
+          headline rather than a lonely bordered box. Matches the newsroom's own
+          card look, which the client liked better than this tab. */}
       {news.signals.length > 0 && (
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <div className="space-y-3">
           {news.signals.map((s, i) => (
-            <a key={i} href={s.url} target="_blank" rel="noreferrer" className={`block rounded-xl border-l-4 p-3.5 shadow-sm ring-1 ring-slate-200/60 transition hover:shadow-md ${SIG_TONE[s.type] ?? "border-slate-300 bg-slate-50"}`}>
-              <div className="text-[11px] font-bold uppercase tracking-wide text-slate-500">{s.type}</div>
-              <p className="mt-1 text-sm leading-snug text-slate-700">{s.oneLine}</p>
-              <div className="mt-1.5 text-[11px] font-medium text-slate-400">{s.source} ↗</div>
+            <a key={i} href={s.url} target="_blank" rel="noreferrer" className={`block rounded-2xl border-l-4 p-4 shadow-sm ring-1 ring-slate-200/60 transition hover:shadow-md ${SIG_TONE[s.type] ?? "border-slate-300 bg-slate-50"}`}>
+              <div className="flex items-center gap-2">
+                <span className="rounded-md bg-white/70 px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-slate-600 ring-1 ring-slate-200">{s.type}</span>
+                <span className="text-[11px] font-semibold text-slate-400">why it matters to us</span>
+              </div>
+              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-slate-800">{s.oneLine}</p>
+              <div className="mt-1.5 text-[11px] font-medium text-teal-700">{s.source} ↗</div>
             </a>
           ))}
         </div>
       )}
       {news.news.length > 0 ? (
-        <Card title="📰 In the news" sub={news.summary} accent={C.slate}>
-          <div className="divide-y divide-slate-100">
+        <div>
+          <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">📰 In the news</h3>
+          <div className="grid gap-3 md:grid-cols-2">
             {news.news.map((it, i) => (
-              <a key={i} href={it.url} target="_blank" rel="noreferrer" className="block py-3 transition hover:bg-slate-50/70">
-                <div className="flex items-baseline gap-2.5">
-                  <span className="shrink-0 rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-slate-500">{it.date}</span>
-                  <span className="text-sm font-bold leading-snug text-slate-900">{it.title}</span>
+              <a key={i} href={it.url} target="_blank" rel="noreferrer" className="block rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-md">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] font-bold text-slate-500">{it.date}</span>
+                  <span className="text-[11px] font-medium text-teal-700">{it.source} ↗</span>
                 </div>
+                <div className="mt-2 text-sm font-bold leading-snug text-slate-900">{it.title}</div>
                 <p className="mt-1 text-xs leading-relaxed text-slate-600">{it.oneLine}</p>
-                <div className="mt-1 text-[11px] font-medium text-slate-400">{it.source} ↗</div>
               </a>
             ))}
           </div>
-        </Card>
+        </div>
       ) : (
-        <div className="rounded-2xl bg-white p-4 text-sm text-slate-500 ring-1 ring-slate-200">{news.summary} — no dated press items in recent months; the signal above is the notable read.</div>
+        <div className="rounded-2xl bg-white p-4 text-sm text-slate-500 ring-1 ring-slate-200">{news.summary} — no dated press items in recent months; the read above is the notable one.</div>
       )}
-      <p className="text-[11px] text-slate-400">Gathered from the open web · headlines link to their source · a supplier typically surfaces only a handful of items in six months.</p>
+      <p className="text-[11px] text-slate-400">Gathered from the open web · every headline links to its source · a supplier usually surfaces only a handful of items in six months.</p>
     </div>
   );
 }
