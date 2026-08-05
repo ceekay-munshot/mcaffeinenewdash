@@ -548,54 +548,54 @@ function buildLevers(x) {
   /* ===== A. MARGIN & COST STRUCTURE ===== */
   const emGap = gap(l.ebitdaMargin, med.ebitdaMargin);
   if (emGap != null && emGap >= 3) add("opportunity", emGap >= 8 ? 3 : 2, "Room to push on price", "Fatter margins than its peers",
-    `EBITDA margin ${l.ebitdaMargin}% vs the peer median ${med.ebitdaMargin}% — about ${emGap}pp of extra cushion baked into their pricing. There's room to push on price.`,
-    [ev("EBITDA margin", l.ebitdaMargin + "%"), ev("Peer median", med.ebitdaMargin + "%", "peers"), ev("Advantage", emGap + "pp", "peers")]);
+    `operating margin ${l.ebitdaMargin}% vs the peer median ${med.ebitdaMargin}% — about ${emGap}pp of extra cushion baked into their pricing. There's room to push on price.`,
+    [ev("operating margin", l.ebitdaMargin + "%"), ev("Peer median", med.ebitdaMargin + "%", "peers"), ev("Advantage", emGap + "pp", "peers")]);
   else if (emGap != null && emGap <= -3) add("watch", 1, "Push on terms, not on price", "Thinner margins than peers",
-    `EBITDA margin ${l.ebitdaMargin}% is below the peer median ${med.ebitdaMargin}% — less room; lean on input-cost transparency rather than a blunt cut.`,
-    [ev("EBITDA margin", l.ebitdaMargin + "%"), ev("Peer median", med.ebitdaMargin + "%", "peers")]);
+    `operating margin ${l.ebitdaMargin}% is below the peer median ${med.ebitdaMargin}% — less room; lean on input-cost transparency rather than a blunt cut.`,
+    [ev("operating margin", l.ebitdaMargin + "%"), ev("Peer median", med.ebitdaMargin + "%", "peers")]);
 
   const em = trendOf(fin, (f) => f.r.ebitdaMargin);
   if (em && em.all.length >= 3 && em.delta >= 1.5) add("opportunity", 2, "Ask for a price cut — they can absorb it", "Margins are widening",
-    `EBITDA margin climbed ${em.first}% → ${em.last}% — profit is expanding, so they can absorb a better price for us.`,
-    [ev("EBITDA margin", `${em.first}% → ${em.last}%`)]);
+    `operating margin climbed ${em.first}% → ${em.last}% — profit is expanding, so they can absorb a better price for us.`,
+    [ev("operating margin", `${em.first}% → ${em.last}%`)]);
   else if (em && em.all.length >= 3 && em.delta <= -1.5) add("watch", 1, "Expect a price-rise request; pre-empt it", "Margins are compressing",
-    `EBITDA margin slipped ${em.first}% → ${em.last}% — they're being squeezed; a hard cut meets resistance, but they need our volume.`,
-    [ev("EBITDA margin", `${em.first}% → ${em.last}%`)]);
+    `operating margin slipped ${em.first}% → ${em.last}% — they're being squeezed; a hard cut meets resistance, but they need our volume.`,
+    [ev("operating margin", `${em.first}% → ${em.last}%`)]);
 
   const othFL = flOf((p) => p.costMix?.other);
   if (othFL && othFL.d >= 3 && l.grossMargin != null && l.grossMargin >= 20)
-    add("opportunity", 2, "Anchor on their COGS, not their net margin", "Margin eaten by overhead, not input cost",
-      `Gross margin is a healthy ${l.grossMargin}% — their raw-material economics are fine — but overhead (other expenses) climbed from ${othFL.first}% to ${othFL.last}% of sales. Overhead is semi-fixed and amortises as they scale, so their underlying unit economics already support a lower price. Anchor on their COGS, not the reported net margin.`,
-      [ev("Gross margin", l.grossMargin + "%"), ev("Overhead % of sales", `${othFL.first}% → ${othFL.last}%`), ev("EBITDA margin", l.ebitdaMargin + "%")]);
+    add("opportunity", 2, "Their raw material is cheap — push on price there", "Their money goes on ads & overhead, not materials",
+      `After paying for raw materials they keep a healthy ${l.grossMargin}% — so the materials aren't the problem. What's eating the profit is overhead (ads, admin, freight), which climbed from ${othFL.first}% to ${othFL.last}% of sales. That kind of cost spreads out as they grow, so the low materials cost means there's room on price. Argue on their raw-material cost, not the bottom-line figure.`,
+      [ev("Gross margin", l.grossMargin + "%"), ev("Overhead % of sales", `${othFL.first}% → ${othFL.last}%`), ev("operating margin", l.ebitdaMargin + "%")]);
 
   const matFL = flOf((p) => p.costMix?.material);
   if (matFL && matFL.d >= 4)
-    add("watch", 1, "Fix a rupee price before they pass it through", "Their input costs are climbing",
+    add("watch", 1, "Fix a rupee price before they pass it through", "Their raw-material costs are rising",
       `Material cost rose ${matFL.first}% → ${matFL.last}% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.`,
       [ev("Material % of sales", `${matFL.first}% → ${matFL.last}%`)]);
 
   /* ===== B. RETURNS (DuPont) ===== */
   if (l.roce != null && (l.roce >= 25 || (med.roce != null && l.roce > med.roce * 1.3)))
     add("opportunity", l.roce >= 35 ? 3 : 2, "They can afford to share margin", "Very profitable use of capital",
-      `RoCE ${l.roce}%${med.roce != null ? ` vs peers ${med.roce}%` : ""} — they earn well above the cost of capital; there's margin to share with us.`,
-      [ev("RoCE", l.roce + "%"), med.roce != null ? ev("Peer median", med.roce + "%", "peers") : null]);
+      `Return on capital ${l.roce}%${med.roce != null ? ` vs peers ${med.roce}%` : ""} — they earn well above the cost of capital; there's margin to share with us.`,
+      [ev("Return on capital", l.roce + "%"), med.roce != null ? ev("Peer median", med.roce + "%", "peers") : null]);
 
   if (dp && dp.roe != null) {
     if (dp.equityMult != null && dp.equityMult >= 2.5 && (dp.netMargin ?? 0) < 6)
-      add("risk", 2, "Don't squeeze — continuity is the risk here", "Their returns are debt-manufactured",
-        `DuPont: RoE ${dp.roe}% is propped up by leverage (equity multiplier ${dp.equityMult}×), not operations (net margin only ${dp.netMargin}%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.`,
+      add("risk", 2, "Don't squeeze — continuity is the risk here", "Their profit is built on borrowed money",
+        `Their headline return (${dp.roe}%) looks good, but it comes from borrowing heavily (they run ${dp.equityMult}× more assets than owners' money), not from the business — the business itself only keeps ${dp.netMargin}% of each sale. A return built on debt is fragile: they need steady, on-time cash from us, so squeezing too hard risks supply. Trade prompt payment for price, don't push to the edge.`,
         [ev("RoE", dp.roe + "%"), ev("Equity multiplier", dp.equityMult + "×"), ev("Net margin", dp.netMargin + "%")]);
     else if (dp.netMargin != null && dp.netMargin >= 8 && (dp.equityMult ?? 99) <= 1.6)
-      add("opportunity", 2, "Real, structural room in the price", "Returns come from fat margins, not leverage",
-        `DuPont: RoE ${dp.roe}% is driven by a ${dp.netMargin}% net margin on a near-unleveraged balance sheet (equity multiplier ${dp.equityMult}×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.`,
+      add("opportunity", 2, "Genuine room on price", "Real profit, not borrowed money",
+        `Their ${dp.roe}% return is real — it comes from a fat ${dp.netMargin}% profit on each sale, not from borrowing (they carry very little debt). A genuinely profitable, low-debt operator has real room to give on price. Push on price rather than payment terms.`,
         [ev("RoE", dp.roe + "%"), ev("Net margin", dp.netMargin + "%"), ev("Equity multiplier", dp.equityMult + "×")]);
   }
 
   const roceT = trendOf(fin, (f) => f.r.roce);
   if (roceT && roceT.all.length >= 3 && roceT.delta <= -5)
     add("opportunity", 1, "They need the volume — trade it for price", "Returns are trending down",
-      `RoCE slid ${roceT.first}% → ${roceT.last}% over recent years — profitability pressure strengthens our case; they may concede on price to hold volume.`,
-      [ev("RoCE", `${roceT.first}% → ${roceT.last}%`)]);
+      `Return on capital slid ${roceT.first}% → ${roceT.last}% over recent years — profitability pressure strengthens our case; they may concede on price to hold volume.`,
+      [ev("Return on capital", `${roceT.first}% → ${roceT.last}%`)]);
 
   /* ===== C. WORKING CAPITAL ===== */
   if (l.payableDays != null && med.payableDays != null && l.payableDays >= med.payableDays + 10)
@@ -615,7 +615,7 @@ function buildLevers(x) {
       `Cash-conversion cycle ${l.cashConversion} days${cccT && cccT.all.length >= 3 ? ` (was ${Math.round(cccT.first)})` : ""} — a lot of working capital is locked up. An early-payment-for-discount offer will land well.`,
       [ev("Cash cycle", l.cashConversion + " d"), med.cashConversion != null ? ev("Peer median", med.cashConversion + " d", "peers") : null]);
   else if (cccT && cccT.all.length >= 4 && cccT.last - cccT.first >= 30)
-    add("opportunity", 2, "Early payment is worth real money to them", "Working capital is deteriorating",
+    add("opportunity", 2, "Early payment is worth real money to them", "Their day-to-day cash is getting tighter",
       `Cash-conversion cycle stretched ${Math.round(cccT.first)} → ${Math.round(cccT.last)} days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.`,
       [ev("Cash cycle", `${Math.round(cccT.first)} → ${Math.round(cccT.last)} d`)]);
 
@@ -636,7 +636,7 @@ function buildLevers(x) {
       [ev("Inventory days", `${Math.round(invT.first)} → ${Math.round(invT.last)} d`)]);
 
   if (l.currentRatio != null && l.currentRatio < 1.2)
-    add("opportunity", 1, "Buy a discount with faster payment", "Thin liquidity — early pay is valuable to them",
+    add("opportunity", 1, "Buy a discount with faster payment", "They're short on cash — early pay is worth a lot",
       `Current ratio ${l.currentRatio}${l.quickRatio != null ? ` (quick ${l.quickRatio})` : ""} — short on near-term cash cover. Faster payment from us is worth a discount to them.`,
       [ev("Current ratio", String(l.currentRatio)), l.quickRatio != null ? ev("Quick ratio", String(l.quickRatio)) : null]);
 
@@ -659,7 +659,7 @@ function buildLevers(x) {
       [ev("Accruals (profit vs cash)", a.accrualsLatest + "% of assets")]);
 
   if (a.fcfLatest != null && a.fcfLatest < 0 && l.pat != null && l.pat > 0)
-    add("opportunity", 1, "Trade committed volume for a better price", "Free cash flow is negative — they're cash-hungry",
+    add("opportunity", 1, "Trade committed volume for a better price", "They're spending more cash than they earn",
       `Despite ${rs(l.pat)} of net profit, free cash flow is −${rs(a.fcfLatest)} — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.`,
       [ev("Free cash flow", `−${rs(a.fcfLatest)}`), ev("Net profit", rs(l.pat))]);
 
@@ -669,7 +669,7 @@ function buildLevers(x) {
       `Debt-to-equity just ${l.debtEquity} — a clean balance sheet, no interest burden to hide behind. There's room on price.`,
       [ev("Debt / equity", String(l.debtEquity))]);
   if (l.debtEquity != null && l.debtEquity >= 1.5)
-    add("risk", 2, "Keep a second source qualified", "Heavily leveraged",
+    add("risk", 2, "Keep a second source qualified", "They carry a lot of debt",
       `Debt-to-equity ${l.debtEquity}${l.interestCover != null ? `, interest cover ${l.interestCover}×` : ""} — a stretched balance sheet; squeeze too hard and supply reliability is at risk.`,
       [ev("Debt / equity", String(l.debtEquity)), l.interestCover != null ? ev("Interest cover", l.interestCover + "×") : null]);
   else if (l.interestCover != null && l.interestCover < 2.5)
@@ -678,23 +678,23 @@ function buildLevers(x) {
       [ev("Interest cover", l.interestCover + "×")]);
 
   if (a.zZone === "distress")
-    add("risk", 3, "Qualify an alternative source now", "Distress-zone balance sheet (Altman Z)",
-      `Altman Z-score ${a.z} puts them in the distress zone — elevated financial-failure risk. A real continuity concern: qualify a backup source now, and they may trade price for guaranteed, promptly-paid volume.`,
-      [ev("Altman Z-score", `${a.z} (distress)`, "risk")]);
+    add("risk", 3, "Qualify an alternative source now", "High chance of running into money trouble",
+      `The numbers point to a real chance of financial trouble ahead. Treat supply continuity as a live risk — line up a backup source now. They may well trade a lower price for guaranteed, promptly-paid orders.`,
+      [ev("Money-trouble risk", "High", "risk")]);
   else if (a.zZone === "grey")
-    add("watch", 1, "Watch solvency before committing volume", "Balance sheet in the caution zone (Altman Z)",
-      `Altman Z-score ${a.z} sits in the grey zone — not distress, but not comfortably safe. Worth keeping an eye on continuity.`,
-      [ev("Altman Z-score", `${a.z} (grey)`, "risk")]);
+    add("watch", 1, "Keep an eye on them before committing big volume", "Some chance of money trouble",
+      `Their finances are a little strained — not in real danger, but not comfortably safe either. Worth keeping an eye on before you commit big volume.`,
+      [ev("Money-trouble risk", "Some", "risk")]);
 
   /* ===== F. HEALTH COMPOSITE (Piotroski) ===== */
   if (a.fscore != null && a.fscore >= 7)
-    add("watch", 1, "A strengthening supplier will hold its price", "Fundamentally strengthening (F-score high)",
-      `Piotroski F-score ${a.fscore}/9 — improving on most fundamental checks (profitability, cash, efficiency). A healthy, strengthening supplier that wants to grow with us — good for a volume-commitment deal, though they can hold their price.`,
-      [ev("Piotroski F-score", a.fscore + "/9")]);
+    add("watch", 1, "A strengthening supplier will hold its price", "Their finances are getting stronger",
+      `Their finances have been improving year on year — profit, cash and efficiency all trending the right way. A healthy, growing supplier that wants our volume — good for a multi-year volume deal, though they're strong enough to hold their price.`,
+      [ev("Financial trend", "improving")]);
   else if (a.fscore != null && a.fscore <= 3)
-    add("opportunity", 2, "They need the business — lean in", "Fundamentals are weakening (F-score low)",
-      `Piotroski F-score ${a.fscore}/9 — deteriorating across profitability/leverage/efficiency checks. A weakening supplier is likelier to concede on price to keep our volume — but line up a backup.`,
-      [ev("Piotroski F-score", a.fscore + "/9")]);
+    add("opportunity", 2, "They need the business — lean in", "Their finances are slipping",
+      `Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.`,
+      [ev("Financial trend", "improving")]);
 
   /* ===== G. GROWTH & SCALE ===== */
   const rev = trendOf(fin, (f) => f.revenue, 3);
@@ -707,7 +707,7 @@ function buildLevers(x) {
     [ev("Revenue", `${rs(rev.first)} → ${rs(rev.last)}`)]);
 
   if (a.opLeverage != null && a.opLeverage >= 2 && !(growth != null && growth >= 25))
-    add("opportunity", 1, "Trade volume for a lower unit price", "High operating leverage — hungry for volume",
+    add("opportunity", 1, "Trade volume for a lower unit price", "Their costs are mostly fixed — they need volume",
       `Operating leverage ${a.opLeverage}× — each 1% of extra sales lifts profit about ${a.opLeverage}%. Incremental volume is very profitable to them, so they'll trade price for our order size.`,
       [ev("Operating leverage", a.opLeverage + "×")]);
 
@@ -734,7 +734,7 @@ function buildLevers(x) {
   else if (fd && fd.receivable >= 2) add("watch", 1, "Expect them to stay tight on our terms", "Chasing customers through the courts",
     `${fd.receivable} recovery/insolvency case${fd.receivable > 1 ? "s" : ""} they've filed to collect from customers — their own receivables are turning bad, so expect them to stay tight on the terms they give us.`,
     [ev("Recovery cases", String(fd.receivable), "risk")]);
-  if (x.flags.gstDelay || x.flags.epfDelay) add("watch", 1, "An early cash-squeeze signal — watch it", "Late on statutory filings",
+  if (x.flags.gstDelay || x.flags.epfDelay) add("watch", 1, "An early cash-squeeze signal — watch it", "Late filing their legal paperwork",
     `${[x.flags.gstDelay && "GST filing", x.flags.epfDelay && "EPF payment"].filter(Boolean).join(" + ")} delays on record — often an early sign of a cash squeeze.`,
     [ev("Filing flags", [x.flags.gstDelay && "GST", x.flags.epfDelay && "EPF"].filter(Boolean).join(" + "), "risk")]);
   if (x.flags.bureauDefaults) add("risk", 3, "Secure supply and avoid advances", "Credit-bureau default flagged",
@@ -757,11 +757,11 @@ function buildLevers(x) {
       `${rt.agency ?? "Their agency"} has them at default grade (${rt.gradeText ?? "D"}) — a serious solvency signal; secure supply and treat any advance with caution.`, rev);
     else if (rt.flags.inc) add("risk", 2, "Push for transparency; keep a backup ready", "Rating flagged 'Issuer Not Cooperating'",
       `${rt.agency ?? "The agency"} tags them "Issuer Not Cooperating"${rt.grade ? `, last around ${rt.grade}` : ""} — they stopped engaging their rating agency, often a stress or opacity signal. Push for transparency; keep a qualified backup.`, rev);
-    else if (rt.flags.subInvestmentGrade) add("risk", 2, "Good for an early-pay discount, bad for continuity", "Sub-investment-grade credit",
+    else if (rt.flags.subInvestmentGrade) add("risk", 2, "Great for an early-pay discount, risky for supply", "Weak credit rating",
       `${rt.agency ?? "Their agency"} rates them ${rt.grade} — below investment grade; lenders price in elevated risk. Read as cash-constrained: a strong lever for early-pay discounts, and worth hedging supply.`, rev);
     else if (rt.flags.downgraded) add("watch", 2, "Watch for cash strain building", "Credit rating has slipped",
       `Their agency rating has been downgraded over time (now ${rt.grade}) — deteriorating credit quality; watch for cash strain building.`, rev);
-    else if (rt.flags.strong) add("watch", 1, "They can hold price — push volume and service instead", "Solid investment-grade credit",
+    else if (rt.flags.strong) add("watch", 1, "They can hold price — push volume and service instead", "Strong credit rating",
       `${rt.agency ?? "Their agency"} rates them ${rt.grade} — a financially sound, well-regarded supplier: reliable, but they can comfortably hold their price.`, rev);
   }
   // --- forex / import exposure ---
@@ -771,7 +771,7 @@ function buildLevers(x) {
       [ev("Forex spend", `₹${x.forex.spendCr} Cr`), ev("Forex earned", `₹${x.forex.earnCr ?? 0} Cr`)]);
   // --- aged receivables (>6 months) ---
   if (x.agedReceivables && x.agedReceivables.amountCr != null && x.latest.revenue && x.agedReceivables.amountCr >= x.latest.revenue * 0.1)
-    add("watch", 1, "Early payment should buy us a discount", "Aged receivables piling up",
+    add("watch", 1, "Early payment should buy us a discount", "Their own customers are paying them slowly",
       `₹${x.agedReceivables.amountCr} Cr of receivables are over six months old — cash stuck, a sign of collection strain. A cash-tight supplier is more open to early-pay-for-discount.`,
       [ev("Receivables >6m", `₹${x.agedReceivables.amountCr} Cr`, "risk")]);
 
@@ -786,7 +786,7 @@ function buildLevers(x) {
         `${rm.tradedPct}% of revenue is bought-in goods resold, not manufactured. Their margin is the markup on someone else's price, so there's less to concede than the headline suggests — push them to disclose the landed cost and negotiate the markup, or go upstream to the actual maker.`,
         [ev("Traded", `${rm.tradedPct}%`), ev("Manufactured", `${rm.manufacturedPct}%`)]);
     else if (rm.kind === "manufacturer" && rm.manufacturedPct >= 70 && (x.latest.grossMargin ?? 0) > 0)
-      add("opportunity", 2, "Structural room in the price, not just a markup", "They own their conversion margin",
+      add("opportunity", 2, "Real room on price — they're the maker", "They make the product, not just resell it",
         `${rm.manufacturedPct}% of revenue is goods they manufacture themselves, on a ${x.latest.grossMargin}% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.`,
         [ev("Manufactured", `${rm.manufacturedPct}%`), ev("Gross margin", `${x.latest.grossMargin}%`)]);
     // Export share cuts both ways — hedge against us, but also a rupee tailwind.
@@ -806,7 +806,7 @@ function buildLevers(x) {
   // --- money leaving for the owners while they hold price ---
   const mp = x.managerialPay;
   if (mp && mp.pctOfProfit != null && mp.pctOfProfit >= 25)
-    add("opportunity", 2, "Treat a \"we have no margin\" claim with scepticism", "Owner pay is a big slice of profit",
+    add("opportunity", 2, "Don't buy a \"we have no margin\" excuse", "Owner pay is a big slice of profit",
       `Managerial remuneration of ₹${mp.amountCr} Cr is ${mp.pctOfProfit}% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a "we have no margin" claim with scepticism.`,
       [ev("Managerial pay", `₹${mp.amountCr} Cr`), ev("Of profit after tax", `${mp.pctOfProfit}%`)]);
   if (x.proposedDividend && (x.latest.netMargin ?? 0) > 0)
@@ -842,14 +842,14 @@ function buildLevers(x) {
   // --- energy intensity: whose cost shock is it? ---
   const pw = x.powerCost;
   if (pw?.pctOfRevenue != null && pw.pctOfRevenue >= 4)
-    add("watch", 1, "Fix the energy component in the contract", "Energy-heavy cost base",
+    add("watch", 1, "Lock the energy cost into the contract", "A big part of their cost is energy",
       `Power and fuel run ₹${pw.amountCr} Cr, ${pw.pctOfRevenue}% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.`,
       [ev("Power & fuel", `₹${pw.amountCr} Cr`), ev("Of revenue", `${pw.pctOfRevenue}%`)]);
 
   // --- how much life is left in the plant ---
   const aa = x.assetAge;
   if (aa?.depreciatedPct != null && aa.depreciatedPct >= 70)
-    add("opportunity", 2, "Committed volume beats a few rupees on unit price", "Their plant is largely written down",
+    add("opportunity", 2, "Committed volume beats a few rupees on unit price", "Their factory is old and mostly paid off",
       `${aa.depreciatedPct}% of the gross asset base is already depreciated (₹${aa.netCr} Cr left of ₹${aa.grossCr} Cr). Two things follow: the depreciation charge dragging on their reported profit is mostly historic, so cash generation is better than the P&L suggests — and replacement capex is coming, which makes committed volume from us worth more than a few rupees on unit price.`,
       [ev("Depreciated", `${aa.depreciatedPct}%`), ev("Net / gross fixed assets", `₹${aa.netCr} / ₹${aa.grossCr} Cr`)]);
 

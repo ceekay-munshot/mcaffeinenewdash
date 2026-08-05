@@ -2191,10 +2191,10 @@
         "strength": 2,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 17.9% vs the peer median 11.97% — about 5.9pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 17.9% vs the peer median 11.97% — about 5.9pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "17.9%",
             "tab": "financials"
           },
@@ -2213,9 +2213,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Real, structural room in the price",
-        "title": "Returns come from fat margins, not leverage",
-        "detail": "DuPont: RoE 20.4% is driven by a 15.9% net margin on a near-unleveraged balance sheet (equity multiplier 1.49×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
+        "insight": "Genuine room on price",
+        "title": "Real profit, not borrowed money",
+        "detail": "Their 20.4% return is real — it comes from a fat 15.9% profit on each sale, not from borrowing (they carry very little debt). A genuinely profitable, low-debt operator has real room to give on price. Push on price rather than payment terms.",
         "evidence": [
           {
             "label": "RoE",
@@ -2332,7 +2332,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -2346,7 +2346,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "They can hold price — push volume and service instead",
-        "title": "Solid investment-grade credit",
+        "title": "Strong credit rating",
         "detail": "CARE rates them AA — a financially sound, well-regarded supplier: reliable, but they can comfortably hold their price.",
         "evidence": [
           {
@@ -2364,8 +2364,8 @@
       {
         "tone": "watch",
         "strength": 1,
-        "insight": "Fix the energy component in the contract",
-        "title": "Energy-heavy cost base",
+        "insight": "Lock the energy cost into the contract",
+        "title": "A big part of their cost is energy",
         "detail": "Power and fuel run ₹56.6 Cr, 4.3% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
           {
@@ -4129,10 +4129,10 @@
         "strength": 3,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 33.8% vs the peer median 8.35% — about 25.4pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 33.8% vs the peer median 8.35% — about 25.4pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "33.8%",
             "tab": "financials"
           },
@@ -4153,10 +4153,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 30.9% → 33.8% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 30.9% → 33.8% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "30.9% → 33.8%",
             "tab": "financials"
           }
@@ -4165,9 +4165,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Real, structural room in the price",
-        "title": "Returns come from fat margins, not leverage",
-        "detail": "DuPont: RoE 14.5% is driven by a 43.8% net margin on a near-unleveraged balance sheet (equity multiplier 1.01×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
+        "insight": "Genuine room on price",
+        "title": "Real profit, not borrowed money",
+        "detail": "Their 14.5% return is real — it comes from a fat 43.8% profit on each sale, not from borrowing (they carry very little debt). A genuinely profitable, low-debt operator has real room to give on price. Push on price rather than payment terms.",
         "evidence": [
           {
             "label": "RoE",
@@ -6097,10 +6097,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 6.3% → 10.4% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 6.3% → 10.4% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "6.3% → 10.4%",
             "tab": "financials"
           }
@@ -6129,7 +6129,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Trade committed volume for a better price",
-        "title": "Free cash flow is negative — they're cash-hungry",
+        "title": "They're spending more cash than they earn",
         "detail": "Despite ₹226 Cr of net profit, free cash flow is −₹57 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
           {
@@ -6209,7 +6209,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -7696,10 +7696,10 @@
         "strength": 2,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 10.3% vs the peer median 7.04% — about 3.3pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 10.3% vs the peer median 7.04% — about 3.3pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "10.3%",
             "tab": "financials"
           },
@@ -7720,10 +7720,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 6.1% → 10.3% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 6.1% → 10.3% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "6.1% → 10.3%",
             "tab": "financials"
           }
@@ -7733,12 +7733,12 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "They need the business — lean in",
-        "title": "Fundamentals are weakening (F-score low)",
-        "detail": "Piotroski F-score 2/9 — deteriorating across profitability/leverage/efficiency checks. A weakening supplier is likelier to concede on price to keep our volume — but line up a backup.",
+        "title": "Their finances are slipping",
+        "detail": "Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.",
         "evidence": [
           {
-            "label": "Piotroski F-score",
-            "value": "2/9",
+            "label": "Financial trend",
+            "value": "improving",
             "tab": "financials"
           }
         ]
@@ -7747,7 +7747,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Buy a discount with faster payment",
-        "title": "Thin liquidity — early pay is valuable to them",
+        "title": "They're short on cash — early pay is worth a lot",
         "detail": "Current ratio 0.71 (quick 0.56) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
           {
@@ -7799,7 +7799,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -7813,8 +7813,8 @@
         "tone": "risk",
         "strength": 2,
         "insight": "Don't squeeze — continuity is the risk here",
-        "title": "Their returns are debt-manufactured",
-        "detail": "DuPont: RoE 29.2% is propped up by leverage (equity multiplier 7.6×), not operations (net margin only 3.4%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
+        "title": "Their profit is built on borrowed money",
+        "detail": "Their headline return (29.2%) looks good, but it comes from borrowing heavily (they run 7.6× more assets than owners' money), not from the business — the business itself only keeps 3.4% of each sale. A return built on debt is fragile: they need steady, on-time cash from us, so squeezing too hard risks supply. Trade prompt payment for price, don't push to the edge.",
         "evidence": [
           {
             "label": "RoE",
@@ -7837,7 +7837,7 @@
         "tone": "risk",
         "strength": 2,
         "insight": "Keep a second source qualified",
-        "title": "Heavily leveraged",
+        "title": "They carry a lot of debt",
         "detail": "Debt-to-equity 5.28, interest cover 3.9× — a stretched balance sheet; squeeze too hard and supply reliability is at risk.",
         "evidence": [
           {
@@ -9615,10 +9615,10 @@
         "strength": 2,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 4.9% vs the peer median 1.77% — about 3.1pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 4.9% vs the peer median 1.77% — about 3.1pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "4.9%",
             "tab": "financials"
           },
@@ -9639,10 +9639,10 @@
         "strength": 2,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 24.8% vs peers 13.3% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 24.8% vs peers 13.3% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "24.8%",
             "tab": "financials"
           },
@@ -9689,7 +9689,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Treat a \"we have no margin\" claim with scepticism",
+        "insight": "Don't buy a \"we have no margin\" excuse",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹4 Cr is 33.2% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -9723,7 +9723,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Trade committed volume for a better price",
-        "title": "Free cash flow is negative — they're cash-hungry",
+        "title": "They're spending more cash than they earn",
         "detail": "Despite ₹12 Cr of net profit, free cash flow is −₹13 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
           {
@@ -9757,10 +9757,10 @@
         "strength": 1,
         "insight": "Expect a price-rise request; pre-empt it",
         "title": "Margins are compressing",
-        "detail": "EBITDA margin slipped 6.4% → 4.9% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
+        "detail": "operating margin slipped 6.4% → 4.9% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "6.4% → 4.9%",
             "tab": "financials"
           }
@@ -9798,7 +9798,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -9845,8 +9845,8 @@
         "tone": "risk",
         "strength": 2,
         "insight": "Don't squeeze — continuity is the risk here",
-        "title": "Their returns are debt-manufactured",
-        "detail": "DuPont: RoE 18.6% is propped up by leverage (equity multiplier 2.5×), not operations (net margin only 4.6%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
+        "title": "Their profit is built on borrowed money",
+        "detail": "Their headline return (18.6%) looks good, but it comes from borrowing heavily (they run 2.5× more assets than owners' money), not from the business — the business itself only keeps 4.6% of each sale. A return built on debt is fragile: they need steady, on-time cash from us, so squeezing too hard risks supply. Trade prompt payment for price, don't push to the edge.",
         "evidence": [
           {
             "label": "RoE",
@@ -11557,10 +11557,10 @@
         "strength": 3,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 11.4% vs the peer median 2.26% — about 9.1pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 11.4% vs the peer median 2.26% — about 9.1pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "11.4%",
             "tab": "financials"
           },
@@ -11598,9 +11598,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Real, structural room in the price",
-        "title": "Returns come from fat margins, not leverage",
-        "detail": "DuPont: RoE 17.1% is driven by a 8.4% net margin on a near-unleveraged balance sheet (equity multiplier 1.4×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
+        "insight": "Genuine room on price",
+        "title": "Real profit, not borrowed money",
+        "detail": "Their 17.1% return is real — it comes from a fat 8.4% profit on each sale, not from borrowing (they carry very little debt). A genuinely profitable, low-debt operator has real room to give on price. Push on price rather than payment terms.",
         "evidence": [
           {
             "label": "RoE",
@@ -11690,10 +11690,10 @@
         "strength": 1,
         "insight": "Expect a price-rise request; pre-empt it",
         "title": "Margins are compressing",
-        "detail": "EBITDA margin slipped 14.7% → 11.4% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
+        "detail": "operating margin slipped 14.7% → 11.4% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "14.7% → 11.4%",
             "tab": "financials"
           }
@@ -13264,10 +13264,10 @@
         "strength": 3,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 14.8% vs the peer median 5.17% — about 9.6pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 14.8% vs the peer median 5.17% — about 9.6pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "14.8%",
             "tab": "financials"
           },
@@ -13307,10 +13307,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 8.5% → 14.8% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 8.5% → 14.8% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "8.5% → 14.8%",
             "tab": "financials"
           }
@@ -13321,10 +13321,10 @@
         "strength": 2,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 28.2% vs peers 16.84% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 28.2% vs peers 16.84% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "28.2%",
             "tab": "financials"
           },
@@ -13338,8 +13338,8 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Structural room in the price, not just a markup",
-        "title": "They own their conversion margin",
+        "insight": "Real room on price — they're the maker",
+        "title": "They make the product, not just resell it",
         "detail": "100% of revenue is goods they manufacture themselves, on a 45.9% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
           {
@@ -13405,7 +13405,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -15140,10 +15140,10 @@
         "strength": 2,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 15.5% vs the peer median 11.61% — about 3.9pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 15.5% vs the peer median 11.61% — about 3.9pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "15.5%",
             "tab": "financials"
           },
@@ -15164,10 +15164,10 @@
         "strength": 2,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 28.1% vs peers 16.28% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 28.1% vs peers 16.28% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "28.1%",
             "tab": "financials"
           },
@@ -15181,7 +15181,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Treat a \"we have no margin\" claim with scepticism",
+        "insight": "Don't buy a \"we have no margin\" excuse",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹5.4 Cr is 27.5% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -15253,7 +15253,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "Fix a rupee price before they pass it through",
-        "title": "Their input costs are climbing",
+        "title": "Their raw-material costs are rising",
         "detail": "Material cost rose 51.1% → 64.2% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
           {
@@ -15281,7 +15281,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -17042,10 +17042,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 2.1% → 4.2% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 2.1% → 4.2% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "2.1% → 4.2%",
             "tab": "financials"
           }
@@ -17056,10 +17056,10 @@
         "strength": 2,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 16.5% vs peers 8.39% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 16.5% vs peers 8.39% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "16.5%",
             "tab": "financials"
           },
@@ -17106,8 +17106,8 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Structural room in the price, not just a markup",
-        "title": "They own their conversion margin",
+        "insight": "Real room on price — they're the maker",
+        "title": "They make the product, not just resell it",
         "detail": "100% of revenue is goods they manufacture themselves, on a 17.7% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
           {
@@ -17126,7 +17126,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Buy a discount with faster payment",
-        "title": "Thin liquidity — early pay is valuable to them",
+        "title": "They're short on cash — early pay is worth a lot",
         "detail": "Current ratio 0.83 (quick 0.48) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
           {
@@ -17178,12 +17178,12 @@
         "tone": "watch",
         "strength": 1,
         "insight": "A strengthening supplier will hold its price",
-        "title": "Fundamentally strengthening (F-score high)",
-        "detail": "Piotroski F-score 7/9 — improving on most fundamental checks (profitability, cash, efficiency). A healthy, strengthening supplier that wants to grow with us — good for a volume-commitment deal, though they can hold their price.",
+        "title": "Their finances are getting stronger",
+        "detail": "Their finances have been improving year on year — profit, cash and efficiency all trending the right way. A healthy, growing supplier that wants our volume — good for a multi-year volume deal, though they're strong enough to hold their price.",
         "evidence": [
           {
-            "label": "Piotroski F-score",
-            "value": "7/9",
+            "label": "Financial trend",
+            "value": "improving",
             "tab": "financials"
           }
         ]
@@ -17192,7 +17192,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -17206,8 +17206,8 @@
         "tone": "risk",
         "strength": 2,
         "insight": "Don't squeeze — continuity is the risk here",
-        "title": "Their returns are debt-manufactured",
-        "detail": "DuPont: RoE 13.7% is propped up by leverage (equity multiplier 2.69×), not operations (net margin only 2%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
+        "title": "Their profit is built on borrowed money",
+        "detail": "Their headline return (13.7%) looks good, but it comes from borrowing heavily (they run 2.69× more assets than owners' money), not from the business — the business itself only keeps 2% of each sale. A return built on debt is fragile: they need steady, on-time cash from us, so squeezing too hard risks supply. Trade prompt payment for price, don't push to the edge.",
         "evidence": [
           {
             "label": "RoE",
@@ -18127,10 +18127,10 @@
         "strength": 2,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 15.2% vs the peer median 8.4% — about 6.8pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 15.2% vs the peer median 8.4% — about 6.8pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "15.2%",
             "tab": "financials"
           },
@@ -18151,10 +18151,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed -17.9% → 15.2% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed -17.9% → 15.2% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "-17.9% → 15.2%",
             "tab": "financials"
           }
@@ -18163,9 +18163,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Anchor on their COGS, not their net margin",
-        "title": "Margin eaten by overhead, not input cost",
-        "detail": "Gross margin is a healthy 26.1% — their raw-material economics are fine — but overhead (other expenses) climbed from 0% to 7.2% of sales. Overhead is semi-fixed and amortises as they scale, so their underlying unit economics already support a lower price. Anchor on their COGS, not the reported net margin.",
+        "insight": "Their raw material is cheap — push on price there",
+        "title": "Their money goes on ads & overhead, not materials",
+        "detail": "After paying for raw materials they keep a healthy 26.1% — so the materials aren't the problem. What's eating the profit is overhead (ads, admin, freight), which climbed from 0% to 7.2% of sales. That kind of cost spreads out as they grow, so the low materials cost means there's room on price. Argue on their raw-material cost, not the bottom-line figure.",
         "evidence": [
           {
             "label": "Gross margin",
@@ -18178,7 +18178,7 @@
             "tab": "financials"
           },
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "15.2%",
             "tab": "financials"
           }
@@ -18207,12 +18207,12 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "They need the business — lean in",
-        "title": "Fundamentals are weakening (F-score low)",
-        "detail": "Piotroski F-score 3/9 — deteriorating across profitability/leverage/efficiency checks. A weakening supplier is likelier to concede on price to keep our volume — but line up a backup.",
+        "title": "Their finances are slipping",
+        "detail": "Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.",
         "evidence": [
           {
-            "label": "Piotroski F-score",
-            "value": "3/9",
+            "label": "Financial trend",
+            "value": "improving",
             "tab": "financials"
           }
         ]
@@ -18220,8 +18220,8 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Structural room in the price, not just a markup",
-        "title": "They own their conversion margin",
+        "insight": "Real room on price — they're the maker",
+        "title": "They make the product, not just resell it",
         "detail": "100% of revenue is goods they manufacture themselves, on a 26.1% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
           {
@@ -18278,7 +18278,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Buy a discount with faster payment",
-        "title": "Thin liquidity — early pay is valuable to them",
+        "title": "They're short on cash — early pay is worth a lot",
         "detail": "Current ratio 0.56 (quick 0.32) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
           {
@@ -18316,7 +18316,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -18330,12 +18330,12 @@
         "tone": "risk",
         "strength": 3,
         "insight": "Qualify an alternative source now",
-        "title": "Distress-zone balance sheet (Altman Z)",
-        "detail": "Altman Z-score 0.65 puts them in the distress zone — elevated financial-failure risk. A real continuity concern: qualify a backup source now, and they may trade price for guaranteed, promptly-paid volume.",
+        "title": "High chance of running into money trouble",
+        "detail": "The numbers point to a real chance of financial trouble ahead. Treat supply continuity as a live risk — line up a backup source now. They may well trade a lower price for guaranteed, promptly-paid orders.",
         "evidence": [
           {
-            "label": "Altman Z-score",
-            "value": "0.65 (distress)",
+            "label": "Money-trouble risk",
+            "value": "High",
             "tab": "risk"
           }
         ]
@@ -20123,8 +20123,8 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Structural room in the price, not just a markup",
-        "title": "They own their conversion margin",
+        "insight": "Real room on price — they're the maker",
+        "title": "They make the product, not just resell it",
         "detail": "100% of revenue is goods they manufacture themselves, on a 38.8% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
           {
@@ -20190,7 +20190,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -20204,8 +20204,8 @@
         "tone": "risk",
         "strength": 2,
         "insight": "Don't squeeze — continuity is the risk here",
-        "title": "Their returns are debt-manufactured",
-        "detail": "DuPont: RoE 4.4% is propped up by leverage (equity multiplier 2.76×), not operations (net margin only 1.4%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
+        "title": "Their profit is built on borrowed money",
+        "detail": "Their headline return (4.4%) looks good, but it comes from borrowing heavily (they run 2.76× more assets than owners' money), not from the business — the business itself only keeps 1.4% of each sale. A return built on debt is fragile: they need steady, on-time cash from us, so squeezing too hard risks supply. Trade prompt payment for price, don't push to the edge.",
         "evidence": [
           {
             "label": "RoE",
@@ -20846,12 +20846,12 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "They need the business — lean in",
-        "title": "Fundamentals are weakening (F-score low)",
-        "detail": "Piotroski F-score 2/9 — deteriorating across profitability/leverage/efficiency checks. A weakening supplier is likelier to concede on price to keep our volume — but line up a backup.",
+        "title": "Their finances are slipping",
+        "detail": "Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.",
         "evidence": [
           {
-            "label": "Piotroski F-score",
-            "value": "2/9",
+            "label": "Financial trend",
+            "value": "improving",
             "tab": "financials"
           }
         ]
@@ -20860,7 +20860,7 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "Committed volume beats a few rupees on unit price",
-        "title": "Their plant is largely written down",
+        "title": "Their factory is old and mostly paid off",
         "detail": "90.4% of the gross asset base is already depreciated (₹0.1 Cr left of ₹1.2 Cr). Two things follow: the depreciation charge dragging on their reported profit is mostly historic, so cash generation is better than the P&L suggests — and replacement capex is coming, which makes committed volume from us worth more than a few rupees on unit price.",
         "evidence": [
           {
@@ -20879,7 +20879,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -20907,12 +20907,12 @@
         "tone": "risk",
         "strength": 3,
         "insight": "Qualify an alternative source now",
-        "title": "Distress-zone balance sheet (Altman Z)",
-        "detail": "Altman Z-score 2.91 puts them in the distress zone — elevated financial-failure risk. A real continuity concern: qualify a backup source now, and they may trade price for guaranteed, promptly-paid volume.",
+        "title": "High chance of running into money trouble",
+        "detail": "The numbers point to a real chance of financial trouble ahead. Treat supply continuity as a live risk — line up a backup source now. They may well trade a lower price for guaranteed, promptly-paid orders.",
         "evidence": [
           {
-            "label": "Altman Z-score",
-            "value": "2.91 (distress)",
+            "label": "Money-trouble risk",
+            "value": "High",
             "tab": "risk"
           }
         ]
@@ -22642,10 +22642,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 8.8% → 12.6% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 8.8% → 12.6% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "8.8% → 12.6%",
             "tab": "financials"
           }
@@ -22656,10 +22656,10 @@
         "strength": 2,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 23.2% vs peers 13.6% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 23.2% vs peers 13.6% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "23.2%",
             "tab": "financials"
           },
@@ -22693,7 +22693,7 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "Early payment is worth real money to them",
-        "title": "Working capital is deteriorating",
+        "title": "Their day-to-day cash is getting tighter",
         "detail": "Cash-conversion cycle stretched -12 → 60 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
           {
@@ -22706,8 +22706,8 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Structural room in the price, not just a markup",
-        "title": "They own their conversion margin",
+        "insight": "Real room on price — they're the maker",
+        "title": "They make the product, not just resell it",
         "detail": "100% of revenue is goods they manufacture themselves, on a 26.1% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
           {
@@ -22726,7 +22726,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Trade committed volume for a better price",
-        "title": "Free cash flow is negative — they're cash-hungry",
+        "title": "They're spending more cash than they earn",
         "detail": "Despite ₹10 Cr of net profit, free cash flow is −₹18 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
           {
@@ -22745,7 +22745,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Trade volume for a lower unit price",
-        "title": "High operating leverage — hungry for volume",
+        "title": "Their costs are mostly fixed — they need volume",
         "detail": "Operating leverage 8.59× — each 1% of extra sales lifts profit about 8.59%. Incremental volume is very profitable to them, so they'll trade price for our order size.",
         "evidence": [
           {
@@ -22773,7 +22773,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "Fix a rupee price before they pass it through",
-        "title": "Their input costs are climbing",
+        "title": "Their raw-material costs are rising",
         "detail": "Material cost rose 68.2% → 75.8% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
           {
@@ -22815,7 +22815,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "Early payment should buy us a discount",
-        "title": "Aged receivables piling up",
+        "title": "Their own customers are paying them slowly",
         "detail": "₹37.3 Cr of receivables are over six months old — cash stuck, a sign of collection strain. A cash-tight supplier is more open to early-pay-for-discount.",
         "evidence": [
           {
@@ -24335,10 +24335,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed -5% → 7.4% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed -5% → 7.4% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "-5% → 7.4%",
             "tab": "financials"
           }
@@ -24348,7 +24348,7 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "Early payment is worth real money to them",
-        "title": "Working capital is deteriorating",
+        "title": "Their day-to-day cash is getting tighter",
         "detail": "Cash-conversion cycle stretched -5833 → 87 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
           {
@@ -24361,8 +24361,8 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Structural room in the price, not just a markup",
-        "title": "They own their conversion margin",
+        "insight": "Real room on price — they're the maker",
+        "title": "They make the product, not just resell it",
         "detail": "99.6% of revenue is goods they manufacture themselves, on a 60.5% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
           {
@@ -24428,12 +24428,12 @@
         "tone": "watch",
         "strength": 1,
         "insight": "A strengthening supplier will hold its price",
-        "title": "Fundamentally strengthening (F-score high)",
-        "detail": "Piotroski F-score 7/9 — improving on most fundamental checks (profitability, cash, efficiency). A healthy, strengthening supplier that wants to grow with us — good for a volume-commitment deal, though they can hold their price.",
+        "title": "Their finances are getting stronger",
+        "detail": "Their finances have been improving year on year — profit, cash and efficiency all trending the right way. A healthy, growing supplier that wants our volume — good for a multi-year volume deal, though they're strong enough to hold their price.",
         "evidence": [
           {
-            "label": "Piotroski F-score",
-            "value": "7/9",
+            "label": "Financial trend",
+            "value": "improving",
             "tab": "financials"
           }
         ]
@@ -24456,7 +24456,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -24469,8 +24469,8 @@
       {
         "tone": "watch",
         "strength": 1,
-        "insight": "Fix the energy component in the contract",
-        "title": "Energy-heavy cost base",
+        "insight": "Lock the energy cost into the contract",
+        "title": "A big part of their cost is energy",
         "detail": "Power and fuel run ₹3.5 Cr, 11.5% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
           {
@@ -25533,10 +25533,10 @@
         "strength": 2,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 16.7% vs peers 11.83% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 16.7% vs peers 11.83% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "16.7%",
             "tab": "financials"
           },
@@ -25550,8 +25550,8 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Structural room in the price, not just a markup",
-        "title": "They own their conversion margin",
+        "insight": "Real room on price — they're the maker",
+        "title": "They make the product, not just resell it",
         "detail": "100% of revenue is goods they manufacture themselves, on a 40% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
           {
@@ -25569,7 +25569,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Treat a \"we have no margin\" claim with scepticism",
+        "insight": "Don't buy a \"we have no margin\" excuse",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹0.9 Cr is 53.9% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -25608,7 +25608,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -25621,8 +25621,8 @@
       {
         "tone": "watch",
         "strength": 1,
-        "insight": "Fix the energy component in the contract",
-        "title": "Energy-heavy cost base",
+        "insight": "Lock the energy cost into the contract",
+        "title": "A big part of their cost is energy",
         "detail": "Power and fuel run ₹4.1 Cr, 6.6% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
           {
@@ -25641,8 +25641,8 @@
         "tone": "risk",
         "strength": 2,
         "insight": "Don't squeeze — continuity is the risk here",
-        "title": "Their returns are debt-manufactured",
-        "detail": "DuPont: RoE 22.4% is propped up by leverage (equity multiplier 3.66×), not operations (net margin only 2.8%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
+        "title": "Their profit is built on borrowed money",
+        "detail": "Their headline return (22.4%) looks good, but it comes from borrowing heavily (they run 3.66× more assets than owners' money), not from the business — the business itself only keeps 2.8% of each sale. A return built on debt is fragile: they need steady, on-time cash from us, so squeezing too hard risks supply. Trade prompt payment for price, don't push to the edge.",
         "evidence": [
           {
             "label": "RoE",
@@ -25665,7 +25665,7 @@
         "tone": "risk",
         "strength": 2,
         "insight": "Keep a second source qualified",
-        "title": "Heavily leveraged",
+        "title": "They carry a lot of debt",
         "detail": "Debt-to-equity 1.82, interest cover 2.7× — a stretched balance sheet; squeeze too hard and supply reliability is at risk.",
         "evidence": [
           {
@@ -27545,10 +27545,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 5.1% → 10.8% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 5.1% → 10.8% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "5.1% → 10.8%",
             "tab": "financials"
           }
@@ -27559,10 +27559,10 @@
         "strength": 2,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 17.4% vs peers 12.85% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 17.4% vs peers 12.85% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "17.4%",
             "tab": "financials"
           },
@@ -27615,7 +27615,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Trade committed volume for a better price",
-        "title": "Free cash flow is negative — they're cash-hungry",
+        "title": "They're spending more cash than they earn",
         "detail": "Despite ₹25 Cr of net profit, free cash flow is −₹3 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
           {
@@ -27667,7 +27667,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -27694,8 +27694,8 @@
       {
         "tone": "watch",
         "strength": 1,
-        "insight": "Fix the energy component in the contract",
-        "title": "Energy-heavy cost base",
+        "insight": "Lock the energy cost into the contract",
+        "title": "A big part of their cost is energy",
         "detail": "Power and fuel run ₹75.9 Cr, 17.2% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
           {
@@ -29408,10 +29408,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 6.1% → 8.8% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 6.1% → 8.8% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "6.1% → 8.8%",
             "tab": "financials"
           }
@@ -29422,10 +29422,10 @@
         "strength": 2,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 27.7% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 27.7% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "27.7%",
             "tab": "financials"
           }
@@ -29435,7 +29435,7 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "Early payment is worth real money to them",
-        "title": "Working capital is deteriorating",
+        "title": "Their day-to-day cash is getting tighter",
         "detail": "Cash-conversion cycle stretched 21 → 51 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
           {
@@ -29448,8 +29448,8 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Structural room in the price, not just a markup",
-        "title": "They own their conversion margin",
+        "insight": "Real room on price — they're the maker",
+        "title": "They make the product, not just resell it",
         "detail": "100% of revenue is goods they manufacture themselves, on a 24.9% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
           {
@@ -29468,7 +29468,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Trade committed volume for a better price",
-        "title": "Free cash flow is negative — they're cash-hungry",
+        "title": "They're spending more cash than they earn",
         "detail": "Despite ₹20 Cr of net profit, free cash flow is −₹1 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
           {
@@ -29520,7 +29520,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "Fix a rupee price before they pass it through",
-        "title": "Their input costs are climbing",
+        "title": "Their raw-material costs are rising",
         "detail": "Material cost rose 71.8% → 76.3% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
           {
@@ -29576,7 +29576,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -31349,10 +31349,10 @@
         "strength": 3,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 19% vs the peer median 1.73% — about 17.3pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 19% vs the peer median 1.73% — about 17.3pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "19%",
             "tab": "financials"
           },
@@ -31373,10 +31373,10 @@
         "strength": 3,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 46% vs peers 13.64% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 46% vs peers 13.64% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "46%",
             "tab": "financials"
           },
@@ -31390,9 +31390,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Real, structural room in the price",
-        "title": "Returns come from fat margins, not leverage",
-        "detail": "DuPont: RoE 34% is driven by a 15.4% net margin on a near-unleveraged balance sheet (equity multiplier 1.45×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
+        "insight": "Genuine room on price",
+        "title": "Real profit, not borrowed money",
+        "detail": "Their 34% return is real — it comes from a fat 15.4% profit on each sale, not from borrowing (they carry very little debt). A genuinely profitable, low-debt operator has real room to give on price. Push on price rather than payment terms.",
         "evidence": [
           {
             "label": "RoE",
@@ -31453,7 +31453,7 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "Committed volume beats a few rupees on unit price",
-        "title": "Their plant is largely written down",
+        "title": "Their factory is old and mostly paid off",
         "detail": "85.3% of the gross asset base is already depreciated (₹0.6 Cr left of ₹3.8 Cr). Two things follow: the depreciation charge dragging on their reported profit is mostly historic, so cash generation is better than the P&L suggests — and replacement capex is coming, which makes committed volume from us worth more than a few rupees on unit price.",
         "evidence": [
           {
@@ -31501,10 +31501,10 @@
         "strength": 1,
         "insight": "Expect a price-rise request; pre-empt it",
         "title": "Margins are compressing",
-        "detail": "EBITDA margin slipped 20.5% → 19% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
+        "detail": "operating margin slipped 20.5% → 19% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "20.5% → 19%",
             "tab": "financials"
           }
@@ -31514,7 +31514,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "Fix a rupee price before they pass it through",
-        "title": "Their input costs are climbing",
+        "title": "Their raw-material costs are rising",
         "detail": "Material cost rose 57% → 74.4% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
           {
@@ -32730,10 +32730,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 3.8% → 5.7% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 3.8% → 5.7% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "3.8% → 5.7%",
             "tab": "financials"
           }
@@ -32744,10 +32744,10 @@
         "strength": 2,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 22.2% vs peers 11.93% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 22.2% vs peers 11.93% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "22.2%",
             "tab": "financials"
           },
@@ -32762,7 +32762,7 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "Early payment is worth real money to them",
-        "title": "Working capital is deteriorating",
+        "title": "Their day-to-day cash is getting tighter",
         "detail": "Cash-conversion cycle stretched -69 → -11 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
           {
@@ -32775,8 +32775,8 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Structural room in the price, not just a markup",
-        "title": "They own their conversion margin",
+        "insight": "Real room on price — they're the maker",
+        "title": "They make the product, not just resell it",
         "detail": "100% of revenue is goods they manufacture themselves, on a 35.5% gross margin. Unlike a trader, the spread between input cost and our price is theirs to set — so there is real, structural room in the price, not just a thin resale markup.",
         "evidence": [
           {
@@ -32794,7 +32794,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Treat a \"we have no margin\" claim with scepticism",
+        "insight": "Don't buy a \"we have no margin\" excuse",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹0.2 Cr is 54.7% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -32833,7 +32833,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Buy a discount with faster payment",
-        "title": "Thin liquidity — early pay is valuable to them",
+        "title": "They're short on cash — early pay is worth a lot",
         "detail": "Current ratio 0.99 (quick 0.85) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
           {
@@ -32885,7 +32885,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "Fix a rupee price before they pass it through",
-        "title": "Their input costs are climbing",
+        "title": "Their raw-material costs are rising",
         "detail": "Material cost rose 0% → 64.5% of sales — they'll try to pass this on. Pre-empt with a fixed-price or index-linked contract before they reprice us.",
         "evidence": [
           {
@@ -32899,7 +32899,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -32913,8 +32913,8 @@
         "tone": "risk",
         "strength": 2,
         "insight": "Don't squeeze — continuity is the risk here",
-        "title": "Their returns are debt-manufactured",
-        "detail": "DuPont: RoE 100% is propped up by leverage (equity multiplier 11.75×), not operations (net margin only 2.6%). A leverage-driven return is fragile — they need steady cash (our leverage), but squeeze too hard and continuity is at risk.",
+        "title": "Their profit is built on borrowed money",
+        "detail": "Their headline return (100%) looks good, but it comes from borrowing heavily (they run 11.75× more assets than owners' money), not from the business — the business itself only keeps 2.6% of each sale. A return built on debt is fragile: they need steady, on-time cash from us, so squeezing too hard risks supply. Trade prompt payment for price, don't push to the edge.",
         "evidence": [
           {
             "label": "RoE",
@@ -32937,7 +32937,7 @@
         "tone": "risk",
         "strength": 2,
         "insight": "Keep a second source qualified",
-        "title": "Heavily leveraged",
+        "title": "They carry a lot of debt",
         "detail": "Debt-to-equity 6.66, interest cover 4.4× — a stretched balance sheet; squeeze too hard and supply reliability is at risk.",
         "evidence": [
           {
@@ -35031,10 +35031,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 14% → 15.5% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 14% → 15.5% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "14% → 15.5%",
             "tab": "financials"
           }
@@ -35043,9 +35043,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Anchor on their COGS, not their net margin",
-        "title": "Margin eaten by overhead, not input cost",
-        "detail": "Gross margin is a healthy 41.9% — their raw-material economics are fine — but overhead (other expenses) climbed from 12.2% to 15.2% of sales. Overhead is semi-fixed and amortises as they scale, so their underlying unit economics already support a lower price. Anchor on their COGS, not the reported net margin.",
+        "insight": "Their raw material is cheap — push on price there",
+        "title": "Their money goes on ads & overhead, not materials",
+        "detail": "After paying for raw materials they keep a healthy 41.9% — so the materials aren't the problem. What's eating the profit is overhead (ads, admin, freight), which climbed from 12.2% to 15.2% of sales. That kind of cost spreads out as they grow, so the low materials cost means there's room on price. Argue on their raw-material cost, not the bottom-line figure.",
         "evidence": [
           {
             "label": "Gross margin",
@@ -35058,7 +35058,7 @@
             "tab": "financials"
           },
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "15.5%",
             "tab": "financials"
           }
@@ -35105,7 +35105,7 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Treat a \"we have no margin\" claim with scepticism",
+        "insight": "Don't buy a \"we have no margin\" excuse",
         "title": "Owner pay is a big slice of profit",
         "detail": "Managerial remuneration of ₹85.1 Cr is 34.4% of profit after tax. A chunk of what the business earns is being taken out at the top, which means the reported bottom line understates what the operation itself can absorb — treat a \"we have no margin\" claim with scepticism.",
         "evidence": [
@@ -35125,7 +35125,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Buy a discount with faster payment",
-        "title": "Thin liquidity — early pay is valuable to them",
+        "title": "They're short on cash — early pay is worth a lot",
         "detail": "Current ratio 0.98 (quick 0.55) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
           {
@@ -35144,7 +35144,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Trade committed volume for a better price",
-        "title": "Free cash flow is negative — they're cash-hungry",
+        "title": "They're spending more cash than they earn",
         "detail": "Despite ₹248 Cr of net profit, free cash flow is −₹394 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
           {
@@ -35224,7 +35224,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -35238,7 +35238,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "They can hold price — push volume and service instead",
-        "title": "Solid investment-grade credit",
+        "title": "Strong credit rating",
         "detail": "CRISIL rates them AA — a financially sound, well-regarded supplier: reliable, but they can comfortably hold their price.",
         "evidence": [
           {
@@ -35256,8 +35256,8 @@
       {
         "tone": "watch",
         "strength": 1,
-        "insight": "Fix the energy component in the contract",
-        "title": "Energy-heavy cost base",
+        "insight": "Lock the energy cost into the contract",
+        "title": "A big part of their cost is energy",
         "detail": "Power and fuel run ₹128.2 Cr, 5% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
           {
@@ -36899,10 +36899,10 @@
         "strength": 3,
         "insight": "They can afford to share margin",
         "title": "Very profitable use of capital",
-        "detail": "RoCE 38.2% vs peers 18.18% — they earn well above the cost of capital; there's margin to share with us.",
+        "detail": "Return on capital 38.2% vs peers 18.18% — they earn well above the cost of capital; there's margin to share with us.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "38.2%",
             "tab": "financials"
           },
@@ -36937,10 +36937,10 @@
         "strength": 2,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 8.4% vs the peer median 2.09% — about 6.3pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 8.4% vs the peer median 2.09% — about 6.3pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "8.4%",
             "tab": "financials"
           },
@@ -36961,10 +36961,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed 6.7% → 8.4% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed 6.7% → 8.4% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "6.7% → 8.4%",
             "tab": "financials"
           }
@@ -36974,7 +36974,7 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "Early payment is worth real money to them",
-        "title": "Working capital is deteriorating",
+        "title": "Their day-to-day cash is getting tighter",
         "detail": "Cash-conversion cycle stretched 9 → 64 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
           {
@@ -37073,12 +37073,12 @@
         "tone": "watch",
         "strength": 1,
         "insight": "A strengthening supplier will hold its price",
-        "title": "Fundamentally strengthening (F-score high)",
-        "detail": "Piotroski F-score 8/9 — improving on most fundamental checks (profitability, cash, efficiency). A healthy, strengthening supplier that wants to grow with us — good for a volume-commitment deal, though they can hold their price.",
+        "title": "Their finances are getting stronger",
+        "detail": "Their finances have been improving year on year — profit, cash and efficiency all trending the right way. A healthy, growing supplier that wants our volume — good for a multi-year volume deal, though they're strong enough to hold their price.",
         "evidence": [
           {
-            "label": "Piotroski F-score",
-            "value": "8/9",
+            "label": "Financial trend",
+            "value": "improving",
             "tab": "financials"
           }
         ]
@@ -37101,7 +37101,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -38849,7 +38849,7 @@
         "tone": "opportunity",
         "strength": 2,
         "insight": "Early payment is worth real money to them",
-        "title": "Working capital is deteriorating",
+        "title": "Their day-to-day cash is getting tighter",
         "detail": "Cash-conversion cycle stretched -25 → 59 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
         "evidence": [
           {
@@ -38891,7 +38891,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Trade committed volume for a better price",
-        "title": "Free cash flow is negative — they're cash-hungry",
+        "title": "They're spending more cash than they earn",
         "detail": "Despite ₹9 Cr of net profit, free cash flow is −₹10 Cr — they're pouring cash into capex/working capital. A supplier funding expansion needs committed volume; trade it for price.",
         "evidence": [
           {
@@ -38939,10 +38939,10 @@
         "strength": 1,
         "insight": "Expect a price-rise request; pre-empt it",
         "title": "Margins are compressing",
-        "detail": "EBITDA margin slipped 7.1% → 4.5% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
+        "detail": "operating margin slipped 7.1% → 4.5% — they're being squeezed; a hard cut meets resistance, but they need our volume.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "7.1% → 4.5%",
             "tab": "financials"
           }
@@ -38980,7 +38980,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -40859,10 +40859,10 @@
         "strength": 3,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
-        "detail": "EBITDA margin 20.6% vs the peer median 9.75% — about 10.9pp of extra cushion baked into their pricing. There's room to push on price.",
+        "detail": "operating margin 20.6% vs the peer median 9.75% — about 10.9pp of extra cushion baked into their pricing. There's room to push on price.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "20.6%",
             "tab": "financials"
           },
@@ -40881,9 +40881,9 @@
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Real, structural room in the price",
-        "title": "Returns come from fat margins, not leverage",
-        "detail": "DuPont: RoE 12.6% is driven by a 8.7% net margin on a near-unleveraged balance sheet (equity multiplier 1.57×). An under-leveraged, high-margin operator — plenty of margin to give. Push on price, not terms.",
+        "insight": "Genuine room on price",
+        "title": "Real profit, not borrowed money",
+        "detail": "Their 12.6% return is real — it comes from a fat 8.7% profit on each sale, not from borrowing (they carry very little debt). A genuinely profitable, low-debt operator has real room to give on price. Push on price rather than payment terms.",
         "evidence": [
           {
             "label": "RoE",
@@ -40906,7 +40906,7 @@
         "tone": "opportunity",
         "strength": 1,
         "insight": "Buy a discount with faster payment",
-        "title": "Thin liquidity — early pay is valuable to them",
+        "title": "They're short on cash — early pay is worth a lot",
         "detail": "Current ratio 1.09 (quick 0.97) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
           {
@@ -40971,8 +40971,8 @@
       {
         "tone": "watch",
         "strength": 1,
-        "insight": "Fix the energy component in the contract",
-        "title": "Energy-heavy cost base",
+        "insight": "Lock the energy cost into the contract",
+        "title": "A big part of their cost is energy",
         "detail": "Power and fuel run ₹4 Cr, 4% of revenue. Tariff moves hit them directly and they'll try to pass them through — worth fixing the energy component in a contract rather than reopening price every tariff revision.",
         "evidence": [
           {
@@ -42314,10 +42314,10 @@
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
-        "detail": "EBITDA margin climbed -14.2% → -1.5% — profit is expanding, so they can absorb a better price for us.",
+        "detail": "operating margin climbed -14.2% → -1.5% — profit is expanding, so they can absorb a better price for us.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "-14.2% → -1.5%",
             "tab": "financials"
           }
@@ -42385,10 +42385,10 @@
         "strength": 1,
         "insight": "They need the volume — trade it for price",
         "title": "Returns are trending down",
-        "detail": "RoCE slid 6.6% → -7.8% over recent years — profitability pressure strengthens our case; they may concede on price to hold volume.",
+        "detail": "Return on capital slid 6.6% → -7.8% over recent years — profitability pressure strengthens our case; they may concede on price to hold volume.",
         "evidence": [
           {
-            "label": "RoCE",
+            "label": "Return on capital",
             "value": "6.6% → -7.8%",
             "tab": "financials"
           }
@@ -42451,10 +42451,10 @@
         "strength": 1,
         "insight": "Push on terms, not on price",
         "title": "Thinner margins than peers",
-        "detail": "EBITDA margin -1.5% is below the peer median 3.44% — less room; lean on input-cost transparency rather than a blunt cut.",
+        "detail": "operating margin -1.5% is below the peer median 3.44% — less room; lean on input-cost transparency rather than a blunt cut.",
         "evidence": [
           {
-            "label": "EBITDA margin",
+            "label": "operating margin",
             "value": "-1.5%",
             "tab": "financials"
           },
@@ -42483,7 +42483,7 @@
         "tone": "watch",
         "strength": 1,
         "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late on statutory filings",
+        "title": "Late filing their legal paperwork",
         "detail": "GST filing + EPF payment delays on record — often an early sign of a cash squeeze.",
         "evidence": [
           {
@@ -42497,12 +42497,12 @@
         "tone": "risk",
         "strength": 3,
         "insight": "Qualify an alternative source now",
-        "title": "Distress-zone balance sheet (Altman Z)",
-        "detail": "Altman Z-score 3.94 puts them in the distress zone — elevated financial-failure risk. A real continuity concern: qualify a backup source now, and they may trade price for guaranteed, promptly-paid volume.",
+        "title": "High chance of running into money trouble",
+        "detail": "The numbers point to a real chance of financial trouble ahead. Treat supply continuity as a live risk — line up a backup source now. They may well trade a lower price for guaranteed, promptly-paid orders.",
         "evidence": [
           {
-            "label": "Altman Z-score",
-            "value": "3.94 (distress)",
+            "label": "Money-trouble risk",
+            "value": "High",
             "tab": "risk"
           }
         ]
