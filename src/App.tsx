@@ -2046,8 +2046,8 @@ function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose:
   // Suppliers without a paid Probe report still get the lighter insight pass, so
   // the button never opens an empty box.
   const levers = probe.length
-    ? probe.map((l) => ({ tone: l.tone as InsightTone, strength: l.strength, insight: l.insight, title: l.title, detail: l.detail, evidence: l.evidence ?? [] }))
-    : supplierInsights(e).map((i) => ({ tone: i.tone, strength: 2, insight: i.title, title: "", detail: i.detail, evidence: [] as { label: string; value: string; tab?: string }[] }));
+    ? probe.map((l) => ({ tone: l.tone as InsightTone, strength: l.strength, insight: l.insight, title: l.title, detail: l.detail, ask: l.ask ?? "Other points", evidence: l.evidence ?? [] }))
+    : supplierInsights(e).map((i) => ({ tone: i.tone, strength: 2, insight: i.title, title: "", detail: i.detail, ask: "Other points", evidence: [] as { label: string; value: string; tab?: string }[] }));
   const health = supplierHealth(e.cin);
   const counts = LEV_TONE_ORDER.map((t) => ({ t, n: levers.filter((l) => l.tone === t).length }));
 
@@ -2073,53 +2073,67 @@ function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose:
         <div className="max-h-[65vh] space-y-4 overflow-y-auto px-6 py-4">
           {levers.length === 0 && <p className="py-10 text-center text-sm text-slate-400">No standout lever — this reads as a healthy, fairly-priced vendor.</p>}
           {LEV_TONE_ORDER.map((tone) => {
-            const group = levers.filter((l) => l.tone === tone).sort((a, b) => b.strength - a.strength);
+            const group = levers.filter((l) => l.tone === tone);
             if (!group.length) return null;
             const m = TONE_META[tone];
+            // Same reframe as the deep-dive: reasons grouped under the ask they
+            // back, so the modal reads like a negotiation brief, not a list.
+            const byAsk: { ask: string; reasons: typeof group }[] = [];
+            for (const l of group) {
+              let g = byAsk.find((x) => x.ask === l.ask);
+              if (!g) { g = { ask: l.ask, reasons: [] }; byAsk.push(g); }
+              g.reasons.push(l);
+            }
             return (
               <div key={tone}>
                 <h3 className={`mb-2 text-xs font-bold uppercase tracking-wider ${m.text}`}>{m.emoji} {m.label}</h3>
-                <div className="space-y-2">
-                  {group.map((l, i) => {
-                    const isFocus = !!focus && l.insight === focus;
-                    return (
-                    <div key={i} ref={isFocus ? focusRef : undefined}
-                      className={`rounded-xl p-3.5 ${m.bg} ${isFocus ? "ring-2 ring-teal-500 shadow-md" : `ring-1 ${m.ring}`}`}>
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0">
-                          <div className="text-sm font-bold leading-snug text-slate-900">{l.insight}</div>
-                          {l.title && <div className="mt-1 inline-flex items-baseline gap-1.5 rounded-md bg-white/70 px-1.5 py-0.5 text-[11px] leading-snug ring-1 ring-slate-200"><span className="font-bold uppercase tracking-wide text-slate-400">Why</span><span className="text-slate-600">{l.title}</span></div>}
-                        </div>
-                        <span className="mt-1 flex shrink-0 gap-0.5" title={`strength ${l.strength}/3`}>
-                          {[1, 2, 3].map((s) => <span key={s} className={`h-1.5 w-1.5 rounded-full ${s <= l.strength ? m.dot : "bg-slate-300"}`} />)}
-                        </span>
+                <div className="space-y-3">
+                  {byAsk.map((grp) => (
+                    <div key={grp.ask} className={`overflow-hidden rounded-xl ring-1 ${m.ring}`}>
+                      <div className={`flex items-center justify-between gap-2 ${m.bg} px-3.5 py-2`}>
+                        <span className="text-sm font-bold leading-snug text-slate-900">{grp.ask}</span>
+                        <span className="shrink-0 whitespace-nowrap rounded-full bg-white/70 px-2 py-0.5 text-[11px] font-semibold text-slate-500">{grp.reasons.length} {grp.reasons.length === 1 ? "reason" : "reasons"}</span>
                       </div>
-                      <p className="mt-1 text-sm leading-relaxed text-slate-600">{l.detail}</p>
-                      {l.evidence.length > 0 && (
-                        <div className="mt-2 flex flex-wrap gap-1.5">
-                          {/* Each chip knows which tab proves it, so it opens
-                              there — the deep-dive's own chips already did this
-                              and the modal was dropping the destination. */}
-                          {l.evidence.map((ev, j) => {
-                            const dest = EV_TAB[ev.tab ?? ""];
-                            return dest ? (
-                              <button key={j} onClick={() => onOpenProfile(ev.tab as DeepTabKey)} title={`Open ${dest.name}`}
-                                className="group inline-flex items-center gap-1 rounded-md bg-white/80 px-2 py-0.5 text-[11px] ring-1 ring-slate-200 transition hover:ring-teal-400">
-                                <span className="text-slate-500">{ev.label}</span>
-                                <span className="font-mono font-semibold text-slate-800">{ev.value}</span>
-                                <span className={`rounded px-1 text-[9px] font-semibold ${dest.cls}`}>{dest.name} →</span>
-                              </button>
-                            ) : (
-                              <span key={j} className="inline-flex items-center gap-1 rounded-md bg-white/80 px-2 py-0.5 text-[11px] ring-1 ring-slate-200">
-                                <span className="text-slate-500">{ev.label}</span><span className="font-mono font-semibold text-slate-800">{ev.value}</span>
+                      <div className="divide-y divide-slate-100 bg-white">
+                        {grp.reasons.map((l, i) => {
+                          const isFocus = !!focus && l.insight === focus;
+                          return (
+                          <div key={i} ref={isFocus ? focusRef : undefined} className={`p-3.5 ${isFocus ? "bg-teal-50/60 ring-2 ring-inset ring-teal-500" : ""}`}>
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="min-w-0">
+                                {l.title ? <div className="text-sm font-semibold leading-snug text-slate-800">{l.title}</div> : <div className="text-sm font-semibold leading-snug text-slate-800">{l.insight}</div>}
+                                {l.title && <div className="mt-0.5 text-[11px] leading-snug text-slate-400">→ {l.insight}</div>}
+                              </div>
+                              <span className="mt-1 flex shrink-0 gap-0.5" title={`strength ${l.strength}/3`}>
+                                {[1, 2, 3].map((s) => <span key={s} className={`h-1.5 w-1.5 rounded-full ${s <= l.strength ? m.dot : "bg-slate-300"}`} />)}
                               </span>
-                            );
-                          })}
-                        </div>
-                      )}
+                            </div>
+                            <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{l.detail}</p>
+                            {l.evidence.length > 0 && (
+                              <div className="mt-2 flex flex-wrap gap-1.5">
+                                {l.evidence.map((ev, j) => {
+                                  const dest = EV_TAB[ev.tab ?? ""];
+                                  return dest ? (
+                                    <button key={j} onClick={() => onOpenProfile(ev.tab as DeepTabKey)} title={`Open ${dest.name}`}
+                                      className="group inline-flex items-center gap-1 rounded-md bg-slate-50 px-2 py-0.5 text-[11px] ring-1 ring-slate-200 transition hover:ring-teal-400">
+                                      <span className="text-slate-500">{ev.label}</span>
+                                      <span className="font-mono font-semibold text-slate-800">{ev.value}</span>
+                                      <span className={`rounded px-1 text-[9px] font-semibold ${dest.cls}`}>{dest.name} →</span>
+                                    </button>
+                                  ) : (
+                                    <span key={j} className="inline-flex items-center gap-1 rounded-md bg-slate-50 px-2 py-0.5 text-[11px] ring-1 ring-slate-200">
+                                      <span className="text-slate-500">{ev.label}</span><span className="font-mono font-semibold text-slate-800">{ev.value}</span>
+                                    </span>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+                          );
+                        })}
+                      </div>
                     </div>
-                    );
-                  })}
+                  ))}
                 </div>
               </div>
             );

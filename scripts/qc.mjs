@@ -55,6 +55,11 @@ for (const c of rows) {
       if (typeof e?.label !== "string" || typeof e?.value !== "string") fail("A", who, `evidence chip malformed on "${l.insight}"`);
       else ok();
     }
+    // Every lever is grouped under a negotiation ask; a new detector that isn't
+    // mapped falls to "Other points" and the reframe silently degrades.
+    if (typeof l.ask !== "string" || !l.ask.trim()) fail("A", who, `lever "${l.insight}" has no ask`);
+    else if (l.ask === "Other points") fail("A", who, `lever "${l.insight}" isn't mapped to a negotiation ask (ASK_OF in detail.mjs)`);
+    else ok();
   }
   // A lever that fires twice on one supplier reads as a repeat to the client.
   const ins = (c.levers ?? []).map((l) => l.insight);

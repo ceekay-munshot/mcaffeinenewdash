@@ -2361,7 +2361,8 @@
             "value": "5.9pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -2385,7 +2386,8 @@
             "value": "1.49×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -2404,21 +2406,8 @@
             "value": "₹210 Cr",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "They can carry a longer credit period for us",
-        "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0.23 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
-        "evidence": [
-          {
-            "label": "Debt / equity",
-            "value": "0.23",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -2432,26 +2421,23 @@
             "value": "yes",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
-        "tone": "watch",
-        "strength": 2,
-        "insight": "Ask why before leaning on their reported numbers",
-        "title": "Auditor has changed repeatedly",
-        "detail": "2 auditor changes across the filed years (WALKER CHANDIOK & CO LLP → FORD RHODES PARKS & CO LLP → M G B & CO LLP). Frequent rotation isn't proof of anything on its own, but it's a governance signal worth a question before leaning on their reported numbers.",
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "They can carry a longer credit period for us",
+        "title": "Almost no debt",
+        "detail": "Debt-to-equity just 0.23 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
         "evidence": [
           {
-            "label": "Auditor changes",
-            "value": "2",
-            "tab": "financials"
-          },
-          {
-            "label": "Current",
-            "value": "WALKER CHANDIOK & CO LLP",
+            "label": "Debt / equity",
+            "value": "0.23",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "watch",
@@ -2465,7 +2451,8 @@
             "value": "₹19.3 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -2479,21 +2466,8 @@
             "value": "2",
             "tab": "risk"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late filing their legal paperwork",
-        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
-        "evidence": [
-          {
-            "label": "Filing flags",
-            "value": "EPF",
-            "tab": "risk"
-          }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -2512,7 +2486,8 @@
             "value": "CARE",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -2531,7 +2506,43 @@
             "value": "4.3%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "insight": "Ask why before leaning on their reported numbers",
+        "title": "Auditor has changed repeatedly",
+        "detail": "2 auditor changes across the filed years (WALKER CHANDIOK & CO LLP → FORD RHODES PARKS & CO LLP → M G B & CO LLP). Frequent rotation isn't proof of anything on its own, but it's a governance signal worth a question before leaning on their reported numbers.",
+        "evidence": [
+          {
+            "label": "Auditor changes",
+            "value": "2",
+            "tab": "financials"
+          },
+          {
+            "label": "Current",
+            "value": "WALKER CHANDIOK & CO LLP",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
+        "title": "Late filing their legal paperwork",
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "EPF",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -2550,7 +2561,8 @@
             "value": "169",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Be careful with money & paperwork"
       }
     ]
   },
@@ -4398,7 +4410,8 @@
             "value": "25.4pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -4412,7 +4425,8 @@
             "value": "30.9% → 33.8%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -4436,7 +4450,38 @@
             "value": "1.01×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "They can carry a longer credit period for us",
+        "title": "Almost no debt",
+        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -4455,21 +4500,8 @@
             "value": "72.31 d",
             "tab": "peers"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "They can carry a longer credit period for us",
-        "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
-        "evidence": [
-          {
-            "label": "Debt / equity",
-            "value": "0",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -4488,21 +4520,8 @@
             "value": "2.11×",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "Hard to plead poverty while paying shareholders",
-        "title": "Paying dividends out",
-        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
-        "evidence": [
-          {
-            "label": "Proposed dividend",
-            "value": "yes",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -4516,7 +4535,8 @@
             "value": "30 → 11",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -4530,7 +4550,8 @@
             "value": "9.3% of assets",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -4544,7 +4565,8 @@
             "value": "19",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -4563,7 +4585,8 @@
             "value": "FY25",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       }
     ]
   },
@@ -6509,7 +6532,23 @@
             "value": "6.3% → 10.4%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -6528,7 +6567,23 @@
             "value": "55 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "They can carry a longer credit period for us",
+        "title": "Almost no debt",
+        "detail": "Debt-to-equity just 0.1 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0.1",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -6547,21 +6602,8 @@
             "value": "₹226 Cr",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "They can carry a longer credit period for us",
-        "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0.1 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
-        "evidence": [
-          {
-            "label": "Debt / equity",
-            "value": "0.1",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -6580,21 +6622,8 @@
             "value": "3.4×",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "Hard to plead poverty while paying shareholders",
-        "title": "Paying dividends out",
-        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
-        "evidence": [
-          {
-            "label": "Proposed dividend",
-            "value": "yes",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -6608,21 +6637,8 @@
             "value": "₹297.6 L",
             "tab": "risk"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late filing their legal paperwork",
-        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
-        "evidence": [
-          {
-            "label": "Filing flags",
-            "value": "EPF",
-            "tab": "risk"
-          }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -6636,7 +6652,23 @@
             "value": "7.4%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
+        "title": "Late filing their legal paperwork",
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "EPF",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -6655,7 +6687,8 @@
             "value": "90",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Be careful with money & paperwork"
       }
     ]
   },
@@ -8060,44 +8093,6 @@
     "levers": [
       {
         "tone": "opportunity",
-        "strength": 3,
-        "insight": "Lock a multi-year price before the line starts",
-        "title": "Building capacity they'll need to fill",
-        "detail": "₹9.3 Cr sits in capital work-in-progress — 81.6% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
-        "evidence": [
-          {
-            "label": "Capital WIP",
-            "value": "₹9.3 Cr",
-            "tab": "financials"
-          },
-          {
-            "label": "Of fixed assets",
-            "value": "81.6%",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 3,
-        "insight": "Ask for an early-pay discount priced at their loan rate",
-        "title": "Their borrowed money is expensive",
-        "detail": "Their secured facilities carry 13.99% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.17% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.17% for 30 days, ~2.34% for 60, and it still leaves them better off than their bank.",
-        "evidence": [
-          {
-            "label": "Interest on secured debt",
-            "value": "13.99%",
-            "tab": "risk"
-          },
-          {
-            "label": "Worth per month early",
-            "value": "~1.17%",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
         "strength": 2,
         "insight": "Room to push on price",
         "title": "Fatter margins than its peers",
@@ -8118,7 +8113,8 @@
             "value": "3.3pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -8132,21 +8128,28 @@
             "value": "6.1% → 10.3%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
-        "strength": 2,
-        "insight": "They need the business — lean in",
-        "title": "Their finances are slipping",
-        "detail": "Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.",
+        "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 13.99% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.17% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.17% for 30 days, ~2.34% for 60, and it still leaves them better off than their bank.",
         "evidence": [
           {
-            "label": "Financial trend",
-            "value": "improving",
+            "label": "Interest on secured debt",
+            "value": "13.99%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1.17%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -8165,7 +8168,43 @@
             "value": "0.56",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 3,
+        "insight": "Lock a multi-year price before the line starts",
+        "title": "Building capacity they'll need to fill",
+        "detail": "₹9.3 Cr sits in capital work-in-progress — 81.6% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
+        "evidence": [
+          {
+            "label": "Capital WIP",
+            "value": "₹9.3 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of fixed assets",
+            "value": "81.6%",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Commit volume for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "They need the business — lean in",
+        "title": "Their finances are slipping",
+        "detail": "Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.",
+        "evidence": [
+          {
+            "label": "Financial trend",
+            "value": "improving",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "opportunity",
@@ -8184,7 +8223,8 @@
             "value": "6.47×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -8198,7 +8238,8 @@
             "value": "₹68.7 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -8212,7 +8253,8 @@
             "value": "EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -8236,7 +8278,8 @@
             "value": "3.4%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -8255,7 +8298,8 @@
             "value": "3.9×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       }
     ]
   },
@@ -10046,7 +10090,8 @@
             "value": "3.1pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -10065,40 +10110,8 @@
             "value": "13.3%",
             "tab": "peers"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Ask for the terms they take themselves",
-        "title": "They already stretch their own suppliers",
-        "detail": "They take 86 days to pay vs a peer norm of 33.86 — asking them for longer terms is credible; they do it themselves.",
-        "evidence": [
-          {
-            "label": "Their payment days",
-            "value": "86 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer norm",
-            "value": "33.86 d",
-            "tab": "peers"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "They need the business — press on price and terms",
-        "title": "Revenue is shrinking",
-        "detail": "Revenue fell ₹374 Cr → ₹260 Cr — they need the business; lean in on price and terms.",
-        "evidence": [
-          {
-            "label": "Revenue",
-            "value": "₹374 Cr → ₹260 Cr",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -10117,7 +10130,43 @@
             "value": "33.2%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Ask for the terms they take themselves",
+        "title": "They already stretch their own suppliers",
+        "detail": "They take 86 days to pay vs a peer norm of 33.86 — asking them for longer terms is credible; they do it themselves.",
+        "evidence": [
+          {
+            "label": "Their payment days",
+            "value": "86 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "33.86 d",
+            "tab": "peers"
+          }
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "They can carry a longer credit period for us",
+        "title": "Almost no debt",
+        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -10131,7 +10180,8 @@
             "value": "84 → 147 d",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -10150,21 +10200,23 @@
             "value": "₹12 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
-        "strength": 1,
-        "insight": "They can carry a longer credit period for us",
-        "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "strength": 2,
+        "insight": "They need the business — press on price and terms",
+        "title": "Revenue is shrinking",
+        "detail": "Revenue fell ₹374 Cr → ₹260 Cr — they need the business; lean in on price and terms.",
         "evidence": [
           {
-            "label": "Debt / equity",
-            "value": "0",
+            "label": "Revenue",
+            "value": "₹374 Cr → ₹260 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -10178,21 +10230,8 @@
             "value": "6.4% → 4.9%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "Treat the reported profit with caution",
-        "title": "Profit isn't turning into cash",
-        "detail": "Reported profit runs well ahead of cash generated (accruals 17.4% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
-        "evidence": [
-          {
-            "label": "Accruals (profit vs cash)",
-            "value": "17.4% of assets",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -10206,7 +10245,23 @@
             "value": "₹937.3 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "Treat the reported profit with caution",
+        "title": "Profit isn't turning into cash",
+        "detail": "Reported profit runs well ahead of cash generated (accruals 17.4% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
+        "evidence": [
+          {
+            "label": "Accruals (profit vs cash)",
+            "value": "17.4% of assets",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -10220,7 +10275,8 @@
             "value": "EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -10234,26 +10290,8 @@
             "value": "~43 → ~20",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "risk",
-        "strength": 3,
-        "insight": "Diligence the litigation before renewing",
-        "title": "Serious legal cases pending",
-        "detail": "3 high-severity court cases (of 9 total) — a real continuity/reputation risk worth diligence.",
-        "evidence": [
-          {
-            "label": "High-severity cases",
-            "value": "3",
-            "tab": "risk"
-          },
-          {
-            "label": "Total cases",
-            "value": "9",
-            "tab": "risk"
-          }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -10277,7 +10315,8 @@
             "value": "4.6%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -10291,7 +10330,28 @@
             "value": "−₹16 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
+      },
+      {
+        "tone": "risk",
+        "strength": 3,
+        "insight": "Diligence the litigation before renewing",
+        "title": "Serious legal cases pending",
+        "detail": "3 high-severity court cases (of 9 total) — a real continuity/reputation risk worth diligence.",
+        "evidence": [
+          {
+            "label": "High-severity cases",
+            "value": "3",
+            "tab": "risk"
+          },
+          {
+            "label": "Total cases",
+            "value": "9",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Be careful with money & paperwork"
       }
     ]
   },
@@ -11988,26 +12048,8 @@
             "value": "9.1pp",
             "tab": "peers"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 3,
-        "insight": "Ask for an early-pay discount priced at their loan rate",
-        "title": "Their borrowed money is expensive",
-        "detail": "Their secured facilities carry 12% interest. Every month we pay early effectively lends them cash at that rate — worth about 1% a month to them. That sets a defensible number for an early-payment discount: ask for ~1% for 30 days, ~2% for 60, and it still leaves them better off than their bank.",
-        "evidence": [
-          {
-            "label": "Interest on secured debt",
-            "value": "12%",
-            "tab": "risk"
-          },
-          {
-            "label": "Worth per month early",
-            "value": "~1%",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -12031,7 +12073,58 @@
             "value": "1.4×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "They can carry a longer credit period for us",
+        "title": "Almost no debt",
+        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 12% interest. Every month we pay early effectively lends them cash at that rate — worth about 1% a month to them. That sets a defensible number for an early-payment discount: ask for ~1% for 30 days, ~2% for 60, and it still leaves them better off than their bank.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "12%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1%",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -12050,7 +12143,8 @@
             "value": "32.61 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -12069,35 +12163,8 @@
             "value": "23.92 d",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "They can carry a longer credit period for us",
-        "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
-        "evidence": [
-          {
-            "label": "Debt / equity",
-            "value": "0",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "Hard to plead poverty while paying shareholders",
-        "title": "Paying dividends out",
-        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
-        "evidence": [
-          {
-            "label": "Proposed dividend",
-            "value": "yes",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "watch",
@@ -12111,7 +12178,8 @@
             "value": "14.7% → 11.4%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -12125,7 +12193,8 @@
             "value": "₹23 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -12139,7 +12208,8 @@
             "value": "6",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       }
     ]
   },
@@ -13695,26 +13765,8 @@
             "value": "9.6pp",
             "tab": "peers"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 3,
-        "insight": "Lock a multi-year price before the line starts",
-        "title": "Building capacity they'll need to fill",
-        "detail": "₹2.8 Cr sits in capital work-in-progress — 22.1% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
-        "evidence": [
-          {
-            "label": "Capital WIP",
-            "value": "₹2.8 Cr",
-            "tab": "financials"
-          },
-          {
-            "label": "Of fixed assets",
-            "value": "22.1%",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -13728,7 +13780,8 @@
             "value": "8.5% → 14.8%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -13747,7 +13800,8 @@
             "value": "16.84%",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -13766,7 +13820,28 @@
             "value": "45.9%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 3,
+        "insight": "Lock a multi-year price before the line starts",
+        "title": "Building capacity they'll need to fill",
+        "detail": "₹2.8 Cr sits in capital work-in-progress — 22.1% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
+        "evidence": [
+          {
+            "label": "Capital WIP",
+            "value": "₹2.8 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of fixed assets",
+            "value": "22.1%",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -13785,21 +13860,8 @@
             "value": "2.99×",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 2,
-        "insight": "Offer early payment for a discount",
-        "title": "Their suppliers are squeezing them (paying faster)",
-        "detail": "Days-payable fell 58 → 24 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
-        "evidence": [
-          {
-            "label": "Days payable",
-            "value": "58 → 24",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -13813,7 +13875,23 @@
             "value": "₹111.5 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "insight": "Offer early payment for a discount",
+        "title": "Their suppliers are squeezing them (paying faster)",
+        "detail": "Days-payable fell 58 → 24 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
+        "evidence": [
+          {
+            "label": "Days payable",
+            "value": "58 → 24",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -13827,7 +13905,8 @@
             "value": "GST + EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -13846,7 +13925,8 @@
             "value": "FY24",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       }
     ]
   },
@@ -15571,7 +15651,8 @@
             "value": "3.9pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -15590,7 +15671,8 @@
             "value": "16.28%",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -15609,7 +15691,8 @@
             "value": "27.5%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -15628,7 +15711,8 @@
             "value": "86.54 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -15642,7 +15726,8 @@
             "value": "0.08",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -15661,7 +15746,8 @@
             "value": "1.41×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -15675,7 +15761,8 @@
             "value": "51.1% → 64.2%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -15689,7 +15776,8 @@
             "value": "₹124.1 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -15703,7 +15791,8 @@
             "value": "GST",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       }
     ]
   },
@@ -17434,25 +17523,6 @@
     "levers": [
       {
         "tone": "opportunity",
-        "strength": 3,
-        "insight": "Lock a multi-year price before the line starts",
-        "title": "Building capacity they'll need to fill",
-        "detail": "₹3.3 Cr sits in capital work-in-progress — 25.7% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
-        "evidence": [
-          {
-            "label": "Capital WIP",
-            "value": "₹3.3 Cr",
-            "tab": "financials"
-          },
-          {
-            "label": "Of fixed assets",
-            "value": "25.7%",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
@@ -17463,7 +17533,8 @@
             "value": "2.1% → 4.2%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -17482,40 +17553,8 @@
             "value": "8.39%",
             "tab": "peers"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Ask for the terms they take themselves",
-        "title": "They already stretch their own suppliers",
-        "detail": "They take 46 days to pay vs a peer norm of 25.56 — asking them for longer terms is credible; they do it themselves.",
-        "evidence": [
-          {
-            "label": "Their payment days",
-            "value": "46 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer norm",
-            "value": "25.56 d",
-            "tab": "peers"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "They need the business — press on price and terms",
-        "title": "Revenue is shrinking",
-        "detail": "Revenue fell ₹106 Cr → ₹86 Cr — they need the business; lean in on price and terms.",
-        "evidence": [
-          {
-            "label": "Revenue",
-            "value": "₹106 Cr → ₹86 Cr",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -17534,26 +17573,8 @@
             "value": "17.7%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "Buy a discount with faster payment",
-        "title": "They're short on cash — early pay is worth a lot",
-        "detail": "Current ratio 0.83 (quick 0.48) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
-        "evidence": [
-          {
-            "label": "Current ratio",
-            "value": "0.83",
-            "tab": "financials"
-          },
-          {
-            "label": "Quick ratio",
-            "value": "0.48",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -17572,21 +17593,83 @@
             "value": "₹2 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
-        "tone": "watch",
+        "tone": "opportunity",
         "strength": 2,
-        "insight": "Offer early payment for a discount",
-        "title": "Their suppliers are squeezing them (paying faster)",
-        "detail": "Days-payable fell 73 → 46 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
+        "insight": "Ask for the terms they take themselves",
+        "title": "They already stretch their own suppliers",
+        "detail": "They take 46 days to pay vs a peer norm of 25.56 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
           {
-            "label": "Days payable",
-            "value": "73 → 46",
+            "label": "Their payment days",
+            "value": "46 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "25.56 d",
+            "tab": "peers"
+          }
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "Buy a discount with faster payment",
+        "title": "They're short on cash — early pay is worth a lot",
+        "detail": "Current ratio 0.83 (quick 0.48) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
+        "evidence": [
+          {
+            "label": "Current ratio",
+            "value": "0.83",
+            "tab": "financials"
+          },
+          {
+            "label": "Quick ratio",
+            "value": "0.48",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 3,
+        "insight": "Lock a multi-year price before the line starts",
+        "title": "Building capacity they'll need to fill",
+        "detail": "₹3.3 Cr sits in capital work-in-progress — 25.7% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
+        "evidence": [
+          {
+            "label": "Capital WIP",
+            "value": "₹3.3 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of fixed assets",
+            "value": "25.7%",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Commit volume for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "They need the business — press on price and terms",
+        "title": "Revenue is shrinking",
+        "detail": "Revenue fell ₹106 Cr → ₹86 Cr — they need the business; lean in on price and terms.",
+        "evidence": [
+          {
+            "label": "Revenue",
+            "value": "₹106 Cr → ₹86 Cr",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -17600,7 +17683,23 @@
             "value": "improving",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "insight": "Offer early payment for a discount",
+        "title": "Their suppliers are squeezing them (paying faster)",
+        "detail": "Days-payable fell 73 → 46 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
+        "evidence": [
+          {
+            "label": "Days payable",
+            "value": "73 → 46",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -17614,7 +17713,8 @@
             "value": "EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -17638,7 +17738,8 @@
             "value": "2%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -17657,7 +17758,8 @@
             "value": "CARE",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Be careful with money & paperwork"
       }
     ]
   },
@@ -18558,7 +18660,8 @@
             "value": "6.8pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -18572,7 +18675,8 @@
             "value": "-17.9% → 15.2%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -18596,40 +18700,8 @@
             "value": "15.2%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Ask for the terms they take themselves",
-        "title": "They already stretch their own suppliers",
-        "detail": "They take 118 days to pay vs a peer norm of 49.44 — asking them for longer terms is credible; they do it themselves.",
-        "evidence": [
-          {
-            "label": "Their payment days",
-            "value": "118 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer norm",
-            "value": "49.44 d",
-            "tab": "peers"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "They need the business — lean in",
-        "title": "Their finances are slipping",
-        "detail": "Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.",
-        "evidence": [
-          {
-            "label": "Financial trend",
-            "value": "improving",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -18648,26 +18720,28 @@
             "value": "26.1%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
         "strength": 2,
-        "insight": "Push for a volume commitment against a lower price",
-        "title": "Stock is sitting far longer than peers",
-        "detail": "They hold inventory 93.32 days vs a peer norm of 40.33 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "insight": "Ask for the terms they take themselves",
+        "title": "They already stretch their own suppliers",
+        "detail": "They take 118 days to pay vs a peer norm of 49.44 — asking them for longer terms is credible; they do it themselves.",
         "evidence": [
           {
-            "label": "Inventory days",
-            "value": "93.32 d",
+            "label": "Their payment days",
+            "value": "118 d",
             "tab": "financials"
           },
           {
             "label": "Peer norm",
-            "value": "40.33 d",
-            "tab": "financials"
+            "value": "49.44 d",
+            "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -18686,7 +18760,8 @@
             "value": "65.98 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -18705,7 +18780,43 @@
             "value": "0.32",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 93.32 days vs a peer norm of 40.33 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "93.32 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "40.33 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Commit volume for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "They need the business — lean in",
+        "title": "Their finances are slipping",
+        "detail": "Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.",
+        "evidence": [
+          {
+            "label": "Financial trend",
+            "value": "improving",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "opportunity",
@@ -18724,7 +18835,8 @@
             "value": "0.1×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -18738,7 +18850,8 @@
             "value": "EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -18752,7 +18865,8 @@
             "value": "High",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -18766,7 +18880,8 @@
             "value": "0.2×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -18780,7 +18895,8 @@
             "value": "3/10",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       }
     ]
   },
@@ -20668,7 +20784,8 @@
             "value": "38.8%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -20687,7 +20804,8 @@
             "value": "1.42×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -20701,7 +20819,8 @@
             "value": "85 → 40",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -20715,7 +20834,8 @@
             "value": "21",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -20729,7 +20849,8 @@
             "value": "GST + EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -20753,7 +20874,8 @@
             "value": "1.4%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -20767,7 +20889,8 @@
             "value": "1.6×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -20781,7 +20904,8 @@
             "value": "1",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Be careful with money & paperwork"
       },
       {
         "tone": "risk",
@@ -20800,7 +20924,8 @@
             "value": "CRISIL",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Be careful with money & paperwork"
       }
     ]
   },
@@ -21371,21 +21496,8 @@
             "value": "940.8%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "They need the business — lean in",
-        "title": "Their finances are slipping",
-        "detail": "Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.",
-        "evidence": [
-          {
-            "label": "Financial trend",
-            "value": "improving",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -21404,21 +21516,23 @@
             "value": "₹0.1 / ₹1.2 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late filing their legal paperwork",
-        "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "They need the business — lean in",
+        "title": "Their finances are slipping",
+        "detail": "Their finances have been slipping year on year — profit, debt and efficiency all trending the wrong way. A weakening supplier is likelier to give on price to keep our orders — but line up a backup in case.",
         "evidence": [
           {
-            "label": "Filing flags",
-            "value": "GST",
-            "tab": "risk"
+            "label": "Financial trend",
+            "value": "improving",
+            "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -21432,7 +21546,23 @@
             "value": "8.4%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
+        "title": "Late filing their legal paperwork",
+        "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "GST",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -21446,7 +21576,8 @@
             "value": "High",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       }
     ]
   },
@@ -23151,25 +23282,6 @@
     "levers": [
       {
         "tone": "opportunity",
-        "strength": 3,
-        "insight": "Lock a multi-year price before the line starts",
-        "title": "Building capacity they'll need to fill",
-        "detail": "₹3.7 Cr sits in capital work-in-progress — 15.9% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
-        "evidence": [
-          {
-            "label": "Capital WIP",
-            "value": "₹3.7 Cr",
-            "tab": "financials"
-          },
-          {
-            "label": "Of fixed assets",
-            "value": "15.9%",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
@@ -23180,7 +23292,8 @@
             "value": "8.8% → 12.6%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -23199,40 +23312,8 @@
             "value": "13.6%",
             "tab": "peers"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Ask for the terms they take themselves",
-        "title": "They already stretch their own suppliers",
-        "detail": "They take 55 days to pay vs a peer norm of 20.83 — asking them for longer terms is credible; they do it themselves.",
-        "evidence": [
-          {
-            "label": "Their payment days",
-            "value": "55 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer norm",
-            "value": "20.83 d",
-            "tab": "peers"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Early payment is worth real money to them",
-        "title": "Their day-to-day cash is getting tighter",
-        "detail": "Cash-conversion cycle stretched -12 → 60 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
-        "evidence": [
-          {
-            "label": "Cash cycle",
-            "value": "-12 → 60 d",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -23251,7 +23332,63 @@
             "value": "26.1%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Ask for the terms they take themselves",
+        "title": "They already stretch their own suppliers",
+        "detail": "They take 55 days to pay vs a peer norm of 20.83 — asking them for longer terms is credible; they do it themselves.",
+        "evidence": [
+          {
+            "label": "Their payment days",
+            "value": "55 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "20.83 d",
+            "tab": "peers"
+          }
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Early payment is worth real money to them",
+        "title": "Their day-to-day cash is getting tighter",
+        "detail": "Cash-conversion cycle stretched -12 → 60 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
+        "evidence": [
+          {
+            "label": "Cash cycle",
+            "value": "-12 → 60 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 3,
+        "insight": "Lock a multi-year price before the line starts",
+        "title": "Building capacity they'll need to fill",
+        "detail": "₹3.7 Cr sits in capital work-in-progress — 15.9% of their fixed assets is capacity that's paid for but not yet producing. Once it comes online their fixed costs step up and they need volume to absorb it, so committed offtake is worth more to them now than it will be later. Trade a multi-year volume commitment for a lower unit price before the line starts.",
+        "evidence": [
+          {
+            "label": "Capital WIP",
+            "value": "₹3.7 Cr",
+            "tab": "financials"
+          },
+          {
+            "label": "Of fixed assets",
+            "value": "15.9%",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -23270,7 +23407,8 @@
             "value": "₹10 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -23284,21 +23422,8 @@
             "value": "8.59×",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 2,
-        "insight": "Offer early payment for a discount",
-        "title": "Their suppliers are squeezing them (paying faster)",
-        "detail": "Days-payable fell 80 → 55 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
-        "evidence": [
-          {
-            "label": "Days payable",
-            "value": "80 → 55",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "watch",
@@ -23312,7 +23437,23 @@
             "value": "68.2% → 75.8%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "insight": "Offer early payment for a discount",
+        "title": "Their suppliers are squeezing them (paying faster)",
+        "detail": "Days-payable fell 80 → 55 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
+        "evidence": [
+          {
+            "label": "Days payable",
+            "value": "80 → 55",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -23326,7 +23467,8 @@
             "value": "9.1% of assets",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -23340,7 +23482,8 @@
             "value": "7",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -23354,7 +23497,8 @@
             "value": "₹37.3 Cr",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -23373,7 +23517,8 @@
             "value": "FY25",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       }
     ]
   },
@@ -24873,21 +25018,8 @@
             "value": "-5% → 7.4%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Early payment is worth real money to them",
-        "title": "Their day-to-day cash is getting tighter",
-        "detail": "Cash-conversion cycle stretched -5833 → 87 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
-        "evidence": [
-          {
-            "label": "Cash cycle",
-            "value": "-5833 → 87 d",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -24906,7 +25038,8 @@
             "value": "60.5%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -24920,7 +25053,23 @@
             "value": "0.02",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Early payment is worth real money to them",
+        "title": "Their day-to-day cash is getting tighter",
+        "detail": "Cash-conversion cycle stretched -5833 → 87 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
+        "evidence": [
+          {
+            "label": "Cash cycle",
+            "value": "-5833 → 87 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -24939,21 +25088,8 @@
             "value": "0.58×",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 2,
-        "insight": "Offer early payment for a discount",
-        "title": "Their suppliers are squeezing them (paying faster)",
-        "detail": "Days-payable fell 306 → 16 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
-        "evidence": [
-          {
-            "label": "Days payable",
-            "value": "306 → 16",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -24967,7 +25103,8 @@
             "value": "improving",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -24981,21 +25118,8 @@
             "value": "₹30.3 L",
             "tab": "risk"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late filing their legal paperwork",
-        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
-        "evidence": [
-          {
-            "label": "Filing flags",
-            "value": "EPF",
-            "tab": "risk"
-          }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -25014,7 +25138,38 @@
             "value": "11.5%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "insight": "Offer early payment for a discount",
+        "title": "Their suppliers are squeezing them (paying faster)",
+        "detail": "Days-payable fell 306 → 16 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
+        "evidence": [
+          {
+            "label": "Days payable",
+            "value": "306 → 16",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
+        "title": "Late filing their legal paperwork",
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "EPF",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -25028,7 +25183,8 @@
             "value": "-36.2×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       }
     ]
   },
@@ -26076,7 +26232,8 @@
             "value": "11.83%",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -26095,7 +26252,8 @@
             "value": "40%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -26114,7 +26272,8 @@
             "value": "53.9%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -26133,21 +26292,8 @@
             "value": "52.31 d",
             "tab": "peers"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late filing their legal paperwork",
-        "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
-        "evidence": [
-          {
-            "label": "Filing flags",
-            "value": "GST",
-            "tab": "risk"
-          }
-        ]
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "watch",
@@ -26166,7 +26312,23 @@
             "value": "6.6%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
+        "title": "Late filing their legal paperwork",
+        "detail": "GST filing delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "GST",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -26190,7 +26352,8 @@
             "value": "2.8%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -26209,7 +26372,8 @@
             "value": "2.7×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       }
     ]
   },
@@ -28207,25 +28371,6 @@
     "levers": [
       {
         "tone": "opportunity",
-        "strength": 3,
-        "insight": "Ask for an early-pay discount priced at their loan rate",
-        "title": "Their borrowed money is expensive",
-        "detail": "Their secured facilities carry 12.75% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.06% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.06% for 30 days, ~2.12% for 60, and it still leaves them better off than their bank.",
-        "evidence": [
-          {
-            "label": "Interest on secured debt",
-            "value": "12.75%",
-            "tab": "risk"
-          },
-          {
-            "label": "Worth per month early",
-            "value": "~1.06%",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
@@ -28236,7 +28381,8 @@
             "value": "5.1% → 10.8%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -28255,7 +28401,8 @@
             "value": "12.85%",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -28274,7 +28421,28 @@
             "value": "36.29 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 12.75% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.06% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.06% for 30 days, ~2.12% for 60, and it still leaves them better off than their bank.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "12.75%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1.06%",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -28293,7 +28461,8 @@
             "value": "80.07 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -28312,7 +28481,8 @@
             "value": "₹25 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -28331,49 +28501,8 @@
             "value": "3.32×",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "Worth a look before renewal",
-        "title": "Several court cases on record",
-        "detail": "82 cases on file (62 filed against them) — mostly routine, but worth a glance.",
-        "evidence": [
-          {
-            "label": "Cases on file",
-            "value": "82",
-            "tab": "risk"
-          }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late filing their legal paperwork",
-        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
-        "evidence": [
-          {
-            "label": "Filing flags",
-            "value": "EPF",
-            "tab": "risk"
-          }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "Check they can still service our volume",
-        "title": "Cutting headcount",
-        "detail": "Employees down ~500 → ~402 — a shrinking team can signal distress or restructuring.",
-        "evidence": [
-          {
-            "label": "Headcount",
-            "value": "~500 → ~402",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -28392,7 +28521,53 @@
             "value": "17.2%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "Worth a look before renewal",
+        "title": "Several court cases on record",
+        "detail": "82 cases on file (62 filed against them) — mostly routine, but worth a glance.",
+        "evidence": [
+          {
+            "label": "Cases on file",
+            "value": "82",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
+        "title": "Late filing their legal paperwork",
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "EPF",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "Check they can still service our volume",
+        "title": "Cutting headcount",
+        "detail": "Employees down ~500 → ~402 — a shrinking team can signal distress or restructuring.",
+        "evidence": [
+          {
+            "label": "Headcount",
+            "value": "~500 → ~402",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -28411,7 +28586,8 @@
             "value": "FY25",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Be careful with money & paperwork"
       },
       {
         "tone": "risk",
@@ -28430,7 +28606,8 @@
             "value": "ACUITE",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Be careful with money & paperwork"
       }
     ]
   },
@@ -30099,7 +30276,8 @@
             "value": "6.1% → 8.8%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -30113,21 +30291,8 @@
             "value": "27.7%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Early payment is worth real money to them",
-        "title": "Their day-to-day cash is getting tighter",
-        "detail": "Cash-conversion cycle stretched 21 → 51 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
-        "evidence": [
-          {
-            "label": "Cash cycle",
-            "value": "21 → 51 d",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -30146,7 +30311,38 @@
             "value": "24.9%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "They can carry a longer credit period for us",
+        "title": "Almost no debt",
+        "detail": "Debt-to-equity just 0.16 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0.16",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Early payment is worth real money to them",
+        "title": "Their day-to-day cash is getting tighter",
+        "detail": "Cash-conversion cycle stretched 21 → 51 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
+        "evidence": [
+          {
+            "label": "Cash cycle",
+            "value": "21 → 51 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -30165,21 +30361,8 @@
             "value": "₹20 Cr",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "They can carry a longer credit period for us",
-        "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0.16 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
-        "evidence": [
-          {
-            "label": "Debt / equity",
-            "value": "0.16",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -30198,7 +30381,8 @@
             "value": "2.65×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -30212,21 +30396,8 @@
             "value": "71.8% → 76.3%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "Treat the reported profit with caution",
-        "title": "Profit isn't turning into cash",
-        "detail": "Reported profit runs well ahead of cash generated (accruals 11.8% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
-        "evidence": [
-          {
-            "label": "Accruals (profit vs cash)",
-            "value": "11.8% of assets",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -30240,7 +30411,23 @@
             "value": "₹137.5 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "Treat the reported profit with caution",
+        "title": "Profit isn't turning into cash",
+        "detail": "Reported profit runs well ahead of cash generated (accruals 11.8% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
+        "evidence": [
+          {
+            "label": "Accruals (profit vs cash)",
+            "value": "11.8% of assets",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -30254,7 +30441,8 @@
             "value": "5",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -30268,7 +30456,8 @@
             "value": "EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       }
     ]
   },
@@ -32077,7 +32266,8 @@
             "value": "17.3pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -32096,7 +32286,8 @@
             "value": "13.64%",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -32120,7 +32311,8 @@
             "value": "1.45×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -32139,7 +32331,23 @@
             "value": "31.7 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "They can carry a longer credit period for us",
+        "title": "Almost no debt",
+        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -32158,7 +32366,8 @@
             "value": "12.36 d",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -32177,7 +32386,8 @@
             "value": "₹0.6 / ₹3.8 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -32191,21 +32401,8 @@
             "value": "47 → 73 d",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "They can carry a longer credit period for us",
-        "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
-        "evidence": [
-          {
-            "label": "Debt / equity",
-            "value": "0",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "watch",
@@ -32219,7 +32416,8 @@
             "value": "20.5% → 19%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -32233,21 +32431,8 @@
             "value": "57% → 74.4%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "Treat the reported profit with caution",
-        "title": "Profit isn't turning into cash",
-        "detail": "Reported profit runs well ahead of cash generated (accruals 13.7% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
-        "evidence": [
-          {
-            "label": "Accruals (profit vs cash)",
-            "value": "13.7% of assets",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -32261,7 +32446,23 @@
             "value": "₹16.6 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "Treat the reported profit with caution",
+        "title": "Profit isn't turning into cash",
+        "detail": "Reported profit runs well ahead of cash generated (accruals 13.7% of assets) — soft earnings quality, a sign of hidden cash strain. They're more cash-motivated than the P&L suggests.",
+        "evidence": [
+          {
+            "label": "Accruals (profit vs cash)",
+            "value": "13.7% of assets",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -32275,7 +32476,8 @@
             "value": "11",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -32294,7 +32496,8 @@
             "value": "CRISIL",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Be careful with money & paperwork"
       }
     ]
   },
@@ -33419,25 +33622,6 @@
     "levers": [
       {
         "tone": "opportunity",
-        "strength": 3,
-        "insight": "Ask for an early-pay discount priced at their loan rate",
-        "title": "Their borrowed money is expensive",
-        "detail": "Their secured facilities carry 13.55% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.13% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.13% for 30 days, ~2.26% for 60, and it still leaves them better off than their bank.",
-        "evidence": [
-          {
-            "label": "Interest on secured debt",
-            "value": "13.55%",
-            "tab": "risk"
-          },
-          {
-            "label": "Worth per month early",
-            "value": "~1.13%",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
         "strength": 2,
         "insight": "Ask for a price cut — they can absorb it",
         "title": "Margins are widening",
@@ -33448,7 +33632,8 @@
             "value": "3.8% → 5.7%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -33467,21 +33652,8 @@
             "value": "11.93%",
             "tab": "peers"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Early payment is worth real money to them",
-        "title": "Their day-to-day cash is getting tighter",
-        "detail": "Cash-conversion cycle stretched -69 → -11 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
-        "evidence": [
-          {
-            "label": "Cash cycle",
-            "value": "-69 → -11 d",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -33500,7 +33672,8 @@
             "value": "35.5%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -33519,7 +33692,8 @@
             "value": "54.7%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -33538,7 +33712,43 @@
             "value": "49.38 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 13.55% interest. Every month we pay early effectively lends them cash at that rate — worth about 1.13% a month to them. That sets a defensible number for an early-payment discount: ask for ~1.13% for 30 days, ~2.26% for 60, and it still leaves them better off than their bank.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "13.55%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1.13%",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Early payment is worth real money to them",
+        "title": "Their day-to-day cash is getting tighter",
+        "detail": "Cash-conversion cycle stretched -69 → -11 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
+        "evidence": [
+          {
+            "label": "Cash cycle",
+            "value": "-69 → -11 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -33557,7 +33767,8 @@
             "value": "0.85",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -33576,21 +33787,8 @@
             "value": "1.88×",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 2,
-        "insight": "Offer early payment for a discount",
-        "title": "Their suppliers are squeezing them (paying faster)",
-        "detail": "Days-payable fell 251 → 29 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
-        "evidence": [
-          {
-            "label": "Days payable",
-            "value": "251 → 29",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -33604,7 +33802,23 @@
             "value": "0% → 64.5%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "insight": "Offer early payment for a discount",
+        "title": "Their suppliers are squeezing them (paying faster)",
+        "detail": "Days-payable fell 251 → 29 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
+        "evidence": [
+          {
+            "label": "Days payable",
+            "value": "251 → 29",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -33618,7 +33832,8 @@
             "value": "GST + EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -33642,7 +33857,8 @@
             "value": "2.6%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -33661,7 +33877,8 @@
             "value": "4.4×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       }
     ]
   },
@@ -35902,7 +36119,8 @@
             "value": "14% → 15.5%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -35926,45 +36144,8 @@
             "value": "15.5%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Ask for the terms they take themselves",
-        "title": "They already stretch their own suppliers",
-        "detail": "They take 58 days to pay vs a peer norm of 39.67 — asking them for longer terms is credible; they do it themselves.",
-        "evidence": [
-          {
-            "label": "Their payment days",
-            "value": "58 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer norm",
-            "value": "39.67 d",
-            "tab": "peers"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Push for a volume commitment against a lower price",
-        "title": "Stock is sitting far longer than peers",
-        "detail": "They hold inventory 75.77 days vs a peer norm of 53.39 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
-        "evidence": [
-          {
-            "label": "Inventory days",
-            "value": "75.77 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer norm",
-            "value": "53.39 d",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -35983,7 +36164,43 @@
             "value": "34.4%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Ask for the terms they take themselves",
+        "title": "They already stretch their own suppliers",
+        "detail": "They take 58 days to pay vs a peer norm of 39.67 — asking them for longer terms is credible; they do it themselves.",
+        "evidence": [
+          {
+            "label": "Their payment days",
+            "value": "58 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "39.67 d",
+            "tab": "peers"
+          }
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -36002,7 +36219,28 @@
             "value": "0.55",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 75.77 days vs a peer norm of 53.39 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "75.77 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "53.39 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -36021,40 +36259,8 @@
             "value": "₹248 Cr",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "Hard to plead poverty while paying shareholders",
-        "title": "Paying dividends out",
-        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
-        "evidence": [
-          {
-            "label": "Proposed dividend",
-            "value": "yes",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 2,
-        "insight": "Ask why before leaning on their reported numbers",
-        "title": "Auditor has changed repeatedly",
-        "detail": "2 auditor changes across the filed years (DELOITTE HASKINS & SELLS → PABOLU & CO → SINGHVI DEV & UNNI). Frequent rotation isn't proof of anything on its own, but it's a governance signal worth a question before leaning on their reported numbers.",
-        "evidence": [
-          {
-            "label": "Auditor changes",
-            "value": "2",
-            "tab": "financials"
-          },
-          {
-            "label": "Current",
-            "value": "DELOITTE HASKINS & SELLS",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "watch",
@@ -36068,7 +36274,8 @@
             "value": "₹570.7 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -36082,21 +36289,8 @@
             "value": "2",
             "tab": "risk"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late filing their legal paperwork",
-        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
-        "evidence": [
-          {
-            "label": "Filing flags",
-            "value": "EPF",
-            "tab": "risk"
-          }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -36115,7 +36309,8 @@
             "value": "CRISIL",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -36134,7 +36329,58 @@
             "value": "5%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "insight": "Ask why before leaning on their reported numbers",
+        "title": "Auditor has changed repeatedly",
+        "detail": "2 auditor changes across the filed years (DELOITTE HASKINS & SELLS → PABOLU & CO → SINGHVI DEV & UNNI). Frequent rotation isn't proof of anything on its own, but it's a governance signal worth a question before leaning on their reported numbers.",
+        "evidence": [
+          {
+            "label": "Auditor changes",
+            "value": "2",
+            "tab": "financials"
+          },
+          {
+            "label": "Current",
+            "value": "DELOITTE HASKINS & SELLS",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
+        "title": "Late filing their legal paperwork",
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "EPF",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
+      },
+      {
+        "tone": "risk",
+        "strength": 2,
+        "insight": "Don't push to breaking point — qualify a backup",
+        "title": "Barely covers its interest bill",
+        "detail": "Interest cover only 1.7× — profit barely clears the interest. A cash-strained, rate-sensitive supplier; continuity risk if pushed.",
+        "evidence": [
+          {
+            "label": "Interest cover",
+            "value": "1.7×",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -36153,21 +36399,8 @@
             "value": "101",
             "tab": "risk"
           }
-        ]
-      },
-      {
-        "tone": "risk",
-        "strength": 2,
-        "insight": "Don't push to breaking point — qualify a backup",
-        "title": "Barely covers its interest bill",
-        "detail": "Interest cover only 1.7× — profit barely clears the interest. A cash-strained, rate-sensitive supplier; continuity risk if pushed.",
-        "evidence": [
-          {
-            "label": "Interest cover",
-            "value": "1.7×",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Be careful with money & paperwork"
       }
     ]
   },
@@ -37775,26 +38008,8 @@
             "value": "18.18%",
             "tab": "peers"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 3,
-        "insight": "Ask for an early-pay discount priced at their loan rate",
-        "title": "Their borrowed money is expensive",
-        "detail": "Their secured facilities carry 12% interest. Every month we pay early effectively lends them cash at that rate — worth about 1% a month to them. That sets a defensible number for an early-payment discount: ask for ~1% for 30 days, ~2% for 60, and it still leaves them better off than their bank.",
-        "evidence": [
-          {
-            "label": "Interest on secured debt",
-            "value": "12%",
-            "tab": "risk"
-          },
-          {
-            "label": "Worth per month early",
-            "value": "~1%",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -37818,7 +38033,8 @@
             "value": "6.3pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -37832,40 +38048,8 @@
             "value": "6.7% → 8.4%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Early payment is worth real money to them",
-        "title": "Their day-to-day cash is getting tighter",
-        "detail": "Cash-conversion cycle stretched 9 → 64 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
-        "evidence": [
-          {
-            "label": "Cash cycle",
-            "value": "9 → 64 d",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Push for a volume commitment against a lower price",
-        "title": "Stock is sitting far longer than peers",
-        "detail": "They hold inventory 54.43 days vs a peer norm of 26.61 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
-        "evidence": [
-          {
-            "label": "Inventory days",
-            "value": "54.43 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer norm",
-            "value": "26.61 d",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -37884,7 +38068,8 @@
             "value": "54.08 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -37898,7 +38083,63 @@
             "value": "0.13",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 3,
+        "insight": "Ask for an early-pay discount priced at their loan rate",
+        "title": "Their borrowed money is expensive",
+        "detail": "Their secured facilities carry 12% interest. Every month we pay early effectively lends them cash at that rate — worth about 1% a month to them. That sets a defensible number for an early-payment discount: ask for ~1% for 30 days, ~2% for 60, and it still leaves them better off than their bank.",
+        "evidence": [
+          {
+            "label": "Interest on secured debt",
+            "value": "12%",
+            "tab": "risk"
+          },
+          {
+            "label": "Worth per month early",
+            "value": "~1%",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Early payment is worth real money to them",
+        "title": "Their day-to-day cash is getting tighter",
+        "detail": "Cash-conversion cycle stretched 9 → 64 days — inventory and receivables increasingly tie up cash. They're cash-hungry: trade faster payment for a price cut.",
+        "evidence": [
+          {
+            "label": "Cash cycle",
+            "value": "9 → 64 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 54.43 days vs a peer norm of 26.61 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "54.43 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "26.61 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -37917,21 +38158,8 @@
             "value": "2.18×",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 2,
-        "insight": "Offer early payment for a discount",
-        "title": "Their suppliers are squeezing them (paying faster)",
-        "detail": "Days-payable fell 55 → 37 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
-        "evidence": [
-          {
-            "label": "Days payable",
-            "value": "55 → 37",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -37945,7 +38173,8 @@
             "value": "improving",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -37959,7 +38188,23 @@
             "value": "₹72.8 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 2,
+        "insight": "Offer early payment for a discount",
+        "title": "Their suppliers are squeezing them (paying faster)",
+        "detail": "Days-payable fell 55 → 37 — their upstream cut their credit. A vendor forced to pay faster passes the same pressure to us; lock our terms in now.",
+        "evidence": [
+          {
+            "label": "Days payable",
+            "value": "55 → 37",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "watch",
@@ -37973,7 +38218,8 @@
             "value": "GST + EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       }
     ]
   },
@@ -39692,6 +39938,21 @@
     "levers": [
       {
         "tone": "opportunity",
+        "strength": 1,
+        "insight": "Hard to plead poverty while paying shareholders",
+        "title": "Paying dividends out",
+        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
+        "evidence": [
+          {
+            "label": "Proposed dividend",
+            "value": "yes",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
         "strength": 2,
         "insight": "Ask for the terms they take themselves",
         "title": "They already stretch their own suppliers",
@@ -39707,7 +39968,23 @@
             "value": "23.01 d",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "They can carry a longer credit period for us",
+        "title": "Almost no debt",
+        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
+        "evidence": [
+          {
+            "label": "Debt / equity",
+            "value": "0",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Ask for longer credit"
       },
       {
         "tone": "opportunity",
@@ -39721,7 +39998,8 @@
             "value": "-25 → 59 d",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -39735,7 +40013,8 @@
             "value": "58 → 79 d",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "opportunity",
@@ -39749,7 +40028,8 @@
             "value": "10 → 72 d",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "opportunity",
@@ -39768,35 +40048,8 @@
             "value": "₹9 Cr",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "They can carry a longer credit period for us",
-        "title": "Almost no debt",
-        "detail": "Debt-to-equity just 0 — a clean balance sheet, no interest burden to hide behind. There's room on price.",
-        "evidence": [
-          {
-            "label": "Debt / equity",
-            "value": "0",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "Hard to plead poverty while paying shareholders",
-        "title": "Paying dividends out",
-        "detail": "They're proposing a dividend — cash is being distributed to shareholders rather than retained for the business. Hard to argue they're too cash-strapped to move on price when they're paying owners.",
-        "evidence": [
-          {
-            "label": "Proposed dividend",
-            "value": "yes",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Commit volume for a better price"
       },
       {
         "tone": "watch",
@@ -39810,7 +40063,8 @@
             "value": "7.1% → 4.5%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -39824,35 +40078,8 @@
             "value": "₹621.6 L",
             "tab": "risk"
           }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "Worth a look before renewal",
-        "title": "Several court cases on record",
-        "detail": "5 cases on file (3 filed against them) — mostly routine, but worth a glance.",
-        "evidence": [
-          {
-            "label": "Cases on file",
-            "value": "5",
-            "tab": "risk"
-          }
-        ]
-      },
-      {
-        "tone": "watch",
-        "strength": 1,
-        "insight": "An early cash-squeeze signal — watch it",
-        "title": "Late filing their legal paperwork",
-        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
-        "evidence": [
-          {
-            "label": "Filing flags",
-            "value": "EPF",
-            "tab": "risk"
-          }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -39866,7 +40093,38 @@
             "value": "7.75%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "Worth a look before renewal",
+        "title": "Several court cases on record",
+        "detail": "5 cases on file (3 filed against them) — mostly routine, but worth a glance.",
+        "evidence": [
+          {
+            "label": "Cases on file",
+            "value": "5",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "An early cash-squeeze signal — watch it",
+        "title": "Late filing their legal paperwork",
+        "detail": "EPF payment delays on record — often an early sign of a cash squeeze.",
+        "evidence": [
+          {
+            "label": "Filing flags",
+            "value": "EPF",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
       }
     ]
   },
@@ -41803,7 +42061,8 @@
             "value": "10.9pp",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -41827,26 +42086,8 @@
             "value": "1.57×",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "Buy a discount with faster payment",
-        "title": "They're short on cash — early pay is worth a lot",
-        "detail": "Current ratio 1.09 (quick 0.97) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
-        "evidence": [
-          {
-            "label": "Current ratio",
-            "value": "1.09",
-            "tab": "financials"
-          },
-          {
-            "label": "Quick ratio",
-            "value": "0.97",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -41865,7 +42106,8 @@
             "value": "₹9 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -41879,21 +42121,28 @@
             "value": "0.22",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Ask for longer credit"
       },
       {
-        "tone": "watch",
+        "tone": "opportunity",
         "strength": 1,
-        "insight": "Worth a look before renewal",
-        "title": "Several court cases on record",
-        "detail": "15 cases on file (12 filed against them) — mostly routine, but worth a glance.",
+        "insight": "Buy a discount with faster payment",
+        "title": "They're short on cash — early pay is worth a lot",
+        "detail": "Current ratio 1.09 (quick 0.97) — short on near-term cash cover. Faster payment from us is worth a discount to them.",
         "evidence": [
           {
-            "label": "Cases on file",
-            "value": "15",
-            "tab": "risk"
+            "label": "Current ratio",
+            "value": "1.09",
+            "tab": "financials"
+          },
+          {
+            "label": "Quick ratio",
+            "value": "0.97",
+            "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Offer to pay early for a discount"
       },
       {
         "tone": "watch",
@@ -41912,7 +42161,23 @@
             "value": "4%",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
+      },
+      {
+        "tone": "watch",
+        "strength": 1,
+        "insight": "Worth a look before renewal",
+        "title": "Several court cases on record",
+        "detail": "15 cases on file (12 filed against them) — mostly routine, but worth a glance.",
+        "evidence": [
+          {
+            "label": "Cases on file",
+            "value": "15",
+            "tab": "risk"
+          }
+        ],
+        "ask": "Check before you commit"
       }
     ]
   },
@@ -43248,92 +43513,8 @@
             "value": "-14.2% → -1.5%",
             "tab": "financials"
           }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Ask for the terms they take themselves",
-        "title": "They already stretch their own suppliers",
-        "detail": "They take 101 days to pay vs a peer norm of 48.49 — asking them for longer terms is credible; they do it themselves.",
-        "evidence": [
-          {
-            "label": "Their payment days",
-            "value": "101 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer norm",
-            "value": "48.49 d",
-            "tab": "peers"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Trade faster payment for a lower price",
-        "title": "Cash is tied up for months",
-        "detail": "Cash-conversion cycle 107 days (was 261) — a lot of working capital is locked up. An early-payment-for-discount offer will land well.",
-        "evidence": [
-          {
-            "label": "Cash cycle",
-            "value": "107 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer median",
-            "value": "61.72 d",
-            "tab": "peers"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 2,
-        "insight": "Push for a volume commitment against a lower price",
-        "title": "Stock is sitting far longer than peers",
-        "detail": "They hold inventory 116.74 days vs a peer norm of 39.98 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
-        "evidence": [
-          {
-            "label": "Inventory days",
-            "value": "116.74 d",
-            "tab": "financials"
-          },
-          {
-            "label": "Peer norm",
-            "value": "39.98 d",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "They need the volume — trade it for price",
-        "title": "Returns are trending down",
-        "detail": "Return on capital slid 6.6% → -7.8% over recent years — profitability pressure strengthens our case; they may concede on price to hold volume.",
-        "evidence": [
-          {
-            "label": "Return on capital",
-            "value": "6.6% → -7.8%",
-            "tab": "financials"
-          }
-        ]
-      },
-      {
-        "tone": "opportunity",
-        "strength": 1,
-        "insight": "Use early payment as our lever",
-        "title": "They're funding their own customers",
-        "detail": "Collection days rose 11 → 91 — cash is increasingly stuck in receivables. That pressure is our early-pay leverage.",
-        "evidence": [
-          {
-            "label": "Collection days",
-            "value": "11 → 91 d",
-            "tab": "financials"
-          }
-        ]
+        ],
+        "ask": "Push for a better price"
       },
       {
         "tone": "opportunity",
@@ -43352,7 +43533,98 @@
             "value": "₹1 Cr",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Push for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Ask for the terms they take themselves",
+        "title": "They already stretch their own suppliers",
+        "detail": "They take 101 days to pay vs a peer norm of 48.49 — asking them for longer terms is credible; they do it themselves.",
+        "evidence": [
+          {
+            "label": "Their payment days",
+            "value": "101 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "48.49 d",
+            "tab": "peers"
+          }
+        ],
+        "ask": "Ask for longer credit"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Trade faster payment for a lower price",
+        "title": "Cash is tied up for months",
+        "detail": "Cash-conversion cycle 107 days (was 261) — a lot of working capital is locked up. An early-payment-for-discount offer will land well.",
+        "evidence": [
+          {
+            "label": "Cash cycle",
+            "value": "107 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer median",
+            "value": "61.72 d",
+            "tab": "peers"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "Use early payment as our lever",
+        "title": "They're funding their own customers",
+        "detail": "Collection days rose 11 → 91 — cash is increasingly stuck in receivables. That pressure is our early-pay leverage.",
+        "evidence": [
+          {
+            "label": "Collection days",
+            "value": "11 → 91 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Offer to pay early for a discount"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 2,
+        "insight": "Push for a volume commitment against a lower price",
+        "title": "Stock is sitting far longer than peers",
+        "detail": "They hold inventory 116.74 days vs a peer norm of 39.98 — that's cash frozen on their own floor. A supplier carrying excess stock wants it moving: push for a volume commitment against a lower unit price, or buy off their existing stock at a discount rather than a fresh run.",
+        "evidence": [
+          {
+            "label": "Inventory days",
+            "value": "116.74 d",
+            "tab": "financials"
+          },
+          {
+            "label": "Peer norm",
+            "value": "39.98 d",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Commit volume for a better price"
+      },
+      {
+        "tone": "opportunity",
+        "strength": 1,
+        "insight": "They need the volume — trade it for price",
+        "title": "Returns are trending down",
+        "detail": "Return on capital slid 6.6% → -7.8% over recent years — profitability pressure strengthens our case; they may concede on price to hold volume.",
+        "evidence": [
+          {
+            "label": "Return on capital",
+            "value": "6.6% → -7.8%",
+            "tab": "financials"
+          }
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "opportunity",
@@ -43371,7 +43643,8 @@
             "value": "-4.09×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Lean in — they need our business"
       },
       {
         "tone": "watch",
@@ -43390,7 +43663,8 @@
             "value": "3.44%",
             "tab": "peers"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -43404,7 +43678,8 @@
             "value": "₹340.4 L",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Expect them to push back"
       },
       {
         "tone": "watch",
@@ -43418,7 +43693,8 @@
             "value": "GST + EPF",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Check before you commit"
       },
       {
         "tone": "risk",
@@ -43432,7 +43708,8 @@
             "value": "High",
             "tab": "risk"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -43446,7 +43723,8 @@
             "value": "-17.7×",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       },
       {
         "tone": "risk",
@@ -43460,7 +43738,8 @@
             "value": "2/10",
             "tab": "financials"
           }
-        ]
+        ],
+        "ask": "Line up a backup — protect supply"
       }
     ]
   }

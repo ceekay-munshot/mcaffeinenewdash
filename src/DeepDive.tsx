@@ -20,7 +20,7 @@ interface FinRow {
   bs: Record<string, number | null>; cf: Record<string, number | null>; r: Ratios;
 }
 interface Evidence { label: string; value: string; tab: string }
-interface Lever { tone: "opportunity" | "watch" | "risk"; strength: number; insight: string; title: string; detail: string; evidence?: Evidence[] }
+interface Lever { tone: "opportunity" | "watch" | "risk"; strength: number; insight: string; title: string; detail: string; ask?: string; evidence?: Evidence[] }
 interface CostMix { material: number | null; employee: number | null; other: number | null; deprec: number | null }
 interface AdvYear { fy: string; roe: number | null; netMargin: number | null; assetTurn: number | null; equityMult: number | null; taxBurden: number | null; intBurden: number | null; opMargin: number | null; fcf: number | null; accruals: number | null; workingCapital: number | null; costMix: CostMix | null }
 interface Advanced {
@@ -270,54 +270,75 @@ function LeversTab({ d, opps, onGoto, alt }: { d: Detail; opps: number; onGoto: 
         <div className="mt-2 text-xs text-teal-100/90">Read straight off {d.yearsCovered}&nbsp;years of their filings · tap a tile to filter, tap a lever for the numbers behind it.</div>
       </div>
       <AlternativesCard alt={alt} />
+      {/* The reframe the client asked for: each column is a tone, and inside it
+          the levers are grouped under the ASK they support. You don't recite
+          findings one at a time in a negotiation — you say "I want a better
+          price" and stack the reasons under it. Every lever survives as a reason;
+          nothing is cut. The ask is the headline; each reason expands to its
+          numbers. */}
       <div className={`grid items-start gap-4 ${filter ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
         {groups.filter((g) => !filter || g.tone === filter).map((g) => {
           const items = d.levers.filter((l) => l.tone === g.tone);
+          const byAsk: { ask: string; reasons: Lever[] }[] = [];
+          for (const lv of items) {
+            const key = lv.ask ?? "Other points";
+            let grp = byAsk.find((x) => x.ask === key);
+            if (!grp) { grp = { ask: key, reasons: [] }; byAsk.push(grp); }
+            grp.reasons.push(lv);
+          }
           return (
             <div key={g.tone}>
               <div className="mb-2 flex items-center gap-2 text-sm font-bold text-slate-700">{g.emoji} {g.title} <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-500">{items.length}</span></div>
-              <div className="space-y-2.5">
+              <div className="space-y-3">
                 {items.length === 0 && <div className="rounded-xl bg-white p-3 text-sm text-slate-400 ring-1 ring-slate-200">None.</div>}
-                {items.map((lv, i) => {
-                  const key = g.tone + i, isOpen = open === key, hasEv = (lv.evidence?.length ?? 0) > 0;
-                  // every lever has reasoning, so every lever is expandable now
-                  const canOpen = true;
-                  return (
-                    <div key={i} className={`overflow-hidden rounded-xl ${g.bg} ring-1 ${g.ring} transition ${isOpen ? "shadow-md" : ""}`}>
-                      <button onClick={() => canOpen && setOpen(isOpen ? null : key)} className="flex w-full items-start justify-between gap-2 p-3 text-left hover:bg-white/40">
-                        <div className="min-w-0">
-                          <div className={`text-sm font-bold leading-snug ${g.text}`}>{lv.insight}</div>
-                          <div className="mt-1 inline-flex items-baseline gap-1.5 rounded-md bg-white/60 px-1.5 py-0.5 text-[11px] leading-snug ring-1 ring-white/80">
-                            <span className="shrink-0 font-bold uppercase tracking-wide text-slate-400">Why</span>
-                            <span className="text-slate-600">{lv.title}</span>
-                          </div>
-                        </div>
-                        <div className="mt-0.5 flex shrink-0 items-center gap-2">
-                          <span className="text-xs" title={`strength ${lv.strength}/3`}>{"●".repeat(lv.strength)}<span className="text-slate-300">{"●".repeat(3 - lv.strength)}</span></span>
-                          <span className="whitespace-nowrap text-[10px] font-semibold text-slate-400">{isOpen ? "▲" : "why? ▾"}</span>
-                        </div>
-                      </button>
-                      {isOpen && (
-                        <div className="border-t border-white/70 bg-white/60 px-3.5 py-2.5">
-                          <p className="text-xs leading-relaxed text-slate-700">{lv.detail}</p>
-                          {hasEv && <div className="mb-1.5 mt-2.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">The numbers behind it — tap a source to open that tab</div>}
-                          <div className="flex flex-wrap gap-1.5">
-                            {(lv.evidence ?? []).map((e, j) => {
-                              const tm = TAB_META[e.tab] ?? { name: e.tab, cls: "bg-slate-100 text-slate-600 hover:bg-slate-200" };
-                              return (
-                                <span key={j} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2 py-1 text-xs ring-1 ring-slate-200">
-                                  <span className="text-slate-500">{e.label}</span>
-                                  <span className="font-semibold text-slate-900">{e.value}</span>
-                                  <button onClick={() => onGoto(e.tab)} title={`Open ${tm.name}`} className={`rounded px-1.5 py-0.5 text-[9px] font-semibold transition ${tm.cls}`}>{tm.name} →</button>
-                                </span>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
+                {byAsk.map((grp) => (
+                  <div key={grp.ask} className={`overflow-hidden rounded-2xl ring-1 ${g.ring}`}>
+                    {/* the ask — what you actually put on the table */}
+                    <div className={`flex items-center justify-between gap-2 ${g.bg} px-3.5 py-2.5`}>
+                      <span className={`text-sm font-bold leading-snug ${g.text}`}>{grp.ask}</span>
+                      <span className="shrink-0 whitespace-nowrap rounded-full bg-white/70 px-2 py-0.5 text-[11px] font-semibold text-slate-500">{grp.reasons.length} {grp.reasons.length === 1 ? "reason" : "reasons"}</span>
                     </div>
-                  );
-                })}
+                    {/* the reasons that back it, each opening to its numbers */}
+                    <div className="divide-y divide-slate-100 bg-white">
+                      {grp.reasons.map((lv, i) => {
+                        const key = g.tone + grp.ask + i, isOpen = open === key, hasEv = (lv.evidence?.length ?? 0) > 0;
+                        return (
+                          <div key={i}>
+                            <button onClick={() => setOpen(isOpen ? null : key)} className="flex w-full items-start justify-between gap-2 px-3.5 py-2.5 text-left transition hover:bg-slate-50">
+                              <div className="min-w-0">
+                                <div className="text-sm font-semibold leading-snug text-slate-800">{lv.title}</div>
+                                {/* the specific move this reason unlocks — a small nudge, not the headline */}
+                                <div className="mt-0.5 text-[11px] leading-snug text-slate-400">→ {lv.insight}</div>
+                              </div>
+                              <div className="mt-0.5 flex shrink-0 items-center gap-2">
+                                <span className="text-[10px]" title={`strength ${lv.strength}/3`}>{"●".repeat(lv.strength)}<span className="text-slate-300">{"●".repeat(3 - lv.strength)}</span></span>
+                                <span className="whitespace-nowrap text-[10px] font-semibold text-slate-400">{isOpen ? "▲" : "why? ▾"}</span>
+                              </div>
+                            </button>
+                            {isOpen && (
+                              <div className="border-t border-slate-100 bg-slate-50/70 px-3.5 py-2.5">
+                                <p className="text-xs leading-relaxed text-slate-700">{lv.detail}</p>
+                                {hasEv && <div className="mb-1.5 mt-2.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">The numbers behind it — tap a source to open that tab</div>}
+                                <div className="flex flex-wrap gap-1.5">
+                                  {(lv.evidence ?? []).map((e, j) => {
+                                    const tm = TAB_META[e.tab] ?? { name: e.tab, cls: "bg-slate-100 text-slate-600 hover:bg-slate-200" };
+                                    return (
+                                      <span key={j} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2 py-1 text-xs ring-1 ring-slate-200">
+                                        <span className="text-slate-500">{e.label}</span>
+                                        <span className="font-semibold text-slate-900">{e.value}</span>
+                                        <button onClick={() => onGoto(e.tab)} title={`Open ${tm.name}`} className={`rounded px-1.5 py-0.5 text-[9px] font-semibold transition ${tm.cls}`}>{tm.name} →</button>
+                                      </span>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           );

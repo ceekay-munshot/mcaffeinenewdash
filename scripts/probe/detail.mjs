@@ -881,9 +881,82 @@ function buildLevers(x) {
       `${rt.agency ?? "Their agency"} has them on a Negative outlook at ${rt.grade ?? rt.gradeText} — the agency expects deterioration, which the grade alone doesn't show. Expect cash discipline and more willingness to trade price for certainty; keep a backup qualified.`,
       [ev("Outlook", rt.outlook, "risk"), ev("Grade", rt.grade ?? "—", "risk")]);
 
-  // sort: opportunities first, then watch, then risk; strongest first
+  // Group every lever under the negotiation ASK it supports. This is a reframe,
+  // not a cut — no lever is dropped. A buyer at the table doesn't recite findings
+  // one by one; they open with "I want a better price" and back it with the four
+  // or five reasons underneath. So each lever keeps its full text and becomes a
+  // reason under its ask. There are as many asks as the negotiation needs.
+  const ASK_OF = {
+    // opportunity — what to ASK the supplier for
+    "Room to push on price": "Push for a better price",
+    "Genuine room on price": "Push for a better price",
+    "Real room on price — they're the maker": "Push for a better price",
+    "Their raw material is cheap — push on price there": "Push for a better price",
+    "They can afford to share margin": "Push for a better price",
+    "Push on price — they don't need our cash": "Push for a better price",
+    "Ask for a price cut — they can absorb it": "Push for a better price",
+    "Don't buy a \"we have no margin\" excuse": "Push for a better price",
+    "Hard to plead poverty while paying shareholders": "Push for a better price",
+    "They can carry a longer credit period for us": "Ask for longer credit",
+    "Ask for the terms they take themselves": "Ask for longer credit",
+    "Push our own payment terms out": "Ask for longer credit",
+    "Ask for an early-pay discount priced at their loan rate": "Offer to pay early for a discount",
+    "Buy a discount with faster payment": "Offer to pay early for a discount",
+    "Early payment is worth real money to them": "Offer to pay early for a discount",
+    "Trade faster payment for a lower price": "Offer to pay early for a discount",
+    "Use early payment as our lever": "Offer to pay early for a discount",
+    "Push for a volume commitment against a lower price": "Commit volume for a better price",
+    "Trade committed volume for a better price": "Commit volume for a better price",
+    "Lock a multi-year price before the line starts": "Commit volume for a better price",
+    "Trade volume for a lower unit price": "Commit volume for a better price",
+    "Committed volume beats a few rupees on unit price": "Commit volume for a better price",
+    "Buy off their existing stock at a discount": "Commit volume for a better price",
+    "They need the business — lean in": "Lean in — they need our business",
+    "They need the business — press on price and terms": "Lean in — they need our business",
+    "They need the volume — trade it for price": "Lean in — they need our business",
+    "Trade our growth for their price": "Lean in — they need our business",
+    // watch — where they'll push back, and what to check first
+    "A strengthening supplier will hold its price": "Expect them to push back",
+    "Expect a price-rise request; pre-empt it": "Expect them to push back",
+    "Expect them to hold firm on terms": "Expect them to push back",
+    "Expect them to stay tight on our terms": "Expect them to push back",
+    "Push on terms, not on price": "Expect them to push back",
+    "Push unit price, not payment timing": "Expect them to push back",
+    "They can hold price — push volume and service instead": "Expect them to push back",
+    "Fix a rupee price before they pass it through": "Expect them to push back",
+    "Lock the energy cost into the contract": "Expect them to push back",
+    "Ask why before leaning on their reported numbers": "Check before you commit",
+    "An early cash-squeeze signal — watch it": "Check before you commit",
+    "Check they can still service our volume": "Check before you commit",
+    "Early payment should buy us a discount": "Check before you commit",
+    "Offer early payment for a discount": "Check before you commit",
+    "Treat the reported profit with caution": "Check before you commit",
+    "Worth a look before renewal": "Check before you commit",
+    "Worth one question, not a red flag": "Check before you commit",
+    // risk — how to protect ourselves
+    "Don't push to breaking point — qualify a backup": "Line up a backup — protect supply",
+    "Don't squeeze — continuity is the risk here": "Line up a backup — protect supply",
+    "Keep a second source qualified": "Line up a backup — protect supply",
+    "Qualify an alternative source now": "Line up a backup — protect supply",
+    "Secure supply before pressing on price": "Line up a backup — protect supply",
+    "Diligence them before committing volume": "Line up a backup — protect supply",
+    "Diligence the litigation before renewing": "Be careful with money & paperwork",
+    "Push for transparency; keep a backup ready": "Be careful with money & paperwork",
+    "Treat any advance payment with caution": "Be careful with money & paperwork",
+    "Treat the financials as unreliable until clarified": "Be careful with money & paperwork",
+  };
+  // Order asks appear in, per tone. Anything unmapped falls to a generic bucket
+  // so a new detector can't silently vanish.
+  const ASK_ORDER = ["Push for a better price", "Ask for longer credit", "Offer to pay early for a discount", "Commit volume for a better price", "Lean in — they need our business",
+    "Expect them to push back", "Check before you commit", "Line up a backup — protect supply", "Be careful with money & paperwork", "Other points"];
+  for (const l of out) l.ask = ASK_OF[l.title] ?? ASK_OF[l.insight] ?? "Other points";
+
+  // sort: opportunities first, then watch, then risk; within a tone by ask order,
+  // then strongest reason first inside each ask.
   const toneRank = { opportunity: 0, watch: 1, risk: 2 };
-  out.sort((p, q) => toneRank[p.tone] - toneRank[q.tone] || q.strength - p.strength);
+  out.sort((p, q) => toneRank[p.tone] - toneRank[q.tone]
+    || ASK_ORDER.indexOf(p.ask) - ASK_ORDER.indexOf(q.ask)
+    || q.strength - p.strength);
   return out;
 }
 
