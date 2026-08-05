@@ -15,6 +15,20 @@ export const THEAD = "border-b-2 border-teal-200/70 bg-teal-50/70 text-left text
 export const TD = "px-4 py-3.5 align-middle";
 export const TDNUM = "whitespace-nowrap px-4 py-3.5 text-right tabular-nums";
 
+/* ---- Back button — ONE control, ONE place -----------------------------------
+   The client's rule: a back button always sits top-left, looks identical, and
+   reads the same on every page that has one. Before this there were four: a dark
+   pill top-right on the deep-dive, grey text links elsewhere, one stranded at the
+   bottom of the competitor page. Every view now renders this, first thing, left. */
+export function BackButton({ onClick, label = "Back" }: { onClick: () => void; label?: string }) {
+  return (
+    <button onClick={onClick}
+      className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-sm font-semibold text-slate-600 ring-1 ring-slate-200 shadow-sm transition hover:bg-slate-50 hover:text-teal-700 hover:ring-teal-300">
+      <span className="text-base leading-none">←</span> {label}
+    </button>
+  );
+}
+
 export interface Slice {
   label: string;
   value: number;

@@ -3,7 +3,7 @@
 // The lever engine's output leads; every historical number is a trend.
 import { Fragment, useMemo, useState } from "react";
 import type { Entity } from "./types";
-import { AreaLine, HBars, Donut, MultiLine, Card, TBL, THEAD, type Slice } from "./charts";
+import { AreaLine, HBars, Donut, MultiLine, Card, TBL, THEAD, BackButton, type Slice } from "./charts";
 import { TEAL } from "./lib/palette";
 import { healthDot } from "./lib/health";
 import { fullName, titleCase, crore, fmtPct } from "./lib/format";
@@ -118,6 +118,9 @@ const xN = (v: number | null) => (v == null ? "—" : `${v.toFixed(2)}x`);
 const crTick = (v: number) => `₹${Math.round(v).toLocaleString("en-IN")} Cr`;
 const lk = (v: number | null) => (v == null || !Number.isFinite(v) ? "—" : v >= 100 ? crore(v / 100) : `₹${v.toFixed(1)} L`);
 
+// The About tab is gone — the client's line was "nobody will read so much data".
+// The two identity facts a buyer needs (former names, registration) already ride
+// in the header and the source footnote, so nothing actionable was lost.
 const TABS = [
   { key: "levers", label: "💡 Levers" },
   { key: "financials", label: "📈 Financials & trends" },
@@ -125,7 +128,6 @@ const TABS = [
   { key: "owners", label: "🏛️ Owners & people" },
   { key: "risk", label: "🚩 Risk & legal" },
   { key: "news", label: "📰 News" },
-  { key: "about", label: "ℹ️ About" },
 ] as const;
 export type TabKey = (typeof TABS)[number]["key"];
 
@@ -153,23 +155,20 @@ export default function DeepDive({ entity, onClose, supplies, initialTab }: { en
           over the company name, the hero stats and the tab bar. */}
       <div className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className="mx-auto max-w-[1680px] px-4 py-3 sm:px-6">
-          {/* Identity line: the name is the headline, then only what a buyer needs
-              to place the company — where it is, and what it sells us. The CIN,
-              the "Probe42 · N-yr filings" badge, the listing status and the
-              former-names trail all moved to the About tab; they were noise here. */}
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <h1 className="truncate text-2xl font-bold leading-tight tracking-tight text-slate-900" title={fullName(d.legalName, entity.brand)}>{fullName(d.legalName, entity.brand)}</h1>
-              <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-slate-500">
-                {d.city && <span className="inline-flex items-center gap-1">📍 {titleCase(d.city)}</span>}
-                {supplies && supplies.length > 0 && (
-                  <span className="inline-flex min-w-0 items-center gap-1" title={supplies.join(", ")}>
-                    <span className="text-slate-300">·</span> supplies <span className="truncate font-medium text-slate-700">{supplies[0]}{supplies.length > 1 ? ` +${supplies.length - 1} more` : ""}</span>
-                  </span>
-                )}
-              </div>
+          {/* Back sits first, top-left, in the one shared style — same on every
+              page. Identity line follows: the name is the headline, then only what
+              a buyer needs to place the company — where it is, and what it sells. */}
+          <BackButton onClick={onClose} />
+          <div className="mt-2.5 min-w-0">
+            <h1 className="truncate text-2xl font-bold leading-tight tracking-tight text-slate-900" title={fullName(d.legalName, entity.brand)}>{fullName(d.legalName, entity.brand)}</h1>
+            <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-slate-500">
+              {d.city && <span className="inline-flex items-center gap-1">📍 {titleCase(d.city)}</span>}
+              {supplies && supplies.length > 0 && (
+                <span className="inline-flex min-w-0 items-center gap-1" title={supplies.join(", ")}>
+                  <span className="text-slate-300">·</span> supplies <span className="truncate font-medium text-slate-700">{supplies[0]}{supplies.length > 1 ? ` +${supplies.length - 1} more` : ""}</span>
+                </span>
+              )}
             </div>
-            <button onClick={onClose} className="shrink-0 rounded-lg bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700">← Back</button>
           </div>
           {/* KPI strip */}
           <div className="mt-4 grid grid-cols-3 gap-2 md:grid-cols-6">
@@ -199,7 +198,6 @@ export default function DeepDive({ entity, onClose, supplies, initialTab }: { en
         {tab === "owners" && <OwnersTab d={d} />}
         {tab === "risk" && <RiskTab d={d} />}
         {tab === "news" && <NewsTab news={news} brand={entity.brand} />}
-        {tab === "about" && <AboutTab d={d} />}
         <p className="mt-5 text-xs text-slate-400">
           Source: MCA filings via Probe42{d.lastUpdated ? ` · as of ${d.lastUpdated.slice(0, 10)}` : ""} · {d.yearsCovered ?? d.fin.length} years of accounts.
         </p>
@@ -216,24 +214,25 @@ const TAB_META: Record<string, { name: string; cls: string }> = {
   risk: { name: "Risk & legal", cls: "bg-rose-100 text-rose-700 hover:bg-rose-200" },
 };
 type AltInfo = { selfHealth: number; category: string; count: number; rank: number; better: EnrichedRef[] };
+// The client called this junk on a healthy vendor — "#1 of 9, no stronger
+// alternative" tells a buyer nothing. It only earns its place when the vendor is
+// weak AND we actually hold healthier names to fall back on: then it's a real
+// "line up a backup" prompt. Every other case is hidden. (The full "best peer to
+// switch to" belongs on Peers — that's a separate, later piece of work.)
 function AlternativesCard({ alt }: { alt: AltInfo }) {
-  if (alt.count < 2) return null; // need at least one category peer to compare
   const weak = alt.selfHealth < 55;
+  if (!weak || alt.better.length === 0) return null;
   const dot = healthDot;
   return (
-    <div className={`mb-4 rounded-2xl p-4 ring-1 ${weak ? "bg-rose-50 ring-rose-200" : "bg-slate-50 ring-slate-200"}`}>
+    <div className="mb-4 rounded-2xl bg-rose-50 p-4 ring-1 ring-rose-200">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-sm font-bold text-slate-800">{weak ? "⚠ Line up a backup source" : "🔁 Alternatives in this category"}</span>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2 py-0.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200"><span className={`h-2 w-2 rounded-full ${dot(alt.selfHealth)}`} />health {alt.selfHealth}/100 · #{alt.rank} of {alt.count} {alt.category}s we track</span>
+        <span className="text-sm font-bold text-slate-800">⚠ Line up a backup source</span>
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2 py-0.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200"><span className={`h-2 w-2 rounded-full ${dot(alt.selfHealth)}`} />this vendor scores {alt.selfHealth}/100</span>
       </div>
-      {alt.better.length > 0 ? (
-        <>
-          <div className="mt-2 text-xs text-slate-600">{weak ? "This vendor reads weaker than others we track — healthier options to qualify as a second source:" : "Healthier vendors in the same category, if you want a backup:"}</div>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {alt.better.map((p) => <span key={p.cin} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200"><span className={`h-2 w-2 rounded-full ${dot(p.health)}`} />{fullName(p.legalName, p.brand)} · {p.health}/100</span>)}
-          </div>
-        </>
-      ) : <div className="mt-1 text-xs text-slate-500">✓ One of the healthiest {alt.category} suppliers we track — no clearly stronger alternative on file.</div>}
+      <div className="mt-2 text-xs text-slate-600">Reads weaker than others we track — healthier names to qualify as a second source:</div>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {alt.better.map((p) => <span key={p.cin} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200"><span className={`h-2 w-2 rounded-full ${dot(p.health)}`} />{fullName(p.legalName, p.brand)} · {p.health}/100</span>)}
+      </div>
     </div>
   );
 }
@@ -468,81 +467,73 @@ function NewsTab({ news, brand }: { news: SupplierNews | null; brand: string }) 
   );
 }
 
-// Analyst-grade "X-ray": DuPont decomposition of RoE, Piotroski F-score checklist,
-// and Altman-Z distress gauge — the sophisticated read on financial health.
+/* Two plain-English reads, no finance jargon. The client's line was "explain it
+   like you're teaching a grandmother", and specifically: drop the Piotroski
+   F-score, keep the return breakdown and the bankruptcy signal but in words a
+   non-finance buyer understands. So: "where their profit comes from" and "can
+   they pay their bills / how likely are they to fail". Altman-Z still drives the
+   second one, but the term never appears — only the plain verdict does. */
 function HealthPanel({ a }: { a: Advanced }) {
   const dp = a.dupont;
+  // Say in one sentence why the return is what it is, and what it means for us.
   const dupontRead = dp
-    ? (dp.equityMult != null && dp.equityMult >= 2.5 && (dp.netMargin ?? 0) < 6) ? "Leverage-driven return — fragile; debt is doing the work, not the operations."
-      : (dp.netMargin != null && dp.netMargin >= 8 && (dp.equityMult ?? 9) <= 1.6) ? "Margin-driven — real pricing power on a clean balance sheet."
-        : (dp.assetTurn != null && dp.assetTurn >= 1.5) ? "Turnover-driven — a lean, asset-light operator."
-          : "Balanced mix of margin, efficiency and leverage."
+    ? (dp.equityMult != null && dp.equityMult >= 2.5 && (dp.netMargin ?? 0) < 6) ? "Their profit is propped up by borrowing, not by the business itself — that's fragile, so don't push them to the edge."
+      : (dp.netMargin != null && dp.netMargin >= 8 && (dp.equityMult ?? 9) <= 1.6) ? "Real profit on money they actually own — they have genuine room to give us a better price."
+        : (dp.assetTurn != null && dp.assetTurn >= 1.5) ? "They make their money on volume, not fat margins — a lean operator."
+          : "A balanced mix of margin, efficiency and borrowing."
     : "";
-  const zColor = a.zZone === "distress" ? "#e11d48" : a.zZone === "grey" ? "#f59e0b" : "#059669";
-  // The old scale topped out at 6, but most suppliers score above that, so every
-  // marker pinned to the far right and the gauge never moved. Runs 0-10 now:
-  // distress <1.1, grey 1.1-2.6, safe above — band widths match those cut-offs.
+  // Plain risk band. distress → "high", grey → "some", safe → "low".
+  const riskWord = a.zNote ? "High" : a.zZone === "distress" ? "High" : a.zZone === "grey" ? "Some" : "Low";
+  const riskColor = riskWord === "High" ? "#e11d48" : riskWord === "Some" ? "#f59e0b" : "#059669";
   const Z_MAX = 10;
-  // When negative net worth overrides the band, the raw score still plots inside
-  // the green stretch — a marker sitting in "safe" beside a red "Distress" label
-  // reads as a bug. Park it in the band the verdict actually claims.
   const zMark = a.zNote ? 5.5 : a.z != null ? Math.max(2, Math.min(98, (Math.min(a.z, Z_MAX) / Z_MAX) * 100)) : null;
-  const zOver = a.z != null && a.z > Z_MAX && !a.zNote;
-  const fCol = (a.fscore ?? 0) >= 7 ? "text-emerald-600" : (a.fscore ?? 0) >= 4 ? "text-amber-600" : "text-rose-600";
   return (
-    <Card title="Financial-health X-ray" sub="DuPont · Piotroski · Altman-Z — analyst-grade signals computed from the filings, no extra data" accent={C.violet}>
-      <div className="grid gap-3 lg:grid-cols-3">
-        {/* DuPont */}
-        <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
-          <div className="mb-2 text-[11px] font-bold uppercase tracking-wide text-slate-500">DuPont — where the return comes from</div>
+    <Card title="Financial health, in plain words" sub="two simple reads from their own accounts — no jargon" accent={C.violet}>
+      <div className="grid gap-3 lg:grid-cols-2">
+        {/* Where the profit comes from (was DuPont) */}
+        <div className="rounded-xl bg-slate-50 p-3.5 ring-1 ring-slate-200">
+          <div className="mb-2 text-sm font-bold text-slate-700">Where their profit comes from</div>
           {dp && dp.roe != null ? (
             <>
-              <div className="flex items-baseline justify-between"><span className="text-sm text-slate-500">Return on equity</span><span className="text-2xl font-bold text-violet-700">{dp.roe}%</span></div>
+              <div className="flex items-baseline justify-between">
+                <span className="text-sm text-slate-500">Return on the owners' money</span>
+                <span className="text-2xl font-bold text-violet-700">{dp.roe}%</span>
+              </div>
               <div className="mt-2 flex items-stretch gap-1 text-center">
-                {[["Net margin", dp.netMargin != null ? dp.netMargin + "%" : "—"], ["× Asset turn", dp.assetTurn != null ? dp.assetTurn + "×" : "—"], ["× Leverage", dp.equityMult != null ? dp.equityMult + "×" : "—"]].map(([k, v]) => (
-                  <div key={k} className="flex-1 rounded-lg bg-white p-2 ring-1 ring-slate-200"><div className="font-mono text-sm font-bold text-slate-800">{v}</div><div className="text-[9px] leading-tight text-slate-500">{k}</div></div>
+                {[["Profit per ₹100 of sales", dp.netMargin != null ? dp.netMargin + "%" : "—"], ["Sales per ₹ of assets", dp.assetTurn != null ? dp.assetTurn + "×" : "—"], ["How much they borrow", dp.equityMult != null ? dp.equityMult + "×" : "—"]].map(([k, v]) => (
+                  <div key={k} className="flex-1 rounded-lg bg-white p-2 ring-1 ring-slate-200"><div className="text-sm font-bold text-slate-800">{v}</div><div className="mt-0.5 text-[9px] leading-tight text-slate-500">{k}</div></div>
                 ))}
               </div>
-              <div className="mt-2 text-[11px] leading-snug text-slate-500">{dupontRead}</div>
+              <div className="mt-2 text-xs leading-snug text-slate-600">{dupontRead}</div>
             </>
           ) : <Empty t="Not enough data." />}
         </div>
-        {/* Piotroski */}
-        <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
-          <div className="mb-2 flex items-center justify-between"><span className="text-[11px] font-bold uppercase tracking-wide text-slate-500">Piotroski F-score</span><span className={`text-lg font-bold ${fCol}`}>{a.fscore ?? "—"}<span className="text-xs text-slate-400">/9</span></span></div>
-          {a.fChecks.length ? (
-            <div className="space-y-0.5">
-              {a.fChecks.map((c, i) => (
-                <div key={i} className="flex items-center gap-1.5 text-[11px]"><span className={c.ok ? "text-emerald-600" : "text-slate-300"}>{c.ok ? "✓" : "○"}</span><span className={c.ok ? "text-slate-700" : "text-slate-400"}>{c.label}</span></div>
-              ))}
-            </div>
-          ) : <Empty t="Needs 2+ years." />}
-        </div>
-        {/* Altman Z + cash tiles */}
-        <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
-          <div className="mb-2 flex items-center justify-between"><span className="text-[11px] font-bold uppercase tracking-wide text-slate-500">Altman-Z distress</span><span className="text-lg font-bold" style={{ color: zColor }}>{a.z ?? "—"} <span className="text-xs capitalize">{a.zZone ?? ""}</span></span></div>
+        {/* Chance of financial trouble (was Altman-Z) */}
+        <div className="rounded-xl bg-slate-50 p-3.5 ring-1 ring-slate-200">
+          <div className="mb-2 flex items-center justify-between">
+            <span className="text-sm font-bold text-slate-700">Chance of running into money trouble</span>
+            <span className="text-lg font-bold" style={{ color: riskColor }}>{riskWord}</span>
+          </div>
           <div className="relative mt-1 h-2.5 w-full overflow-hidden rounded-full">
             <div className="absolute inset-0 flex"><div className="bg-rose-300" style={{ width: "11%" }} /><div className="bg-amber-200" style={{ width: "15%" }} /><div className="bg-emerald-300" style={{ width: "74%" }} /></div>
             {zMark != null && <div className="absolute top-1/2 h-4 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded bg-slate-900 ring-2 ring-white" style={{ left: `${zMark}%` }} />}
           </div>
-          <div className="mt-1 flex justify-between text-[9px] text-slate-400"><span>distress</span><span>grey</span><span>{zOver ? `safe · ${Z_MAX}+` : "safe"}</span></div>
-          {/* When the zone was overridden the marker sits away from its band, so
-              say why rather than leave the two looking inconsistent. */}
+          <div className="mt-1 flex justify-between text-[9px] text-slate-400"><span>high risk</span><span>watch</span><span>safe</span></div>
           {a.zNote && <div className="mt-1.5 rounded-lg bg-rose-50 px-2 py-1 text-[10px] font-semibold leading-snug text-rose-700 ring-1 ring-rose-200">⚠ {a.zNote}</div>}
-          {/* "Safe" here answers one narrow question — can the balance sheet meet
-              its obligations — and nothing about governance or how they trade.
-              Without saying so, a green Z beside a weak health score reads as a
-              contradiction rather than two different findings. */}
-          <p className="mt-2 text-[10px] leading-relaxed text-slate-500">
-            {a.zZone === "distress"
-              ? "Balance-sheet solvency is genuinely strained — treat continuity as a live risk."
-              : "Measures balance-sheet solvency only — how likely the company is to fail financially. It says nothing about governance, litigation or how they treat suppliers; read it next to the health score, not instead of it."}
+          <p className="mt-2 text-xs leading-relaxed text-slate-600">
+            {riskWord === "High"
+              ? "Their finances are genuinely strained — there's a real chance of trouble, so keep a backup supplier ready."
+              : riskWord === "Some"
+                ? "A little strained — worth keeping an eye on before you commit big volume."
+                : "Financially sound — very unlikely to run into trouble any time soon."}
+            {" "}This is only about their money — not about their court cases or how they treat suppliers.
           </p>
-          <div className="mt-3 grid grid-cols-3 gap-1.5 text-center">
-            {[["Free cash flow", a.fcfLatest != null ? `₹${Math.round(a.fcfLatest)} Cr` : "—"], ["Op. leverage", a.opLeverage != null ? a.opLeverage + "×" : "—"], ["Accruals", a.accrualsLatest != null ? a.accrualsLatest + "%" : "—"]].map(([k, v]) => (
-              <div key={k} className="rounded-lg bg-white p-1.5 ring-1 ring-slate-200"><div className="font-mono text-xs font-bold text-slate-800">{v}</div><div className="text-[9px] leading-tight text-slate-500">{k}</div></div>
-            ))}
-          </div>
+          {a.fcfLatest != null && (
+            <div className="mt-2.5 rounded-lg bg-white p-2 ring-1 ring-slate-200">
+              <span className="text-sm font-bold text-slate-800">{crore(a.fcfLatest)}</span>
+              <span className="ml-1.5 text-[11px] text-slate-500">spare cash left after running the business and investing {a.fcfLatest >= 0 ? "— they don't need our cash" : "— they're cash-hungry right now"}</span>
+            </div>
+          )}
         </div>
       </div>
     </Card>
@@ -583,7 +574,9 @@ function FinancialsTab({ d }: { d: Detail }) {
             ]} />
         </Card>
       </div>
-      {(d.revenueMix || d.capexWip || d.managerialPay || d.assetAge || d.powerCost) && <RevenueMixCard d={d} />}
+      {/* Only render when the card has something left to show after the noise
+          chips were cut — a revenue split, or a big owner-pay flag. */}
+      {(d.revenueMix || (d.managerialPay?.pctOfProfit ?? 0) >= 15) && <RevenueMixCard d={d} />}
       <Card title="Full financials — every line, every year" sub="income statement · balance sheet · cash flow · ratios — straight from MCA filings · scroll →" accent="#334155">
         <FinTable fin={d.fin} />
       </Card>
@@ -602,13 +595,15 @@ function RevenueMixCard({ d }: { d: Detail }) {
     { k: "Bought in & resold", v: m.tradedPct ?? 0, cr: m.tradedCr, c: C.amber },
     { k: "Services", v: m.servicesPct ?? 0, cr: m.servicesCr, c: C.sky },
   ].filter((p) => p.v > 0)) : [];
+  // The client cut the decorative signal chips — "capacity being built, dividend
+  // proposed, plant depreciated, power & fuel — what do I learn from that?" Every
+  // one of them already drives a lever with full context on the Levers tab, so
+  // showing them here as bare numbers was pure noise. Two survive because they
+  // change the negotiation directly: how much they sell abroad (a rupee-move
+  // argument), and how much the owner pays themselves (kills a "no margin" claim).
   const chips: [string, string, string][] = [];
-  if (m && (m.exportPct ?? 0) > 0) chips.push(["Export share", `${m.exportPct}%`, `₹${m.exportCr} Cr sold abroad — demand that doesn't depend on Indian buyers`]);
-  if (d.capexWip) chips.push(["Capacity being built", `₹${d.capexWip.amountCr} Cr`, `${d.capexWip.pctOfFixedAssets}% of fixed assets is paid-for capacity not yet producing — they'll need volume to absorb it`]);
-  if (d.managerialPay) chips.push(["Owner pay", `₹${d.managerialPay.amountCr} Cr`, d.managerialPay.pctOfProfit != null ? `${d.managerialPay.pctOfProfit}% of profit after tax is taken out as managerial remuneration` : "managerial remuneration"]);
-  if (d.proposedDividend) chips.push(["Dividend", "proposed", "cash being distributed to shareholders rather than retained"]);
-  if (d.assetAge?.depreciatedPct != null) chips.push(["Plant depreciated", `${d.assetAge.depreciatedPct}%`, `₹${d.assetAge.netCr} Cr left of a ₹${d.assetAge.grossCr} Cr gross asset base — how much life is still in the plant`]);
-  if (d.powerCost?.pctOfRevenue != null) chips.push(["Power & fuel", `${d.powerCost.pctOfRevenue}% of revenue`, `₹${d.powerCost.amountCr} Cr — how exposed they are to tariff moves`]);
+  if (m && (m.exportPct ?? 0) > 0) chips.push(["Sold abroad", `${m.exportPct}%`, `₹${m.exportCr} Cr of their sales go overseas — demand that doesn't depend on Indian buyers`]);
+  if (d.managerialPay && d.managerialPay.pctOfProfit != null && d.managerialPay.pctOfProfit >= 15) chips.push(["Owner's own pay", `${d.managerialPay.pctOfProfit}% of profit`, `the owners take ₹${d.managerialPay.amountCr} Cr out as their own salary — hard for them to claim they have no margin`]);
   return (
     <Card title="What they actually sell — and where the cash goes" sub={`${m ? m.fy + " revenue split · " : ""}a maker owns its conversion margin; a reseller only owns the markup`} accent={C.emerald}>
       {parts.length > 0 && (
@@ -644,16 +639,20 @@ function RevenueMixCard({ d }: { d: Detail }) {
 // each sales rupee is eaten by materials/people/overheads and how much is left as
 // profit. A widening green (profit) band is a direct "they can give on price" cue.
 function CostMix({ fin }: { fin: FinRow[] }) {
+  // Was a native title="" tooltip on each segment — slow to appear and easy to
+  // miss, which is exactly what the client hit ("I hover and nothing happens").
+  // Now hovering any row lifts a proper panel that breaks the whole ₹100 down.
+  const [hover, setHover] = useState<string | null>(null);
   const parts = [
     { k: "Materials", c: "#0d9488", get: (f: FinRow) => (n(f.materialCost) ?? 0) + (n(f.purchases) ?? 0) },
     { k: "People", c: "#6366f1", get: (f: FinRow) => n(f.employeeCost) ?? 0 },
-    { k: "Other opex", c: "#f59e0b", get: (f: FinRow) => n(f.otherExpense) ?? 0 },
-    { k: "Profit (EBITDA)", c: "#10b981", get: (f: FinRow) => Math.max(0, n(f.ebitda) ?? 0) },
+    { k: "Other spend (ads, freight, overhead)", c: "#f59e0b", get: (f: FinRow) => n(f.otherExpense) ?? 0 },
+    { k: "Their profit", c: "#10b981", get: (f: FinRow) => Math.max(0, n(f.ebitda) ?? 0) },
   ];
   const rows = fin.map((f) => {
     const vals = parts.map((p) => p.get(f));
     const tot = vals.reduce((a, b) => a + b, 0) || 1;
-    return { fy: f.fy, segs: parts.map((p, i) => ({ ...p, pct: (vals[i] / tot) * 100 })) };
+    return { fy: f.fy, segs: parts.map((p, i) => ({ ...p, pct: (vals[i] / tot) * 100, rupees: Math.round((vals[i] / tot) * 100) })) };
   });
   return (
     <div>
@@ -662,12 +661,26 @@ function CostMix({ fin }: { fin: FinRow[] }) {
       </div>
       <div className="space-y-1">
         {rows.map((r) => (
-          <div key={r.fy} className="flex items-center gap-2">
-            <span className="w-9 shrink-0 font-mono text-[10px] text-slate-400">{r.fy}</span>
-            <div className="flex h-4 flex-1 overflow-hidden rounded ring-1 ring-slate-200">
-              {r.segs.map((s) => s.pct > 0.5 && <div key={s.k} title={`${s.k}: ${Math.round(s.pct)}% of sales`} style={{ width: `${s.pct}%`, background: s.c }} />)}
+          <div key={r.fy} className="relative flex items-center gap-2" onMouseEnter={() => setHover(r.fy)} onMouseLeave={() => setHover(null)}>
+            <span className="w-9 shrink-0 text-[10px] font-semibold text-slate-500">{r.fy}</span>
+            <div className={`flex h-5 flex-1 cursor-default overflow-hidden rounded ring-1 transition ${hover === r.fy ? "ring-slate-400" : "ring-slate-200"}`}>
+              {r.segs.map((s) => s.pct > 0.5 && <div key={s.k} style={{ width: `${s.pct}%`, background: s.c, opacity: hover && hover !== r.fy ? 0.5 : 1 }} />)}
             </div>
-            <span className="w-9 shrink-0 text-right font-mono text-[10px] font-semibold text-emerald-600" title="profit share of sales">{Math.round(r.segs[3].pct)}%</span>
+            <span className="w-9 shrink-0 text-right text-[10px] font-bold text-emerald-600">{Math.round(r.segs[3].pct)}%</span>
+            {hover === r.fy && (
+              <div className="absolute right-12 top-full z-20 mt-1 w-60 rounded-xl bg-slate-900 p-2.5 text-white shadow-xl">
+                <div className="mb-1.5 text-[11px] font-bold text-slate-300">{r.fy} — every ₹100 of sales</div>
+                <div className="space-y-1">
+                  {r.segs.map((s) => (
+                    <div key={s.k} className="flex items-center gap-2 text-xs">
+                      <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: s.c }} />
+                      <span className="flex-1 text-slate-200">{s.k}</span>
+                      <span className="font-bold tabular-nums">₹{s.rupees}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -1038,55 +1051,7 @@ function RiskTab({ d }: { d: Detail }) {
   );
 }
 
-/* ================================================================== ABOUT */
-// A paragraph is the heaviest thing on a page; show the first two lines and let
-// the reader ask for the rest.
-function ReadMore({ text }: { text: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div>
-      <p className={`text-sm leading-relaxed text-slate-600 ${open ? "" : "line-clamp-2"}`}>{text}</p>
-      <button onClick={() => setOpen((v) => !v)} className="mt-1 text-xs font-semibold text-teal-700 hover:underline">{open ? "Show less" : "Read more"}</button>
-    </div>
-  );
-}
-
-function AboutTab({ d }: { d: Detail }) {
-  return (
-    <div className="grid items-start gap-4 lg:grid-cols-3">
-      <Card title="What they do" sub={[...new Set([d.industry, d.segment, ...(d.segments ?? []), d.activityGroup].filter(Boolean))].join(" · ") || "business profile"} accent={TEAL} className="lg:col-span-2">
-        {d.description ? <ReadMore text={d.description} /> : <Empty t="No description on file." />}
-        {d.gstNature?.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {d.gstNature.map((t) => <span key={t} className="rounded-md bg-teal-50 px-2 py-0.5 text-[11px] font-medium text-teal-800 ring-1 ring-teal-100">{t}</span>)}
-          </div>
-        )}
-        {d.activities.length > 0 && <div className="mt-3 space-y-1">{d.activities.map((a, i) => <div key={i} className="flex justify-between gap-3 text-sm"><span className="text-slate-600">{a.desc}</span>{a.pct != null && <span className="shrink-0 font-mono text-slate-400">{a.pct}% of turnover</span>}</div>)}</div>}
-      </Card>
-      {/* The header used to carry the CIN, listing status and former-name trail.
-          They belong here, where someone actually looking them up will find them. */}
-      <Card title="Registry" sub="MCA basics" accent="#334155">
-        <dl className="space-y-1.5 text-sm">
-          {d.cin && <Row k="CIN" v={d.cin} />}
-          <Row k="Type" v={d.classification ?? "—"} /><Row k="Status" v={d.status ?? "—"} />
-          <Row k="Incorporated" v={d.incorporation ?? "—"} /><Row k="Paid-up capital" v={cr(d.paidUpCr)} /><Row k="Authorised capital" v={cr(d.authorizedCr)} />
-          <Row k="Last AGM" v={d.lastAgm ?? "—"} /><Row k="Last filing" v={d.lastFiling ?? "—"} />
-          {d.website && <Row k="Website" v={d.website.replace(/^https?:\/\//, "")} />}
-          <Row k="Registered" v={[d.city && titleCase(d.city), d.state && titleCase(d.state)].filter(Boolean).join(", ") || "—"} />
-          {d.nameHistory?.length ? <Row k="Formerly" v={d.nameHistory.join(", ")} /> : null}
-          {d.auditor?.current && <Row k="Auditor" v={titleCase(d.auditor.current)} />}
-          {d.auditor && d.auditor.changes > 0 && <Row k="Auditor changes" v={`${d.auditor.changes} across ${d.yearsCovered} filed years`} />}
-        </dl>
-        {d.auditor?.anyAdverse && (
-          <p className={`mt-2 rounded-lg px-2.5 py-2 text-xs ring-1 ${d.auditor.adverseRecent || d.auditor.adverseSustained ? "bg-rose-50 text-rose-800 ring-rose-200" : "bg-amber-50 text-amber-800 ring-amber-200"}`}>
-            {d.auditor.adverseRecent || d.auditor.adverseSustained ? "⚠" : "•"} Adverse auditor remarks in {d.auditor.adverseYears.join(", ")}
-            {!(d.auditor.adverseRecent || d.auditor.adverseSustained) && ` — none since; latest filed year is ${d.auditor.latestFy}.`}
-          </p>
-        )}
-      </Card>
-    </div>
-  );
-}
+/* The About tab and its ReadMore helper were removed — see the TABS note. */
 
 /* ============================================ PROBE-POWERED SIDE-BY-SIDE COMPARE
    Rendered inside the Compare flow. Lays the enriched suppliers next to each other

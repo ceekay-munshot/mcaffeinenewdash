@@ -12,7 +12,7 @@ import { fmtCrore, fmtPct, fmtInt, fmtDate, fmtDays, fmtUSD, toCrore, fullName, 
 import { negotiationRoom, healthChip, healthDot, HEALTH_CUT } from "./lib/health";
 import { probeRevenueINR, probeEbitdaMargin, probeNetMargin } from "./probe";
 import { CATEGORY_COLOR } from "./lib/palette";
-import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, TBL, THEAD, TDNUM, type Slice } from "./charts";
+import { HBars, Columns, AreaLine, ScoreBars, MultiLine, Card, TBL, THEAD, TDNUM, BackButton, type Slice } from "./charts";
 import { DELIVERY } from "./delivery";
 import { RM_SUPPLY, PM_SUPPLY, suppliedItems } from "./supply";
 import { newsOf, type SupplierNews, type Signal, type NewsItem } from "./news";
@@ -1349,7 +1349,7 @@ function IngredientDetail({ entry, currentVendor, all, onBack, onSelectVendor, b
   const STEPS: [string, string][] = [["①", "Suppliers"], ["②", "Price"], ["③", "Financials"], ["④", "Levers"]];
   return (
     <div className="space-y-4">
-      <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Back to {backLabel}</button>
+      <BackButton onClick={onBack} label={`Back to ${backLabel}`} />
 
       <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -1747,7 +1747,7 @@ function CompareView({ all, onSelect, onClose }: { all: Entity[]; onSelect: (e: 
 
   return (
     <div className="space-y-4">
-      <button onClick={onClose} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Back to suppliers</button>
+      <BackButton onClick={onClose} label="Back to suppliers" />
 
       <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
         <div className="text-base font-semibold text-slate-900">🆚 Compare suppliers</div>
@@ -1852,7 +1852,7 @@ function CompareAnalysis({ selected, onBack, onSelect }: { selected: Entity[]; o
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <button onClick={onBack} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700"><span className="text-base leading-none">←</span> Change selection</button>
+        <BackButton onClick={onBack} label="Change selection" />
         <div className="flex flex-wrap gap-1.5">{selected.map((e, i) => <span key={e.folder} className="inline-flex rounded-full px-2 py-0.5 text-xs font-medium text-white" style={{ background: CMP_COLORS[i % CMP_COLORS.length] }}>{shortName(e.brand)}</span>)}</div>
       </div>
 
@@ -2551,9 +2551,7 @@ function CompanyPage({ entity: e, onBack, kind }: { entity: Entity; onBack: () =
 
   return (
     <main className="mx-auto max-w-[1680px] px-4 pb-16 sm:px-6">
-      <button onClick={onBack} className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-teal-700">
-        <span className="text-base leading-none">←</span> Back to {backLabel}
-      </button>
+      <div className="pt-6"><BackButton onClick={onBack} label={`Back to ${backLabel}`} /></div>
 
       <div className="mt-3 overflow-hidden rounded-3xl bg-gradient-to-br from-[#0b3b39] via-[#0d9488] to-[#0891b2] p-6 text-white shadow-lg">
         <div className="flex flex-wrap items-start justify-between gap-6">
