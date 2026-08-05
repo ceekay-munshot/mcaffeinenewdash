@@ -200,13 +200,20 @@ function build(raw, entity) {
   // legal cases
   const legalRaw = d.legal_history ?? [];
   const sevRank = { high: 3, medium: 2, low: 1 };
+  // The sample the UI shows must surface the cases a buyer cares about: the ones
+  // filed AGAINST the company (money they might have to pay) come first, then the
+  // serious ones. Sorting on severity alone buried every defendant case behind a
+  // wall of high-severity plaintiff suits, so none showed. Widened to 25 too.
+  const isAgainst = (c) => /against/i.test(c.case_type ?? "");
   const legal = {
     count: legalRaw.length,
     high: legalRaw.filter((c) => c.severity === "high").length,
     medium: legalRaw.filter((c) => c.severity === "medium").length,
-    against: legalRaw.filter((c) => /against/i.test(c.case_type ?? "")).length,
-    list: [...legalRaw].sort((a, b) => (sevRank[b.severity] ?? 0) - (sevRank[a.severity] ?? 0)).slice(0, 8)
-      .map((c) => ({ court: c.court, date: c.date, status: c.case_status, type: c.case_type, category: c.case_category, severity: c.severity, counterparty: clean(/against/i.test(c.case_type ?? "") ? c.petitioner : c.respondent) })),
+    against: legalRaw.filter(isAgainst).length,
+    list: [...legalRaw]
+      .sort((a, b) => (isAgainst(b) - isAgainst(a)) || (sevRank[b.severity] ?? 0) - (sevRank[a.severity] ?? 0))
+      .slice(0, 25)
+      .map((c) => ({ court: c.court, date: c.date, status: c.case_status, type: c.case_type, category: c.case_category, severity: c.severity, counterparty: clean(isAgainst(c) ? c.petitioner : c.respondent) })),
   };
 
   // financial-dispute litigation (recovery / default / insolvency) — distinct from

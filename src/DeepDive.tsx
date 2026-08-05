@@ -1030,24 +1030,67 @@ function RiskTab({ d }: { d: Detail }) {
           </ul>
         </Card>
       )}
-      <Card title={`Litigation — ${d.legal.count} case${d.legal.count !== 1 ? "s" : ""} on record`} sub={`${d.legal.high} high-severity · ${d.legal.against} filed against them`} accent={C.rose} className="lg:col-span-2 xl:col-span-3">
-        {d.legal.list.length ? (
+      <LitigationCard d={d} />
+    </div>
+  );
+}
+
+/* Litigation, the way the client asked for it: say plainly which side they're on
+   (money coming to them vs money they might have to pay), keep it short instead
+   of dumping 101 rows, and give a link that actually opens the case on
+   IndianKanoon. We don't hold case IDs, so the link is a name search — the
+   honest best we can point to. */
+function LitigationCard({ d }: { d: Detail }) {
+  const filedBy = d.legal.count - d.legal.against; // plaintiff — they're chasing someone
+  // Defendant cases (money they might pay) first, then high severity — that's the
+  // order that matters to a buyer. Show a sensible handful, not the whole pile.
+  const side = (t: string) => (/against/i.test(t) ? "defendant" : /by this/i.test(t) ? "plaintiff" : "other");
+  const sorted = [...d.legal.list].sort((a, b) => {
+    const sv = { high: 0, medium: 1, low: 2 } as Record<string, number>;
+    const da = side(a.type) === "defendant" ? 0 : 1, db = side(b.type) === "defendant" ? 0 : 1;
+    return da - db || (sv[a.severity] ?? 3) - (sv[b.severity] ?? 3);
+  });
+  const CAP = 12;
+  const shown = sorted.slice(0, CAP);
+  const nShown = shown.length;
+  const kanoon = (party?: string) => `https://indiankanoon.org/search/?formInput=${encodeURIComponent([fullName(d.legalName, d.legalName ?? ""), party].filter(Boolean).join(" "))}`;
+  return (
+    <Card title={`Court cases — ${d.legal.count} on record`}
+      sub={`${filedBy} they filed (money owed to them) · ${d.legal.against} filed against them (they may have to pay) · ${d.legal.high} serious`}
+      accent={C.rose} className="lg:col-span-2 xl:col-span-3">
+      {d.legal.list.length ? (
+        <>
           <div className="overflow-x-auto">
             <table className={`${TBL} min-w-[720px]`}>
-              <thead><tr className={THEAD}><th className="px-3 py-2">Severity</th><th className="px-3 py-2">Counterparty</th><th className="px-3 py-2">Court</th><th className="px-3 py-2">Type</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Date</th></tr></thead>
-              <tbody>{d.legal.list.map((c, i) => (
+              <thead><tr className={THEAD}><th className="px-3 py-2">Which side</th><th className="px-3 py-2">Serious?</th><th className="px-3 py-2">Other party</th><th className="px-3 py-2">Court</th><th className="px-3 py-2">When</th><th className="px-3 py-2">Read</th></tr></thead>
+              <tbody>{shown.map((c, i) => {
+                const s = side(c.type);
+                return (
                 <tr key={i} className="border-t border-slate-100">
-                  <td className="px-3 py-1.5"><span className={`rounded-md px-1.5 py-0.5 text-xs font-medium ${c.severity === "high" ? "bg-rose-100 text-rose-700" : c.severity === "medium" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-600"}`}>{c.severity}</span></td>
+                  <td className="px-3 py-1.5">
+                    {s === "defendant" ? <span className="rounded-md bg-rose-100 px-1.5 py-0.5 text-xs font-semibold text-rose-700">⚠ Against them — may pay</span>
+                      : s === "plaintiff" ? <span className="rounded-md bg-emerald-100 px-1.5 py-0.5 text-xs font-semibold text-emerald-700">↳ They filed — chasing money</span>
+                        : <span className="rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600">Other</span>}
+                  </td>
+                  <td className="px-3 py-1.5"><span className={`rounded-md px-1.5 py-0.5 text-xs font-medium ${c.severity === "high" ? "bg-rose-100 text-rose-700" : c.severity === "medium" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-600"}`}>{c.severity === "high" ? "serious" : c.severity}</span></td>
                   <td className="max-w-[220px] truncate px-3 py-1.5 text-slate-700" title={c.counterparty}>{c.counterparty || "—"}</td>
-                  <td className="max-w-[200px] truncate px-3 py-1.5 text-slate-500" title={c.court}>{c.court}</td>
-                  <td className="px-3 py-1.5 text-slate-500">{c.type}</td><td className="px-3 py-1.5 text-slate-500">{c.status}</td><td className="whitespace-nowrap px-3 py-1.5 tabular-nums text-slate-500">{c.date}</td>
+                  <td className="max-w-[180px] truncate px-3 py-1.5 text-slate-500" title={c.court}>{c.court}</td>
+                  <td className="whitespace-nowrap px-3 py-1.5 tabular-nums text-slate-500">{c.date}</td>
+                  <td className="px-3 py-1.5"><a href={kanoon(c.counterparty)} target="_blank" rel="noopener noreferrer" className="font-semibold text-teal-700 hover:underline">open ↗</a></td>
                 </tr>
-              ))}</tbody>
+                );
+              })}</tbody>
             </table>
           </div>
-        ) : <Empty t="No litigation on record." />}
-      </Card>
-    </div>
+          {d.legal.count > nShown && (
+            <div className="mt-2 flex items-center justify-between gap-3 text-xs text-slate-500">
+              <span>Showing {nShown} of {d.legal.count} — the ones filed against them and the serious ones first.</span>
+              <a href={kanoon()} target="_blank" rel="noopener noreferrer" className="shrink-0 font-semibold text-teal-700 hover:underline">Look them all up on IndianKanoon ↗</a>
+            </div>
+          )}
+        </>
+      ) : <Empty t="No court cases on record." />}
+    </Card>
   );
 }
 

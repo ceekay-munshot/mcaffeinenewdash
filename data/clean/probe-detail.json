@@ -1403,69 +1403,6 @@
       "against": 64,
       "list": [
         {
-          "court": "National Company Law Tribunal",
-          "date": "2020-06-08",
-          "status": "Pending",
-          "type": "Cases Filed By This Corporate",
-          "category": "Insolvency",
-          "severity": "high",
-          "counterparty": "Daxal Cosmetics"
-        },
-        {
-          "court": "National Company Law Tribunal",
-          "date": "2024-08-20",
-          "status": "Pending",
-          "type": "Cases Filed By This Corporate",
-          "category": "Insolvency",
-          "severity": "high",
-          "counterparty": "MEDIOINT LIFESCIENCE"
-        },
-        {
-          "court": "National Company Law Tribunal",
-          "date": "2025-04-29",
-          "status": "Pending",
-          "type": "Cases Filed By This Corporate",
-          "category": "Insolvency",
-          "severity": "high",
-          "counterparty": "MEDIOINT LIFESCIENCE"
-        },
-        {
-          "court": "National Company Law Tribunal",
-          "date": "2020-07-06",
-          "status": "Disposed",
-          "type": "Cases Filed By This Corporate",
-          "category": "Insolvency",
-          "severity": "high",
-          "counterparty": "Daxal Cosmetics"
-        },
-        {
-          "court": "National Company Law Tribunal",
-          "date": "2021-07-05",
-          "status": "Disposed",
-          "type": "Cases Filed By This Corporate",
-          "category": "Insolvency",
-          "severity": "high",
-          "counterparty": "VLCC Personal Care"
-        },
-        {
-          "court": "National Company Law Tribunal",
-          "date": "2021-07-05",
-          "status": "Disposed",
-          "type": "Cases Filed By This Corporate",
-          "category": "Insolvency",
-          "severity": "high",
-          "counterparty": "VLCC Personal Care"
-        },
-        {
-          "court": "National Company Law Tribunal",
-          "date": "2021-07-05",
-          "status": "Disposed",
-          "type": "Cases Filed By This Corporate",
-          "category": "Insolvency",
-          "severity": "high",
-          "counterparty": "VLCC Personal Care"
-        },
-        {
           "court": "Civil and Criminal Courts, Margao",
           "date": "2026-06-20",
           "status": "Pending",
@@ -1473,6 +1410,222 @@
           "category": "Civil Cases",
           "severity": "medium",
           "counterparty": "Precila Maria Rodrigues, Edwin Rodrigues, Seema Rodrigues, Bony Cardozo"
+        },
+        {
+          "court": "High Court of Calcutta",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "ESSEL KITCHEN WARE (P)"
+        },
+        {
+          "court": "High Court of Bombay",
+          "date": "2019-02-13",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE PR. COMMISSIONER OF INCOME TAX-6"
+        },
+        {
+          "court": "High Court of Bombay",
+          "date": "2019-05-03",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "PR. COMMISSIONER OF INCOME TAX -6"
+        },
+        {
+          "court": "High Court of Bombay",
+          "date": "2019-03-22",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "PR.COMMISSIONER OF INCOME TAX-6"
+        },
+        {
+          "court": "High Court of Bombay",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "PR. COMMISSIONER OF INCOME TAX-6"
+        },
+        {
+          "court": "High Court of Bombay",
+          "date": "2014-03-10",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "COMMISSIONER OF INCOME TAX - 6,"
+        },
+        {
+          "court": "High Court of Bombay",
+          "date": "2022-06-16",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "PR. COMMISSIONER OF INCOME TAX-6 -"
+        },
+        {
+          "court": "District and Sessions Court, Panaji",
+          "date": "2011-04-16",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "Antonieta Dsouza, Antonieta D'souza"
+        },
+        {
+          "court": "Supreme Court of India",
+          "date": "2003-08-04",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "1 COMMNR. OF INCOME TAX, MUMBAI"
+        },
+        {
+          "court": "Supreme Court of India",
+          "date": "2003-08-04",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "1 COMMNR. OF INCOME TAX, MUMBAI"
+        },
+        {
+          "court": "Supreme Court of India",
+          "date": "2006-10-11",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "1 COMMISSIONER OF CENTRAL EXCISE, MUMBAI"
+        },
+        {
+          "court": "Supreme Court of India",
+          "date": "2015-08-13",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "1 COMMNR. OF CENTRAL EXCISE, MUMBAI-III"
+        },
+        {
+          "court": "Supreme Court of India",
+          "date": "2009-08-21",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "1 COMMR.OF CEN.EXC.GOA"
+        },
+        {
+          "court": "Supreme Court of India",
+          "date": "2009-08-21",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "1 COMMR.OF CEN.EXC.GOA"
+        },
+        {
+          "court": "Supreme Court of India",
+          "date": "2024-07-15",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "1 HDFC ERGO GENERAL INSURANCE COMPANY"
+        },
+        {
+          "court": "High Court of Delhi",
+          "date": "2018-10-10",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "ESSEL MARKETING & PROMOTIONS"
+        },
+        {
+          "court": "High Court of Delhi",
+          "date": "2023-11-08",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "SHREEJI PROPACK"
+        },
+        {
+          "court": "High Court of Bombay",
+          "date": "2007-09-10",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "the director of income-tax(international taxation)"
+        },
+        {
+          "court": "High Court of Bombay at Goa",
+          "date": "2009-12-07",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "1.MRS.ANTONIETA D'SOUZA"
+        },
+        {
+          "court": "High Court of Bombay at Goa",
+          "date": "2009-12-07",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "1.MRS.ANTONIETA D'SOUZA"
+        },
+        {
+          "court": "High Court of Madras",
+          "date": "2018-01-23",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Corporate Disputes",
+          "severity": "medium",
+          "counterparty": "The Official Liquidator"
+        },
+        {
+          "court": "City Sessions Court, Mumbai",
+          "date": "2014-06-02",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Criminal Appeals",
+          "severity": "medium",
+          "counterparty": "Sagar Pravin Shah @ MA 72514 - FTS - Applicant"
+        },
+        {
+          "court": "City Sessions Court, Mumbai",
+          "date": "2015-01-23",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Criminal Appeals",
+          "severity": "medium",
+          "counterparty": "Sagar Pravin Shah@MA-3905-14 - Aplcnt."
+        },
+        {
+          "court": "High Court of Bombay",
+          "date": "2014-12-03",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Criminal Appeals",
+          "severity": "medium",
+          "counterparty": "SAGAR PRAVIN SHAH"
         }
       ]
     },
@@ -3708,6 +3861,33 @@
           "counterparty": "The Commissioner Commercial Tax U.P. Lucknow"
         },
         {
+          "court": "Income Tax Appellate Tribunal",
+          "date": null,
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Income Tax Appeals",
+          "severity": "low",
+          "counterparty": "ACIT, Central Circle-22,,"
+        },
+        {
+          "court": "Income Tax Appellate Tribunal",
+          "date": null,
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Income Tax Appeals",
+          "severity": "low",
+          "counterparty": "DCIT, CC-18,,"
+        },
+        {
+          "court": "Income Tax Appellate Tribunal",
+          "date": null,
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Income Tax Appeals",
+          "severity": "low",
+          "counterparty": "ACIT, Central Circle-22,,"
+        },
+        {
           "court": "Senior Civil Judge cum RC, New Delhi, PHC",
           "date": "2026-05-29",
           "status": "Pending",
@@ -3715,6 +3895,78 @@
           "category": "Civil Cases",
           "severity": "medium",
           "counterparty": "POONAM Proprietor of M/s VIVA GRAM UDHYOG and ORS"
+        },
+        {
+          "court": "Senior Civil Judge cum RC, North, RHC",
+          "date": "2026-06-10",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "M/S EVION PRODUCTS LLP and ORS"
+        },
+        {
+          "court": "Civil Judge Junior Division",
+          "date": "2025-09-02",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "MR. PRAKASH GODUKA"
+        },
+        {
+          "court": "Senior Civil Judge cum RC, New Delhi, PHC",
+          "date": "2026-04-24",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "PRAVENDRA SINGH KUSHWAH Propt of Ms KINGSFORT EXPORT and ORS"
+        },
+        {
+          "court": "High Court of Delhi",
+          "date": "2006-02-24",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "BANSAL COSMOCARE D+"
+        },
+        {
+          "court": "District and Sessions Judge,New Delhi, PHC",
+          "date": "2026-03-14",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "M/s VAISHNAVI KOSMETICOS INDUSTRIES AND ORS"
+        },
+        {
+          "court": "District and Sessions Judge,New Delhi, PHC",
+          "date": "2026-05-29",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "M/s NATURON HEALTHCARE and ORS"
+        },
+        {
+          "court": "District and Sessions Judge,New Delhi, PHC",
+          "date": "2026-05-26",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "MS. VR NU ORGANICS"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2020-02-13",
+          "status": "Pending",
+          "type": "Cases for Consolidation of Corporate affairs",
+          "category": "Merger and Amalgamation",
+          "severity": "low",
+          "counterparty": null
         }
       ]
     },
@@ -5549,24 +5801,6 @@
       "against": 19,
       "list": [
         {
-          "court": "National Company Law Tribunal",
-          "date": "2024-06-26",
-          "status": "Pending",
-          "type": "Cases Filed By This Corporate",
-          "category": "Insolvency",
-          "severity": "high",
-          "counterparty": "Captivate Foods"
-        },
-        {
-          "court": "National Company Law Tribunal",
-          "date": "2025-03-06",
-          "status": "Pending",
-          "type": "Cases Filed By This Corporate",
-          "category": "Insolvency",
-          "severity": "high",
-          "counterparty": "CAPTIVATE FOOD"
-        },
-        {
           "court": "CCH1 PRL. CITY CIVIL and SESSIONS JUDGE",
           "date": "2011-04-01",
           "status": "Disposed",
@@ -5619,6 +5853,177 @@
           "category": "Customs Duty",
           "severity": "medium",
           "counterparty": "COMMISSIONER OF CUSTOMS-COMMISSIONER OF CUSTOMS (II), CHENNAI"
+        },
+        {
+          "court": "Additional Metropolitan Magistrate, Ballardpier, Mumbai",
+          "date": "2024-08-28",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "Saurabh Mangrule"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2010-04-19",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE COMMISSIONER OF INCOME TAX"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2010-04-19",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE COMMR OF INCOME TAX"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2010-04-19",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE COMMISSIONER OF INCOME TAX"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2010-04-19",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE COMMR OF INCOME TAX"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2010-04-19",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE COMMR OF INCOME TAX"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2010-04-19",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE COMMR OF INCOME TAX"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2010-04-19",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE COMMR OF INCOME TAX"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2022-04-13",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Writs and Regulatory Matters",
+          "severity": "low",
+          "counterparty": "THE PRINCIPAL COMMISSIONER OF CUSTOMACS"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2022-03-05",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Writs and Regulatory Matters",
+          "severity": "low",
+          "counterparty": "THE PRINCIPAL COMMISSIONER OF CUSTOMACS"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2022-03-28",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Writs and Regulatory Matters",
+          "severity": "low",
+          "counterparty": "THE PRINCIPAL COMMISSIONER OF CUSTOMS"
+        },
+        {
+          "court": "High Court of Madras",
+          "date": "2022-04-27",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "The Principal Commissioner of Customs"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2009-11-11",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Writs and Regulatory Matters",
+          "severity": "low",
+          "counterparty": "THE RANGE FOREST OFFICER"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2024-06-26",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "Captivate Foods"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2025-03-06",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "CAPTIVATE FOOD"
+        },
+        {
+          "court": "High Court of Kerala",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Corporate Disputes",
+          "severity": "medium",
+          "counterparty": "ATHENA HOTELS AND RESORTS"
+        },
+        {
+          "court": "Customs, Excise and Service Tax Appellate Tribunal",
+          "date": "2025-07-03",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Customs Duty",
+          "severity": "medium",
+          "counterparty": "BANGALORE-II"
+        },
+        {
+          "court": "Customs, Excise and Service Tax Appellate Tribunal",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Customs Duty",
+          "severity": "medium",
+          "counterparty": "MUMBAI-AIR CARGO IMPORT"
+        },
+        {
+          "court": "Customs, Excise and Service Tax Appellate Tribunal",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Customs Duty",
+          "severity": "medium",
+          "counterparty": "MUMBAI-AIR CARGO IMPORT"
         }
       ]
     },
@@ -9226,6 +9631,15 @@
           "category": "Others",
           "severity": "low",
           "counterparty": "RAMNIVAS SAHDEV YADAV"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2024-05-15",
+          "status": "Disposed",
+          "type": "Cases for Consolidation of Corporate affairs",
+          "category": "Merger and Amalgamation",
+          "severity": "low",
+          "counterparty": null
         }
       ]
     },
@@ -11110,24 +11524,6 @@
       "list": [
         {
           "court": "City Civil Court, Mumbai",
-          "date": "2026-06-18",
-          "status": "Pending",
-          "type": "Cases Filed By This Corporate",
-          "category": "Civil Cases",
-          "severity": "medium",
-          "counterparty": "OYSTER PHARMA"
-        },
-        {
-          "court": "Additional Metropolitan Magistrate, Ballardpier, Mumbai",
-          "date": "2026-06-22",
-          "status": "Pending",
-          "type": "Cases Filed By This Corporate",
-          "category": "NI Act / Company Offences",
-          "severity": "medium",
-          "counterparty": "RAJIT POINTS AND ORS"
-        },
-        {
-          "court": "City Civil Court, Mumbai",
           "date": "2026-07-10",
           "status": "Pending",
           "type": "Cases Filed Against This Corporate",
@@ -11143,6 +11539,24 @@
           "category": "Others",
           "severity": "low",
           "counterparty": "STATE"
+        },
+        {
+          "court": "City Civil Court, Mumbai",
+          "date": "2026-06-18",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "OYSTER PHARMA"
+        },
+        {
+          "court": "Additional Metropolitan Magistrate, Ballardpier, Mumbai",
+          "date": "2026-06-22",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "RAJIT POINTS AND ORS"
         },
         {
           "court": "National Company Law Tribunal",
@@ -16582,15 +16996,6 @@
       "against": 1,
       "list": [
         {
-          "court": "Civil and Criminal Court, Belapur",
-          "date": "2026-07-02",
-          "status": "Pending",
-          "type": "Cases Filed By This Corporate",
-          "category": "NI Act / Company Offences",
-          "severity": "medium",
-          "counterparty": "Ke Healthcare"
-        },
-        {
           "court": "High Court of Punjab and Haryana",
           "date": "2021-04-20",
           "status": "Disposed",
@@ -16598,6 +17003,15 @@
           "category": "Writs and Regulatory Matters",
           "severity": "low",
           "counterparty": "GIRISH MOHAN SOOD"
+        },
+        {
+          "court": "Civil and Criminal Court, Belapur",
+          "date": "2026-07-02",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "Ke Healthcare"
         },
         {
           "court": "High Court of Himachal Pradesh",
@@ -19701,6 +20115,69 @@
           "counterparty": "M/s Nestor Converters"
         },
         {
+          "court": "Chief Judicial Magistrate",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "STATE OF U.P."
+        },
+        {
+          "court": "Civil Judge Senior Division, Panchkula",
+          "date": "2019-07-17",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "M/s Nestor Converters"
+        },
+        {
+          "court": "Civil Judge Senior Division, Panchkula",
+          "date": "2023-08-31",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "M/S NESTOR CONVERTERS"
+        },
+        {
+          "court": "Civil Judge Senior Division",
+          "date": "2022-04-22",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "M/s Nestor Converters"
+        },
+        {
+          "court": "Chief Judicial Magistrate",
+          "date": "2019-03-09",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "U.P. State"
+        },
+        {
+          "court": "Chief Judicial Magistrate",
+          "date": "2017-11-27",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "U.P. State"
+        },
+        {
+          "court": "Civil Judge Senior Division",
+          "date": "2020-10-15",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "UP STATE"
+        },
+        {
           "court": "Chief Metropolitan Magistrate, New Delhi, PHC",
           "date": "2026-02-24",
           "status": "Pending",
@@ -19708,6 +20185,60 @@
           "category": "NI Act / Company Offences",
           "severity": "medium",
           "counterparty": "SEABUCK AYURVEDA"
+        },
+        {
+          "court": "District and Sessions Judge,New Delhi, PHC",
+          "date": "2022-12-07",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "MS MAJA PERSONAL CARE"
+        },
+        {
+          "court": "Chief Metropolitan Magistrate, New Delhi, PHC",
+          "date": "2017-06-02",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "ALPRO CONSUMER"
+        },
+        {
+          "court": "Chief Metropolitan Magistrate, South, Saket",
+          "date": "2024-04-22",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "M/S PERIWINKLE HERBALS AND ORS, SURESH KUMAR MISHRA, JYOTI MISHRA"
+        },
+        {
+          "court": "District and Sessions Judge, South , Saket",
+          "date": "2019-07-24",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "M/S AYSUN PERSONAL CARE, VIPLOVE GUPTA"
+        },
+        {
+          "court": "Chief Judicial Magistrate",
+          "date": "2026-05-27",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "M/S KE HEALTHCARE"
+        },
+        {
+          "court": "Chief Judicial Magistrate",
+          "date": "2026-05-27",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "M/S KE HEALTHCARE"
         }
       ]
     },
@@ -27111,6 +27642,159 @@
           "category": "Civil Cases",
           "severity": "medium",
           "counterparty": "OIL AND NATURAL GAS CORPORATION"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2013-02-28",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "HARSHAD MANJIBHAI PARMAR"
+        },
+        {
+          "court": "Additional Metropolitan Magistrate, Ballardpier, Mumbai",
+          "date": "2019-01-07",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "Team global Logistic"
+        },
+        {
+          "court": "Additional Metropolitan Magistrate, Ballardpier, Mumbai",
+          "date": "2019-01-07",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "Teamglobal Logistic"
+        },
+        {
+          "court": "CIVIL COURT, SURAT",
+          "date": "2025-07-12",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "Government of Gujarat"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2019-07-23",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE PRINCIPAL COMMISSIONER OF INCOME TAX VADODARA 3"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2019-07-23",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE PRINCIPAL COMMISSIONER OF INCOME TAX VADODARA 3"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2019-07-23",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE PRINCIPAL COMMISSIONER OF INCOME TAX VADODARA 3"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2019-07-23",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "THE PRINCIPAL COMMISSIONER OF INCOME TAX VADODARA 3"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2011-03-25",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "JOINT COMMISSIONER OF INCOME TAX (ASSTT.)"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2012-01-30",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "D C I T, BHARUCH CIRCLE, BHARUCH, THROUGH COMMISSIONER"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2012-01-30",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "A C I T, BHARUCH CIRCLE, BHARUCH, THROUGH COMMISSIONER"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2012-01-30",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "A C I T, BHARUCH CIRCLE, BHARUCH, THROUGH COMMISSIONER"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2012-01-30",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "D C I T, BHARUCH CIRCLE, BHARUCH, THROUGH COMMISSIONER"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2012-01-30",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "A C I T, BHARUCH CIRCLE, BHARUCH, THROUGH COMMISSIONER"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2012-01-30",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "A C I T, BHARUCH CIRCLE, BHARUCH, THROUGH COMMISSIONER"
+        },
+        {
+          "court": "High Court of Gujarat",
+          "date": "2011-04-28",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Taxation Matters",
+          "severity": "medium",
+          "counterparty": "COMMISSIONER OF CENTRAL EXCISE& CUSTOMS"
+        },
+        {
+          "court": "Income Tax Appellate Tribunal",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Income Tax Appeals",
+          "severity": "low",
+          "counterparty": "The ACIT,Bharuch Circle,, Bharuch"
         }
       ]
     },
@@ -28895,24 +29579,6 @@
           "counterparty": "State Through Sachin S Bugad"
         },
         {
-          "court": "High Court of Himachal Pradesh",
-          "date": "2015-12-02",
-          "status": "Disposed",
-          "type": "Cases Filed By This Corporate",
-          "category": "Civil Cases",
-          "severity": "medium",
-          "counterparty": "STATE OF HP"
-        },
-        {
-          "court": "High Court of Himachal Pradesh",
-          "date": "2015-12-02",
-          "status": "Disposed",
-          "type": "Cases Filed By This Corporate",
-          "category": "Civil Cases",
-          "severity": "medium",
-          "counterparty": "STATE OF HP"
-        },
-        {
           "court": "District and Session Court , Jalna",
           "date": "2026-06-18",
           "status": "Pending",
@@ -28920,6 +29586,24 @@
           "category": "Others",
           "severity": "low",
           "counterparty": "The State of Maharashtra"
+        },
+        {
+          "court": "High Court of Himachal Pradesh",
+          "date": "2015-12-02",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "STATE OF HP"
+        },
+        {
+          "court": "High Court of Himachal Pradesh",
+          "date": "2015-12-02",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "STATE OF HP"
         },
         {
           "court": "High Court of Himachal Pradesh",
@@ -30932,6 +31616,33 @@
           "court": "National Company Law Tribunal",
           "date": "2022-02-15",
           "status": "Pending",
+          "type": "Cases for Consolidation of Corporate affairs",
+          "category": "Mergers and Amalgamations",
+          "severity": "low",
+          "counterparty": null
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2022-09-21",
+          "status": "Disposed",
+          "type": "Cases for Consolidation of Corporate affairs",
+          "category": "Merger and Amalgamation",
+          "severity": "low",
+          "counterparty": null
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2021-08-17",
+          "status": "Disposed",
+          "type": "Cases for Consolidation of Corporate affairs",
+          "category": "Merger and Amalgamation",
+          "severity": "low",
+          "counterparty": null
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2021-08-17",
+          "status": "Disposed",
           "type": "Cases for Consolidation of Corporate affairs",
           "category": "Mergers and Amalgamations",
           "severity": "low",
@@ -34350,6 +35061,105 @@
       "against": 11,
       "list": [
         {
+          "court": "Civil Judge Senior Division, TC Nalagarh",
+          "date": "2026-04-27",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "Lachmi Ram"
+        },
+        {
+          "court": "SENIOR CIVIL JUDGE AND JMFC, ANEKAL",
+          "date": "2026-06-11",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "Shashi Distilleries, reptd by Sri. R. Jayavelu"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2023-08-03",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Criminal Appeals",
+          "severity": "medium",
+          "counterparty": "MR. JAIJIT GANGULY"
+        },
+        {
+          "court": "Chief Metropolitan Magistrate, South, Saket",
+          "date": "2026-05-30",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "APOLLO SUPPLY CHAIN"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2024-12-16",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "SMT. JINIMOL JAY JACOB"
+        },
+        {
+          "court": "SPECIAL COURT FOR ECONOMIC OFFENCES, BENGALURU",
+          "date": "2019-08-14",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "REGISTER OF COMPANIES"
+        },
+        {
+          "court": "SPECIAL COURT FOR ECONOMIC OFFENCES, BENGALURU",
+          "date": "2019-08-14",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "REGISTER OF COMPANIES"
+        },
+        {
+          "court": "SPECIAL COURT FOR ECONOMIC OFFENCES, BENGALURU",
+          "date": "2019-12-27",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "REGISTER OF COMPANIES"
+        },
+        {
+          "court": "Civil Judge Senior Division, Gurugram",
+          "date": "2026-04-02",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "M/S APOLLO SUPPLY CHAIN"
+        },
+        {
+          "court": "SENIOR CIVIL JUDGE AND JMFC, KADUR",
+          "date": "2026-06-11",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "Smt. M.S. Hemavathi Aliyas M.S. Vinodha"
+        },
+        {
+          "court": "High Court of Karnataka",
+          "date": "2009-01-31",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Writs and Regulatory Matters",
+          "severity": "low",
+          "counterparty": "THE ASSISTANT COMMISSIONER OF COMMERCIAL TAXES"
+        },
+        {
           "court": "National Company Law Tribunal",
           "date": null,
           "status": "Pending",
@@ -34420,6 +35230,60 @@
           "category": "Insolvency",
           "severity": "high",
           "counterparty": "Trimurti Food Tech"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2019-12-20",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "M/s Nandivalley Winery"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2024-01-30",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "HANSRAJ AGROFRESHLTD"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2024-05-13",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "HANSRAJ AGROFRESHLTD"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2023-12-18",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "AJE INDIA"
+        },
+        {
+          "court": "National Company Law Tribunal",
+          "date": "2019-12-20",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Insolvency",
+          "severity": "high",
+          "counterparty": "M/S NANDIVALLEY WINERY"
+        },
+        {
+          "court": "PRL. CIVIL JUDGE AND JMFC, ANEKAL",
+          "date": "2026-06-09",
+          "status": "Pending",
+          "type": "Cases Filed By This Corporate",
+          "category": "Civil Cases",
+          "severity": "medium",
+          "counterparty": "Riva Packaging Solutions"
         }
       ]
     },
@@ -38393,24 +39257,6 @@
           "counterparty": "LETAPE (INDIA)LTD."
         },
         {
-          "court": "Chief Judicial Magistrate, TC Kasauli",
-          "date": "2025-09-13",
-          "status": "Disposed",
-          "type": "Cases Filed By This Corporate",
-          "category": "NI Act / Company Offences",
-          "severity": "medium",
-          "counterparty": "M/s Em Em Personal care, Mohit Manmohan lalwani, Manmohan Lalwani"
-        },
-        {
-          "court": "Chief Judicial Magistrate, TC Kasauli",
-          "date": "2024-10-16",
-          "status": "Disposed",
-          "type": "Cases Filed By This Corporate",
-          "category": "NI Act / Company Offences",
-          "severity": "medium",
-          "counterparty": "M/S EM AND EM PERSONAL CARE"
-        },
-        {
           "court": "Chief Metropolitan Magistrate, North-West, RHC",
           "date": "2025-05-17",
           "status": "Disposed",
@@ -38427,6 +39273,24 @@
           "category": "Others",
           "severity": "low",
           "counterparty": "STATE"
+        },
+        {
+          "court": "Chief Judicial Magistrate, TC Kasauli",
+          "date": "2025-09-13",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "M/s Em Em Personal care, Mohit Manmohan lalwani, Manmohan Lalwani"
+        },
+        {
+          "court": "Chief Judicial Magistrate, TC Kasauli",
+          "date": "2024-10-16",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "NI Act / Company Offences",
+          "severity": "medium",
+          "counterparty": "M/S EM AND EM PERSONAL CARE"
         }
       ]
     },
@@ -40414,6 +41278,69 @@
           "counterparty": "Commissioner Of Central Excise, Noida"
         },
         {
+          "court": "Chief Judicial Magistrate",
+          "date": null,
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "STATE OF U.P."
+        },
+        {
+          "court": "Chief Judicial Magistrate",
+          "date": "2026-05-09",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "STATE OF U.P."
+        },
+        {
+          "court": "Chief Judicial Magistrate",
+          "date": "2026-05-09",
+          "status": "Pending",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "STATE OF U.P."
+        },
+        {
+          "court": "Chief Judicial Magistrate, Panipat",
+          "date": "2026-05-07",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "State of Haryana"
+        },
+        {
+          "court": "Chief Metropolitan Magistrate, Central, THC",
+          "date": "2026-05-02",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "STATE"
+        },
+        {
+          "court": "Chief Judicial Magistrate",
+          "date": "2023-09-06",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "State Government"
+        },
+        {
+          "court": "Chief Judicial Magistrate",
+          "date": "2025-09-13",
+          "status": "Disposed",
+          "type": "Cases Filed Against This Corporate",
+          "category": "Others",
+          "severity": "low",
+          "counterparty": "State Government"
+        },
+        {
           "court": "High Court of Delhi",
           "date": "2003-07-24",
           "status": "Disposed",
@@ -40432,13 +41359,13 @@
           "counterparty": "NOIDA"
         },
         {
-          "court": "Chief Judicial Magistrate",
-          "date": null,
-          "status": "Pending",
-          "type": "Cases Filed Against This Corporate",
-          "category": "Others",
+          "court": "High Court of Allahabad",
+          "date": "2001-11-26",
+          "status": "Disposed",
+          "type": "Cases Filed By This Corporate",
+          "category": "Writs and Regulatory Matters",
           "severity": "low",
-          "counterparty": "STATE OF U.P."
+          "counterparty": "STATE OF U.P. and OTHERS"
         }
       ]
     },
