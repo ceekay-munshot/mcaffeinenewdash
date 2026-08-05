@@ -5,7 +5,7 @@ import { Fragment, useMemo, useState } from "react";
 import type { Entity } from "./types";
 import { AreaLine, HBars, Donut, MultiLine, Card, TBL, THEAD, BackButton, type Slice } from "./charts";
 import { TEAL } from "./lib/palette";
-import { healthDot } from "./lib/health";
+import { healthDot, healthChip } from "./lib/health";
 import { fullName, titleCase, crore, fmtPct } from "./lib/format";
 import { newsOf, type SupplierNews } from "./news";
 import DETAIL from "@data/clean/probe-detail.json";
@@ -194,7 +194,7 @@ export default function DeepDive({ entity, onClose, supplies, initialTab }: { en
       <div className="mx-auto max-w-[1680px] px-4 py-6 sm:px-6">
         {tab === "levers" && <LeversTab d={d} opps={opps} onGoto={(t) => setTab(t as TabKey)} alt={alt} />}
         {tab === "financials" && <FinancialsTab d={d} />}
-        {tab === "peers" && <PeersTab d={d} />}
+        {tab === "peers" && <PeersTab d={d} entity={entity} />}
         {tab === "owners" && <OwnersTab d={d} />}
         {tab === "risk" && <RiskTab d={d} />}
         {tab === "news" && <NewsTab news={news} brand={entity.brand} />}
@@ -805,25 +805,59 @@ function FinTable({ fin }: { fin: FinRow[] }) {
 }
 
 /* ==================================================================== PEERS */
-function PeersTab({ d }: { d: Detail }) {
-  // Registry peer names are ALL-CAPS; title-case them so they read like the rest
-  // of the app instead of shouting inside a truncated bar label.
-  const peerBars = d.peers.named.map<Slice>((p) => ({ label: titleCase(p.name), value: p.revenueCr, color: p.isSelf ? TEAL : "#cbd5e1" }));
-  const rows: [string, string, boolean][] = [["ebitdaMargin", "EBITDA margin", true], ["netMargin", "Net margin", true], ["roce", "RoCE", true], ["roe", "RoE", true], ["debtorDays", "Collection days", false], ["payableDays", "Payment days", false], ["cashConversion", "Cash cycle", false], ["debtEquity", "Debt / equity", false], ["inventoryDays", "Inventory days", false]];
+function PeersTab({ d, entity }: { d: Detail; entity: Entity }) {
+  const rows: [string, string, boolean][] = [["ebitdaMargin", "Operating margin", true], ["netMargin", "Net margin", true], ["roce", "Return on capital", true], ["roe", "Return on equity", true], ["debtorDays", "Collection days", false], ["payableDays", "Payment days", false], ["cashConversion", "Cash cycle", false], ["debtEquity", "Debt / equity", false], ["inventoryDays", "Inventory days", false]];
+  // The founder's ask: among the vendors we could actually move to, which is the
+  // best? Probe's "peers" are industry comparables we don't buy from, so the real
+  // switch list is the other vendors WE track in the same category, ranked on the
+  // health score. The single healthiest one that clearly beats the incumbent is
+  // the headline; the rest sit under it.
+  const self = healthScore(d);
+  const catPeers = ALL_ENRICHED.filter((x) => x.category === entity.category && x.cin !== d.cin).sort((a, b) => b.health - a.health);
+  const best = catPeers[0] && catPeers[0].health > self + 5 ? catPeers[0] : null;
   return (
-    // items-start: the peer bar list is shorter than the ratio panel beside it, so
-    // don't stretch it into a card with a tall empty tail.
-    <div className="grid items-start gap-4 lg:grid-cols-2">
-      <Card title="Peers by revenue" sub={`${d.peers.segment ?? "closest peers"} · ${d.peers.sampleSize ?? d.peers.named.length} in Probe's set · ₹ crore`} accent={TEAL}>
-        <HBars data={peerBars} valueLabel={(v) => crore(v)} />
-      </Card>
-      <Card title="This company vs the peer median" sub="latest year · green = the side that helps us" accent={C.sky}>
-        <div className="space-y-2.5">
-          {rows.map(([k, label, higherBetter]) => (
-            <Versus key={k} label={label} self={n(d.vsMedian.self[k])} median={n(d.vsMedian.median[k])} unit={k.includes("Days") || k === "cashConversion" ? "d" : k === "debtEquity" ? "" : "%"} higherSelfBetter={higherBetter} />
-          ))}
+    <div className="space-y-4">
+      {/* Best vendor to switch to — the actionable headline */}
+      {best && (
+        <div className="rounded-2xl bg-emerald-50 p-4 ring-1 ring-emerald-200">
+          <div className="text-xs font-bold uppercase tracking-wide text-emerald-700">Best vendor to switch to</div>
+          <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="text-lg font-bold text-slate-900">{fullName(best.legalName, best.brand)}</span>
+            <span className={`rounded-md px-2 py-0.5 text-xs font-extrabold ${healthChip(best.health)}`}>{best.health}/100</span>
+            <span className="text-sm text-slate-500">vs this vendor's {self}/100</span>
+          </div>
+          <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
+            The healthiest {entity.category} we track — {best.health - self} points stronger. If continuity or price becomes a problem here, this is the first name to qualify. Compare their quote head-to-head on the Rate benchmark tab.
+          </p>
         </div>
-      </Card>
+      )}
+      <div className="grid items-start gap-4 lg:grid-cols-5">
+        {/* the meat — how they stack up, given more room than the switch list */}
+        <Card title="How they stack up against peers" sub="latest year · green = the side that helps us" accent={C.sky} className="lg:col-span-3">
+          <div className="grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+            {rows.map(([k, label, higherBetter]) => (
+              <Versus key={k} label={label} self={n(d.vsMedian.self[k])} median={n(d.vsMedian.median[k])} unit={k.includes("Days") || k === "cashConversion" ? "d" : k === "debtEquity" ? "" : "%"} higherSelfBetter={higherBetter} />
+            ))}
+          </div>
+        </Card>
+        {/* the switch shortlist — vendors we track, healthiest first */}
+        <Card title="Vendors you could switch to" sub={`${entity.category}s we track · healthiest first`} accent={C.emerald} className="lg:col-span-2">
+          {catPeers.length ? (
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between rounded-lg bg-slate-100 px-2.5 py-1.5 text-sm">
+                <span className="font-semibold text-slate-700">{fullName(d.legalName, entity.brand)}</span>
+                <span className="flex items-center gap-1.5 text-xs font-medium text-slate-500"><span className={`h-2 w-2 rounded-full ${healthDot(self)}`} />{self}/100 · this vendor</span>
+              </div>
+              {catPeers.slice(0, 6).map((p) => (
+                <div key={p.cin} className="flex items-center justify-between rounded-lg px-2.5 py-1.5 text-sm hover:bg-slate-50">
+                  <span className="min-w-0 truncate text-slate-700">{fullName(p.legalName, p.brand)}</span>
+                  <span className="flex shrink-0 items-center gap-1.5 text-xs font-medium text-slate-500"><span className={`h-2 w-2 rounded-full ${healthDot(p.health)}`} />{p.health}/100</span>
+                </div>
+              ))}
+            </div>
+          ) : <Empty t={`No other ${entity.category} with a full report to compare.`} />}
+        </Card>
+      </div>
       {d.peers.benchmarks.length > 1 && <PeerGapTrend benchmarks={d.peers.benchmarks} />}
     </div>
   );
@@ -834,11 +868,11 @@ function PeersTab({ d }: { d: Detail }) {
 // leader or a laggard, and is the gap widening?" view.
 function PeerGapTrend({ benchmarks }: { benchmarks: Detail["peers"]["benchmarks"] }) {
   const METRICS: { k: string; label: string; unit: string; higherBetter: boolean }[] = [
-    { k: "ebitdaMargin", label: "EBITDA margin", unit: "%", higherBetter: true },
+    { k: "ebitdaMargin", label: "Operating margin", unit: "%", higherBetter: true },
     { k: "netMargin", label: "Net margin", unit: "%", higherBetter: true },
-    { k: "grossMargin", label: "Gross margin", unit: "%", higherBetter: true },
-    { k: "roce", label: "RoCE", unit: "%", higherBetter: true },
-    { k: "roe", label: "RoE", unit: "%", higherBetter: true },
+    { k: "grossMargin", label: "Margin after materials", unit: "%", higherBetter: true },
+    { k: "roce", label: "Return on capital", unit: "%", higherBetter: true },
+    { k: "roe", label: "Return on equity", unit: "%", higherBetter: true },
     { k: "revenueGrowth", label: "Revenue growth", unit: "%", higherBetter: true },
     { k: "debtorDays", label: "Collection days", unit: "d", higherBetter: false },
     { k: "payableDays", label: "Payment days", unit: "d", higherBetter: false },
