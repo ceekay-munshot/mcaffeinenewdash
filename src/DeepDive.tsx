@@ -88,24 +88,26 @@ export function healthScore(d: Detail): number {
 /** The same score, itemised — every point move that built this supplier's number,
  *  in plain language, so the framework modal can show HOW it was scored, not just
  *  the total. Mirrors healthScore() exactly. */
-export function scoreBreakdown(cin?: string | null): { start: number; rows: { label: string; pts: number; note: string }[]; total: number; band: string } | null {
+export function scoreBreakdown(cin?: string | null): { start: number; rows: { label: string; pts: number; note: string; tab: TabKey }[]; total: number; band: string } | null {
   if (!cin || !DETAILS[cin]) return null;
   const d = DETAILS[cin];
   const a = d.advanced;
-  const rows: { label: string; pts: number; note: string }[] = [];
-  if (a?.fscore != null) rows.push({ label: "Are the finances getting better or worse?", pts: Math.round((a.fscore - 4.5) * 4), note: `Their books pass ${a.fscore} of 9 health checks (profit, debt, efficiency)` });
-  if (d.score?.overall != null) rows.push({ label: "The credit bureau's own financial score", pts: Math.round(((d.score.overall as number) - 5) * 3), note: `Probe42 rates them ${d.score.overall} out of 10` });
-  if (a?.zZone === "distress") rows.push({ label: "Chance of running into money trouble", pts: -15, note: "Their filings land in the distress zone" });
-  else if (a?.zZone === "safe") rows.push({ label: "Chance of running into money trouble", pts: 4, note: "Their filings land in the safe zone" });
+  // `tab` is where the evidence for each move lives, so the modal row can jump
+  // the reader straight to it — "where is this coming from?" answered in a click.
+  const rows: { label: string; pts: number; note: string; tab: TabKey }[] = [];
+  if (a?.fscore != null) rows.push({ label: "Are the finances getting better or worse?", pts: Math.round((a.fscore - 4.5) * 4), note: `Their books pass ${a.fscore} of 9 health checks (profit, debt, efficiency)`, tab: "financials" });
+  if (d.score?.overall != null) rows.push({ label: "The credit bureau's own financial score", pts: Math.round(((d.score.overall as number) - 5) * 3), note: `Probe42 rates them ${d.score.overall} out of 10`, tab: "financials" });
+  if (a?.zZone === "distress") rows.push({ label: "Chance of running into money trouble", pts: -15, note: "Their filings land in the distress zone", tab: "financials" });
+  else if (a?.zZone === "safe") rows.push({ label: "Chance of running into money trouble", pts: 4, note: "Their filings land in the safe zone", tab: "financials" });
   const rt = d.creditRating;
   if (rt) {
-    if (rt.flags.isDefault) rows.push({ label: "What the rating agency says", pts: -25, note: "Agency has them in default" });
-    else if (rt.flags.subInvestmentGrade) rows.push({ label: "What the rating agency says", pts: -12, note: `Below investment grade${rt.grade ? ` (${rt.grade})` : ""}` });
-    else if (rt.flags.inc) rows.push({ label: "What the rating agency says", pts: -8, note: "Rating marked 'Issuer Not Cooperating'" });
-    else if (rt.flags.strong) rows.push({ label: "What the rating agency says", pts: 10, note: `Strong rating${rt.grade ? ` (${rt.grade})` : ""}` });
+    if (rt.flags.isDefault) rows.push({ label: "What the rating agency says", pts: -25, note: "Agency has them in default", tab: "risk" });
+    else if (rt.flags.subInvestmentGrade) rows.push({ label: "What the rating agency says", pts: -12, note: `Below investment grade${rt.grade ? ` (${rt.grade})` : ""}`, tab: "risk" });
+    else if (rt.flags.inc) rows.push({ label: "What the rating agency says", pts: -8, note: "Rating marked 'Issuer Not Cooperating'", tab: "risk" });
+    else if (rt.flags.strong) rows.push({ label: "What the rating agency says", pts: 10, note: `Strong rating${rt.grade ? ` (${rt.grade})` : ""}`, tab: "risk" });
   }
   const risks = d.levers.filter((l) => l.tone === "risk").length;
-  if (risks > 0) rows.push({ label: "Serious red flags in their filings", pts: -risks * 4, note: `${risks} risk${risks > 1 ? "s" : ""} picked up by the lever engine` });
+  if (risks > 0) rows.push({ label: "Serious red flags in their filings", pts: -risks * 4, note: `${risks} risk${risks > 1 ? "s" : ""} picked up by the lever engine`, tab: "risk" });
   const total = healthScore(d);
   return { start: 50, rows, total, band: total >= 55 ? "Strong" : total >= 45 ? "Adequate" : "Weak" };
 }

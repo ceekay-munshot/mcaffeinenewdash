@@ -903,7 +903,8 @@ function diverseTop<T extends { l: { insight: string }; e: { folder: string } }>
    Clicking a supplier's score opens this; it shows the same points maths the
    health score runs, applied to THIS vendor, and only then offers a deep-dive
    button. */
-function ScoreModal({ e, h, onClose, onDeepDive }: { e: Entity; h: number; onClose: () => void; onDeepDive: () => void }) {
+const SCORE_TAB_HINT: Record<DeepTabKey, string> = { levers: "Levers", financials: "Financials & trends", peers: "Peers", owners: "Owners & people", risk: "Risk & legal", news: "News" };
+function ScoreModal({ e, h, onClose, onDeepDive }: { e: Entity; h: number; onClose: () => void; onDeepDive: (tab?: DeepTabKey) => void }) {
   const bd = scoreBreakdown(e.cin);
   useEffect(() => {
     const onKey = (ev: KeyboardEvent) => { if (ev.key === "Escape") onClose(); };
@@ -933,17 +934,22 @@ function ScoreModal({ e, h, onClose, onDeepDive }: { e: Entity; h: number; onClo
         </div>
         {bd ? (
           <div className="px-5 pb-1">
-            <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">The maths, step by step</div>
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">The maths, step by step <span className="font-normal normal-case tracking-normal text-slate-300">· tap a line to see where it's from</span></div>
             <div className="space-y-1.5">
               <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm">
                 <span className="text-slate-600">Every supplier starts at a neutral pass</span>
                 <span className="font-bold tabular-nums text-slate-500">{bd.start}</span>
               </div>
               {bd.rows.map((r, i) => (
-                <div key={i} className="flex items-start justify-between gap-3 rounded-lg px-3 py-2 text-sm hover:bg-slate-50">
-                  <span className="min-w-0"><span className="block font-medium text-slate-700">{r.label}</span><span className="block text-xs text-slate-400">{r.note}</span></span>
+                <button key={i} onClick={() => onDeepDive(r.tab)}
+                  className="group flex w-full items-start justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm ring-1 ring-transparent transition hover:bg-slate-50 hover:ring-slate-200">
+                  <span className="min-w-0">
+                    <span className="block font-medium text-slate-700 group-hover:text-teal-800">{r.label}</span>
+                    <span className="block text-xs text-slate-400">{r.note}</span>
+                    <span className="mt-0.5 inline-flex items-center gap-1 text-[11px] font-semibold text-teal-600"><span className="opacity-60 group-hover:opacity-100">📄 from {SCORE_TAB_HINT[r.tab]}</span><span className="transition group-hover:translate-x-0.5">→</span></span>
+                  </span>
                   <span className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-extrabold tabular-nums ring-1 ${r.pts >= 0 ? "bg-emerald-50 text-emerald-700 ring-emerald-200" : "bg-rose-50 text-rose-700 ring-rose-200"}`}>{r.pts >= 0 ? "+" : ""}{r.pts}</span>
-                </div>
+                </button>
               ))}
               <div className="flex items-center justify-between rounded-lg bg-slate-900 px-3 py-2.5 text-sm text-white">
                 <span className="font-semibold">Their score</span><span className="font-extrabold tabular-nums">{bd.total} / 100</span>
@@ -954,7 +960,7 @@ function ScoreModal({ e, h, onClose, onDeepDive }: { e: Entity; h: number; onClo
         ) : <div className="px-5 pb-2 text-sm text-slate-400">No filings on record to score this vendor.</div>}
         <div className="flex items-center justify-end gap-2 border-t border-slate-100 p-4">
           <button onClick={onClose} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-500 transition hover:bg-slate-100">Close</button>
-          <button onClick={onDeepDive} className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">Open full deep dive →</button>
+          <button onClick={() => onDeepDive()} className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">Open full deep dive →</button>
         </div>
       </div>
     </div>
@@ -1048,7 +1054,7 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
       {leversFor && <LeversModal e={leversFor.e} focus={leversFor.focus} onClose={() => setLeversFor(null)}
         onOpenProfile={(tab) => { const t = leversFor.e; setLeversFor(null); onSelect(t, tab); }} />}
       {scoreFor && <ScoreModal e={scoreFor.e} h={scoreFor.h} onClose={() => setScoreFor(null)}
-        onDeepDive={() => { const t = scoreFor.e; setScoreFor(null); onSelect(t); }} />}
+        onDeepDive={(tab) => { const t = scoreFor.e; setScoreFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }
@@ -1620,14 +1626,17 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
     : PM_SUPPLY.filter((r) => pmCategoryOf(r.item) === m.item);
 
   // Which vendor(s) supply this market item today, and the clickable entity.
+  // Short brand names, not full legal names — "Yasham", not "Yasham Speciality
+  // Ingredients Private Limited". The legal name wrapped to three lines and was
+  // the biggest source of clutter here; the full name still rides in the hover.
   const vendorFor = (m: MarketEntry): { label: string; e?: Entity } => {
     if (m.side === "rm") {
       const row = RM_SUPPLY.find((s) => s.item === m.item && s.folder);
       const e = row ? byFolder.get(row.folder) : undefined;
-      return { label: e ? fullName(e.legalName, e.brand) : (row?.brand ?? "—"), e };
+      return { label: e ? shortName(e.brand) : (row?.brand ?? "—"), e };
     }
     const rows = PM_SUPPLY.filter((s) => pmCategoryOf(s.item) === m.item && s.folder);
-    const names = [...new Set(rows.map((s) => { const en = byFolder.get(s.folder); return en ? fullName(en.legalName, en.brand) : s.brand; }))];
+    const names = [...new Set(rows.map((s) => { const en = byFolder.get(s.folder); return en ? shortName(en.brand) : s.brand; }))];
     return { label: names.length ? names.slice(0, 2).join(", ") + (names.length > 2 ? ` +${names.length - 2}` : "") : "—", e: rows[0] ? byFolder.get(rows[0].folder) : undefined };
   };
 
@@ -1690,15 +1699,14 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
       <Card title={side === "rm" ? "🧪 Every ingredient we buy" : side === "pm" ? "📦 Every packaging category we buy" : "🗂 Everything we buy"}
         sub="expand a row for the items under it · open a row for the full analysis · click a vendor for its deep-dive" accent="#0d9488">
         <div className="overflow-x-auto">
-          <table className={`${TBL} min-w-[940px]`}>
+          <table className={`${TBL} min-w-[760px]`}>
             <thead><tr className={THEAD}>
               <Th>{side === "rm" ? "Ingredient" : side === "pm" ? "Packaging category" : "Ingredient / packaging category"}</Th>
-              <Th>Pricing power</Th><Th center>Sellers in India</Th><Th right>Market ₹/kg</Th>
+              <Th center>Sellers in India</Th><Th right>Market ₹/kg</Th>
               <Th>Current vendor</Th><Th center>Levers</Th>
             </tr></thead>
             <tbody>
-              {shown.map((m) => {
-                const meta = CONC_META[m.concentration];
+              {shown.map((m, idx) => {
                 const v = vendorFor(m);
                 const hasP = m.priceINRPerKg && !m.priceINRPerKg.includes("not found");
                 const skus = skusFor(m);
@@ -1707,8 +1715,16 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                 const expandable = skus.length > 1 || (skus.length === 1 && skus[0].item !== m.item);
                 const isOpen = openRow === m.item;
                 const multiVendor = new Set(skus.map((k) => k.folder).filter(Boolean)).size > 1;
+                // The pricing-power column repeated one of three phrases down all
+                // twenty rows — pure noise. Rows are sorted by band, so we head each
+                // band once and drop the column: 20 pills become 3 group headers.
+                const head = idx === 0 || shown[idx - 1].concentration !== m.concentration ? CONC_META[m.concentration] : null;
                 return (
                   <Fragment key={m.item}>
+                  {head && <tr><td colSpan={5} className="border-t border-slate-200 bg-slate-50/70 px-4 pt-2.5 pb-1.5">
+                    <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-bold ${head.bg} ${head.text} ring-1 ${head.ring}`}>{head.emoji} {head.label}</span>
+                    <span className="ml-2 text-xs text-slate-400">{head.blurb} · {counts[m.concentration]} {counts[m.concentration] === 1 ? "buy" : "buys"}</span>
+                  </td></tr>}
                   <tr onClick={() => setOpenItem(m.item)} className="cursor-pointer border-t border-slate-100 transition hover:bg-teal-50/50">
                     <td className="max-w-[320px] px-4 py-3.5">
                       <div className="flex items-start gap-2">
@@ -1726,12 +1742,6 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                           {m.inci && <div className="truncate text-xs text-slate-500" title={m.inci}>{m.inci}</div>}
                         </div>
                       </div>
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-3.5">
-                      {/* One plain label now — the old second line ("supplier holds
-                          the cards") said the same thing as the first in different
-                          words. */}
-                      <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-semibold ${meta.bg} ${meta.text} ring-1 ${meta.ring}`} title={meta.blurb}>{meta.emoji} {meta.label}</span>
                     </td>
                     {/* Actual number of sellers, not "sole / few / many" — the
                         client's exact ask. Hover still lists who they are. */}
@@ -1754,8 +1764,8 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                         <span className="text-xs text-slate-400">see items below ↓</span>
                       ) : v.e ? (
                         <button onClick={(ev) => { ev.stopPropagation(); onSelect(v.e!); }}
-                          className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline" title={`${v.label} — open deep-dive`}>
-                          <span className="mt-0.5 shrink-0">{catEmoji(v.e.category)}</span>
+                          className="inline-flex items-center gap-1.5 text-left font-semibold text-teal-700 hover:underline" title={`${fullName(v.e.legalName, v.e.brand)} — open deep-dive`}>
+                          <span className="shrink-0">{catEmoji(v.e.category)}</span>
                           <span className="leading-snug">{v.label}</span>
                         </button>
                       ) : <span className="text-slate-400">{v.label}</span>}
@@ -1779,11 +1789,11 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                       // as broken, one subtle note says the terms are the same.
                       <tr key={m.item + sk.item} className="border-l-2 border-teal-300 bg-teal-50/30 text-sm">
                         <td className="py-2.5 pl-12 pr-4"><span className="text-slate-700">↳ {sk.item}</span></td>
-                        <td className="px-4 py-2.5 text-center text-[11px] italic text-slate-400" colSpan={3}>{si === 0 ? "same category terms as above" : ""}</td>
+                        <td className="px-4 py-2.5 text-center text-[11px] italic text-slate-400" colSpan={2}>{si === 0 ? "same category terms as above" : ""}</td>
                         <td className="px-4 py-2.5">
                           {se ? (
-                            <button onClick={() => onSelect(se)} className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline">
-                              <span className="mt-0.5 shrink-0">{catEmoji(se.category)}</span><span className="leading-snug">{fullName(se.legalName, se.brand)}</span>
+                            <button onClick={() => onSelect(se)} className="inline-flex items-center gap-1.5 text-left font-semibold text-teal-700 hover:underline" title={`${fullName(se.legalName, se.brand)} — open deep-dive`}>
+                              <span className="shrink-0">{catEmoji(se.category)}</span><span className="leading-snug">{shortName(se.brand)}</span>
                             </button>
                           ) : <span className="text-slate-400">{sk.brand || "not mapped"}</span>}
                         </td>
@@ -1794,7 +1804,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                   </Fragment>
                 );
               })}
-              {shown.length === 0 && <tr><td colSpan={6} className="px-4 py-10 text-center text-slate-400">Nothing in this group.</td></tr>}
+              {shown.length === 0 && <tr><td colSpan={5} className="px-4 py-10 text-center text-slate-400">Nothing in this group.</td></tr>}
             </tbody>
           </table>
         </div>
