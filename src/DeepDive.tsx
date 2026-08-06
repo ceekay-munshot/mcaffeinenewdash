@@ -772,11 +772,11 @@ function FinTable({ fin }: { fin: FinRow[] }) {
       { label: "Financing", get: (f) => f.cf.financing, fmt: cr, dir: 0 },
     ] },
     { title: "Key ratios", rows: [
-      { label: "EBITDA margin", get: (f) => f.r.ebitdaMargin, fmt: pct, dir: 1 },
+      { label: "Operating margin", get: (f) => f.r.ebitdaMargin, fmt: pct, dir: 1 },
       { label: "Net margin", get: (f) => f.r.netMargin, fmt: pct, dir: 1 },
-      { label: "Gross margin", get: (f) => f.r.grossMargin, fmt: pct, dir: 1 },
-      { label: "RoCE", get: (f) => f.r.roce, fmt: pct, dir: 1 },
-      { label: "RoE", get: (f) => f.r.roe, fmt: pct, dir: 1 },
+      { label: "Margin after materials", get: (f) => f.r.grossMargin, fmt: pct, dir: 1 },
+      { label: "Return on capital", get: (f) => f.r.roce, fmt: pct, dir: 1 },
+      { label: "Return on equity", get: (f) => f.r.roe, fmt: pct, dir: 1 },
       { label: "Debt / equity", get: (f) => f.r.debtEquity, fmt: x2, dir: -1 },
       { label: "Interest cover", get: (f) => f.r.interestCover, fmt: xN, dir: 1 },
       { label: "Current ratio", get: (f) => f.r.currentRatio, fmt: x2, dir: 1 },
@@ -787,14 +787,19 @@ function FinTable({ fin }: { fin: FinRow[] }) {
       { label: "Cash cycle", get: (f) => f.r.cashConversion, fmt: days, dir: -1 },
     ] },
   ];
-  const move = (r: R, i: number): { cls: string; arrow: string } => {
-    if (r.dir === 0 || i === 0) return { cls: "text-slate-800", arrow: "" };
+  // Now returns a cell background tint too, not just text colour — the client
+  // asked to see the whole cell shade green when a number improved, red when it
+  // worsened. Kept subtle (50-weight) so a wall of figures stays readable.
+  const move = (r: R, i: number): { cls: string; bg: string; arrow: string } => {
+    if (r.dir === 0 || i === 0) return { cls: "text-slate-800", bg: "", arrow: "" };
     const v = r.get(fin[i]), p = r.get(fin[i - 1]);
-    if (v == null || p == null) return { cls: "text-slate-800", arrow: "" };
+    if (v == null || p == null) return { cls: "text-slate-800", bg: "", arrow: "" };
     const chg = p === 0 ? (v > 0 ? 1 : v < 0 ? -1 : 0) : (v - p) / Math.abs(p);
-    if (Math.abs(chg) < 0.02) return { cls: "text-slate-400", arrow: "" };       // stable
+    if (Math.abs(chg) < 0.02) return { cls: "text-slate-400", bg: "", arrow: "" };       // stable
     const better = r.dir === 1 ? chg > 0 : chg < 0;
-    return { cls: better ? "text-emerald-600" : "text-rose-500", arrow: v > p ? " ▲" : " ▼" };
+    return better
+      ? { cls: "text-emerald-700", bg: "bg-emerald-50", arrow: v > p ? " ▲" : " ▼" }
+      : { cls: "text-rose-600", bg: "bg-rose-50", arrow: v > p ? " ▲" : " ▼" };
   };
   return (
     <div className="overflow-x-auto">
@@ -812,7 +817,7 @@ function FinTable({ fin }: { fin: FinRow[] }) {
               {sec.rows.map((r) => (
                 <tr key={r.label} className="border-t border-slate-100 hover:bg-slate-50/70">
                   <td className={`sticky left-0 z-10 bg-white px-3 py-1.5 ${r.indent ? "pl-6 font-normal text-slate-500" : "font-semibold text-slate-700"}`}>{r.label}</td>
-                  {fin.map((f, i) => { const m = move(r, i); return <td key={f.fy} className={`whitespace-nowrap px-3 py-1.5 text-right tabular-nums font-medium ${m.cls}`}>{r.fmt(r.get(f))}<span className="text-[9px]">{m.arrow}</span></td>; })}
+                  {fin.map((f, i) => { const m = move(r, i); return <td key={f.fy} className={`whitespace-nowrap px-3 py-1.5 text-right tabular-nums font-medium ${m.cls} ${m.bg}`}>{r.fmt(r.get(f))}<span className="text-[9px]">{m.arrow}</span></td>; })}
                 </tr>
               ))}
             </Fragment>
@@ -1035,11 +1040,31 @@ function OwnersTab({ d }: { d: Detail }) {
           <ul className="space-y-1.5 text-sm">{d.relatedParty.top.map((t, i) => <li key={i} className="flex items-center justify-between gap-3 border-b border-slate-100 pb-1.5"><span className="min-w-0"><span className="block truncate text-slate-800">{t.name}</span><span className="text-[11px] text-slate-400">{t.kind}</span></span><span className="shrink-0 font-mono text-slate-600">{cr(t.amountCr)}</span></li>)}</ul>
         </Card>
       )}
-      {d.allotments.length > 0 && (
-        <Card title="Capital raised" sub="share allotments on record" accent={C.emerald}>
-          <ul className="space-y-1.5 text-sm">{d.allotments.map((a, i) => <li key={i} className="flex items-center justify-between gap-3 border-b border-slate-100 pb-1.5"><span className="min-w-0"><span className="block truncate text-slate-800">{a.type ?? a.instrument}</span><span className="text-[11px] text-slate-400">{a.date}</span></span><span className="shrink-0 font-mono text-slate-600">{cr(a.amountCr)}</span></li>)}</ul>
+      {(() => {
+        // Was a raw row-by-row allotment dump that read as noise — the client's
+        // "weird table". Now a two-line total by category: fresh cash raised vs
+        // "other than cash" (bonus/conversion shuffles that aren't new money), so
+        // a reader sees at a glance whether the company actually pulled in capital.
+        const cash = d.allotments.filter((a) => /cash/i.test(a.type) && !/other/i.test(a.type)).reduce((s, a) => s + (n(a.amountCr) ?? 0), 0);
+        const nonCash = d.allotments.filter((a) => /other/i.test(a.type)).reduce((s, a) => s + (n(a.amountCr) ?? 0), 0);
+        // Only worth a card when real money came in; an all-non-cash history is
+        // an internal reshuffle and just clutters the page.
+        if (cash <= 0) return null;
+        return (
+        <Card title="Capital raised" sub="from share allotments on record · grouped by type" accent={C.emerald}>
+          <dl className="space-y-1.5 text-sm">
+            <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-1.5">
+              <dt className="text-slate-700">💵 Fresh cash raised</dt><dd className="font-mono font-semibold text-emerald-700">{crore(cash)}</dd>
+            </div>
+            {nonCash > 0 && (
+              <div className="flex items-center justify-between gap-3">
+                <dt className="text-slate-500">Other than cash <span className="text-[11px] text-slate-400">(bonus / conversion — not new money)</span></dt><dd className="font-mono text-slate-500">{crore(nonCash)}</dd>
+              </div>
+            )}
+          </dl>
         </Card>
-      )}
+        );
+      })()}
     </div>
   );
 }
@@ -1161,18 +1186,25 @@ function LitigationCard({ d }: { d: Detail }) {
   const CAP = 12;
   const shown = sorted.slice(0, CAP);
   const nShown = shown.length;
-  const kanoon = (party?: string) => `https://indiankanoon.org/search/?formInput=${encodeURIComponent([fullName(d.legalName, d.legalName ?? ""), party].filter(Boolean).join(" "))}`;
+  const open = d.legal.list.filter((c) => /pending/i.test(c.status ?? "")).length;
+  const closed = d.legal.list.filter((c) => /disposed|closed|decided/i.test(c.status ?? "")).length;
+  // A case's open/closed state, in plain words. We DON'T have the winner, so we
+  // don't pretend to — "Closed" is as far as the data honestly goes.
+  const stat = (s?: string) => /pending/i.test(s ?? "") ? { t: "Open", cls: "bg-amber-100 text-amber-700" }
+    : /disposed|closed|decided/i.test(s ?? "") ? { t: "Closed", cls: "bg-slate-100 text-slate-500" }
+      : { t: s || "—", cls: "bg-slate-100 text-slate-500" };
   return (
     <Card title={`Court cases — ${d.legal.count} on record`}
-      sub={`${filedBy} they filed (money owed to them) · ${d.legal.against} filed against them (they may have to pay) · ${d.legal.high} serious`}
+      sub={`${filedBy} they filed (money owed to them) · ${d.legal.against} filed against them (they may have to pay) · ${open} still open, ${closed} closed`}
       accent={C.rose} className="lg:col-span-2 xl:col-span-3">
       {d.legal.list.length ? (
         <>
           <div className="overflow-x-auto">
             <table className={`${TBL} min-w-[720px]`}>
-              <thead><tr className={THEAD}><th className="px-3 py-2">Which side</th><th className="px-3 py-2">Serious?</th><th className="px-3 py-2">Other party</th><th className="px-3 py-2">Court</th><th className="px-3 py-2">When</th><th className="px-3 py-2">Read</th></tr></thead>
+              <thead><tr className={THEAD}><th className="px-3 py-2">Which side</th><th className="px-3 py-2">Serious?</th><th className="px-3 py-2">Open / closed</th><th className="px-3 py-2">Other party</th><th className="px-3 py-2">Court</th><th className="px-3 py-2">When</th></tr></thead>
               <tbody>{shown.map((c, i) => {
                 const s = side(c.type);
+                const st = stat(c.status);
                 return (
                 <tr key={i} className="border-t border-slate-100">
                   <td className="px-3 py-1.5">
@@ -1181,21 +1213,21 @@ function LitigationCard({ d }: { d: Detail }) {
                         : <span className="rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600">Other</span>}
                   </td>
                   <td className="px-3 py-1.5"><span className={`rounded-md px-1.5 py-0.5 text-xs font-medium ${c.severity === "high" ? "bg-rose-100 text-rose-700" : c.severity === "medium" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-600"}`}>{c.severity === "high" ? "serious" : c.severity}</span></td>
+                  <td className="px-3 py-1.5"><span className={`rounded-md px-1.5 py-0.5 text-xs font-semibold ${st.cls}`}>{st.t}</span></td>
                   <td className="max-w-[220px] truncate px-3 py-1.5 text-slate-700" title={c.counterparty}>{c.counterparty || "—"}</td>
                   <td className="max-w-[180px] truncate px-3 py-1.5 text-slate-500" title={c.court}>{c.court}</td>
                   <td className="whitespace-nowrap px-3 py-1.5 tabular-nums text-slate-500">{c.date}</td>
-                  <td className="px-3 py-1.5"><a href={kanoon(c.counterparty)} target="_blank" rel="noopener noreferrer" className="font-semibold text-teal-700 hover:underline">open ↗</a></td>
                 </tr>
                 );
               })}</tbody>
             </table>
           </div>
-          {d.legal.count > nShown && (
-            <div className="mt-2 flex items-center justify-between gap-3 text-xs text-slate-500">
-              <span>Showing {nShown} of {d.legal.count} — the ones filed against them and the serious ones first.</span>
-              <a href={kanoon()} target="_blank" rel="noopener noreferrer" className="shrink-0 font-semibold text-teal-700 hover:underline">Look them all up on IndianKanoon ↗</a>
-            </div>
-          )}
+          {/* Honest sourcing: these come from Probe42's MCA pull, and we don't
+              hold a per-case document link, so we don't fake one. */}
+          <p className="mt-2 px-1 text-[11px] text-slate-400">
+            {d.legal.count > nShown ? `Showing ${nShown} of ${d.legal.count} — filed-against and serious cases first. ` : ""}
+            Court records via Probe42 (MCA / court filings). We hold the case summary, not the full judgement, so the winner isn't shown.
+          </p>
         </>
       ) : <Empty t="No court cases on record." />}
     </Card>
