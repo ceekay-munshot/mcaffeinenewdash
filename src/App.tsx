@@ -362,7 +362,7 @@ const SUP_TABS: { key: SupTab; label: string; emoji: string }[] = [
   { key: "market", label: "Ingredients", emoji: "🧪" },
   { key: "supply", label: "Manufacturers", emoji: "🏭" },
   { key: "news", label: "Newsroom", emoji: "📰" },
-  { key: "rates", label: "Rate benchmark", emoji: "💰" },
+  { key: "rates", label: "Rate benchmark ᵝᵉᵗᵃ", emoji: "💰" },
 ];
 
 /* ---- L3 · mCaffeine's own rates vs the market band, vendor by vendor --------
@@ -557,8 +557,12 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
       <div className="rounded-3xl bg-gradient-to-br from-[#0b3b39] via-[#0d9488] to-[#0891b2] p-5 text-white shadow-lg">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="min-w-0">
-            <div className="text-xl font-bold">💰 Rate benchmark</div>
-            <div className="mt-1 max-w-2xl text-sm text-white/80">Enter every vendor's quote per material. Each is checked against the open market <em>and</em> that vendor's own financial health.</div>
+            <div className="flex items-center gap-2">
+              <div className="text-xl font-bold">💰 Rate benchmark</div>
+              {/* Honestly flagged as in-progress so the client knows it isn't final. */}
+              <span className="rounded-md bg-amber-400 px-2 py-0.5 text-[11px] font-extrabold uppercase tracking-wide text-amber-950 ring-1 ring-amber-300">Beta</span>
+            </div>
+            <div className="mt-1 max-w-2xl text-sm text-white/80">Enter every vendor's quote per material. Each is checked against the open market <em>and</em> that vendor's own financial health. <span className="font-semibold text-amber-200">Still being built — the supply-data feed that fills this automatically is next.</span></div>
           </div>
           {phase === "done" && (
             <div className="shrink-0 rounded-2xl bg-white/12 px-5 py-3 text-right ring-1 ring-white/25">
@@ -734,9 +738,10 @@ const NEWS_CATS = ["All", "RM Vendor", "PM Vendor", "Manufacturer"] as const;
 function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity) => void }) {
   const [showQuiet, setShowQuiet] = useState(false);
   const [cat, setCat] = useState<(typeof NEWS_CATS)[number]>("All");
-  // Anything older than 30 months is history, not news; within that, the last six
-  // months leads and the rest sits behind it.
-  const CUT = monthsBack(30), RECENT = monthsBack(6);
+  // The client wanted to filter by how recent — "what came in the last 3 months,
+  // the last 6…". A time-window dropdown drives the cutoff now.
+  const [win, setWin] = useState(30);
+  const CUT = monthsBack(win), RECENT = monthsBack(Math.min(6, win));
   const { lead, quiet, storyCount, dropped } = useMemo(() => {
     const lead: { e: Entity; sig: Signal; items: NewsItem[]; latest: string }[] = [];
     const quiet: { e: Entity; sig: Signal; items: NewsItem[]; latest: string }[] = [];
@@ -759,8 +764,11 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
     quiet.sort((a, b) => b.latest.localeCompare(a.latest));
     return { lead, quiet, storyCount, dropped };
   }, [all, cat, CUT]);
-  const recentLead = lead.filter((b) => b.latest >= RECENT);
-  const earlierLead = lead.filter((b) => b.latest < RECENT);
+  // When the window is already short (≤6 months), the whole thing is "recent" —
+  // don't split it and strand every card under an "Earlier" heading. Only the
+  // wider windows (12/30) get the recent-6-months vs older split.
+  const recentLead = win <= 6 ? lead : lead.filter((b) => b.latest >= RECENT);
+  const earlierLead = win <= 6 ? [] : lead.filter((b) => b.latest < RECENT);
 
   const month = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
   const covered = lead.length + quiet.length;
@@ -807,6 +815,10 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
             <div className="mt-1 max-w-2xl text-sm text-white/80">What changed at each supplier, and what it does to your leverage.</div>
           </div>
           <div className="flex shrink-0 items-center gap-3">
+            <select value={win} onChange={(e) => setWin(Number(e.target.value))}
+              className="rounded-lg bg-white/15 px-3 py-2 text-sm font-semibold text-white outline-none ring-1 ring-white/25 [&>option]:text-slate-800">
+              {[[3, "Last 3 months"], [6, "Last 6 months"], [12, "Last 12 months"], [30, "Last 30 months"]].map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+            </select>
             <select value={cat} onChange={(e) => setCat(e.target.value as typeof cat)}
               className="rounded-lg bg-white/15 px-3 py-2 text-sm font-semibold text-white outline-none ring-1 ring-white/25 [&>option]:text-slate-800">
               {NEWS_CATS.map((c) => <option key={c} value={c}>{c === "All" ? "All suppliers" : c + "s"}</option>)}
@@ -822,7 +834,7 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
 
       {recentLead.length > 0 && (
         <div>
-          <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">🔔 Last 6 months — moves that change your leverage</h3>
+          <h3 className="mb-2 px-1 text-sm font-bold text-slate-700">🔔 Last {Math.min(6, win)} months — moves that change your leverage</h3>
           {/* A lone card in a two-column grid leaves half the row blank. */}
           <div className={`grid gap-3 ${recentLead.length > 1 ? "lg:grid-cols-2" : ""}`}>{recentLead.map((b) => <Block key={b.e.folder} {...b} />)}</div>
         </div>
@@ -851,7 +863,7 @@ function SupplierNewsroom({ all, onSelect }: { all: Entity[]; onSelect: (e: Enti
 
       {covered === 0 && <div className="rounded-2xl bg-white p-12 text-center text-sm text-slate-400 ring-1 ring-slate-200">No supplier news on file yet.</div>}
       <p className="px-1 text-[11px] text-slate-400">
-        Gathered from the open web · last 30 months only{dropped > 0 ? ` (${dropped} older item${dropped > 1 ? "s" : ""} excluded)` : ""}. Suppliers with no public footprint don't appear here — their leverage lives in the financials.
+        Gathered from the open web · last {win} months{dropped > 0 ? ` (${dropped} older item${dropped > 1 ? "s" : ""} outside this window)` : ""}. Suppliers with no public footprint don't appear here — their leverage lives in the financials.
       </p>
     </div>
   );
@@ -946,7 +958,8 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
           colours, then name chips that showed six of twenty-four. A dot per
           supplier on a single scale says all of it at once, and shows the shape
           the buckets hid: nothing we buy from scores above 70. */}
-      <Card title="How healthy is the supply base?" sub={`${scored.length} suppliers scored on their own filings · average ${avg}/100 · every dot is a vendor, further right is safer`} accent="#0d9488">
+      <Card title="How healthy is the supply base?" sub={`${scored.length} suppliers scored on their own filings · average ${avg}/100 · every dot is a vendor, further right is safer`} accent="#0d9488"
+        info={"How the score works — everyone starts at 50/100 (a neutral pass), then points move up or down on a few checks any buyer would run:\n• Are their finances getting better or worse year on year → up to ±18\n• The credit-rating agency's view → +10 strong … −25 in default\n• Chance of running into money trouble → −15 high, +4 safe\n• Each serious red flag in their filings → −4\n\nCapped 1–100. 55+ = Strong, 45–54 = Adequate, under 45 = Weak."}>
         <HealthSpread scored={scored} onSelect={onSelect} />
       </Card>
 

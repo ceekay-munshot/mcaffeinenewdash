@@ -192,8 +192,8 @@ export default function DeepDive({ entity, onClose, supplies, initialTab }: { en
           {/* KPI strip */}
           <div className="mt-4 grid grid-cols-3 gap-2 md:grid-cols-6">
             <Kpi label={`Revenue ${L.year ?? ""}`} value={cr(n(L.revenue))} tone="ink" />
-            <Kpi label="EBITDA margin" value={pct(n(L.ebitdaMargin))} tone="indigo" />
-            <Kpi label="RoCE" value={pct(n(L.roce))} tone="teal" />
+            <Kpi label="Operating margin" value={pct(n(L.ebitdaMargin))} tone="indigo" />
+            <Kpi label="Return on capital" value={pct(n(L.roce))} tone="teal" />
             <Kpi label="Collects / Pays" value={`${days(n(L.debtorDays))} / ${days(n(L.payableDays))}`} tone="sky" />
             <Kpi label="Debt / equity" value={n(L.debtEquity) ?? "—"} tone="amber" />
             <Kpi label="Financial score" value={`${d.score.overall ?? "—"}/10`} tone={(d.score.overall ?? 0) >= 7 ? "emerald" : (d.score.overall ?? 0) >= 4 ? "amber" : "rose"} />
@@ -397,13 +397,13 @@ const EXP_METRICS: Metric[] = [
   { key: "ocf", label: "Operating cash flow", group: "Cash flow (₹ cr)", unit: "₹cr", color: PAL[6], get: (f) => f.cf.operating },
   { key: "icf", label: "Investing cash flow", group: "Cash flow (₹ cr)", unit: "₹cr", color: PAL[4], get: (f) => f.cf.investing },
   { key: "fcf", label: "Financing cash flow", group: "Cash flow (₹ cr)", unit: "₹cr", color: PAL[5], get: (f) => f.cf.financing },
-  { key: "ebitdaMargin", label: "EBITDA margin", group: "Margins & returns (%)", unit: "%", color: PAL[1], get: (f) => f.r.ebitdaMargin },
+  { key: "ebitdaMargin", label: "Operating margin", group: "Margins & returns (%)", unit: "%", color: PAL[1], get: (f) => f.r.ebitdaMargin },
   { key: "netMargin", label: "Net margin", group: "Margins & returns (%)", unit: "%", color: PAL[0], get: (f) => f.r.netMargin },
-  { key: "grossMargin", label: "Gross margin", group: "Margins & returns (%)", unit: "%", color: PAL[2], get: (f) => f.r.grossMargin },
-  { key: "roce", label: "RoCE", group: "Margins & returns (%)", unit: "%", color: PAL[3], get: (f) => f.r.roce },
-  { key: "roe", label: "RoE", group: "Margins & returns (%)", unit: "%", color: PAL[5], get: (f) => f.r.roe },
-  { key: "dso", label: "Collects (DSO)", group: "Working-capital days", unit: "d", color: PAL[2], get: (f) => f.r.debtorDays },
-  { key: "dpo", label: "Pays (DPO)", group: "Working-capital days", unit: "d", color: PAL[3], get: (f) => f.r.payableDays },
+  { key: "grossMargin", label: "Margin after materials", group: "Margins & returns (%)", unit: "%", color: PAL[2], get: (f) => f.r.grossMargin },
+  { key: "roce", label: "Return on capital", group: "Margins & returns (%)", unit: "%", color: PAL[3], get: (f) => f.r.roce },
+  { key: "roe", label: "Return on equity", group: "Margins & returns (%)", unit: "%", color: PAL[5], get: (f) => f.r.roe },
+  { key: "dso", label: "Collects in", group: "Working-capital days", unit: "d", color: PAL[2], get: (f) => f.r.debtorDays },
+  { key: "dpo", label: "Pays in", group: "Working-capital days", unit: "d", color: PAL[3], get: (f) => f.r.payableDays },
   { key: "invDays", label: "Inventory days", group: "Working-capital days", unit: "d", color: PAL[5], get: (f) => f.r.inventoryDays },
   { key: "ccc", label: "Cash cycle", group: "Working-capital days", unit: "d", color: PAL[4], get: (f) => f.r.cashConversion },
   { key: "de", label: "Debt / equity", group: "Ratios", unit: "ratio", color: PAL[4], get: (f) => f.r.debtEquity },
@@ -781,8 +781,8 @@ function FinTable({ fin }: { fin: FinRow[] }) {
       { label: "Interest cover", get: (f) => f.r.interestCover, fmt: xN, dir: 1 },
       { label: "Current ratio", get: (f) => f.r.currentRatio, fmt: x2, dir: 1 },
       { label: "Quick ratio", get: (f) => f.r.quickRatio, fmt: x2, dir: 1 },
-      { label: "Collects (DSO)", get: (f) => f.r.debtorDays, fmt: days, dir: -1 },
-      { label: "Pays (DPO)", get: (f) => f.r.payableDays, fmt: days, dir: 0 },
+      { label: "Collects in", get: (f) => f.r.debtorDays, fmt: days, dir: -1 },
+      { label: "Pays in", get: (f) => f.r.payableDays, fmt: days, dir: 0 },
       { label: "Inventory days", get: (f) => f.r.inventoryDays, fmt: days, dir: -1 },
       { label: "Cash cycle", get: (f) => f.r.cashConversion, fmt: days, dir: -1 },
     ] },
@@ -1249,21 +1249,57 @@ export function ProbeCompare({ entities }: { entities: { cin?: string | null; br
   const [metric, setMetric] = useState("revenue");
   if (cos.length < 2) return null;
   const col = (i: number) => CMP[i % CMP.length];
+  // -Infinity (not null) so winBy's reduce still orders companies with too few
+  // years; the Compare row guards on Number.isFinite before showing it.
+  const cagr = (d: Detail) => { const r = d.fin.map((f) => f.revenue).filter((v): v is number => v != null); return r.length >= 2 && r[0] ? (r[r.length - 1] / r[0]) ** (1 / (r.length - 1)) - 1 : -Infinity; };
+  const ratio = (v: number | null) => (v == null ? "—" : v.toFixed(2));
+  const intx = (v: number | null) => (v == null ? "—" : `${v.toFixed(1)}x`);
+  const cnt = (v: number | null) => (v == null ? "—" : `${v}`);
 
-  const rows: { label: string; get: (d: Detail) => number | null; fmt: (v: number | null) => string; hi: number }[] = [
-    { label: "Revenue", get: (d) => n(d.latest.revenue), fmt: cr, hi: 1 },
-    { label: "EBITDA margin", get: (d) => n(d.latest.ebitdaMargin), fmt: pct, hi: 1 },
-    { label: "Net margin", get: (d) => n(d.latest.netMargin), fmt: pct, hi: 1 },
-    { label: "RoCE", get: (d) => n(d.latest.roce), fmt: pct, hi: 1 },
-    { label: "RoE", get: (d) => n(d.latest.roe), fmt: pct, hi: 1 },
-    { label: "Debt / equity", get: (d) => n(d.latest.debtEquity), fmt: (v) => (v == null ? "—" : v.toFixed(2)), hi: -1 },
-    { label: "Collects (DSO)", get: (d) => n(d.latest.debtorDays), fmt: days, hi: -1 },
-    { label: "Pays (DPO)", get: (d) => n(d.latest.payableDays), fmt: days, hi: 0 },
-    { label: "Cash cycle", get: (d) => n(d.latest.cashConversion), fmt: days, hi: -1 },
-    { label: "Employees", get: (d) => n(d.employees.latest), fmt: (v) => (v == null ? "—" : `${Math.round(v)}`), hi: 1 },
-    { label: "Financial score", get: (d) => n(d.score.overall), fmt: (v) => (v == null ? "—" : `${v}/10`), hi: 1 },
+  // #5 — "comparison should not be limited on few params". The old table showed
+  // 11 rows; this is the whole picture, grouped into plain-language sections so a
+  // buyer reads it top-to-bottom. Every row still lights the best of the group
+  // green, and the "↑/↓ better" hint tells you which way is good — no finance
+  // vocabulary needed.
+  type CmpRow = { label: string; hint?: string; get: (d: Detail) => number | null; fmt: (v: number | null) => string; hi: number };
+  const SECTIONS: { title: string; accent: string; rows: CmpRow[] }[] = [
+    { title: "Size & scale", accent: TEAL, rows: [
+      { label: "Revenue", hint: "↑ bigger", get: (d) => n(d.latest.revenue), fmt: cr, hi: 1 },
+      { label: "Profit", hint: "↑ better", get: (d) => n(d.latest.pat), fmt: cr, hi: 1 },
+      { label: "People on payroll", get: (d) => n(d.employees.latest), fmt: (v) => (v == null ? "—" : Math.round(v).toLocaleString("en-IN")), hi: 1 },
+      { label: "Everything they own", get: (d) => n(d.latest.totalAssets), fmt: cr, hi: 0 },
+    ] },
+    { title: "How much of each ₹ they keep", accent: C.emerald, rows: [
+      { label: "Left after raw materials", hint: "↑ better", get: (d) => n(d.latest.grossMargin), fmt: pct, hi: 1 },
+      { label: "Left after running the business", hint: "↑ better", get: (d) => n(d.latest.ebitdaMargin), fmt: pct, hi: 1 },
+      { label: "Left as final profit", hint: "↑ better", get: (d) => n(d.latest.netMargin), fmt: pct, hi: 1 },
+      { label: "Return on the capital they use", hint: "↑ better", get: (d) => n(d.latest.roce), fmt: pct, hi: 1 },
+      { label: "Return to their owners", hint: "↑ better", get: (d) => n(d.latest.roe), fmt: pct, hi: 1 },
+    ] },
+    { title: "How they handle cash", accent: C.sky, rows: [
+      { label: "Days to collect from customers", hint: "↓ better", get: (d) => n(d.latest.debtorDays), fmt: days, hi: -1 },
+      { label: "Days they take to pay suppliers", get: (d) => n(d.latest.payableDays), fmt: days, hi: 0 },
+      { label: "Days stock sits in the warehouse", hint: "↓ better", get: (d) => n(d.latest.inventoryDays), fmt: days, hi: -1 },
+      { label: "Days their cash is tied up", hint: "↓ better", get: (d) => n(d.latest.cashConversion), fmt: days, hi: -1 },
+    ] },
+    { title: "How safe they are", accent: C.violet, rows: [
+      { label: "Borrowings vs owners' money", hint: "↓ better", get: (d) => n(d.latest.debtEquity), fmt: ratio, hi: -1 },
+      { label: "Profit vs interest they owe", hint: "↑ better", get: (d) => n(d.latest.interestCover), fmt: intx, hi: 1 },
+      { label: "Short-term cushion", hint: "↑ better", get: (d) => n(d.latest.currentRatio), fmt: ratio, hi: 1 },
+      { label: "Cash in the bank", hint: "↑ better", get: (d) => n(d.latest.cash), fmt: cr, hi: 1 },
+    ] },
+    { title: "Growth & momentum", accent: C.indigo, rows: [
+      { label: "Revenue growth (latest year)", hint: "↑ better", get: (d) => n(d.latest.revenueGrowth), fmt: pct, hi: 1 },
+      { label: "Revenue growth (yearly average)", hint: "↑ better", get: (d) => { const c = cagr(d); return Number.isFinite(c) ? c * 100 : null; }, fmt: pct, hi: 1 },
+    ] },
+    { title: "Scores & our leverage", accent: C.amber, rows: [
+      { label: "Financial score", hint: "↑ better", get: (d) => n(d.score.overall), fmt: (v) => (v == null ? "—" : `${v}/10`), hi: 1 },
+      { label: "Overall health", hint: "↑ better", get: (d) => healthScore(d), fmt: (v) => (v == null ? "—" : `${Math.round(v)}/100`), hi: 1 },
+      { label: "Levers in our favour", hint: "↑ better", get: (d) => d.levers.filter((l) => l.tone === "opportunity").length, fmt: cnt, hi: 1 },
+      { label: "Risk flags on them", hint: "↓ better", get: (d) => d.levers.filter((l) => l.tone === "risk").length, fmt: cnt, hi: -1 },
+    ] },
   ];
-  const bestIdx = (r: (typeof rows)[number]) => {
+  const bestIdx = (r: CmpRow) => {
     if (r.hi === 0) return -1;
     let bi = -1, bv = r.hi === 1 ? -Infinity : Infinity;
     cos.forEach((c, i) => { const v = r.get(c.d); if (v == null) return; if ((r.hi === 1 && v > bv) || (r.hi === -1 && v < bv)) { bv = v; bi = i; } });
@@ -1272,8 +1308,8 @@ export function ProbeCompare({ entities }: { entities: { cin?: string | null; br
 
   const TM = [
     { key: "revenue", label: "Revenue", unit: (v: number) => crore(v), get: (f: FinRow) => f.revenue },
-    { key: "ebitdaMargin", label: "EBITDA margin", unit: (v: number) => `${v}%`, get: (f: FinRow) => f.r.ebitdaMargin },
-    { key: "roce", label: "RoCE", unit: (v: number) => `${v}%`, get: (f: FinRow) => f.r.roce },
+    { key: "ebitdaMargin", label: "Operating margin", unit: (v: number) => `${v}%`, get: (f: FinRow) => f.r.ebitdaMargin },
+    { key: "roce", label: "Return on capital", unit: (v: number) => `${v}%`, get: (f: FinRow) => f.r.roce },
     { key: "pat", label: "Profit", unit: (v: number) => crore(v), get: (f: FinRow) => f.pat },
   ];
   const tm = TM.find((x) => x.key === metric) ?? TM[0];
@@ -1281,7 +1317,6 @@ export function ProbeCompare({ entities }: { entities: { cin?: string | null; br
   const series = cos.map((c, i) => { const m = new Map(c.d.fin.map((f) => [f.fy, tm.get(f)])); return { name: c.brand, color: col(i), points: years.map((y) => m.get(y) ?? null) }; });
 
   const oppCount = (d: Detail) => d.levers.filter((l) => l.tone === "opportunity").length;
-  const cagr = (d: Detail) => { const r = d.fin.map((f) => f.revenue).filter((v): v is number => v != null); return r.length >= 2 && r[0] ? (r[r.length - 1] / r[0]) ** (1 / (r.length - 1)) - 1 : -Infinity; };
   const winBy = (f: (d: Detail) => number) => cos.reduce((b, c) => (f(c.d) > f(b.d) ? c : b), cos[0]);
   const mostRoom = winBy(oppCount), healthiest = winBy((d) => d.score.overall ?? 0), fastest = winBy(cagr);
 
@@ -1292,17 +1327,22 @@ export function ProbeCompare({ entities }: { entities: { cin?: string | null; br
         <WinCard emoji="🛡️" title="Healthiest" name={fullName(healthiest.d.legalName, healthiest.brand)} note={`Probe score ${healthiest.d.score.overall}/10`} />
         <WinCard emoji="🚀" title="Fastest growing" name={fullName(fastest.d.legalName, fastest.brand)} note={cagr(fastest.d) > 0 ? `${Math.round(cagr(fastest.d) * 100)}%/yr revenue` : "—"} />
       </div>
-      <Card title="Side by side" sub="latest year · green = best of the group" accent={TEAL}>
+      <Card title="Side by side — the full picture" sub="latest reported year · green cell = best of the group · scroll for every metric" accent={TEAL}>
         <div className="overflow-x-auto">
           <table className={`${TBL} min-w-[560px]`}>
             <thead><tr className="border-b border-slate-200 text-left"><th className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-slate-500">Metric</th>{cos.map((c, i) => <th key={i} className="px-3 py-2 text-right" title={fullName(c.d.legalName, c.brand)}><span className="inline-flex items-center gap-1.5 font-semibold text-slate-800"><span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: col(i) }} />{c.brand}</span></th>)}</tr></thead>
             <tbody>
-              {rows.map((r) => { const bi = bestIdx(r); return (
-                <tr key={r.label} className="border-t border-slate-100">
-                  <td className="px-3 py-1.5 font-medium text-slate-600">{r.label}</td>
-                  {cos.map((c, i) => <td key={i} className={`px-3 py-1.5 text-right tabular-nums font-medium ${i === bi ? "rounded bg-emerald-50 font-bold text-emerald-700" : "text-slate-800"}`}>{r.fmt(r.get(c.d))}</td>)}
-                </tr>
-              ); })}
+              {SECTIONS.map((sec) => (
+                <Fragment key={sec.title}>
+                  <tr><td colSpan={cos.length + 1} className="px-3 pt-3.5 pb-1 text-[11px] font-bold uppercase tracking-wider" style={{ color: sec.accent }}>{sec.title}</td></tr>
+                  {sec.rows.map((r) => { const bi = bestIdx(r); return (
+                    <tr key={r.label} className="border-t border-slate-100">
+                      <td className="px-3 py-1.5 font-medium text-slate-600">{r.label}{r.hint && <span className="ml-1.5 text-[10px] font-normal text-slate-400">{r.hint}</span>}</td>
+                      {cos.map((c, i) => <td key={i} className={`px-3 py-1.5 text-right tabular-nums font-medium ${i === bi ? "rounded bg-emerald-50 font-bold text-emerald-700" : "text-slate-800"}`}>{r.fmt(r.get(c.d))}</td>)}
+                    </tr>
+                  ); })}
+                </Fragment>
+              ))}
             </tbody>
           </table>
         </div>

@@ -525,13 +525,23 @@ export function Legend({ items }: { items: { label: string; color: string }[] })
   );
 }
 
-export function Card({ title, sub, children, className = "", accent }: { title: string; sub?: string; children: React.ReactNode; className?: string; accent?: string }) {
+export function Card({ title, sub, children, className = "", accent, info }: { title: string; sub?: string; children: React.ReactNode; className?: string; accent?: string; info?: string }) {
   return (
     <div className={`rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200/70 transition-shadow hover:shadow-md ${className}`}>
       <div className="mb-4 flex items-start gap-2">
         {accent && <span className="mt-1 h-3.5 w-1 shrink-0 rounded-full" style={{ background: accent }} />}
-        <div>
-          <div className="text-sm font-semibold text-slate-900">{title}</div>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-1.5">
+            <div className="text-sm font-semibold text-slate-900">{title}</div>
+            {/* A hover "?" that explains the card — used for the health score, where
+                the client asked in plain words how the number is built. */}
+            {info && (
+              <span className="group relative inline-flex">
+                <span className="grid h-4 w-4 cursor-help place-items-center rounded-full bg-slate-200 text-[10px] font-bold text-slate-500 hover:bg-teal-500 hover:text-white">?</span>
+                <span className="pointer-events-none absolute left-1/2 top-6 z-30 w-72 -translate-x-1/2 whitespace-pre-line rounded-xl bg-slate-900 p-3 text-[11px] leading-relaxed text-white opacity-0 shadow-xl transition group-hover:opacity-100">{info}</span>
+              </span>
+            )}
+          </div>
           {sub && <div className="text-xs text-slate-500">{sub}</div>}
         </div>
       </div>
