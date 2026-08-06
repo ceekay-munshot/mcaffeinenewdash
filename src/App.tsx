@@ -21,7 +21,7 @@ import {
   supplierInsights, TONE_META, type Insight, type InsightTone,
   supDSO, supDPO, supRoce, supCurrent, supDebtEq, supIntCov,
 } from "./lib/insights";
-import DeepDive, { hasDeepDive, probeLevers, supplierHealth, probeSegmentsOf, ProbeCompare, enrichedCount, type TabKey as DeepTabKey } from "./DeepDive";
+import DeepDive, { hasDeepDive, probeLevers, supplierHealth, probeSegmentsOf, ProbeCompare, enrichedCount, scoreBreakdown, type TabKey as DeepTabKey } from "./DeepDive";
 
 /* -------------------------------------------------- data accessors / helpers */
 
@@ -898,10 +898,76 @@ function diverseTop<T extends { l: { insight: string }; e: { folder: string } }>
   return out;
 }
 
+/* The score framework as a centred modal — the client asked to see "the actual
+   scoring, how it's done" without being thrown straight into the deep dive.
+   Clicking a supplier's score opens this; it shows the same points maths the
+   health score runs, applied to THIS vendor, and only then offers a deep-dive
+   button. */
+function ScoreModal({ e, h, onClose, onDeepDive }: { e: Entity; h: number; onClose: () => void; onDeepDive: () => void }) {
+  const bd = scoreBreakdown(e.cin);
+  useEffect(() => {
+    const onKey = (ev: KeyboardEvent) => { if (ev.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+  const band = h >= HEALTH_CUT.strong ? { t: "Strong", txt: "text-emerald-700", bg: "bg-emerald-50", ring: "ring-emerald-300", note: "sound to deal with" }
+    : h >= HEALTH_CUT.ok ? { t: "Adequate", txt: "text-amber-700", bg: "bg-amber-50", ring: "ring-amber-300", note: "keep an eye on" }
+    : { t: "Weak", txt: "text-rose-700", bg: "bg-rose-50", ring: "ring-rose-300", note: "line up a backup" };
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4" onClick={onClose}>
+      <div className="max-h-[86vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl" onClick={(ev) => ev.stopPropagation()}>
+        <div className="flex items-start justify-between gap-3 border-b border-slate-100 p-5">
+          <div className="min-w-0">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">How this score is worked out</div>
+            <div className="mt-0.5 truncate text-lg font-bold text-slate-900">{fullName(e.legalName, e.brand)}</div>
+          </div>
+          <button onClick={onClose} className="shrink-0 rounded-lg px-2 py-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">✕</button>
+        </div>
+        <div className={`m-5 flex items-center gap-4 rounded-xl ${band.bg} p-4 ring-1 ${band.ring}`}>
+          <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-200">
+            <span className={`text-2xl font-extrabold tabular-nums ${band.txt}`}>{h}</span>
+            <span className="text-[9px] font-medium text-slate-400">/100</span>
+          </div>
+          <div><div className={`text-lg font-bold ${band.txt}`}>{band.t}</div><div className="text-sm text-slate-500">{band.note}</div></div>
+        </div>
+        {bd ? (
+          <div className="px-5 pb-1">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">The maths, step by step</div>
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm">
+                <span className="text-slate-600">Every supplier starts at a neutral pass</span>
+                <span className="font-bold tabular-nums text-slate-500">{bd.start}</span>
+              </div>
+              {bd.rows.map((r, i) => (
+                <div key={i} className="flex items-start justify-between gap-3 rounded-lg px-3 py-2 text-sm hover:bg-slate-50">
+                  <span className="min-w-0"><span className="block font-medium text-slate-700">{r.label}</span><span className="block text-xs text-slate-400">{r.note}</span></span>
+                  <span className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-extrabold tabular-nums ring-1 ${r.pts >= 0 ? "bg-emerald-50 text-emerald-700 ring-emerald-200" : "bg-rose-50 text-rose-700 ring-rose-200"}`}>{r.pts >= 0 ? "+" : ""}{r.pts}</span>
+                </div>
+              ))}
+              <div className="flex items-center justify-between rounded-lg bg-slate-900 px-3 py-2.5 text-sm text-white">
+                <span className="font-semibold">Their score</span><span className="font-extrabold tabular-nums">{bd.total} / 100</span>
+              </div>
+            </div>
+            <p className="mt-3 text-[11px] leading-relaxed text-slate-400">Capped 1–100 · 55+ Strong · 45–54 Adequate · under 45 Weak. Every input is pulled from their own MCA / Probe42 filings.</p>
+          </div>
+        ) : <div className="px-5 pb-2 text-sm text-slate-400">No filings on record to score this vendor.</div>}
+        <div className="flex items-center justify-end gap-2 border-t border-slate-100 p-4">
+          <button onClick={onClose} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-500 transition hover:bg-slate-100">Close</button>
+          <button onClick={onDeepDive} className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">Open full deep dive →</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, tab?: DeepTabKey) => void }) {
   // Remember which insight was clicked, not just whose it was, so the modal can
   // open on that lever rather than at the top of the supplier's whole set.
   const [leversFor, setLeversFor] = useState<{ e: Entity; focus: string } | null>(null);
+  // Clicking a dot opens the score framework, not the deep dive — the client
+  // wanted to see how the number is built before being sent anywhere.
+  const [scoreFor, setScoreFor] = useState<{ e: Entity; h: number } | null>(null);
 
   const { scored, tops, risks, avg, nOpp, nRisk } = useMemo(() => {
     const scored = all
@@ -960,7 +1026,7 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
           the buckets hid: nothing we buy from scores above 70. */}
       <Card title="How healthy is the supply base?" sub={`${scored.length} suppliers scored on their own filings · average ${avg}/100 · every dot is a vendor, further right is safer`} accent="#0d9488"
         info={"How the score works — everyone starts at 50/100 (a neutral pass), then points move up or down on a few checks any buyer would run:\n• Are their finances getting better or worse year on year → up to ±18\n• The credit-rating agency's view → +10 strong … −25 in default\n• Chance of running into money trouble → −15 high, +4 safe\n• Each serious red flag in their filings → −4\n\nCapped 1–100. 55+ = Strong, 45–54 = Adequate, under 45 = Weak."}>
-        <HealthSpread scored={scored} onSelect={onSelect} />
+        <HealthSpread scored={scored} onScore={(e, h) => setScoreFor({ e, h })} />
       </Card>
 
       {/* the two lists he asked for */}
@@ -981,6 +1047,8 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
 
       {leversFor && <LeversModal e={leversFor.e} focus={leversFor.focus} onClose={() => setLeversFor(null)}
         onOpenProfile={(tab) => { const t = leversFor.e; setLeversFor(null); onSelect(t, tab); }} />}
+      {scoreFor && <ScoreModal e={scoreFor.e} h={scoreFor.h} onClose={() => setScoreFor(null)}
+        onDeepDive={() => { const t = scoreFor.e; setScoreFor(null); onSelect(t); }} />}
     </div>
   );
 }
@@ -988,7 +1056,7 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
 /* Every scored supplier as one dot on a 0-100 scale, over the three health
    zones. Dots that would land on top of each other stack upwards, so a cluster
    reads as height — the shape of the base in one glance. */
-function HealthSpread({ scored, onSelect }: { scored: { e: Entity; h: number }[]; onSelect: (e: Entity) => void }) {
+function HealthSpread({ scored, onScore }: { scored: { e: Entity; h: number }[]; onScore: (e: Entity, h: number) => void }) {
   // Dots are sized in pixels but placed by percentage, so how many score-points
   // it takes to clear a dot depends on how wide the card actually is. Measured
   // rather than assumed: at 560px the fixed threshold let dots sit on top of
@@ -1071,7 +1139,7 @@ function HealthSpread({ scored, onSelect }: { scored: { e: Entity; h: number }[]
           ))}
         </div>
         {placed.map(({ e, h, row }) => (
-          <button key={e.folder} onClick={() => onSelect(e)} onMouseEnter={() => setHover(e.folder)} onMouseLeave={() => setHover(null)}
+          <button key={e.folder} onClick={() => onScore(e, h)} onMouseEnter={() => setHover(e.folder)} onMouseLeave={() => setHover(null)}
             className={`absolute flex items-center justify-center rounded-full text-[10px] font-extrabold tabular-nums text-white shadow-sm ring-2 ring-white transition hover:z-20 hover:scale-125 ${healthDot(h)}`}
             style={{ width: DOT, height: DOT, left: `calc(${x(h)}% - ${DOT / 2}px)`, top: `calc(50% + ${row * (DOT + GAP)}px - ${DOT / 2}px)` }}>
             {h}
@@ -2043,26 +2111,26 @@ export function LeverCell({ e, onOpen }: { e: Entity | undefined; onOpen: (e: En
       {e.cin ? "report not pulled" : "no filings"}
     </span>;
   }
-  // Three colour-graded counts instead of one "Check levers" pill — green plays,
-  // amber to-watch, red risks, the standard palette. Risk only shows when there
-  // is one. Clicking a colour opens the modal on that group. (Empty counts are
-  // dimmed so every row's three slots line up in the column.)
+  // Three labelled, colour-graded chips — count PLUS the word, not a bare number,
+  // so a row reads "3 opportunities · 2 watch · 1 risk" at a glance. Fixed-width
+  // columns keep every row's chips aligned down the table; a zero chip greys out
+  // in place rather than vanishing, and the risk chip only appears when > 0.
   const count = (t: InsightTone) => src.filter((l) => l.tone === t).length;
-  const tiles: [InsightTone, number, string, string, string][] = [
-    ["opportunity", count("opportunity"), "green", "bg-emerald-100 text-emerald-700 ring-emerald-200 hover:bg-emerald-200", "🟢"],
-    ["watch", count("watch"), "amber", "bg-amber-100 text-amber-700 ring-amber-200 hover:bg-amber-200", "🟡"],
-    ["risk", count("risk"), "rose", "bg-rose-100 text-rose-700 ring-rose-200 hover:bg-rose-200", "🔴"],
+  const word = (t: InsightTone, c: number) => t === "opportunity" ? (c === 1 ? "opportunity" : "opportunities") : t === "watch" ? "watch" : (c === 1 ? "risk" : "risks");
+  const tiles: [InsightTone, number, string][] = [
+    ["opportunity", count("opportunity"), "bg-emerald-50 text-emerald-700 ring-emerald-200 hover:bg-emerald-100"],
+    ["watch", count("watch"), "bg-amber-50 text-amber-700 ring-amber-200 hover:bg-amber-100"],
+    ["risk", count("risk"), "bg-rose-50 text-rose-700 ring-rose-200 hover:bg-rose-100"],
   ];
   return (
-    <div className="inline-flex items-center gap-1">
-      {tiles.map(([t, c, , cls]) => (
-        // risk slot is hidden entirely when zero; opp/watch stay as dim placeholders so columns align
+    <div className="flex flex-wrap items-center justify-center gap-1.5">
+      {tiles.map(([t, c, cls]) => (
         (t === "risk" && c === 0) ? null :
         <button key={t} onClick={(ev) => { ev.stopPropagation(); onOpen(e, t); }}
           disabled={c === 0}
-          title={`${c} ${t === "opportunity" ? "in our favour" : t === "watch" ? "to watch" : "risk(s)"} — click to see`}
-          className={`min-w-[2.1rem] rounded-md px-1.5 py-1 text-xs font-extrabold tabular-nums ring-1 transition ${c === 0 ? "bg-slate-50 text-slate-300 ring-slate-100 cursor-default" : cls}`}>
-          {c}
+          title={`${c} ${word(t, c)} — click to see`}
+          className={`inline-flex items-baseline gap-1 whitespace-nowrap rounded-md px-2 py-1 text-xs font-semibold ring-1 transition ${c === 0 ? "bg-slate-50 text-slate-300 ring-slate-100 cursor-default" : cls}`}>
+          <span className="font-extrabold tabular-nums">{c}</span> {word(t, c)}
         </button>
       ))}
     </div>
