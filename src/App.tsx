@@ -1271,22 +1271,28 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
 
    This answers "who should we ask?" — NOT "who is cheapest". Price only becomes
    real once a quote is entered on the Rate benchmark tab, and the UI says so. */
-const PM_FORMAT: { re: RegExp; segs: string[] }[] = [
-  { re: /\bbottles?\b|\bjars?\b|\bcaps?\b|\bpumps?\b|closure|dispenser|\btubes?\b/i, segs: ["Bottles and Caps", "Plastic based Products", "Rubber based Products"] },
-  { re: /carton|\bboxes?\b|\blabels?\b|sticker|print/i, segs: ["Industrial Packaging"] },
-];
-function canSupply(entry: MarketEntry, d: { segments?: string[] } | undefined, isIncumbent: boolean): boolean {
+// Is this tracked vendor actually named as a seller of THIS specific item?
+const nameInSellers = (e: Entity, entry: MarketEntry): boolean => {
+  const names = [...(entry.indiaSuppliers ?? []), ...(entry.alternatives ?? []).map((a) => a.name ?? "")].map(l3Norm).filter((x) => x.length >= 5);
+  const en = [l3Norm(e.brand), l3Norm(e.legalName ?? "")].filter((x) => x.length >= 5);
+  return names.some((nm) => en.some((x) => nm.includes(x) || x.includes(nm)));
+};
+function canSupply(entry: MarketEntry, e: Entity, d: { segments?: string[] } | undefined, isIncumbent: boolean): boolean {
   if (isIncumbent) return true;                       // they already do supply it
   // A patented molecule cannot be sourced from whoever happens to distribute
-  // chemicals — Tinosorb A2B is BASF-proprietary and single-sourced, so listing
-  // four distributors as "able to supply it" was wrong, and the contradiction
-  // against our own sole-source tag was the first thing a reviewer spotted.
+  // chemicals — Tinosorb A2B is BASF-proprietary and single-sourced.
   if (entry.kind === "proprietary" || entry.concentration === "sole") return false;
-  const segs = d?.segments ?? [];
-  if (!segs.length) return false;
-  if (entry.side === "rm") return segs.includes("Chemical Retailers and Distributors");
-  const fmt = PM_FORMAT.find((f) => f.re.test(entry.item));
-  return !!fmt && segs.some((s) => fmt.segs.includes(s));
+  if (entry.side === "rm") {
+    // A broad-line chemical distributor can credibly source most actives — a
+    // defensible inference.
+    return (d?.segments ?? []).includes("Chemical Retailers and Distributors");
+  }
+  // Packaging is different: the Probe segment "Bottles and Caps" lumps bottles,
+  // caps, pumps and closures together, so it can't tell us a glass-bottle maker
+  // can produce serum pumps. That loose match claimed 8 vendors could supply
+  // lotion pumps when 4 real sellers exist. For PM we only surface a vendor that
+  // is actually named as a seller of this exact item — never an inference.
+  return nameInSellers(e, entry);
 }
 type BestPlaced = { e: Entity; health: number; incumbent: boolean; topLever?: { title: string; detail: string } };
 function bestPlacedFor(entry: MarketEntry, all: Entity[], incumbentFolder?: string): BestPlaced[] {
@@ -1297,7 +1303,7 @@ function bestPlacedFor(entry: MarketEntry, all: Entity[], incumbentFolder?: stri
       const inc = e.folder === incumbentFolder;
       return { e, inc, d: probeSegmentsOf(e.cin) };
     })
-    .filter(({ d, inc }) => canSupply(entry, d, inc))
+    .filter(({ e, d, inc }) => canSupply(entry, e, d, inc))
     .map(({ e, inc }) => {
       const opp = probeLevers(e.cin).find((l) => l.tone === "opportunity");
       return { e, health: supplierHealth(e.cin) ?? 0, incumbent: inc, topLever: opp && { title: opp.title, detail: opp.detail } };
@@ -1570,11 +1576,11 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-4">
-          <Dropdown label="Show" value={side} onChange={(v) => { setSide(v as "rm" | "pm" | "all"); setGroup("all"); setOpenRow(null); }}
+          <Dropdown label="Type" value={side} onChange={(v) => { setSide(v as "rm" | "pm" | "all"); setGroup("all"); setOpenRow(null); }}
             options={[
               { key: "all", label: `All (${allMarket().length})`, emoji: "🗂" },
-              { key: "rm", label: `Raw materials (${allMarket().filter((m) => m.side === "rm").length})`, emoji: "🧪" },
-              { key: "pm", label: `Packaging (${allMarket().filter((m) => m.side === "pm").length})`, emoji: "📦" }]} />
+              { key: "rm", label: `Raw materials · RM (${allMarket().filter((m) => m.side === "rm").length})`, emoji: "🧪" },
+              { key: "pm", label: `Packaging · PM (${allMarket().filter((m) => m.side === "pm").length})`, emoji: "📦" }]} />
           <Dropdown label="Pricing power" value={group} onChange={setGroup}
             options={[{ key: "all" as const, label: `All (${entries.length})` }, ...cols.filter((c) => counts[c] > 0).map((c) => ({ key: c, label: `${CONC_META[c].label} (${counts[c]})`, emoji: CONC_META[c].emoji }))]} />
         </div>
@@ -1628,8 +1634,8 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                         {expandable ? (
                           <button onClick={(ev) => { ev.stopPropagation(); setOpenRow(isOpen ? null : m.item); }}
                             title={isOpen ? "Collapse" : `Show the ${skus.length} items we buy in this category`}
-                            className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded text-[10px] font-bold transition ${isOpen ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-500 hover:bg-teal-100 hover:text-teal-700"}`}>{isOpen ? "−" : "+"}</button>
-                        ) : <span className="w-5 shrink-0" />}
+                            className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-md text-base font-bold leading-none transition ${isOpen ? "bg-teal-600 text-white" : "bg-teal-100 text-teal-700 ring-1 ring-teal-300 hover:bg-teal-200"}`}>{isOpen ? "−" : "+"}</button>
+                        ) : <span className="w-6 shrink-0" />}
                         <div className="min-w-0">
                           <div className="flex flex-wrap items-center gap-1.5">
                             <span className="font-bold leading-snug text-slate-900">{m.item}</span>
@@ -1651,9 +1657,21 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                     <td className="whitespace-nowrap px-4 py-3.5 text-center text-slate-700" title={m.indiaSuppliers.join(" · ")}>
                       {sellerCount(m) != null ? <><span className="font-bold">{sellerCount(m)}</span> <span className="text-xs text-slate-400">{sellerCount(m) === 1 ? "seller" : "sellers"}</span></> : <span className="text-slate-400">—</span>}
                     </td>
-                    <td className={`${TDNUM} ${hasP ? "font-semibold text-orange-700" : "text-slate-400"}`} title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")}>{hasP ? m.priceINRPerKg : "—"}</td>
+                    {/* Price links to where it came from — the client clicked it
+                        expecting the source website and nothing happened. */}
+                    <td className={`${TDNUM}`} title={[m.priceNote, m.priceSource].filter(Boolean).join(" · ")}>
+                      {hasP ? (
+                        m.sources?.[0]
+                          ? <a href={m.sources[0]} target="_blank" rel="noopener noreferrer" onClick={(ev) => ev.stopPropagation()} className="font-semibold text-orange-700 underline decoration-orange-300 underline-offset-2 hover:decoration-orange-600">{m.priceINRPerKg} ↗</a>
+                          : <span className="font-semibold text-orange-700">{m.priceINRPerKg}</span>
+                      ) : <span className="text-slate-400">—</span>}
+                    </td>
+                    {/* When expanded, the per-SKU vendors below carry the detail, so
+                        the category-level vendor summary here would just repeat it. */}
                     <td className="min-w-[220px] px-4 py-3.5">
-                      {v.e ? (
+                      {isOpen && expandable ? (
+                        <span className="text-xs text-slate-400">see items below ↓</span>
+                      ) : v.e ? (
                         <button onClick={(ev) => { ev.stopPropagation(); onSelect(v.e!); }}
                           className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline" title={`${v.label} — open deep-dive`}>
                           <span className="mt-0.5 shrink-0">{catEmoji(v.e.category)}</span>
@@ -1671,12 +1689,16 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                       ) : <LeverCell e={v.e} onOpen={(e, tone) => setLeversFor({ e, tone })} />}
                     </td>
                   </tr>
-                  {isOpen && skus.map((sk) => {
+                  {isOpen && skus.map((sk, si) => {
                     const se = sk.folder ? byFolder.get(sk.folder) : undefined;
                     return (
-                      <tr key={m.item + sk.item} className="border-t border-slate-100 bg-slate-50/60 text-sm">
-                        <td className="px-4 py-2.5 pl-12 text-slate-700">↳ {sk.item}</td>
-                        <td className="px-4 py-2.5 text-xs text-slate-400" colSpan={3}>item we buy in this category</td>
+                      // A clear child row: teal left-accent, indented name. The
+                      // pricing/sellers/price columns are category-level (shared by
+                      // every SKU here), so instead of three blank cells that read
+                      // as broken, one subtle note says the terms are the same.
+                      <tr key={m.item + sk.item} className="border-l-2 border-teal-300 bg-teal-50/30 text-sm">
+                        <td className="py-2.5 pl-12 pr-4"><span className="text-slate-700">↳ {sk.item}</span></td>
+                        <td className="px-4 py-2.5 text-center text-[11px] italic text-slate-400" colSpan={3}>{si === 0 ? "same category terms as above" : ""}</td>
                         <td className="px-4 py-2.5">
                           {se ? (
                             <button onClick={() => onSelect(se)} className="inline-flex items-start gap-1.5 text-left font-semibold text-teal-700 hover:underline">
