@@ -267,26 +267,31 @@ function LeversTab({ d, opps, onGoto, alt }: { d: Detail; opps: number; onGoto: 
   ];
   return (
     <div>
-      <div className="mb-4 rounded-2xl bg-gradient-to-r from-teal-600 to-cyan-600 p-4 text-white shadow-sm">
-        <div className="text-xs font-semibold uppercase tracking-wide text-teal-100">Negotiation-lever engine</div>
-        {/* split the non-opportunity levers the same way the columns below do —
-            lumping watch + risk into one "to watch" number contradicted them. */}
-        <div className="mt-1.5 flex flex-wrap items-center gap-2">
-          {([["opportunity", opps, "plays in our favour"], ["watch", watches, "to watch"], ["risk", risks, "risks"]] as const)
-            .filter(([, n]) => n > 0)
-            .map(([t, n, label]) => {
-              const on = filter === t;
-              return (
-                <button key={t} onClick={() => setFilter(on ? null : t)}
-                  className={`rounded-xl px-3 py-1.5 text-left transition ${on ? "bg-white text-teal-800 shadow-sm" : "bg-white/15 text-white ring-1 ring-white/25 hover:bg-white/25"}`}>
-                  <span className="text-lg font-bold tabular-nums">{n}</span>
-                  <span className="ml-1.5 text-xs font-medium opacity-90">{label}</span>
-                </button>
-              );
-            })}
-          {filter && <button onClick={() => setFilter(null)} className="text-xs font-semibold text-teal-100 underline hover:text-white">show all</button>}
+      {/* Colour-coded, and each tile filters to its own group — green for what
+          works for us, amber to watch, red for risk, the same palette used
+          everywhere else. Click a tile → only that group shows. */}
+      <div className="mb-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+        <div className="flex items-center justify-between">
+          <div className="text-sm font-bold text-slate-700">What we can do with this supplier</div>
+          {filter && <button onClick={() => setFilter(null)} className="text-xs font-semibold text-teal-700 underline hover:text-teal-900">show all</button>}
         </div>
-        <div className="mt-2 text-xs text-teal-100/90">Read straight off {d.yearsCovered}&nbsp;years of their filings · tap a tile to filter, tap a lever for the numbers behind it.</div>
+        <div className="mt-2.5 grid grid-cols-3 gap-2.5">
+          {([
+            ["opportunity", opps, "in our favour", "bg-emerald-50 ring-emerald-200 text-emerald-700", "bg-emerald-500", "✅"],
+            ["watch", watches, "to watch", "bg-amber-50 ring-amber-200 text-amber-700", "bg-amber-500", "👀"],
+            ["risk", risks, "risks", "bg-rose-50 ring-rose-200 text-rose-700", "bg-rose-500", "🚩"],
+          ] as const).map(([t, n, label, cls, solid, emoji]) => {
+            const on = filter === t;
+            return (
+              <button key={t} onClick={() => setFilter(on ? null : t)}
+                className={`rounded-xl p-3 text-left ring-1 transition ${on ? `${solid} text-white shadow-md` : `${cls} hover:brightness-95`}`}>
+                <div className="text-2xl font-extrabold tabular-nums leading-none">{n}</div>
+                <div className={`mt-1 text-xs font-semibold ${on ? "text-white/90" : ""}`}>{emoji} {label}</div>
+              </button>
+            );
+          })}
+        </div>
+        <div className="mt-2.5 text-xs text-slate-400">From {d.yearsCovered}&nbsp;years of their filings · tap a box to filter, tap a reason for the numbers behind it.</div>
       </div>
       <AlternativesCard alt={alt} />
       {/* The reframe the client asked for: each column is a tone, and inside it

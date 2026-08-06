@@ -467,7 +467,7 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
   const [lines, setLines] = useState<L3Line[]>(L3_LINES);
   const [phase, setPhase] = useState<"input" | "running" | "done">("input");
   const [step, setStep] = useState(0);
-  const [leversFor, setLeversFor] = useState<Entity | null>(null);
+  const [leversFor, setLeversFor] = useState<{ e: Entity; tone?: InsightTone } | null>(null);
   const items = useMemo(() => allMarket(), []);
 
   useEffect(() => {
@@ -684,7 +684,7 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
                         {r.savingRs > 0 ? l3Money(r.savingRs) : "—"}
                         {r.savingRs > 0 && <div className="text-[10px] font-medium uppercase tracking-wide text-slate-400">vs {r.bench?.basis === "quote" ? "quote" : "market"}</div>}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={r.incumbent.ent} onOpen={setLeversFor} /></td>
+                      <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={r.incumbent.ent} onOpen={(e, tone) => setLeversFor({ e, tone })} /></td>
                     </tr>
                   );
                 })}
@@ -695,7 +695,7 @@ function L3RateBench({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
         </Card>
       )}
 
-      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor; setLeversFor(null); onSelect(t, tab); }} />}
+      {leversFor && <LeversModal e={leversFor.e} focusTone={leversFor.tone} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor.e; setLeversFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }
@@ -902,8 +902,11 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
     // less than the same opening at a solid one, and vice versa for risk).
     const flat = all.flatMap((e) => probeLevers(e.cin).map((l) => ({ e, l, h: supplierHealth(e.cin) ?? 50 })));
     const opp = flat.filter((x) => x.l.tone === "opportunity"), rk = flat.filter((x) => x.l.tone === "risk");
-    const tops = diverseTop([...opp].sort((a, b) => b.l.strength - a.l.strength || b.h - a.h), 10);
-    const risks = diverseTop([...rk].sort((a, b) => b.l.strength - a.l.strength || a.h - b.h), 10);
+    // One row per supplier now — the client saw the same company twice and asked
+    // us to group them. Each company shows its single strongest opportunity (and
+    // its worst risk), so the ten rows are ten different suppliers.
+    const tops = diverseTop([...opp].sort((a, b) => b.l.strength - a.l.strength || b.h - a.h), 10, 1, 1);
+    const risks = diverseTop([...rk].sort((a, b) => b.l.strength - a.l.strength || a.h - b.h), 10, 1, 1);
     return { scored, tops, risks, avg, nOpp: opp.length, nRisk: rk.length };
   }, [all]);
 
@@ -949,13 +952,13 @@ function OverviewTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, t
 
       {/* the two lists he asked for */}
       <div className="grid items-start gap-4 lg:grid-cols-2">
-        <Card title="💡 Top 10 openings" sub={`the 10 strongest of ${nOpp} found — tap a line for the numbers behind it`} accent="#059669">
+        <Card title="💡 Top 10 opportunities" sub={`the strongest play at each of 10 suppliers · ${nOpp} openings in total — tap a line for the numbers`} accent="#059669">
           <div className="divide-y divide-slate-100">
             {tops.map((x, i) => <Row key={i} e={x.e} l={x.l} tone="opportunity" />)}
             {tops.length === 0 && <p className="py-6 text-center text-sm text-slate-400">No opportunities scored yet.</p>}
           </div>
         </Card>
-        <Card title="🚩 Top 10 risks" sub={`the 10 worst of ${nRisk} found — weakest suppliers first`} accent="#e11d48">
+        <Card title="🚩 Top 10 risks" sub={`the worst exposure at each of 10 suppliers · ${nRisk} in total — weakest first`} accent="#e11d48">
           <div className="divide-y divide-slate-100">
             {risks.map((x, i) => <Row key={i} e={x.e} l={x.l} tone="risk" />)}
             {risks.length === 0 && <p className="py-6 text-center text-sm text-slate-400">No risks flagged.</p>}
@@ -1155,7 +1158,7 @@ function SupplierView() {
 // real product→components mapping); market depth per item is the Ingredients tab.
 function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, tab?: DeepTabKey) => void }) {
   const byFolder = useMemo(() => new Map(all.map((e) => [e.folder, e])), [all]);
-  const [leversFor, setLeversFor] = useState<Entity | null>(null);
+  const [leversFor, setLeversFor] = useState<{ e: Entity; tone?: InsightTone } | null>(null);
   const [openItem, setOpenItem] = useState<string | null>(null);
 
   // A supply-chain row names a specific SKU ("300ml HDPE 2337C Vacation Bottle");
@@ -1211,7 +1214,7 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
                   <td className={`${TDNUM} font-semibold text-slate-900`}>{e ? fmtCrore(revOf(e)) : "—"}</td>
                   <td className={`${TDNUM} text-slate-600`}>{e ? fmtPct(ebitdaMarginOf(e)) : "—"}</td>
                   <td className={`${TDNUM} text-slate-600`}>{e ? fmtPct(supRoce(e)) : "—"}</td>
-                  <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={e} onOpen={setLeversFor} /></td>
+                  <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={e} onOpen={(e, tone) => setLeversFor({ e, tone })} /></td>
                 </tr>
                 );
               })}
@@ -1249,7 +1252,7 @@ function SupplyChainView({ all, onSelect }: { all: Entity[]; onSelect: (e: Entit
           only about who actually makes our products. */}
       <Section title="Contract manufacturers — who makes our products" emoji="🏭" accent="#7c3aed"
         rows={mfRows} poolNote={`${mfRows.length} manufacturers tracked · they buy from the RM & PM vendors in the Ingredients tab`} />
-      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor; setLeversFor(null); onSelect(t, tab); }} />}
+      {leversFor && <LeversModal e={leversFor.e} focusTone={leversFor.tone} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor.e; setLeversFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }
@@ -1548,7 +1551,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
   }, [entries]);
   const cols: Concentration[] = ["sole", "concentrated", "competitive"];
   const [group, setGroup] = useState<"all" | Concentration>("all");
-  const [leversFor, setLeversFor] = useState<Entity | null>(null);
+  const [leversFor, setLeversFor] = useState<{ e: Entity; tone?: InsightTone } | null>(null);
   // Hardest-to-negotiate first: sole-source at the top, commodities last.
   const RANK: Record<Concentration, number> = { sole: 0, concentrated: 1, competitive: 2 };
   const shown = useMemo(
@@ -1665,7 +1668,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                           className="whitespace-nowrap rounded-lg bg-white px-2.5 py-1.5 text-xs font-bold text-slate-500 ring-1 ring-slate-200 transition hover:text-teal-700 hover:ring-teal-300">
                           per vendor {isOpen ? "▲" : "▾"}
                         </button>
-                      ) : <LeverCell e={v.e} onOpen={setLeversFor} />}
+                      ) : <LeverCell e={v.e} onOpen={(e, tone) => setLeversFor({ e, tone })} />}
                     </td>
                   </tr>
                   {isOpen && skus.map((sk) => {
@@ -1681,7 +1684,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
                             </button>
                           ) : <span className="text-slate-400">{sk.brand || "not mapped"}</span>}
                         </td>
-                        <td className="whitespace-nowrap px-4 py-2.5 text-center"><LeverCell e={se} onOpen={setLeversFor} /></td>
+                        <td className="whitespace-nowrap px-4 py-2.5 text-center"><LeverCell e={se} onOpen={(e, tone) => setLeversFor({ e, tone })} /></td>
                       </tr>
                     );
                   })}
@@ -1695,7 +1698,7 @@ function MarketStructureView({ all, onSelect }: { all: Entity[]; onSelect: (e: E
       </Card>
 
       <p className="text-[11px] text-slate-400">Open-web research, not a census · click a row for the full ingredient analysis.</p>
-      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor; setLeversFor(null); onSelect(t, tab); }} />}
+      {leversFor && <LeversModal e={leversFor.e} focusTone={leversFor.tone} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor.e; setLeversFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }
@@ -1994,24 +1997,40 @@ function BoardTab({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity, tab?
 // the supply chain, an ingredient's vendors — uses this, so the counts can never
 // drift apart again and none of them can fall back to the older insight pass.
 // When a supplier has no analysable data it says *why*, instead of a bare dash.
-export function LeverCell({ e, onOpen }: { e: Entity | undefined; onOpen: (e: Entity) => void }) {
+export function LeverCell({ e, onOpen }: { e: Entity | undefined; onOpen: (e: Entity, tone?: InsightTone) => void }) {
   if (!e) return <span className="text-sm text-slate-300">—</span>;
   const deep = probeLevers(e.cin);
-  const n = deep.length || supplierInsights(e).length;
+  const src = deep.length ? deep : supplierInsights(e);
+  const n = src.length;
   if (n === 0) {
     return <span className="whitespace-nowrap rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-500"
       title={e.cin ? "We hold a CIN for this vendor but haven't pulled its Probe42 report yet" : "Open-market trader with no company registration — no filings exist to analyse"}>
       {e.cin ? "report not pulled" : "no filings"}
     </span>;
   }
-  const opps = (deep.length ? deep.filter((l) => l.tone === "opportunity") : supplierInsights(e).filter((i) => i.tone === "opportunity")).length;
+  // Three colour-graded counts instead of one "Check levers" pill — green plays,
+  // amber to-watch, red risks, the standard palette. Risk only shows when there
+  // is one. Clicking a colour opens the modal on that group. (Empty counts are
+  // dimmed so every row's three slots line up in the column.)
+  const count = (t: InsightTone) => src.filter((l) => l.tone === t).length;
+  const tiles: [InsightTone, number, string, string, string][] = [
+    ["opportunity", count("opportunity"), "green", "bg-emerald-100 text-emerald-700 ring-emerald-200 hover:bg-emerald-200", "🟢"],
+    ["watch", count("watch"), "amber", "bg-amber-100 text-amber-700 ring-amber-200 hover:bg-amber-200", "🟡"],
+    ["risk", count("risk"), "rose", "bg-rose-100 text-rose-700 ring-rose-200 hover:bg-rose-200", "🔴"],
+  ];
   return (
-    <button onClick={(ev) => { ev.stopPropagation(); onOpen(e); }}
-      title={deep.length ? `${n} levers from the full Probe42 filings` : `${n} headline reads — no full report yet`}
-      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-white px-2.5 py-1.5 text-xs font-bold text-teal-700 ring-1 ring-teal-200 transition hover:bg-teal-50 hover:ring-teal-300">
-      💡 Check levers
-      <span className={`rounded px-1.5 text-[11px] font-extrabold ${opps ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-500"}`}>{n}</span>
-    </button>
+    <div className="inline-flex items-center gap-1">
+      {tiles.map(([t, c, , cls]) => (
+        // risk slot is hidden entirely when zero; opp/watch stay as dim placeholders so columns align
+        (t === "risk" && c === 0) ? null :
+        <button key={t} onClick={(ev) => { ev.stopPropagation(); onOpen(e, t); }}
+          disabled={c === 0}
+          title={`${c} ${t === "opportunity" ? "in our favour" : t === "watch" ? "to watch" : "risk(s)"} — click to see`}
+          className={`min-w-[2.1rem] rounded-md px-1.5 py-1 text-xs font-extrabold tabular-nums ring-1 transition ${c === 0 ? "bg-slate-50 text-slate-300 ring-slate-100 cursor-default" : cls}`}>
+          {c}
+        </button>
+      ))}
+    </div>
   );
 }
 
@@ -2030,11 +2049,16 @@ const EV_TAB: Record<string, { name: string; cls: string }> = {
    at the top of the supplier's whole lever set and they have to hunt for the row
    they came from — fine on a vendor with three levers, useless on one with
    seventeen. With it, that lever is scrolled to and ringed. */
-function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose: () => void; onOpenProfile: (tab?: DeepTabKey) => void; focus?: string }) {
+function LeversModal({ e, onClose, onOpenProfile, focus, focusTone }: { e: Entity; onClose: () => void; onOpenProfile: (tab?: DeepTabKey) => void; focus?: string; focusTone?: InsightTone }) {
   const focusRef = useRef<HTMLDivElement>(null);
+  const toneRef = useRef<HTMLDivElement>(null);
+  // When a tone was clicked on the board (green/amber/red), open filtered to just
+  // that group; the reader asked for it, so don't make them scan the whole set.
+  const [toneFilter, setToneFilter] = useState<InsightTone | null>(focusTone ?? null);
   useEffect(() => {
     if (focus && focusRef.current) focusRef.current.scrollIntoView({ block: "center" });
-  }, [focus]);
+    else if (focusTone && toneRef.current) toneRef.current.scrollIntoView({ block: "start" });
+  }, [focus, focusTone]);
   useEffect(() => {
     const onKey = (ev: KeyboardEvent) => { if (ev.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
@@ -2060,10 +2084,18 @@ function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose:
               <h2 className="truncate text-lg font-bold leading-tight text-slate-900">{fullName(e.legalName, e.brand)}</h2>
               {health != null && <span className={`shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold ${healthChip(health)}`}>{health}/100</span>}
             </div>
+            {/* These pills filter now — click "risks" and only risks show. */}
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
-              {counts.filter((c) => c.n).map(({ t, n }) => (
-                <span key={t} className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold ring-1 ${TONE_META[t].bg} ${TONE_META[t].text} ${TONE_META[t].ring}`}>{TONE_META[t].emoji} {n} {n === 1 ? TONE_META[t].label.toLowerCase() : LEV_TONE_PLURAL[t]}</span>
-              ))}
+              {counts.filter((c) => c.n).map(({ t, n }) => {
+                const on = toneFilter === t;
+                return (
+                  <button key={t} onClick={() => setToneFilter(on ? null : t)}
+                    className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold ring-1 transition ${on ? `${TONE_META[t].dot} text-white ring-transparent` : `${TONE_META[t].bg} ${TONE_META[t].text} ${TONE_META[t].ring} hover:brightness-95`}`}>
+                    {TONE_META[t].emoji} {n} {n === 1 ? TONE_META[t].label.toLowerCase() : LEV_TONE_PLURAL[t]}
+                  </button>
+                );
+              })}
+              {toneFilter && <button onClick={() => setToneFilter(null)} className="font-semibold text-teal-700 underline hover:text-teal-900">show all</button>}
               {!probe.length && <span className="text-slate-400">no full Probe42 report yet — headline read only</span>}
             </div>
           </div>
@@ -2073,6 +2105,7 @@ function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose:
         <div className="max-h-[65vh] space-y-4 overflow-y-auto px-6 py-4">
           {levers.length === 0 && <p className="py-10 text-center text-sm text-slate-400">No standout lever — this reads as a healthy, fairly-priced vendor.</p>}
           {LEV_TONE_ORDER.map((tone) => {
+            if (toneFilter && tone !== toneFilter) return null;
             const group = levers.filter((l) => l.tone === tone);
             if (!group.length) return null;
             const m = TONE_META[tone];
@@ -2085,7 +2118,7 @@ function LeversModal({ e, onClose, onOpenProfile, focus }: { e: Entity; onClose:
               g.reasons.push(l);
             }
             return (
-              <div key={tone}>
+              <div key={tone} ref={tone === focusTone ? toneRef : undefined}>
                 <h3 className={`mb-2 text-xs font-bold uppercase tracking-wider ${m.text}`}>{m.emoji} {m.label}</h3>
                 <div className="space-y-3">
                   {byAsk.map((grp) => (
@@ -2160,7 +2193,7 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity,
   const [showAll, setShowAll] = useState(false);
   const TOP = 10;
 
-  const [leversFor, setLeversFor] = useState<Entity | null>(null);
+  const [leversFor, setLeversFor] = useState<{ e: Entity; tone?: InsightTone } | null>(null);
   // Lever count comes from the full Probe42 engine where we hold a report, and
   // falls back to the lighter insight pass otherwise — so the board's count and
   // the modal always agree.
@@ -2245,7 +2278,7 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity,
                 <td className="whitespace-nowrap px-4 py-3.5 text-right tabular-nums font-medium text-slate-600">{fmtPct(supRoce(e))}</td>
                 <td className="whitespace-nowrap px-4 py-3.5 text-right tabular-nums font-medium text-slate-500">{fmtDays(supDSO(e))}</td>
                 <td className="whitespace-nowrap px-4 py-3.5 text-right tabular-nums font-medium text-slate-500">{fmtDays(supDPO(e))}</td>
-                <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={e} onOpen={setLeversFor} /></td>
+                <td className="whitespace-nowrap px-4 py-3.5 text-center"><LeverCell e={e} onOpen={(e, tone) => setLeversFor({ e, tone })} /></td>
               </tr>
             ))}
             {active.length === 0 && !showLimited && <tr><td colSpan={7} className="px-4 py-10 text-center text-slate-400">No suppliers match this filter.</td></tr>}
@@ -2260,7 +2293,7 @@ function SupplierBoard({ all, onSelect }: { all: Entity[]; onSelect: (e: Entity,
         </button>
       )}
 
-      {leversFor && <LeversModal e={leversFor} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor; setLeversFor(null); onSelect(t, tab); }} />}
+      {leversFor && <LeversModal e={leversFor.e} focusTone={leversFor.tone} onClose={() => setLeversFor(null)} onOpenProfile={(tab) => { const t = leversFor.e; setLeversFor(null); onSelect(t, tab); }} />}
     </div>
   );
 }
