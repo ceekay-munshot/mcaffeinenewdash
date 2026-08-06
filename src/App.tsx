@@ -2122,24 +2122,24 @@ export function LeverCell({ e, onOpen }: { e: Entity | undefined; onOpen: (e: En
     </span>;
   }
   // Three labelled, colour-graded chips — count PLUS the word, not a bare number,
-  // so a row reads "3 opportunities · 2 watch · 1 risk" at a glance. Fixed-width
-  // columns keep every row's chips aligned down the table; a zero chip greys out
-  // in place rather than vanishing, and the risk chip only appears when > 0.
+  // so a row reads "3 opportunities · 2 watch · 1 risk" at a glance. Each tone
+  // gets a FIXED-WIDTH slot and all three always render (a zero greys out in
+  // place, never vanishes), so the opportunities/watch/risk columns line up
+  // straight down the table instead of drifting when a row hides a chip.
   const count = (t: InsightTone) => src.filter((l) => l.tone === t).length;
   const word = (t: InsightTone, c: number) => t === "opportunity" ? (c === 1 ? "opportunity" : "opportunities") : t === "watch" ? "watch" : (c === 1 ? "risk" : "risks");
-  const tiles: [InsightTone, number, string][] = [
-    ["opportunity", count("opportunity"), "bg-emerald-50 text-emerald-700 ring-emerald-200 hover:bg-emerald-100"],
-    ["watch", count("watch"), "bg-amber-50 text-amber-700 ring-amber-200 hover:bg-amber-100"],
-    ["risk", count("risk"), "bg-rose-50 text-rose-700 ring-rose-200 hover:bg-rose-100"],
+  const tiles: [InsightTone, number, string, string][] = [
+    ["opportunity", count("opportunity"), "w-[7.5rem]", "bg-emerald-50 text-emerald-700 ring-emerald-200 hover:bg-emerald-100"],
+    ["watch", count("watch"), "w-[4.75rem]", "bg-amber-50 text-amber-700 ring-amber-200 hover:bg-amber-100"],
+    ["risk", count("risk"), "w-[4.5rem]", "bg-rose-50 text-rose-700 ring-rose-200 hover:bg-rose-100"],
   ];
   return (
-    <div className="flex flex-wrap items-center justify-center gap-1.5">
-      {tiles.map(([t, c, cls]) => (
-        (t === "risk" && c === 0) ? null :
+    <div className="inline-flex items-center gap-1.5">
+      {tiles.map(([t, c, w, cls]) => (
         <button key={t} onClick={(ev) => { ev.stopPropagation(); onOpen(e, t); }}
           disabled={c === 0}
-          title={`${c} ${word(t, c)} — click to see`}
-          className={`inline-flex items-baseline gap-1 whitespace-nowrap rounded-md px-2 py-1 text-xs font-semibold ring-1 transition ${c === 0 ? "bg-slate-50 text-slate-300 ring-slate-100 cursor-default" : cls}`}>
+          title={c === 0 ? `No ${word(t, 0)}` : `${c} ${word(t, c)} — click to see`}
+          className={`inline-flex items-center justify-center gap-1 ${w} whitespace-nowrap rounded-md px-2 py-1 text-xs font-semibold ring-1 transition ${c === 0 ? "bg-slate-50 text-slate-300 ring-slate-100 cursor-default" : cls}`}>
           <span className="font-extrabold tabular-nums">{c}</span> {word(t, c)}
         </button>
       ))}
