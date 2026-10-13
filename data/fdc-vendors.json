@@ -80,6 +80,86 @@
       "cin": null,
       "verified": "unresolved",
       "note": "Mumbai. Could not resolve — 'Mars Plastics' on IndiaMART is a PARTNERSHIP in Patiala (no CIN); 'Mars Packaging Pvt Ltd' (U74899DL1991PTC043599) is Delhi, not Mumbai. Need the exact legal entity from FDC before fetching."
+    },
+
+    {
+      "name": "Kilitch Healthcare India Limited",
+      "cin": "U99999MH1998PLC134973",
+      "verified": "confirmed",
+      "group": "gap-incumbent",
+      "priority": 1,
+      "listed": false,
+      "note": "Confirmed on Zaubacorp/Tofler/Tracxn — UNLISTED public co (ex-'NBZ Pharma Limited'), RoC-Mumbai, inc. 15 Dec 1998, Active. NOT the listed 'Kilitch Drugs (India) Ltd'. Loan-license manufacturer (VN08). Fetch via Probe42."
+    },
+    {
+      "name": "Abhinav Speciality Foods LLP",
+      "cin": "AAD-5116",
+      "verified": "aggregator",
+      "group": "gap-incumbent",
+      "priority": 2,
+      "listed": false,
+      "note": "It's an LLP — LLPIN AAD-5116 (per Zaubacorp similar-address table + India LEI), Andheri West, Mumbai. Probe42's company API may not cover LLPs; datastatus is free so we try — if unsupported it errors and we skip (no credit)."
+    },
+    {
+      "name": "Parikh Packaging Pvt Ltd (Constantia)",
+      "cin": "U25209GJ1999PTC036763",
+      "verified": "confirmed",
+      "group": "alternative",
+      "priority": 3,
+      "listed": false,
+      "note": "Confirmed on thecompanycheck — 'Parikh Packaging Private Limited', RoC-Ahmedabad, inc. 22 Oct 1999, Active (part of Constantia Flexibles). Laminate alternative."
+    },
+    {
+      "name": "Paharpur 3P Pvt Ltd",
+      "cin": "U45400WB2014PTC200219",
+      "verified": "confirmed",
+      "group": "alternative",
+      "priority": 4,
+      "listed": false,
+      "note": "Confirmed on thecompanycheck & matches the company's own site (paharpur3p.com) — flexible packaging / multilayer laminates, Sahibabad (UP) plant; RoC registration WB, inc. 2014. Laminate alternative."
+    },
+    {
+      "name": "Roquette India Pvt Ltd",
+      "cin": "U15326MH2010PTC310407",
+      "verified": "confirmed",
+      "group": "alternative",
+      "priority": 5,
+      "listed": false,
+      "note": "Confirmed on InstaFinancials — RoC-Mumbai, inc. 25 Aug 2010, Active; starch/food products (dextrose alternative), Goregaon East, Mumbai."
+    },
+    {
+      "name": "Pravesha Industries Pvt Ltd",
+      "cin": "U29219TG1993PTC016451",
+      "verified": "confirmed",
+      "group": "alternative",
+      "listed": false,
+      "note": "Confirmed (paperli/capitalmind/packagingsouthasia) — Hyderabad pharma-packaging major, inc. Oct 1993, Active; PAG took majority stake Jan 2025; FY24 rev ~Rs 597 cr. Packaging alternative. Survey only this round (beyond the 5-credit budget)."
+    },
+    {
+      "name": "Amcor Flexibles India Pvt Ltd",
+      "cin": "U27203MH2006FTC166397",
+      "verified": "confirmed",
+      "group": "alternative",
+      "listed": false,
+      "note": "Confirmed on Zaubacorp — RoC-Mumbai, inc. 21 Dec 2006, Active; subsidiary of a foreign company (Amcor); flexible packaging (ex-Essel Propack PIPL). Laminate alternative. Survey only this round."
+    },
+    {
+      "name": "SB Packagings Pvt Ltd",
+      "cin": "U25202GJ1989PTC153102",
+      "verified": "aggregator",
+      "group": "alternative",
+      "listed": false,
+      "note": "Confirmed on Bloomberg LEI as 'S B Packagings Private Limited', Gujarat, inc. Sep 1989, Active; flexible packaging (Premji Invest portfolio). Laminate alternative. Survey only this round."
+    },
+
+    {
+      "name": "Manjushree Technopack (ALTERNICQ Limited)",
+      "cin": "U67120HR1987PLC138149",
+      "label": "Manjushree Technopack — rigid-packaging alternative",
+      "source": "repo-cache",
+      "repoCachePath": "data/probe-cache/U67120HR1987PLC138149.json",
+      "listed": false,
+      "note": "ALREADY cached in this repo (data/probe-cache/U67120HR1987PLC138149.json, legal name 'ALTERNICQ LIMITED', 16 statements). Copied into the artifact for FREE — no Probe42 call. Rigid-packaging alternative."
     }
   ]
 }
