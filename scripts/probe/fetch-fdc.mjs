@@ -3,21 +3,28 @@
 // (data/fdc-vendors.json) and caches into its own dir (fdc-probe-cache/), so it
 // NEVER touches mcAffeine's own data/clean/entities.json or data/probe-cache/.
 //
-// It reuses the EXACT same Probe42 client (./client.mjs) — same endpoints, same
-// env-driven auth (PROBE42_API_KEY, PROBE42_BASE_URL, PROBE42_PATH_PREFIX, …) —
-// and the same datastatus→comprehensive credit-safe flow.
+// It reuses the SAME Probe42 client (./client.mjs) — same endpoints, same env-driven
+// auth (PROBE42_API_KEY, PROBE42_BASE_URL, PROBE42_PATH_PREFIX, …) — and the same
+// datastatus→comprehensive credit-safe flow.
 //
 //   node scripts/probe/fetch-fdc.mjs --status              # FREE: datastatus only, 0 credits
 //   node scripts/probe/fetch-fdc.mjs --live --limit 15     # PAID: pull comprehensive (default limit 15)
 //   node scripts/probe/fetch-fdc.mjs --live --only U21014PN1987PTC012926,U74999MH2020PTC349649
+//   node scripts/probe/fetch-fdc.mjs --live --include-unverified   # also fetch CINs we could not web-verify
 //
-// Credit safety (identical guarantees to enrich.mjs):
-//   * datastatus is FREE and is ALWAYS called first.
-//   * comprehensive-details (PAID) is called ONLY when data exists (last_details_updated
-//     present) AND the returned legal name roughly matches the expected name.
-//   * a wrong CIN, a company with no data, or a name mismatch => NO credit spent.
-//   * already-cached CINs are never re-fetched (never re-pay).
-//   * no async update is auto-requested — if there's no data we just report it.
+// ── Credit safety ────────────────────────────────────────────────────────────
+// Probe42's datastatus endpoint is FREE and is ALWAYS called first; empirically it
+// returns ONLY data-availability (last_details_updated) and NO legal name, so the
+// name cannot be verified before paying. We therefore gate the PAID call on TWO
+// things instead:
+//   1. datastatus shows data exists  → never pay for a company with no data; and
+//   2. this CIN↔name link is web-verified in fdc-vendors.json ("confirmed" /
+//      "aggregator") → never pay for a CIN we could not independently tie to the
+//      expected company. Unverified CINs are held back unless --include-unverified.
+// After the PAID fetch, the comprehensive response's legal_name IS present, so we
+// check it against the expected name and FLAG any mismatch (keeping the paid file —
+// paid data is never discarded). Already-cached CINs are never re-fetched.
+// If a future datastatus DOES carry a name, it's used as an extra hard pre-pay gate.
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from "node:fs";
 import { join } from "node:path";
@@ -34,6 +41,7 @@ const has = (f) => args.includes(f);
 const val = (f) => { const i = args.indexOf(f); return i >= 0 ? args[i + 1] : undefined; };
 const LIVE = has("--live");
 const STATUS_ONLY = has("--status");
+const INCLUDE_UNVERIFIED = has("--include-unverified");
 const LIMIT = val("--limit") ? Number(val("--limit")) : 15;
 const ONLY = val("--only");
 const ONLY_SET = ONLY ? new Set(ONLY.split(",").map((s) => s.trim()).filter(Boolean)) : null;
@@ -43,11 +51,13 @@ const ONLY_SET = ONLY ? new Set(ONLY.split(",").map((s) => s.trim()).filter(Bool
 // treated as unresolved and never sent to the API.
 const CIN_RE = /^[LUF]\d{5}[A-Z]{2}\d{4}[A-Z]{3}\d{6}$/;
 const isValidCin = (c) => typeof c === "string" && CIN_RE.test(c.trim());
+const WEB_VERIFIED = new Set(["confirmed", "aggregator"]);
 
 // ---- name matching ----------------------------------------------------------
-// Rough legal-name check so we never spend a credit on the wrong company. We strip
-// company-form suffixes and punctuation, then accept if either normalized name
-// contains the other, or they share a strong majority of significant tokens.
+// Rough legal-name check. We strip company-form suffixes and punctuation, then
+// accept if either normalized name contains the other, or they share a strong
+// majority of significant tokens. Used as a hard gate IF datastatus returns a name,
+// and always as a post-fetch sanity check against the comprehensive response.
 const STOP = new Set([
   "private", "limited", "pvt", "ltd", "llp", "plc", "the", "india", "indian",
   "co", "company", "corp", "corporation", "and", "of", "&",
@@ -63,7 +73,7 @@ function tokens(s) {
   return normName(s).split(" ").filter((t) => t && !STOP.has(t));
 }
 function nameMatches(expected, actual) {
-  if (!actual) return { ok: false, score: 0, reason: "no name in datastatus" };
+  if (!actual) return { ok: false, score: 0, reason: "no name returned" };
   const a = tokens(expected), b = tokens(actual);
   if (!a.length || !b.length) return { ok: false, score: 0, reason: "empty after normalize" };
   const collapsedA = a.join(""), collapsedB = b.join("");
@@ -73,17 +83,18 @@ function nameMatches(expected, actual) {
   const setB = new Set(b);
   const shared = a.filter((t) => setB.has(t)).length;
   const score = shared / Math.min(a.length, b.length);
-  // Require the significant tokens of the shorter name to be mostly present.
   return { ok: score >= 0.6, score: Math.round(score * 100) / 100, reason: `token-overlap ${shared}/${Math.min(a.length, b.length)}` };
 }
-// Pull the legal name out of a datastatus (or comprehensive) response.
+// Pull a legal name out of a datastatus (usually none) or comprehensive response.
 function legalNameOf(body) {
-  return (
-    findFirst(body, "legal_name") ??
-    findFirst(body, "company_name") ??
-    findFirst(body, "name") ??
-    null
-  );
+  for (const k of [
+    "legal_name", "company_name", "name", "legalName", "companyName",
+    "entity_name", "registered_name", "company_legal_name",
+  ]) {
+    const v = findFirst(body, k);
+    if (v != null && v !== "") return v;
+  }
+  return null;
 }
 
 // ---- cache ------------------------------------------------------------------
@@ -97,24 +108,28 @@ if (ONLY_SET) vendors = vendors.filter((v) => v.cin && ONLY_SET.has(v.cin));
 
 console.log(`Probe42 FDC fetch — base=${probe.base} env=${probe.env} live=${LIVE}${STATUS_ONLY ? " (status-only)" : ""}`);
 console.log(`Vendors in list: ${doc.vendors?.length ?? 0}${ONLY_SET ? ` · filtered to ${vendors.length} via --only` : ""}`);
-if (LIVE && !STATUS_ONLY) console.log(`Paid-fetch cap (--limit): ${LIMIT}`);
+if (LIVE && !STATUS_ONLY) console.log(`Paid-fetch cap (--limit): ${LIMIT} · include-unverified: ${INCLUDE_UNVERIFIED}`);
 console.log(`Cache dir: ${CACHE_DIR}/\n`);
 
 // ---- run --------------------------------------------------------------------
 const summary = {
-  hasData: [],      // { name, cin, updated }
-  noData: [],       // { name, cin }
-  fetched: [],      // { name, cin }       (comprehensive pulled this run = 1 credit each)
-  alreadyCached: [],// { name, cin }       (skipped the paid call — already have it)
-  mismatched: [],   // { name, cin, got }  (name didn't match — credit NOT spent)
-  errors: [],       // { name, cin, detail }
-  unresolved: [],   // { name, cin }       (no valid CIN — never called)
+  hasData: [],        // { name, cin, updated }
+  noData: [],         // { name, cin }
+  fetched: [],        // { name, cin, gotName, nameOk }   (comprehensive pulled = 1 credit each)
+  alreadyCached: [],  // { name, cin }
+  heldUnverified: [], // { name, cin }   (data exists but CIN not web-verified — no credit)
+  heldLimit: [],      // { name, cin }   (data exists & cleared but --limit reached)
+  postFetchMismatch: [], // { name, cin, got }   (PAID, but legal name mismatched — flagged)
+  errors: [],         // { name, cin, detail }
+  unresolved: [],     // { name, cin }   (no valid CIN — never called)
 };
 let creditsSpent = 0;
+let dumpedStatusBody = false;
 
 for (const v of vendors) {
   const { name } = v;
   const cin = typeof v.cin === "string" ? v.cin.trim() : v.cin;
+  const verified = String(v.verified || "").toLowerCase();
 
   if (!isValidCin(cin)) {
     console.log(`  ⚠ ${name} — UNRESOLVED CIN (${v.cin ?? "null"}) — not called.`);
@@ -129,41 +144,54 @@ for (const v of vendors) {
     summary.errors.push({ name, cin, detail: `datastatus ${s.status}` });
     continue;
   }
+  // One-time raw dump so the real datastatus schema is visible in the log.
+  if (!dumpedStatusBody) {
+    console.log(`  (raw datastatus body, 1st vendor, for schema inspection) ${JSON.stringify(s.body).slice(0, 600)}`);
+    dumpedStatusBody = true;
+  }
   const last = findFirst(s.body, "last_details_updated");
-  const got = legalNameOf(s.body);
-  const match = nameMatches(name, got);
+  const statusName = legalNameOf(s.body); // normally null for Probe42 datastatus
 
   // Surface any credit/quota header so cost is visible in the log.
   const quota = Object.entries(s.headers || {}).filter(([k]) => /credit|quota|limit|remain|balance|usage/i.test(k));
   const quotaStr = quota.length ? `  [${quota.map(([k, val2]) => `${k}=${val2}`).join(" · ")}]` : "";
 
   if (last == null) {
-    console.log(`  · ${name} (${cin}) — NO DATA ready on Probe42 (name seen: ${got ?? "n/a"})${quotaStr}`);
-    summary.noData.push({ name, cin, nameSeen: got ?? null });
+    console.log(`  · ${name} (${cin}) — NO DATA ready on Probe42${quotaStr}`);
+    summary.noData.push({ name, cin });
     continue;
   }
 
-  // Data exists — record it and verify the name before any paid call.
-  console.log(`  ✓ ${name} (${cin}) — HAS DATA (updated ${last}) · name="${got ?? "n/a"}" · match=${match.ok} (${match.reason})${quotaStr}`);
-  summary.hasData.push({ name, cin, updated: last, nameSeen: got ?? null, match: match.ok });
+  console.log(`  ✓ ${name} (${cin}) — HAS DATA (updated ${last}) · verified=${verified || "n/a"}${statusName ? ` · datastatus-name="${statusName}"` : ""}${quotaStr}`);
+  summary.hasData.push({ name, cin, updated: last });
 
-  if (!match.ok) {
-    console.log(`      ↳ NAME MISMATCH — skipping, NO credit spent (expected "${name}", got "${got ?? "n/a"}").`);
-    summary.mismatched.push({ name, cin, got: got ?? null, score: match.score });
+  // 2) Pre-payment gate.
+  if (statusName) {
+    // Rare: datastatus actually carried a name — treat as a hard gate.
+    const m = nameMatches(name, statusName);
+    if (!m.ok) {
+      console.log(`      ↳ NAME MISMATCH in datastatus — skipping, NO credit spent (expected "${name}", got "${statusName}").`);
+      summary.postFetchMismatch.push({ name, cin, got: statusName });
+      continue;
+    }
+  } else if (!WEB_VERIFIED.has(verified) && !INCLUDE_UNVERIFIED) {
+    // No name to check pre-pay → fall back to the web-verified flag.
+    console.log(`      ↳ HELD — CIN not web-verified (verified=${verified || "n/a"}) and datastatus carries no name. Pass --include-unverified to fetch it. NO credit spent.`);
+    summary.heldUnverified.push({ name, cin });
     continue;
   }
 
   if (!LIVE) continue; // status survey mode: never pull the paid report
 
-  // 2) comprehensive — PAID. Only reached when data exists AND name matches.
+  // 3) comprehensive — PAID.
   if (existsSync(cachePath(cin))) {
     console.log(`      ↳ already cached (${cachePath(cin)}) — not re-fetching (no credit).`);
     summary.alreadyCached.push({ name, cin });
     continue;
   }
   if (creditsSpent >= LIMIT) {
-    console.log(`      ↳ --limit ${LIMIT} reached — not fetching (will report as pending).`);
-    summary.noData.push({ name, cin, nameSeen: got ?? null, pendingLimit: true });
+    console.log(`      ↳ --limit ${LIMIT} reached — not fetching (reported as held).`);
+    summary.heldLimit.push({ name, cin });
     continue;
   }
 
@@ -175,27 +203,46 @@ for (const v of vendors) {
   }
   writeFileSync(cachePath(cin), JSON.stringify(comp.body, null, 2));
   creditsSpent++;
+
+  // Post-fetch sanity check: the comprehensive response DOES carry the legal name.
+  const compName = legalNameOf(comp.body);
+  const pm = nameMatches(name, compName);
   const p = extractProbe(comp.body);
-  console.log(`      ↳ FETCHED → ${cachePath(cin)} (credit #${creditsSpent}) · recvDays=${p.receivableDays} payDays=${p.payableDays} roce=${p.roce} rating=${p.creditRating}`);
-  summary.fetched.push({ name, cin });
+  if (!pm.ok) {
+    console.log(`      ↳ ⚠ FETCHED but LEGAL NAME MISMATCH → ${cachePath(cin)} (credit #${creditsSpent}). Expected "${name}", Probe42 says "${compName ?? "n/a"}" (${pm.reason}). File kept — VERIFY before using.`);
+    summary.postFetchMismatch.push({ name, cin, got: compName ?? null });
+  } else {
+    console.log(`      ↳ FETCHED → ${cachePath(cin)} (credit #${creditsSpent}) · legal_name="${compName ?? "n/a"}" ✓ · recvDays=${p.receivableDays} payDays=${p.payableDays} roce=${p.roce} rating=${p.creditRating}`);
+  }
+  summary.fetched.push({ name, cin, gotName: compName ?? null, nameOk: pm.ok });
 }
 
 // ---- summary ----------------------------------------------------------------
 const line = "─".repeat(64);
 console.log(`\n${line}\nSUMMARY\n${line}`);
 console.log(`Has data on Probe42:  ${summary.hasData.length}`);
-for (const h of summary.hasData) console.log(`   ✓ ${h.name} (${h.cin}) — updated ${h.updated}${h.match ? "" : "  ⚠ name mismatch"}`);
+for (const h of summary.hasData) console.log(`   ✓ ${h.name} (${h.cin}) — updated ${h.updated}`);
 console.log(`\nFetched this run (PAID — credits spent = ${creditsSpent}):  ${summary.fetched.length}`);
-for (const f of summary.fetched) console.log(`   💳 ${f.name} (${f.cin})`);
+for (const f of summary.fetched) console.log(`   ${f.nameOk ? "💳" : "⚠ "} ${f.name} (${f.cin})${f.nameOk ? "" : `  NAME MISMATCH → got "${f.gotName}"`}`);
 if (summary.alreadyCached.length) {
   console.log(`\nAlready cached (no credit):  ${summary.alreadyCached.length}`);
   for (const c of summary.alreadyCached) console.log(`   ⟳ ${c.name} (${c.cin})`);
 }
-console.log(`\nNo data on Probe42 (no async update requested):  ${summary.noData.length}`);
-for (const n of summary.noData) console.log(`   · ${n.name} (${n.cin})${n.pendingLimit ? "  (held back by --limit)" : ""}`);
-if (summary.mismatched.length) {
-  console.log(`\nSkipped — name mismatch (NO credit spent):  ${summary.mismatched.length}`);
-  for (const m of summary.mismatched) console.log(`   ✗ expected "${m.name}" (${m.cin}) but Probe42 says "${m.got}" (score ${m.score})`);
+if (summary.noData.length) {
+  console.log(`\nNo data on Probe42 (no async update requested):  ${summary.noData.length}`);
+  for (const n of summary.noData) console.log(`   · ${n.name} (${n.cin})`);
+}
+if (summary.heldUnverified.length) {
+  console.log(`\nHeld — CIN not web-verified (NO credit; use --include-unverified):  ${summary.heldUnverified.length}`);
+  for (const u of summary.heldUnverified) console.log(`   ⏸ ${u.name} (${u.cin})`);
+}
+if (summary.heldLimit.length) {
+  console.log(`\nHeld by --limit ${LIMIT} (NO credit):  ${summary.heldLimit.length}`);
+  for (const h of summary.heldLimit) console.log(`   ⏸ ${h.name} (${h.cin})`);
+}
+if (summary.postFetchMismatch.length) {
+  console.log(`\n⚠ Name mismatches (VERIFY — may be a wrong CIN):  ${summary.postFetchMismatch.length}`);
+  for (const m of summary.postFetchMismatch) console.log(`   ✗ expected "${m.name}" (${m.cin}) but Probe42 says "${m.got}"`);
 }
 if (summary.unresolved.length) {
   console.log(`\nUnresolved CIN (never called):  ${summary.unresolved.length}`);
