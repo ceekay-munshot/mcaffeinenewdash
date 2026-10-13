@@ -15,6 +15,10 @@ dist/
 /data/raw/*
 !/data/raw/masters/
 
+# FDC one-off Probe42 pull — paid reports are delivered as a workflow artifact
+# (see .github/workflows/fetch-fdc-probe.yml), not committed, to keep this repo clean.
+/fdc-probe-cache/
+
 # os / editor
 .DS_Store
 *.log

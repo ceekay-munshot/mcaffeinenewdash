@@ -1,0 +1,85 @@
+{
+  "_comment": "FDC (sister project) packaging-vendor list for a one-off Probe42 pull. CINs were web-verified on 2026-10-13 before any paid call. 'verified' records where the CIN↔name link was confirmed; the fetcher STILL re-checks the legal name via the free datastatus call before spending a credit, so a wrong CIN here can never burn a credit. Entries with cin:null could not be resolved to a registered company and are reported, never called. This file is for FDC only — it does NOT touch mcAffeine's own data/clean/entities.json.",
+  "project": "FDC",
+  "generatedAt": "2026-10-13",
+  "vendors": [
+    {
+      "name": "GEEP Industries (India) Pvt Ltd",
+      "cin": "U74110MH2002PTC137887",
+      "verified": "unverified",
+      "note": "No public record found for this CIN or this exact name (MH, 2002, PTC). datastatus will confirm/deny — if the legal name mismatches, the fetcher skips it (no credit spent)."
+    },
+    {
+      "name": "Shrinath Rotopack Pvt Ltd",
+      "cin": "U25209TG2006PTC050109",
+      "verified": "aggregator",
+      "note": "IndiaMART lists this CIN as 'Shrinath Roto Pack Private Limited' (Hyderabad/Telangana). Legal name likely 'SHRINATH ROTO PACK PRIVATE LIMITED' — rough-match should pass."
+    },
+    {
+      "name": "Tetra Pak India Pvt Ltd",
+      "cin": "U21014PN1987PTC012926",
+      "verified": "confirmed",
+      "note": "Confirmed across multiple sources incl. Tetra Pak's own site. RoC-Pune, inc. 1987."
+    },
+    {
+      "name": "Chemco Plastic Industries Pvt Ltd",
+      "cin": "U25209MH1996PTC096963",
+      "verified": "aggregator",
+      "note": "IndiaMART + ICRA rating report confirm 'Chemco Plastic Industries Private Limited' (Fort, Mumbai; Silvassa plant)."
+    },
+    {
+      "name": "PGP Glass Pvt Ltd",
+      "cin": "U74999MH2020PTC349649",
+      "verified": "confirmed",
+      "note": "Confirmed (InstaFinancials + PGP annual reports). RoC-Mumbai, inc. 2020; formerly 'Pristine Glass Private Limited'."
+    },
+    {
+      "name": "Triveni Polymers Pvt Ltd",
+      "cin": "U74899DL1994PTC060426",
+      "verified": "confirmed",
+      "note": "Confirmed (Bloomberg LEI + aggregators). RoC-Delhi, inc. 1994."
+    },
+    {
+      "name": "GLS Films Industries Pvt Ltd",
+      "cin": "U74950HR2003PTC127247",
+      "verified": "confirmed",
+      "note": "GLEIF/Bloomberg LEI confirms this Haryana (Gurugram) CIN for 'GLS FILMS INDUSTRIES PRIVATE LIMITED'. NB a different Delhi entity (U74950DL2003PTC120112) shares the name — this Haryana CIN is the one requested."
+    },
+    {
+      "name": "Cincorp International",
+      "cin": "U23209DL2008PLC184638",
+      "verified": "unverified",
+      "note": "No public record found for this CIN or this name. CIN shape = unlisted PUBLIC ltd (PLC), Delhi, 2008. Likely a trader, not a manufacturer. datastatus will confirm/deny — fetcher skips on mismatch."
+    },
+    {
+      "name": "TPAC Packaging India Pvt Ltd",
+      "cin": "U74999MH2017PTC301190",
+      "verified": "confirmed",
+      "note": "Confirmed (RegistrationWala + GST records). RoC-Mumbai, inc. 2017 (Goregaon East)."
+    },
+    {
+      "name": "Berry Global India Pvt Ltd",
+      "cin": "U25200KA2021FTC152314",
+      "verified": "confirmed",
+      "note": "Confirmed (Bloomberg LEI + IndiaMART). RoC-Bangalore, FTC (foreign subsidiary of Berry Global Group), inc. 2021 (Peenya, Bengaluru)."
+    },
+    {
+      "name": "PIK Plastics",
+      "cin": null,
+      "verified": "unresolved",
+      "note": "Surat, GJ. Appears to be a PROPRIETORSHIP (GSTIN 24ACFPK2261C1Z7, owner Paresh Khasakia, 'Pik Plastics Group of Alpha'). Proprietorships have NO CIN — not on MCA, so no Probe42 company record. Cannot fetch."
+    },
+    {
+      "name": "Premier Plastic",
+      "cin": null,
+      "verified": "unresolved",
+      "note": "Delhi NCR. Could not resolve to a single registered company — 'Premier Plastic Products' (PVC packaging, Delhi) shows no CIN; name-similar 'Premier Indoplast Pvt Ltd' (U01403DL2007PTC166006) and 'Premier Plastic Industries' (D&B) don't clearly match. Need the exact legal entity from FDC before fetching."
+    },
+    {
+      "name": "Mars Plastics",
+      "cin": null,
+      "verified": "unresolved",
+      "note": "Mumbai. Could not resolve — 'Mars Plastics' on IndiaMART is a PARTNERSHIP in Patiala (no CIN); 'Mars Packaging Pvt Ltd' (U74899DL1991PTC043599) is Delhi, not Mumbai. Need the exact legal entity from FDC before fetching."
+    }
+  ]
+}
