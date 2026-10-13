@@ -1,13 +1,13 @@
 {
-  "_comment": "FDC (sister project) packaging-vendor list for a one-off Probe42 pull. CINs were web-verified on 2026-10-13 before any paid call. 'verified' records where the CIN↔name link was confirmed; the fetcher STILL re-checks the legal name via the free datastatus call before spending a credit, so a wrong CIN here can never burn a credit. Entries with cin:null could not be resolved to a registered company and are reported, never called. This file is for FDC only — it does NOT touch mcAffeine's own data/clean/entities.json.",
+  "_comment": "FDC (sister project) packaging-vendor list for a one-off Probe42 pull. Every CIN was web-verified (Zaubacorp/Tofler/Tracxn/MCA aggregators) on 2026-10-13. The 'verified' flag drives the fetcher's pre-payment gate: Probe42's FREE datastatus endpoint returns only data-availability (no legal name), so a credit is spent only when (a) datastatus shows data exists AND (b) this CIN↔name link is web-'confirmed'/'aggregator'. The PAID comprehensive response's legal_name is then checked post-fetch and any mismatch is flagged (the paid file is kept, never discarded). Entries with cin:null could not be resolved to a registered company and are never called. This file is for FDC only — it does NOT touch mcAffeine's own data/clean/entities.json.",
   "project": "FDC",
   "generatedAt": "2026-10-13",
   "vendors": [
     {
-      "name": "GEEP Industries (India) Pvt Ltd",
+      "name": "GEEP Industries (India) Private Limited",
       "cin": "U74110MH2002PTC137887",
-      "verified": "unverified",
-      "note": "No public record found for this CIN or this exact name (MH, 2002, PTC). datastatus will confirm/deny — if the legal name mismatches, the fetcher skips it (no credit spent)."
+      "verified": "confirmed",
+      "note": "Confirmed on Zaubacorp/Tofler/Tracxn: 'GEEP INDUSTRIES (INDIA) PRIVATE LIMITED', RoC-Mumbai, inc. 15 Nov 2002, office in Wagle Estate, Thane; Active; Thanawala family directors. IndiaMART lists it as a manufacturer of bale ties, packing straps/clips & dry battery cells (packaging-relevant)."
     },
     {
       "name": "Shrinath Rotopack Pvt Ltd",
@@ -46,10 +46,10 @@
       "note": "GLEIF/Bloomberg LEI confirms this Haryana (Gurugram) CIN for 'GLS FILMS INDUSTRIES PRIVATE LIMITED'. NB a different Delhi entity (U74950DL2003PTC120112) shares the name — this Haryana CIN is the one requested."
     },
     {
-      "name": "Cincorp International",
+      "name": "Cincorp International Limited",
       "cin": "U23209DL2008PLC184638",
-      "verified": "unverified",
-      "note": "No public record found for this CIN or this name. CIN shape = unlisted PUBLIC ltd (PLC), Delhi, 2008. Likely a trader, not a manufacturer. datastatus will confirm/deny — fetcher skips on mismatch."
+      "verified": "confirmed",
+      "note": "Confirmed on Zaubacorp/Tofler/Tracxn/Credhive/D&B: 'CINCORP INTERNATIONAL LIMITED' — a PUBLIC company (PLC, hence 'Limited' not 'Pvt Ltd'), RoC-Delhi, inc. 4 Nov 2008, E-27 Defence Colony, New Delhi; Active. Registry classifies it under chemical-product manufacturing."
     },
     {
       "name": "TPAC Packaging India Pvt Ltd",
