@@ -30,6 +30,14 @@ on:
         options:
           - survey
           - fetch
+      limit:
+        description: "fetch only: MAX paid comprehensive pulls (credits) this run"
+        required: false
+        default: "15"
+      only:
+        description: "optional CSV of CINs/LLPINs to restrict this run to (blank = all vendors). Repo-cache preseeds (e.g. Manjushree) are always included."
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -112,11 +120,16 @@ jobs:
           PROBE42_REPORT_PREFIX: ${{ vars.PROBE42_REPORT_PREFIX }}
           PROBE42_API_VERSION: ${{ vars.PROBE42_API_VERSION }}
           PROBE42_ENV: ${{ vars.PROBE42_ENV }}
+          MODE: ${{ github.event.inputs.mode }}
+          LIMIT: ${{ github.event.inputs.limit }}
+          ONLY: ${{ github.event.inputs.only }}
         run: |
-          if [ "${{ github.event.inputs.mode }}" = "fetch" ]; then
-            node scripts/probe/fetch-fdc.mjs --live --limit 15
+          ONLY_ARG=""
+          if [ -n "$ONLY" ]; then ONLY_ARG="--only $ONLY"; fi
+          if [ "$MODE" = "fetch" ]; then
+            node scripts/probe/fetch-fdc.mjs --live --limit "${LIMIT:-15}" $ONLY_ARG
           else
-            node scripts/probe/fetch-fdc.mjs --status
+            node scripts/probe/fetch-fdc.mjs --status $ONLY_ARG
           fi
 
       # Deliver the pulled reports as a downloadable artifact so we can copy them
